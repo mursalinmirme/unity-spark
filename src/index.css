@@ -20,7 +20,7 @@
 
 /* BANNER */
 .banner {
-    @apply grid grid-cols-2 items-center max-w-[1200px] mx-auto
+    @apply max-w-[1200px] mx-auto
 }
 
 .banner h2 {
@@ -29,6 +29,10 @@
 
 .banner p {
     @apply font-medium font-poppins text-[17px]
+}
+
+.banner span {
+    @apply bg-second text-black font-medium uppercase text-sm py-1.5 px-3 rounded-full leading-none
 }
 
 
