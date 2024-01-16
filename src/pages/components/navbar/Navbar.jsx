@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../../assets/images/footerLogo/footerLogo.gif"
+import logo from '../../../assets/images/logo.gif'
+
 const Navbar = () => {
     const navItem = <>
 
@@ -43,8 +44,9 @@ const Navbar = () => {
         }
       </ul>
     </div>
-    {/* <a className="text-xl font-bold p-0">UnitySpark</a> */}
-    <img className="w-40" src={logo} alt="" />
+    <Link to='/'>
+      <img src={logo} className="w-1/2" alt="" />
+    </Link>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1 space-x-8 font-medium text-base">
