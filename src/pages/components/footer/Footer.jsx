@@ -1,11 +1,11 @@
-import footerLogo from "../../../assets/images/footerLogo/footerLogo.gif"
+import logo from '../../../assets/images/logo.gif'
 const Footer = () => {
     
     return (
         <div>
             <footer className="footer py-20 px-10 bg-base-200 text-base-content">
   <aside>
-    <img className="w-48" src={footerLogo} alt="" />
+    <img className="w-48" src={logo} alt="" />
     <p className="mt-5">ACME Industries Ltd.<br/>Providing reliable tech since 1992</p>
   </aside> 
   <nav>

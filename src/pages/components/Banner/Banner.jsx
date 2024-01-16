@@ -35,7 +35,7 @@ const Banner = () => {
                     banner?.map((ban, idx) => (
                         <SwiperSlide key={idx}>
                             <div className="grid grid-cols-2 items-center">
-                                <div className="space-y-4">
+                                <div className="space-y-5">
                                     <span>Hi there</span>
                                     <h2>{ban?.title}</h2>
                                     <p>{ban?.description}</p>

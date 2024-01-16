@@ -35,6 +35,37 @@
     @apply bg-second text-black font-medium uppercase text-sm py-1.5 px-3 rounded-full leading-none
 }
 
+.swiper-pagination .swiper-pagination-bullet {
+    padding: 4px 8px;
+}
+
+.swiper-pagination .swiper-pagination-bullet-active {
+    padding: 4px 12px;
+}
+
+
+
+/* COUNTER SECTION */
+.counter {
+    @apply py-10 max-w-[1200px] mx-auto
+}
+
+.counter_container {
+    @apply p-12 bg-gradient-to-r from-primary to-second rounded-2xl grid grid-cols-4 gap-5 shadow-2xl
+}
+
+.counter_box {
+    @apply text-center space-y-2
+}
+
+.counter_box span {
+    @apply text-white font-bold text-6xl font-inter
+}
+
+.counter_box h3 {
+    @apply text-white font-semibold capitalize text-xl font-poppins
+}
+
 
 /* Error Page */
 .error img {
