@@ -12,7 +12,7 @@ const ServiceCard = ({ service }) => {
           <div className="card-actions justify-end">
             <button className="btn btn-sm bg-[#248479] hover:bg-blue-400 text-white">
               {" "}
-              See More
+              Read More
             </button>
           </div>
         </div>
