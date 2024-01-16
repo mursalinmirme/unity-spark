@@ -7,7 +7,7 @@ const ServiceCard = ({ service }) => {
           <img className="h-40 w-full" src={img} alt="Shoes" />
         </figure>
         <div className="card-body">
-          <h2 className="card-title text-[#248479]">{name}!</h2>
+          <h2 className="card-title text-[#248479]">{name} !</h2>
           <p className="text-justify">{description}</p>
           <div className="card-actions justify-end">
             <button className="btn btn-sm bg-[#248479] hover:bg-blue-400 text-white">
