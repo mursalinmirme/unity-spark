@@ -47,7 +47,7 @@ const Footer = () => {
  
 
 </footer>
-<p className="text-center py-5">© All Right Reserved By Team Code Wizards - 2024</p>
+<p className="text-center py-5 text-sm md:text-base">© All Right Reserved By Team Code Wizards - 2024</p>
         </div>
     );
 };
