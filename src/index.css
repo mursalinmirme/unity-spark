@@ -2,3 +2,89 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* COMMON ITEMS */
+.button {
+    @apply text-white font-semibold font-inter text-base px-4 py-2 rounded-xl transition-all duration-500 text-[15px]
+}
+
+.button {
+    background-image: linear-gradient(to right, #248479, #76C6A2, #76C6A2, #248479);
+    background-size: 300%;
+    background-position: right;
+}
+
+.button:hover {
+    background-position: left;
+}
+
+/* BANNER */
+.banner {
+    @apply max-w-[1200px] mx-auto
+}
+
+.banner h2 {
+    @apply text-5xl font-semibold capitalize font-inter
+}
+
+.banner p {
+    @apply font-medium font-poppins text-[17px]
+}
+
+.banner span {
+    @apply bg-second text-black font-medium uppercase text-sm py-1.5 px-3 rounded-full leading-none
+}
+
+.swiper-pagination .swiper-pagination-bullet {
+    padding: 4px 8px;
+}
+
+.swiper-pagination .swiper-pagination-bullet-active {
+    padding: 4px 12px;
+}
+
+
+
+/* COUNTER SECTION */
+.counter,
+.goals {
+    @apply py-10 max-w-[1200px] mx-auto
+}
+
+.counter_container {
+    @apply p-12 bg-gradient-to-r from-primary to-second rounded-2xl grid grid-cols-4 gap-5 shadow-2xl
+}
+
+.counter_box {
+    @apply text-center space-y-2
+}
+
+.counter_box span {
+    @apply text-white font-bold text-6xl font-inter
+}
+
+.counter_box h3 {
+    @apply text-white font-semibold capitalize text-xl font-poppins
+}
+
+
+/* GOALS SECTION */
+
+.goals h2 {
+    @apply capitalize text-3xl font-semibold font-inter text-center
+}
+
+.goals p {
+    @apply text-center px-40 mt-3 font-inter font-medium
+}
+
+.goals img {
+    @apply w-3/5 mx-auto mt-10
+}
+
+
+/* Error Page */
+.error img {
+    @apply w-2/5 mx-auto
+}
+
