@@ -2,3 +2,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* COMMON ITEMS */
+.button {
+    @apply text-white font-semibold font-inter text-base px-4 py-2 rounded-xl transition-all duration-500 text-[15px]
+}
+
+.button {
+    background-image: linear-gradient(to right, #248479, #76C6A2, #76C6A2, #248479);
+    background-size: 300%;
+    background-position: right;
+}
+
+.button:hover {
+    background-position: left;
+}
+
+/* BANNER */
+.banner {
+    @apply max-w-[1200px] mx-auto
+}
+
+.banner h2 {
+    @apply text-5xl font-semibold capitalize font-inter
+}
+
+.banner p {
+    @apply font-medium font-poppins text-[17px]
+}
+
+.banner span {
+    @apply bg-second text-black font-medium uppercase text-sm py-1.5 px-3 rounded-full leading-none
+}
+
+
+/* Error Page */
+.error img {
+    @apply w-2/5 mx-auto
+}
