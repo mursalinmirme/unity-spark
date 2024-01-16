@@ -1,37 +1,38 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import logo from '../../../assets/images/logo.gif'
 
 const Navbar = () => {
     const navItem = <>
 
         <NavLink to="/">
           {({ isActive }) => (
-             <li className={isActive ? "text-red-600" : ""}>Home</li>
+             <li className={isActive ? "text-white bg-[#248479] px-3 py-1.5 rounded-md" : "px-3 py-1.5"}>Home</li>
                 )}
                    </NavLink>  
         <NavLink to="/dashboard">
           {({ isActive }) => (
-             <li className={isActive ? "text-red-600" : ""}>Dashboard</li>
+             <li className={isActive ? "text-white bg-[#248479] px-3 py-1.5 rounded-md" : "px-3 py-1.5"}>Dashboard</li>
                 )}
                    </NavLink>  
         <NavLink to="/about-us">
           {({ isActive }) => (
-             <li className={isActive ? "text-red-600" : ""}>About Us</li>
+             <li className={isActive ? "text-white bg-[#248479] px-3 py-1.5 rounded-md" : "px-3 py-1.5"}>About Us</li>
                 )}
                    </NavLink>  
         <NavLink to="/signin">
           {({ isActive }) => (
-             <li className={isActive ? "text-red-600" : ""}>Sign In</li>
+             <li className={isActive ? "text-white bg-[#248479] px-3 py-1.5 rounded-md" : "px-3 py-1.5"}>Sign In</li>
                 )}
                    </NavLink>  
         <NavLink to="signup">
           {({ isActive }) => (
-             <li className={isActive ? "text-red-600" : ""}>Signup</li>
+             <li className={isActive ? "text-white bg-[#248479] px-3 py-1.5 rounded-md" : "px-3 py-1.5"}>Signup</li>
                 )}
                    </NavLink>  
     </>
     return (
         <div className="">
-            <div className="navbar py-3 border-b px-10">
+            <div className="navbar py-5 border-b w-11/12 mx-auto">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -43,7 +44,9 @@ const Navbar = () => {
         }
       </ul>
     </div>
-    <a className="text-xl font-bold p-0">Unity Spark</a>
+    <Link to='/'>
+      <img src={logo} className="w-1/2" alt="" />
+    </Link>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1 space-x-8 font-medium text-base">
@@ -53,7 +56,7 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn rounded-md bg-[#248479] text-white">Join Now</a>
+    <Link to={"/signin"}><a className="btn rounded-md bg-[#248479] hover:bg-[#22524c] text-white">Join Now</a></Link>
   </div>
 </div>
         </div>

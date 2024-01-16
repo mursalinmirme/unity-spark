@@ -13,12 +13,12 @@ const OurService = () => {
 
   return (
     <div>
-      <h1 className="text-3xl text-center text-[#248479] font-bold">
+      <h1 className="text-3xl text-center text-[#248479] font-bold mt-10">
         {" "}
         Our Service{" "}
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:px-24 my-16 p-4 ">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:px-24 mb-16 mt-8 p-4 ">
         {services?.map((service) => (
           <ServiceCard key={service.id} service={service}></ServiceCard>
         ))}
