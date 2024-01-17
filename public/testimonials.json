@@ -1,0 +1,32 @@
+[
+    {
+      "id": "1",
+      "image": "https://i.ibb.co/zNFZgzK/author.jpg",
+      "name": "Mark Jordan",
+      "review": "DexterFitnessFan22 transformed my fitness journey. The Core Ignition class ignited a fire within me to achieve a stronger core. Now, I proudly flaunt sculpted abs, and the personalized guidance from Dexter's platform has been my secret weapon. Thanks to Dexter, I'm not just working out; I'm shaping success!",
+      "subject":"Shaping Success with Dexter"
+    },
+    {
+      "id": "2",
+      "image": "https://i.ibb.co/fX1L4Yz/pro4.webp",
+      "name": "YASHKIB",
+      "review":"HIITInfernoPro on Dexter Fitness Trainer has been a revelation. The intense workouts, seamlessly integrated into my routine, delivered results beyond my expectations. The continuous calorie burn has me feeling unstoppable. Dexter's platform turned my fitness goals into a thriving reality. It's not just a workout; it's a transformation!",
+      "subject":"Thriving with Dexter"
+      
+    },
+    {
+      "id": "3",
+      "image": "https://i.ibb.co/8MqvQQs/pro1.webp",
+      "name": "Methods",
+      "review":"DexterYogaSoul is my daily escape. In the midst of chaos, Dexter's platform brings tranquility. The instructor's voice and the seamless flow of movements have transformed my mental and physical well-being. Thanks to Dexter, yoga is not just an exercise; it's a journey to serenity!",
+      "subject":"Yoga Bliss on Dexter"
+    },
+    {
+      "id": "4",
+      "image": "https://i.ibb.co/5k7Dp4X/pro3.webp",
+      "name": "Jone sone",
+      "review":"DexterStrengthGuru is my fitness haven. The diverse exercises keep me engaged, and Dexter's expert guidance ensures progress. I've witnessed a total body transformation—increased strength, enhanced flexibility. Dexter's platform exceeded my expectations. It's not just a workout; it's a pathway to a stronger, healthier me!",
+      "subject":"Total Body Transformation"
+    }
+  ]
+  
