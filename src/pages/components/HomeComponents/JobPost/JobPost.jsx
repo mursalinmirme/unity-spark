@@ -7,7 +7,6 @@ const JobPost = () => {
         {" "}
         Our Recent Job Post{" "}
       </h1>
-      <p> This Testing </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-11/12 mx-auto gap-5  md:px-3 mb-10">
         {/* First div  */}
