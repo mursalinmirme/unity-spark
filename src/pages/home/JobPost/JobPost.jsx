@@ -7,15 +7,19 @@ const JobPost = () => {
         {" "}
         Our Recent Job Post{" "}
       </h1>
+      <p> This Testing </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:px-24 gap-3 mb-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-11/12 mx-auto gap-5  md:px-3 mb-10">
         {/* First div  */}
 
-        <div className="card card-compact  bg-base-100 shadow-xl border p-4 lg:h-[480px]">
+        <div className="card card-compact  bg-base-100 shadow-sm border p-3 lg:h-[460px]">
           <div className="card-body">
             <h2 className="">
-              <strong className="font-bold text-[16px]">Position : </strong>
-              <span className="text-black"> Font-End Developer ! </span>
+              <strong className="font-semibold text-[16px]">Position : </strong>
+              <span className="text-black font-semibold">
+                {" "}
+                Font-End Developer !{" "}
+              </span>
             </h2>
 
             <div>
@@ -46,7 +50,10 @@ const JobPost = () => {
                 {" "}
                 <strong>Salary:</strong> 5L (Year)
               </p>
-              <p> ApplicationDeadline: 2024-02-28</p>
+              <p>
+                {" "}
+                <strong> Deadline :</strong> 2024-02-28
+              </p>
             </div>
 
             <div className="card-actions ">
@@ -60,11 +67,14 @@ const JobPost = () => {
 
         {/* Second div  */}
 
-        <div className="card card-compact  bg-base-100 shadow-xl border p-4 lg:h-[480px">
+        <div className="card card-compact  bg-base-100 shadow-sm border p-3 lg:h-[460px">
           <div className="card-body">
             <h2 className="">
-              <strong className="font-bold text-[16px]">Position : </strong>
-              <span className="text-black"> FullStack Developer ! </span>
+              <strong className="font-semibold text-[16px]">Position : </strong>
+              <span className="text-black font-semibold">
+                {" "}
+                FullStack Developer !{" "}
+              </span>
             </h2>
 
             <div>
@@ -109,11 +119,14 @@ const JobPost = () => {
 
         {/* 3rd div  */}
 
-        <div className="card card-compact  bg-base-100 shadow-xl border p-4 lg:h-[480px]">
+        <div className="card card-compact  bg-base-100 shadow-sm border p-3 lg:h-[460px]">
           <div className="card-body">
             <h2 className="">
-              <strong className="font-bold text-[16px]">Position : </strong>
-              <span className="text-black"> React Developer !</span>
+              <strong className="font-semibold text-[16px]">Position : </strong>
+              <span className="text-black font-semibold">
+                {" "}
+                React Developer !
+              </span>
             </h2>
 
             <div>
