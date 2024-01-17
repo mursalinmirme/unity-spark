@@ -39,7 +39,7 @@ const Banner = () => {
                                     <span>Hi there</span>
                                     <h2>{ban?.title}</h2>
                                     <p>{ban?.description}</p>
-                                    <button className="button">{ban?.button}</button>
+                                    <button>{ban?.button}</button>
                                 </div>
                                 <div>
                                     <img src={ban?.img} alt="" />

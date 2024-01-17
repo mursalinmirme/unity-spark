@@ -1,4 +1,4 @@
-import goalsImage from '../../../assets/images/goals.gif'
+import goalsImage from '../../../../assets/images/goals.gif'
 
 const Goals = () => {
     

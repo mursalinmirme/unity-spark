@@ -1,7 +1,13 @@
 import { useForm } from "react-hook-form";
 import emailjs from "@emailjs/browser";
-import { FaPhone, FaLocationArrow, FaLocationDot } from "react-icons/fa6";
-import { IoSend } from "react-icons/io5";
+import {
+  FaPhone,
+  FaFacebook,
+  FaGithub,
+  FaLinkedin,
+  FaGlobeAmericas,
+  FaLocationArrow
+} from "react-icons/fa";
 import toast from "react-hot-toast";
 
 const ContactUs = () => {
@@ -17,6 +23,7 @@ const ContactUs = () => {
       to_name: "Team Code Wizards",
       from_name: data.name,
       from_email: data.email,
+      company_name: data.company,
       number: data.number,
       message: data.message,
     };
@@ -41,35 +48,49 @@ const ContactUs = () => {
     console.log(contactInfo);
   };
   return (
-    <div className="max-w-7xl mx-auto px-6">
+    <div className="max-w-7xl mx-auto px-4">
       <div
         id="contact"
-        className="py-10 lg:py-20 md:grid grid-cols-4 items-center max-w-7xl mx-auto"
+        className="py-10 lg:py-20 md:grid grid-cols-4 max-w-7xl mx-auto"
       >
-        <div className="col-span-2 space-y-3 mb-16 md:mb-0">
+        <div className="col-span-2 space-y-5 mb-16 md:mb-0">
           <h1 className="text-4xl font-semibold mb-10">
-            Contact <span className=" text-[#248479]">Info</span>
+            Office <span className=" text-[#248479]">Address</span>
           </h1>
-          <div className="flex items-center gap-2 text-lg">
+          <div>
+            <p className="font-medium">Level-5, 23, Gulshan, Dhaka-1211 </p>
+          </div>
+          <div className="flex items-center gap-2">
+            <FaGlobeAmericas className="text-xl text-[#248479]" />
+            <p>www.teamcodewizards.com</p>
+          </div>
+          <div className="flex items-center gap-2">
             <FaPhone className="text-[#248479]" />
             <p>+880 ##### 36519</p>
           </div>
-          <div className="flex text-lg items-center gap-2">
-            <IoSend className="text-xl text-[#248479]" />
+          <div className="flex items-center gap-2">
+            <FaLocationArrow className="text-[#248479]" />
             <p>teamcodewizards@gmail.com</p>
           </div>
-          <div className="flex items-center gap-2 text-lg">
-            <FaLocationDot className="text-xl text-[#248479]" />
-            <p>Level-5, 23, Gulshan, Dhaka-1211 </p>
+          <div className="flex gap-4 icons">
+            <a href="" target="_blank" rel="noopener noreferrer">
+              <FaFacebook className="text-3xl hover:-mt-1 transition-[0.1s]" />
+            </a>
+            <a href="" target="_blank" rel="noopener noreferrer">
+              <FaGithub className="text-3xl hover:-mt-1 transition-[0.1s]" />
+            </a>
+            <a href="" target="_blank" rel="noopener noreferrer">
+              <FaLinkedin className="text-3xl hover:-mt-1 transition-[0.1s]" />
+            </a>
           </div>
         </div>
 
         <div className="col-span-2">
           <h1 className="text-4xl text-center font-semibold mb-5">
-            Get In <span className=" text-[#248479]">Touch!</span>
+            Contact <span className=" text-[#248479]">Us!</span>
           </h1>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="md:flex space-y-5 md:space-y-0 gap-5 mb-5">
+            <div className="md:flex space-y-5 md:space-y-0 gap-5">
               <div className="form-control w-full">
                 <input
                   {...register("name", { required: true })}
@@ -79,6 +100,30 @@ const ContactUs = () => {
                 />
                 {errors.name && (
                   <p className="text-[#248479]">name is required.</p>
+                )}
+              </div>
+              <div className="form-control w-full">
+                <input
+                  {...register("email", { required: true })}
+                  type="email"
+                  placeholder="Email Address"
+                  className="input input-bordered w-full"
+                />
+                {errors.email && (
+                  <p className="text-[#248479]">email is required.</p>
+                )}
+              </div>
+            </div>
+            <div className="md:flex space-y-5 md:space-y-0 gap-5 mt-5">
+              <div className="form-control w-full">
+                <input
+                  {...register("company", { required: true })}
+                  type="text"
+                  placeholder="Company name"
+                  className="input input-bordered w-full"
+                />
+                {errors.company && (
+                  <p className="text-[#248479]">company name is required.</p>
                 )}
               </div>
               <div className="form-control w-full">
@@ -93,23 +138,10 @@ const ContactUs = () => {
                 )}
               </div>
             </div>
-            <div className="md:flex space-y-5 md:space-y-0 gap-5">
-              <div className="form-control w-full">
-                <input
-                  {...register("email", { required: true })}
-                  type="email"
-                  placeholder="Email Address"
-                  className="input input-bordered w-full"
-                />
-                {errors.email && (
-                  <p className="text-[#248479]">email is required.</p>
-                )}
-              </div>
-            </div>
             <div className="form-control my-5">
               <textarea
                 {...register("message", { required: true })}
-                rows={3}
+                rows={5}
                 placeholder="Your Comments here"
                 className="textarea textarea-bordered"
               ></textarea>
@@ -117,7 +149,7 @@ const ContactUs = () => {
                 <p className="text-[#248479]"> please provide a message</p>
               )}
             </div>
-            <div>
+            <div className="text-center">
               <input
                 className="btn btn-outline border-[#248479] text-[#248479] px-10"
                 type="submit"
