@@ -87,3 +87,9 @@
 .error img {
     @apply w-2/5 mx-auto
 }
+
+/* contact section */
+.icons a:hover{
+    color: #248479;
+    transition: 0.1s;
+}
