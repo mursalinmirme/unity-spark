@@ -23,14 +23,58 @@ button:hover {
 }
 
 .goals h2,
-.services h2 {
-    @apply capitalize text-3xl font-semibold font-inter text-center
+.services h2,
+.job_posts h2,
+.testimonial h2,
+.newsletter h2 {
+    @apply capitalize text-2xl md:text-3xl font-semibold font-inter text-center
 }
 
 .goals p,
-.services h6 {
-    @apply text-center px-40 mt-3 font-inter font-medium
+.services h6,
+.job_posts h6,
+.testimonial h6,
+.newsletter h6 {
+    @apply text-center mt-3 font-inter font-medium
 }
+
+.swiper-pagination .swiper-pagination-bullet {
+    padding: 4px 8px;
+    background: #248479;
+    border-radius: 10px
+}
+
+.swiper-pagination .swiper-pagination-bullet-active {
+    padding: 4px 16px;
+}
+
+.swiper-pagination {
+    position: static!important;
+    margin-top: 20px
+}
+
+
+
+/* LOADING PAGE */
+#loading {
+    @apply h-screen w-full bg-white flex items-center justify-center
+}
+
+.custom-loader {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: 
+      radial-gradient(farthest-side,#248479 94%,#0000) top/8px 8px no-repeat,
+      conic-gradient(#0000 30%,#248479);
+    -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
+    animation:s3 1s infinite linear;
+}
+  
+@keyframes s3{ 
+    100%{transform: rotate(1turn)}
+}
+
 
 
 /* HEADER */
@@ -54,28 +98,21 @@ button:hover {
 
 
 /* BANNER */
-.banner {
-    @apply max-w-[1200px] mx-auto
+
+.banner .slide_container {
+    @apply grid grid-cols-1 md:grid-cols-2 items-center py-10 lg:py-0
 }
 
 .banner h2 {
-    @apply text-5xl font-semibold capitalize font-inter
+    @apply text-4xl md:text-5xl font-semibold capitalize font-inter leading-snug
 }
 
 .banner p {
-    @apply font-medium font-poppins text-[17px]
+    @apply font-medium font-poppins text-base md:text-[17px]
 }
 
 .banner span {
-    @apply bg-accent text-white font-medium uppercase text-sm py-1.5 px-3 rounded-full leading-none
-}
-
-.swiper-pagination .swiper-pagination-bullet {
-    padding: 4px 8px;
-}
-
-.swiper-pagination .swiper-pagination-bullet-active {
-    padding: 4px 12px;
+    @apply bg-accent text-white font-medium uppercase text-xs md:text-sm py-1.5 px-3 rounded-full leading-none
 }
 
 
@@ -83,11 +120,11 @@ button:hover {
 /* COUNTER SECTION */
 .counter,
 .goals {
-    @apply py-10 max-w-[1200px] mx-auto
+    @apply py-10 mx-auto
 }
 
 .counter_container {
-    @apply p-12 bg-gradient-to-r from-primary to-second rounded-full grid grid-cols-4 gap-5 shadow-2xl
+    @apply p-12 bg-gradient-to-r from-primary to-second rounded-[40px] lg:rounded-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 shadow-2xl
 }
 
 .counter_box {
@@ -104,8 +141,12 @@ button:hover {
 
 
 /* SERVICE SECTION */
+.service_container {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mt-8
+}
+
 .service_card {
-    @apply border border-slate-300 p-8 hover:-translate-y-2.5 transition-all rounded-xl hover:border-primary
+    @apply border border-slate-300 p-8 hover:-translate-y-2.5 transition-all rounded-xl hover:border-primary min-h-full
 }
 
 .service_card .image_container {
@@ -130,10 +171,90 @@ button:hover {
 } 
 
 
+
+/* JOB POSTS SECTION */
+.posts_container {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mt-8
+}
+
+.job_post_card {
+    @apply border border-slate-300 p-6 hover:-translate-y-2.5 transition-all rounded-xl hover:border-primary
+}
+
+.job_post_card h3 {
+    @apply text-2xl font-semibold font-inter
+}
+
+.job_status {
+    @apply flex gap-2 my-2
+}
+
+.job_post_card span {
+    @apply text-white bg-accent py-1 px-3 rounded-full text-sm font-medium
+}
+
+.job_post_card p {
+    @apply text-base font-inter font-medium text-slate-600
+}
+
+.job_post_card p span {
+    @apply text-black font-semibold bg-transparent p-0 text-base
+}
+
+
+
 /* GOALS SECTION */
 
 .goals img {
-    @apply w-3/5 mx-auto mt-10
+    @apply w-full lg:w-[70%] mx-auto mt-5 md:mt-10
+}
+
+
+/* TESTIMONIALS */
+.testimonial_card {
+    @apply border-2 rounded-lg p-5 text-center min-h-full
+}
+
+.testimonial_card img {
+    @apply rounded-full h-20 w-20 mx-auto
+}
+
+.testimonial_card h3 {
+    @apply font-bold font-inter text-lg 
+}
+
+.testimonial_card h4 {
+    @apply font-semibold font-inter 
+}
+
+.testimonial_card p {
+    @apply font-medium font-inter text-[15px]
+}
+
+
+/* NEWSLETTER */
+.newsletter {
+    @apply w-full mx-auto relative
+}
+
+.newsletter_container {
+    @apply rounded-2xl p-4 md:p-8 lg:p-12
+}
+
+.newsletter_second_container {
+    @apply bg-[#000000b3] rounded-2xl p-5 md:p-8 lg:p-10
+}
+
+.newsletter form {
+    @apply w-full md:w-3/4 lg:w-1/2 mx-auto md:border rounded-xl flex flex-col md:flex-row gap-3 md:gap-0 mt-4 lg:mt-7
+}
+
+.newsletter input {
+    @apply flex-1 px-5 py-2.5 lg:py-3.5 rounded-xl md:rounded-s-xl bg-[#D9D9D933] border md:border-none outline-none text-white
+}
+
+.newsletter button {
+    @apply md:rounded-none md:rounded-r-xl md:px-8 lg:px-10
 }
 
 
