@@ -36,10 +36,11 @@ const Banner = () => {
                         <SwiperSlide key={idx}>
                             <div className="grid grid-cols-2 items-center">
                                 <div className="space-y-5">
+                                    <img src={'https://i.ibb.co/sJZrRTS/wait.gif'} className='w-10 mb-5' alt="" />
                                     <span>Hi there</span>
                                     <h2>{ban?.title}</h2>
                                     <p>{ban?.description}</p>
-                                    <button className="button">{ban?.button}</button>
+                                    <button>{ban?.button}</button>
                                 </div>
                                 <div>
                                     <img src={ban?.img} alt="" />
