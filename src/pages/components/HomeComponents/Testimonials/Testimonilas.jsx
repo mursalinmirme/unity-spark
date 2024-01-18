@@ -21,15 +21,14 @@ const Testimonilas = () => {
     <div className="testimonial py-10">
       <h2>Our Testimonials</h2>
       <h6>
-        Explore our vision and aspirations. From fostering innovation to
-        championing customer satisfaction, discover the core objectives that
-        guide our journey towards excellence.
+      Voices of Success: Clients Speak Out.
       </h6>
       <div className="mt-8">
         <Swiper
           slidesPerView={screenSize[0] > 768 ? 2 : 1}
           spaceBetween={30}
           centeredSlides={true}
+          loop={true}
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,

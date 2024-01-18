@@ -4,8 +4,8 @@ const Goals = () => {
     
     return (
         <div className='goals'>
-            <h2>Our Ambitions Unveiled</h2>
-            <p>Explore our vision and aspirations. From fostering innovation to championing customer satisfaction, discover the core objectives that guide our journey towards excellence.</p>
+            <h2>Ambitions Unveiled</h2>
+            <p>Vision: Innovate, Satisfy, Excel - Unveiled Ambitions.</p>
             <img src={goalsImage} alt="GOALS" />
         </div>
     );

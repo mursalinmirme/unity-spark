@@ -20,8 +20,9 @@ const Banner = () => {
             <Swiper
                 spaceBetween={30}
                 centeredSlides={true}
+                loop={true}
                 autoplay={{
-                delay: 2500,
+                delay: 3000,
                 disableOnInteraction: false,
                 }}
                 pagination={{
@@ -35,7 +36,7 @@ const Banner = () => {
                     banner?.map((ban, idx) => (
                         <SwiperSlide key={idx}>
                             <div className="slide_container">
-                                <div className="space-y-3 md:space-y-5">
+                                <div className="space-y-3 md:space-y-6">
                                     <span>Hi there</span>
                                     <h2>{ban?.title}</h2>
                                     <p>{ban?.description}</p>
