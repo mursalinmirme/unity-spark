@@ -104,11 +104,11 @@ button:hover {
 }
 
 .banner h2 {
-    @apply text-4xl md:text-5xl font-semibold capitalize font-inter leading-snug
+    @apply text-4xl md:text-5xl font-semibold capitalize font-inter leading-snug lg:leading-tight
 }
 
 .banner p {
-    @apply font-medium font-poppins text-base md:text-[17px]
+    @apply font-medium font-poppins text-base md:text-[17px] leading-normal
 }
 
 .banner span {
