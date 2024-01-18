@@ -32,7 +32,7 @@ const Navbar = () => {
     </>
     return (
         <div className="border-b-2">
-            <div className="navbar py-2 w-full lg:w-11/12 mx-auto">
+            <div className="navbar py-2 max-w-[92%] lg:max-w-[1200px] mx-auto">
             <div className="navbar-start">
               <div className="dropdown">
                 <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

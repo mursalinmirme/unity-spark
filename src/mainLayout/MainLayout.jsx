@@ -4,10 +4,10 @@ import Footer from "../pages/components/footer/Footer";
 
 const MainLayout = () => {
     return (
-        <div className="max-w-screen-2xl mx-auto font-poppins">
+        <div className="font-poppins">
             <Navbar></Navbar>
             {/* this div is used for single time after I will remove the div */}
-            <div className="min-h-[70vh]">
+            <div className="min-h-[70vh] max-w-[92%] lg:max-w-[1200px] mx-auto">
                <Outlet></Outlet>
             </div>
             <Footer></Footer>
