@@ -1,7 +1,13 @@
+import "./aboutUs.css";
+
+import Banner from "../components/AboutUsComponents/Banner";
+import Team from "../components/AboutUsComponents/Team";
+
 const AboutUs = () => {
   return (
-    <div>
-      <h3 className="text-xl mt-10 ">This is about pages</h3>
+    <div className="w-[1200px] mx-auto">
+      <Banner></Banner>
+      <Team></Team>
     </div>
   );
 };

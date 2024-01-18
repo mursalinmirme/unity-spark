@@ -1,0 +1,4 @@
+.about_banner h2,
+.about_team h2 {
+  @apply text-[#1E1E1E] font-inter text-4xl font-bold;
+}
