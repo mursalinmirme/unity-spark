@@ -12,10 +12,10 @@ export default {
       },
       colors: {
         'primary': '#248479',
-        'second': '#76C6A2'
+        'second': '#76C6A2',
+        'accent': '#427AA1'
       }
     },
   },
   plugins: [require("daisyui")],
 }
-

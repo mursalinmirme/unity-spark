@@ -13,7 +13,7 @@ const JobPost = () => {
     <div>
       <h2 className="text-4xl text-center text-[#1E1E1E] font-bold mb-1 mt-7">
         {" "}
-        Our Recent Job Post just Now{" "}
+        Our Recent Job Post{" "}
       </h2>
       <p className="text-center lg:w-[696px] mx-auto text-[#1E1E1E] mt-2 mb-8">
         {" "}
@@ -26,6 +26,13 @@ const JobPost = () => {
           <JobPostCard key={jobPost.id} jobPost={jobPost}></JobPostCard>
         ))}
       </div>
+
+      {/* <div className="text-center my-5 mb-10">
+        <button className="btn bg-[#25857A] hover:bg-[#14ae5c] text-white font-bold ">
+          {" "}
+          See All Jobs
+        </button>
+      </div> */}
     </div>
   );
 };
