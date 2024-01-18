@@ -1,0 +1,6 @@
+.socialIcons{
+    display: none;
+}
+.foundersCard:hover .socialIcons{
+    display: block;
+}
