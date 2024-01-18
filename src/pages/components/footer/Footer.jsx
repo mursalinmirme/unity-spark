@@ -9,7 +9,7 @@ const Footer = () => {
     
     return (
         <div className="bg-base-200 font-inter">
-            <footer className="footer justify-between pt-20 pb-10 w-11/12 mx-auto text-base-content">
+            <footer className="footer flex flex-col lg:flex-row justify-between pt-20 pb-10 w-11/12 lg:w-10/12 mx-auto text-base-content">
   <aside className="w-80">
     <img className="w-48" src={footerLogo} alt="" />
     <p className="mt-5 leading-relaxed text-base">Empowering organizations through innovative and efficient Human Resource Management solutions.</p>
