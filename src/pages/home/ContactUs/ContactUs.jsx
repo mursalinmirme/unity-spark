@@ -55,9 +55,12 @@ const ContactUs = () => {
             <p>Level-5, 23, Gulshan, Dhaka-1211 </p>
           </div>
           <div className="flex items-center gap-2 md:text-lg">
+            <FaLocationArrow className="text-2xl text-[#248479]" />
+            <p>Level-5, 23, Gulshan, Dhaka-1211 </p>
+          </div>
+          <div className="flex items-center gap-2 md:text-lg">
             <FaPhone className="text-xl text-[#248479]" />
             <p>+880 ##### 36519</p>
-            <p>017750365</p>
           </div>
           <div className="flex md:text-lg items-center gap-2">
             <IoMdMail className="text-2xl text-[#248479]" />
