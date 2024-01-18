@@ -24,12 +24,12 @@ button:hover {
 
 .goals h2,
 .services h2 {
-    @apply capitalize text-3xl font-semibold font-inter text-center
+    @apply capitalize text-2xl md:text-3xl font-semibold font-inter text-center
 }
 
 .goals p,
 .services h6 {
-    @apply text-center px-40 mt-3 font-inter font-medium
+    @apply text-center px-0 md:px-20 lg:px-40 mt-3 font-inter font-medium
 }
 
 
@@ -54,20 +54,21 @@ button:hover {
 
 
 /* BANNER */
-.banner {
-    @apply max-w-[1200px] mx-auto
+
+.banner .slide_container {
+    @apply grid grid-cols-1 md:grid-cols-2 items-center py-10 lg:py-0
 }
 
 .banner h2 {
-    @apply text-5xl font-semibold capitalize font-inter
+    @apply text-4xl md:text-5xl font-semibold capitalize font-inter leading-snug
 }
 
 .banner p {
-    @apply font-medium font-poppins text-[17px]
+    @apply font-medium font-poppins text-base md:text-[17px]
 }
 
 .banner span {
-    @apply bg-accent text-white font-medium uppercase text-sm py-1.5 px-3 rounded-full leading-none
+    @apply bg-accent text-white font-medium uppercase text-xs md:text-sm py-1.5 px-3 rounded-full leading-none
 }
 
 .swiper-pagination .swiper-pagination-bullet {
@@ -83,11 +84,11 @@ button:hover {
 /* COUNTER SECTION */
 .counter,
 .goals {
-    @apply py-10 max-w-[1200px] mx-auto
+    @apply py-10 mx-auto
 }
 
 .counter_container {
-    @apply p-12 bg-gradient-to-r from-primary to-second rounded-full grid grid-cols-4 gap-5 shadow-2xl
+    @apply p-12 bg-gradient-to-r from-primary to-second rounded-[40px] lg:rounded-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 shadow-2xl
 }
 
 .counter_box {
@@ -104,8 +105,12 @@ button:hover {
 
 
 /* SERVICE SECTION */
+.service_container {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mb-16 mt-8
+}
+
 .service_card {
-    @apply border border-slate-300 p-8 hover:-translate-y-2.5 transition-all rounded-xl hover:border-primary
+    @apply border border-slate-300 p-8 hover:-translate-y-2.5 transition-all rounded-xl hover:border-primary min-h-full
 }
 
 .service_card .image_container {
@@ -133,7 +138,7 @@ button:hover {
 /* GOALS SECTION */
 
 .goals img {
-    @apply w-3/5 mx-auto mt-10
+    @apply w-full lg:w-3/5 mx-auto mt-5 md:mt-10
 }
 
 
