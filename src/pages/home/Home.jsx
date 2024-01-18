@@ -1,3 +1,4 @@
+import Testimonilas from "./Testimonials/Testimonilas";
 import Banner from "../components/HomeComponents/Banner/Banner";
 import Counter from "../components/HomeComponents/Counter/Counter";
 import Goals from "../components/HomeComponents/Goals/Goals";
@@ -14,6 +15,7 @@ const Home = () => {
       <OurService></OurService>
       <JobPost></JobPost>
       <Goals></Goals>
+      <Testimonilas></Testimonilas>
       <Newsletter></Newsletter>
       <ContactUs></ContactUs>
     </div>
