@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "job_title": "Web Developer",
+    "salary": "$5k/yr",
+    "job_posted": "12hours ago",
+    "job_category1": "Remote",
+    "job_category2": "Intern",
+    "job_description": "We are seeking a talented and new motivated Web Developer to join our dynamic team....."
+  },
+  {
+    "id": 2,
+    "job_title": "React Developer",
+    "salary": "$7k/yr",
+    "job_category1": "On-site",
+    "job_category2": "Full-time",
+    "job_posted": "4hours ago",
+    "job_description": "Our are seeking a talented and new motivated React Developer to join our dynamic team....."
+  },
+  {
+    "id": 3,
+    "job_title": "Python Developer",
+    "salary": "$6k/yr",
+    "job_category1": "Remote",
+    "job_category2": "Part-time",
+    "job_posted": "9hours ago",
+    "job_description": "We are seeking a talented and new motivated Python Developer to join our dynamic team....."
+  }
+]
