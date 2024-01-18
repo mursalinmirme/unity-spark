@@ -1,4 +1,4 @@
-import Testimonilas from "./Testimonials/Testimonilas";
+
 import Banner from "../components/HomeComponents/Banner/Banner";
 import Counter from "../components/HomeComponents/Counter/Counter";
 import Goals from "../components/HomeComponents/Goals/Goals";
@@ -6,6 +6,7 @@ import ContactUs from "../components/HomeComponents/ContactUs/ContactUs";
 import JobPost from "../components/HomeComponents/JobPost/JobPost";
 import OurService from "../components/HomeComponents/OurService/OurService";
 import Newsletter from "../components/HomeComponents/newsletter/Newsletter";
+import Testimonilas from "../components/HomeComponents/Testimonials/Testimonilas";
 
 const Home = () => {
   return (
