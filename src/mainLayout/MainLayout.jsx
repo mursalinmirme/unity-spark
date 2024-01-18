@@ -1,16 +1,32 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../pages/components/navbar/Navbar";
 import Footer from "../pages/components/footer/Footer";
+import { useEffect, useState } from "react";
+import Loading from "../pages/components/Loading/Loading";
 
 const MainLayout = () => {
+    const [showLoading, setShowLoading] = useState(true)
+
+    useEffect(() => {
+        const timeOut = setTimeout(() => {
+            setShowLoading(false)
+        }, 1500)
+
+        return () => clearTimeout(timeOut)
+    }, [])
+
     return (
-        <div className="font-poppins">
-            <Navbar></Navbar>
-            {/* this div is used for single time after I will remove the div */}
-            <div className="min-h-[70vh] max-w-[92%] lg:max-w-[1200px] mx-auto">
-               <Outlet></Outlet>
+        <div>
+            <div className={`${showLoading ? 'block' : 'hidden'}`}>
+                <Loading></Loading> 
             </div>
-            <Footer></Footer>
+            <div className="font-poppins">
+                <Navbar></Navbar>
+                <div className="min-h-[70vh] max-w-[92%] lg:max-w-[1200px] mx-auto">
+                    <Outlet></Outlet>
+                </div>
+                <Footer></Footer>
+            </div>
         </div>
     );
 };
