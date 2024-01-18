@@ -25,7 +25,7 @@ const JobPostCard = ({ jobPost }) => {
 
         <p>{job_description}</p>
         <div className="card-actions ">
-          <button className="btn  font-semibold font-inter text-base px-4 py-2 rounded-xl transition-all duration-500 text-[15px] bg-[#14ae5c]  hover:bg-[#248479] text-white mt-2">
+          <button className="btn  button bg-[#14ae5c]  hover:bg-[#248479] text-white mt-2">
             {" "}
             Apply Now
           </button>
