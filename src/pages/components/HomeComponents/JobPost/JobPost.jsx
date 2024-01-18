@@ -12,8 +12,8 @@ const JobPost = () => {
 
   return (
     <div className="job_posts py-12">
-      <h2>Our Recent Job Post</h2>
-      <h6>Our solutions are useful for driving innovation, fostering collaboration, and achieving success in your business endeavors.</h6>
+      <h2>Recent Job Post</h2>
+      <h6 className="pb-4">Our Latest Job Openings Await Your Talent!</h6>
       <div className="posts_container">
         {jobPosts.map((jobPost) => (
           <JobPostCard key={jobPost.id} jobPost={jobPost}></JobPostCard>
