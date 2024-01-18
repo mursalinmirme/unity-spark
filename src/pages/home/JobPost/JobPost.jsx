@@ -13,7 +13,7 @@ const JobPost = () => {
     <div>
       <h2 className="text-4xl text-center text-[#1E1E1E] font-bold mb-1 mt-7">
         {" "}
-        Our Recent Job Post{" "}
+        Our Recent Job Post just Now{" "}
       </h2>
       <p className="text-center lg:w-[696px] mx-auto text-[#1E1E1E] mt-2 mb-8">
         {" "}
