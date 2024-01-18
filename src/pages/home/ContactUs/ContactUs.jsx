@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import emailjs from "@emailjs/browser";
-import { FaPhone, FaLocationArrow, FaLocationDot } from "react-icons/fa6";
-import { IoSend } from "react-icons/io5";
+import { FaPhone, FaLocationArrow } from "react-icons/fa6";
+import { IoMdMail } from "react-icons/io";
 import toast from "react-hot-toast";
 
 const ContactUs = () => {
@@ -47,25 +47,25 @@ const ContactUs = () => {
         className="py-10 lg:py-20 md:grid grid-cols-4 items-center max-w-7xl mx-auto"
       >
         <div className="col-span-2 space-y-3 mb-16 md:mb-0">
-          <h1 className="text-4xl font-semibold mb-10">
+          <h1 className="text-3xl md:text-4xl font-semibold mb-5">
             Contact <span className=" text-[#248479]">Info</span>
           </h1>
-          <div className="flex items-center gap-2 text-lg">
-            <FaPhone className="text-[#248479]" />
+          <div className="flex items-center gap-2 md:text-lg">
+            <FaLocationArrow className="text-2xl text-[#248479]" />
+            <p>Level-5, 23, Gulshan, Dhaka-1211 </p>
+          </div>
+          <div className="flex items-center gap-2 md:text-lg">
+            <FaPhone className="text-xl text-[#248479]" />
             <p>+880 ##### 36519</p>
           </div>
-          <div className="flex text-lg items-center gap-2">
-            <IoSend className="text-xl text-[#248479]" />
-            <p>teamcodewizards@gmail.com</p>
-          </div>
-          <div className="flex items-center gap-2 text-lg">
-            <FaLocationDot className="text-xl text-[#248479]" />
-            <p>Level-5, 23, Gulshan, Dhaka-1211 </p>
+          <div className="flex md:text-lg items-center gap-2">
+            <IoMdMail className="text-2xl text-[#248479]" />
+            <p>unityspark@gmail.com</p>
           </div>
         </div>
 
         <div className="col-span-2">
-          <h1 className="text-4xl text-center font-semibold mb-5">
+          <h1 className="text-3xl md:text-4xl font-semibold mb-3">
             Get In <span className=" text-[#248479]">Touch!</span>
           </h1>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -119,7 +119,7 @@ const ContactUs = () => {
             </div>
             <div>
               <input
-                className="btn btn-outline border-[#248479] text-[#248479] px-10"
+                className="btn btn-outline border-[#248479] text-[#248479] md:px-10"
                 type="submit"
                 value="Send Message"
               />
