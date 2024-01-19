@@ -5,7 +5,7 @@ import Team from "../components/AboutUsComponents/Team";
 
 const AboutUs = () => {
   return (
-    <div className="max-w-[1200px] mx-auto">
+    <div>
       <Banner></Banner>
       <Team></Team>
     </div>
