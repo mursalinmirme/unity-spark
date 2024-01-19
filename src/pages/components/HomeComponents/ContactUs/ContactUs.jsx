@@ -17,7 +17,6 @@ const ContactUs = () => {
       to_name: "Team Code Wizards",
       from_name: data.name,
       from_email: data.email,
-      company_name: data.company,
       number: data.number,
       message: data.message,
     };
@@ -45,12 +44,17 @@ const ContactUs = () => {
     <div className="max-w-7xl mx-auto px-4">
       <div
         id="contact"
-        className="py-10 lg:py-20 md:grid grid-cols-4 max-w-7xl mx-auto"
+        className="py-10 lg:py-20 md:grid grid-cols-4 items-center max-w-7xl mx-auto"
       >
         <div className="col-span-2 space-y-3 mb-16 md:mb-0">
-          <h1 className="text-3xl md:text-4xl font-semibold mb-5">
-            Contact <span className=" text-[#248479]">Info</span>
-          </h1>
+          <div className="mb-8">
+            <h1 className="text-3xl md:text-4xl font-medium ">
+              Contact <span className=" text-[#248479]">Info</span>
+            </h1>
+            <h6 className="font-medium mt-3">
+              Cultivate Connections: Reach Out to Us.
+            </h6>
+          </div>
           <div className="flex items-center gap-2 md:text-lg">
             <FaLocationArrow className="text-2xl text-[#248479]" />
             <p>Level-5, 23, Gulshan, Dhaka-1211 </p>
@@ -70,7 +74,7 @@ const ContactUs = () => {
             Get In <span className=" text-[#248479]">Touch!</span>
           </h1>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="md:flex space-y-5 md:space-y-0 gap-5">
+            <div className="md:flex space-y-5 md:space-y-0 gap-3">
               <div className="form-control w-full">
                 <input
                   {...register("name", { required: true })}
@@ -82,7 +86,10 @@ const ContactUs = () => {
                   <p className="text-[#248479]">name is required.</p>
                 )}
               </div>
-              <div className="form-control w-full">
+              
+            </div>
+            <div className="md:flex space-y-5 md:space-y-0 gap-3 mt-3">
+            <div className="form-control w-full">
                 <input
                   {...register("email", { required: true })}
                   type="email"
@@ -91,19 +98,6 @@ const ContactUs = () => {
                 />
                 {errors.email && (
                   <p className="text-[#248479]">email is required.</p>
-                )}
-              </div>
-            </div>
-            <div className="md:flex space-y-5 md:space-y-0 gap-5 mt-5">
-              <div className="form-control w-full">
-                <input
-                  {...register("company", { required: true })}
-                  type="text"
-                  placeholder="Company name"
-                  className="input input-bordered w-full"
-                />
-                {errors.company && (
-                  <p className="text-[#248479]">company name is required.</p>
                 )}
               </div>
               <div className="form-control w-full">
@@ -118,7 +112,7 @@ const ContactUs = () => {
                 )}
               </div>
             </div>
-            <div className="form-control my-5">
+            <div className="form-control my-3">
               <textarea
                 {...register("message", { required: true })}
                 rows={5}
@@ -129,7 +123,7 @@ const ContactUs = () => {
                 <p className="text-[#248479]"> please provide a message</p>
               )}
             </div>
-            <div className="text-center">
+            <div>
               <input
                 className="btn btn-outline border-[#248479] text-[#248479] md:px-10"
                 type="submit"
