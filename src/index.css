@@ -26,7 +26,8 @@ button:hover {
 .services h2,
 .job_posts h2,
 .testimonial h2,
-.newsletter h2 {
+.newsletter h2,
+#contact h2 {
     @apply capitalize text-2xl md:text-3xl font-semibold font-inter text-center
 }
 
@@ -34,7 +35,8 @@ button:hover {
 .services h6,
 .job_posts h6,
 .testimonial h6,
-.newsletter h6 {
+.newsletter h6,
+#contact h6 {
     @apply text-center mt-3 font-inter font-medium
 }
 
@@ -258,15 +260,52 @@ button:hover {
 }
 
 
+
+/* CONTACT SECTION */
+#contact {
+    @apply py-10 lg:py-20 grid grid-cols-1 md:grid-cols-2 gap-5 items-center w-full
+}
+
+#contact h2,
+#contact h6 {
+    text-align: left!important
+}
+
+#contact .left_container {
+    @apply space-y-2 mb-16 md:mb-0
+}
+
+#contact .contact_info {
+    @apply flex items-center gap-2 md:text-lg
+}
+
+.contact_info svg{
+    @apply text-2xl text-[#248479]
+}
+
+#contact input {
+    @apply input input-bordered w-full
+}
+
+
+
+/* FOOTER */
+
+
+
+
 /* Error Page */
 .error img {
     @apply w-2/5 mx-auto
 }
 
 /* contact section */
-.icons a:hover{
-    color: #248479;
-    transition: 0.1s;
+.contact h1, h6,
+.getInTouch h1,
+.info p{
+    @apply font-inter
 }
 
-/* testimonials section */
+.info p{
+    font-weight: 500;
+}
