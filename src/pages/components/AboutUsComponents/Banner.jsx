@@ -1,14 +1,14 @@
 const Banner = () => {
   return (
     <div className="flex flex-col-reverse lg:flex-row lg:justify-between lg:items-center py-20 px-3 md:px-5 lg:px-0">
-      <div className="lg:flex-1 mt-20 lg:mt-0">
-        <p className="bg-[#427aa1] text-center py-3 px-10 rounded-xl text-white font-semibold inline-block">
+      <div className="lg:flex-1 mt-20 lg:mt-0 space-y-5">
+        <span className="bg-accent text-white font-medium uppercase text-xs md:text-sm py-1.5 px-3 rounded-full leading-none">
           ABOUT
-        </p>
-        <h2 className="text-2xl lg:text-4xl font-bold leading-snug text-[#1E1E1E] mt-5">
-          Chronicles of Excellence <br /> Unveiling Our Purpose
+        </span>
+        <h2 className="text-4xl md:text-5xl font-semibold capitalize font-inter leading-snug lg:leading-tight">
+          Chronicles of Excellence Unveiling Our Purpose
         </h2>
-        <p className="font-inter text-base lg:text-base font-medium leading-normal mt-3 lg:pr-10">
+        <p className="font-inter text-base lg:text-base font-medium leading-normal lg:pr-10">
         At Unity Spark, we specialize in innovative Human Resource Management solutions designed to elevate businesses to new heights. Our platform seamlessly integrates cutting-edge technologies, fostering efficient operations and empowering companies to nurture a thriving workplace culture. 
         </p>
       </div>

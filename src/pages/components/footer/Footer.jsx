@@ -1,8 +1,8 @@
 import footerLogo from "../../../assets/images/footerLogo/footerLogo.gif";
+import instagram from '../../../assets/social/instagram.png'
 import { FaFacebook } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
+import { FaXTwitter } from "react-icons/fa6";
 import { FaPinterest } from "react-icons/fa";
 
 const Footer = () => {
@@ -15,11 +15,11 @@ const Footer = () => {
                 <p className="mt-5 leading-relaxed text-base">Empowering organizations through innovative and efficient Human Resource Management solutions.</p>
                 <h6 className="text-xl font-semibold mt-4">Social Media</h6>
                 <div className="flex text-3xl space-x-3.5 mt-2">
-                <a className="text-[#1877f2]" href="#"><FaFacebook /></a>
-                  <a className="text-[#1877f2]" href="#"><FaLinkedinIn /></a>
-                  <a style={{background: `linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d, #f56040, #f77737, #fcaf45, #ffdc80)`}} className="text-[#FFFFFF] rounded-md" href="#"><FaInstagram /></a>
-                  <a className="text-[#000000]" href="#"><FaSquareXTwitter /></a>
-                  <a className="text-[#B7081B]" href="#"><FaPinterest /></a>
+                <a className="text-[#0866FF]" href="#"><FaFacebook className="text-[27px]" /></a>
+                  <a className="text-[#0A66C2]" href="#"><FaLinkedinIn className="text-[27px]" /></a>
+                  <a href="#"><img src={instagram} className="w-[27px]" alt="" /></a>
+                  <a href="#"><FaXTwitter className="text-[27px]" /></a>
+                  <a className="text-[#E60023]" href="#"><FaPinterest className="text-[27px]" /></a>
                 </div>
               </aside> 
               <nav className="space-y-1.5 text-base">
