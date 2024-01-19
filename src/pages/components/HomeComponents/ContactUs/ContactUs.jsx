@@ -41,17 +41,17 @@ const ContactUs = () => {
     console.log(contactInfo);
   };
   return (
-    <div className="max-w-7xl mx-auto px-4">
+    <div className="max-w-7xl mx-auto">
       <div
         id="contact"
         className="py-10 lg:py-20 md:grid grid-cols-4 items-center max-w-7xl mx-auto"
       >
-        <div className="col-span-2 space-y-3 mb-16 md:mb-0">
-          <div className="mb-8">
+        <div className="col-span-2 space-y-2 mb-16 md:mb-0">
+          <div className="mb-6">
             <h1 className="text-3xl md:text-4xl font-medium ">
               Contact <span className=" text-[#248479]">Info</span>
             </h1>
-            <h6 className="font-medium mt-3">
+            <h6 className="font-medium mt-2">
               Cultivate Connections: Reach Out to Us.
             </h6>
           </div>
@@ -70,7 +70,7 @@ const ContactUs = () => {
         </div>
 
         <div className="col-span-2">
-          <h1 className="text-3xl md:text-4xl font-semibold mb-3">
+          <h1 className="text-3xl md:text-4xl font-medium mb-3">
             Get In <span className=" text-[#248479]">Touch!</span>
           </h1>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -86,10 +86,9 @@ const ContactUs = () => {
                   <p className="text-[#248479]">name is required.</p>
                 )}
               </div>
-              
             </div>
             <div className="md:flex space-y-5 md:space-y-0 gap-3 mt-3">
-            <div className="form-control w-full">
+              <div className="form-control w-full">
                 <input
                   {...register("email", { required: true })}
                   type="email"
@@ -115,7 +114,7 @@ const ContactUs = () => {
             <div className="form-control my-3">
               <textarea
                 {...register("message", { required: true })}
-                rows={5}
+                rows={3}
                 placeholder="Your Comments here"
                 className="textarea textarea-bordered"
               ></textarea>
@@ -125,7 +124,7 @@ const ContactUs = () => {
             </div>
             <div>
               <input
-                className="btn btn-outline border-[#248479] text-[#248479] md:px-10"
+                className="btn btn-outline border-[#248479] text-[#248479] md:px-6"
                 type="submit"
                 value="Send Message"
               />
