@@ -26,7 +26,7 @@ button:hover {
 .services h2,
 .job_posts h2,
 .testimonial h2,
-.newsletter h2 {
+.newsletter h2{
     @apply capitalize text-2xl md:text-3xl font-semibold font-inter text-center
 }
 
@@ -261,4 +261,15 @@ button:hover {
 /* Error Page */
 .error img {
     @apply w-2/5 mx-auto
+}
+
+/* contact section */
+.contact h1, h6,
+.getInTouch h1,
+.info p{
+    @apply font-inter
+}
+
+.info p{
+    font-weight: 500;
 }
