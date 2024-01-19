@@ -298,3 +298,14 @@ button:hover {
 .error img {
     @apply w-2/5 mx-auto
 }
+
+/* contact section */
+.contact h1, h6,
+.getInTouch h1,
+.info p{
+    @apply font-inter
+}
+
+.info p{
+    font-weight: 500;
+}
