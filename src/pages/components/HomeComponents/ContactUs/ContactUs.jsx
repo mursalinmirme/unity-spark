@@ -42,35 +42,34 @@ const ContactUs = () => {
   };
   return (
     <div className="max-w-7xl mx-auto">
-      <div
-        id="contact"
-        className="py-10 lg:py-20 md:grid grid-cols-4 items-center max-w-7xl mx-auto"
-      >
-        <div className="col-span-2 space-y-2 mb-16 md:mb-0">
-          <div className="mb-6">
-            <h1 className="text-3xl md:text-4xl font-medium ">
+      <div className="py-10 lg:py-20 md:grid grid-cols-4 items-center max-w-7xl mx-auto">
+        <div className="col-span-2 mb-16 md:mb-0">
+          <div className="mb-7 contact">
+            <h1 className="text-2xl md:text-3xl font-semibold ">
               Contact <span className=" text-[#248479]">Info</span>
             </h1>
-            <h6 className="font-medium mt-2">
+            <h6 className="font-medium mt-3">
               Cultivate Connections: Reach Out to Us.
             </h6>
           </div>
-          <div className="flex items-center gap-2 md:text-lg">
-            <FaLocationArrow className="text-2xl text-[#248479]" />
-            <p>Level-5, 23, Gulshan, Dhaka-1211 </p>
-          </div>
-          <div className="flex items-center gap-2 md:text-lg">
-            <FaPhone className="text-xl text-[#248479]" />
-            <p>+880 ##### 36519</p>
-          </div>
-          <div className="flex md:text-lg items-center gap-2">
-            <IoMdMail className="text-2xl text-[#248479]" />
-            <p>unityspark@gmail.com</p>
+          <div className="space-y-2 info">
+            <div className="flex items-center gap-2">
+              <FaLocationArrow className="text-2xl text-[#248479]" />
+              <p>Level-5, 23, Gulshan, Dhaka-1211 </p>
+            </div>
+            <div className="flex items-center gap-2">
+              <FaPhone className="text-xl text-[#248479]" />
+              <p>+880 ##### 36519</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <IoMdMail className="text-2xl text-[#248479]" />
+              <p>unityspark@gmail.com</p>
+            </div>
           </div>
         </div>
 
-        <div className="col-span-2">
-          <h1 className="text-3xl md:text-4xl font-medium mb-3">
+        <div className="col-span-2 getInTouch">
+          <h1 className="text-2xl md:text-3xl font-semibold mb-3">
             Get In <span className=" text-[#248479]">Touch!</span>
           </h1>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -87,7 +86,7 @@ const ContactUs = () => {
                 )}
               </div>
             </div>
-            <div className="md:flex space-y-5 md:space-y-0 gap-3 mt-3">
+            <div className="md:flex space-y-3 md:space-y-0 gap-3 mt-3">
               <div className="form-control w-full">
                 <input
                   {...register("email", { required: true })}
