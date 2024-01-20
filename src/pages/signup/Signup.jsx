@@ -42,76 +42,69 @@ const Signup = () => {
         });
     }
   };
+
   return (
-    <div className="p-5">
-      <section className="grid md:grid-cols-2 lg:grid-cols-2 ">
+    <div className="signup p-8">
+      <section>
         {/* form */}
         <div className="border-2 border-red-500 w-full mx-auto p-8 rounded-xl">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <span className="text-center space-y-3">
-              <h1 className="text-2xl  font-semibold pt-2">Sign Up</h1>
-              <p className="font-light text-gray-500 text-sm">
-                Create Your Account
-              </p>
-            </span>
+            <h1>Sign Up</h1>
+            <p>Create Your Account</p>
             {/* name field */}
-            <label className="form-control w-full max-w-xs mx-auto">
+            <label>
               <div className="label">
-                <span className="label-text">What is your name?</span>
+                <span className="font-medium">What is your name?</span>
               </div>
               <input
                 type="text"
                 {...register("name", { required: true })}
                 placeholder="John Doe"
-                className="input input-bordered w-full"
                 required
               />
             </label>
             {/* name field */}
             {/* email field */}
-            <label className="form-control w-full max-w-xs mx-auto">
+            <label>
               <div className="label">
-                <span className="label-text">What is your email?</span>
+                <span className="font-medium">What is your email?</span>
               </div>
               <input
                 type="email"
                 {...register("email", { required: true })}
                 placeholder="johndoe@gmail.com"
-                className="input input-bordered w-full max-w-xs"
                 required
               />
             </label>
             {/* email field */}
             {/*image field */}
-            <label className="form-control w-full max-w-xs mx-auto">
+            <label>
               <div className="label">
-                <span className="label-text">Upload your image link</span>
+                <span className="font-medium">Upload your image link</span>
               </div>
               <input
                 type="file"
                 {...register("photo", { required: true })}
                 placeholder="https://image.one"
-                className="input input-bordered w-full max-w-xs"
                 required
               />
             </label>
             {/* image field */}
             {/* password field */}
-            <label className="form-control w-full max-w-xs mx-auto">
+            <label>
               <div className="label">
-                <span className="label-text">Type your password</span>
+                <span className="font-medium">Type your password</span>
               </div>
               <input
                 type="password"
                 {...register("password", { required: true })}
                 placeholder="************"
-                className="input input-bordered w-full max-w-xs"
                 required
               />
             </label>
             {/* password field */}
-            <div className="form-control w-full max-w-xs mx-auto py-3">
-              <button>Sign Up</button>
+            <div className="form_btn">
+              <button className="text-base">Sign Up</button>
             </div>
           </form>
           <h1 className="text-center text-gray-700 font-medium">Or</h1>
@@ -131,8 +124,8 @@ const Signup = () => {
         {/* form */}
 
         {/* images */}
-        <div className="flex items-center">
-          <img className="h-96" src={img} alt="signupsvg" />
+        <div className="right_container">
+          <img className="w-full" src={img} alt="signup" />
         </div>
         {/* images */}
       </section>

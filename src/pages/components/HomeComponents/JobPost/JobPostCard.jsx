@@ -7,29 +7,19 @@ const JobPostCard = ({ jobPost }) => {
     job_category2,
     job_description,
   } = jobPost;
+
   return (
-    <div className="card bg-base-100 shadow-sm border ">
-      <div className="card-body -mt-2">
-        <h2 className="card-title"> {job_title}</h2>
-
-        <div>
-          <button className="btn btn-sm mr-2 bg-[#427AA1] hover:bg-[#14ae5c] w-[88px] rounded-full text-[13px] text-white">
-            {job_category1}
-          </button>
-          <button className="btn btn-sm bg-[#427AA1] hover:bg-[#14ae5c] w-[88px] text-[12px] rounded-full text-white">
-            {job_category2}
-          </button>
+    <div className="job_post_card">
+      <div>
+        <h3> {job_title}</h3>
+        <div className="job_status">
+          <span>{job_category1}</span>
+          <span>{job_category2}</span>
         </div>
-        <p className="text-[#1E1E1E]">Salary : {salary}</p>
-        <p className="text-[#1E1E1E]"> Posted {job_posted}</p>
-
+        <p><span>Salary:</span> {salary}</p>
+        <p className="my-1">Posted {job_posted}</p>
         <p>{job_description}</p>
-        <div className="card-actions ">
-          <button className="btn  button bg-[#14ae5c]  hover:bg-[#248479] text-white mt-2">
-            {" "}
-            Apply Now
-          </button>
-        </div>
+        <button className="mt-3">Apply Now</button>
       </div>
     </div>
   );
