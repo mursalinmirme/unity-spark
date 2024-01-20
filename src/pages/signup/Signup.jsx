@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import img from "../../assets/images/signup.png";
-import google_Icon from "../../assets/images/google-icon.png";
+import img from "../../../assets/images/signup.png";
+import google_Icon from "../../../assets/images/google-icon.png";
+import '../authentication.css'
 
 const Signup = () => {
   const { register, handleSubmit } = useForm();
@@ -11,19 +12,15 @@ const Signup = () => {
   };
 
   return (
-    <div className="p-5">
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+    <div className="signup p-8">
+      <section>
         {/* form */}
-        <div className="border w-full mx-auto p-3 md:p-6 rounded-xl">
+        <div className="left_container">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <span className="text-center space-y-3">
-              <h1 className="text-2xl  font-semibold pt-2">Sign Up</h1>
-              <p className="font-medium">
-                Create Your Account
-              </p>
-            </span>
+            <h1>Sign Up</h1>
+            <p>Create Your Account</p>
             {/* name field */}
-            <label className="form-control w-full mt-3">
+            <label>
               <div className="label">
                 <span className="font-medium">What is your name?</span>
               </div>
@@ -31,13 +28,12 @@ const Signup = () => {
                 type="text"
                 {...register("name")}
                 placeholder="John Doe"
-                className="input input-bordered w-full"
                 required
               />
             </label>
             {/* name field */}
             {/* email field */}
-            <label className="form-control w-full mt-2">
+            <label>
               <div className="label">
                 <span className="font-medium">What is your email?</span>
               </div>
@@ -45,13 +41,12 @@ const Signup = () => {
                 type="email"
                 {...register("email")}
                 placeholder="johndoe@gmail.com"
-                className="input input-bordered w-full"
                 required
               />
             </label>
             {/* email field */}
             {/*image field */}
-            <label className="form-control w-full mt-2">
+            <label>
               <div className="label">
                 <span className="font-medium">Upload your image link</span>
               </div>
@@ -59,13 +54,12 @@ const Signup = () => {
                 type="url"
                 {...register("img")}
                 placeholder="https://image.one"
-                className="input input-bordered w-full"
                 required
               />
             </label>
             {/* image field */}
             {/* password field */}
-            <label className="form-control w-full mt-2">
+            <label>
               <div className="label">
                 <span className="font-medium">Type your password</span>
               </div>
@@ -73,26 +67,23 @@ const Signup = () => {
                 type="url"
                 {...register("pass")}
                 placeholder="************"
-                className="input input-bordered w-full"
                 required
               />
             </label>
             {/* password field */}
-            <div className="form-control w-full mt-5">
+            <div className="form_btn">
               <button className="text-base">Sign Up</button>
             </div>
           </form>
-          <h1 className="text-center text-gray-700 font-medium my-3">Or</h1>
-          <div className="flex justify-center">
-            <span className="border-2 border-primary text-primary cursor-pointer px-3 py-2.5 rounded-xl w-full flex items-center justify-center gap-2 font-medium">
-              <span>
-                <img className="h-5" src={google_Icon} alt="Google" />
-              </span>
-              Sign Up With Google
+          <h5>Or</h5>
+          <div className="google_btn">
+            <span>
+              <img className="h-5" src={google_Icon} alt="Google" />
             </span>
+            Sign Up With Google
           </div>
-          <div className="text-center py-3">
-            <p className="text-base text-gray-700 font-medium">
+          <div>
+            <p>
               Already Have an account?
               <Link to="/signin" className="text-primary ml-1 hover:underline">
                 Sign In
@@ -103,7 +94,7 @@ const Signup = () => {
         {/* form */}
 
         {/* images */}
-        <div className="hidden lg:flex items-center">
+        <div className="right_container">
           <img className="w-full" src={img} alt="signup" />
         </div>
         {/* images */}

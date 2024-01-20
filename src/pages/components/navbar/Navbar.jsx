@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from '../../../assets/images/logo.gif'
+import { FaBarsStaggered } from "react-icons/fa6";
 
 const Navbar = () => {
     const navItem = <>
@@ -32,24 +33,24 @@ const Navbar = () => {
     </>
     return (
         <div className="border-b-2">
-            <div className="navbar py-2 max-w-[92%] lg:max-w-[1200px] mx-auto">
+            <div className="header">
             <div className="navbar-start">
               <div className="dropdown">
-                <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                <div tabIndex={0} role="button" className="nav_btn">
+                  <FaBarsStaggered />
                 </div>
-                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow rounded-box w-80 bg-white h-96 z-50 space-y-3" >
+                <ul tabIndex={0} className="phone_nav" >
                   {
                       navItem
                   }
                 </ul>
               </div>
               <Link to='/'>
-                <img src={logo} className="w-full md:w-1/2 ml-12 md:ml-0" alt="" />
+                <img src={logo} alt="" />
               </Link>
             </div>
-            <div className="navbar-center hidden lg:flex">
-              <ul className="menu menu-horizontal px-1 space-x-2 font-medium text-base">
+            <div className="main_nav">
+              <ul className="">
                 {
                   navItem
                 }

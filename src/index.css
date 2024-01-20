@@ -13,7 +13,7 @@ button {
 }
 
 button {
-    background-image: linear-gradient(to right, #248479, #76C6A2, #76C6A2, #248479);
+    background-image: linear-gradient(to right, #46A6E2, #433EBE, #433EBE, #46A6E2);
     background-size: 300%;
     background-position: right;
 }
@@ -86,7 +86,7 @@ button:hover {
 
 .nav_item::after,
 .nav_item_active::after {
-    @apply block h-[3px] bg-primary text-primary content-[''] transition-all duration-300 rounded-full mx-auto
+    @apply block h-[3px] bg-primary  content-[''] transition-all duration-300 rounded-full mx-auto
 }
 
 .nav_item::after {
@@ -95,6 +95,34 @@ button:hover {
 
 .nav_item_active::after {
     @apply w-full
+} 
+
+.header {
+    @apply navbar py-2 max-w-[92%] lg:max-w-[1200px] mx-auto
+}
+
+.main_nav {
+    @apply navbar-center hidden lg:flex
+}
+
+.main_nav ul {
+    @apply menu menu-horizontal px-1 space-x-2 font-medium text-base
+}
+
+.nav_btn {
+    @apply btn btn-ghost lg:hidden
+}
+
+.header img {
+    @apply w-full md:w-1/2 ml-12 md:ml-0
+}
+
+.nav_btn svg {
+    @apply w-5 h-5
+}
+
+.phone_nav {
+    @apply menu menu-sm dropdown-content mt-3 p-2 shadow rounded-box w-80 bg-white h-96 z-50 space-y-3
 }
 
 
@@ -243,8 +271,16 @@ button:hover {
     @apply rounded-2xl p-4 md:p-8 lg:p-12
 }
 
-.newsletter_second_container {
+.newsletter .second_container {
     @apply bg-[#000000b3] rounded-2xl p-5 md:p-8 lg:p-10
+}
+
+.newsletter h2 {
+    @apply text-white text-center
+}
+
+.newsletter p {
+    @apply text-center text-white mt-2
 }
 
 .newsletter form {
@@ -252,7 +288,7 @@ button:hover {
 }
 
 .newsletter input {
-    @apply flex-1 px-5 py-2.5 lg:py-3.5 rounded-xl md:rounded-s-xl bg-[#D9D9D933] border md:border-none outline-none text-white
+    @apply flex-1 px-5 py-2.5 lg:py-3.5 rounded-xl md:rounded-s-xl md:rounded-none bg-[#D9D9D933] border md:border-none outline-none text-white
 }
 
 .newsletter button {
@@ -290,7 +326,45 @@ button:hover {
 
 
 /* FOOTER */
+#footer {
+    @apply bg-base-200 font-inter
+}
 
+footer {
+    @apply footer justify-between pt-12 pb-10 max-w-[92%] lg:max-w-[1200px] mx-auto  text-base-content
+}
+
+footer aside {
+    @apply mt-5 leading-relaxed text-base font-inter font-medium
+}
+
+footer aside h6 {
+    @apply text-xl font-semibold mt-4
+}
+
+footer aside div {
+    @apply flex text-3xl space-x-3.5 mt-2
+}
+
+footer aside svg {
+    @apply text-[27px]
+}
+
+footer nav {
+    @apply space-y-1.5 text-base
+}
+
+footer nav header {
+    @apply footer-title text-lg
+}
+
+footer nav a {
+    @apply link link-hover
+}
+
+.copyright {
+    @apply text-center py-5 text-sm md:text-base border-t-2 font-inter font-medium
+}
 
 
 
