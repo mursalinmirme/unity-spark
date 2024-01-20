@@ -1,19 +1,52 @@
 import { useForm } from "react-hook-form";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import img from "../../assets/images/signup.png";
-import google_Icon from "../../assets/images/google-icon.png";
-
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
+import toast from "react-hot-toast";
+import Social_Media from "../Share/Social_Media/Social_Media";
+import axios from "axios";
+const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 const Signup = () => {
+  const { newUserCreate, userUpdateProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => {
-    console.log("form data", data);
+  const onSubmit = async (data) => {
+    console.log(data);
+    const imageFile = { image: data.photo[0] };
+    const res = await axios.post(image_Hosting_Api, imageFile, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    if (res.data.success) {
+      newUserCreate(data?.email, data?.password)
+        .then((userInfo) => {
+          console.log(userInfo?.user);
+          toast.success("New User Create Successfully");
+
+          // User Profile Update
+          userUpdateProfile(data.name, res.data.data.display_url)
+            .then((userInfo) => {
+              console.log(userInfo);
+              toast.success("User Profile Update Successfully");
+              navigate("/");
+            })
+            .catch((error) => {
+              console.log(error.message);
+            });
+        })
+        .catch((error) => {
+          toast.error(error.message);
+        });
+    }
   };
   return (
     <div className="p-5">
       <section className="grid md:grid-cols-2 lg:grid-cols-2 ">
         {/* form */}
-        <div className="border w-full mx-auto p-8 rounded-xl">
+        <div className="border-2 border-red-500 w-full mx-auto p-8 rounded-xl">
           <form onSubmit={handleSubmit(onSubmit)}>
             <span className="text-center space-y-3">
               <h1 className="text-2xl  font-semibold pt-2">Sign Up</h1>
@@ -28,7 +61,7 @@ const Signup = () => {
               </div>
               <input
                 type="text"
-                {...register("name")}
+                {...register("name", { required: true })}
                 placeholder="John Doe"
                 className="input input-bordered w-full"
                 required
@@ -42,7 +75,7 @@ const Signup = () => {
               </div>
               <input
                 type="email"
-                {...register("email")}
+                {...register("email", { required: true })}
                 placeholder="johndoe@gmail.com"
                 className="input input-bordered w-full max-w-xs"
                 required
@@ -55,8 +88,8 @@ const Signup = () => {
                 <span className="label-text">Upload your image link</span>
               </div>
               <input
-                type="url"
-                {...register("img")}
+                type="file"
+                {...register("photo", { required: true })}
                 placeholder="https://image.one"
                 className="input input-bordered w-full max-w-xs"
                 required
@@ -69,8 +102,8 @@ const Signup = () => {
                 <span className="label-text">Type your password</span>
               </div>
               <input
-                type="url"
-                {...register("pass")}
+                type="password"
+                {...register("password", { required: true })}
                 placeholder="************"
                 className="input input-bordered w-full max-w-xs"
                 required
@@ -82,15 +115,10 @@ const Signup = () => {
             </div>
           </form>
           <h1 className="text-center text-gray-700 font-medium">Or</h1>
-          <div className="flex justify-center">
-            {" "}
-            <span className="border btn-outline cursor-pointer border-green-400 px-3 py-1.5 rounded-md w-full max-w-xs flex items-center justify-center gap-2 text-sm">
-              <span>
-                <img className="h-5" src={google_Icon} alt="Google" />
-              </span>{" "}
-              Sign Up With Google
-            </span>
-          </div>
+
+          {/** Social Media SignUp System */}
+          <Social_Media></Social_Media>
+
           <div className="text-center py-3">
             <p className="text-sm text-gray-700 font-medium">
               Already Have an account?{" "}
