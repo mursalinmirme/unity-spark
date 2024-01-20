@@ -8,9 +8,9 @@ const Newsletter = () => {
     return (
         <div className="newsletter">
             <div className="newsletter_container" style={newsBG}>
-                <div className="newsletter_second_container">
-                    <h2 className="text-white text-center">Our Newsletter</h2>
-                    <p className="text-center text-white mt-2">Subscribe our newsletter to get update from us</p>
+                <div className="second_container">
+                    <h2>Our Newsletter</h2>
+                    <p>Subscribe our newsletter to get update from us</p>
                     <form>
                         <input type="email" placeholder="Enter Your Email...."  />
                         <button>Subscribe</button>
