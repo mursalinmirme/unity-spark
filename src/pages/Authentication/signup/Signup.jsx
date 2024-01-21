@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
-
+import "../authentication.css";
 import { Link, useNavigate } from "react-router-dom";
-import img from "../../assets/images/signup.png";
+import img from "../../../assets/images/signup.png";
 import { useContext } from "react";
-import { AuthContext } from "../../Provider/AuthProvider";
+import { AuthContext } from "../../../Provider/AuthProvider";
 import toast from "react-hot-toast";
-import Social_Media from "../Share/Social_Media/Social_Media";
+import Social_Media from "../../components/Share/Social_Media/Social_Media";
 import axios from "axios";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 const Signup = () => {
@@ -47,7 +47,7 @@ const Signup = () => {
     <div className="signup p-8">
       <section>
         {/* form */}
-        <div className="border-2 border-red-500 w-full mx-auto p-8 rounded-xl">
+        <div className="left_container">
           <form onSubmit={handleSubmit(onSubmit)}>
             <h1>Sign Up</h1>
             <p>Create Your Account</p>

@@ -8,34 +8,33 @@ import Signup from "../pages/Authentication/signup/Signup";
 import Signin from "../pages/Authentication/signin/Signin";
 
 const router = createBrowserRouter([
-    {
-        path: '',
-        element: <MainLayout></MainLayout>,
-        errorElement: <Error></Error>,
-        children: [
-            {
-                path: '',
-                element: <Home></Home>
-            },
-            {
-                path: 'signup',
-                element: <Signup></Signup>
-            },
-            {
-                path: 'signin',
-                element: <Signin></Signin>
-            },
-            {
-                path: 'about-us',
-                element: <AboutUs></AboutUs>
-            },
-            {
-                path: 'dashboard',
-                element: <Dashboard></Dashboard>
-            }
-        ]
-        
-    }
-])
+  {
+    path: "",
+    element: <MainLayout></MainLayout>,
+    errorElement: <Error></Error>,
+    children: [
+      {
+        path: "",
+        element: <Home></Home>,
+      },
+      {
+        path: "signup",
+        element: <Signup></Signup>,
+      },
+      {
+        path: "signin",
+        element: <Signin></Signin>,
+      },
+      {
+        path: "about-us",
+        element: <AboutUs></AboutUs>,
+      },
+      {
+        path: "dashboard",
+        element: <Dashboard></Dashboard>,
+      },
+    ],
+  },
+]);
 
 export default router;

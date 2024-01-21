@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { AuthContext } from "../../../Provider/AuthProvider";
+import { AuthContext } from "../../../../Provider/AuthProvider";
 import toast from "react-hot-toast";
-import google_Icon from "../../../assets/images/google-icon.png";
+import google_Icon from "../../../../assets/images/google-icon.png";
 import { useNavigate } from "react-router-dom";
 const Social_Media = () => {
   const { googleLoginSystem } = useContext(AuthContext);
