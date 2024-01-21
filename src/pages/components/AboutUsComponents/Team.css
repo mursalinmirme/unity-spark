@@ -1,6 +1,0 @@
-.socialIcons{
-    @apply opacity-0 transition-all duration-500
-}
-.foundersCard:hover .socialIcons{
-    @apply opacity-100
-}
