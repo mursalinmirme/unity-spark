@@ -22,7 +22,7 @@ const Social_Media = () => {
     <div onClick={handlerGoogleLogin}>
       <div className="flex justify-center">
         {" "}
-        <span className="border btn-outline cursor-pointer border-green-400 px-3 py-1.5 rounded-md w-full max-w-xs flex items-center justify-center gap-2 text-sm">
+        <span className="border btn-outline cursor-pointer border-[#433EBE] px-3 py-1.5 rounded-md w-full  flex items-center justify-center gap-2 text-sm">
           <span>
             <img className="h-5" src={google_Icon} alt="Google" />
           </span>{" "}
