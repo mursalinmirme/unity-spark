@@ -1,14 +1,16 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import signIn_image from "../../../assets/images/signIn-picture.png";
-import { useContext } from "react";
+import signIn_image from "../../../assets/images/signin.png";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import Social_Media from "../../components/Share/Social_Media/Social_Media";
-
+import { IoEyeOutline } from "react-icons/io5";
+import { FaEyeSlash } from "react-icons/fa";
 const Signin = () => {
   const { userSignIn } = useContext(AuthContext);
+  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
   const { register, handleSubmit, reset } = useForm();
@@ -29,60 +31,69 @@ const Signin = () => {
   };
 
   return (
-    <div className="p-5 lg:w-[1100px] mx-auto ">
-      <section className="grid md:grid-cols-2 lg:grid-cols-2">
+    <div className="p-5">
+      <section className="grid md:grid-cols-2 lg:grid-cols-2 items-center gap-4">
         {/* images */}
-        <div className="w-full flex items-center">
-          <img
-            className="lg:ml-20  md:h-[350px]"
-            src={signIn_image}
-            alt="signupsvg"
-          />
+        <div className="w-full">
+          <img src={signIn_image} alt="signupsvg" />
         </div>
         {/* images */}
 
         {/* form */}
-        <div className="p-5 rounded-lg lg:mr-11 border-2 border-red-500">
+        <div className="p-5 rounded-lg  border">
           <form onSubmit={handleSubmit(onSubmit)}>
             <span className="text-center space-y-3">
               <h1 className="text-2xl font-semibold text-[#000]">
                 Welcome Back
               </h1>
-              <p className="font-light  text-sm text-[#000]">
+              <p className=" text-sm text-[#000] font-medium">
                 Enter Your Credentials to Sign In{" "}
               </p>
             </span>
 
             {/* email field */}
-            <label className="form-control w-full max-w-xs mx-auto">
+            <label className="form-control w-full">
               <div className="label">
-                <span className="label-text">Your Email</span>
+                <span className="label-text font-medium">Your Email</span>
               </div>
               <input
                 type="email"
                 {...register("email")}
                 placeholder="johndoe@gmail.com"
-                className="input input-bordered w-full max-w-xs"
+                className="input input-bordered w-full"
                 required
               />
             </label>
             {/* email field */}
 
             {/* password field */}
-            <label className="form-control w-full max-w-xs mx-auto">
+            <label className="form-control w-full py-3 ">
               <div className="label">
-                <span className="label-text">Your password</span>
+                <span className="label-text font-medium">Your password</span>
               </div>
-              <input
-                type="password"
-                {...register("password")}
-                placeholder="************"
-                className="input input-bordered w-full max-w-xs"
-                required
-              />
+              <div className="relative">
+                <input
+                  type={open ? "text" : "password"}
+                  {...register("password")}
+                  placeholder="************"
+                  className="input input-bordered w-full "
+                  required
+                />
+                <span
+                  onClick={() => setOpen(!open)}
+                  className="absolute top-3 right-4 cursor-pointer"
+                >
+                  {" "}
+                  {open ? (
+                    <IoEyeOutline className="text-2xl" />
+                  ) : (
+                    <FaEyeSlash className="text-2xl" />
+                  )}
+                </span>
+              </div>
             </label>
             {/* password field */}
-            <div className="form-control w-full max-w-xs mx-auto py-3">
+            <div className="form-control w-full py-3">
               <button>Sign In</button>
             </div>
           </form>

@@ -1,8 +1,11 @@
 import { useForm } from "react-hook-form";
 import "../authentication.css";
 import { Link, useNavigate } from "react-router-dom";
-import img from "../../../assets/images/signup.png";
-import { useContext } from "react";
+import img from "../../../assets/images/signUps.png";
+import download_icon from "../../../assets/images/download-Icon.png";
+import { useContext, useState } from "react";
+import { IoEyeOutline } from "react-icons/io5";
+import { FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import Social_Media from "../../components/Share/Social_Media/Social_Media";
@@ -11,9 +14,11 @@ const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d
 const Signup = () => {
   const { newUserCreate, userUpdateProfile } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const [secret, setSecret] = useState(false);
   const { register, handleSubmit } = useForm();
+
   const onSubmit = async (data) => {
-    console.log(data);
     const imageFile = { image: data.photo[0] };
     const res = await axios.post(image_Hosting_Api, imageFile, {
       headers: {
@@ -21,6 +26,10 @@ const Signup = () => {
       },
     });
     if (res.data.success) {
+      // if(data.password === data?.confirm){
+      //   return
+      // }
+
       newUserCreate(data?.email, data?.password)
         .then((userInfo) => {
           console.log(userInfo?.user);
@@ -49,20 +58,49 @@ const Signup = () => {
         {/* form */}
         <div className="left_container">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <h1>Sign Up</h1>
+            <h1>Lets Start a new journey</h1>
             <p>Create Your Account</p>
-            {/* name field */}
-            <label>
-              <div className="label">
-                <span className="font-medium">What is your name?</span>
+
+            <div className="grid grid-cols-2 gap-2">
+              {/* name field */}
+              <label>
+                <div className="label">
+                  <span className="font-medium">What is your name?</span>
+                </div>
+                <input
+                  type="text"
+                  {...register("name", { required: true })}
+                  placeholder="John Doe"
+                  required
+                />
+              </label>
+
+              {/*image field */}
+              <div className="mt-4">
+                <span className="font-medium ml-1">Your Photo</span>
+                <label
+                  className="font-semibold text-white cursor-pointer font-inter text-base px-4  sm:py-[4px] md:py-[12px] bg-primary rounded-xl transition-all duration-500 text-[15px]"
+                  htmlFor="user_photo"
+                >
+                  <div className="flex justify-center ">
+                    {" "}
+                    <img src={download_icon} alt="" />{" "}
+                    <span> Upload Your Photo</span>{" "}
+                  </div>
+                </label>
+                <input
+                  className="hidden"
+                  id="user_photo"
+                  type="file"
+                  {...register("photo", { required: true })}
+                  placeholder="add Image"
+                  required
+                />
               </div>
-              <input
-                type="text"
-                {...register("name", { required: true })}
-                placeholder="John Doe"
-                required
-              />
-            </label>
+
+              {/* image field */}
+            </div>
+
             {/* name field */}
             {/* email field */}
             <label>
@@ -77,31 +115,61 @@ const Signup = () => {
               />
             </label>
             {/* email field */}
-            {/*image field */}
-            <label>
-              <div className="label">
-                <span className="font-medium">Upload your image link</span>
-              </div>
-              <input
-                type="file"
-                {...register("photo", { required: true })}
-                placeholder="https://image.one"
-                required
-              />
-            </label>
-            {/* image field */}
+
             {/* password field */}
-            <label>
-              <div className="label">
-                <span className="font-medium">Type your password</span>
-              </div>
-              <input
-                type="password"
-                {...register("password", { required: true })}
-                placeholder="************"
-                required
-              />
-            </label>
+
+            <div className="grid grid-cols-2 gap-4">
+              <label>
+                <div className="label">
+                  <span className="font-medium">Your password</span>
+                </div>
+
+                <div className="relative">
+                  <input
+                    type={open ? "text" : "password"}
+                    {...register("password", { required: true })}
+                    placeholder="Create Password"
+                    required
+                  />
+                  <span
+                    onClick={() => setOpen(!open)}
+                    className="absolute top-[13px] right-3 cursor-pointer"
+                  >
+                    {" "}
+                    {open ? (
+                      <IoEyeOutline className="text-2xl" />
+                    ) : (
+                      <FaEyeSlash className="text-2xl" />
+                    )}
+                  </span>
+                </div>
+              </label>
+
+              <label>
+                <div className="label">
+                  <span className="font-medium">Confirm Password</span>
+                </div>
+                <div className="relative">
+                  <input
+                    type={secret ? "text" : "password"}
+                    {...register("confirm", { required: true })}
+                    placeholder="Create Password"
+                    required
+                  />
+                  <span
+                    onClick={() => setSecret(!secret)}
+                    className="absolute top-[13px] right-3 cursor-pointer"
+                  >
+                    {" "}
+                    {secret ? (
+                      <IoEyeOutline className="text-2xl" />
+                    ) : (
+                      <FaEyeSlash className="text-2xl" />
+                    )}
+                  </span>
+                </div>
+              </label>
+            </div>
             {/* password field */}
             <div className="form_btn">
               <button className="text-base">Sign Up</button>
