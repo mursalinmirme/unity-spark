@@ -6,7 +6,7 @@ Unity Spark is a dynamic Human Resource Management system, crafted to streamline
 
 ### Why did we choose these technologies?
 
-Powered by a robust stack including React, Next.js, MongoDB, and Express.js, Unity Spark utilizes cutting-edge technologies to deliver a scalable and efficient solution. Each technology was carefully chosen to ensure a smooth user experience and effective data management.
+Powered by a robust stack including React, Mongoose, and Express.js, Unity Spark utilizes cutting-edge technologies to deliver a scalable and efficient solution. Each technology was carefully chosen to ensure a smooth user experience and effective data management.
 
 ### Challenges Faced and Future Features:
 
@@ -27,7 +27,6 @@ Follow these easy steps to get Unity Spark up and running on your local machine:
      ```bash
      git clone [https://github.com/mursalinmirme/unity-spark]
      ```
-     Replace `[repository-url]` with the actual URL of your project's Git repository.
 
 2. **Install Dependencies:**
    - Navigate into the project folder using:
