@@ -80,7 +80,7 @@ Meet the talented individuals who collaborated on this project:
 
 1. **Ashraful Islam**
    - GitHub: [Ashraful Islam](https://github.com/ashrafulrifaz)
-   - LinkedIn: [Ashraful Islam](https://www.linkedin.com/in/ashraful-islam-a2946a2a2/)
+   - LinkedIn: [Ashraful Islam](www.linkedin.com/in/imashrafulislam)
 
 2. **Rifazul Islam**
    - GitHub: [Rifazul Islam](https://github.com/Rifazul-Islam)
@@ -94,7 +94,7 @@ Meet the talented individuals who collaborated on this project:
    - GitHub: [Mohammad Nadiatul Islam Sakib](https://github.com/nisakib07)
    - LinkedIn: [Mohammad Nadiatul Islam Sakib](https://www.linkedin.com/in/nadiatul-islam-sakib-3560b9243/)
 
-5. **Mohammad Nadiatul Islam Sakib**
+5. **MD Abdur Rahman Nur Jamil**
    - GitHub: [MD Abdur Rahman Nur Jamil](https://github.com/mdabdurrahman07)
    - LinkedIn: [MD Abdur Rahman Nur Jamil](https://www.linkedin.com/in/md-abdur-rahman-nur-jamil-8b29412a5/)
 
