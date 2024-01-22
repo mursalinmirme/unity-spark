@@ -1,0 +1,51 @@
+#dashboard {
+    @apply grid grid-cols-5 p-5 gap-5 bg-[#e3e2f5] h-screen
+}
+
+#dashboard .left_container {
+    @apply h-full bg-white p-5 rounded-xl grid justify-between
+}
+
+#dashboard ul {
+    @apply flex sm:flex-col gap-3 md:gap-0 mt-0 sm:mt-5 space-y-0 md:space-y-1 w-full
+}
+
+#dashboard .right_container {
+    @apply col-span-4 bg-white rounded-xl p-8
+}
+
+.dashboard_item {
+    @apply flex items-center justify-between text-primary p-2.5 rounded-xl hover:bg-[#e3e2f5] transition-all duration-300 overflow-hidden
+}
+
+.dashboard_item_active, 
+#dashboard .log_btn {
+    @apply flex items-center justify-between text-white p-2.5 rounded-xl bg-primary hover:bg-primary
+}
+
+#dashboard .log_btn {
+    @apply capitalize font-inter font-semibold px-4 cursor-pointer hover:scale-110 transition-all
+}
+
+.dashboard_item div,
+.dashboard_item_active div {
+    @apply flex gap-2 items-center
+}
+
+.dashboard_item div svg,
+.dashboard_item_active div svg {
+    @apply mt-0 text-xl md:text-lg
+}
+
+.dashboard_item span,
+.dashboard_item_active span {
+    @apply capitalize font-inter font-semibold md:text-sm lg:text-base hidden sm:block
+}
+
+.hov_arrow {
+    @apply text-primary opacity-0 transition-all duration-500
+}
+
+.dashboard_item:hover .hov_arrow {
+    @apply ml-0 opacity-100
+}
