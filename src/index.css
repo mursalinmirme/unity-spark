@@ -1,25 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html, body {
-    @apply overflow-x-hidden max-w-full
+html,
+body {
+  @apply overflow-x-hidden max-w-full;
 }
 
 /* COMMON ITEMS */
 button {
-    @apply text-white font-semibold font-inter text-base px-4 py-2 rounded-xl transition-all duration-500 text-[15px]
+  @apply text-white font-semibold font-inter text-base px-4 py-2 rounded-xl transition-all duration-500 text-[15px];
 }
 
 button {
-    background-image: linear-gradient(to right, #46A6E2, #433EBE, #433EBE, #46A6E2);
-    background-size: 300%;
-    background-position: right;
+  background-image: linear-gradient(
+    to right,
+    #46a6e2,
+    #433ebe,
+    #433ebe,
+    #46a6e2
+  );
+  background-size: 300%;
+  background-position: right;
 }
 
 button:hover {
-    background-position: left;
+  background-position: left;
 }
 
 .goals h2,
@@ -28,7 +35,7 @@ button:hover {
 .testimonial h2,
 .newsletter h2,
 #contact h2 {
-    @apply capitalize text-2xl md:text-3xl font-semibold font-inter text-center
+  @apply capitalize text-2xl md:text-3xl font-semibold font-inter text-center;
 }
 
 .goals p,
@@ -37,349 +44,331 @@ button:hover {
 .testimonial h6,
 .newsletter h6,
 #contact h6 {
-    @apply text-center mt-3 font-inter font-medium
+  @apply text-center mt-3 font-inter font-medium;
 }
 
 .swiper-pagination .swiper-pagination-bullet {
-    padding: 4px 8px;
-    background: #248479;
-    border-radius: 10px
+  padding: 4px 8px;
+  background: #248479;
+  border-radius: 10px;
 }
 
 .swiper-pagination .swiper-pagination-bullet-active {
-    padding: 4px 16px;
+  padding: 4px 16px;
 }
 
 .swiper-pagination {
-    position: static!important;
-    margin-top: 20px
+  position: static !important;
+  margin-top: 20px;
 }
-
-
 
 /* LOADING PAGE */
 #loading {
-    @apply h-screen w-full bg-white flex items-center justify-center
+  @apply h-screen w-full bg-white flex items-center justify-center;
 }
 
 .custom-loader {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: 
-      radial-gradient(farthest-side,#248479 94%,#0000) top/8px 8px no-repeat,
-      conic-gradient(#0000 30%,#248479);
-    -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
-    animation:s3 1s infinite linear;
-}
-  
-@keyframes s3{ 
-    100%{transform: rotate(1turn)}
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(farthest-side, #248479 94%, #0000) top/8px 8px
+      no-repeat,
+    conic-gradient(#0000 30%, #248479);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+  animation: s3 1s infinite linear;
 }
 
-
+@keyframes s3 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
 
 /* HEADER */
 .nav_item {
-    @apply px-3 py-1.5
+  @apply px-3 py-1.5;
 }
 
 .nav_item::after,
 .nav_item_active::after {
-    @apply block h-[3px] bg-primary  content-[''] transition-all duration-300 rounded-full mx-auto
+  @apply block h-[3px] bg-primary  content-[''] transition-all duration-300 rounded-full mx-auto;
 }
 
 .nav_item::after {
-    @apply w-0 hover:w-full
+  @apply w-0 hover:w-full;
 }
 
 .nav_item_active::after {
-    @apply w-full
-} 
+  @apply w-full;
+}
 
 .header {
-    @apply navbar py-2 max-w-[92%] lg:max-w-[1200px] mx-auto
+  @apply navbar py-2 max-w-[92%] lg:max-w-[1200px] mx-auto;
 }
 
 .main_nav {
-    @apply navbar-center hidden lg:flex
+  @apply navbar-center hidden lg:flex;
 }
 
 .main_nav ul {
-    @apply menu menu-horizontal px-1 space-x-2 font-medium text-base
+  @apply menu menu-horizontal px-1 space-x-2 font-medium text-base;
 }
 
 .nav_btn {
-    @apply btn btn-ghost lg:hidden
+  @apply btn btn-ghost lg:hidden;
 }
 
 .header img {
-    @apply w-full md:w-1/2 ml-12 md:ml-0
+  @apply w-full md:w-1/2 ml-12 md:ml-0;
 }
 
 .nav_btn svg {
-    @apply w-5 h-5
+  @apply w-5 h-5;
 }
 
 .phone_nav {
-    @apply menu menu-sm dropdown-content mt-3 p-2 shadow rounded-box w-80 bg-white h-96 z-50 space-y-3
+  @apply menu menu-sm dropdown-content mt-3 p-2 shadow rounded-box w-80 bg-white h-96 z-50 space-y-3;
 }
-
-
 
 /* BANNER */
 
 .banner .slide_container {
-    @apply grid grid-cols-1 md:grid-cols-2 items-center py-10 lg:py-0
+  @apply grid grid-cols-1 md:grid-cols-2 items-center py-10 lg:py-0;
 }
 
 .banner h2 {
-    @apply text-4xl md:text-5xl font-semibold capitalize font-inter leading-snug lg:leading-tight
+  @apply text-4xl md:text-5xl font-semibold capitalize font-inter leading-snug lg:leading-tight;
 }
 
 .banner p {
-    @apply font-medium font-poppins text-base md:text-[17px] leading-normal
+  @apply font-medium font-poppins text-base md:text-[17px] leading-normal;
 }
 
 .banner span {
-    @apply bg-accent text-white font-medium uppercase text-xs md:text-sm py-1.5 px-3 rounded-full leading-none
+  @apply bg-accent text-white font-medium uppercase text-xs md:text-sm py-1.5 px-3 rounded-full leading-none;
 }
-
-
 
 /* COUNTER SECTION */
 .counter,
 .goals {
-    @apply py-10 mx-auto
+  @apply py-10 mx-auto;
 }
 
 .counter_container {
-    @apply p-12 bg-gradient-to-r from-primary to-second rounded-[40px] lg:rounded-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 shadow-2xl
+  @apply p-12 bg-gradient-to-r from-primary to-second rounded-[40px] lg:rounded-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 shadow-2xl;
 }
 
 .counter_box {
-    @apply text-center space-y-2
+  @apply text-center space-y-2;
 }
 
 .counter_box span {
-    @apply text-white font-bold text-6xl font-inter
+  @apply text-white font-bold text-6xl font-inter;
 }
 
 .counter_box h3 {
-    @apply text-white font-semibold capitalize text-xl font-poppins
+  @apply text-white font-semibold capitalize text-xl font-poppins;
 }
-
 
 /* SERVICE SECTION */
 .service_container {
-    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mt-8
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mt-8;
 }
 
 .service_card {
-    @apply border border-slate-300 p-8 hover:-translate-y-2.5 transition-all rounded-xl hover:border-primary min-h-full
+  @apply border border-slate-300 p-8 hover:-translate-y-2.5 transition-all rounded-xl hover:border-primary min-h-full;
 }
 
 .service_card .image_container {
-    @apply bg-primary w-10 flex items-center justify-center p-2.5 rotate-45 rounded-xl duration-300 transition-all
+  @apply bg-primary w-10 flex items-center justify-center p-2.5 rotate-45 rounded-xl duration-300 transition-all;
 }
 
 .service_card img {
-    @apply w-8 -rotate-45 duration-300 transition-all
+  @apply w-8 -rotate-45 duration-300 transition-all;
 }
 
 .service_card h3 {
-    @apply text-xl font-semibold font-poppins mt-5 mb-2
+  @apply text-xl font-semibold font-poppins mt-5 mb-2;
 }
 
 .service_card p {
-    @apply font-medium text-slate-600 font-inter
+  @apply font-medium text-slate-600 font-inter;
 }
 
 .service_card:hover .image_container,
 .service_card:hover img {
-    @apply rotate-0
-} 
-
-
+  @apply rotate-0;
+}
 
 /* JOB POSTS SECTION */
 .posts_container {
-    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mt-8
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mt-8;
 }
 
 .job_post_card {
-    @apply border border-slate-300 p-6 hover:-translate-y-2.5 transition-all rounded-xl hover:border-primary
+  @apply border border-slate-300 p-6 hover:-translate-y-2.5 transition-all rounded-xl hover:border-primary;
 }
 
 .job_post_card h3 {
-    @apply text-2xl font-semibold font-inter
+  @apply text-3xl font-semibold font-inter;
 }
 
 .job_status {
-    @apply flex gap-2 my-2
+  @apply flex gap-2 my-2;
 }
 
 .job_post_card span {
-    @apply text-white bg-accent py-1 px-3 rounded-full text-sm font-medium
+  @apply text-primary bg-[#d0d8e0] py-1 px-3 rounded-full text-sm font-medium;
 }
 
 .job_post_card p {
-    @apply text-base font-inter font-medium text-slate-600
+  @apply text-base font-inter font-medium text-slate-600;
 }
 
 .job_post_card p span {
-    @apply text-black font-semibold bg-transparent p-0 text-base
+  @apply text-black font-semibold bg-transparent p-0 text-base;
 }
-
-
 
 /* GOALS SECTION */
 
 .goals img {
-    @apply w-full lg:w-[70%] mx-auto mt-5 md:mt-10
+  @apply w-full lg:w-[70%] mx-auto mt-5 md:mt-10;
 }
-
 
 /* TESTIMONIALS */
 .testimonial_card {
-    @apply border-2 rounded-lg p-5 text-center min-h-full
+  @apply border-2 rounded-lg p-5 text-center min-h-full;
 }
 
 .testimonial_card img {
-    @apply rounded-full h-20 w-20 mx-auto
+  @apply rounded-full h-20 w-20 mx-auto;
 }
 
 .testimonial_card h3 {
-    @apply font-bold font-inter text-lg 
+  @apply font-bold font-inter text-lg;
 }
 
 .testimonial_card h4 {
-    @apply font-semibold font-inter 
+  @apply font-semibold font-inter;
 }
 
 .testimonial_card p {
-    @apply font-medium font-inter text-[15px]
+  @apply font-medium font-inter text-[15px];
 }
-
 
 /* NEWSLETTER */
 .newsletter {
-    @apply w-full mx-auto relative
+  @apply w-full mx-auto relative;
 }
 
 .newsletter_container {
-    @apply rounded-2xl p-4 md:p-8 lg:p-12
+  @apply rounded-2xl p-4 md:p-8 lg:p-12;
 }
 
 .newsletter .second_container {
-    @apply bg-[#000000b3] rounded-2xl p-5 md:p-8 lg:p-10
+  @apply bg-[#000000b3] rounded-2xl p-5 md:p-8 lg:p-10;
 }
 
 .newsletter h2 {
-    @apply text-white text-center
+  @apply text-white text-center;
 }
 
 .newsletter p {
-    @apply text-center text-white mt-2
+  @apply text-center text-white mt-2;
 }
 
 .newsletter form {
-    @apply w-full md:w-3/4 lg:w-1/2 mx-auto md:border rounded-xl flex flex-col md:flex-row gap-3 md:gap-0 mt-4 lg:mt-7
+  @apply w-full md:w-3/4 lg:w-1/2 mx-auto md:border rounded-xl flex flex-col md:flex-row gap-3 md:gap-0 mt-4 lg:mt-7;
 }
 
 .newsletter input {
-    @apply flex-1 px-5 py-2.5 lg:py-3.5 rounded-xl md:rounded-s-xl md:rounded-none bg-[#D9D9D933] border md:border-none outline-none text-white
+  @apply flex-1 px-5 py-2.5 lg:py-3.5 rounded-xl md:rounded-s-xl md:rounded-none bg-[#D9D9D933] border md:border-none outline-none text-white;
 }
 
 .newsletter button {
-    @apply md:rounded-none md:rounded-r-xl md:px-8 lg:px-10
+  @apply md:rounded-none md:rounded-r-xl md:px-8 lg:px-10;
 }
-
-
 
 /* CONTACT SECTION */
 #contact {
-    @apply py-10 lg:py-20 grid grid-cols-1 md:grid-cols-2 gap-5 items-center w-full
+  @apply py-10 lg:py-20 grid grid-cols-1 md:grid-cols-2 gap-5 items-center w-full;
 }
 
 #contact h2,
 #contact h6 {
-    text-align: left!important
+  text-align: left !important;
 }
 
 #contact .left_container {
-    @apply space-y-2 mb-16 md:mb-0
+  @apply space-y-2 mb-16 md:mb-0;
 }
 
 #contact .contact_info {
-    @apply flex items-center gap-2 md:text-lg
+  @apply flex items-center gap-2 md:text-lg;
 }
 
-.contact_info svg{
-    @apply text-2xl text-[#248479]
+.contact_info svg {
+  @apply text-2xl text-[#248479];
 }
 
 #contact input {
-    @apply input input-bordered w-full
+  @apply input input-bordered w-full;
 }
-
-
 
 /* FOOTER */
 #footer {
-    @apply bg-base-200 font-inter
+  @apply bg-base-200 font-inter;
 }
 
 footer {
-    @apply footer justify-between pt-12 pb-10 max-w-[92%] lg:max-w-[1200px] mx-auto  text-base-content
+  @apply footer justify-between pt-12 pb-10 max-w-[92%] lg:max-w-[1200px] mx-auto  text-base-content;
 }
 
 footer aside {
-    @apply mt-5 leading-relaxed text-base font-inter font-medium
+  @apply mt-5 leading-relaxed text-base font-inter font-medium;
 }
 
 footer aside h6 {
-    @apply text-xl font-semibold mt-4
+  @apply text-xl font-semibold mt-4;
 }
 
 footer aside div {
-    @apply flex text-3xl space-x-3.5 mt-2
+  @apply flex text-3xl space-x-3.5 mt-2;
 }
 
 footer aside svg {
-    @apply text-[27px]
+  @apply text-[27px];
 }
 
 footer nav {
-    @apply space-y-1.5 text-base
+  @apply space-y-1.5 text-base;
 }
 
 footer nav header {
-    @apply footer-title text-lg
+  @apply footer-title text-lg;
 }
 
 footer nav a {
-    @apply link link-hover
+  @apply link link-hover;
 }
 
 .copyright {
-    @apply text-center py-5 text-sm md:text-base border-t-2 font-inter font-medium
+  @apply text-center py-5 text-sm md:text-base border-t-2 font-inter font-medium;
 }
-
-
 
 /* Error Page */
 .error img {
-    @apply w-2/5 mx-auto
+  @apply w-2/5 mx-auto;
 }
 
 /* contact section */
-.contact h1, h6,
+.contact h1,
+h6,
 .getInTouch h1,
-.info p{
-    @apply font-inter
+.info p {
+  @apply font-inter;
 }
 
-.info p{
-    font-weight: 500;
+.info p {
+  font-weight: 500;
 }

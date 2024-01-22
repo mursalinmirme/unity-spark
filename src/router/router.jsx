@@ -6,6 +6,7 @@ import Error from "../pages/Error/Error";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Signup from "../pages/Authentication/signup/Signup";
 import Signin from "../pages/Authentication/signin/Signin";
+import JobDetails from "../pages/components/HomeComponents/JobPost/JobDetails/JobDetails";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
       {
         path: "about-us",
         element: <AboutUs></AboutUs>,
+      },
+      {
+        path: "details/:id",
+
+        element: <JobDetails></JobDetails>,
       },
       {
         path: "dashboard",
