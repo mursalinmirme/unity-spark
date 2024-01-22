@@ -41,7 +41,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <MyProfile></MyProfile>,
+        element: <> </>,
       },
       {
         path: "details/:id",
