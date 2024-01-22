@@ -15,10 +15,22 @@ const Signup = () => {
   const { newUserCreate, userUpdateProfile } = useContext(AuthContext);
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const [signUpLoading, setSignUpLoading] = useState(false);
   const [secret, setSecret] = useState(false);
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit} = useForm();
 
   const onSubmit = async (data) => {
+    setSignUpLoading(true);
+    if(data.photo.length === 0){
+      toast.error('Please select your photo');
+      setSignUpLoading(false);
+      return 
+    }
+    if(data.password !== data.confirm){
+      toast.error(`Your passwrod doesn't Match`);
+      setSignUpLoading(false);
+      return 
+    }
     const imageFile = { image: data.photo[0] };
     const res = await axios.post(image_Hosting_Api, imageFile, {
       headers: {
@@ -26,28 +38,40 @@ const Signup = () => {
       },
     });
     if (res.data.success) {
-      // if(data.password === data?.confirm){
-      //   return
-      // }
 
+      // firebase sign up
       newUserCreate(data?.email, data?.password)
-        .then((userInfo) => {
-          console.log(userInfo?.user);
-          toast.success("New User Create Successfully");
-
-          // User Profile Update
+        .then(() => {
+          // update name and photo in firebase
           userUpdateProfile(data.name, res.data.data.display_url)
-            .then((userInfo) => {
-              console.log(userInfo);
-              toast.success("User Profile Update Successfully");
-              navigate("/");
+            .then(() => {
+              // make new users object
+              const newUser = {
+                name: data?.name,
+                email: data?.email,
+                image: res.data.data.display_url
+              }
+              // post users info in database
+              axios.post('http://localhost:5000/users', newUser)
+              .then(() => {
+                 setSignUpLoading(false);
+                 //The navigate path will change when dashboard will complete
+                 navigate('/dashboard');
+                 toast.success("Your Registration successfully")
+              })
+              .catch(err => {
+                toast.error(err.message)
+                setSignUpLoading(false);
+              })
             })
             .catch((error) => {
               console.log(error.message);
+              setSignUpLoading(false);
             });
         })
         .catch((error) => {
           toast.error(error.message);
+          setSignUpLoading(false);
         });
     }
   };
@@ -60,7 +84,7 @@ const Signup = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <h1>Lets Start a new journey</h1>
             <p>Create Your Account</p>
-
+            
             <div className="grid grid-cols-2 gap-2">
               {/* name field */}
               <label>
@@ -76,7 +100,7 @@ const Signup = () => {
               </label>
 
               {/*image field */}
-              <div className="mt-4">
+              <div className="mt-5">
                 <span className="font-medium ml-1">Your Photo</span>
                 <label
                   className="font-semibold text-white cursor-pointer font-inter text-base px-4  sm:py-[4px] md:py-[12px] bg-primary rounded-xl transition-all duration-500 text-[15px]"
@@ -92,15 +116,15 @@ const Signup = () => {
                   className="hidden"
                   id="user_photo"
                   type="file"
-                  {...register("photo", { required: true })}
+                  {...register("photo")}
                   placeholder="add Image"
-                  required
+                  
                 />
               </div>
-
+              
               {/* image field */}
             </div>
-
+            
             {/* name field */}
             {/* email field */}
             <label>
@@ -172,13 +196,13 @@ const Signup = () => {
             </div>
             {/* password field */}
             <div className="form_btn">
-              <button className="text-base">Sign Up</button>
+              <button className="text-base flex justify-center items-center">{signUpLoading ? <span className="loading loading-spinner loading-md"></span> : "Sign Up" }</button>
             </div>
           </form>
           <h1 className="text-center text-gray-700 font-medium">Or</h1>
 
           {/** Social Media SignUp System */}
-          <Social_Media></Social_Media>
+          <Social_Media setSignInLoading={setSignUpLoading}></Social_Media>
 
           <div className="text-center py-3">
             <p className="text-sm text-gray-700 font-medium">
