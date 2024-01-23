@@ -10,6 +10,7 @@ import JobDetails from "../pages/components/HomeComponents/JobPost/JobDetails/Jo
 import MyProfile from "../pages/DashboardPages/EmployeePages/MyProfile/MyProfile";
 import AllUsers from "../pages/DashboardPages/AdminPages/AllUsers/AllUsers";
 import JobAds from "../pages/DashboardPages/AdminPages/JobAds/JobAds";
+import AvailableJobs from "../pages/availableJobs/AvailableJobs";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,14 @@ const router = createBrowserRouter([
         path: "about-us",
         element: <AboutUs></AboutUs>,
       },
+      {
+        path: "available-jobs",
+        element: <AvailableJobs></AvailableJobs>,
+      },
+      {
+        path: "job-details/:id",
+        element: <JobDetails></JobDetails>,
+      },
     ],
   },
   {
@@ -42,11 +51,6 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <> </>,
-      },
-      {
-        path: "details/:id",
-
-        element: <JobDetails></JobDetails>,
       },
       {
         path: "profile",
