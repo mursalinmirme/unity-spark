@@ -11,6 +11,7 @@ import MyProfile from "../pages/DashboardPages/EmployeePages/MyProfile/MyProfile
 import AllUsers from "../pages/DashboardPages/AdminPages/AllUsers/AllUsers";
 import JobAds from "../pages/DashboardPages/AdminPages/JobAds/JobAds";
 import Recruiment from "../pages/DashboardPages/AdminPages/Recruiment/Recruiment";
+import Reviews from "../pages/DashboardPages/AdminPages/Reviews/Reviews";
 
 const router = createBrowserRouter([
   {
@@ -71,7 +72,7 @@ const router = createBrowserRouter([
       },
       {
         path: "reviews",
-        element: <JobAds></JobAds>,
+        element: <Reviews></Reviews>,
       },
       {
         path: "communication",

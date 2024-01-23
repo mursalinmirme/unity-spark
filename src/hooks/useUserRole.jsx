@@ -8,7 +8,7 @@ const useUserRole = () => {
   const { data: isUser, isLoading } = useQuery({
     queryKey: ["user-role"],
     queryFn: async () => {
-        // TODO : replace mursalinmir02@gmail.com to user?.email
+        // ToDo : replace mursalinmir02@gmail.com to user?.email
       const res = await axios.get(`http://localhost:5000/user-role?email=${'mursalinmir02@gmail.com'}`);
       return res.data;
     },
