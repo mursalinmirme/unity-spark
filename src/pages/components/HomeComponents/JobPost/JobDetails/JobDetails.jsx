@@ -1,45 +1,72 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useJob from "../../../../../hooks/useJob";
 import { GoDotFill } from "react-icons/go";
 import toast from "react-hot-toast";
 import JobPostCard from "../JobPostCard";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { useState } from "react";
 
 const JobDetails = () => {
-  const [jobs] = useJob();
   const { id } = useParams();
+  const [currentAds, setCurrentAds] = useState(id);
+  // const handleReFetch = () => {
+  //   refetch();
+  //   refetchForMore();
+  // }
 
-  const job = jobs?.find((job) => job?.id === parseInt(id));
+  // get current page job info
+  const { data:jobInfo, refetch } = useQuery({
+    queryKey: ['jobsDetails', currentAds],
+    queryFn: async () => {
+      const result = await axios.get(`http://localhost:5000/job-ads/${currentAds}`);
+      return result.data;
+    }
+  })
+
+  // get see more jobs based on job type type
+  const { data:moreJobs, refetch:refetchForMore } = useQuery({
+    queryKey: ['seeMoreJobs', currentAds],
+    enabled: !! jobInfo?.job_category1,
+    queryFn: async () => {
+      const result = await axios.get(`http://localhost:5000/similar_jobs?jobtype=${jobInfo?.job_category1}`);
+      console.log("see more jobs result is", result.data);
+      return result.data;
+    }
+  })
+
+
 
   return (
-    <div className="px-10 my-20 grid md:grid-cols-2">
+    <div className="px-10 mb-20 flex gap-8">
       {/**Left Side */}
-      <div className="mt-10 space-y-1  text-[#1E1E1E] text-[18px]">
-        <h3 className="text-4xl font-semibold mb-5"> {job?.job_title} </h3>
+      <div className="mt-10 space-y-1  text-[#1E1E1E] text-[18px] flex-1">
+        <h3 className="text-4xl font-semibold mb-5"> {jobInfo?.job_title} </h3>
         <p>
-          <strong className="mr-1">Job Type :</strong> {job?.job_category1}
+          <strong className="mr-1">Job Type :</strong> {jobInfo?.job_category1}
         </p>
 
-        <p>
-          <strong className="mr-1">Work Type :</strong> {job?.job_category2}
+        <p className="pt-1">
+          <strong className="mr-1">Work Type :</strong> {jobInfo?.job_category2}
         </p>
-        <p>
-          <strong className="mr-1">Salary : </strong> {job?.salary}
+        <p className="pt-1">
+          <strong className="mr-1">Salary : </strong> {jobInfo?.salary}
         </p>
-        <p>
+        <p className="pt-1">
           {" "}
-          <strong className="mr-1"> Position : </strong> {job?.position}
+          <strong className="mr-1"> Position : </strong> {jobInfo?.position}
         </p>
 
         {/** Skills RequireMent Show */}
-        <div>
+        <div className="pt-1">
           <h4>
             {" "}
             <p className="mb-1">
               {" "}
               <strong> Required Skills:</strong>
             </p>
-            {job?.required_Skills?.map((require) => (
-              <div key={job.id} className="ml-20 ">
+            {jobInfo?.required_Skills?.map((require) => (
+              <div key={require?.id} className="ml-20 ">
                 {" "}
                 <p className="flex gap-2">
                   {" "}
@@ -58,12 +85,12 @@ const JobDetails = () => {
               {" "}
               <strong> Additional Requirement:</strong>
             </p>
-            {job?.additional_Require?.map((require) => (
-              <div key={job.id} className="ml-20 ">
+            {jobInfo?.additional_Require?.map((adition) => (
+              <div key={adition} className="ml-20 ">
                 {" "}
                 <p className="flex gap-2">
                   {" "}
-                  <GoDotFill className="text-[#D9D9D9]" /> {require}{" "}
+                  <GoDotFill className="text-[#D9D9D9]" /> {adition}{" "}
                 </p>{" "}
               </div>
             ))}
@@ -78,12 +105,12 @@ const JobDetails = () => {
               {" "}
               <strong> Education Requirement:</strong>
             </p>
-            {job?.education_Require?.map((require) => (
-              <div key={job.id} className="ml-20 ">
+            {jobInfo?.education_Require?.map((edu) => (
+              <div key={edu} className="ml-20 ">
                 {" "}
                 <p className="flex gap-2">
                   {" "}
-                  <GoDotFill className="text-[#D9D9D9]" /> {require}{" "}
+                  <GoDotFill className="text-[#D9D9D9]" /> {edu}{" "}
                 </p>{" "}
               </div>
             ))}
@@ -98,21 +125,26 @@ const JobDetails = () => {
               {" "}
               <strong> Benefits:</strong>
             </p>
-            {job?.benefits?.map((require) => (
-              <div key={job.id} className="ml-20 ">
+            {jobInfo?.benefits?.map((beni) => (
+              <div key={beni} className="ml-20 ">
                 {" "}
                 <p className="flex gap-2">
                   {" "}
-                  <GoDotFill className="text-[#D9D9D9]" /> {require}{" "}
+                  <GoDotFill className="text-[#D9D9D9]" /> {beni}{" "}
                 </p>{" "}
               </div>
             ))}
           </h4>
         </div>
+        {/* description section */}
+        <div>
+           <strong>Description:</strong>
+          <p>{jobInfo?.job_description}</p>
+        </div>
 
-        <div className="flex gap-4">
+        <div className="flex gap-4 pt-8">
           <span
-            className="px-4 py-2 bg-primary text-white rounded-xl cursor-pointer text-[14px]"
+            className="px-8 py-2.5 bg-primary text-white rounded-xl cursor-pointer text-[14px]"
             onClick={() => toast.success(" Your Job Apple Successful ")}
           >
             {" "}
@@ -120,7 +152,7 @@ const JobDetails = () => {
           </span>
           <span
             onClick={() => toast.success(" Save Successful ")}
-            className="px-6 py-2 bg-primary text-white rounded-xl cursor-pointer text-[14px]"
+            className="px-8 py-2.5 text-primary border-2 border-primary rounded-xl cursor-pointer text-[14px]"
           >
             {" "}
             Save{" "}
@@ -129,19 +161,48 @@ const JobDetails = () => {
       </div>
 
       {/**Right Side */}
-      <div className="mt-10 p-2">
+      <div className="mt-10 p-2 w-96">
         <h1 className="text-2xl font-semibold mb-5"> Find Out More ....</h1>
 
         <div className="space-y-5">
-          {jobs?.map((jobPost) => (
-            <JobPostCard key={jobPost.id} jobPost={jobPost}></JobPostCard>
+          {moreJobs?.map((jobPost) => (
+            <div key={jobPost?._id} className="job_post_card">
+            <div>
+              <h3> {jobPost?.job_title}</h3>
+              <div className="job_status">
+                <span>{jobPost?.job_category1}</span>
+                <span>{jobPost?.job_category2}</span>
+              </div>
+              <div className="flex items-center gap-5 ">
+                <p>
+                  {" "}
+                  <strong>Salary:</strong> {jobPost?.salary}
+                </p>
+                |
+                <p className="my-1">
+                  {" "}
+                  <strong>Posted</strong> {jobPost?.job_posted}
+                </p>
+              </div>
+              <p>{jobPost?.job_description}</p>
+              <div className="card-actions justify-start">
+                <button className="mt-3 mr-3">Apply Now</button>
+                <Link onClick={() => setCurrentAds(jobPost?._id)} to={`/job-details/${jobPost?._id}`}>
+                  <div className="mt-3 mr-3 text-primary  cursor-pointer px-5 py-1.5 rounded-xl border-2 border-primary text-[15px]">
+                    View Details
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </div>
           ))}
         </div>
         <div className="text-center pt-10 ">
+          <Link to={'/available-jobs'}>
           <span className="px-6 py-2.5 mx-auto bg-primary text-white rounded-xl cursor-pointer text-[14px]">
             {" "}
             See More{" "}
-          </span>
+          </span></Link>
         </div>
       </div>
     </div>
