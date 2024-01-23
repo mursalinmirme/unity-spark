@@ -10,6 +10,7 @@ import JobDetails from "../pages/components/HomeComponents/JobPost/JobDetails/Jo
 import MyProfile from "../pages/DashboardPages/EmployeePages/MyProfile/MyProfile";
 import AllUsers from "../pages/DashboardPages/AdminPages/AllUsers/AllUsers";
 import JobAds from "../pages/DashboardPages/AdminPages/JobAds/JobAds";
+import Recruiment from "../pages/DashboardPages/AdminPages/Recruiment/Recruiment";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <MyProfile></MyProfile>,
+      },
+      {
+        path: "recruiment",
+        element: <Recruiment></Recruiment>,
       },
       {
         path: "all-users",

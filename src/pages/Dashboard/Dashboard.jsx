@@ -10,6 +10,7 @@ import { GrUserWorker } from "react-icons/gr";
 import { BsChatText } from "react-icons/bs";
 import { LuLogOut } from "react-icons/lu";
 import { BiConversation } from "react-icons/bi";
+import { RiUserSearchLine } from "react-icons/ri";
 import "./dashboard.css";
 import useUserRole from "../../hooks/useUserRole";
 import Loading from "../components/Loading/Loading";
@@ -45,6 +46,21 @@ const Dashboard = () => {
             <div>
               <FaRegUser />
               <span>My Profile</span>
+            </div>
+            <IoIosArrowForward className="hov_arrow" />
+          </li>
+        )}
+      </NavLink>
+      <NavLink to="/dashboard/recruiment">
+        {({ isActive }) => (
+          <li
+            className={`${
+              isActive ? "dashboard_item_active" : "dashboard_item"
+            }`}
+          >
+            <div>
+              <RiUserSearchLine/>
+              <span>Recruiment</span>
             </div>
             <IoIosArrowForward className="hov_arrow" />
           </li>
