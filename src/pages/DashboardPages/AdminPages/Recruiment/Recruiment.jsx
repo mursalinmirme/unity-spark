@@ -21,8 +21,8 @@ const Recruiment = () => {
           </div>
         </div>
       </div>
-      <div className="border-y-2 py-5 my-5">
-        <h1 className="text-3xl font-semibold">Contact Info: </h1>
+      <div className="border-y-2 pb-5 my-5">
+        <h1 className="text-3xl font-semibold mt-3 mb-5">Contact Info: </h1>
         <div className="grid grid-cols-2 text-xl font-semibold">
           <div>
             <h1>Email:</h1>
@@ -35,8 +35,8 @@ const Recruiment = () => {
         </div>
       </div>
       <div className="font-semibold">
-        <h1 className="text-2xl">Skills:</h1>
-        <div className="skills uppercase flex gap-3 my-2">
+        <h1 className="text-xl">Skills:</h1>
+        <div className="skills text-sm uppercase flex gap-3 my-2">
           <h4>JAVASCRIPT</h4>
           <h4>REACT</h4>
           <h4>NEXT.JS</h4>

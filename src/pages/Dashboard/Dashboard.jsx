@@ -17,7 +17,6 @@ import Loading from "../components/Loading/Loading";
 
 const Dashboard = () => {
   const [isUser, isLoading] = useUserRole();
-  console.log(isUser);
 
   const dashboardItem = (
     <>
