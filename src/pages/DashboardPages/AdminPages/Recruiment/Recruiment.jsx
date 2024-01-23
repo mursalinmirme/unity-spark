@@ -1,4 +1,5 @@
 import { VscEye } from "react-icons/vsc";
+import { MdOutlineFileDownload } from "react-icons/md";
 import "./recruiment.css";
 const Recruiment = () => {
   return (
@@ -70,11 +71,11 @@ const Recruiment = () => {
             <div className="flex gap-5 resume mt-2">
               <a>
                 <VscEye className="text-2xl" />
-                <span>View Profile</span>
+                <span>View</span>
               </a>
               <a>
-                <VscEye className="text-2xl" />
-                <span>View Profile</span>
+                <MdOutlineFileDownload className="text-2xl" />
+                <span>Download</span>
               </a>
             </div>
           </div>
