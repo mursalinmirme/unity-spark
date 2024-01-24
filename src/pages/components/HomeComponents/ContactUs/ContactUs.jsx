@@ -42,7 +42,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div>
+    <div id="contactUs">
       <div id="contact">
         <div className="left_container">
           <div className="mb-6">
