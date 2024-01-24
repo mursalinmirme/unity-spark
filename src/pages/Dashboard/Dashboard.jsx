@@ -122,6 +122,7 @@ const Dashboard = () => {
         )}
       </NavLink>
 
+      {/* 
       <NavLink to="/dashboard/userProfileEdit">
         {({ isActive }) => (
           <li
@@ -136,7 +137,8 @@ const Dashboard = () => {
             <IoIosArrowForward className="hov_arrow" />
           </li>
         )}
-      </NavLink>
+      </NavLink> */}
+
       <NavLink to="/dashboard/reviews">
         {({ isActive }) => (
           <li

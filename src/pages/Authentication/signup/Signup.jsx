@@ -17,19 +17,20 @@ const Signup = () => {
   const [open, setOpen] = useState(false);
   const [signUpLoading, setSignUpLoading] = useState(false);
   const [secret, setSecret] = useState(false);
-  const { register, handleSubmit} = useForm();
+  const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
+    console.log(data);
     setSignUpLoading(true);
-    if(data.photo.length === 0){
-      toast.error('Please select your photo');
+    if (data.photo.length === 0) {
+      toast.error("Please select your photo");
       setSignUpLoading(false);
-      return 
+      return;
     }
-    if(data.password !== data.confirm){
+    if (data.password !== data.confirm) {
       toast.error(`Your passwrod doesn't Match`);
       setSignUpLoading(false);
-      return 
+      return;
     }
     const imageFile = { image: data.photo[0] };
     const res = await axios.post(image_Hosting_Api, imageFile, {
@@ -38,7 +39,6 @@ const Signup = () => {
       },
     });
     if (res.data.success) {
-
       // firebase sign up
       newUserCreate(data?.email, data?.password)
         .then(() => {
@@ -49,20 +49,21 @@ const Signup = () => {
               const newUser = {
                 name: data?.name,
                 email: data?.email,
-                image: res.data.data.display_url
-              }
+                image: res.data.data.display_url,
+              };
               // post users info in database
-              axios.post('http://localhost:5000/users', newUser)
-              .then(() => {
-                 setSignUpLoading(false);
-                 //The navigate path will change when dashboard will complete
-                 navigate('/dashboard');
-                 toast.success("Your Registration successfully")
-              })
-              .catch(err => {
-                toast.error(err.message)
-                setSignUpLoading(false);
-              })
+              axios
+                .post("http://localhost:5000/users", newUser)
+                .then(() => {
+                  setSignUpLoading(false);
+                  //The navigate path will change when dashboard will complete
+                  navigate("/dashboard");
+                  toast.success("Your Registration successfully");
+                })
+                .catch((err) => {
+                  toast.error(err.message);
+                  setSignUpLoading(false);
+                });
             })
             .catch((error) => {
               console.log(error.message);
@@ -84,7 +85,7 @@ const Signup = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <h1>Lets Start a new journey</h1>
             <p>Create Your Account</p>
-            
+
             <div className="grid grid-cols-2 gap-2">
               {/* name field */}
               <label>
@@ -118,13 +119,12 @@ const Signup = () => {
                   type="file"
                   {...register("photo")}
                   placeholder="add Image"
-                  
                 />
               </div>
-              
+
               {/* image field */}
             </div>
-            
+
             {/* name field */}
             {/* email field */}
             <label>
@@ -196,7 +196,13 @@ const Signup = () => {
             </div>
             {/* password field */}
             <div className="form_btn">
-              <button className="text-base flex justify-center items-center">{signUpLoading ? <span className="loading loading-spinner loading-md"></span> : "Sign Up" }</button>
+              <button className="text-base flex justify-center items-center">
+                {signUpLoading ? (
+                  <span className="loading loading-spinner loading-md"></span>
+                ) : (
+                  "Sign Up"
+                )}
+              </button>
             </div>
           </form>
           <h1 className="text-center text-gray-700 font-medium">Or</h1>
