@@ -81,19 +81,19 @@ const AvailableJobs = () => {
 
 
     // handle fatch jobs by users wanted date 
-    const handleJobTypeOnchange = (date) => {
+    const handleJobTypeOnchange = (jbType) => {
         setWorkType('');
         setSortDate('');
         setJobType('');
-        setJobType(date.target.value);
+        setJobType(jbType.target.value);
     }
 
     // handle fatch jobs by users wanted date 
-    const handleWorkTypeOnchange = (date) => {
+    const handleWorkTypeOnchange = (wkType) => {
         // setSortDate('');
         // setJobType('');
         setWorkType('');
-        setWorkType(date.target.value);
+        setWorkType(wkType.target.value);
     }
 
     if(isFetching){
@@ -143,7 +143,7 @@ const AvailableJobs = () => {
             </div>
             {/* middle */}
             {
-              allJobs.length === 0 ? <div className="flex justify-center items-center h-72"><h3 className="text-lg font-medium text-primary">There has no jobs with your requirement.</h3></div> : 
+              allJobs?.length === 0 ? <div className="flex justify-center items-center h-72"><h3 className="text-lg font-medium text-primary">There has no jobs with your requirement.</h3></div> : 
               <div className="mb-10">
               {/* card 1 */}
               {
