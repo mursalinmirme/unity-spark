@@ -10,6 +10,7 @@ import JobDetails from "../pages/components/HomeComponents/JobPost/JobDetails/Jo
 import MyProfile from "../pages/DashboardPages/EmployeePages/MyProfile/MyProfile";
 import AllUsers from "../pages/DashboardPages/AdminPages/AllUsers/AllUsers";
 import JobAds from "../pages/DashboardPages/AdminPages/JobAds/JobAds";
+import AddJobs from "../pages/components/Dashboard/JobAds/AddJobs";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
       {
         path: "employees",
         element: <JobAds></JobAds>,
+      },
+      {
+        path: "addJobs",
+        element: <AddJobs></AddJobs>,
       },
     ],
   },
