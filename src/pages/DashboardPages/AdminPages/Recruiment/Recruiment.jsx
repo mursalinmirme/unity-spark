@@ -22,8 +22,8 @@ const Recruiment = () => {
         </div>
       </div>
       <div className="border-y-2 pb-5 my-5">
-        <h1 className="text-3xl font-semibold mt-3 mb-5">Contact Info: </h1>
-        <div className="grid grid-cols-2 text-xl font-semibold">
+        <h1 className="text-2xl font-bold mt-3 mb-5">Contact Info: </h1>
+        <div className="grid grid-cols-2 text-lg font-semibold">
           <div>
             <h1>Email:</h1>
             <p>johndoetheheroalom@gmail.com</p>
@@ -35,13 +35,13 @@ const Recruiment = () => {
         </div>
       </div>
       <div className="font-semibold">
-        <h1 className="text-xl">Skills:</h1>
-        <div className="skills text-sm uppercase flex gap-3 my-2">
-          <h4>JAVASCRIPT</h4>
-          <h4>REACT</h4>
-          <h4>NEXT.JS</h4>
+        <h1 className="text-lg">Skills:</h1>
+        <div className="badge_container my-2">
+          <span>JAVASCRIPT</span>
+          <span>REACT</span>
+          <span>NEXT.JS</span>
         </div>
-        <div className="grid grid-cols-2 gap-y-3 text-xl">
+        <div className="grid grid-cols-2 gap-y-3 text-lg">
           <div>
             <h1>Current Address:</h1>
             <p>N/A</p>

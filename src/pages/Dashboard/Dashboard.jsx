@@ -2,10 +2,10 @@ import { NavLink, Outlet } from "react-router-dom";
 import logo from "../../assets/images/logo.gif";
 import { BiHomeAlt2 } from "react-icons/bi";
 import { IoIosArrowForward } from "react-icons/io";
-import { FaRegUser } from "react-icons/fa";
+import { LuUser, LuUsers2, LuUserCog } from "react-icons/lu";
 import { IoDocumentOutline } from "react-icons/io5";
 import { BiTask } from "react-icons/bi";
-import { LuUsers2 } from "react-icons/lu";
+import {  } from "react-icons/lu";
 import { GrUserWorker } from "react-icons/gr";
 import { BsChatText } from "react-icons/bs";
 import { LuLogOut } from "react-icons/lu";
@@ -38,8 +38,23 @@ const Dashboard = () => {
             }`}
           >
             <div>
-              <FaRegUser />
+              <LuUser />
               <span>My Profile</span>
+            </div>
+            <IoIosArrowForward className="hov_arrow" />
+          </li>
+        )}
+      </NavLink>
+      <NavLink to="/dashboard/recruiment">
+        {({ isActive }) => (
+          <li
+            className={`${
+              isActive ? "dashboard_item_active" : "dashboard_item"
+            }`}
+          >
+            <div>
+              <LuUserCog  className="text-2xl"/>
+              <span>Recruiment</span>
             </div>
             <IoIosArrowForward className="hov_arrow" />
           </li>
