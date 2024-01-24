@@ -28,10 +28,10 @@ const Navbar = () => {
           </li>
         )}
       </NavLink>
-      <NavLink to="jobs">
+      <NavLink to="/available-jobs">
         {({ isActive }) => (
           <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
-            Jobs
+            Available Jobs
           </li>
         )}
       </NavLink>
@@ -42,10 +42,10 @@ const Navbar = () => {
           </li>
         )}
       </NavLink>
-      <NavLink to="/signin">
+      <NavLink to="signup">
         {({ isActive }) => (
           <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
-            Sign In
+            Signup
           </li>
         )}
       </NavLink>

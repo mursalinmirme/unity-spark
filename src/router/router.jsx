@@ -10,6 +10,12 @@ import JobDetails from "../pages/components/HomeComponents/JobPost/JobDetails/Jo
 import MyProfile from "../pages/DashboardPages/EmployeePages/MyProfile/MyProfile";
 import AllUsers from "../pages/DashboardPages/AdminPages/AllUsers/AllUsers";
 import JobAds from "../pages/DashboardPages/AdminPages/JobAds/JobAds";
+import UserProfile from "../pages/DashboardPages/UserProfile/UserProfile";
+import UserProfileEdit from "../pages/DashboardPages/UserProfile/UserProfileEdit";
+import AvailableJobs from "../pages/availableJobs/AvailableJobs";
+import Recruiment from "../pages/DashboardPages/AdminPages/Recruiment/Recruiment";
+import Reviews from "../pages/DashboardPages/AdminPages/Reviews/Reviews";
+import AddReview from "../pages/DashboardPages/AdminPages/Reviews/AddReview";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +39,14 @@ const router = createBrowserRouter([
         path: "about-us",
         element: <AboutUs></AboutUs>,
       },
+      {
+        path: "available-jobs",
+        element: <AvailableJobs></AvailableJobs>,
+      },
+      {
+        path: "job-details/:id",
+        element: <JobDetails></JobDetails>,
+      },
     ],
   },
   {
@@ -44,13 +58,20 @@ const router = createBrowserRouter([
         element: <> </>,
       },
       {
-        path: "details/:id",
-
-        element: <JobDetails></JobDetails>,
-      },
-      {
         path: "profile",
         element: <MyProfile></MyProfile>,
+      },
+      {
+        path: "userProfile",
+        element: <UserProfile></UserProfile>,
+      },
+      {
+        path: "userProfileEdit",
+        element: <UserProfileEdit></UserProfileEdit>,
+      },
+      {
+        path: "recruiment",
+        element: <Recruiment></Recruiment>,
       },
       {
         path: "all-users",
@@ -66,7 +87,11 @@ const router = createBrowserRouter([
       },
       {
         path: "reviews",
-        element: <JobAds></JobAds>,
+        element: <Reviews></Reviews>,
+      },
+      {
+        path: 'reviews/add-review',
+        element: <AddReview></AddReview>
       },
       {
         path: "communication",
