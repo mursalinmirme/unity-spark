@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
 import { AiOutlineLike } from "react-icons/ai";
+import { GrNext,GrPrevious } from "react-icons/gr";
 import './review.css'
 import { Link } from "react-router-dom";
 
@@ -63,9 +64,9 @@ const Reviews = () => {
           </div>
         ))}
       </div>
-      <div className="text-center space-x-5 mt-20 review-pagination">
-        <a onClick={handlPrev} className="">
-          Prev
+      <div className="text-cente flex flex-wrap justify-center md:space-x-3 mt-20 review-pagination">
+        <a onClick={handlPrev}>
+          <GrPrevious className="icons" />
         </a>
         {pages.map((i) => (
           <a
@@ -77,7 +78,7 @@ const Reviews = () => {
           </a>
         ))}
         <a onClick={handleNext} className="">
-          Next
+         <GrNext className="icons"/>
         </a>
       </div>
     </div>
