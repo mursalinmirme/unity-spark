@@ -4,7 +4,7 @@ import "./recruiment.css";
 const Recruiment = () => {
   return (
     <div>
-      <div className="flex justify-between items-center">
+      <div className="md:flex justify-between items-center">
         <div className="flex items-center gap-3">
           <img src="https://i.ibb.co/qFcMyzH/loupe.jpg" alt="" />
           <div>
@@ -21,9 +21,9 @@ const Recruiment = () => {
           </div>
         </div>
       </div>
-      <div className="border-y-2 pb-5 my-5">
-        <h1 className="text-2xl font-bold mt-3 mb-5">Contact Info: </h1>
-        <div className="grid grid-cols-2 text-lg font-semibold">
+      <div className="border-y-2 pb-4 my-4">
+        <h1 className="text-2xl font-bold my-3">Contact Info: </h1>
+        <div className="md:grid grid-cols-2 space-y-3 md:space-y-0 text-lg font-semibold">
           <div>
             <h1>Email:</h1>
             <p>johndoetheheroalom@gmail.com</p>
@@ -41,7 +41,7 @@ const Recruiment = () => {
           <span>REACT</span>
           <span>NEXT.JS</span>
         </div>
-        <div className="grid grid-cols-2 gap-y-3 text-lg">
+        <div className="md:grid grid-cols-2 gap-y-3 space-y-3 md:space-y-0 text-lg">
           <div>
             <h1>Current Address:</h1>
             <p>N/A</p>
@@ -68,7 +68,7 @@ const Recruiment = () => {
           </div>
           <div className="mt-4">
             <h1>Resume:</h1>
-            <div className="flex gap-5 resume mt-2">
+            <div className="md:flex gap-5 resume mt-2">
               <a>
                 <VscEye className="text-2xl" />
                 <span>View</span>
