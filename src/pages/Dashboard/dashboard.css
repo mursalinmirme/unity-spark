@@ -1,9 +1,9 @@
 #dashboard {
-    @apply grid grid-cols-5 p-5 gap-5 bg-[#e3e2f5] h-screen
+    @apply grid grid-cols-1 lg:grid-cols-5 p-5 gap-0 lg:gap-5 bg-[#e3e2f5] lg:h-screen
 }
 
 #dashboard .left_container {
-    @apply h-full bg-white p-5 rounded-xl grid justify-between
+    @apply h-full bg-white p-5 rounded-xl lg:grid justify-between hidden
 }
 
 #dashboard ul {
@@ -11,7 +11,7 @@
 }
 
 #dashboard .right_container {
-    @apply col-span-4 bg-white rounded-xl p-8
+    @apply lg:col-span-4 bg-white rounded-xl p-8 mt-5 lg:mt-0
 }
 
 .dashboard_item {

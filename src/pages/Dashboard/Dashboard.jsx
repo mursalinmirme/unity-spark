@@ -10,6 +10,7 @@ import { GrUserWorker } from "react-icons/gr";
 import { BsChatText } from "react-icons/bs";
 import { LuLogOut } from "react-icons/lu";
 import { BiConversation } from "react-icons/bi";
+import { HiBars3BottomRight } from "react-icons/hi2";
 import "./dashboard.css";
 
 const Dashboard = () => {
@@ -202,11 +203,26 @@ const Dashboard = () => {
   );
 
   return (
-    <div id="dashboard">
-      <div className="left_container">
+    <div id="dashboard">  
+      <div className="drawer drawer-end z-10">
+          <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
+          <div className="drawer-content flex justify-between">
+          <h2>UnitySpark</h2>
+            <label htmlFor="my-drawer-4" className="drawer-button">
+                <HiBars3BottomRight/>
+            </label>
+          </div> 
+          <div className="drawer-side">
+            <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
+            <ul className="flex flex-col menu w-1/2 px-8 min-h-full bg-white text-base-content" id="nav_item">
+              {dashboardItem}
+            </ul>
+            </div>
+      </div>
+      <div className="left_container hidden">
         <div>
           <img src={logo} className="w-3/4" alt="" />
-          <ul className="">{dashboardItem}</ul>
+          <ul className="">{dashboardItem}</ul>          
         </div>
         <div>
           <div className="log_btn">
