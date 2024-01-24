@@ -10,14 +10,9 @@ import { GrUserWorker } from "react-icons/gr";
 import { BsChatText } from "react-icons/bs";
 import { LuLogOut } from "react-icons/lu";
 import { BiConversation } from "react-icons/bi";
-import { RiUserSearchLine } from "react-icons/ri";
 import "./dashboard.css";
-import useUserRole from "../../hooks/useUserRole";
-import Loading from "../components/Loading/Loading";
 
 const Dashboard = () => {
-  const [isUser, isLoading] = useUserRole();
-
   const dashboardItem = (
     <>
       <NavLink to="/dashboard">
@@ -45,21 +40,6 @@ const Dashboard = () => {
             <div>
               <FaRegUser />
               <span>My Profile</span>
-            </div>
-            <IoIosArrowForward className="hov_arrow" />
-          </li>
-        )}
-      </NavLink>
-      <NavLink to="/dashboard/recruiment">
-        {({ isActive }) => (
-          <li
-            className={`${
-              isActive ? "dashboard_item_active" : "dashboard_item"
-            }`}
-          >
-            <div>
-              <RiUserSearchLine/>
-              <span>Recruiment</span>
             </div>
             <IoIosArrowForward className="hov_arrow" />
           </li>
@@ -125,6 +105,38 @@ const Dashboard = () => {
           </li>
         )}
       </NavLink>
+
+      <NavLink to="/dashboard/userProfile">
+        {({ isActive }) => (
+          <li
+            className={`${
+              isActive ? "dashboard_item_active" : "dashboard_item"
+            }`}
+          >
+            <div>
+              <GrUserWorker />
+              <span>UserProfile</span>
+            </div>
+            <IoIosArrowForward className="hov_arrow" />
+          </li>
+        )}
+      </NavLink>
+
+      <NavLink to="/dashboard/userProfileEdit">
+        {({ isActive }) => (
+          <li
+            className={`${
+              isActive ? "dashboard_item_active" : "dashboard_item"
+            }`}
+          >
+            <div>
+              <BsChatText />
+              <span>User Profile Edit</span>
+            </div>
+            <IoIosArrowForward className="hov_arrow" />
+          </li>
+        )}
+      </NavLink>
       <NavLink to="/dashboard/reviews">
         {({ isActive }) => (
           <li
@@ -135,6 +147,22 @@ const Dashboard = () => {
             <div>
               <BsChatText />
               <span>Reviews</span>
+            </div>
+            <IoIosArrowForward className="hov_arrow" />
+          </li>
+        )}
+      </NavLink>
+
+      <NavLink to="/">
+        {({ isActive }) => (
+          <li
+            className={`${
+              isActive ? "dashboard_item_active" : "dashboard_item"
+            }`}
+          >
+            <div>
+              <BsChatText />
+              <span>Home Page </span>
             </div>
             <IoIosArrowForward className="hov_arrow" />
           </li>
@@ -158,19 +186,12 @@ const Dashboard = () => {
     </>
   );
 
-  if(isLoading){
-    return <div>
-      <Loading></Loading>
-    </div>
-  }
-
   return (
     <div id="dashboard">
       <div className="left_container">
         <div>
           <img src={logo} className="w-3/4" alt="" />
-          {/* TODO : add employees and normal user dashboard */}
-          {isUser?.role === "admin" ? <ul>{dashboardItem}</ul> : isUser?.role === 'employer' ? 'employees dashboard' : 'user dashboard'}
+          <ul className="">{dashboardItem}</ul>
         </div>
         <div>
           <div className="log_btn">
