@@ -1,13 +1,13 @@
 [
   {
     "id": 1,
-    "job_title": "Front-end Web Developer",
+    "job_title": "Web Developer",
     "salary": "$5k-$6k per year",
     "job_posted": "12hours ago",
     "job_category1": "Remote",
     "job_category2": "Intern",
     "position": 5,
-    "job_description": "Are you passionate about web development and eager to kickstart your career in a dynamic and remote-friendly environment? Look no further than Liss Solutions, where we're on the lookout for a talented Junior Web Developer to join our team....",
+    "job_description": "Are you passionate about web development and eager to kickstart your career in a dynamic team....",
     "required_Skills": ["JavaScript", "React", "MongoDB", "Node.js"],
     "additional_Require": [
       "2+ Years of proven ex Developer",

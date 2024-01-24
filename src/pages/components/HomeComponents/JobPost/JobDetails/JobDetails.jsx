@@ -11,7 +11,7 @@ const JobDetails = () => {
   const job = jobs?.find((job) => job?.id === parseInt(id));
 
   return (
-    <div className="px-10 my-20 grid md:grid-cols-2">
+    <div className="px-10 my-2 grid md:grid-cols-2">
       {/**Left Side */}
       <div className="mt-10 space-y-1  text-[#1E1E1E] text-[18px]">
         <h3 className="text-4xl font-semibold mb-5"> {job?.job_title} </h3>
