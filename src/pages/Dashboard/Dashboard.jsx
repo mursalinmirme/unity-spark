@@ -130,14 +130,13 @@ const Dashboard = () => {
             }`}
           >
             <div>
-              <GrUserWorker />
-              <span>UserProfileEdit</span>
+              <BsChatText />
+              <span>User Profile Edit</span>
             </div>
             <IoIosArrowForward className="hov_arrow" />
           </li>
         )}
       </NavLink>
-
       <NavLink to="/dashboard/reviews">
         {({ isActive }) => (
           <li
