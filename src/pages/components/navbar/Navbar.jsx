@@ -28,6 +28,13 @@ const Navbar = () => {
           </li>
         )}
       </NavLink>
+      <NavLink to="jobs">
+        {({ isActive }) => (
+          <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
+            Jobs
+          </li>
+        )}
+      </NavLink>
       <NavLink to="/about-us">
         {({ isActive }) => (
           <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
@@ -39,13 +46,6 @@ const Navbar = () => {
         {({ isActive }) => (
           <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
             Sign In
-          </li>
-        )}
-      </NavLink>
-      <NavLink to="signup">
-        {({ isActive }) => (
-          <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
-            Signup
           </li>
         )}
       </NavLink>
