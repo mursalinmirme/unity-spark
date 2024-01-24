@@ -15,6 +15,7 @@ import UserProfileEdit from "../pages/DashboardPages/UserProfile/UserProfileEdit
 import AvailableJobs from "../pages/availableJobs/AvailableJobs";
 import Recruiment from "../pages/DashboardPages/AdminPages/Recruiment/Recruiment";
 import Reviews from "../pages/DashboardPages/AdminPages/Reviews/Reviews";
+import AddReview from "../pages/DashboardPages/AdminPages/Reviews/AddReview";
 
 const router = createBrowserRouter([
   {
@@ -87,6 +88,10 @@ const router = createBrowserRouter([
       {
         path: "reviews",
         element: <Reviews></Reviews>,
+      },
+      {
+        path: 'reviews/add-review',
+        element: <AddReview></AddReview>
       },
       {
         path: "communication",

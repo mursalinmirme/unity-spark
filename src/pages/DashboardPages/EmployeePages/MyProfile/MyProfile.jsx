@@ -122,7 +122,7 @@ const MyProfile = () => {
       </div>
 
       {/* EDITOR */}
-      <div>
+      <div className="profile-form">
         <form>
           <div className="grid grid-cols-2 gap-5">
             <div>

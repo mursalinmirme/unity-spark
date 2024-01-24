@@ -63,7 +63,7 @@ table tr td:last-child {
     @apply border-r-0
 }
 
-form {
+.profile-form form {
     @apply border-2 p-5 rounded-xl mt-5
 }
 
