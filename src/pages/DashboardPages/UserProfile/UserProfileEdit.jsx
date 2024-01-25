@@ -1,13 +1,28 @@
-import { useState } from "react";
+import { useContext } from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import download_icon from "../../../assets/images/download-Icon.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Select from "react-select";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { AuthContext } from "../../../Provider/AuthProvider";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 const UserProfileEdit = () => {
-  const { register, handleSubmit } = useForm();
-  const [count, setCount] = useState(0);
+  const { register, handleSubmit, control } = useForm();
+  const axiosSecure = useAxiosSecure();
+  const { user } = useContext(AuthContext);
+
+  // New Array
+  const skillsArray = [
+    { value: "JavaScript", label: "JavaScript" },
+    { value: "React", label: "React.js" },
+    { value: "HTML", label: "HTML" },
+    { value: "Next", label: "Next.js" },
+    { value: "MongoDB", label: "MongoDB" },
+    { value: "MySQL", label: "MySQL" },
+    { value: "Mongoose", label: "Mongoose" },
+  ];
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -24,14 +39,24 @@ const UserProfileEdit = () => {
         phone: data?.number,
         age: data?.age,
         gender: data?.gender,
-        current_Address: data?.current,
-        permanent_Address: data?.permanent,
+        current_address: data?.current,
+        permanent_address: data?.permanent,
         job_preference: data?.preference,
         time_preference: data?.time_preference,
         skills: data?.skills,
         image: res.data.data.display_url,
+        resume_link: data.resume,
       };
-      console.log("checked", userInfo);
+
+      axios
+        .put(`http://localhost:5000/users/${user?.email}`, userInfo)
+        .then((res) => {
+          console.log(res?.data);
+        })
+
+        .catch((error) => {
+          console.log(error.message);
+        });
     }
   };
   return (
@@ -237,23 +262,33 @@ const UserProfileEdit = () => {
 
         {/**Five Two Part */}
 
-        <div className="gap-2">
-          {/* Skills field */}
-          {/* <label>
-            <div className="label">
-              <span className="font-bold font-inter"> Your Skills :</span>
-            </div>
-            <input
-              type="text"
-              {...register("skills", { required: true })}
-              placeholder="Your Skills Write Now"
-              required
-            />
-          </label> */}
-          {/* Skills field End */}
-        </div>
+        {/* Skills field */}
+        <label>
+          <div className="label">
+            <span className="font-bold font-inter"> Your Skills :</span>
+          </div>
+          <Controller
+            name="skills"
+            control={control}
+            render={({ field }) => (
+              <Select {...field} options={skillsArray} isMulti />
+            )}
+          />
+        </label>
 
         {/* Resume field */}
+        <label>
+          <div className="label">
+            <span className="font-bold font-inter">Your Resume</span>
+          </div>
+          <input
+            type="text"
+            {...register("resume", { required: true })}
+            placeholder="Please share your resume drive link"
+            required
+          />
+        </label>
+
         {/* <div className="mt-5">
           <label className="relative ">
             <div className="label">
@@ -278,7 +313,7 @@ const UserProfileEdit = () => {
           </label>
         </div> */}
 
-        <div className="w-48 mx-auto mt-20  lg:mt-4  bg-primary border-none text-white rounded-xl">
+        <div className="w-48 mt-10 bg-primary border-none text-white rounded-xl">
           <input className="cursor-pointer" type="submit" value="Update" />
         </div>
       </form>
