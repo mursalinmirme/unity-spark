@@ -56,18 +56,20 @@ const MyProfile = () => {
         <div className="flex justify-between items-center w-full md:hidden ">
           <img src={data?.image} alt="profile" className="md:hidden" />
           <div className="items-center space-y-2 block md:hidden">
-            {
-              openEditor ? 
-              <a className={`flex items-center font-inter text-red-500 text-base gap-1 font-medium border-2 rounded-md border-red-500 px-2 py-0.5 cursor-pointer text-red hover:text-white hover:bg-red-500 transition-all`} onClick={() => setOpenEditor(false)}>
+            {openEditor ? (
+              <a
+                className={`flex items-center font-inter text-red-500 text-base gap-1 font-medium border-2 rounded-md border-red-500 px-2 py-0.5 cursor-pointer text-red hover:text-white hover:bg-red-500 transition-all`}
+                onClick={() => setOpenEditor(false)}
+              >
                 <RxCross2 />
                 <span>Cancel</span>
               </a>
-              :
+            ) : (
               <a className={`edit_btn`} onClick={() => setOpenEditor(true)}>
                 <FiEdit3 />
                 <span>Edit Info</span>
               </a>
-            }
+            )}
             <Link className="edit_btn" to="/dashboard/reviews">
               <GoThumbsup />
               <span>Give Review</span>
@@ -90,18 +92,6 @@ const MyProfile = () => {
             />
           </div>
           <div className="items-center gap-2 hidden md:flex">
-            {
-              openEditor ? 
-              <a className={`flex items-center font-inter text-red-500 gap-1 font-medium border-2 rounded-md border-red-500 px-2 py-0.5 cursor-pointer text-red hover:text-white hover:bg-red-500 transition-all`} onClick={() => setOpenEditor(false)}>
-                <RxCross2 />
-                <span>Cancel</span>
-              </a>
-              :
-              <a className={`edit_btn`} onClick={() => setOpenEditor(true)}>
-                <FiEdit3 />
-                <span>Edit Info</span>
-              </a>
-            }
             <Link className="edit_btn" to="/dashboard/reviews">
               <GoThumbsup />
               <span>Give Review</span>
@@ -116,7 +106,7 @@ const MyProfile = () => {
         <span>Remote</span>
         <span>Full-time</span>
       </div>
-      <div className={`tab_container ${openEditor ? 'hidden' : 'block'}`}>
+      <div className={`tab_container ${openEditor ? "hidden" : "block"}`}>
         <div className="tab_div">
           <h2>Performance</h2>
           <div className="tabs">
@@ -172,8 +162,11 @@ const MyProfile = () => {
       </div>
 
       {/* EDITOR */}
-      <div className={`profile-form ${openEditor ? 'block' : 'hidden'}`}>
-        <EmployeeProfileEdit user={data} setOpenEditor={setOpenEditor}></EmployeeProfileEdit>
+      <div className={`profile-form ${openEditor ? "block" : "hidden"}`}>
+        <EmployeeProfileEdit
+          user={data}
+          setOpenEditor={setOpenEditor}
+        ></EmployeeProfileEdit>
       </div>
     </div>
   );
