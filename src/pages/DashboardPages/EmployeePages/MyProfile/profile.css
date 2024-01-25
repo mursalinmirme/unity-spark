@@ -1,13 +1,9 @@
-/* .user_profile {
-    @apply 
-} */
-
 .user_profile_container {
     @apply flex items-center gap-5
 }
 
 .user_profile_container img {
-    @apply w-20 h-20 rounded-3xl
+    @apply w-16 lg:w-20 h-16 lg:h-20 rounded-3xl
 }
 
 .user_profile_container h2 {

@@ -66,7 +66,7 @@ const Signin = () => {
               <h1 className="text-2xl font-semibold text-[#000]">
                 Welcome Back
               </h1>
-              <p className=" text-sm text-[#000] font-medium">
+              <p className="font-inter text-sm text-[#000] font-semibold">
                 Enter Your Credentials to Sign In{" "}
               </p>
             </span>
@@ -74,13 +74,13 @@ const Signin = () => {
             {/* email field */}
             <label className="form-control w-full">
               <div className="label">
-                <span className="label-text font-medium">Your Email</span>
+                <span className="label-text font-semibold font-inter">Your Email</span>
               </div>
               <input
                 type="email"
                 {...register("email")}
                 placeholder="johndoe@gmail.com"
-                className="input input-bordered w-full"
+                className="input input-bordered w-full mt-0"
                 required
               />
             </label>
@@ -89,14 +89,14 @@ const Signin = () => {
             {/* password field */}
             <label className="form-control w-full py-3 ">
               <div className="label">
-                <span className="label-text font-medium">Your password</span>
+                <span className="label-text font-semibold font-inter">Your password</span>
               </div>
               <div className="relative">
                 <input
                   type={open ? "text" : "password"}
                   {...register("password")}
                   placeholder="************"
-                  className="input input-bordered w-full "
+                  className="input input-bordered w-full mt-0"
                   required
                 />
                 <span
