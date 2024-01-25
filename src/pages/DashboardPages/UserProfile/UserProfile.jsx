@@ -1,18 +1,12 @@
 import "../../DashboardPages/EmployeePages/MyProfile/profile.css";
 import ProgressBar from "@ramonak/react-progress-bar";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
 import { FiEdit3 } from "react-icons/fi";
 import download_icon from "../../../assets/images/download-Icon.png";
 import counter_icon from "../../../assets/images/pen.png";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 const UserProfile = () => {
-  const [openEditor, setOpenEditor] = useState(false);
-  const { register, handleSubmit } = useForm();
-  const [count, setCount] = useState(0);
-
-  const onSubmit = async (data) => {
-    console.log(data);
-  };
+  const [count, setCount] = useState(90);
   return (
     <div>
       <div className="user_profile_container">
@@ -29,15 +23,15 @@ const UserProfile = () => {
                 src={counter_icon}
                 alt=""
               />
-              <span className="bg-primary  w-5 h-5 absolute top-1 md:right-[112px] text-white flex items-center justify-center rounded-lg">
+              <span className="bg-primary  w-5 h-5 absolute top-2 md:right-[112px] text-white flex items-center justify-center rounded-lg">
                 0
               </span>
             </div>
 
-            <a className="edit_btn" onClick={() => setOpenEditor(true)}>
+            <Link to="/dashboard/userProfileEdit" className="edit_btn">
               <span>Edit Info</span>
               <FiEdit3 />
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -48,7 +42,7 @@ const UserProfile = () => {
           <h2 className="text-[22px] font-bold font-inter">
             Completed You Profile
           </h2>
-          <h2> {count.toFixed(2)}% </h2>
+          <h2> {count}% </h2>
         </div>
         <ProgressBar
           completed={count}
@@ -64,255 +58,147 @@ const UserProfile = () => {
 
       {/** Input Form Area  */}
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid md:grid-cols-2 gap-2">
-          {/* Email field */}
-          <label>
-            <div className="label">
-              <span className="font-bold font-inter">Email :</span>
-            </div>
-            <input
-              type="email"
-              {...register("email", { required: true })}
-              placeholder="Your Email"
-              required
-              onBlur={(e) =>
-                e.target.value.length >= 1
-                  ? setCount(count + 8.3333333333333)
-                  : setCount(count - 8.3333333333333)
-              }
-            />
-          </label>
-          {/* email field End */}
+      <div className="grid md:grid-cols-2 gap-2 mt-7">
+        {/* Email field */}
+        <label>
+          <div className="label">
+            <span className="font-extrabold font-inter">Email :</span>
+          </div>
+          <p className="font-inter"> rifazul60@gmail.com </p>
+        </label>
+        {/* email field End */}
 
-          {/* phone Number*/}
-          <label>
-            <div className="label">
-              <span className="font-bold font-inter">Phone :</span>
-            </div>
-            <input
-              type="number"
-              {...register("number", { required: true })}
-              placeholder="Your Phone Number"
-              required
-              onBlur={(e) =>
-                e.target.value.length >= 1
-                  ? setCount(count + 8.3333333333333)
-                  : setCount(count - 8.3333333333333)
-              }
-            />
-          </label>
-        </div>
+        {/* phone Number*/}
+        <label>
+          <div className="label">
+            <span className="font-extrabold font-inter">Phone :</span>
+          </div>
+          <p className="font-inter"> N/A</p>
+        </label>
+      </div>
 
-        {/**Second Two Part */}
-        <div className="grid md:grid-cols-2 gap-2">
-          {/* Current Address field */}
-          <label>
-            <div className="label">
-              <span className="font-bold font-inter">Current Address:</span>
-            </div>
-            <input
-              type="address"
-              {...register("current", { required: true })}
-              placeholder=" Your Current Address "
-              required
-              onBlur={(e) =>
-                e.target.value.length >= 1
-                  ? setCount(count + 8.3333333333333)
-                  : setCount(count - 8.3333333333333)
-              }
-            />
-          </label>
-          {/* Current Address field End */}
+      {/**Second Two Part */}
+      <div className="grid md:grid-cols-2 gap-2">
+        {/* Current Address field */}
+        <label>
+          <div className="label">
+            <span className="font-bold font-inter">Current Address :</span>
+          </div>
+          <p className="font-inter">N/A</p>
+        </label>
+        {/* Current Address field End */}
 
-          {/* Permanent Address */}
-          <label>
-            <div className="label">
-              <span className="font-bold font-inter">Permanent Address</span>
-            </div>
-            <input
-              type="address"
-              {...register("permanent", { required: true })}
-              placeholder=" Your Permanent Address"
-              required
-              onBlur={(e) =>
-                e.target.value.length >= 1
-                  ? setCount(count + 8.3333333333333)
-                  : setCount(count - 8.3333333333333)
-              }
-            />
-          </label>
-        </div>
+        {/* Permanent Address */}
+        <label>
+          <div className="label">
+            <span className="font-bold font-inter">Permanent Address :</span>
+          </div>
 
-        {/**Three Two Part */}
-        <div className="grid md:grid-cols-2 gap-2">
-          {/* Age field */}
-          <label>
-            <div className="label">
-              <span className="font-bold font-inter">Age</span>
-            </div>
-            <input
-              type="age"
-              {...register("age", { required: true })}
-              placeholder="Your Age"
-              required
-              onBlur={(e) =>
-                e.target.value.length >= 1
-                  ? setCount(count + 8.3333333333333)
-                  : setCount(count - 8.3333333333333)
-              }
-            />
-          </label>
-          {/* Age field End */}
+          <p className="font-inter"> N/A</p>
+        </label>
+      </div>
 
-          {/* Your Gender Select */}
-          <label>
-            <div className="label">
-              <span className="font-bold font-inter">Gender :</span>
-            </div>
-            <input
-              type="text"
-              {...register("gender", { required: true })}
-              placeholder="Male"
-              required
-              onBlur={(e) =>
-                e.target.value.length >= 1
-                  ? setCount(count + 8.3333333333333)
-                  : setCount(count - 8.3333333333333)
-              }
-            />
-          </label>
-        </div>
+      {/**Three Two Part */}
+      <div className="grid md:grid-cols-2 gap-2">
+        {/* Age field */}
+        <label>
+          <div className="label">
+            <span className="font-bold font-inter">Age :</span>
+          </div>
+          <p className="font-inter"> 22</p>
+        </label>
+        {/* Age field End */}
 
-        {/**Four Two Part */}
-        <div className="grid md:grid-cols-2 gap-2">
-          {/* name field */}
-          <label>
-            <div className="label">
-              <span className="font-bold font-inter">Education Level :</span>
-            </div>
-            <input
-              type="text"
-              {...register("eduction", { required: true })}
-              placeholder="N/A"
-              required
-              onBlur={(e) =>
-                e.target.value.length >= 1
-                  ? setCount(count + 8.3333333333333)
-                  : setCount(count - 8.3333333333333)
-              }
-            />
-          </label>
-          {/* Education field End */}
+        {/* Your Gender Select */}
+        <label>
+          <div className="label">
+            <span className="font-bold font-inter">Gender :</span>
+          </div>
+          <p className="font-inter"> Male</p>
+        </label>
+      </div>
 
-          {/* Institute Name field */}
-          <label>
-            <div className="label">
-              <span className="font-bold font-inter">Institute Name :</span>
-            </div>
-            <input
-              type="text"
-              {...register("institute", { required: true })}
-              placeholder="N/A"
-              required
-              onBlur={(e) =>
-                e.target.value.length >= 1
-                  ? setCount(count + 8.3333333333333)
-                  : setCount(count - 8.3333333333333)
-              }
-            />
-          </label>
-        </div>
+      {/**Four Two Part */}
+      <div className="grid md:grid-cols-2 gap-2">
+        {/* name field */}
+        <label>
+          <div className="label">
+            <span className="font-bold font-inter">Education Level :</span>
+          </div>
+          <p className="font-inter"> N/A </p>
+        </label>
+        {/* Education field End */}
 
-        {/**five Two Part */}
-        <div className="grid md:grid-cols-2 gap-2">
-          {/* Job Preference field */}
-          <label>
-            <div className="label">
-              <span className="font-bold font-inter">Job Preference :</span>
-            </div>
-            <input
-              type="text"
-              {...register("preference", { required: true })}
-              placeholder="Remote"
-              required
-              onBlur={(e) =>
-                e.target.value.length >= 1
-                  ? setCount(count + 8.3333333333333)
-                  : setCount(count - 8.3333333333333)
-              }
-            />
-          </label>
-          {/* Preference field End */}
+        {/* Institute Name field */}
+        <label>
+          <div className="label">
+            <span className="font-bold font-inter">Institute Name :</span>
+          </div>
+          <p className="font-inter"> N/A</p>
+        </label>
+      </div>
 
-          {/* Time Preference field */}
-          <label>
-            <div className="label">
-              <span className="font-bold font-inter">Time Preference</span>
-            </div>
-            <input
-              type="text"
-              {...register("time_preference", { required: true })}
-              placeholder="Intern"
-              required
-              onBlur={(e) =>
-                e.target.value.length >= 1
-                  ? setCount(count + 8.3333333333333)
-                  : setCount(count - 8.3333333333333)
-              }
-            />
-          </label>
-        </div>
+      {/**five Two Part */}
+      <div className="grid md:grid-cols-2 gap-2">
+        {/* Job Preference field */}
+        <label>
+          <div className="label">
+            <span className="font-bold font-inter">Job Preference :</span>
+          </div>
+          <p className="font-inter"> N/A</p>
+        </label>
+        {/* Preference field End */}
 
-        {/**Six Two Part */}
-        <div className="grid md:grid-cols-2 gap-2">
-          {/* Skills field */}
-          <label>
-            <div className="label">
-              <span className="font-bold font-inter">Skills :</span>
-            </div>
-            <input
-              type="text"
-              {...register("skills", { required: true })}
-              placeholder="Your Skills Write Now"
-              required
-              onBlur={(e) =>
-                e.target.value.length >= 1
-                  ? setCount(count + 8.3333333333333)
-                  : setCount(count - 8.3333333333333)
-              }
-            />
-          </label>
-          {/* Skills field End */}
+        {/* Time Preference field */}
+        <label>
+          <div className="label">
+            <span className="font-bold font-inter">Time Preference :</span>
+          </div>
 
-          {/* Resume field */}
-          <label className="relative">
-            <div className="label">
-              <span className="font-bold font-inter">Resume : </span>
-              <label
-                className="font-semibold absolute bottom-0 text-white cursor-pointer font-inter text-base px-8   sm:py-[4px] md:py-[8px] bg-primary rounded-xl transition-all duration-500 text-[15px]"
-                htmlFor="user_Resume"
-              >
-                <div className="flex justify-center gap-2">
-                  {" "}
-                  <img src={download_icon} alt="" /> <span> Upload Resume</span>{" "}
-                </div>
-              </label>
+          <p className="font-inter"> Intern</p>
+        </label>
+      </div>
+
+      {/**Six Two Part */}
+      <div className="grid md:grid-cols-2 gap-2">
+        {/* Skills field */}
+        <label>
+          <div className="label">
+            <span className="font-bold font-inter">Skills :</span>
+          </div>
+          <span> JavaScript</span> , <span> React </span>
+        </label>
+        {/* Skills field End */}
+
+        {/* Resume field */}
+
+        <label>
+          <div className="label">
+            <span className="font-bold font-inter">Resume :</span>
+          </div>
+          <a
+            href="https://drive.google.com/file/d/1V_LBzGVe0-09I8BjDjRUMgpXwbaDczHh/view?usp=sharing"
+            target="blank"
+          >
+            <div className="flex w-44 gap-2 font-semibold  text-white cursor-pointer font-inter text-base px-8 py-[8px] bg-primary rounded-xl transition-all duration-500 text-[15px]">
+              {" "}
+              <img src={download_icon} alt="" /> <span> Download</span>{" "}
             </div>
-            <input
-              className="hidden"
-              id="user_Resume"
-              type="file"
-              {...register("resume", { required: true })}
-              placeholder="N/A"
-              required
-              onChange={(e) =>
-                e.target.files.length === 1 && setCount(count + 8.3333333333333)
-              }
-            />
-          </label>
-        </div>
-      </form>
+          </a>
+        </label>
+
+        {/* <label>
+          <div className="label">
+            <span className="font-bold font-inter">Resume : </span>
+            <label className="font-semibold  text-white cursor-pointer font-inter text-base px-8   sm:py-[4px] md:py-[8px] bg-primary rounded-xl transition-all duration-500 text-[15px]">
+              <div className="flex  gap-2">
+                {" "}
+                <img src={download_icon} alt="" /> <span> Download</span>{" "}
+              </div>
+            </label>
+          </div>
+        </label> */}
+      </div>
     </div>
   );
 };

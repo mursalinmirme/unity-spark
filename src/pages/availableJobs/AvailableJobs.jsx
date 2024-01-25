@@ -81,19 +81,19 @@ const AvailableJobs = () => {
 
 
     // handle fatch jobs by users wanted date 
-    const handleJobTypeOnchange = (date) => {
+    const handleJobTypeOnchange = (jbType) => {
         setWorkType('');
         setSortDate('');
         setJobType('');
-        setJobType(date.target.value);
+        setJobType(jbType.target.value);
     }
 
     // handle fatch jobs by users wanted date 
-    const handleWorkTypeOnchange = (date) => {
+    const handleWorkTypeOnchange = (wkType) => {
         // setSortDate('');
         // setJobType('');
         setWorkType('');
-        setWorkType(date.target.value);
+        setWorkType(wkType.target.value);
     }
 
     if(isFetching){
@@ -104,9 +104,9 @@ const AvailableJobs = () => {
     return (
         <div className="mt-6">
             {/* top */}
-            <div className="flex justify-between items-center">
-                <div className="space-x-2">
-                    <select onChange={handleDateOnchange} className="border-2 border-primary p-1.5 text-primary font-medium rounded-lg space-y-2" defaultValue={sortDate} name="" id="">
+            <div className="flex flex-col-reverse  md:flex-row justify-between items-center">
+                <div className="space-x-2 mt-5 md:mt-0">
+                    <select onChange={handleDateOnchange} className="border-2 border-primary p-0.5 md:p-1.5 text-primary font-medium rounded-lg space-y-2 text-sm md:text-base" defaultValue={sortDate} name="" id="">
                         <option value="">Date</option>
                         <option value="1">Today</option>
                         <option value="3">Last 3 days</option>
@@ -114,13 +114,13 @@ const AvailableJobs = () => {
                         <option value="15">Last 15 days</option>
                         <option value="30">Last 30 days</option>
                     </select>
-                    <select onChange={handleJobTypeOnchange} className="border-2 border-primary p-1.5 text-primary font-medium rounded-lg" name="" defaultValue={jobType} id="">
+                    <select onChange={handleJobTypeOnchange} className="border-2 border-primary p-0.5 md:p-1.5 text-primary font-medium rounded-lg text-sm md:text-base" name="" defaultValue={jobType} id="">
                         <option value="null">Job Type</option>
                         <option value="On-site">On-site</option>
                         <option value="Remote">Remote</option>
                         <option value="Hybrid">Hybrid</option>
                     </select>
-                    <select onChange={handleWorkTypeOnchange} className="border-2 border-primary p-1.5 text-primary font-medium rounded-lg" name="" defaultValue={workType} id="">
+                    <select onChange={handleWorkTypeOnchange} className="border-2 border-primary p-0.5 md:p-1.5 text-primary font-medium rounded-lg text-sm md:text-base" name="" defaultValue={workType} id="">
                         <option value="null">Work Type</option>
                         <option value="Intern">Intern</option>
                         <option value="Full-time">Full-time</option>
@@ -129,13 +129,13 @@ const AvailableJobs = () => {
       
                     </select>
                 </div>
-                <div className="flex ">
+                <div className="flex">
                     <form onSubmit={handleSearches} className={`p-0 border-0 m-0 relative ${showSearchBar ? 'hidden' : 'visible'}`}> 
-                        <input name="search" defaultValue={searchValues} className="py-3 pr-14 m-0 w-80 border-second" type="text" placeholder="Search..." />
+                        <input name="search" defaultValue={searchValues} className="md:py-3 pr-14 m-0 md:w-60 lg:w-80 border-second" type="text" placeholder="Search..." />
                         <button className="absolute top-0 right-0 h-full rounded-none rounded-r-lg"><FaSearch className="text-lg"></FaSearch></button>
                     </form>
                     {
-                        showSearchBar ? <button onClick={() => setShowSearchBar(false)} className="rounded-md h-[51.2px]"><FaSearch className="text-lg"></FaSearch></button> : 
+                        showSearchBar ? <button onClick={() => setShowSearchBar(false)} className="rounded-md md:h-[51.2px]"><FaSearch className="text-lg"></FaSearch></button> : 
                         <button onClick={handleCloseSearchBar} className="rounded-none bg-none text-primary"><ImCross className="text-lg"></ImCross></button>
                     }
                     
@@ -143,7 +143,7 @@ const AvailableJobs = () => {
             </div>
             {/* middle */}
             {
-              allJobs.length === 0 ? <div className="flex justify-center items-center h-72"><h3 className="text-lg font-medium text-primary">There has no jobs with your requirement.</h3></div> : 
+              allJobs?.length === 0 ? <div className="flex justify-center items-center h-72"><h3 className="text-lg font-medium text-primary">There has no jobs with your requirement.</h3></div> : 
               <div className="mb-10">
               {/* card 1 */}
               {

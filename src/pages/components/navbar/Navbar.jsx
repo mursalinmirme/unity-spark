@@ -42,13 +42,20 @@ const Navbar = () => {
           </li>
         )}
       </NavLink>
-      <NavLink to="signup">
+      {
+        !user && <NavLink to="signup">
         {({ isActive }) => (
           <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
             Signup
           </li>
         )}
       </NavLink>
+      }
+      <a href="/#contactUs">
+           <li className="nav_item">
+            Contact US
+          </li>
+      </a>
     </>
   );
   return (

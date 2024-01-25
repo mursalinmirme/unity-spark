@@ -38,27 +38,27 @@ const JobDetails = () => {
   });
 
   return (
-    <div className="px-10 mb-20 flex gap-8">
+    <div className="lg:px-10 mb-20 flex flex-col lg:flex-row gap-8">
       {/**Left Side */}
       <div className="mt-10 space-y-1  text-[#1E1E1E] text-[18px] flex-1">
-        <h3 className="text-4xl font-semibold mb-5"> {jobInfo?.job_title} </h3>
-        <p>
+        <h3 className="text-3xl md:text-4xl font-semibold mb-5"> {jobInfo?.job_title} </h3>
+        <p className="text-base md:text-lg">
           <strong className="mr-1">Job Type :</strong> {jobInfo?.job_category1}
         </p>
 
-        <p className="pt-1">
+        <p className="pt-1 text-base md:text-lg">
           <strong className="mr-1">Work Type :</strong> {jobInfo?.job_category2}
         </p>
         <p className="pt-1">
           <strong className="mr-1">Salary : </strong> {jobInfo?.salary}
         </p>
-        <p className="pt-1">
+        <p className="pt-1 text-base md:text-lg">
           {" "}
           <strong className="mr-1"> Position : </strong> {jobInfo?.position}
         </p>
 
         {/** Skills RequireMent Show */}
-        <div className="pt-1">
+        <div className="pt-1 text-base md:text-lg">
           <h4>
             {" "}
             <p className="mb-1">
@@ -66,7 +66,7 @@ const JobDetails = () => {
               <strong> Required Skills:</strong>
             </p>
             {jobInfo?.required_Skills?.map((require) => (
-              <div key={require?.id} className="ml-20 ">
+              <div key={require?.id} className="md:ml-20 ">
                 {" "}
                 <p className="flex gap-2">
                   {" "}
@@ -81,14 +81,14 @@ const JobDetails = () => {
         <div className="py-3">
           <h4>
             {" "}
-            <p className="mb-1">
+            <p className="mb-1 text-base md:text-lg">
               {" "}
               <strong> Additional Requirement:</strong>
             </p>
             {jobInfo?.additional_Require?.map((adition) => (
-              <div key={adition} className="ml-20 ">
+              <div key={adition} className="md:ml-20 ">
                 {" "}
-                <p className="flex gap-2">
+                <p className="flex gap-2 text-base md:text-lg">
                   {" "}
                   <GoDotFill className="text-[#D9D9D9]" /> {adition}{" "}
                 </p>{" "}
@@ -101,12 +101,12 @@ const JobDetails = () => {
         <div className="py-3">
           <h4>
             {" "}
-            <p className="mb-1">
+            <p className="mb-1 text-base md:text-lg">
               {" "}
               <strong> Education Requirement:</strong>
             </p>
             {jobInfo?.education_Require?.map((edu) => (
-              <div key={edu} className="ml-20 ">
+              <div key={edu} className="md:ml-20 text-base md:text-lg">
                 {" "}
                 <p className="flex gap-2">
                   {" "}
@@ -121,14 +121,14 @@ const JobDetails = () => {
         <div className="py-3">
           <h4>
             {" "}
-            <p className="mb-1">
+            <p className="mb-1 text-base md:text-lg">
               {" "}
               <strong> Benefits:</strong>
             </p>
             {jobInfo?.benefits?.map((beni) => (
-              <div key={beni} className="ml-20 ">
+              <div key={beni} className="md:ml-20 ">
                 {" "}
-                <p className="flex gap-2">
+                <p className="flex gap-2 text-base md:text-lg">
                   {" "}
                   <GoDotFill className="text-[#D9D9D9]" /> {beni}{" "}
                 </p>{" "}
@@ -137,7 +137,7 @@ const JobDetails = () => {
           </h4>
         </div>
         {/* description section */}
-        <div>
+        <div className="text-base md:text-lg">
           <strong>Description:</strong>
           <p>{jobInfo?.job_description}</p>
         </div>
@@ -161,7 +161,7 @@ const JobDetails = () => {
       </div>
 
       {/**Right Side */}
-      <div className="mt-10 p-2 w-96">
+      <div className="mt-10 p-2 lg:w-96">
         <h1 className="text-2xl font-semibold mb-5"> Find Out More ....</h1>
 
         <div className="space-y-5">

@@ -3,6 +3,8 @@ import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { MdOutlineCancel } from "react-icons/md";
+import { GrNext,GrPrevious } from "react-icons/gr";
+
 const AddReview = () => {
   const totalReviews = 30;
   const [currentPage, setCurrentPage] = useState(0);
@@ -91,9 +93,9 @@ const AddReview = () => {
           </div>
         ))}
       </div>
-      <div className="text-center space-x-5 mt-10 review-pagination">
-        <a onClick={handlPrev} className="">
-          Prev
+      <div className="text-cente flex flex-wrap justify-center md:space-x-3 mt-10 review-pagination">
+        <a onClick={handlPrev}>
+          <GrPrevious className="icons" />
         </a>
         {pages.map((i) => (
           <a
@@ -105,7 +107,7 @@ const AddReview = () => {
           </a>
         ))}
         <a onClick={handleNext} className="">
-          Next
+         <GrNext className="icons"/>
         </a>
       </div>
     </div>
