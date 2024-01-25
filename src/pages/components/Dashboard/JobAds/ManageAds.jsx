@@ -100,7 +100,7 @@ const ManageAds = () => {
         </div>
 
         <div>
-          <Link>
+          <Link to="/dashboard/addJobs">
             <p className="flex items-center gap-2 text-[#433ebe] font-inter font-semibold border-[3px] border-[#433ebe] p-2 rounded-lg">
               <LuPenLine></LuPenLine> <span>New Ad</span>
             </p>
