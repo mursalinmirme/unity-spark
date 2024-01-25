@@ -45,7 +45,7 @@ const MyProfile = () => {
         <div className="flex justify-between w-full">
           <div>
             <h2>John Doe</h2>
-            <h3>johndoetheheroalom@gmail.com</h3>
+            <h3>johndoe@gmail.com</h3>
             <ProgressBar
               completed={90}
               bgColor="#433ebe"
@@ -58,18 +58,20 @@ const MyProfile = () => {
             />
           </div>
           <div className="flex items-center gap-2">
-            {
-              openEditor ? 
-              <a className={`flex items-center font-inter text-red-500 gap-1 font-medium border-2 rounded-md border-red-500 px-2 py-0.5 cursor-pointer text-red hover:text-white hover:bg-red-500 transition-all`} onClick={() => setOpenEditor(false)}>
+            {openEditor ? (
+              <a
+                className={`flex items-center font-inter text-red-500 gap-1 font-medium border-2 rounded-md border-red-500 px-2 py-0.5 cursor-pointer text-red hover:text-white hover:bg-red-500 transition-all`}
+                onClick={() => setOpenEditor(false)}
+              >
                 <RxCross2 />
                 <span>Cancel</span>
               </a>
-              :
+            ) : (
               <a className={`edit_btn`} onClick={() => setOpenEditor(true)}>
                 <FiEdit3 />
                 <span>Edit Info</span>
               </a>
-            }
+            )}
             <Link className="edit_btn" to="/dashboard/reviews">
               <GoThumbsup />
               <span>Give Review</span>
@@ -84,7 +86,7 @@ const MyProfile = () => {
         <span>Remote</span>
         <span>Full-time</span>
       </div>
-      <div className={`tab_container ${openEditor ? 'hidden' : 'block'}`}>
+      <div className={`tab_container ${openEditor ? "hidden" : "block"}`}>
         <div className="tab_div">
           <h2>Performance</h2>
           <div className="tabs">
@@ -138,7 +140,7 @@ const MyProfile = () => {
       </div>
 
       {/* EDITOR */}
-      <div className={`profile-form ${openEditor ? 'block' : 'hidden'}`}>
+      <div className={`profile-form ${openEditor ? "block" : "hidden"}`}>
         <EmployeeProfileEdit></EmployeeProfileEdit>
       </div>
     </div>
