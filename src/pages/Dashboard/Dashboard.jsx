@@ -12,8 +12,20 @@ import { LuLogOut } from "react-icons/lu";
 import { BiConversation } from "react-icons/bi";
 import { HiBars3BottomRight } from "react-icons/hi2";
 import "./dashboard.css";
+import useUserRole from "../../hooks/useUserRole";
+import Loading from "../components/Loading/Loading";
 
 const Dashboard = () => {
+
+  const [ isUser, isLoading ] = useUserRole();
+  console.log("The current user role is", isUser.role);
+
+
+  if(isLoading){
+    return <Loading></Loading>
+  }
+
+
   const dashboardItem = (
     <>
       <NavLink to="/dashboard">
@@ -31,7 +43,9 @@ const Dashboard = () => {
           </li>
         )}
       </NavLink>
-      <NavLink to="/dashboard/profile">
+      {
+        isUser?.role === "user" && 
+        <NavLink to="/dashboard/profile">
         {({ isActive }) => (
           <li
             className={`${
@@ -46,6 +60,7 @@ const Dashboard = () => {
           </li>
         )}
       </NavLink>
+      }
       <NavLink to="/dashboard/recruiment">
         {({ isActive }) => (
           <li
@@ -61,7 +76,9 @@ const Dashboard = () => {
           </li>
         )}
       </NavLink>
-      <NavLink to="/dashboard/jobs">
+      {
+        isUser?.role === "admin" && 
+        <NavLink to="/dashboard/jobs">
         {({ isActive }) => (
           <li
             className={`${
@@ -76,7 +93,10 @@ const Dashboard = () => {
           </li>
         )}
       </NavLink>
-      <NavLink to="/dashboard/tasks">
+      }
+      {
+        isUser?.role === "user" && 
+        <NavLink to="/dashboard/tasks">
         {({ isActive }) => (
           <li
             className={`${
@@ -91,7 +111,10 @@ const Dashboard = () => {
           </li>
         )}
       </NavLink>
-      <NavLink to="/dashboard/all-users">
+      }
+      {
+        isUser?.role === "admin" && 
+        <NavLink to="/dashboard/all-users">
         {({ isActive }) => (
           <li
             className={`${
@@ -106,7 +129,10 @@ const Dashboard = () => {
           </li>
         )}
       </NavLink>
-      <NavLink to="/dashboard/employees">
+      }
+      {
+        isUser?.role === "admin" && 
+        <NavLink to="/dashboard/employees">
         {({ isActive }) => (
           <li
             className={`${
@@ -121,6 +147,7 @@ const Dashboard = () => {
           </li>
         )}
       </NavLink>
+      }
       <NavLink to="/dashboard/userProfile">
         {({ isActive }) => (
           <li
@@ -225,7 +252,7 @@ const Dashboard = () => {
             <Link to="/">
               <img src={logo} className="w-3/4" alt="" />
             </Link>
-            <ul>{dashboardItem}</ul>          
+            <ul className="min-h-[75vh]">{dashboardItem}</ul>          
           </div>
           <div>
             <div className="log_btn">

@@ -35,7 +35,7 @@ const Navbar = () => {
           </li>
         )}
       </NavLink>
-      <NavLink to="signup">
+      <NavLink to="/events">
         {({ isActive }) => (
           <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
             Events
