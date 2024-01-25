@@ -135,7 +135,7 @@ const UserProfile = () => {
           <div className="label">
             <span className="font-bold font-inter">Current Address :</span>
           </div>
-          <p className="font-inter"> {users?.current_address}</p>
+          <p className="font-inter"> {users?.current_address || "N/A"}</p>
         </label>
         {/* Current Address field End */}
 
@@ -145,7 +145,7 @@ const UserProfile = () => {
             <span className="font-bold font-inter">Permanent Address :</span>
           </div>
 
-          <p className="font-inter">{users?.permanent_address}</p>
+          <p className="font-inter">{users?.permanent_address || "N/A"}</p>
         </label>
       </div>
 
@@ -156,7 +156,7 @@ const UserProfile = () => {
           <div className="label">
             <span className="font-bold font-inter">Age :</span>
           </div>
-          <p className="font-inter"> {users?.age} </p>
+          <p className="font-inter"> {users?.age || "N/A"} </p>
         </label>
         {/* Age field End */}
 
@@ -165,7 +165,7 @@ const UserProfile = () => {
           <div className="label">
             <span className="font-bold font-inter">Gender :</span>
           </div>
-          <p className="font-inter"> {users?.gender} </p>
+          <p className="font-inter"> {users?.gender || "N/A"} </p>
         </label>
       </div>
 
@@ -196,7 +196,7 @@ const UserProfile = () => {
           <div className="label">
             <span className="font-bold font-inter">Job Preference :</span>
           </div>
-          <p className="font-inter">{users?.job_preference} </p>
+          <p className="font-inter">{users?.job_preference || "N/A"} </p>
         </label>
         {/* Preference field End */}
 
@@ -206,7 +206,7 @@ const UserProfile = () => {
             <span className="font-bold font-inter">Time Preference :</span>
           </div>
 
-          <p className="font-inter"> {users?.time_preference}</p>
+          <p className="font-inter"> {users?.time_preference || "N/A"}</p>
         </label>
       </div>
 
@@ -221,7 +221,7 @@ const UserProfile = () => {
             <span key={index} className="mr-2">
               {skill?.value},
             </span>
-          ))}
+          )) || "N/A"}
         </label>
         {/* Skills field End */}
 
