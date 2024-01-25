@@ -4,31 +4,82 @@ import { FiEdit3 } from "react-icons/fi";
 import download_icon from "../../../assets/images/download-Icon.png";
 import counter_icon from "../../../assets/images/pen.png";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { CgProfile } from "react-icons/cg";
+import axios from "axios";
+import { AuthContext } from "../../../Provider/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
+import Loading from "../../components/Loading/Loading";
 const UserProfile = () => {
-  const [count, setCount] = useState(90);
+  const [count, setCount] = useState(0);
+  const { user } = useContext(AuthContext);
+
+  const { data: users = [], isLoading } = useQuery({
+    queryKey: ["usersInformation"],
+    enabled: !!user?.email,
+    queryFn: async () => {
+      const res = await axios.get(`http://localhost:5000/users/${user?.email}`);
+
+      // for (const items in await res?.data) {
+      //   console.log(items);
+      // }
+
+      if (await res?.data?.email) {
+        setCount(count + 8.3333333333333);
+      }
+      if (await res?.data?.phone) {
+        setCount(count + 8.3333333333333);
+      }
+
+      if (await res?.data?.current_address) {
+        setCount(count + 8.3333333333333);
+      }
+      if (await res?.data?.permanent_address) {
+        setCount(count + 8.3333333333333);
+      }
+      // if (res?.data?.age) {
+      //   setCount(count + 8.3333333333333);
+      // }
+      // if (res?.data?.gender) {
+      //   setCount(count + 8.3333333333333);
+      // }
+      // if (res?.data?.resume_link) {
+      //   setCount(count + 8.3333333333333);
+      // }
+
+      return await res?.data;
+    },
+  });
+
   return (
     <div>
       <div className="user_profile_container">
-        <img src="https://i.ibb.co/vcBNZ2H/founder-1.jpg" alt="profile" />
+        {users?.image ? (
+          <img src={users?.image} alt="profile" />
+        ) : (
+          <CgProfile className="text-3xl" />
+        )}
         <div className="flex justify-between w-full">
           <div>
-            <h2>John Doe</h2>
-            <h3>johndoetheheroalom@gmail.com</h3>
+            <h2>{users?.name}</h2>
+            <h3>{users?.email}</h3>
           </div>
           <div className="flex gap-3 items-center relative">
-            <div className="border-2 border-primary rounded-lg p-1">
+            {/* <div className="border-2 border-primary rounded-lg p-1 sm:hidden  md:hidden ">
               <img
                 style={{ height: "18px", width: "18px" }}
                 src={counter_icon}
                 alt=""
               />
               <span className="bg-primary  w-5 h-5 absolute top-2 md:right-[112px] text-white flex items-center justify-center rounded-lg">
-                0
+                7
               </span>
-            </div>
+            </div> */}
 
-            <Link to="/dashboard/userProfileEdit" className="edit_btn">
+            <Link
+              to="/dashboard/userProfileEdit"
+              className="flex gap-2 items-center text-primary font-inter font-semibold text-sm border-2 rounded-lg cursor-pointer border-primary py-1 px-3 hover:bg-primary hover:text-white transition-all duration-500"
+            >
               <span>Edit Info</span>
               <FiEdit3 />
             </Link>
@@ -64,7 +115,7 @@ const UserProfile = () => {
           <div className="label">
             <span className="font-extrabold font-inter">Email :</span>
           </div>
-          <p className="font-inter"> rifazul60@gmail.com </p>
+          <p className="font-inter"> {users?.email} </p>
         </label>
         {/* email field End */}
 
@@ -73,7 +124,7 @@ const UserProfile = () => {
           <div className="label">
             <span className="font-extrabold font-inter">Phone :</span>
           </div>
-          <p className="font-inter"> N/A</p>
+          <p className="font-inter"> {users?.phone || "N/A"} </p>
         </label>
       </div>
 
@@ -84,7 +135,7 @@ const UserProfile = () => {
           <div className="label">
             <span className="font-bold font-inter">Current Address :</span>
           </div>
-          <p className="font-inter">N/A</p>
+          <p className="font-inter"> {users?.current_address}</p>
         </label>
         {/* Current Address field End */}
 
@@ -94,7 +145,7 @@ const UserProfile = () => {
             <span className="font-bold font-inter">Permanent Address :</span>
           </div>
 
-          <p className="font-inter"> N/A</p>
+          <p className="font-inter">{users?.permanent_address}</p>
         </label>
       </div>
 
@@ -105,7 +156,7 @@ const UserProfile = () => {
           <div className="label">
             <span className="font-bold font-inter">Age :</span>
           </div>
-          <p className="font-inter"> 22</p>
+          <p className="font-inter"> {users?.age} </p>
         </label>
         {/* Age field End */}
 
@@ -114,7 +165,7 @@ const UserProfile = () => {
           <div className="label">
             <span className="font-bold font-inter">Gender :</span>
           </div>
-          <p className="font-inter"> Male</p>
+          <p className="font-inter"> {users?.gender} </p>
         </label>
       </div>
 
@@ -145,7 +196,7 @@ const UserProfile = () => {
           <div className="label">
             <span className="font-bold font-inter">Job Preference :</span>
           </div>
-          <p className="font-inter"> N/A</p>
+          <p className="font-inter">{users?.job_preference} </p>
         </label>
         {/* Preference field End */}
 
@@ -155,7 +206,7 @@ const UserProfile = () => {
             <span className="font-bold font-inter">Time Preference :</span>
           </div>
 
-          <p className="font-inter"> Intern</p>
+          <p className="font-inter"> {users?.time_preference}</p>
         </label>
       </div>
 
@@ -166,7 +217,11 @@ const UserProfile = () => {
           <div className="label">
             <span className="font-bold font-inter">Skills :</span>
           </div>
-          <span> JavaScript</span> , <span> React </span>
+          {users?.skills?.map((skill, index) => (
+            <span key={index} className="mr-2">
+              {skill?.value},
+            </span>
+          ))}
         </label>
         {/* Skills field End */}
 
@@ -176,10 +231,7 @@ const UserProfile = () => {
           <div className="label">
             <span className="font-bold font-inter">Resume :</span>
           </div>
-          <a
-            href="https://drive.google.com/file/d/1V_LBzGVe0-09I8BjDjRUMgpXwbaDczHh/view?usp=sharing"
-            target="blank"
-          >
+          <a href={users?.resume_link} target="blank">
             <div className="flex w-44 gap-2 font-semibold  text-white cursor-pointer font-inter text-base px-8 py-[8px] bg-primary rounded-xl transition-all duration-500 text-[15px]">
               {" "}
               <img src={download_icon} alt="" /> <span> Download</span>{" "}

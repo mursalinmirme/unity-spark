@@ -1,16 +1,16 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { Controller, useForm } from "react-hook-form";
 import download_icon from "../../../assets/images/download-Icon.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Select from "react-select";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { CgProfile } from "react-icons/cg";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import toast from "react-hot-toast";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 const UserProfileEdit = () => {
-  const { register, handleSubmit, control } = useForm();
-  const axiosSecure = useAxiosSecure();
+  const { register, handleSubmit, control, reset } = useForm();
   const { user } = useContext(AuthContext);
 
   // New Array
@@ -24,49 +24,68 @@ const UserProfileEdit = () => {
     { value: "Mongoose", label: "Mongoose" },
   ];
 
-  const onSubmit = async (data) => {
-    console.log(data);
-    const imageFile = { image: data.photo[0] };
-    const res = await axios.post(image_Hosting_Api, imageFile, {
-      headers: {
-        "content-type": "multipart/form-data",
-      },
+  const [users, setUsers] = useState(null);
+  // User Data Get
+  useEffect(() => {
+    axios.get(`http://localhost:5000/users/${user?.email}`).then((res) => {
+      setUsers(res?.data);
     });
-    if (res.data.success) {
-      const userInfo = {
-        name: data?.name,
-        email: data?.email,
-        phone: data?.number,
-        age: data?.age,
-        gender: data?.gender,
-        current_address: data?.current,
-        permanent_address: data?.permanent,
-        job_preference: data?.preference,
-        time_preference: data?.time_preference,
-        skills: data?.skills,
-        image: res.data.data.display_url,
-        resume_link: data.resume,
-      };
+  }, [user?.email, setUsers]);
 
-      axios
-        .put(`http://localhost:5000/users/${user?.email}`, userInfo)
-        .then((res) => {
-          console.log(res?.data);
-        })
+  // Form Summit
+  const onSubmit = async (data) => {
+    let photos = user?.photoURL;
 
-        .catch((error) => {
-          console.log(error.message);
-        });
+    if (data?.photo?.length > 0) {
+      const imageFile = { image: data.photo[0] };
+      const res = await axios.post(image_Hosting_Api, imageFile, {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      });
+
+      photos = res?.data?.display_url;
     }
+
+    const userInfo = {
+      name: data?.name,
+      email: data?.email,
+      phone: data?.number,
+      age: data?.age,
+      gender: data?.gender,
+      current_address: data?.current,
+      permanent_address: data?.permanent,
+      job_preference: data?.preference,
+      time_preference: data?.time_preference,
+      skills: data?.skills,
+      image: photos,
+      resume_link: data.resume,
+    };
+
+    axios
+      .put(`http://localhost:5000/users/${user?.email}`, userInfo)
+      .then((res) => {
+        console.log(res?.data);
+        toast.success("User Profile Update Successfully");
+        reset();
+      })
+
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
   return (
     <div>
       <div className="user_profile_container">
-        <img src="https://i.ibb.co/vcBNZ2H/founder-1.jpg" alt="profile" />
-        <div className="flex justify-between w-full">
+        {users?.image ? (
+          <img src={users?.image} alt="profile" />
+        ) : (
+          <CgProfile className="text-3xl" />
+        )}
+        <div className="flex justify-between w-full items-center">
           <div>
-            <h2>John Doe</h2>
-            <h3>johndoetheheroalom@gmail.com</h3>
+            <h2>{users?.name}</h2>
+            <h3>{users?.email}</h3>
             <ProgressBar
               completed={90}
               bgColor="#433ebe"
@@ -83,7 +102,7 @@ const UserProfileEdit = () => {
               to="/dashboard/userProfile"
               className="edit_btn !border-red-600 hover:!border-primary"
             >
-              <span className="text-red-500 hover:text-white "> X Cancel </span>
+              <span className="text-red-500 hover:text-white"> X Cancel </span>
             </Link>
           </div>
         </div>
@@ -110,10 +129,10 @@ const UserProfileEdit = () => {
 
           {/*image field */}
           <label className="relative">
-            <div className="label">
+            <div className="label mb-10 md:mb-0 lg:mb-0">
               <span className="font-bold font-inter"> Your Photo : </span>
               <label
-                className="font-semibold w-full absolute bottom-0   text-white cursor-pointer font-inter text-base px-8 py-[8px] bg-primary rounded-xl transition-all duration-500 text-[15px]"
+                className="font-semibold w-full absolute bottom-0    text-white cursor-pointer font-inter text-base px-8 py-[8px] bg-primary rounded-xl transition-all duration-500 text-[15px]"
                 htmlFor="user_photo"
               >
                 <div className="flex justify-center gap-2">
