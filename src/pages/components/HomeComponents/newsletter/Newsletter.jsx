@@ -13,7 +13,7 @@ const Newsletter = () => {
                     <p>Subscribe our newsletter to get update from us</p>
                     <form>
                         <input type="email" placeholder="Enter Your Email...."  />
-                        <button>Subscribe</button>
+                        <button className="bg-primary" style={{background: '#433EBE'}}>Subscribe</button>
                     </form>
                 </div>
             </div>

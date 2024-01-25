@@ -15,7 +15,7 @@
 }
 
 #dashboard .right_container {
-    @apply lg:col-span-4 bg-white rounded-xl p-8 mt-5 lg:mt-0 w-full sm:top-0 sm:right-0 lg:ml-[23%] md:p-5 lg:p-10
+    @apply lg:col-span-4 bg-white rounded-xl p-5 mt-5 lg:mt-0 w-full sm:top-0 sm:right-0 lg:ml-[23%] md:p-5 lg:p-10
 }
 
 .dashboard_item {
