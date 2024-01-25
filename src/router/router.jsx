@@ -16,6 +16,7 @@ import AvailableJobs from "../pages/availableJobs/AvailableJobs";
 import Recruiment from "../pages/DashboardPages/AdminPages/Recruiment/Recruiment";
 import Reviews from "../pages/DashboardPages/AdminPages/Reviews/Reviews";
 import AddReview from "../pages/DashboardPages/AdminPages/Reviews/AddReview";
+import DashboardHome from "../pages/DashboardPages/DashboardHome/DashboardHome";
 
 const router = createBrowserRouter([
   {
@@ -55,7 +56,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <> </>,
+        element: <DashboardHome> </DashboardHome>,
       },
       {
         path: "profile",

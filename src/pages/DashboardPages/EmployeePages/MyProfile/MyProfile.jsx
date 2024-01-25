@@ -3,9 +3,9 @@ import "./profile.css";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { FiEdit3 } from "react-icons/fi";
 import { GoThumbsup } from "react-icons/go";
-import { BsUpload } from "react-icons/bs";
 import { RxCross2 } from "react-icons/rx";
 import { Link } from "react-router-dom";
+import EmployeeProfileEdit from "./EmployeeProfileEdit";
 
 const tabs = [
   {
@@ -139,31 +139,7 @@ const MyProfile = () => {
 
       {/* EDITOR */}
       <div className={`profile-form ${openEditor ? 'block' : 'hidden'}`}>
-        <form>
-          <div className="grid grid-cols-2 gap-5">
-            <div>
-              <label>Your Name</label>
-              <input type="text" placeholder="Enter your name..." />
-            </div>
-            <div>
-              <span className="block font-inter font-semibold">Your Photo</span>
-              <label className="w-full" htmlFor="user_photo">
-                <div className="bg-primary mt-2 rounded-md py-[7px] text-white font-inter font-medium flex items-center justify-center gap-2">
-                  < BsUpload />
-                  <span> Upload Your Photo</span>{" "}
-                </div>
-              </label>
-              <input className="hidden" type="file" id="user_photo" />
-            </div>
-          </div>
-          <div className="mt-3">
-            <label>Your Email</label>
-            <input type="text" placeholder="Enter your email..." />
-          </div>
-          <div className="mt-4">
-            <a className="bg-primary text-white font-inter font-medium px-5 py-2 rounded-md cursor-pointer">Update</a>
-          </div>
-        </form>
+        <EmployeeProfileEdit></EmployeeProfileEdit>
       </div>
     </div>
   );

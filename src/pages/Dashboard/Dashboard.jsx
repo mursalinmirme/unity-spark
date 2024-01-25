@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from "../../assets/images/logo.gif";
 import { BiHomeAlt2 } from "react-icons/bi";
 import { IoIosArrowForward } from "react-icons/io";
@@ -27,7 +27,7 @@ const Dashboard = () => {
               <BiHomeAlt2 />
               <span>Home</span>
             </div>
-            <IoIosArrowForward className="hov_arrow" />
+            <IoIosArrowForward className="hov_arrow hidden lg:block" />
           </li>
         )}
       </NavLink>
@@ -42,7 +42,7 @@ const Dashboard = () => {
               <LuUser />
               <span>My Profile</span>
             </div>
-            <IoIosArrowForward className="hov_arrow" />
+            <IoIosArrowForward className="hov_arrow hidden lg:block" />
           </li>
         )}
       </NavLink>
@@ -57,7 +57,7 @@ const Dashboard = () => {
               <LuUserCog  className="text-2xl"/>
               <span>Recruiment</span>
             </div>
-            <IoIosArrowForward className="hov_arrow" />
+            <IoIosArrowForward className="hov_arrow hidden lg:block" />
           </li>
         )}
       </NavLink>
@@ -72,7 +72,7 @@ const Dashboard = () => {
               <IoDocumentOutline />
               <span>Job Ads</span>
             </div>
-            <IoIosArrowForward className="hov_arrow" />
+            <IoIosArrowForward className="hov_arrow hidden lg:block" />
           </li>
         )}
       </NavLink>
@@ -87,7 +87,7 @@ const Dashboard = () => {
               <BiTask />
               <span>Tasks</span>
             </div>
-            <IoIosArrowForward className="hov_arrow" />
+            <IoIosArrowForward className="hov_arrow hidden lg:block" />
           </li>
         )}
       </NavLink>
@@ -102,7 +102,7 @@ const Dashboard = () => {
               <LuUsers2 />
               <span>All Users</span>
             </div>
-            <IoIosArrowForward className="hov_arrow" />
+            <IoIosArrowForward className="hov_arrow hidden lg:block" />
           </li>
         )}
       </NavLink>
@@ -117,11 +117,10 @@ const Dashboard = () => {
               <GrUserWorker />
               <span>Employees</span>
             </div>
-            <IoIosArrowForward className="hov_arrow" />
+            <IoIosArrowForward className="hov_arrow hidden lg:block" />
           </li>
         )}
       </NavLink>
-
       <NavLink to="/dashboard/userProfile">
         {({ isActive }) => (
           <li
@@ -133,7 +132,7 @@ const Dashboard = () => {
               <GrUserWorker />
               <span>UserProfile</span>
             </div>
-            <IoIosArrowForward className="hov_arrow" />
+            <IoIosArrowForward className="hov_arrow hidden lg:block" />
           </li>
         )}
       </NavLink>
@@ -150,7 +149,7 @@ const Dashboard = () => {
               <BsChatText />
               <span>User Profile Edit</span>
             </div>
-            <IoIosArrowForward className="hov_arrow" />
+            <IoIosArrowForward className="hov_arrow hidden lg:block" />
           </li>
         )}
       </NavLink> */}
@@ -166,11 +165,10 @@ const Dashboard = () => {
               <BsChatText />
               <span>Reviews</span>
             </div>
-            <IoIosArrowForward className="hov_arrow" />
+            <IoIosArrowForward className="hov_arrow hidden lg:block" />
           </li>
         )}
       </NavLink>
-
       <NavLink to="/">
         {({ isActive }) => (
           <li
@@ -182,7 +180,7 @@ const Dashboard = () => {
               <BsChatText />
               <span>Home Page </span>
             </div>
-            <IoIosArrowForward className="hov_arrow" />
+            <IoIosArrowForward className="hov_arrow hidden lg:block" />
           </li>
         )}
       </NavLink>
@@ -197,7 +195,7 @@ const Dashboard = () => {
               <BiConversation />
               <span>Communicate</span>
             </div>
-            <IoIosArrowForward className="hov_arrow" />
+            <IoIosArrowForward className="hov_arrow hidden lg:block" />
           </li>
         )}
       </NavLink>
@@ -206,30 +204,34 @@ const Dashboard = () => {
 
   return (
     <div id="dashboard">  
-      <div className="drawer drawer-end z-10">
-          <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-          <div className="drawer-content flex justify-between">
-          <h2>UnitySpark</h2>
-            <label htmlFor="my-drawer-4" className="drawer-button">
-                <HiBars3BottomRight/>
-            </label>
-          </div> 
-          <div className="drawer-side">
-            <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
-            <ul className="flex flex-col menu w-1/2 px-8 min-h-full bg-white text-base-content" id="nav_item">
-              {dashboardItem}
-            </ul>
-            </div>
-      </div>
-      <div className="left_container hidden">
-        <div>
-          <img src={logo} className="w-3/4" alt="" />
-          <ul className="">{dashboardItem}</ul>          
+      <div className="drawer drawer-start lg:hidden">
+        <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
+        <div className="drawer-content bg-white rounded-xl flex justify-between items-center p-3">
+          <img src={logo} className="w-2/6" alt="" />
+          <label htmlFor="my-drawer-4" className="drawer-button">
+            <HiBars3BottomRight />
+          </label>
+        </div> 
+        <div className="drawer-side">
+          <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
+          <ul className="menu p-4 min-h-full bg-base-200 text-base-content" style={{width: '70%'}}>
+            {dashboardItem}
+          </ul>
         </div>
-        <div>
-          <div className="log_btn">
-            <span>Log Out</span>
-            <LuLogOut />
+      </div>
+      <div className="left_container">
+        <div className="nav_container">
+          <div>
+            <Link to="/">
+              <img src={logo} className="w-3/4" alt="" />
+            </Link>
+            <ul>{dashboardItem}</ul>          
+          </div>
+          <div>
+            <div className="log_btn">
+              <span>Log Out</span>
+              <LuLogOut />
+            </div>
           </div>
         </div>
       </div>
