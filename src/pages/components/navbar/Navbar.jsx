@@ -35,6 +35,13 @@ const Navbar = () => {
           </li>
         )}
       </NavLink>
+      <NavLink to="signup">
+        {({ isActive }) => (
+          <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
+            Events
+          </li>
+        )}
+      </NavLink>
       <NavLink to="/about-us">
         {({ isActive }) => (
           <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
@@ -51,11 +58,7 @@ const Navbar = () => {
         )}
       </NavLink>
       }
-      <a href="/#contactUs">
-           <li className="nav_item">
-            Contact US
-          </li>
-      </a>
+      
     </>
   );
   return (
