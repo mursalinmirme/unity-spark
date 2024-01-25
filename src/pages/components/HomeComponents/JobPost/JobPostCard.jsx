@@ -1,14 +1,15 @@
+import moment from "moment";
 import { Link } from "react-router-dom";
 
 const JobPostCard = ({ jobPost }) => {
   const {
     job_title,
     salary,
-    job_posted,
+    createdAt,
     job_category1,
     job_category2,
     job_description,
-    id,
+    _id,
   } = jobPost;
 
   return (
@@ -19,23 +20,23 @@ const JobPostCard = ({ jobPost }) => {
           <span>{job_category1}</span>
           <span>{job_category2}</span>
         </div>
-        <div className="flex items-center gap-5 ">
-          <p>
-            {" "}
-            <strong>Salary:</strong> {salary}
-          </p>
-          |
-          <p className="my-1">
-            {" "}
-            <strong>Posted</strong> {job_posted}
-          </p>
-        </div>
-        <p>{job_description}</p>
+
+        <p>
+          {" "}
+          <strong>Salary:</strong> {salary}
+        </p>
+
+        <p className="my-1">
+          {" "}
+          <strong>Posted:</strong> {moment(createdAt).startOf('day').fromNow()}
+        </p>
+
+        <p>{job_description?.length > 110 ? job_description.slice(0, 110)+'...' : job_description}</p>
         <div className="card-actions justify-start">
           <button className="mt-3 mr-3">Apply Now</button>
-          <Link to={`details/${id}`}>
+          <Link to={`job-details/${_id}`}>
             <div className="mt-3 mr-3 text-primary  cursor-pointer px-5 py-1.5 rounded-xl border-2 border-primary text-[15px]">
-              View Details
+              Details
             </div>
           </Link>
         </div>

@@ -1,27 +1,30 @@
-import { useEffect, useState } from "react";
 import JobPostCard from "./JobPostCard";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 const JobPost = () => {
-  const [jobPosts, serJobPosts] = useState([]);
 
-  useEffect(() => {
-    fetch("/JobPost.json")
-      .then((res) => res.json())
-      .then((data) => serJobPosts(data));
-  }, []);
+  const {data:jobPosts=[]} = useQuery({
+    queryKey: ['recentFeaturedJobs'],
+    queryFn: async () => {
+        const result = await axios.get('http://localhost:5000/featured-jobs');
+        return result.data;
+    }
+  })
 
   return (
     <div className="job_posts py-12">
       <h2>Recent Job Post</h2>
       <h6 className="pb-4">Our Latest Job Openings Await Your Talent!</h6>
-      <div className="space-y-5">
+      <div className="space-y-5 lg:space-y-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-5">
         {jobPosts.map((jobPost) => (
-          <JobPostCard key={jobPost.id} jobPost={jobPost}></JobPostCard>
+          <JobPostCard key={jobPost._id} jobPost={jobPost}></JobPostCard>
         ))}
       </div>
 
       <div className="text-center py-5">
-        <button className="btn text-white"> Explore more Jobs</button>
+        <Link to={'/available-jobs'}><button className="btn text-white"> Explore more Jobs</button></Link>
       </div>
     </div>
   );

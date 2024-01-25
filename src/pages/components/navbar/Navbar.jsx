@@ -28,6 +28,20 @@ const Navbar = () => {
           </li>
         )}
       </NavLink>
+      <NavLink to="/available-jobs">
+        {({ isActive }) => (
+          <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
+            Available Jobs
+          </li>
+        )}
+      </NavLink>
+      <NavLink to="/events">
+        {({ isActive }) => (
+          <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
+            Events
+          </li>
+        )}
+      </NavLink>
       <NavLink to="/about-us">
         {({ isActive }) => (
           <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
@@ -35,20 +49,16 @@ const Navbar = () => {
           </li>
         )}
       </NavLink>
-      <NavLink to="/signin">
-        {({ isActive }) => (
-          <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
-            Sign In
-          </li>
-        )}
-      </NavLink>
-      <NavLink to="signup">
+      {
+        !user && <NavLink to="signup">
         {({ isActive }) => (
           <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
             Signup
           </li>
         )}
       </NavLink>
+      }
+      
     </>
   );
   return (
