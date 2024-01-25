@@ -5,8 +5,10 @@ import { AiOutlineLike } from "react-icons/ai";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import "./review.css";
 import { Link } from "react-router-dom";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 
 const Reviews = () => {
+  const axiosPublic = useAxiosPublic();
   const totalReviews = 30;
   const [currentPage, setCurrentPage] = useState(0);
   const numOfPage = Math.ceil(totalReviews / 6);
@@ -23,10 +25,10 @@ const Reviews = () => {
     }
   };
 
-  const { data: reviews } = useQuery({
+  const { data: reviews, refetch } = useQuery({
     queryKey: ["reviews"],
     queryFn: async () => {
-      const res = await axios.get("/reviews.json");
+      const res = await axiosPublic.get("/feedbacks");
       return res.data;
     },
   });
@@ -44,20 +46,20 @@ const Reviews = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {reviews?.map((item) => (
-          <div className="border-2 rounded-lg p-3" key={item.id}>
+          <div className="border-2 rounded-lg p-3" key={item._id}>
             <div className="flex items-center gap-5">
-              <img className="h-16 w-16 " src={item.image} alt="" />
+              <img className="h-12 w-12 rounded-full" src={item.image} alt="" />
               <div>
                 <h1 className="text-xl font-bold">{item.name}</h1>
-                <p className="text-[#5B5555] font-semibold">{item.title}</p>
+                <p className="text-[#5B5555] font-semibold">{item.employeePosition}</p>
               </div>
             </div>
-            <p className="text-[#5B5555] font-medium">
+            <p className="text-[#5B5555] font-medium mt-3">
               "
-              {item.review.length > 60 ? (
-                <span>{item.review.slice(0, 60)}...</span>
+              {item.description.length > 55 ? (
+                <span>{item.description.slice(0, 55)}...</span>
               ) : (
-                <span>{item.review}</span>
+                <span>{item.description}</span>
               )}
               "
             </p>
