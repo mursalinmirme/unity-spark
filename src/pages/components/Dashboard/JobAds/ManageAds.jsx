@@ -58,7 +58,7 @@ const ManageAds = () => {
   // handle search system
   const handleSearches = (e) => {
     e.preventDefault();
-    alert('Search button is working')
+    alert("Search button is working");
   };
   // handle close search bar
   const handleCloseSearchBar = () => {
@@ -69,41 +69,38 @@ const ManageAds = () => {
     <div>
       <div className="mt-4 flex justify-between items-center">
         <div className="flex">
-        <form
-          onSubmit={handleSearches}
-          className={`p-0 border-0 m-0 relative ${
-            showSearchBar ? "hidden" : "visible"
-          }`}
-        >
-          <input
-            name="search"
-            className="md:py-2 pl-14 m-0 md:w-60 lg:w-80 border-second"
-            type="text"
-            placeholder="Search..."
-          />
-          <button className="absolute top-0 left-0 h-full rounded-none rounded-s-lg">
-            <FaSearch className="text-lg"></FaSearch>
-          </button>
-        </form>
-        {showSearchBar ? (
-          <button
-            onClick={() => setShowSearchBar(false)}
-            className="rounded-md md:h-[40.2px]"
-          >
-            <FaSearch className="text-lg"></FaSearch>
-          </button>
-        ) : (
-          <button
-            onClick={handleCloseSearchBar}
-            className="rounded-none bg-none text-primary left-0"
-          >
-            <ImCross className="text-lg"></ImCross>
-          </button>
-        )}
+          <form
+            onSubmit={handleSearches}
+            className={`p-0 border-0 m-0 relative ${
+              showSearchBar ? "hidden" : "visible"
+            }`}>
+            <input
+              name="search"
+              className="md:py-2 pl-14 m-0 md:w-60 lg:w-80 border-second"
+              type="text"
+              placeholder="Search..."
+            />
+            <button className="absolute top-0 left-0 h-full rounded-none rounded-s-lg">
+              <FaSearch className="text-lg"></FaSearch>
+            </button>
+          </form>
+          {showSearchBar ? (
+            <button
+              onClick={() => setShowSearchBar(false)}
+              className="rounded-md md:h-[40.2px]">
+              <FaSearch className="text-lg"></FaSearch>
+            </button>
+          ) : (
+            <button
+              onClick={handleCloseSearchBar}
+              className="rounded-none bg-none text-primary left-0">
+              <ImCross className="text-lg"></ImCross>
+            </button>
+          )}
         </div>
 
         <div>
-          <Link>
+          <Link to="/dashboard/addJobs">
             <p className="flex items-center gap-2 text-[#433ebe] font-inter font-semibold border-[3px] border-[#433ebe] p-2 rounded-lg">
               <LuPenLine></LuPenLine> <span>New Ad</span>
             </p>
@@ -116,8 +113,7 @@ const ManageAds = () => {
           return (
             <div
               className="border-2 p-3 my-4 rounded-lg flex justify-between items-center"
-              key={job?._id}
-            >
+              key={job?._id}>
               <div>
                 <h3 className="text-lg font-semibold">
                   {job?.job_title} - {job?.job_category2} - {job?.job_category1}
@@ -150,8 +146,7 @@ const ManageAds = () => {
                 color: "#433EBE",
                 fontSize: "18px",
               }}
-              className="join-item btn"
-            >
+              className="join-item btn">
               <IoIosArrowBack></IoIosArrowBack>
             </button>
             {pagesArray?.map((page, index) => {
@@ -167,8 +162,7 @@ const ManageAds = () => {
                     borderRadius: "5px",
                     fontSize: "18px",
                   }}
-                  className="join-item btn"
-                >
+                  className="join-item btn">
                   {page}
                 </button>
               );
@@ -180,8 +174,7 @@ const ManageAds = () => {
                 color: "#433EBE",
                 fontSize: "18px",
               }}
-              className="join-item btn"
-            >
+              className="join-item btn">
               <IoIosArrowForward></IoIosArrowForward>
             </button>
           </div>
