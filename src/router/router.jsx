@@ -77,7 +77,7 @@ const router = createBrowserRouter([
         element: <PrivateRouter><UserProfileEdit></UserProfileEdit></PrivateRouter>,
       },
       {
-        path: "recruiment",
+        path: "recruitment",
         element: <PrivateRouter><Recruiment></Recruiment></PrivateRouter>,
       },
       {

@@ -61,7 +61,7 @@ const Dashboard = () => {
         )}
       </NavLink>
       }
-      <NavLink to="/dashboard/recruiment">
+      <NavLink to="/dashboard/recruitment">
         {({ isActive }) => (
           <li
             className={`${
@@ -70,7 +70,7 @@ const Dashboard = () => {
           >
             <div>
               <LuUserCog  className="text-2xl"/>
-              <span>Recruiment</span>
+              <span>Recruitment</span>
             </div>
             <IoIosArrowForward className="hov_arrow hidden lg:block" />
           </li>
