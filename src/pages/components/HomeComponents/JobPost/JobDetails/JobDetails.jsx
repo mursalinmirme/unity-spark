@@ -41,7 +41,10 @@ const JobDetails = () => {
     <div className="lg:px-10 mb-20 flex flex-col lg:flex-row gap-8">
       {/**Left Side */}
       <div className="mt-10 space-y-1  text-[#1E1E1E] text-[18px] flex-1">
-        <h3 className="text-3xl md:text-4xl font-semibold mb-5"> {jobInfo?.job_title} </h3>
+        <h3 className="text-3xl md:text-4xl font-semibold mb-5">
+          {" "}
+          {jobInfo?.job_title}{" "}
+        </h3>
         <p className="text-base md:text-lg">
           <strong className="mr-1">Job Type :</strong> {jobInfo?.job_category1}
         </p>
@@ -145,13 +148,13 @@ const JobDetails = () => {
         <div className="flex gap-4 pt-8">
           <span
             className="px-8 py-2.5 bg-primary text-white rounded-xl cursor-pointer text-[14px]"
-            onClick={() => toast.success(" Your Job Apple Successful ")}
+            onClick={() => toast.success("Successfully applied")}
           >
             {" "}
-            Apple Now{" "}
+            Apply Now{" "}
           </span>
           <span
-            onClick={() => toast.success(" Save Successful ")}
+            onClick={() => toast.success("Successfully saved")}
             className="px-8 py-2.5 text-primary border-2 border-primary rounded-xl cursor-pointer text-[14px]"
           >
             {" "}

@@ -114,7 +114,7 @@ const Signin = () => {
             </label>
             {/* password field */}
             <div className="form-control w-full py-3">
-            <button className="text-base flex justify-center items-center">{signInLoading ? <span className="loading loading-spinner loading-md"></span> : "Sign Up" }</button>
+            <button className="text-base flex justify-center items-center">{signInLoading ? <span className="loading loading-spinner loading-md"></span> : "Sign In" }</button>
             </div>
           </form>
           <h1 className="text-center text-gray-700 font-medium">Or</h1>
