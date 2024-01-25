@@ -4,50 +4,50 @@ import { FiEdit3 } from "react-icons/fi";
 import download_icon from "../../../assets/images/download-Icon.png";
 import counter_icon from "../../../assets/images/pen.png";
 import { Link } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import axios from "axios";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
-import Loading from "../../components/Loading/Loading";
 const UserProfile = () => {
   const [count, setCount] = useState(0);
   const { user } = useContext(AuthContext);
 
-  const { data: users = [], isLoading } = useQuery({
+  const { data: users = [] } = useQuery({
     queryKey: ["usersInformation"],
     enabled: !!user?.email,
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/users/${user?.email}`);
+      try {
+        const res = await axios.get(
+          `http://localhost:5000/users/${user?.email}`
+        );
 
-      // for (const items in await res?.data) {
-      //   console.log(items);
-      // }
+        // Use the functional form of setCount to correctly update the state
+        setCount((prevCount) => {
+          let updatedCount = prevCount;
 
-      if (await res?.data?.email) {
-        setCount(count + 8.3333333333333);
-      }
-      if (await res?.data?.phone) {
-        setCount(count + 8.3333333333333);
-      }
+          if (res?.data?.email) {
+            updatedCount += 8.3333333333333;
+          }
+          if (res?.data?.phone) {
+            updatedCount += 8.3333333333333;
+          }
+          if (res?.data?.current_address) {
+            updatedCount += 8.3333333333333;
+          }
+          if (res?.data?.permanent_address) {
+            updatedCount += 8.3333333333333;
+          }
 
-      if (await res?.data?.current_address) {
-        setCount(count + 8.3333333333333);
-      }
-      if (await res?.data?.permanent_address) {
-        setCount(count + 8.3333333333333);
-      }
-      // if (res?.data?.age) {
-      //   setCount(count + 8.3333333333333);
-      // }
-      // if (res?.data?.gender) {
-      //   setCount(count + 8.3333333333333);
-      // }
-      // if (res?.data?.resume_link) {
-      //   setCount(count + 8.3333333333333);
-      // }
+          return updatedCount;
+        });
 
-      return await res?.data;
+        return res?.data;
+      } catch (error) {
+        // Handle errors here
+        console.error("Error fetching data:", error);
+        return null;
+      }
     },
   });
 
@@ -93,7 +93,7 @@ const UserProfile = () => {
           <h2 className="text-[22px] font-bold font-inter">
             Completed You Profile
           </h2>
-          <h2> {count}% </h2>
+          <h2> {count.toFixed(2)}% </h2>
         </div>
         <ProgressBar
           completed={count}
