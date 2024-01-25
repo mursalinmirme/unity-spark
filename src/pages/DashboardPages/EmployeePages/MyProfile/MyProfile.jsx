@@ -52,7 +52,28 @@ const MyProfile = () => {
   return (
     <div className="user_profile">
       <div className="user_profile_container">
-        <img src={data?.image} alt="profile" />
+        <img src={data?.image} alt="profile" className="hidden md:block" />
+        <div className="flex justify-between items-center w-full md:hidden ">
+          <img src={data?.image} alt="profile" className="md:hidden" />
+          <div className="items-center space-y-2 block md:hidden">
+            {
+              openEditor ? 
+              <a className={`flex items-center font-inter text-red-500 text-base gap-1 font-medium border-2 rounded-md border-red-500 px-2 py-0.5 cursor-pointer text-red hover:text-white hover:bg-red-500 transition-all`} onClick={() => setOpenEditor(false)}>
+                <RxCross2 />
+                <span>Cancel</span>
+              </a>
+              :
+              <a className={`edit_btn`} onClick={() => setOpenEditor(true)}>
+                <FiEdit3 />
+                <span>Edit Info</span>
+              </a>
+            }
+            <Link className="edit_btn" to="/dashboard/reviews">
+              <GoThumbsup />
+              <span>Give Review</span>
+            </Link>
+          </div>
+        </div>
         <div className="flex justify-between w-full">
           <div>
             <h2>{data?.name}</h2>
@@ -68,7 +89,7 @@ const MyProfile = () => {
               animateOnRender
             />
           </div>
-          <div className="flex items-center gap-2">
+          <div className="items-center gap-2 hidden md:flex">
             {
               openEditor ? 
               <a className={`flex items-center font-inter text-red-500 gap-1 font-medium border-2 rounded-md border-red-500 px-2 py-0.5 cursor-pointer text-red hover:text-white hover:bg-red-500 transition-all`} onClick={() => setOpenEditor(false)}>
@@ -114,38 +135,40 @@ const MyProfile = () => {
             ))}
           </div>
         </div>
-        <table className="w-full border-t-2">
-          <tr>
-            <th>Attendance</th>
-            <th>Rest Day</th>
-            <th>Overtime</th>
-            <th>Scrum Joined</th>
-          </tr>
-          <tr>
-            <td>60Days</td>
-            <td>60Days</td>
-            <td>60Days</td>
-            <td>60Days</td>
-          </tr>
-          <tr>
-            <td>60Hours</td>
-            <td>60Hours</td>
-            <td>60Hours</td>
-            <td>60Hours</td>
-          </tr>
-          <tr>
-            <td>60Minutes</td>
-            <td>60Minutes</td>
-            <td>60Minutes</td>
-            <td>60Minutes</td>
-          </tr>
-          <tr>
-            <td>60Seconds</td>
-            <td>60Seconds</td>
-            <td>60Seconds</td>
-            <td>60Seconds</td>
-          </tr>
-        </table>
+        <div className="overflow-x-auto">
+          <table className="w-full border-t-2">
+            <tr>
+              <th>Attendance</th>
+              <th>Rest Day</th>
+              <th>Overtime</th>
+              <th>Scrum Joined</th>
+            </tr>
+            <tr>
+              <td>60Days</td>
+              <td>60Days</td>
+              <td>60Days</td>
+              <td>60Days</td>
+            </tr>
+            <tr>
+              <td>60Hours</td>
+              <td>60Hours</td>
+              <td>60Hours</td>
+              <td>60Hours</td>
+            </tr>
+            <tr>
+              <td>60Minutes</td>
+              <td>60Minutes</td>
+              <td>60Minutes</td>
+              <td>60Minutes</td>
+            </tr>
+            <tr>
+              <td>60Seconds</td>
+              <td>60Seconds</td>
+              <td>60Seconds</td>
+              <td>60Seconds</td>
+            </tr>
+          </table>
+        </div>
       </div>
 
       {/* EDITOR */}

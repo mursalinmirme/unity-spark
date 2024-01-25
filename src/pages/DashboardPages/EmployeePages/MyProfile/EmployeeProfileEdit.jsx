@@ -54,7 +54,7 @@ const EmployeeProfileEdit = ({user, setOpenEditor}) => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="grid grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
               <label>Your Name</label>
               <input 
