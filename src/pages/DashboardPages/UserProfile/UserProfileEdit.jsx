@@ -123,6 +123,7 @@ const UserProfileEdit = () => {
               {...register("name", { required: true })}
               placeholder="Please Your Name"
               required
+              defaultValue={users?.name}
             />
           </label>
           {/* Name field End */}
@@ -147,6 +148,7 @@ const UserProfileEdit = () => {
               type="file"
               {...register("photo")}
               placeholder="N/A"
+              defaultValue={users?.photo}
             />
           </label>
         </div>
@@ -162,6 +164,7 @@ const UserProfileEdit = () => {
               {...register("email", { required: true })}
               placeholder="Your Email"
               required
+              defaultValue={users?.email}
             />
           </label>
           {/* email field End */}
@@ -176,6 +179,7 @@ const UserProfileEdit = () => {
               {...register("number", { required: true })}
               placeholder="Your Phone Number"
               required
+              defaultValue={users?.phone}
             />
           </label>
         </div>
@@ -195,6 +199,7 @@ const UserProfileEdit = () => {
               {...register("current", { required: true })}
               placeholder=" Your Current Address "
               required
+              defaultValue={users?.current_address}
             />
           </label>
           {/* Current Address field End */}
@@ -209,6 +214,7 @@ const UserProfileEdit = () => {
               {...register("permanent", { required: true })}
               placeholder=" Your Permanent Address"
               required
+              defaultValue={users?.permanent_address}
             />
           </label>
         </div>
@@ -225,6 +231,7 @@ const UserProfileEdit = () => {
               {...register("age", { required: true })}
               placeholder="Your Age"
               required
+              defaultValue={users?.age}
             />
           </label>
           {/* Age field End */}
@@ -239,6 +246,7 @@ const UserProfileEdit = () => {
               {...register("gender", { required: true })}
               placeholder="Male"
               required
+              defaultValue={users?.gender}
             />
           </label>
         </div>
@@ -258,6 +266,7 @@ const UserProfileEdit = () => {
               {...register("preference", { required: true })}
               placeholder="Remote"
               required
+              defaultValue={users?.job_preference}
             />
           </label>
           {/* Preference field End */}
@@ -275,6 +284,7 @@ const UserProfileEdit = () => {
               {...register("time_preference", { required: true })}
               placeholder="Intern"
               required
+              defaultValue={users?.time_preference}
             />
           </label>
         </div>
@@ -305,6 +315,7 @@ const UserProfileEdit = () => {
             {...register("resume", { required: true })}
             placeholder="Please share your resume drive link"
             required
+            defaultValue={users?.resume_link}
           />
         </label>
 
