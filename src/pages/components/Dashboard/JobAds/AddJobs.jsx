@@ -2,8 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Controller, useForm } from "react-hook-form";
 import Select from "react-select";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import toast from "react-hot-toast";
 
 const AddJobs = () => {
+  const axiosPublic = useAxiosPublic();
+
   const { data: jobTypes } = useQuery({
     queryKey: ["jobTypes"],
     queryFn: async () => {
@@ -38,7 +42,7 @@ const AddJobs = () => {
     { value: "certification_python", label: "Python Certification" },
   ];
 
-  const educationalRequirementsArray = [
+  const educationalRequirementArray = [
     {
       value: "diplomaCSE",
       label: "Diploma in Computer Science and Engineering",
@@ -71,7 +75,49 @@ const AddJobs = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    let skillsArray = [];
+    data?.skills.map((skill) => {
+      skillsArray.push(skill.label);
+    });
+
+    let additionalSkillsArray = [];
+    data?.additional_requirements.map((additionalSkill) => {
+      additionalSkillsArray.push(additionalSkill.label);
+    });
+
+    let educationalRequirementArray = [];
+    data?.educational_requirements.map((educationalRequirement) => {
+      educationalRequirementArray.push(educationalRequirement.label);
+    });
+
+    let jobBenefitsArray = [];
+    data?.job_benefits.map((jobBenefit) => {
+      jobBenefitsArray.push(jobBenefit.label);
+    });
+
+    const newJob = {
+      job_title: data.jobTitle,
+      salary: data.salary,
+      job_category1: data.jobType,
+      job_category2: data.workType,
+      position: data.position,
+      job_description: data.jobDescription,
+      required_Skills: skillsArray,
+      additional_Require: additionalSkillsArray,
+      education_Require: educationalRequirementArray,
+      benefits: jobBenefitsArray,
+    };
+
+    axiosPublic
+      .post("/job-ads", newJob)
+      .then(() => {
+        toast.success("New Job Ad Added");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
 
   return (
     <div className="font-inter">
@@ -193,6 +239,27 @@ const AddJobs = () => {
             </div>
           </div>
 
+          {/* Job Description */}
+
+          <div className="form-control">
+            <label className="label">
+              <span className="font-inter text-xl font-medium">
+                Job Description
+              </span>
+            </label>
+            <input
+              type="text"
+              placeholder="Enter job description"
+              className="input input-bordered"
+              {...register("jobDescription", { required: true })}
+            />
+            {errors.jobDescription && (
+              <span className="error text-red-500">
+                Please fill up this field
+              </span>
+            )}
+          </div>
+
           {/* Required Skills */}
 
           <div>
@@ -254,7 +321,7 @@ const AddJobs = () => {
               render={({ field }) => (
                 <Select
                   {...field}
-                  options={educationalRequirementsArray}
+                  options={educationalRequirementArray}
                   isMulti
                   placeholder="Enter educational requirements"
                 />
