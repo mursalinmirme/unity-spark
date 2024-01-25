@@ -17,6 +17,9 @@ import Recruiment from "../pages/DashboardPages/AdminPages/Recruiment/Recruiment
 import Reviews from "../pages/DashboardPages/AdminPages/Reviews/Reviews";
 import AddReview from "../pages/DashboardPages/AdminPages/Reviews/AddReview";
 import DashboardHome from "../pages/DashboardPages/DashboardHome/DashboardHome";
+import PrivateRouter from "../privateRouter.jsx/PrivateRouter";
+import Events from "../pages/Events";
+import AddJobs from "../pages/components/Dashboard/JobAds/AddJobs";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +44,10 @@ const router = createBrowserRouter([
         element: <AboutUs></AboutUs>,
       },
       {
+        path: "events",
+        element: <Events></Events>,
+      },
+      {
         path: "available-jobs",
         element: <AvailableJobs></AvailableJobs>,
       },
@@ -52,55 +59,115 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivateRouter>
+        <Dashboard></Dashboard>
+      </PrivateRouter>
+    ),
     children: [
       {
         path: "",
-        element: <DashboardHome> </DashboardHome>,
+        element: (
+          <PrivateRouter>
+            <DashboardHome></DashboardHome>
+          </PrivateRouter>
+        ),
       },
       {
         path: "profile",
-        element: <MyProfile></MyProfile>,
+        element: (
+          <PrivateRouter>
+            <MyProfile></MyProfile>
+          </PrivateRouter>
+        ),
       },
       {
         path: "userProfile",
-        element: <UserProfile></UserProfile>,
+        element: (
+          <PrivateRouter>
+            <UserProfile></UserProfile>
+          </PrivateRouter>
+        ),
       },
       {
         path: "userProfileEdit",
-        element: <UserProfileEdit></UserProfileEdit>,
+        element: (
+          <PrivateRouter>
+            <UserProfileEdit></UserProfileEdit>
+          </PrivateRouter>
+        ),
       },
       {
-        path: "recruiment",
-        element: <Recruiment></Recruiment>,
+        path: "recruitment",
+        element: (
+          <PrivateRouter>
+            <Recruiment></Recruiment>
+          </PrivateRouter>
+        ),
       },
       {
         path: "all-users",
-        element: <AllUsers></AllUsers>,
+        element: (
+          <PrivateRouter>
+            <AllUsers></AllUsers>
+          </PrivateRouter>
+        ),
       },
       {
         path: "jobs",
-        element: <JobAds></JobAds>,
+        element: (
+          <PrivateRouter>
+            <JobAds></JobAds>
+          </PrivateRouter>
+        ),
       },
       {
         path: "tasks",
-        element: <JobAds></JobAds>,
+        element: (
+          <PrivateRouter>
+            <JobAds></JobAds>
+          </PrivateRouter>
+        ),
       },
       {
         path: "reviews",
-        element: <Reviews></Reviews>,
+        element: (
+          <PrivateRouter>
+            <Reviews></Reviews>
+          </PrivateRouter>
+        ),
       },
       {
-        path: 'reviews/add-review',
-        element: <AddReview></AddReview>
+        path: "reviews/add-review",
+        element: (
+          <PrivateRouter>
+            <AddReview></AddReview>
+          </PrivateRouter>
+        ),
       },
       {
         path: "communication",
-        element: <JobAds></JobAds>,
+        element: (
+          <PrivateRouter>
+            <JobAds></JobAds>
+          </PrivateRouter>
+        ),
       },
       {
         path: "employees",
-        element: <JobAds></JobAds>,
+        element: (
+          <PrivateRouter>
+            <JobAds></JobAds>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "addJobs",
+        element: (
+          <PrivateRouter>
+            <AddJobs></AddJobs>
+          </PrivateRouter>
+        ),
       },
     ],
   },
