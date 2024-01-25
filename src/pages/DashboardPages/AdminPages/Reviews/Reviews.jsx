@@ -2,8 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
 import { AiOutlineLike } from "react-icons/ai";
-import { GrNext,GrPrevious } from "react-icons/gr";
-import './review.css'
+import { GrNext, GrPrevious } from "react-icons/gr";
+import "./review.css";
 import { Link } from "react-router-dom";
 
 const Reviews = () => {
@@ -34,12 +34,12 @@ const Reviews = () => {
   return (
     <div>
       <div className="flex justify-between items-center mb-5">
-        <h1 className="text-3xl font-bold">Reviews</h1>
-        <Link to={'add-review'}>
-        <a className="flex gap-2 items-center text-primary font-inter font-bold text-sm border-2 rounded-lg cursor-pointer border-primary py-2 px-5 hover:bg-primary hover:text-white transition-all duration-500">
-          <AiOutlineLike className="text-2xl" />
-          <span>Add Review</span>
-        </a>
+        <h1 className="text-2xl md:text-3xl font-bold">Reviews</h1>
+        <Link to={"add-review"}>
+          <a className="flex gap-2 items-center text-primary font-inter font-bold text-sm border-2 rounded-lg cursor-pointer border-primary py-2 px-2 md:px-5 hover:bg-primary hover:text-white transition-all duration-500">
+            <AiOutlineLike className="text-2xl" />
+            <span>Add Review</span>
+          </a>
         </Link>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -64,7 +64,7 @@ const Reviews = () => {
           </div>
         ))}
       </div>
-      <div className="text-cente flex flex-wrap justify-center md:space-x-3 mt-20 review-pagination">
+      <div className="text-cente flex flex-wrap justify-center md:space-x-3 mt-10 review-pagination">
         <a onClick={handlPrev}>
           <GrPrevious className="icons" />
         </a>
@@ -78,7 +78,7 @@ const Reviews = () => {
           </a>
         ))}
         <a onClick={handleNext} className="">
-         <GrNext className="icons"/>
+          <GrNext className="icons" />
         </a>
       </div>
     </div>

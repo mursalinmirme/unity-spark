@@ -3,7 +3,8 @@ import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { MdOutlineCancel } from "react-icons/md";
-import { GrNext,GrPrevious } from "react-icons/gr";
+import { GrNext, GrPrevious } from "react-icons/gr";
+import { Link } from "react-router-dom";
 
 const AddReview = () => {
   const totalReviews = 30;
@@ -23,7 +24,6 @@ const AddReview = () => {
       setCurrentPage(currentPage + 1);
     }
   };
-
 
   const {
     register,
@@ -47,11 +47,13 @@ const AddReview = () => {
   return (
     <div>
       <div className="flex justify-between items-center mb-5">
-        <h1 className="text-3xl font-bold">Add Review</h1>
-        <a className="flex gap-2 items-center text-[#F00] font-inter font-bold text-sm border-2 rounded-lg cursor-pointer border-[#F00] py-2 px-5 hover:bg-[#F00] hover:text-white transition-all duration-500">
-          <MdOutlineCancel className="text-2xl" />
-          <span>Cancel</span>
-        </a>
+        <h1 className="text-2xl md:text-3xl font-bold">Add Review</h1>
+        <Link to={"/dashboard/reviews"}>
+          <a className="flex gap-2 items-center text-[#F00] font-inter font-bold text-sm border-2 rounded-lg cursor-pointer border-[#F00] py-2 px-2 md:px-5 hover:bg-[#F00] hover:text-white transition-all duration-500">
+            <MdOutlineCancel className="text-2xl" />
+            <span>Cancel</span>
+          </a>
+        </Link>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-control">
@@ -66,7 +68,7 @@ const AddReview = () => {
           )}
         </div>
         <div className="mt-5">
-          <a className="btn px-10 bg-primary text-white hover:text-black">
+          <a className="btn px-6 md:px-10 bg-primary text-white hover:text-black">
             Post
           </a>
         </div>
@@ -107,7 +109,7 @@ const AddReview = () => {
           </a>
         ))}
         <a onClick={handleNext} className="">
-         <GrNext className="icons"/>
+          <GrNext className="icons" />
         </a>
       </div>
     </div>

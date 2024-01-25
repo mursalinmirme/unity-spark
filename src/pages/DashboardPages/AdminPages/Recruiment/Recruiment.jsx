@@ -4,9 +4,13 @@ import "./recruiment.css";
 const Recruiment = () => {
   return (
     <div>
-      <div className="md:flex justify-between items-center">
-        <div className="flex items-center gap-3">
-          <img src="https://i.ibb.co/qFcMyzH/loupe.jpg" alt="" />
+      <div className="flex justify-between items-center">
+        <div className="flex items-center gap-1 md:gap-3">
+          <img
+            className="h-12 w-12 md:h-16 md:w-16"
+            src="https://i.ibb.co/qFcMyzH/loupe.jpg"
+            alt=""
+          />
           <div>
             <h1 className="text-xl font-bold">Ashraful Islam</h1>
             <p className="text-[#5B5555] font-semibold">applied 8min ago</p>
@@ -14,7 +18,7 @@ const Recruiment = () => {
         </div>
         <div>
           <div>
-            <a className="flex gap-2 items-center text-primary font-inter font-bold text-sm border-2 rounded-lg cursor-pointer border-primary py-3 px-5 hover:bg-primary hover:text-white transition-all duration-500">
+            <a className="flex md:gap-2 items-center text-primary font-inter font-bold text-sm border-2 rounded-lg cursor-pointer border-primary p-1 md:py-3 md:px-5 hover:bg-primary hover:text-white transition-all duration-500">
               <VscEye className="text-2xl" />
               <span>View Profile</span>
             </a>
@@ -68,7 +72,7 @@ const Recruiment = () => {
           </div>
           <div className="mt-4">
             <h1>Resume:</h1>
-            <div className="md:flex gap-5 resume mt-2">
+            <div className="flex gap-5 resume mt-2">
               <a>
                 <VscEye className="text-2xl" />
                 <span>View</span>

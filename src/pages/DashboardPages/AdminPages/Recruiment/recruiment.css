@@ -4,5 +4,5 @@
 }
 
 .resume a{
-    @apply flex gap-2 items-center font-inter font-bold text-sm border-2 rounded-lg cursor-pointer py-3 px-10 bg-primary text-white transition-all duration-500
+    @apply flex gap-2 items-center font-inter font-bold text-sm border-2 rounded-lg cursor-pointer py-3 px-5 md:px-10 bg-primary text-white transition-all duration-500
 }
