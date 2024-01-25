@@ -5,11 +5,11 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 const useUserRole = () => {
   const { user } = useContext(AuthContext);
-  const { data: isUser, isLoading } = useQuery({
+  const { data: isUser=[], isLoading } = useQuery({
     queryKey: ["user-role"],
     queryFn: async () => {
         // ToDo : replace mursalinmir02@gmail.com to user?.email
-      const res = await axios.get(`http://localhost:5000/user-role?email=${'mursalinmir02@gmail.com'}`);
+      const res = await axios.get(`http://localhost:5000/user-role?email=${user?.email}`);
       return res.data;
     },
   });
