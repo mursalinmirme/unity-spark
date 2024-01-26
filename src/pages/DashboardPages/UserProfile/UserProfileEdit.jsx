@@ -34,7 +34,7 @@ const UserProfileEdit = () => {
 
   // Form Summit
   const onSubmit = async (data) => {
-    let photos = user?.photoURL;
+    let photos = users?.image;
 
     if (data?.photo?.length > 0) {
       const imageFile = { image: data.photo[0] };
@@ -44,7 +44,7 @@ const UserProfileEdit = () => {
         },
       });
 
-      photos = res?.data?.display_url;
+      photos = res?.data?.data?.display_url;
     }
 
     const userInfo = {
@@ -148,7 +148,6 @@ const UserProfileEdit = () => {
               type="file"
               {...register("photo")}
               placeholder="N/A"
-              defaultValue={users?.photo}
             />
           </label>
         </div>

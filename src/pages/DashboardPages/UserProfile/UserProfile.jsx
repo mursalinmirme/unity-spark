@@ -17,62 +17,48 @@ const UserProfile = () => {
     queryKey: ["usersInformation"],
     enabled: !!user?.email,
     queryFn: async () => {
-        const res = await axios.get(
-          `http://localhost:5000/users/${user?.email}`
-        );
-        if(res.data.name){
-          total += 8.3333333333333
-        }
-        if(res.data.email){
-          total += 8.3333333333333
-        }
-        if(res.data.image){
-          total += 8.3333333333333
-        }
-        if(res.data.skills.length > 0){
-          total += 8.3333333333333
-        }
-        if(res.data.age){
-          total += 8.3333333333333
-        }
-        if(res.data.current_address){
-          total += 8.3333333333333
-        }
-        if(res.data.gender){
-          total += 8.3333333333333
-        }
-        if(res.data.job_preference){
-          total += 8.3333333333333
-        }
-        if(res.data.permanent_address){
-          total += 8.3333333333333
-        }
-        if(res.data.phone){
-          total += 8.3333333333333
-        }
-        if(res.data.resume_link){
-          total += 8.3333333333333
-        }
-        if(res.data.time_preference){
-          total += 8.3333333333333
-        }
+      const res = await axios.get(`http://localhost:5000/users/${user?.email}`);
+      if (res.data.name) {
+        total += 8.3333333333333;
+      }
+      if (res.data.email) {
+        total += 8.3333333333333;
+      }
+      if (res.data.image) {
+        total += 8.3333333333333;
+      }
+      if (res.data.skills.length > 0) {
+        total += 8.3333333333333;
+      }
+      if (res.data.age) {
+        total += 8.3333333333333;
+      }
+      if (res.data.current_address) {
+        total += 8.3333333333333;
+      }
+      if (res.data.gender) {
+        total += 8.3333333333333;
+      }
+      if (res.data.job_preference) {
+        total += 8.3333333333333;
+      }
+      if (res.data.permanent_address) {
+        total += 8.3333333333333;
+      }
+      if (res.data.phone) {
+        total += 8.3333333333333;
+      }
+      if (res.data.resume_link) {
+        total += 8.3333333333333;
+      }
+      if (res.data.time_preference) {
+        total += 8.3333333333333;
+      }
 
-        setCount(total)
-        return res?.data;
+      setCount(total);
+      return res?.data;
     },
   });
-
-console.log('ting tong', users);
-  
-  // useEffect(() => {
-  //       if(users?.name){
-  //         setCount(8.3333333333333)
-  //       }
-  //       if(users?.email){
-  //         setCount(8.3333333333333)
-  //       }
-  // }, [users])
-
 
   return (
     <div>
@@ -241,7 +227,10 @@ console.log('ting tong', users);
             <span className="font-bold font-inter">Skills :</span>
           </div>
           {users?.skills?.map((skill, index) => (
-            <span key={index} className="mr-2">
+            <span
+              key={index}
+              className="mr-2 text-primary bg-[#d0d8e0] py-1 px-3 rounded-full text-sm font-medium"
+            >
               {skill?.value},
             </span>
           )) || "N/A"}
