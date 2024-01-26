@@ -4,7 +4,7 @@ import { FiEdit3 } from "react-icons/fi";
 import download_icon from "../../../assets/images/download-Icon.png";
 import counter_icon from "../../../assets/images/pen.png";
 import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import axios from "axios";
 import { AuthContext } from "../../../Provider/AuthProvider";
@@ -12,44 +12,67 @@ import { useQuery } from "@tanstack/react-query";
 const UserProfile = () => {
   const [count, setCount] = useState(0);
   const { user } = useContext(AuthContext);
-
+  let total = 0;
   const { data: users = [] } = useQuery({
     queryKey: ["usersInformation"],
     enabled: !!user?.email,
     queryFn: async () => {
-      try {
         const res = await axios.get(
           `http://localhost:5000/users/${user?.email}`
         );
+        if(res.data.name){
+          total += 8.3333333333333
+        }
+        if(res.data.email){
+          total += 8.3333333333333
+        }
+        if(res.data.image){
+          total += 8.3333333333333
+        }
+        if(res.data.skills.length > 0){
+          total += 8.3333333333333
+        }
+        if(res.data.age){
+          total += 8.3333333333333
+        }
+        if(res.data.current_address){
+          total += 8.3333333333333
+        }
+        if(res.data.gender){
+          total += 8.3333333333333
+        }
+        if(res.data.job_preference){
+          total += 8.3333333333333
+        }
+        if(res.data.permanent_address){
+          total += 8.3333333333333
+        }
+        if(res.data.phone){
+          total += 8.3333333333333
+        }
+        if(res.data.resume_link){
+          total += 8.3333333333333
+        }
+        if(res.data.time_preference){
+          total += 8.3333333333333
+        }
 
-        // Use the functional form of setCount to correctly update the state
-        setCount((prevCount) => {
-          let updatedCount = prevCount;
-
-          if (res?.data?.email) {
-            updatedCount += 8.3333333333333;
-          }
-          if (res?.data?.phone) {
-            updatedCount += 8.3333333333333;
-          }
-          if (res?.data?.current_address) {
-            updatedCount += 8.3333333333333;
-          }
-          if (res?.data?.permanent_address) {
-            updatedCount += 8.3333333333333;
-          }
-
-          return updatedCount;
-        });
-
+        setCount(total)
         return res?.data;
-      } catch (error) {
-        // Handle errors here
-        console.error("Error fetching data:", error);
-        return null;
-      }
     },
   });
+
+console.log('ting tong', users);
+  
+  // useEffect(() => {
+  //       if(users?.name){
+  //         setCount(8.3333333333333)
+  //       }
+  //       if(users?.email){
+  //         setCount(8.3333333333333)
+  //       }
+  // }, [users])
+
 
   return (
     <div>

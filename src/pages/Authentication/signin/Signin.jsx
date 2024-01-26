@@ -23,18 +23,18 @@ const Signin = () => {
       .then((res) => {
         axios.get(`http://localhost:5000/user-role?email=${res?.user?.email}`)
         .then((resp) => {
-           if(resp.data.role === 'user') {
+           if(resp.data.role) {
             reset();
             setSignInLoading(false);
-            navigate("/dashboard");
+            navigate("/");
             toast.success("Login Successfully");
-           }
-           if(resp.data.role === 'admin') {
-            reset();
-            setSignInLoading(false);
-            navigate("/dashboard"); //it will update after complete the admin dashboard
-            toast.success("Login Successfully");
-           }          
+           }         
+          //  if(resp.data.role === 'admin') {
+          //   reset();
+          //   setSignInLoading(false);
+          //   navigate("/dashboard"); //it will update after complete the admin dashboard
+          //   toast.success("Login Successfully");
+          //  }          
         })
         .catch((err) => {
           setSignInLoading(false);

@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import moment from "moment";
 import { useState } from "react";
-import { set } from "react-hook-form";
 import { FaSearch } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import { Link } from "react-router-dom";
@@ -19,17 +18,18 @@ const AvailableJobs = () => {
     const [workType, setWorkType] = useState(null);
 
     // fetch all jobs cards
-    const { data:getTotalJobsNumber } = useQuery({
-      queryKey: ['getTotalAdsNumbers'],
+    const { data:getTotalJobsNumber=[] } = useQuery({
+      queryKey: ['getTotalAvailableJobNumbers', currentPage, searchValues, sortDate, jobType, workType],
       queryFn: async () => {
-        const result = await axios.get('http://localhost:5000/total-job-ads');
-        setTotalPages(Math.ceil(result.data.length / 5));
+        const result = await axios.get(`http://localhost:5000/available-total-jobs-numbers?searching=${searchValues}&sortdate=${sortDate}&jobtypes=${jobType}&worktype=${workType}`);
+        setTotalPages(Math.ceil(result?.data.total / 5));
+        console.log("The current documents number is", result?.data);
         return result.data;
       }
     })
 
     // fetch all jobs cards
-    const { data:allJobs, refetch, isFetching } = useQuery({
+    const { data:allJobs=[], refetch, isFetching } = useQuery({
       queryKey: ['allJobsAds', currentPage, searchValues, sortDate, jobType, workType],
       queryFn: async () => {
         const result = await axios.get(`http://localhost:5000/job-ads?skip=${currentPage * 5}&searching=${searchValues}&sortdate=${sortDate}&jobtypes=${jobType}&worktype=${workType}`);
@@ -57,11 +57,10 @@ const AvailableJobs = () => {
       e.preventDefault();
       const form = e.target;
       const searchVal = form.search.value;
-      console.log(searchVal);
       if(!searchVal){
-        setSearchValues(null);
         return
       }
+      console.log("Does it overtake");
       setSearchValues(searchVal);
 
     }
@@ -73,26 +72,17 @@ const AvailableJobs = () => {
 
     // handle fatch jobs by users wanted date 
     const handleDateOnchange = (date) => {
-        setJobType('');
-        setWorkType('');
-        setSortDate('');
         setSortDate(date.target.value);
     }
 
 
     // handle fatch jobs by users wanted date 
     const handleJobTypeOnchange = (jbType) => {
-        setWorkType('');
-        setSortDate('');
-        setJobType('');
         setJobType(jbType.target.value);
     }
 
     // handle fatch jobs by users wanted date 
     const handleWorkTypeOnchange = (wkType) => {
-        // setSortDate('');
-        // setJobType('');
-        setWorkType('');
         setWorkType(wkType.target.value);
     }
 
@@ -106,7 +96,7 @@ const AvailableJobs = () => {
             {/* top */}
             <div className="flex flex-col-reverse  md:flex-row justify-between items-center">
                 <div className="space-x-2 mt-5 md:mt-0">
-                    <select onChange={handleDateOnchange} className="border-2 border-primary p-0.5 md:p-1.5 text-primary font-medium rounded-lg space-y-2 text-sm md:text-base" defaultValue={sortDate} name="" id="">
+                    <select onChange={handleDateOnchange} className="border-2 border-primary p-0.5 md:p-1.5 text-primary font-medium rounded-lg space-y-2 text-sm md:text-base" name="" id="">
                         <option value="">Date</option>
                         <option value="1">Today</option>
                         <option value="3">Last 3 days</option>
@@ -114,13 +104,13 @@ const AvailableJobs = () => {
                         <option value="15">Last 15 days</option>
                         <option value="30">Last 30 days</option>
                     </select>
-                    <select onChange={handleJobTypeOnchange} className="border-2 border-primary p-0.5 md:p-1.5 text-primary font-medium rounded-lg text-sm md:text-base" name="" defaultValue={jobType} id="">
+                    <select onChange={handleJobTypeOnchange} className="border-2 border-primary p-0.5 md:p-1.5 text-primary font-medium rounded-lg text-sm md:text-base" name="" id="">
                         <option value="null">Job Type</option>
                         <option value="On-site">On-site</option>
                         <option value="Remote">Remote</option>
                         <option value="Hybrid">Hybrid</option>
                     </select>
-                    <select onChange={handleWorkTypeOnchange} className="border-2 border-primary p-0.5 md:p-1.5 text-primary font-medium rounded-lg text-sm md:text-base" name="" defaultValue={workType} id="">
+                    <select onChange={handleWorkTypeOnchange} className="border-2 border-primary p-0.5 md:p-1.5 text-primary font-medium rounded-lg text-sm md:text-base" name="" id="">
                         <option value="null">Work Type</option>
                         <option value="Intern">Intern</option>
                         <option value="Full-time">Full-time</option>
@@ -166,7 +156,7 @@ const AvailableJobs = () => {
                         <strong>Posted:</strong> {moment(job?.createdAt).startOf('day').fromNow() }
                       </p>
                     </div>
-                    <p>{job?.job_description.length > 250 ? job?.job_description.slice(0, 250) + '...' : job?.job_description }</p>
+                    <p>{job?.job_description?.length > 250 ? job?.job_description.slice(0, 250) + '...' : job?.job_description }</p>
                     <div className="card-actions justify-start">
                       <button className="mt-3 mr-3">Apply Now</button>
                       <Link to={`/job-details/${job?._id}`}>
@@ -184,11 +174,11 @@ const AvailableJobs = () => {
             }
             {/* bottom */}
             <div className={`flex justify-center py-10`}>
-              <div className={`join flex space-x-2 ${allJobs?.length > 4 ? 'visible' : 'hidden' }`}>
+              <div className={`join flex space-x-2`}>
               <button onClick={handlePagiBack} style={{background: `${'#d0ceee'}`, color:"#433EBE", fontSize: '18px'}} className="join-item btn"><IoIosArrowBack></IoIosArrowBack></button>
                 {
                   pagesArray?.map((page, index) => {
-                    return <button onClick={() => setCurrentPage(page)} key={index} style={{background: `${currentPage == page ? '#433EBE' : '#d0ceee'}`, color:`${currentPage == page ? '#FFFFFF' : '#433EBE'}`, fontSize: '18px'}} className="join-item btn">{page}</button>
+                    return <button onClick={() => setCurrentPage(page)} key={index} style={{background: `${currentPage == page ? '#433EBE' : '#d0ceee'}`, color:`${currentPage == page ? '#FFFFFF' : '#433EBE'}`, fontSize: '18px'}} className="join-item btn">{page + 1}</button>
                   })
                 }
                 <button onClick={handleRightPagi} style={{background: `${'#d0ceee'}`, color:"#433EBE", fontSize: '18px'}} className="join-item btn"><IoIosArrowForward></IoIosArrowForward></button>

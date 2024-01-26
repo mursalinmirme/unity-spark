@@ -57,7 +57,7 @@ const Signup = () => {
                 .then(() => {
                   setSignUpLoading(false);
                   //The navigate path will change when dashboard will complete
-                  navigate("/dashboard");
+                  navigate("/");
                   toast.success("Your Registration successfully");
                 })
                 .catch((err) => {
