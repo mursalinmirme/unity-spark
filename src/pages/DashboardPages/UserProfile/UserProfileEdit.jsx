@@ -49,7 +49,7 @@ const UserProfileEdit = () => {
 
     const userInfo = {
       name: data?.name,
-      email: data?.email,
+      email: user?.email,
       phone: data?.number,
       age: data?.age,
       gender: data?.gender,
@@ -61,6 +61,8 @@ const UserProfileEdit = () => {
       image: photos,
       resume_link: data.resume,
     };
+
+    console.log(userInfo);
 
     axios
       .put(`http://localhost:5000/users/${user?.email}`, userInfo)
@@ -100,8 +102,7 @@ const UserProfileEdit = () => {
           <div>
             <Link
               to="/dashboard/userProfile"
-              className="edit_btn !border-red-600 hover:!border-primary"
-            >
+              className="edit_btn !border-red-600 hover:!border-primary">
               <span className="text-red-500 hover:text-white"> X Cancel </span>
             </Link>
           </div>
@@ -120,9 +121,8 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="text"
-              {...register("name", { required: true })}
+              {...register("name")}
               placeholder="Please Your Name"
-              required
               defaultValue={users?.name}
             />
           </label>
@@ -134,8 +134,7 @@ const UserProfileEdit = () => {
               <span className="font-bold font-inter"> Your Photo : </span>
               <label
                 className="font-semibold w-full absolute bottom-0    text-white cursor-pointer font-inter text-base px-8 py-[8px] bg-primary rounded-xl transition-all duration-500 text-[15px]"
-                htmlFor="user_photo"
-              >
+                htmlFor="user_photo">
                 <div className="flex justify-center gap-2">
                   {" "}
                   <img src={download_icon} alt="" /> <span> Upload Photo</span>{" "}
@@ -160,9 +159,9 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="email"
-              {...register("email", { required: true })}
+              {...register("email")}
               placeholder="Your Email"
-              required
+              readOnly
               defaultValue={users?.email}
             />
           </label>
@@ -175,9 +174,8 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="number"
-              {...register("number", { required: true })}
+              {...register("number")}
               placeholder="Your Phone Number"
-              required
               defaultValue={users?.phone}
             />
           </label>
@@ -195,9 +193,8 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="address"
-              {...register("current", { required: true })}
-              placeholder=" Your Current Address "
-              required
+              {...register("current")}
+              placeholder="Your Current Address"
               defaultValue={users?.current_address}
             />
           </label>
@@ -210,9 +207,8 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="address"
-              {...register("permanent", { required: true })}
+              {...register("permanent")}
               placeholder=" Your Permanent Address"
-              required
               defaultValue={users?.permanent_address}
             />
           </label>
@@ -227,9 +223,8 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="age"
-              {...register("age", { required: true })}
+              {...register("age")}
               placeholder="Your Age"
-              required
               defaultValue={users?.age}
             />
           </label>
@@ -242,9 +237,8 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="text"
-              {...register("gender", { required: true })}
+              {...register("gender")}
               placeholder="Male"
-              required
               defaultValue={users?.gender}
             />
           </label>
@@ -262,9 +256,8 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="text"
-              {...register("preference", { required: true })}
+              {...register("preference")}
               placeholder="Remote"
-              required
               defaultValue={users?.job_preference}
             />
           </label>
@@ -280,9 +273,8 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="text"
-              {...register("time_preference", { required: true })}
+              {...register("time_preference")}
               placeholder="Intern"
-              required
               defaultValue={users?.time_preference}
             />
           </label>
@@ -311,9 +303,8 @@ const UserProfileEdit = () => {
           </div>
           <input
             type="text"
-            {...register("resume", { required: true })}
+            {...register("resume")}
             placeholder="Please share your resume drive link"
-            required
             defaultValue={users?.resume_link}
           />
         </label>
