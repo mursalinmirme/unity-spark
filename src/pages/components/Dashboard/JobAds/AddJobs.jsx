@@ -99,8 +99,8 @@ const AddJobs = () => {
     const newJob = {
       job_title: data.jobTitle,
       salary: data.salary,
-      job_category1: data.jobType,
-      job_category2: data.workType,
+      job_category1: data.workType,
+      job_category2: data.jobType,
       position: data.position,
       job_description: data.jobDescription,
       required_Skills: skillsArray,

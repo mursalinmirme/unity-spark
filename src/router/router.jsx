@@ -20,6 +20,7 @@ import DashboardHome from "../pages/DashboardPages/DashboardHome/DashboardHome";
 import PrivateRouter from "../privateRouter.jsx/PrivateRouter";
 import Events from "../pages/Events";
 import AddJobs from "../pages/components/Dashboard/JobAds/AddJobs";
+import Communication from "../pages/DashboardPages/communication/Communication";
 
 const router = createBrowserRouter([
   {
@@ -74,7 +75,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "profile",
+        path: "employee-profile",
         element: (
           <PrivateRouter>
             <MyProfile></MyProfile>
@@ -149,7 +150,7 @@ const router = createBrowserRouter([
         path: "communication",
         element: (
           <PrivateRouter>
-            <JobAds></JobAds>
+            <Communication></Communication>
           </PrivateRouter>
         ),
       },

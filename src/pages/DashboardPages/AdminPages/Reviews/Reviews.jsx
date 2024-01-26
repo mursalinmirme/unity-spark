@@ -6,6 +6,7 @@ import { GrNext, GrPrevious } from "react-icons/gr";
 import "./review.css";
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import useUserRole from "../../../../hooks/useUserRole";
 
 const Reviews = () => {
   const axiosPublic = useAxiosPublic();
@@ -13,6 +14,7 @@ const Reviews = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const numOfPage = Math.ceil(totalReviews / 6);
   const pages = [...Array(numOfPage).keys()];
+  const [isUser] = useUserRole();
 
   const handlPrev = () => {
     if (currentPage > 0) {
@@ -37,12 +39,15 @@ const Reviews = () => {
     <div>
       <div className="flex justify-between items-center mb-5">
         <h1 className="text-2xl md:text-3xl font-bold">Reviews</h1>
-        <Link to={"add-review"}>
+        {
+          isUser?.role === "employee" && 
+          <Link to={"add-review"}>
           <a className="flex gap-2 items-center text-primary font-inter font-bold text-sm border-2 rounded-lg cursor-pointer border-primary py-2 px-2 md:px-5 hover:bg-primary hover:text-white transition-all duration-500">
             <AiOutlineLike className="text-2xl" />
             <span>Add Review</span>
           </a>
         </Link>
+        }
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {reviews?.map((item) => (

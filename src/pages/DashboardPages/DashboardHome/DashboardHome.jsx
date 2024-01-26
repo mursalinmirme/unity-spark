@@ -1,11 +1,19 @@
+import { Navigate } from 'react-router-dom';
 import maintainance from '../../../assets/images/maintainance.png'
+import useUserRole from '../../../hooks/useUserRole';
 
 const DashboardHome = () => {
-    return (
-        <div>
-            <img src={maintainance} className='w-3/4 mx-auto' alt="" />
-        </div>
-    );
+    const [isUser] = useUserRole();
+    if(isUser?.role === 'admin'){
+        return <Navigate to={'/dashboard/userProfile'}></Navigate>
+    }
+    if(isUser?.role === 'user'){
+        return <Navigate to={'/dashboard/userProfile'}></Navigate>
+    }
+    if(isUser?.role === 'employee'){
+        return <Navigate to={'/dashboard/employee-profile'}></Navigate>
+    }
+
 };
 
 export default DashboardHome;
