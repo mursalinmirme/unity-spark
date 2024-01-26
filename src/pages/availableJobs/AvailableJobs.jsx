@@ -101,11 +101,13 @@ const AvailableJobs = () => {
 
   // handle fatch jobs by users wanted date
   const handleJobTypeOnchange = (jbType) => {
+    setWorkType(null)
     setJobType(jbType.target.value);
   };
 
   // handle fatch jobs by users wanted date
   const handleWorkTypeOnchange = (wkType) => {
+    setJobType(null)
     setWorkType(wkType.target.value);
   };
 
@@ -220,10 +222,10 @@ const AvailableJobs = () => {
                       ? job?.job_description.slice(0, 250) + "..."
                       : job?.job_description}
                   </p>
-                  <div className="card-actions justify-start">
+                  <div className="card-actions justify-start items-center">
                     <button className="mt-3 mr-3">Apply Now</button>
                     <Link to={`/job-details/${job?._id}`}>
-                      <div className="mt-3 mr-3 text-primary  cursor-pointer px-5 py-1.5 rounded-xl border-2 border-primary text-[15px]">
+                      <div className="mt-3 mr-3 text-primary  cursor-pointer px-5 py-2 rounded-xl border-2 border-primary text-[15px]">
                         View Details
                       </div>
                     </Link>

@@ -33,6 +33,11 @@ const Social_Media = ({ setSignInLoading }) => {
                   navigate("/"); //it will update after complete the admin dashboard
                   toast.success("Admin Login Successfully");
                 }
+                if (resp.data.role === "employee") {
+                  setSignInLoading(false);
+                  navigate("/"); //it will update after complete the admin dashboard
+                  toast.success("Employee Login Successfully");
+                }
               })
               .catch((err) => {
                 setSignInLoading(false);
