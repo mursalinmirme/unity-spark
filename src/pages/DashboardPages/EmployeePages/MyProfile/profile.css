@@ -1,13 +1,9 @@
-/* .user_profile {
-    @apply 
-} */
-
 .user_profile_container {
-    @apply flex items-center gap-5
+    @apply flex flex-col md:flex-row items-start md:items-center gap-5
 }
 
 .user_profile_container img {
-    @apply w-20 h-20 rounded-3xl
+    @apply w-16 lg:w-20 h-16 lg:h-20 rounded-3xl
 }
 
 .user_profile_container h2 {
@@ -35,11 +31,11 @@
 }
 
 .tab_container .tab_div {
-    @apply flex justify-between items-center p-4
+    @apply flex flex-col lg:flex-row justify-between items-center p-4
 }
 
 .tab_div h2 {
-    @apply font-inter font-semibold text-lg
+    @apply font-inter font-semibold text-lg mb-2 lg:mb-0
 }
 
 .tabs {
@@ -63,7 +59,7 @@ table tr td:last-child {
     @apply border-r-0
 }
 
-form {
+.profile-form form {
     @apply border-2 p-5 rounded-xl mt-5
 }
 

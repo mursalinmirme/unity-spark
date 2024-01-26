@@ -3,9 +3,11 @@ import logo from "../../../assets/images/logo.gif";
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import toast from "react-hot-toast";
+import useUserRole from "../../../hooks/useUserRole";
 
 const Navbar = () => {
   const { user, loginOut } = useContext(AuthContext);
+  const [isUser] = useUserRole();
 
   const SignOut = () => {
     loginOut().then(() => {
@@ -21,10 +23,48 @@ const Navbar = () => {
           </li>
         )}
       </NavLink>
-      <NavLink to="/dashboard">
+      {
+        isUser?.role === "admin" && 
+        <NavLink to="/dashboard/userProfile">
         {({ isActive }) => (
           <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
             Dashboard
+          </li>
+        )}
+      </NavLink>
+      }
+      {
+        isUser?.role === "user" && 
+        <NavLink to="/dashboard/userProfile">
+        {({ isActive }) => (
+          <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
+            Dashboard
+          </li>
+        )}
+      </NavLink>
+      }
+      {
+        isUser?.role === "employee" && 
+        <NavLink to="/dashboard/employee-profile">
+        {({ isActive }) => (
+          <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
+            Dashboard
+          </li>
+        )}
+      </NavLink>
+      }
+      
+      <NavLink to="/available-jobs">
+        {({ isActive }) => (
+          <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
+            Available Jobs
+          </li>
+        )}
+      </NavLink>
+      <NavLink to="/events">
+        {({ isActive }) => (
+          <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
+            Events
           </li>
         )}
       </NavLink>
@@ -35,20 +75,16 @@ const Navbar = () => {
           </li>
         )}
       </NavLink>
-      <NavLink to="/signin">
-        {({ isActive }) => (
-          <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
-            Sign In
-          </li>
-        )}
-      </NavLink>
-      <NavLink to="signup">
+      {
+        !user && <NavLink to="signup">
         {({ isActive }) => (
           <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
             Signup
           </li>
         )}
       </NavLink>
+      }
+      
     </>
   );
   return (

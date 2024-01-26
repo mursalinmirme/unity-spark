@@ -1,0 +1,46 @@
+[
+    {
+      "id": "1",
+      "image": "https://i.ibb.co/5k7Dp4X/pro3.webp",
+      "name": "Mark Jordan",
+      "review": "Implementing the new HR management system revolutionized our workflow. The seamless integration and user-friendly interface have significantly improved employee engagement and efficiency. As the HR Director, I highly recommend this system for any organization seeking a modern and effective solution.",
+      "title":"HR Director"
+    },
+    {
+      "id": "2",
+      "image": "https://i.ibb.co/fX1L4Yz/pro4.webp",
+      "name": "YASHKIB",
+      "review":"Our HR team has experienced a remarkable transformation with the introduction of the new management system. The automated processes and insightful analytics have empowered us to make data-driven decisions, resulting in a more strategic approach to talent management. A game-changer for HR professionals!",
+      "title":"HR Manager"
+      
+    },
+    {
+      "id": "3",
+      "image": "https://i.ibb.co/8MqvQQs/pro1.webp",
+      "name": "Methods",
+      "review":"I've been in HR for over a decade, and this management system is by far the most comprehensive and user-friendly solution I've encountered. The intuitive design and advanced features have streamlined our day-to-day operations, making it an indispensable tool for HR professionals striving for excellence.",
+      "title":"Senior HR Specialist"
+    },
+    {
+      "id": "4",
+      "image": "https://i.ibb.co/5k7Dp4X/pro3.webp",
+      "name": "Jone sone",
+      "review":"Our employees love the new HR system! The self-service options, from leave requests to performance reviews, have empowered our workforce and reduced administrative burden. It's a win-win for both HR and our staff. Highly recommended!",
+      "title":"Employee Relations Manager"
+    },
+    {
+      "id": "5",
+      "image": "https://i.ibb.co/8MqvQQs/pro1.webp",
+      "name": "Daniel Harper",
+      "review":"Our employees love the new HR system! The self-service options, from leave requests to performance reviews, have empowered our workforce and reduced administrative burden. It's a win-win for both HR and our staff. Highly recommended!",
+      "title":"HR Analyst"
+    },
+    {
+      "id": "6",
+      "image": "https://i.ibb.co/fX1L4Yz/pro4.webp",
+      "name": "Mark Williams",
+      "review":"Our employees love the new HR system! The self-service options, from leave requests to performance reviews, have empowered our workforce and reduced administrative burden. It's a win-win for both HR and our staff. Highly recommended!",
+      "title":"IT Security Officer"
+    }
+  ]
+  

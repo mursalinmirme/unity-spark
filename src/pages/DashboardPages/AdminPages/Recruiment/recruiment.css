@@ -1,0 +1,8 @@
+.skills h4 {
+  background-color: rgb(67, 62, 190, 0.25);
+  @apply text-[#433EBE] py-2 px-4 rounded-full font-semibold
+}
+
+.resume a{
+    @apply flex gap-2 items-center font-inter font-bold text-sm border-2 rounded-lg cursor-pointer py-3 px-5 md:px-10 bg-primary text-white transition-all duration-500
+}

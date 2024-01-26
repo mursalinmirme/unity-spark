@@ -1,0 +1,16 @@
+.review-pagination a{
+    background: rgba(67, 62, 190, 0.25);
+    @apply py-2 px-4 cursor-pointer rounded-lg text-primary font-semibold
+}
+
+.review-pagination .icons {
+    @apply mt-1
+}
+
+.review-pagination a:hover{
+    @apply bg-primary text-white
+}
+
+.review-pagination .pagination-active{
+    @apply bg-primary text-white
+}

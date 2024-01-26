@@ -10,6 +10,18 @@ import JobDetails from "../pages/components/HomeComponents/JobPost/JobDetails/Jo
 import MyProfile from "../pages/DashboardPages/EmployeePages/MyProfile/MyProfile";
 import AllUsers from "../pages/DashboardPages/AdminPages/AllUsers/AllUsers";
 import JobAds from "../pages/DashboardPages/AdminPages/JobAds/JobAds";
+import UserProfile from "../pages/DashboardPages/UserProfile/UserProfile";
+import UserProfileEdit from "../pages/DashboardPages/UserProfile/UserProfileEdit";
+import AvailableJobs from "../pages/availableJobs/AvailableJobs";
+import Recruiment from "../pages/DashboardPages/AdminPages/Recruiment/Recruiment";
+import Reviews from "../pages/DashboardPages/AdminPages/Reviews/Reviews";
+import AddReview from "../pages/DashboardPages/AdminPages/Reviews/AddReview";
+import DashboardHome from "../pages/DashboardPages/DashboardHome/DashboardHome";
+import PrivateRouter from "../privateRouter.jsx/PrivateRouter";
+import Events from "../pages/Events";
+import AddJobs from "../pages/components/Dashboard/JobAds/AddJobs";
+import Communication from "../pages/DashboardPages/communication/Communication";
+import Employee from "../pages/DashboardPages/AdminPages/Employees/Employee";
 
 const router = createBrowserRouter([
   {
@@ -33,48 +45,131 @@ const router = createBrowserRouter([
         path: "about-us",
         element: <AboutUs></AboutUs>,
       },
+      {
+        path: "events",
+        element: <Events></Events>,
+      },
+      {
+        path: "available-jobs",
+        element: <AvailableJobs></AvailableJobs>,
+      },
+      {
+        path: "job-details/:id",
+        element: <JobDetails></JobDetails>,
+      },
     ],
   },
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivateRouter>
+        <Dashboard></Dashboard>
+      </PrivateRouter>
+    ),
     children: [
       {
         path: "",
-        element: <> </>,
+        element: (
+          <PrivateRouter>
+            <DashboardHome></DashboardHome>
+          </PrivateRouter>
+        ),
       },
       {
-        path: "details/:id",
-
-        element: <JobDetails></JobDetails>,
+        path: "employee-profile",
+        element: (
+          <PrivateRouter>
+            <MyProfile></MyProfile>
+          </PrivateRouter>
+        ),
       },
       {
-        path: "profile",
-        element: <MyProfile></MyProfile>,
+        path: "userProfile",
+        element: (
+          <PrivateRouter>
+            <UserProfile></UserProfile>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "userProfileEdit",
+        element: (
+          <PrivateRouter>
+            <UserProfileEdit></UserProfileEdit>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "recruitment",
+        element: (
+          <PrivateRouter>
+            <Recruiment></Recruiment>
+          </PrivateRouter>
+        ),
       },
       {
         path: "all-users",
-        element: <AllUsers></AllUsers>,
+        element: (
+          <PrivateRouter>
+            <AllUsers></AllUsers>
+          </PrivateRouter>
+        ),
       },
       {
         path: "jobs",
-        element: <JobAds></JobAds>,
+        element: (
+          <PrivateRouter>
+            <JobAds></JobAds>
+          </PrivateRouter>
+        ),
       },
       {
         path: "tasks",
-        element: <JobAds></JobAds>,
+        element: (
+          <PrivateRouter>
+            <JobAds></JobAds>
+          </PrivateRouter>
+        ),
       },
       {
         path: "reviews",
-        element: <JobAds></JobAds>,
+        element: (
+          <PrivateRouter>
+            <Reviews></Reviews>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "reviews/add-review",
+        element: (
+          <PrivateRouter>
+            <AddReview></AddReview>
+          </PrivateRouter>
+        ),
       },
       {
         path: "communication",
-        element: <JobAds></JobAds>,
+        element: (
+          <PrivateRouter>
+            <Communication></Communication>
+          </PrivateRouter>
+        ),
       },
       {
         path: "employees",
-        element: <JobAds></JobAds>,
+        element: (
+          <PrivateRouter>
+            <Employee></Employee>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "addJobs",
+        element: (
+          <PrivateRouter>
+            <AddJobs></AddJobs>
+          </PrivateRouter>
+        ),
       },
     ],
   },

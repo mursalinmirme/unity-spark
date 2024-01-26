@@ -42,7 +42,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div>
+    <div id="contactUs">
       <div id="contact">
         <div className="left_container">
           <div className="mb-6">
@@ -79,7 +79,7 @@ const ContactUs = () => {
                   className=""
                 />
                 {errors.name && (
-                  <p className="text-[#248479]">name is required.</p>
+                  <p className="text-red-500">name is required.</p>
                 )}
               </div>
               <div className="form-control w-full">
@@ -90,7 +90,7 @@ const ContactUs = () => {
                   className="input input-bordered w-full"
                 />
                 {errors.number && (
-                  <p className="text-[#248479]">phone number is required.</p>
+                  <p className="text-red-500">phone number is required.</p>
                 )}
               </div>
             </div>
@@ -103,7 +103,7 @@ const ContactUs = () => {
                   className="input input-bordered w-full"
                 />
                 {errors.email && (
-                  <p className="text-[#248479]">email is required.</p>
+                  <p className="text-red-500">email is required.</p>
                 )}
               </div>
             </div>
@@ -115,7 +115,7 @@ const ContactUs = () => {
                 className="textarea textarea-bordered"
               ></textarea>
               {errors.message && (
-                <p className="text-[#248479]"> please provide a message</p>
+                <p className="text-red-500"> please provide a message</p>
               )}
             </div>
             <div>
