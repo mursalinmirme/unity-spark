@@ -46,7 +46,7 @@ const UserProfileEdit = () => {
 
       photos = res?.data?.data?.display_url;
     }
-
+    // Info
     const userInfo = {
       name: data?.name,
       email: user?.email,
