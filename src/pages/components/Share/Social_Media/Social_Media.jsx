@@ -23,13 +23,18 @@ const Social_Media = ({ setSignInLoading }) => {
           .then((resp) => {
              if(resp.data.role === 'user') {
               setSignInLoading(false);
-              navigate("/dashboard");
+              navigate("/");
               toast.success("User Login Successfully");
              }
              if(resp.data.role === 'admin') {
               setSignInLoading(false);
-              navigate("/dashboard"); //it will update after complete the admin dashboard
+              navigate("/"); //it will update after complete the admin dashboard
               toast.success("Admin Login Successfully");
+             }          
+             if(resp.data.role === 'employee') {
+              setSignInLoading(false);
+              navigate("/"); //it will update after complete the admin dashboard
+              toast.success("Employee Login Successfully");
              }          
           })
           .catch((err) => {
