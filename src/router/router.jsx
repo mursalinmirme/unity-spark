@@ -21,6 +21,7 @@ import PrivateRouter from "../privateRouter.jsx/PrivateRouter";
 import Events from "../pages/Events";
 import AddJobs from "../pages/components/Dashboard/JobAds/AddJobs";
 import Communication from "../pages/DashboardPages/communication/Communication";
+import Employee from "../pages/DashboardPages/AdminPages/Employees/Employee";
 
 const router = createBrowserRouter([
   {
@@ -158,7 +159,7 @@ const router = createBrowserRouter([
         path: "employees",
         element: (
           <PrivateRouter>
-            <JobAds></JobAds>
+            <Employee></Employee>
           </PrivateRouter>
         ),
       },
