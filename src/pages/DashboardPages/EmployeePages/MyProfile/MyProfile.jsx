@@ -40,7 +40,9 @@ const MyProfile = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["user_data"],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/users/${user?.email}`);
+      const res = await axios.get(
+        `https://unity-spark-server.vercel.app/users/${user?.email}`
+      );
       return res.data;
     },
   });

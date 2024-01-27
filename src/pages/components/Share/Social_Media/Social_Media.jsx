@@ -18,10 +18,12 @@ const Social_Media = ({ setSignInLoading }) => {
           image: res?.user?.photoURL,
         };
         axios
-          .post("http://localhost:5000/users", newUser)
+          .post("https://unity-spark-server.vercel.app/users", newUser)
           .then(() => {
             axios
-              .get(`http://localhost:5000/user-role?email=${res?.user?.email}`)
+              .get(
+                `https://unity-spark-server.vercel.app/user-role?email=${res?.user?.email}`
+              )
               .then((resp) => {
                 if (resp.data.role === "user") {
                   setSignInLoading(false);
@@ -35,7 +37,7 @@ const Social_Media = ({ setSignInLoading }) => {
                 }
                 if (resp.data.role === "employee") {
                   setSignInLoading(false);
-                  navigate("/"); //it will update after complete the admin dashboard
+                  navigate("/"); //it will update after complete the admin dashboard ---
                   toast.success("Employee Login Successfully");
                 }
               })

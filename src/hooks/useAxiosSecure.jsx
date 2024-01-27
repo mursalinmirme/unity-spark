@@ -8,7 +8,7 @@ const useAxiosSecure = () => {
   const navigate = useNavigate();
 
   const axiosSecure = axios.create({
-    baseURL: "http://localhost:5000",
+    baseURL: "https://unity-spark-server.vercel.app",
     withCredentials: true,
   });
   axiosSecure.interceptors.request.use(

@@ -5,12 +5,14 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 const useUserRole = () => {
   const { user } = useContext(AuthContext);
-  const { data: isUser=[], isLoading } = useQuery({
+  const { data: isUser = [], isLoading } = useQuery({
     queryKey: ["user-role"],
     enabled: !!user?.email,
     queryFn: async () => {
-        // ToDo : replace mursalinmir02@gmail.com to user?.email
-      const res = await axios.get(`http://localhost:5000/user-role?email=${user?.email}`);
+      // ToDo : replace mursalinmir02@gmail.com to user?.email
+      const res = await axios.get(
+        `https://unity-spark-server.vercel.app/user-role?email=${user?.email}`
+      );
       return res.data;
     },
   });

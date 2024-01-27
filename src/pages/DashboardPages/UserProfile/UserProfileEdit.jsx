@@ -27,9 +27,11 @@ const UserProfileEdit = () => {
   const [users, setUsers] = useState(null);
   // User Data Get
   useEffect(() => {
-    axios.get(`http://localhost:5000/users/${user?.email}`).then((res) => {
-      setUsers(res?.data);
-    });
+    axios
+      .get(`https://unity-spark-server.vercel.app/users/${user?.email}`)
+      .then((res) => {
+        setUsers(res?.data);
+      });
   }, [user?.email, setUsers]);
 
   // Form Summit
@@ -65,7 +67,10 @@ const UserProfileEdit = () => {
     console.log(userInfo);
 
     axios
-      .put(`http://localhost:5000/users/${user?.email}`, userInfo)
+      .put(
+        `https://unity-spark-server.vercel.app/users/${user?.email}`,
+        userInfo
+      )
       .then((res) => {
         console.log(res?.data);
         toast.success("User Profile Update Successfully");
@@ -102,7 +107,8 @@ const UserProfileEdit = () => {
           <div>
             <Link
               to="/dashboard/userProfile"
-              className="edit_btn !border-red-600 hover:!border-primary">
+              className="edit_btn !border-red-600 hover:!border-primary"
+            >
               <span className="text-red-500 hover:text-white"> X Cancel </span>
             </Link>
           </div>
@@ -134,7 +140,8 @@ const UserProfileEdit = () => {
               <span className="font-bold font-inter"> Your Photo : </span>
               <label
                 className="font-semibold w-full absolute bottom-0    text-white cursor-pointer font-inter text-base px-8 py-[8px] bg-primary rounded-xl transition-all duration-500 text-[15px]"
-                htmlFor="user_photo">
+                htmlFor="user_photo"
+              >
                 <div className="flex justify-center gap-2">
                   {" "}
                   <img src={download_icon} alt="" /> <span> Upload Photo</span>{" "}

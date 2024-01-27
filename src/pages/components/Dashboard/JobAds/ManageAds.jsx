@@ -19,7 +19,7 @@ const ManageAds = () => {
     queryKey: ["manageOurAds"],
     queryFn: async () => {
       const result = await axios.get(
-        "http://localhost:5000/total-job-ads-numbers"
+        "https://unity-spark-server.vercel.app/total-job-ads-numbers"
       );
       setToalPages(result.data.total / 5);
       console.log("The jobs document count is", result.data.total);
@@ -36,7 +36,9 @@ const ManageAds = () => {
     queryKey: ["seeOurAllJobs", currentPage],
     queryFn: async () => {
       const result = await axios.get(
-        `http://localhost:5000/total-job-ads?skip=${currentPage * 5}`
+        `https://unity-spark-server.vercel.app/total-job-ads?skip=${
+          currentPage * 5
+        }`
       );
       return result.data;
     },
@@ -73,7 +75,8 @@ const ManageAds = () => {
             onSubmit={handleSearches}
             className={`p-0 border-0 m-0 relative ${
               showSearchBar ? "hidden" : "visible"
-            }`}>
+            }`}
+          >
             <input
               name="search"
               className="md:py-2 pl-14 m-0 md:w-60 lg:w-80 border-second"
@@ -87,13 +90,15 @@ const ManageAds = () => {
           {showSearchBar ? (
             <button
               onClick={() => setShowSearchBar(false)}
-              className="rounded-md md:h-[40.2px]">
+              className="rounded-md md:h-[40.2px]"
+            >
               <FaSearch className="text-lg"></FaSearch>
             </button>
           ) : (
             <button
               onClick={handleCloseSearchBar}
-              className="rounded-none bg-none text-primary left-0">
+              className="rounded-none bg-none text-primary left-0"
+            >
               <ImCross className="text-lg"></ImCross>
             </button>
           )}
@@ -113,7 +118,8 @@ const ManageAds = () => {
           return (
             <div
               className="border-2 p-3 my-4 rounded-lg flex justify-between items-center"
-              key={job?._id}>
+              key={job?._id}
+            >
               <div>
                 <h3 className="text-lg font-semibold">
                   {job?.job_title} - {job?.job_category2} - {job?.job_category1}
@@ -146,7 +152,8 @@ const ManageAds = () => {
                 color: "#433EBE",
                 fontSize: "18px",
               }}
-              className="join-item btn">
+              className="join-item btn"
+            >
               <IoIosArrowBack></IoIosArrowBack>
             </button>
             {pagesArray?.map((page, index) => {
@@ -162,7 +169,8 @@ const ManageAds = () => {
                     borderRadius: "5px",
                     fontSize: "18px",
                   }}
-                  className="join-item btn">
+                  className="join-item btn"
+                >
                   {page}
                 </button>
               );
@@ -174,7 +182,8 @@ const ManageAds = () => {
                 color: "#433EBE",
                 fontSize: "18px",
               }}
-              className="join-item btn">
+              className="join-item btn"
+            >
               <IoIosArrowForward></IoIosArrowForward>
             </button>
           </div>
