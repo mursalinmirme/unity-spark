@@ -21,33 +21,33 @@ const Signin = () => {
     // User Login Method
     userSignIn(data?.email, data?.password)
       .then((res) => {
-        axios.get(`http://localhost:5000/user-role?email=${res?.user?.email}`)
-        .then((resp) => {
-           if(resp.data.role) {
-            reset();
+        axios
+          .get(
+            `https://unity-spark-server.vercel.app/user-role?email=${res?.user?.email}`
+          )
+          .then((resp) => {
+            if (resp.data.role) {
+              reset();
+              setSignInLoading(false);
+              navigate("/");
+              toast.success("Login Successfully");
+            }
+            //  if(resp.data.role === 'admin') {
+            //   reset();
+            //   setSignInLoading(false);
+            //   navigate("/dashboard"); //it will update after complete the admin dashboard
+            //   toast.success("Login Successfully");
+            //  }
+          })
+          .catch((err) => {
             setSignInLoading(false);
-            navigate("/");
-            toast.success("Login Successfully");
-           }         
-          //  if(resp.data.role === 'admin') {
-          //   reset();
-          //   setSignInLoading(false);
-          //   navigate("/dashboard"); //it will update after complete the admin dashboard
-          //   toast.success("Login Successfully");
-          //  }          
-        })
-        .catch((err) => {
-          setSignInLoading(false);
-          toast.error(err.message);
-        })
-        
+            toast.error(err.message);
+          });
       })
       .catch((error) => {
         toast.error(error.message);
         setSignInLoading(false);
       });
-
-
   };
 
   return (
@@ -74,7 +74,9 @@ const Signin = () => {
             {/* email field */}
             <label className="form-control w-full">
               <div className="label">
-                <span className="label-text font-semibold font-inter">Your Email</span>
+                <span className="label-text font-semibold font-inter">
+                  Your Email
+                </span>
               </div>
               <input
                 type="email"
@@ -89,7 +91,9 @@ const Signin = () => {
             {/* password field */}
             <label className="form-control w-full py-3 ">
               <div className="label">
-                <span className="label-text font-semibold font-inter">Your password</span>
+                <span className="label-text font-semibold font-inter">
+                  Your password
+                </span>
               </div>
               <div className="relative">
                 <input
@@ -114,7 +118,13 @@ const Signin = () => {
             </label>
             {/* password field */}
             <div className="form-control w-full py-3">
-            <button className="text-base flex justify-center items-center">{signInLoading ? <span className="loading loading-spinner loading-md"></span> : "Sign In" }</button>
+              <button className="text-base flex justify-center items-center">
+                {signInLoading ? (
+                  <span className="loading loading-spinner loading-md"></span>
+                ) : (
+                  "Sign In"
+                )}
+              </button>
             </div>
           </form>
           <h1 className="text-center text-gray-700 font-medium">Or</h1>

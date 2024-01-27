@@ -29,7 +29,7 @@ const AvailableJobs = () => {
     ],
     queryFn: async () => {
       const result = await axios.get(
-        `http://localhost:5000/available-total-jobs-numbers?searching=${searchValues}&sortdate=${sortDate}&jobtypes=${jobType}&worktype=${workType}`
+        `https://unity-spark-server.vercel.app/available-total-jobs-numbers?searching=${searchValues}&sortdate=${sortDate}&jobtypes=${jobType}&worktype=${workType}`
       );
       setTotalPages(Math.ceil(result?.data.total / 5));
       console.log("The current documents number is", result?.data);
@@ -53,7 +53,7 @@ const AvailableJobs = () => {
     ],
     queryFn: async () => {
       const result = await axios.get(
-        `http://localhost:5000/job-ads?skip=${
+        `https://unity-spark-server.vercel.app/job-ads?skip=${
           currentPage * 5
         }&searching=${searchValues}&sortdate=${sortDate}&jobtypes=${jobType}&worktype=${workType}`
       );
@@ -101,13 +101,13 @@ const AvailableJobs = () => {
 
   // handle fatch jobs by users wanted date
   const handleJobTypeOnchange = (jbType) => {
-    setWorkType(null)
+    setWorkType(null);
     setJobType(jbType.target.value);
   };
 
   // handle fatch jobs by users wanted date
   const handleWorkTypeOnchange = (wkType) => {
-    setJobType(null)
+    setJobType(null);
     setWorkType(wkType.target.value);
   };
 
@@ -124,7 +124,8 @@ const AvailableJobs = () => {
             onChange={handleDateOnchange}
             className="border-2 border-primary p-0.5 md:p-1.5 text-primary font-medium rounded-lg space-y-2 text-sm md:text-base"
             name=""
-            id="">
+            id=""
+          >
             <option value="">Date</option>
             <option value="1">Today</option>
             <option value="3">Last 3 days</option>
@@ -136,7 +137,8 @@ const AvailableJobs = () => {
             onChange={handleJobTypeOnchange}
             className="border-2 border-primary p-0.5 md:p-1.5 text-primary font-medium rounded-lg text-sm md:text-base"
             name=""
-            id="">
+            id=""
+          >
             <option value="null">Job Type</option>
             <option value="On-site">On-site</option>
             <option value="Remote">Remote</option>
@@ -146,7 +148,8 @@ const AvailableJobs = () => {
             onChange={handleWorkTypeOnchange}
             className="border-2 border-primary p-0.5 md:p-1.5 text-primary font-medium rounded-lg text-sm md:text-base"
             name=""
-            id="">
+            id=""
+          >
             <option value="null">Work Type</option>
             <option value="Intern">Intern</option>
             <option value="Full-time">Full-time</option>
@@ -159,7 +162,8 @@ const AvailableJobs = () => {
             onSubmit={handleSearches}
             className={`p-0 border-0 m-0 relative ${
               showSearchBar ? "hidden" : "visible"
-            }`}>
+            }`}
+          >
             <input
               name="search"
               defaultValue={searchValues}
@@ -174,13 +178,15 @@ const AvailableJobs = () => {
           {showSearchBar ? (
             <button
               onClick={() => setShowSearchBar(false)}
-              className="rounded-md md:h-[51.2px]">
+              className="rounded-md md:h-[51.2px]"
+            >
               <FaSearch className="text-lg"></FaSearch>
             </button>
           ) : (
             <button
               onClick={handleCloseSearchBar}
-              className="rounded-none bg-none text-primary">
+              className="rounded-none bg-none text-primary"
+            >
               <ImCross className="text-lg"></ImCross>
             </button>
           )}
@@ -246,7 +252,8 @@ const AvailableJobs = () => {
               color: "#433EBE",
               fontSize: "18px",
             }}
-            className="join-item btn">
+            className="join-item btn"
+          >
             <IoIosArrowBack></IoIosArrowBack>
           </button>
           {pagesArray?.map((page, index) => {
@@ -259,7 +266,8 @@ const AvailableJobs = () => {
                   color: `${currentPage == page ? "#FFFFFF" : "#433EBE"}`,
                   fontSize: "18px",
                 }}
-                className="join-item btn">
+                className="join-item btn"
+              >
                 {page + 1}
               </button>
             );
@@ -271,7 +279,8 @@ const AvailableJobs = () => {
               color: "#433EBE",
               fontSize: "18px",
             }}
-            className="join-item btn">
+            className="join-item btn"
+          >
             <IoIosArrowForward></IoIosArrowForward>
           </button>
         </div>
