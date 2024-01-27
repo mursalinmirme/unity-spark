@@ -37,7 +37,7 @@ const Social_Media = ({ setSignInLoading }) => {
                 }
                 if (resp.data.role === "employee") {
                   setSignInLoading(false);
-                  navigate("/"); //it will update after complete the admin dashboard
+                  navigate("/"); //it will update after complete the admin dashboard ---
                   toast.success("Employee Login Successfully");
                 }
               })
