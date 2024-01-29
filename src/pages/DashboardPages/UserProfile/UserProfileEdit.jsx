@@ -27,9 +27,11 @@ const UserProfileEdit = () => {
   const [users, setUsers] = useState(null);
   // User Data Get
   useEffect(() => {
-    axios.get(`http://localhost:5000/users/${user?.email}`).then((res) => {
-      setUsers(res?.data);
-    });
+    axios
+      .get(`https://unity-spark-server.vercel.app/users/${user?.email}`)
+      .then((res) => {
+        setUsers(res?.data);
+      });
   }, [user?.email, setUsers]);
 
   // Form Summit
@@ -46,10 +48,10 @@ const UserProfileEdit = () => {
 
       photos = res?.data?.data?.display_url;
     }
-
+    // Info
     const userInfo = {
       name: data?.name,
-      email: data?.email,
+      email: user?.email,
       phone: data?.number,
       age: data?.age,
       gender: data?.gender,
@@ -64,8 +66,13 @@ const UserProfileEdit = () => {
       resume_link: data.resume,
     };
 
+    console.log(userInfo);
+
     axios
-      .put(`http://localhost:5000/users/${user?.email}`, userInfo)
+      .put(
+        `https://unity-spark-server.vercel.app/users/${user?.email}`,
+        userInfo
+      )
       .then((res) => {
         console.log(res?.data);
         toast.success("User Profile Update Successfully");
@@ -163,9 +170,9 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="email"
-              {...register("email", { required: true })}
+              {...register("email")}
               placeholder="Your Email"
-              required
+              readOnly
               defaultValue={users?.email}
             />
           </label>
@@ -178,9 +185,8 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="number"
-              {...register("number", { required: true })}
+              {...register("number")}
               placeholder="Your Phone Number"
-              required
               defaultValue={users?.phone}
             />
           </label>
@@ -198,9 +204,8 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="address"
-              {...register("current", { required: true })}
-              placeholder=" Your Current Address "
-              required
+              {...register("current")}
+              placeholder="Your Current Address"
               defaultValue={users?.current_address}
             />
           </label>
@@ -213,9 +218,8 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="address"
-              {...register("permanent", { required: true })}
+              {...register("permanent")}
               placeholder=" Your Permanent Address"
-              required
               defaultValue={users?.permanent_address}
             />
           </label>
@@ -230,9 +234,8 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="age"
-              {...register("age", { required: true })}
+              {...register("age")}
               placeholder="Your Age"
-              required
               defaultValue={users?.age}
             />
           </label>
@@ -245,9 +248,8 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="text"
-              {...register("gender", { required: true })}
+              {...register("gender")}
               placeholder="Male"
-              required
               defaultValue={users?.gender}
             />
           </label>
@@ -300,9 +302,8 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="text"
-              {...register("preference", { required: true })}
+              {...register("preference")}
               placeholder="Remote"
-              required
               defaultValue={users?.job_preference}
             />
           </label>
@@ -318,9 +319,8 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="text"
-              {...register("time_preference", { required: true })}
+              {...register("time_preference")}
               placeholder="Intern"
-              required
               defaultValue={users?.time_preference}
             />
           </label>
@@ -349,9 +349,8 @@ const UserProfileEdit = () => {
           </div>
           <input
             type="text"
-            {...register("resume", { required: true })}
+            {...register("resume")}
             placeholder="Please share your resume drive link"
-            required
             defaultValue={users?.resume_link}
           />
         </label>

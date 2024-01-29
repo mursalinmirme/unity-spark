@@ -11,7 +11,7 @@ const AddJobs = () => {
   const { data: jobTypes } = useQuery({
     queryKey: ["jobTypes"],
     queryFn: async () => {
-      const res = await axios.get("/public/jobTypes.json");
+      const res = await axios.get("/jobTypes.json");
       return res.data;
     },
   });
@@ -19,7 +19,7 @@ const AddJobs = () => {
   const { data: workTypes } = useQuery({
     queryKey: ["workTypes"],
     queryFn: async () => {
-      const res = await axios.get("/public/workTypes.json");
+      const res = await axios.get("/workTypes.json");
       return res.data;
     },
   });
@@ -77,22 +77,22 @@ const AddJobs = () => {
 
   const onSubmit = (data) => {
     let skillsArray = [];
-    data?.skills.map((skill) => {
+    data?.skills?.map((skill) => {
       skillsArray.push(skill.label);
     });
 
     let additionalSkillsArray = [];
-    data?.additional_requirements.map((additionalSkill) => {
+    data?.additional_requirements?.map((additionalSkill) => {
       additionalSkillsArray.push(additionalSkill.label);
     });
 
     let educationalRequirementArray = [];
-    data?.educational_requirements.map((educationalRequirement) => {
+    data?.educational_requirements?.map((educationalRequirement) => {
       educationalRequirementArray.push(educationalRequirement.label);
     });
 
     let jobBenefitsArray = [];
-    data?.job_benefits.map((jobBenefit) => {
+    data?.job_benefits?.map((jobBenefit) => {
       jobBenefitsArray.push(jobBenefit.label);
     });
 
@@ -200,7 +200,7 @@ const AddJobs = () => {
                   Select Job Type
                 </option>
                 {jobTypes &&
-                  jobTypes.map((jobType) => (
+                  jobTypes?.map((jobType) => (
                     <option key={jobType.id} value={jobType.name}>
                       {jobType.name}
                     </option>
@@ -230,7 +230,7 @@ const AddJobs = () => {
                 </option>
 
                 {workTypes &&
-                  workTypes.map((workType) => (
+                  workTypes?.map((workType) => (
                     <option key={workType.id} value={workType.name}>
                       {workType.name}
                     </option>
@@ -253,7 +253,7 @@ const AddJobs = () => {
               className="input input-bordered"
               {...register("jobDescription", { required: true })}
             />
-            {errors.jobDescription && (
+            {errors?.jobDescription && (
               <span className="error text-red-500">
                 Please fill up this field
               </span>

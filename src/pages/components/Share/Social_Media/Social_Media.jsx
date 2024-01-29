@@ -13,36 +13,43 @@ const Social_Media = ({ setSignInLoading }) => {
     googleLoginSystem()
       .then((res) => {
         const newUser = {
-           name: res?.user?.displayName,
-           email: res?.user?.email,
-           image: res?.user?.photoURL
-        }
-        axios.post('http://localhost:5000/users', newUser)
-        .then(() => {
-          axios.get(`http://localhost:5000/user-role?email=${res?.user?.email}`)
-          .then((resp) => {
-             if(resp.data.role === 'user') {
-              setSignInLoading(false);
-              navigate("/dashboard");
-              toast.success("User Login Successfully");
-             }
-             if(resp.data.role === 'admin') {
-              setSignInLoading(false);
-              navigate("/dashboard"); //it will update after complete the admin dashboard
-              toast.success("Admin Login Successfully");
-             }          
+          name: res?.user?.displayName,
+          email: res?.user?.email,
+          image: res?.user?.photoURL,
+        };
+        axios
+          .post("https://unity-spark-server.vercel.app/users", newUser)
+          .then(() => {
+            axios
+              .get(
+                `https://unity-spark-server.vercel.app/user-role?email=${res?.user?.email}`
+              )
+              .then((resp) => {
+                if (resp.data.role === "user") {
+                  setSignInLoading(false);
+                  navigate("/");
+                  toast.success("User Login Successfully");
+                }
+                if (resp.data.role === "admin") {
+                  setSignInLoading(false);
+                  navigate("/");
+                  toast.success("Admin Login Successfully");
+                }
+                if (resp.data.role === "employee") {
+                  setSignInLoading(false);
+                  navigate("/"); //it will update after complete the admin dashboard ---
+                  toast.success("Employee Login Successfully");
+                }
+              })
+              .catch((err) => {
+                setSignInLoading(false);
+                toast.error(err.message);
+              });
           })
           .catch((err) => {
-            setSignInLoading(false);
             toast.error(err.message);
-          })
-
-        })
-        .catch(err => {
-          toast.error(err.message)
-          setSignInLoading(false);
-        })
-
+            setSignInLoading(false);
+          });
       })
       .catch((error) => {
         toast.error(error.message);

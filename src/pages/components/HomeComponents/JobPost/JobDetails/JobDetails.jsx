@@ -18,7 +18,7 @@ const JobDetails = () => {
     queryKey: ["jobsDetails", currentAds],
     queryFn: async () => {
       const result = await axios.get(
-        `http://localhost:5000/job-ads/${currentAds}`
+        `https://unity-spark-server.vercel.app/job-ads/${currentAds}`
       );
       return result.data;
     },
@@ -30,7 +30,7 @@ const JobDetails = () => {
     enabled: !!jobInfo?.job_category1,
     queryFn: async () => {
       const result = await axios.get(
-        `http://localhost:5000/similar_jobs?jobtype=${jobInfo?.job_category1}`
+        `https://unity-spark-server.vercel.app/similar_jobs?jobtype=${jobInfo?.job_category1}`
       );
       console.log("see more jobs result is", result.data);
       return result.data;

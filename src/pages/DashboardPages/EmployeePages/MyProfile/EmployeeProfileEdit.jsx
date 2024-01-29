@@ -22,10 +22,12 @@ const EmployeeProfileEdit = ({ user, setOpenEditor }) => {
         displayName: data.name,
         photoURL: image,
       });
-      axios.put(`http://localhost:5000/users/${_id}`, newInfo).then(() => {
-        toast.success("Your Info updated");
-        setOpenEditor(false);
-      });
+      axios
+        .put(`https://unity-spark-server.vercel.app/users/${_id}`, newInfo)
+        .then(() => {
+          toast.success("Your Info updated");
+          setOpenEditor(false);
+        });
     } else {
       const res = await axios.post(image_Hosting_Api, imageFile, {
         headers: {
@@ -42,10 +44,12 @@ const EmployeeProfileEdit = ({ user, setOpenEditor }) => {
           displayName: data.name,
           photoURL: res.data.data.display_url,
         });
-        axios.put(`http://localhost:5000/users/${_id}`, newInfo).then(() => {
-          toast.success("Your Info updated");
-          setOpenEditor(false);
-        });
+        axios
+          .put(`https://unity-spark-server.vercel.app/users/${_id}`, newInfo)
+          .then(() => {
+            toast.success("Your Info updated");
+            setOpenEditor(false);
+          });
       }
     }
   };

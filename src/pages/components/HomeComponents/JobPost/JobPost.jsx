@@ -4,14 +4,15 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const JobPost = () => {
-
-  const {data:jobPosts=[]} = useQuery({
-    queryKey: ['recentFeaturedJobs'],
+  const { data: jobPosts = [] } = useQuery({
+    queryKey: ["recentFeaturedJobs"],
     queryFn: async () => {
-        const result = await axios.get('http://localhost:5000/featured-jobs');
-        return result.data;
-    }
-  })
+      const result = await axios.get(
+        "https://unity-spark-server.vercel.app/featured-jobs"
+      );
+      return result.data;
+    },
+  });
 
   return (
     <div className="job_posts py-12">
@@ -24,7 +25,9 @@ const JobPost = () => {
       </div>
 
       <div className="text-center py-5">
-        <Link to={'/available-jobs'}><button> Explore more Jobs</button></Link>
+        <Link to={"/available-jobs"}>
+          <button> Explore more Jobs</button>
+        </Link>
       </div>
     </div>
   );
