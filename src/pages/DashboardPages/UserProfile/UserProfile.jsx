@@ -1,13 +1,12 @@
 import "../../DashboardPages/EmployeePages/MyProfile/profile.css";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { FiEdit3 } from "react-icons/fi";
-import download_icon from "../../../assets/images/download-Icon.png";
-import counter_icon from "../../../assets/images/pen.png";
 import { Link } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import axios from "axios";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import { LuDownload } from "react-icons/lu";
 import { useQuery } from "@tanstack/react-query";
 const UserProfile = () => {
   const [count, setCount] = useState(0);
@@ -187,7 +186,7 @@ const UserProfile = () => {
           <div className="label">
             <span className="font-bold font-inter">Education Level :</span>
           </div>
-          <p className="font-inter"> N/A </p>
+          <p className="font-inter"> {users?.education_level || "N/A"} </p>
         </label>
         {/* Education field End */}
 
@@ -196,7 +195,7 @@ const UserProfile = () => {
           <div className="label">
             <span className="font-bold font-inter">Institute Name :</span>
           </div>
-          <p className="font-inter"> N/A</p>
+          <p className="font-inter"> {users?.institute_name || "N/A"}</p>
         </label>
       </div>
 
@@ -248,7 +247,7 @@ const UserProfile = () => {
           <a href={users?.resume_link} target="blank">
             <div className="flex w-44 gap-2 font-semibold  text-white cursor-pointer font-inter text-base px-8 py-[8px] bg-primary rounded-xl transition-all duration-500 text-[15px]">
               {" "}
-              <img src={download_icon} alt="" /> <span> Download</span>{" "}
+              <LuDownload className="text-2xl" /> <span> Download</span>{" "}
             </div>
           </a>
         </label>

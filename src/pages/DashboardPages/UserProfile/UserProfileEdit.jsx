@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { Controller, useForm } from "react-hook-form";
 import download_icon from "../../../assets/images/download-Icon.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Select from "react-select";
 import { CgProfile } from "react-icons/cg";
@@ -12,7 +12,7 @@ const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d
 const UserProfileEdit = () => {
   const { register, handleSubmit, control, reset } = useForm();
   const { user } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   // New Array
   const skillsArray = [
     { value: "JavaScript", label: "JavaScript" },
@@ -57,6 +57,8 @@ const UserProfileEdit = () => {
       gender: data?.gender,
       current_address: data?.current,
       permanent_address: data?.permanent,
+      institute_name: data?.institute_name,
+      education_level: data?.education_level,
       job_preference: data?.preference,
       time_preference: data?.time_preference,
       skills: data?.skills,
@@ -74,6 +76,8 @@ const UserProfileEdit = () => {
       .then((res) => {
         console.log(res?.data);
         toast.success("User Profile Update Successfully");
+        navigate("/dashboard/userProfile");
+
         reset();
       })
 
@@ -258,6 +262,41 @@ const UserProfileEdit = () => {
             <div className="label">
               <span className="font-bold font-inter">
                 {" "}
+                Your Education Level :
+              </span>
+            </div>
+            <input
+              type="text"
+              {...register("education_level", { required: true })}
+              placeholder="Eduction Level"
+              required
+              defaultValue={users?.education_level}
+            />
+          </label>
+          {/* Preference field End */}
+
+          {/* Time Preference field */}
+          <label>
+            <div className="label">
+              <span className="font-bold font-inter"> Your Institute Name</span>
+            </div>
+            <input
+              type="text"
+              {...register("institute_name", { required: true })}
+              placeholder="Please Institute Name"
+              required
+              defaultValue={users?.institute_name}
+            />
+          </label>
+        </div>
+
+        {/**five Two Part */}
+        <div className="grid md:grid-cols-2 gap-2">
+          {/* Job Preference field */}
+          <label>
+            <div className="label">
+              <span className="font-bold font-inter">
+                {" "}
                 Your Job Preference :
               </span>
             </div>
@@ -287,7 +326,7 @@ const UserProfileEdit = () => {
           </label>
         </div>
 
-        {/**Five Two Part */}
+        {/**six Two Part */}
 
         {/* Skills field */}
         <label>
