@@ -4,15 +4,26 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import useUserRole from "../../../hooks/useUserRole";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const Navbar = () => {
   const { user, loginOut } = useContext(AuthContext);
   const [isUser] = useUserRole();
-
+  const axiosPublic = useAxiosPublic();
   const SignOut = () => {
     loginOut().then(() => {
-      toast.success(" User Sign Out successfully");
-    });
+      axiosPublic.post("/logout")
+      .then(() => {
+        toast.success(" User Sign Out successfully");
+        console.log("User logout successfully");
+      })
+      .catch(() => {
+        console.log("The token doesent remove");
+      })
+    })
+    .catch(() => {
+      console.log("Logout can not wroking");
+    })
   };
   const navItem = (
     <>
