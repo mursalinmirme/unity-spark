@@ -22,6 +22,7 @@ import Events from "../pages/Events";
 import AddJobs from "../pages/components/Dashboard/JobAds/AddJobs";
 import Communication from "../pages/DashboardPages/communication/Communication";
 import Employee from "../pages/DashboardPages/AdminPages/Employees/Employee";
+import Attendance from "../pages/components/Attendance/Attendance";
 import ApplyJobs from "../pages/availableJobs/ApplyJobs";
 
 const router = createBrowserRouter([
@@ -175,6 +176,10 @@ const router = createBrowserRouter([
             <AddJobs></AddJobs>
           </PrivateRouter>
         ),
+      },
+      {
+        path: "attendance",
+        element: <Attendance></Attendance>,
       },
     ],
   },

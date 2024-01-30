@@ -40,24 +40,24 @@ const JobDetails = () => {
   return (
     <div className="lg:px-10 mb-20 flex flex-col lg:flex-row gap-8">
       {/**Left Side */}
-      <div className="mt-10 space-y-1  text-[#1E1E1E] text-[18px] flex-1">
+      <div className="mt-10 space-y-1 content-container text-[#1E1E1E] text-[18px] flex-1">
         <h3 className="text-3xl md:text-4xl font-semibold mb-5">
           {" "}
           {jobInfo?.job_title}{" "}
         </h3>
         <p className="text-base md:text-lg">
-          <strong className="mr-1">Job Type :</strong> {jobInfo?.job_category1}
+          <span className="mr-1">Job Type :</span> {jobInfo?.job_category1}
         </p>
 
         <p className="pt-1 text-base md:text-lg">
-          <strong className="mr-1">Work Type :</strong> {jobInfo?.job_category2}
+          <span className="mr-1">Work Type :</span> {jobInfo?.job_category2}
         </p>
         <p className="pt-1">
-          <strong className="mr-1">Salary : </strong> {jobInfo?.salary}
+          <span className="mr-1">Salary : </span> {jobInfo?.salary}
         </p>
         <p className="pt-1 text-base md:text-lg">
           {" "}
-          <strong className="mr-1"> Position : </strong> {jobInfo?.position}
+          <span className="mr-1"> Position : </span> {jobInfo?.position}
         </p>
 
         {/** Skills RequireMent Show */}
@@ -66,12 +66,12 @@ const JobDetails = () => {
             {" "}
             <p className="mb-1">
               {" "}
-              <strong> Required Skills:</strong>
+              <span> Required Skills:</span>
             </p>
             {jobInfo?.required_Skills?.map((require) => (
               <div key={require?.id} className="md:ml-20 ">
                 {" "}
-                <p className="flex gap-2">
+                <p className="flex items-center gap-2">
                   {" "}
                   <GoDotFill className="text-[#D9D9D9]" /> {require}{" "}
                 </p>{" "}
@@ -86,12 +86,12 @@ const JobDetails = () => {
             {" "}
             <p className="mb-1 text-base md:text-lg">
               {" "}
-              <strong> Additional Requirement:</strong>
+              <span> Additional Requirement:</span>
             </p>
             {jobInfo?.additional_Require?.map((adition) => (
               <div key={adition} className="md:ml-20 ">
                 {" "}
-                <p className="flex gap-2 text-base md:text-lg">
+                <p className="flex gap-2 items-center text-base md:text-lg">
                   {" "}
                   <GoDotFill className="text-[#D9D9D9]" /> {adition}{" "}
                 </p>{" "}
@@ -106,12 +106,12 @@ const JobDetails = () => {
             {" "}
             <p className="mb-1 text-base md:text-lg">
               {" "}
-              <strong> Education Requirement:</strong>
+              <span> Education Requirement:</span>
             </p>
             {jobInfo?.education_Require?.map((edu) => (
               <div key={edu} className="md:ml-20 text-base md:text-lg">
                 {" "}
-                <p className="flex gap-2">
+                <p className="flex gap-2 items-center">
                   {" "}
                   <GoDotFill className="text-[#D9D9D9]" /> {edu}{" "}
                 </p>{" "}
@@ -126,12 +126,12 @@ const JobDetails = () => {
             {" "}
             <p className="mb-1 text-base md:text-lg">
               {" "}
-              <strong> Benefits:</strong>
+              <span> Benefits:</span>
             </p>
             {jobInfo?.benefits?.map((beni) => (
               <div key={beni} className="md:ml-20 ">
                 {" "}
-                <p className="flex gap-2 text-base md:text-lg">
+                <p className="flex gap-2 items-center text-base md:text-lg">
                   {" "}
                   <GoDotFill className="text-[#D9D9D9]" /> {beni}{" "}
                 </p>{" "}
@@ -141,20 +141,20 @@ const JobDetails = () => {
         </div>
         {/* description section */}
         <div className="text-base md:text-lg">
-          <strong>Description:</strong>
+          <span>Description:</span>
           <p>{jobInfo?.job_description}</p>
         </div>
 
         <div className="flex gap-4 pt-8">
           <span
-            className="px-8 py-2.5 bg-primary text-white rounded-xl cursor-pointer text-[14px]"
+            className="px-8 py-2.5 bg-primary text-white rounded-xl font-semibold cursor-pointer text-[14px]"
             onClick={() => toast.success("Successfully applied")}>
             {" "}
             Apply Now{" "}
           </span>
           <span
             onClick={() => toast.success("Successfully saved")}
-            className="px-8 py-2.5 text-primary border-2 border-primary rounded-xl cursor-pointer text-[14px]">
+            className="px-8 py-2.5 text-primary border-2 border-primary font-semibold rounded-xl cursor-pointer text-[14px]">
             {" "}
             Save{" "}
           </span>
@@ -171,18 +171,18 @@ const JobDetails = () => {
               <div>
                 <h3> {jobPost?.job_title}</h3>
                 <div className="job_status">
-                  <span>{jobPost?.job_category1}</span>
+                  <span> {jobPost?.job_category1}</span>
                   <span>{jobPost?.job_category2}</span>
                 </div>
                 <div className="flex items-center gap-5 ">
                   <p>
                     {" "}
-                    <strong>Salary:</strong> {jobPost?.salary}
+                    <span>Salary :</span> {jobPost?.salary}
                   </p>
                   |
                   <p className="my-1">
                     {" "}
-                    <strong>Posted</strong> {jobPost?.job_posted}
+                    <span>Posted</span> {jobPost?.job_posted}
                   </p>
                 </div>
                 <p>{jobPost?.job_description}</p>
@@ -191,7 +191,7 @@ const JobDetails = () => {
                   <Link
                     onClick={() => setCurrentAds(jobPost?._id)}
                     to={`/job-details/${jobPost?._id}`}>
-                    <div className="mt-3 mr-3 text-primary  cursor-pointer px-5 py-1.5 rounded-xl border-2 border-primary text-[15px]">
+                    <div className="mt-3 mr-3 text-primary font-semibold  cursor-pointer px-5 py-[10px] rounded-xl border-2 border-primary text-[15px]">
                       View Details
                     </div>
                   </Link>

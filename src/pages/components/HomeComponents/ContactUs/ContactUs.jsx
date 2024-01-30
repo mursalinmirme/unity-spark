@@ -66,11 +66,9 @@ const ContactUs = () => {
         </div>
 
         <div className="right_container">
-          <h2>
-            Get InTouch!
-          </h2>
-          <form onSubmit={handleSubmit(onSubmit)} className="mt-5 space-y-5">
-            <div className="grid grid-cols-2 gap-3">
+          <h2>Get InTouch!</h2>
+          <form onSubmit={handleSubmit(onSubmit)} className="mt-4 space-y-3">
+            <div className="flex gap-3">
               <div className="form-control w-full">
                 <input
                   {...register("name", { required: true })}
@@ -87,25 +85,23 @@ const ContactUs = () => {
                   {...register("number", { required: true })}
                   type="number"
                   placeholder="Phone number"
-                  className="input input-bordered w-full"
+                  className=""
                 />
                 {errors.number && (
-                  <p className="text-red-500">phone number is required.</p>
+                  <p className="text-red-500">number is required.</p>
                 )}
               </div>
             </div>
-            <div>
-              <div className="form-control w-full">
-                <input
-                  {...register("email", { required: true })}
-                  type="email"
-                  placeholder="Email Address"
-                  className="input input-bordered w-full"
-                />
-                {errors.email && (
-                  <p className="text-red-500">email is required.</p>
-                )}
-              </div>
+            <div className="-mt-1.5">
+              <input
+                {...register("email", { required: true })}
+                type="email"
+                placeholder="Email Address"
+                className=""
+              />
+              {errors.email && (
+                <p className="text-red-500">email is required.</p>
+              )}
             </div>
             <div className="form-control">
               <textarea
