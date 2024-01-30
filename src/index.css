@@ -49,7 +49,7 @@ button:hover {
 
 .swiper-pagination .swiper-pagination-bullet {
   padding: 4px 8px;
-  background: #433EBE;
+  background: #433ebe;
   border-radius: 10px;
 }
 
@@ -71,9 +71,9 @@ button:hover {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: radial-gradient(farthest-side, #433EBE 94%, #0000) top/8px 8px
+  background: radial-gradient(farthest-side, #433ebe 94%, #0000) top/8px 8px
       no-repeat,
-    conic-gradient(#0000 30%, #433EBE);
+    conic-gradient(#0000 30%, #433ebe);
   -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
   animation: s3 1s infinite linear;
 }
@@ -210,7 +210,7 @@ button:hover {
 }
 
 .job_post_card h3 {
-  @apply text-3xl font-semibold font-inter;
+  @apply text-2xl font-semibold font-inter;
 }
 
 .job_status {
@@ -218,7 +218,7 @@ button:hover {
 }
 
 .job_post_card span {
-  @apply text-primary bg-[#d0d8e0] py-1 px-3 rounded-full text-sm font-medium;
+  @apply text-primary bg-[#d0d8e0] py-1 px-3 rounded-full text-sm font-semibold;
 }
 
 .job_post_card p {
@@ -228,6 +228,11 @@ button:hover {
 .job_post_card p span {
   @apply text-black font-semibold bg-transparent p-0 text-base;
 }
+
+.content-container span {
+  @apply font-semibold;
+}
+
 
 /* GOALS SECTION */
 
@@ -255,7 +260,6 @@ button:hover {
 .testimonial_card p {
   @apply font-medium font-inter text-[15px];
 }
-
 
 /* NEWSLETTER */
 .newsletter {
@@ -289,7 +293,6 @@ button:hover {
 .newsletter button {
   @apply md:rounded-none md:rounded-r-xl md:px-8 lg:px-10;
 }
-
 
 /* CONTACT SECTION */
 #contact {

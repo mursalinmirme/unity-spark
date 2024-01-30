@@ -2,11 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import moment from "moment";
 import { useState } from "react";
-import { FaSearch } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
+import { IoIosSearch } from "react-icons/io";
 import Loading from "../components/Loading/Loading";
 const AvailableJobs = () => {
   const [showSearchBar, setShowSearchBar] = useState(true);
@@ -157,7 +157,7 @@ const AvailableJobs = () => {
             <option value="Contract">Contract</option>
           </select>
         </div>
-        <div className="flex">
+        <div className="flex search-animation">
           <form
             onSubmit={handleSearches}
             className={`p-0 border-0 m-0 relative ${
@@ -167,27 +167,31 @@ const AvailableJobs = () => {
             <input
               name="search"
               defaultValue={searchValues}
-              className="md:py-3 pr-14 m-0 md:w-60 lg:w-80 border-second"
+              className="md:py-1.5 pr-14 m-0 md:w-60 lg:w-80 border-second"
               type="text"
               placeholder="Search..."
             />
-            <button className="absolute top-0 right-0 h-full rounded-none rounded-r-lg">
-              <FaSearch className="text-lg"></FaSearch>
+            <button
+              style={{ background: "#433EBE" }}
+              className="bg-primary absolute top-0 right-0 h-full rounded-none rounded-r-lg"
+            >
+              <IoIosSearch className="text-xl text-white"></IoIosSearch>
             </button>
           </form>
           {showSearchBar ? (
             <button
               onClick={() => setShowSearchBar(false)}
-              className="rounded-md md:h-[51.2px]"
+              style={{background: '#433EBE'}}
+              className="rounded-md md:h-[38px] bg-primary"
             >
-              <FaSearch className="text-lg"></FaSearch>
+              <IoIosSearch className="text-xl text-white"></IoIosSearch>
             </button>
           ) : (
             <button
               onClick={handleCloseSearchBar}
               className="rounded-none bg-none text-primary"
             >
-              <ImCross className="text-lg"></ImCross>
+              <ImCross></ImCross>
             </button>
           )}
         </div>
@@ -214,12 +218,12 @@ const AvailableJobs = () => {
                   <div className="flex items-center gap-5 ">
                     <p>
                       {" "}
-                      <strong>Salary:</strong> {job?.salary} per year
+                      <span>Salary :</span> {job?.salary} per year
                     </p>
                     |
                     <p className="my-1">
                       {" "}
-                      <strong>Posted:</strong>{" "}
+                      <span>Posted :</span>{" "}
                       {moment(job?.createdAt).startOf("day").fromNow()}
                     </p>
                   </div>
@@ -231,7 +235,7 @@ const AvailableJobs = () => {
                   <div className="card-actions justify-start items-center">
                     <button className="mt-3 mr-3">Apply Now</button>
                     <Link to={`/job-details/${job?._id}`}>
-                      <div className="mt-3 mr-3 text-primary  cursor-pointer px-5 py-2 rounded-xl border-2 border-primary text-[15px]">
+                      <div className="mt-3 mr-3 text-primary font-semibold cursor-pointer px-5 py-2 rounded-xl border-2 border-primary text-[15px]">
                         View Details
                       </div>
                     </Link>

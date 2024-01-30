@@ -28,14 +28,18 @@ const JobPostCard = ({ jobPost }) => {
 
         <p className="my-1">
           {" "}
-          <strong>Posted:</strong> {moment(createdAt).startOf('day').fromNow()}
+          <strong>Posted:</strong> {moment(createdAt).startOf("day").fromNow()}
         </p>
 
-        <p>{job_description?.length > 110 ? job_description.slice(0, 110)+'...' : job_description}</p>
+        <p>
+          {job_description?.length > 110
+            ? job_description.slice(0, 110) + "..."
+            : job_description}
+        </p>
         <div className="card-actions justify-start">
           <button className="mt-3 mr-3">Apply Now</button>
           <Link to={`job-details/${_id}`}>
-            <div className="mt-3 mr-3 text-primary  cursor-pointer px-5 py-1.5 rounded-xl border-2 border-primary text-[15px]">
+            <div className="mt-3 mr-3 text-primary font-semibold cursor-pointer px-5 py-[9px] rounded-xl border-2 border-primary text-[15px]">
               Details
             </div>
           </Link>
