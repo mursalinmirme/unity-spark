@@ -8,11 +8,13 @@ import Select from "react-select";
 import { CgProfile } from "react-icons/cg";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import toast from "react-hot-toast";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 const UserProfileEdit = () => {
   const { register, handleSubmit, control, reset } = useForm();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
   // New Array
   const skillsArray = [
     { value: "JavaScript", label: "JavaScript" },
@@ -27,7 +29,7 @@ const UserProfileEdit = () => {
   const [users, setUsers] = useState(null);
   // User Data Get
   useEffect(() => {
-    axios.get(`http://localhost:5000/users/${user?.email}`).then((res) => {
+    axiosPublic.get(`/users/${user?.email}`).then((res) => {
       setUsers(res?.data);
     });
   }, [user?.email, setUsers]);
@@ -69,8 +71,8 @@ const UserProfileEdit = () => {
     console.log(userInfo);
     console.log(users);
 
-    axios
-      .put(`http://localhost:5000/users/${user?.email}`, userInfo)
+    axiosPublic
+      .put(`/users/${user?.email}`, userInfo)
       .then((res) => {
         console.log(res?.data);
         toast.success("User Profile Update Successfully");
