@@ -27,11 +27,9 @@ const UserProfileEdit = () => {
   const [users, setUsers] = useState(null);
   // User Data Get
   useEffect(() => {
-    axios
-      .get(`https://unity-spark-server.vercel.app/users/${user?.email}`)
-      .then((res) => {
-        setUsers(res?.data);
-      });
+    axios.get(`http://localhost:5000/users/${user?.email}`).then((res) => {
+      setUsers(res?.data);
+    });
   }, [user?.email, setUsers]);
 
   // Form Summit
@@ -50,29 +48,27 @@ const UserProfileEdit = () => {
     }
     // Info
     const userInfo = {
-      name: data?.name,
+      name: data?.name || users?.name,
       email: user?.email,
-      phone: data?.number,
-      age: data?.age,
-      gender: data?.gender,
-      current_address: data?.current,
-      permanent_address: data?.permanent,
-      institute_name: data?.institute_name,
-      education_level: data?.education_level,
-      job_preference: data?.preference,
-      time_preference: data?.time_preference,
-      skills: data?.skills,
-      image: photos,
-      resume_link: data.resume,
+      phone: data?.number || users?.phone,
+      age: data?.age || users?.age,
+      gender: data?.gender || users?.gender,
+      current_address: data?.current || users?.current_address,
+      permanent_address: data?.permanent || users?.permanent_address,
+      institute_name: data?.institute_name || users?.institute_name,
+      education_level: data?.education_level || users?.education_level,
+      job_preference: data?.preference || users?.job_preference,
+      time_preference: data?.time_preference || users?.time_preference,
+      skills: data?.skills || users.skills,
+      image: photos || users?.image,
+      resume_link: data.resume || users?.resume_link,
     };
 
     console.log(userInfo);
+    console.log(users);
 
     axios
-      .put(
-        `https://unity-spark-server.vercel.app/users/${user?.email}`,
-        userInfo
-      )
+      .put(`http://localhost:5000/users/${user?.email}`, userInfo)
       .then((res) => {
         console.log(res?.data);
         toast.success("User Profile Update Successfully");
@@ -111,8 +107,7 @@ const UserProfileEdit = () => {
           <div>
             <Link
               to="/dashboard/userProfile"
-              className="edit_btn !border-red-600 hover:!border-primary"
-            >
+              className="edit_btn !border-red-600 hover:!border-primary">
               <span className="text-red-500 hover:text-white"> X Cancel </span>
             </Link>
           </div>
@@ -144,8 +139,7 @@ const UserProfileEdit = () => {
               <span className="font-bold font-inter"> Your Photo : </span>
               <label
                 className="font-semibold w-full absolute bottom-0    text-white cursor-pointer font-inter text-base px-8 py-[8px] bg-primary rounded-xl transition-all duration-500 text-[15px]"
-                htmlFor="user_photo"
-              >
+                htmlFor="user_photo">
                 <div className="flex justify-center gap-2">
                   {" "}
                   <img src={download_icon} alt="" /> <span> Upload Photo</span>{" "}
@@ -267,9 +261,8 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="text"
-              {...register("education_level", { required: true })}
+              {...register("education_level")}
               placeholder="Eduction Level"
-              required
               defaultValue={users?.education_level}
             />
           </label>
@@ -282,9 +275,8 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="text"
-              {...register("institute_name", { required: true })}
+              {...register("institute_name")}
               placeholder="Please Institute Name"
-              required
               defaultValue={users?.institute_name}
             />
           </label>

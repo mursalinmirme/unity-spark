@@ -53,7 +53,7 @@ const Signup = () => {
               };
               // post users info in database
               axios
-                .post("https://unity-spark-server.vercel.app/users", newUser)
+                .post("http://localhost:5000/users", newUser)
                 .then(() => {
                   setSignUpLoading(false);
                   //The navigate path will change when dashboard will complete
@@ -105,8 +105,7 @@ const Signup = () => {
                 <span className="font-medium ml-1">Your Photo</span>
                 <label
                   className="font-semibold text-white cursor-pointer font-inter text-base px-4  sm:py-[4px] md:py-[12px] bg-primary rounded-xl transition-all duration-500 text-[15px]"
-                  htmlFor="user_photo"
-                >
+                  htmlFor="user_photo">
                   <div className="flex justify-center ">
                     {" "}
                     <img src={download_icon} alt="" />{" "}
@@ -157,8 +156,7 @@ const Signup = () => {
                   />
                   <span
                     onClick={() => setOpen(!open)}
-                    className="absolute top-[13px] right-3 cursor-pointer"
-                  >
+                    className="absolute top-[13px] right-3 cursor-pointer">
                     {" "}
                     {open ? (
                       <IoEyeOutline className="text-2xl" />
@@ -182,8 +180,7 @@ const Signup = () => {
                   />
                   <span
                     onClick={() => setSecret(!secret)}
-                    className="absolute top-[13px] right-3 cursor-pointer"
-                  >
+                    className="absolute top-[13px] right-3 cursor-pointer">
                     {" "}
                     {secret ? (
                       <IoEyeOutline className="text-2xl" />
