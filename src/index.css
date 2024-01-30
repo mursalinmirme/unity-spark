@@ -218,7 +218,7 @@ button:hover {
 }
 
 .job_post_card span {
-  @apply text-primary bg-[#d0d8e0] py-1 px-3 rounded-full text-sm font-semibold;
+  @apply text-primary bg-[#433ebe4d] py-1 px-3 rounded-full text-sm font-medium;
 }
 
 .job_post_card p {
@@ -232,7 +232,6 @@ button:hover {
 .content-container span {
   @apply font-semibold;
 }
-
 
 /* GOALS SECTION */
 

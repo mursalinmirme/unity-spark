@@ -59,6 +59,7 @@ const UserProfile = () => {
     },
   });
 
+  console.log(users);
   return (
     <div>
       <div className="user_profile_container">
