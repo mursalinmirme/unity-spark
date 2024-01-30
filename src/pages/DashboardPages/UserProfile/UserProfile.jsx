@@ -8,15 +8,17 @@ import axios from "axios";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { LuDownload } from "react-icons/lu";
 import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 const UserProfile = () => {
   const [count, setCount] = useState(0);
   const { user } = useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
   let total = 0;
   const { data: users = [] } = useQuery({
     queryKey: ["usersInformation"],
     enabled: !!user?.email,
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/users/${user?.email}`);
+      const res = await axiosPublic.get(`/users/${user?.email}`);
       if (res.data.name) {
         total += 8.3333333333333;
       }
@@ -59,6 +61,7 @@ const UserProfile = () => {
     },
   });
 
+  console.log(users);
   return (
     <div>
       <div className="user_profile_container">

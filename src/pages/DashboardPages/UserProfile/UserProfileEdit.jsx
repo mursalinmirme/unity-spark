@@ -34,6 +34,8 @@ const UserProfileEdit = () => {
 
   // Form Summit
   const onSubmit = async (data) => {
+    console.log(data);
+
     let photos = users?.image;
 
     if (data?.photo?.length > 0) {
@@ -118,15 +120,15 @@ const UserProfileEdit = () => {
 
       <form onSubmit={handleSubmit(onSubmit)} className="mt-10">
         {/**One Two Part */}
-        <div className="grid md:grid-cols-2 gap-2">
+        <div className="grid md:grid-cols-2 gap-3">
           {/* name field */}
           <label>
-            <div className="label">
+            <div className="py-1">
               <span className="font-bold font-inter"> Your Name :</span>
             </div>
             <input
               type="text"
-              {...register("name")}
+              {...register("name", { required: true })}
               placeholder="Please Your Name"
               defaultValue={users?.name}
             />
@@ -159,12 +161,12 @@ const UserProfileEdit = () => {
         <div className="grid md:grid-cols-2 gap-2">
           {/* Email field */}
           <label>
-            <div className="label">
+            <div className="py-1">
               <span className="font-bold font-inter"> Your Email :</span>
             </div>
             <input
               type="email"
-              {...register("email")}
+              {...register("email", { required: true })}
               placeholder="Your Email"
               readOnly
               defaultValue={users?.email}
@@ -174,12 +176,12 @@ const UserProfileEdit = () => {
 
           {/* phone Number*/}
           <label>
-            <div className="label">
+            <div className="py-1">
               <span className="font-bold font-inter">Phone :</span>
             </div>
             <input
               type="number"
-              {...register("number")}
+              {...register("number", { required: true })}
               placeholder="Your Phone Number"
               defaultValue={users?.phone}
             />
@@ -190,15 +192,15 @@ const UserProfileEdit = () => {
         <div className="grid md:grid-cols-2 gap-2">
           {/* Current Address field */}
           <label>
-            <div className="label">
+            <div className="py-1">
               <span className="font-bold font-inter">
                 {" "}
                 Your Current Address:
               </span>
             </div>
             <input
-              type="address"
-              {...register("current")}
+              type="text"
+              {...register("current", { required: true })}
               placeholder="Your Current Address"
               defaultValue={users?.current_address}
             />
@@ -207,12 +209,12 @@ const UserProfileEdit = () => {
 
           {/* Permanent Address */}
           <label>
-            <div className="label">
+            <div className="py-1">
               <span className="font-bold font-inter">Permanent Address</span>
             </div>
             <input
-              type="address"
-              {...register("permanent")}
+              type="text"
+              {...register("permanent", { required: true })}
               placeholder=" Your Permanent Address"
               defaultValue={users?.permanent_address}
             />
@@ -223,12 +225,12 @@ const UserProfileEdit = () => {
         <div className="grid md:grid-cols-2 gap-2">
           {/* Age field */}
           <label>
-            <div className="label">
+            <div className="py-1">
               <span className="font-bold font-inter"> Your Age</span>
             </div>
             <input
-              type="age"
-              {...register("age")}
+              type="number"
+              {...register("age", { required: true })}
               placeholder="Your Age"
               defaultValue={users?.age}
             />
@@ -237,12 +239,12 @@ const UserProfileEdit = () => {
 
           {/* Your Gender Select */}
           <label>
-            <div className="label">
+            <div className="py-1">
               <span className="font-bold font-inter"> Your Gender :</span>
             </div>
             <input
               type="text"
-              {...register("gender")}
+              {...register("gender", { required: true })}
               placeholder="Male"
               defaultValue={users?.gender}
             />
@@ -253,7 +255,7 @@ const UserProfileEdit = () => {
         <div className="grid md:grid-cols-2 gap-2">
           {/* Job Preference field */}
           <label>
-            <div className="label">
+            <div className="py-1">
               <span className="font-bold font-inter">
                 {" "}
                 Your Education Level :
@@ -270,7 +272,7 @@ const UserProfileEdit = () => {
 
           {/* Time Preference field */}
           <label>
-            <div className="label">
+            <div className="py-1">
               <span className="font-bold font-inter"> Your Institute Name</span>
             </div>
             <input
@@ -286,7 +288,7 @@ const UserProfileEdit = () => {
         <div className="grid md:grid-cols-2 gap-2">
           {/* Job Preference field */}
           <label>
-            <div className="label">
+            <div className="py-1">
               <span className="font-bold font-inter">
                 {" "}
                 Your Job Preference :
@@ -294,7 +296,7 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="text"
-              {...register("preference")}
+              {...register("preference", { required: true })}
               placeholder="Remote"
               defaultValue={users?.job_preference}
             />
@@ -303,7 +305,7 @@ const UserProfileEdit = () => {
 
           {/* Time Preference field */}
           <label>
-            <div className="label">
+            <div className="py-1">
               <span className="font-bold font-inter">
                 {" "}
                 Your Time Preference
@@ -311,7 +313,7 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="text"
-              {...register("time_preference")}
+              {...register("time_preference", { required: true })}
               placeholder="Intern"
               defaultValue={users?.time_preference}
             />
@@ -322,7 +324,7 @@ const UserProfileEdit = () => {
 
         {/* Skills field */}
         <label>
-          <div className="label">
+          <div className="py-1">
             <span className="font-bold font-inter"> Your Skills :</span>
           </div>
           <Controller
@@ -336,12 +338,12 @@ const UserProfileEdit = () => {
 
         {/* Resume field */}
         <label>
-          <div className="label">
+          <div className="py-1">
             <span className="font-bold font-inter">Your Resume</span>
           </div>
           <input
             type="text"
-            {...register("resume")}
+            {...register("resume", { required: true })}
             placeholder="Please share your resume drive link"
             defaultValue={users?.resume_link}
           />
