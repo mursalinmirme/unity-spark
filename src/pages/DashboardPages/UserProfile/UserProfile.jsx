@@ -16,9 +16,7 @@ const UserProfile = () => {
     queryKey: ["usersInformation"],
     enabled: !!user?.email,
     queryFn: async () => {
-      const res = await axios.get(
-        `https://unity-spark-server.vercel.app/users/${user?.email}`
-      );
+      const res = await axios.get(`http://localhost:5000/users/${user?.email}`);
       if (res.data.name) {
         total += 8.3333333333333;
       }
@@ -61,6 +59,7 @@ const UserProfile = () => {
     },
   });
 
+  console.log(users);
   return (
     <div>
       <div className="user_profile_container">
@@ -88,8 +87,7 @@ const UserProfile = () => {
 
             <Link
               to="/dashboard/userProfileEdit"
-              className="flex gap-2 items-center text-primary font-inter font-semibold text-sm border-2 rounded-lg cursor-pointer border-primary py-1 px-3 hover:bg-primary hover:text-white transition-all duration-500"
-            >
+              className="flex gap-2 items-center text-primary font-inter font-semibold text-sm border-2 rounded-lg cursor-pointer border-primary py-1 px-3 hover:bg-primary hover:text-white transition-all duration-500">
               <span>Edit Info</span>
               <FiEdit3 />
             </Link>
@@ -230,8 +228,7 @@ const UserProfile = () => {
           {users?.skills?.map((skill, index) => (
             <span
               key={index}
-              className="mr-2 text-primary bg-[#d0d8e0] py-1 px-3 rounded-full text-sm font-medium"
-            >
+              className="mr-2 text-primary bg-[#d0d8e0] py-1 px-3 rounded-full text-sm font-medium">
               {skill?.value},
             </span>
           )) || "N/A"}
