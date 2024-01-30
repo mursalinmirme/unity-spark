@@ -7,9 +7,7 @@ const JobPost = () => {
   const { data: jobPosts = [] } = useQuery({
     queryKey: ["recentFeaturedJobs"],
     queryFn: async () => {
-      const result = await axios.get(
-        "https://unity-spark-server.vercel.app/featured-jobs"
-      );
+      const result = await axios.get("http://localhost:5000/featured-jobs");
       return result.data;
     },
   });

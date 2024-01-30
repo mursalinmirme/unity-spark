@@ -22,9 +22,7 @@ const Signin = () => {
     userSignIn(data?.email, data?.password)
       .then((res) => {
         axios
-          .get(
-            `https://unity-spark-server.vercel.app/user-role?email=${res?.user?.email}`
-          )
+          .get(`http://localhost:5000/user-role?email=${res?.user?.email}`)
           .then((resp) => {
             if (resp.data.role) {
               reset();
@@ -105,8 +103,7 @@ const Signin = () => {
                 />
                 <span
                   onClick={() => setOpen(!open)}
-                  className="absolute top-3 right-4 cursor-pointer"
-                >
+                  className="absolute top-3 right-4 cursor-pointer">
                   {" "}
                   {open ? (
                     <IoEyeOutline className="text-2xl" />
