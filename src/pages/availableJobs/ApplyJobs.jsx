@@ -39,28 +39,6 @@ const ApplyJobs = () => {
             />
           </label>
           {/* Name field End */}
-
-          {/*image field */}
-          <label className="relative">
-            <div className="label mb-10 md:mb-0 lg:mb-0">
-              <span className="font-bold font-inter"> Your Photo : </span>
-              <label
-                className="font-semibold w-full absolute bottom-0    text-white cursor-pointer font-inter text-base px-8 py-[8px] bg-primary rounded-xl transition-all duration-500 text-[15px]"
-                htmlFor="user_photo">
-                <div className="flex justify-center gap-2">
-                  {" "}
-                  <img src={download_icon} alt="" /> <span> Upload Photo</span>{" "}
-                </div>
-              </label>
-            </div>
-            <input
-              className="hidden"
-              id="user_photo"
-              type="file"
-              {...register("image")}
-              placeholder="N/A"
-            />
-          </label>
         </div>
         <div className="grid md:grid-cols-2 gap-2">
           {/* Email field */}
@@ -147,7 +125,7 @@ const ApplyJobs = () => {
             </div>
             <select
               defaultValue="default"
-              className="select select-bordered w-full"
+              className="select select-bordered w-full "
               {...register("gender", {
                 required: true,
               })}>
