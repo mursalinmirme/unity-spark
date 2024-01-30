@@ -95,18 +95,25 @@ const AvailableJobs = () => {
 
   // handle fatch jobs by users wanted date
   const handleDateOnchange = (date) => {
+    setSearchValues(null)
+    setJobType(null)
+    setWorkType(null)
     setSortDate(date.target.value);
     console.log(sortDate);
   };
 
   // handle fatch jobs by users wanted date
   const handleJobTypeOnchange = (jbType) => {
+    setSearchValues(null)
+    setSortDate(null)
     setWorkType(null);
     setJobType(jbType.target.value);
   };
 
   // handle fatch jobs by users wanted date
   const handleWorkTypeOnchange = (wkType) => {
+    setSearchValues(null)
+    setSortDate(null)
     setJobType(null);
     setWorkType(wkType.target.value);
   };
