@@ -87,12 +87,7 @@ const ManageAds = () => {
           {showSearchBar ? (
             <button
               onClick={() => setShowSearchBar(false)}
-<<<<<<< HEAD
-              className="rounded-md bg-primary text-white p-2"
-            >
-=======
               className="rounded-md md:h-[40.2px]">
->>>>>>> 44d34573d3642e6e4b94a3ced2c1aeb94675aef9
               <FaSearch className="text-lg"></FaSearch>
             </button>
           ) : (
