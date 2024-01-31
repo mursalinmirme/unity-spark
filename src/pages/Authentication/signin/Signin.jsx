@@ -13,6 +13,7 @@ const Signin = () => {
   const { userSignIn } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const [signInLoading, setSignInLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
   const navigate = useNavigate();
 
   const { register, handleSubmit, reset } = useForm();
@@ -49,7 +50,7 @@ const Signin = () => {
   };
 
   return (
-    <div className="p-5">
+    <div className="p-5 signin">
       <section className="grid md:grid-cols-2 lg:grid-cols-2 items-center gap-4">
         {/* images */}
         <div className="w-full">
@@ -58,23 +59,15 @@ const Signin = () => {
         {/* images */}
 
         {/* form */}
-        <div className="p-5 rounded-lg  border">
+        <div className="p-5 rounded-lg border">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <span className="text-center space-y-3">
-              <h1 className="text-2xl font-semibold text-[#000]">
-                Welcome Back
-              </h1>
-              <p className="font-inter text-sm text-[#000] font-semibold">
-                Enter Your Credentials to Sign In{" "}
-              </p>
-            </span>
+            <h1 className="">Welcome Back</h1>
+            <p className="text-sm">Enter Your Credentials to Sign In </p>
 
             {/* email field */}
             <label className="form-control w-full">
               <div className="label">
-                <span className="label-text font-semibold font-inter">
-                  Your Email
-                </span>
+                <span className="font-semibold font-inter">Your Email</span>
               </div>
               <input
                 type="email"
@@ -89,9 +82,7 @@ const Signin = () => {
             {/* password field */}
             <label className="form-control w-full py-3 ">
               <div className="label">
-                <span className="label-text font-semibold font-inter">
-                  Your password
-                </span>
+                <span className="font-semibold font-inter">Your password</span>
               </div>
               <div className="relative">
                 <input
@@ -114,7 +105,7 @@ const Signin = () => {
               </div>
             </label>
             {/* password field */}
-            <div className="form-control w-full py-3">
+            <div className="form-control w-full mt-5">
               <button className="text-base flex justify-center items-center">
                 {signInLoading ? (
                   <span className="loading loading-spinner loading-md"></span>
@@ -124,15 +115,15 @@ const Signin = () => {
               </button>
             </div>
           </form>
-          <h1 className="text-center text-gray-700 font-medium">Or</h1>
+          <div className="divider ">OR</div>
 
           {/** Social Media Login System */}
-          <Social_Media setSignInLoading={setSignInLoading}> </Social_Media>
+          <Social_Media setGoogleLoading={setGoogleLoading} googleLoading={googleLoading}> </Social_Media>
 
           <div className="text-center py-3">
             <p className="text-sm text-gray-700 font-medium">
-              Don't an account?{" "}
-              <Link to="/signup" className="text-[#248479]">
+              Don't have an account?{" "}
+              <Link to="/signup" className="text-primary">
                 Sign Up
               </Link>
             </p>
