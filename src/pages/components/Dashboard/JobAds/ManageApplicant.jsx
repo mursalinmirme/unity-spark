@@ -24,58 +24,46 @@ const ManageApplicant = () => {
     }
   };
 
-  const pagesArray = Array.from({ length: totalPages / 5 }, (_, index) => index);
+  const pagesArray = Array.from(
+    { length: totalPages / 5 },
+    (_, index) => index
+  );
 
-  return <div className="py-10">
-
-  <div className="min-h-[460px]">
-  <div className="border-2 border-[#D9D9D9] rounded-xl px-5 py-2">
-     <div className="flex items-center justify-between">
-     <div className="flex  items-center gap-5">
-        
-        <img src="https://i.ibb.co/x2WP2jQ/73886110a00aca5829ed3e9b6ca8b3e3.png" alt="avatar"
-         className="w-[60px] h-[60px] rounded-full"/>
-        <div>
-          <h1 className="font-semibold text-xl">Ashraful Islam</h1>
-          <h1 className="font-semibold text-lg text-[#5B5555]">from Noakhali, Bangladesh</h1>
-        </div>
-        </div>
-        <div className="relative md:hidden">
-          <div className="text-white bg-primary p-2 rounded-lg cursor-pointer" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
-            <HiDotsVertical />
-          </div>
-          <div className={`absolute right-0 w-12 bg-white drop-shadow-lg rounded-lg p-2 ${isDropdownOpen ? 'block' : 'hidden'}`}>
-            <Link className="rounded-xl bg-[#433EBE]">
-              <div className="bg-primary w-8 h-7 mx-auto rounded-md flex items-center justify-center">
-                <IoEyeOutline className="text-md font-bold text-white"></IoEyeOutline>                    
+  return (
+    <div className="py-10">
+      <div className="min-h-[460px]">
+        <div className="border-2 border-[#D9D9D9] rounded-xl px-5 py-3">
+          <div className="flex items-center justify-between">
+            <div className="flex  items-center gap-5">
+              <img
+                src="https://i.ibb.co/x2WP2jQ/73886110a00aca5829ed3e9b6ca8b3e3.png"
+                alt="avatar"
+                className="w-[50px] h-[50px] rounded-full"
+              />
+              <div>
+                <h1 className="font-semibold text-lg">Ashraful Islam</h1>
+                <h1 className="font-semibold text-[#5B5555]">
+                  from Noakhali, Bangladesh
+                </h1>
               </div>
-            </Link>
-            <Link>
-              <div className="bg-primary w-8 h-7 mx-auto rounded-md flex items-center justify-center mt-2">
-                <IoCheckmark className="text-md font-bold text-white"></IoCheckmark>                    
-              </div>
-            </Link>
-            <Link className="rounded-xl bg-[#433EBE]">
-              <div className="bg-primary w-8 h-7 mx-auto rounded-md flex items-center justify-center mt-2">
-                <RxCross1 className="text-md font-bold text-white"></RxCross1>                    
-              </div>
-            </Link>
-          </div>
-        </div>
-        <section className="space-x-3 justify-center items-center hidden md:flex">
-              <Link className="rounded-xl w-11 h-11 bg-[#433EBE]">
-              <IoEyeOutline className="text-xl font-bold text-white mt-[12px] ml-3"></IoEyeOutline></Link>
-              <Link className="rounded-xl  w-11 h-11 bg-[#433EBE]">
-                <IoCheckmark className="text-xl font-bold text-white mt-[12px] ml-3"></IoCheckmark></Link>
-              <Link className="rounded-xl  w-11 h-11 bg-[#433EBE]">
-                <RxCross1 className="text-xl font-bold text-white mt-[12px] ml-3"></RxCross1></Link>
+            </div>
+            <section className="space-x-3 flex justify-center items-center text-lg text-white">
+              <Link className="rounded-md p-2 bg-[#433EBE] flex items-center justify-center">
+                <IoEyeOutline></IoEyeOutline>
+              </Link>
+              <Link className="rounded-md p-2 bg-[#433EBE] flex items-center justify-center">
+                <IoCheckmark></IoCheckmark>
+              </Link>
+              <Link className="rounded-md p-2 bg-[#433EBE] flex items-center justify-center">
+                <RxCross1></RxCross1>
+              </Link>
             </section>
-     </div>
-  </div>
-  </div>
+          </div>
+        </div>
+      </div>
 
- {/* pagination */}
- <div className="mt-10">
+      {/* pagination */}
+      <div className="mt-10">
         <div className={`flex justify-center`}>
           <div className={`join flex space-x-2`}>
             <button
@@ -122,9 +110,8 @@ const ManageApplicant = () => {
           </div>
         </div>
       </div>
-
-
-</div>
+    </div>
+  );
 };
 
 export default ManageApplicant;
