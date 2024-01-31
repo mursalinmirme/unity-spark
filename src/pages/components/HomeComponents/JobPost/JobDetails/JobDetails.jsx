@@ -203,11 +203,11 @@ const JobDetails = () => {
                 </div>
                 <p>{jobPost?.job_description}</p>
                 <div className="card-actions justify-start">
-                  <button className="mt-3 mr-3">Apply Now</button>
+                  <button className="mt-3 mr-3 nbtn">Apply Now</button>
                   <Link
                     onClick={() => setCurrentAds(jobPost?._id)}
                     to={`/job-details/${jobPost?._id}`}>
-                    <div className="mt-3 mr-3 text-primary font-semibold  cursor-pointer px-5 py-[10px] rounded-xl border-2 border-primary text-[15px]">
+                    <div className="mt-3 mr-3 text-primary font-semibold  cursor-pointer px-4 py-[9px] rounded-xl border-2 border-primary text-[15px]">
                       View Details
                     </div>
                   </Link>

@@ -161,7 +161,7 @@ const AvailableJobs = () => {
             <option value="Contract">Contract</option>
           </select>
         </div>
-        <div className="flex search-animation">
+        <div className="flex gap-2 search-animation">
           <form
             onSubmit={handleSearches}
             className={`p-0 border-0 m-0 relative ${
@@ -176,7 +176,7 @@ const AvailableJobs = () => {
             />
             <button
               style={{ background: "#433EBE" }}
-              className="bg-primary absolute top-0 right-0 h-full rounded-none rounded-r-lg">
+              className="bg-primary absolute top-0 right-0 h-full rounded-none rounded-r-lg px-4">
               <IoIosSearch className="text-xl text-white"></IoIosSearch>
             </button>
           </form>
@@ -184,7 +184,7 @@ const AvailableJobs = () => {
             <button
               onClick={() => setShowSearchBar(false)}
               style={{ background: "#433EBE" }}
-              className="rounded-md md:h-[38px] bg-primary">
+              className="rounded-md md:h-[38px] bg-primary px-4">
               <IoIosSearch className="text-xl text-white"></IoIosSearch>
             </button>
           ) : (
