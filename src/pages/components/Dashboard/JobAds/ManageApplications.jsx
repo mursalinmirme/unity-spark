@@ -7,12 +7,14 @@ import { HiDotsVertical } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { CiMenuKebab } from "react-icons/ci";
 import { MdHideSource } from "react-icons/md";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 
 const ManageApplications = () => {
   const [showButtons, setShowButtons] = useState(false);
   const [totalPages, setToalPages] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [applicationData , setApplicationData] = useState([])
   // handle next btn pagination
   const handleRightPagi = () => {
     if (currentPage + 1 < totalPages) {
@@ -27,74 +29,67 @@ const ManageApplications = () => {
     }
   };
 
-  const pagesArray = Array.from(
-    { length: totalPages / 5 },
-    (_, index) => index
-  );
+  const pagesArray = Array.from({ length: totalPages / 5 }, (_, index) => index);
+  const axiosPublic = useAxiosPublic()
 
-  return (
-    <div className="py-10">
-      <div className="min-h-[460px]">
-        <div className="border-2 border-[#D9D9D9] rounded-xl px-5 py-3">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-5">
-              <img
-                src="https://i.ibb.co/x2WP2jQ/73886110a00aca5829ed3e9b6ca8b3e3.png"
-                alt="avatar"
-                className="w-[50px] h-[50px] rounded-full"
-              />
-              <div>
-                <h1 className="font-semibold text-lg">Web Developer</h1>
-                <h1 className="font-semibold text-[#5B5555]">
-                  applied 8min ago
-                </h1>
-              </div>
-            </div>
-            {/* test */}
-            <section className="space-x-3 flex justify-center items-center text-lg text-white">
-              <Link className="rounded-md p-2 bg-[#433EBE] flex items-center justify-center">
-                <IoEyeOutline></IoEyeOutline>
-              </Link>
-              <Link className="rounded-md p-2 bg-[#433EBE] flex items-center justify-center">
-                <IoCheckmark></IoCheckmark>
-              </Link>
-              <Link className="rounded-md p-2 bg-[#433EBE] flex items-center justify-center">
-                <RxCross1></RxCross1>
-              </Link>
-            </section>
-            {/* <div>
-              <ul className="menu menu-horizontal">
-                <li>
-                  <details className="text-lg text-white">
-                    <summary>
-                      <Link className="rounded-md p-2 bg-[#433EBE]">
-                        <CiMenuKebab className=""></CiMenuKebab>
-                      </Link>
-                    </summary>
-                    <ul>
-                      <li>
-                        <Link className="rounded-md p-2 bg-[#433EBE] flex justify-center">
-                          <IoEyeOutline></IoEyeOutline>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className="rounded-md p-2 bg-[#433EBE] flex justify-center">
-                          <IoCheckmark className="text-lg"></IoCheckmark>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className="rounded-md p-2 bg-[#433EBE] flex justify-center">
-                          <RxCross1 className="text-lg"></RxCross1>
-                        </Link>
-                      </li>
-                    </ul>
-                  </details>
-                </li>
-              </ul>
-            </div> */}
-            {/* test */}
-          </div>
+  axiosPublic.get('/job_applications').then(res =>{
+    setApplicationData(res?.data)
+  }).catch(error => {
+    console.log(error)
+  })
+
+  return <div className="py-10" id="manage_applications">
+
+      <div className="min-h-[460px] space-y-3">
+      {
+        applicationData?.map( value => <div key={value._id}  className="border-2 border-[#D9D9D9] rounded-xl px-2 md:px-5 py-2">
+        <div className="flex items-center justify-between">
+        <div className="flex  items-center gap-5">
+           
+           <img src={value?.image} alt="avatar"
+            className="w-[60px] h-[60px] rounded-full"/>
+           <div>
+             <h1 className="font-semibold text-xl">{value?.title}</h1>
+             <h1 className="font-semibold text-lg text-[#5B5555]">applied at {value?.createdAt}</h1>
+           </div>
+           </div>
+           <div className="relative md:hidden">
+             <div className="text-white bg-primary p-2 rounded-lg cursor-pointer" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+               <HiDotsVertical />
+             </div>
+             <div className={`absolute right-0 w-12 bg-white drop-shadow-lg rounded-lg p-2 ${isDropdownOpen ? 'block' : 'hidden'}`}>
+               <Link className="rounded-xl bg-[#433EBE]">
+                 <div className="bg-primary w-8 h-7 mx-auto rounded-md flex items-center justify-center">
+                   <IoEyeOutline className="text-md font-bold text-white"></IoEyeOutline>                    
+                 </div>
+               </Link>
+               <Link>
+                 <div className="bg-primary w-8 h-7 mx-auto rounded-md flex items-center justify-center mt-2">
+                   <IoCheckmark className="text-md font-bold text-white"></IoCheckmark>                    
+                 </div>
+               </Link>
+               <Link className="rounded-xl bg-[#433EBE]">
+                 <div className="bg-primary w-8 h-7 mx-auto rounded-md flex items-center justify-center mt-2">
+                   <RxCross1 className="text-md font-bold text-white"></RxCross1>                    
+                 </div>
+               </Link>
+             </div>
+           </div>
+           <section className="space-x-3 justify-center items-center hidden md:flex">
+             <Link className="rounded-xl w-11 h-11 bg-[#433EBE]">
+               <IoEyeOutline className="text-xl font-bold text-white mt-[12px] ml-3"></IoEyeOutline></Link>
+               <Link className="rounded-xl  w-11 h-11 bg-[#433EBE]">
+               <IoCheckmark className="text-xl font-bold text-white mt-[12px] ml-3"></IoCheckmark>
+               </Link>
+             <Link className="rounded-xl  w-11 h-11 bg-[#433EBE]">
+               <RxCross1 className="text-xl font-bold text-white mt-[12px] ml-3"></RxCross1>
+               </Link>
+           </section>
+
+        
         </div>
+     </div>)
+      }
       </div>
 
       {/* pagination */}
@@ -146,7 +141,7 @@ const ManageApplications = () => {
         </div>
       </div>
     </div>
-  );
+  
 };
 
 export default ManageApplications;
