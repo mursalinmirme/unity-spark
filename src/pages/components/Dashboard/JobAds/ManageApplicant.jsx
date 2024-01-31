@@ -84,8 +84,8 @@ const ManageApplicant = () => {
   }
   </div>
 
- {/* pagination */}
- <div className="mt-10">
+      {/* pagination */}
+      <div className="mt-10">
         <div className={`flex justify-center`}>
           <div className={`join flex space-x-2`}>
             <button
@@ -132,9 +132,8 @@ const ManageApplicant = () => {
           </div>
         </div>
       </div>
-
-
-</div>
+    </div>
+  
 };
 
 export default ManageApplicant;

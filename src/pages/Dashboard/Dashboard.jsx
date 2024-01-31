@@ -45,7 +45,7 @@ const Dashboard = () => {
                 isActive ? "dashboard_item_active" : "dashboard_item"
               }`}>
               <div>
-                <GrUserWorker />
+                <LuUser />
                 <span>My Profile</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />

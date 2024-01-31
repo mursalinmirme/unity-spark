@@ -140,10 +140,8 @@ const ManageApplications = () => {
           </div>
         </div>
       </div>
-
-
-
-  </div>
+    </div>
+  
 };
 
 export default ManageApplications;
