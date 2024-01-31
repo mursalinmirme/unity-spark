@@ -93,8 +93,8 @@ const MyProfile = () => {
             />
           </div>
           <div className="items-center gap-2 hidden md:flex">
-            <Link className="edit_btn" to="/dashboard/reviews">
-              <GoThumbsup />
+            <Link className="edit_btn" to="/dashboard/reviews/add-review">
+              <GoThumbsup className="text-lg" />
               <span>Give Review</span>
             </Link>
           </div>

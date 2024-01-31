@@ -9,11 +9,11 @@ body {
 }
 
 /* COMMON ITEMS */
-button {
+.nbtn {
   @apply text-white font-semibold font-inter text-base px-4 py-2.5 rounded-xl transition-all duration-500 text-[15px];
 }
 
-button {
+.nbtn {
   background-image: linear-gradient(
     to right,
     #46a6e2,
@@ -25,7 +25,7 @@ button {
   background-position: right;
 }
 
-button:hover {
+.nbtn:hover {
   background-position: left;
 }
 
@@ -217,8 +217,8 @@ button:hover {
   @apply flex gap-2 my-2;
 }
 
-.job_post_card span {
-  @apply text-primary bg-[#433ebe4d] py-1 px-3 rounded-full text-sm font-medium;
+.job_post_card .job_status span {
+  @apply text-primary bg-[#d0d8e0] py-1 px-3 rounded-full text-sm font-semibold;
 }
 
 .job_post_card p {
@@ -226,12 +226,13 @@ button:hover {
 }
 
 .job_post_card p span {
-  @apply text-black font-semibold bg-transparent p-0 text-base;
+  @apply font-semibold;
 }
 
 .content-container span {
   @apply font-semibold;
 }
+
 
 /* GOALS SECTION */
 
@@ -375,4 +376,11 @@ h6,
 
 .info p {
   font-weight: 500;
+}
+
+
+/* */
+
+#manage_applications summary::marker {
+  display: none!important
 }

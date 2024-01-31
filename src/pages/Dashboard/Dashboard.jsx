@@ -19,7 +19,6 @@ import { AuthContext } from "../../Provider/AuthProvider";
 const Dashboard = () => {
   const [isUser] = useUserRole();
   const { loginOut } = useContext(AuthContext);
-  console.log("the user role is", isUser);
   const dashboardItem = (
     <>
       {isUser?.role === "user" && (
@@ -46,7 +45,7 @@ const Dashboard = () => {
                 isActive ? "dashboard_item_active" : "dashboard_item"
               }`}>
               <div>
-                <GrUserWorker />
+                <LuUser />
                 <span>My Profile</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -174,14 +173,16 @@ const Dashboard = () => {
       <div className="drawer drawer-start lg:hidden">
         <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content bg-white rounded-xl flex justify-between items-center p-3">
-          <img src={logo} className="w-2/6" alt="" />
+          <Link to="/">
+            <img src={logo} className="w-2/6" alt="" />
+          </Link>
           <label
             htmlFor="my-drawer-4"
             className="drawer-button hover:cursor-pointer">
             <HiBars3BottomRight />
           </label>
         </div>
-        <div className="drawer-side">
+        <div className="drawer-side z-50">
           <label
             htmlFor="my-drawer-4"
             aria-label="close sidebar"
@@ -199,7 +200,7 @@ const Dashboard = () => {
             <Link to="/">
               <img src={logo} className="w-3/4" alt="" />
             </Link>
-            <ul className="min-h-[75vh]">{dashboardItem}</ul>
+            <ul>{dashboardItem}</ul>
           </div>
           <div>
             <div onClick={() => loginOut()} className="log_btn">

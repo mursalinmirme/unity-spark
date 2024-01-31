@@ -7,7 +7,7 @@
 }
 
 #dashboard .left_container .nav_container {
-    @apply bg-white p-5 justify-between text-[#151515] rounded-xl
+    @apply bg-white p-5 justify-between text-[#151515] rounded-xl min-h-full flex flex-col
 }
 
 #dashboard ul {
