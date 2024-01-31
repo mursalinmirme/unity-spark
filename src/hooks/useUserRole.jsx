@@ -11,7 +11,7 @@ const useUserRole = () => {
     queryFn: async () => {
       // ToDo : replace mursalinmir02@gmail.com to user?.email
       const res = await axios.get(
-        `https://unity-spark-server.vercel.app/user-role?email=${user?.email}`
+        `http://localhost:5000/user-role?email=${user?.email}`
       );
       return res.data;
     },

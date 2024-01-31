@@ -18,7 +18,7 @@ const JobDetails = () => {
     queryKey: ["jobsDetails", currentAds],
     queryFn: async () => {
       const result = await axios.get(
-        `https://unity-spark-server.vercel.app/job-ads/${currentAds}`
+        `http://localhost:5000/job-ads/${currentAds}`
       );
       return result.data;
     },
@@ -30,7 +30,7 @@ const JobDetails = () => {
     enabled: !!jobInfo?.job_category1,
     queryFn: async () => {
       const result = await axios.get(
-        `https://unity-spark-server.vercel.app/similar_jobs?jobtype=${jobInfo?.job_category1}`
+        `http://localhost:5000/similar_jobs?jobtype=${jobInfo?.job_category1}`
       );
       console.log("see more jobs result is", result.data);
       return result.data;
@@ -192,8 +192,7 @@ const JobDetails = () => {
                   <button className="mt-3 mr-3">Apply Now</button>
                   <Link
                     onClick={() => setCurrentAds(jobPost?._id)}
-                    to={`/job-details/${jobPost?._id}`}
-                  >
+                    to={`/job-details/${jobPost?._id}`}>
                     <div className="mt-3 mr-3 text-primary font-semibold  cursor-pointer px-5 py-[10px] rounded-xl border-2 border-primary text-[15px]">
                       View Details
                     </div>

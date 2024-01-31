@@ -7,7 +7,7 @@ import google_Icon from "../../../../assets/images/google-icon.png";
 const Social_Media = ({ setGoogleLoading, googleLoading }) => {
   const { googleLoginSystem } = useContext(AuthContext);
   const navigate = useNavigate();
-
+  const axiosPublic = useAxiosPublic();
   const handlerGoogleLogin = () => {
     setGoogleLoading(true);
     googleLoginSystem()
@@ -18,12 +18,10 @@ const Social_Media = ({ setGoogleLoading, googleLoading }) => {
           image: res?.user?.photoURL,
         };
         axios
-          .post("https://unity-spark-server.vercel.app/users", newUser)
+          .post("http://localhost:5000/users", newUser)
           .then(() => {
             axios
-              .get(
-                `https://unity-spark-server.vercel.app/user-role?email=${res?.user?.email}`
-              )
+              .get(`http://localhost:5000/user-role?email=${res?.user?.email}`)
               .then((resp) => {
                 if (resp.data.role === "user") {
                   setGoogleLoading(false);

@@ -54,7 +54,7 @@ const Signup = () => {
               };
               // post users info in database
               axios
-                .post("https://unity-spark-server.vercel.app/users", newUser)
+                .post("http://localhost:5000/users", newUser)
                 .then(() => {
                   setSignUpLoading(false);
                   //The navigate path will change when dashboard will complete
