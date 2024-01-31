@@ -8,8 +8,10 @@ import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosSearch } from "react-icons/io";
 import Loading from "../components/Loading/Loading";
+import "./searchAnimation.css";
+
 const AvailableJobs = () => {
-  const [showSearchBar, setShowSearchBar] = useState(true);
+  const [showSearchBar, setShowSearchBar] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [searchValues, setSearchValues] = useState(null);
@@ -38,11 +40,7 @@ const AvailableJobs = () => {
   });
 
   // fetch all jobs cards
-  const {
-    data: allJobs = [],
-    refetch,
-    isFetching,
-  } = useQuery({
+  const { data: allJobs = [], isFetching } = useQuery({
     queryKey: [
       "allJobsAds",
       currentPage,
@@ -90,23 +88,30 @@ const AvailableJobs = () => {
 
   // handle close search bar
   const handleCloseSearchBar = () => {
-    setShowSearchBar(true);
+    setShowSearchBar(false);
   };
 
   // handle fatch jobs by users wanted date
   const handleDateOnchange = (date) => {
+    setSearchValues(null);
+    setJobType(null);
+    setWorkType(null);
     setSortDate(date.target.value);
     console.log(sortDate);
   };
 
   // handle fatch jobs by users wanted date
   const handleJobTypeOnchange = (jbType) => {
+    setSearchValues(null);
+    setSortDate(null);
     setWorkType(null);
     setJobType(jbType.target.value);
   };
 
   // handle fatch jobs by users wanted date
   const handleWorkTypeOnchange = (wkType) => {
+    setSearchValues(null);
+    setSortDate(null);
     setJobType(null);
     setWorkType(wkType.target.value);
   };
@@ -154,39 +159,54 @@ const AvailableJobs = () => {
             <option value="Contract">Contract</option>
           </select>
         </div>
-        <div className="flex search-animation">
+        <div className="flex gap-2">
           <form
             onSubmit={handleSearches}
-            className={`p-0 border-0 m-0 relative ${
-              showSearchBar ? "hidden" : "visible"
+            className={`p-0 border-0 m-0 search-box ${
+              showSearchBar && "active-search"
             }`}>
             <input
               name="search"
               defaultValue={searchValues}
-              className="md:py-1.5 pr-14 m-0 md:w-60 lg:w-80 border-second"
               type="text"
+              className=""
               placeholder="Search..."
             />
-            <button
-              style={{ background: "#433EBE" }}
-              className="bg-primary absolute top-0 right-0 h-full rounded-none rounded-r-lg">
-              <IoIosSearch className="text-xl text-white"></IoIosSearch>
-            </button>
+            <div>
+              <button
+                onClick={() => setShowSearchBar(true)}
+                style={{ background: "#433EBE" }}
+                className="search-btn">
+                <IoIosSearch className="text-xl text-white"></IoIosSearch>
+              </button>
+            </div>
+            <div>
+              {showSearchBar && (
+                <button
+                  onClick={handleCloseSearchBar}
+                  className="rounded-none bg-none text-primary cancel-btn">
+                  <ImCross></ImCross>
+                </button>
+              )}
+            </div>
           </form>
-          {showSearchBar ? (
+
+          {/* {showSearchBar ? (
             <button
               onClick={() => setShowSearchBar(false)}
               style={{ background: "#433EBE" }}
-              className="rounded-md md:h-[38px] bg-primary">
+              className="rounded-md md:h-[38px] bg-primary px-4"
+            >
               <IoIosSearch className="text-xl text-white"></IoIosSearch>
             </button>
           ) : (
             <button
               onClick={handleCloseSearchBar}
-              className="rounded-none bg-none text-primary">
+              className="rounded-none bg-none text-primary"
+            >
               <ImCross></ImCross>
             </button>
-          )}
+          )} */}
         </div>
       </div>
       {/* middle */}
@@ -227,7 +247,7 @@ const AvailableJobs = () => {
                   </p>
                   <div className="card-actions justify-start items-center">
                     <Link to={`/apply-job/${job?._id}`}>
-                      <button className="mt-3 mr-3">Apply Now</button>
+                      <button className="mt-3 mr-3 nbtn">Apply Now</button>
                     </Link>
                     <Link to={`/job-details/${job?._id}`}>
                       <div className="mt-3 mr-3 text-primary font-semibold cursor-pointer px-5 py-2 rounded-xl border-2 border-primary text-[15px]">

@@ -45,7 +45,7 @@ const Banner = () => {
                                         <span>Hi there</span>
                                         <h2>{ban?.title}</h2>
                                         <p>{ban?.description}</p>
-                                        <button>{ban?.button}</button>
+                                        <button className='nbtn'>{ban?.button}</button>
                                     </div>
                                     <div>
                                         <img src={ban?.img} className='w-full' alt="" />

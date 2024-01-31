@@ -124,11 +124,13 @@ const AddJobs = () => {
       <h3 className="text-3xl font-semibold">Add a new job ads</h3>
 
       <div>
-        <form className="mt-10" onSubmit={handleSubmit(onSubmit)}>
+        <form className="mt-10 space-y-3" onSubmit={handleSubmit(onSubmit)}>
           {/* Job Title */}
           <div className="form-control">
-            <label className="label">
-              <span className="font-inter text-xl font-medium">Job Title</span>
+            <label className="">
+              <span className="font-inter text-[18px] font-bold">
+                Job Title
+              </span>
             </label>
             <input
               type="text"
@@ -147,8 +149,10 @@ const AddJobs = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Position */}
             <div className="form-control">
-              <label className="label">
-                <span className="font-inter text-xl font-medium">Position</span>
+              <label className="">
+                <span className="font-inter text-[18px] font-bold">
+                  Position
+                </span>
               </label>
               <input
                 type="text"
@@ -165,8 +169,8 @@ const AddJobs = () => {
 
             {/* Salary */}
             <div className="form-control">
-              <label className="label">
-                <span className="font-inter text-xl font-medium">Salary</span>
+              <label className="">
+                <span className="font-inter text-[18px] font-bold">Salary</span>
               </label>
               <input
                 type="text"
@@ -187,15 +191,18 @@ const AddJobs = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Job Type */}
             <div className="form-control">
-              <label className="label">
-                <span className="font-inter text-xl font-medium">Job Type</span>
+              <label className="pb-1">
+                <span className="font-inter text-[18px] font-bold">
+                  Job Type
+                </span>
               </label>
               <select
                 defaultValue="default"
                 className="select select-bordered w-full"
                 {...register("jobType", {
                   required: true,
-                })}>
+                })}
+              >
                 <option disabled value="default">
                   Select Job Type
                 </option>
@@ -215,8 +222,8 @@ const AddJobs = () => {
             {/* Work Type */}
 
             <div className="form-control">
-              <label className="label">
-                <span className="font-inter text-xl font-medium">
+              <label className="pb-1">
+                <span className="font-inter text-[18px] font-bold">
                   Work Type
                 </span>
               </label>
@@ -224,7 +231,8 @@ const AddJobs = () => {
                 defaultValue="default"
                 required
                 className="select select-bordered w-full"
-                {...register("workType")}>
+                {...register("workType")}
+              >
                 <option disabled value="default">
                   Select Work Type
                 </option>
@@ -242,8 +250,8 @@ const AddJobs = () => {
           {/* Job Description */}
 
           <div className="form-control">
-            <label className="label">
-              <span className="font-inter text-xl font-medium">
+            <label className="">
+              <span className="font-inter text-xl text-[18px] font-bold">
                 Job Description
               </span>
             </label>
@@ -262,9 +270,9 @@ const AddJobs = () => {
 
           {/* Required Skills */}
 
-          <div>
-            <label className="label">
-              <span className="font-inter text-xl font-medium">
+          <div className="space-y-1">
+            <label>
+              <span className="font-inter text-[18px] font-bold">
                 Required Skills
               </span>
             </label>
@@ -288,9 +296,9 @@ const AddJobs = () => {
 
           {/* Additional Requirement */}
 
-          <div>
-            <label className="label">
-              <span className="font-inter text-xl font-medium">
+          <div className="space-y-1">
+            <label>
+              <span className="font-inter text-[18px] font-bold">
                 Additional Requirements (Optional)
               </span>
             </label>
@@ -309,9 +317,9 @@ const AddJobs = () => {
           </div>
 
           {/* Educational Requirements */}
-          <div>
-            <label className="label">
-              <span className="font-inter text-xl font-medium">
+          <div className="space-y-1">
+            <label>
+              <span className="font-inter text-[18px] font-bold">
                 Educational Requirements (Optional)
               </span>
             </label>
@@ -330,9 +338,9 @@ const AddJobs = () => {
           </div>
 
           {/* Benefits */}
-          <div>
-            <label className="label">
-              <span className="font-inter text-xl font-medium">
+          <div className="space-y-1">
+            <label className="">
+              <span className="font-inter text-[18px] font-bold">
                 Benefits of this job (optional)
               </span>
             </label>
@@ -350,7 +358,10 @@ const AddJobs = () => {
             />
           </div>
 
-          <button type="submit" className="bg-[#433ebe] mt-3 px-8">
+          <button
+            type="submit"
+            className="bg-[#433ebe] mt-3 px-8 text-white rounded-md py-1"
+          >
             Post
           </button>
         </form>

@@ -4,6 +4,7 @@ import moment from "moment";
 import { useState } from "react";
 import { AiFillEdit } from "react-icons/ai";
 import { FaSearch } from "react-icons/fa";
+import { IoIosSearch } from "react-icons/io";
 import { ImCross } from "react-icons/im";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { LuPenLine } from "react-icons/lu";
@@ -68,32 +69,38 @@ const ManageAds = () => {
   return (
     <div>
       <div className="mt-4 flex justify-between items-center">
-        <div className="flex">
+        <div className="flex items-center gap-3">
           <form
             onSubmit={handleSearches}
             className={`p-0 border-0 m-0 relative ${
               showSearchBar ? "hidden" : "visible"
-            }`}>
+            }`}
+          >
             <input
               name="search"
-              className="md:py-2 pl-14 m-0 md:w-60 lg:w-80 border-second"
+              className="md:py-1 pl-14 m-0 md:w-60 lg:w-80 border-second"
               type="text"
               placeholder="Search..."
             />
-            <button className="absolute top-0 left-0 h-full rounded-none rounded-s-lg">
-              <FaSearch className="text-lg"></FaSearch>
+            <button
+              style={{ background: "#433EBE" }}
+              className="absolute top-0 left-0 rounded-none rounded-s-lg h-full px-4"
+            >
+              <IoIosSearch className="text-xl text-white"></IoIosSearch>
             </button>
           </form>
           {showSearchBar ? (
             <button
               onClick={() => setShowSearchBar(false)}
-              className="rounded-md md:h-[40.2px]">
+              className="rounded-md bg-primary text-white p-2"
+            >
               <FaSearch className="text-lg"></FaSearch>
             </button>
           ) : (
             <button
               onClick={handleCloseSearchBar}
-              className="rounded-none bg-none text-primary left-0">
+              className="rounded-none bg-none text-primary left-0"
+            >
               <ImCross className="text-lg"></ImCross>
             </button>
           )}
@@ -101,33 +108,34 @@ const ManageAds = () => {
 
         <div>
           <Link to="/dashboard/addJobs">
-            <p className="flex items-center gap-2 text-[#433ebe] font-inter font-semibold border-[3px] border-[#433ebe] p-2 rounded-lg">
+            <p className="flex items-center gap-2 text-[#433ebe] font-inter font-semibold border-2 border-[#433ebe] py-1 p-2 rounded-lg">
               <LuPenLine></LuPenLine> <span>New Ad</span>
             </p>
           </Link>
         </div>
       </div>
       {/* main cards */}
-      <div className="pt-3">
+      <div>
         {ourAllJobs?.map((job) => {
           return (
             <div
               className="border-2 p-3 my-4 rounded-lg flex justify-between items-center"
-              key={job?._id}>
+              key={job?._id}
+            >
               <div>
-                <h3 className="text-lg font-semibold">
-                  {job?.job_title} - {job?.job_category2} - {job?.job_category1}
+                <h3 className="text-md font-bold">
+                  {job?.job_title} -{" "}
+                  <span className="text-slate-500 font-medium ">
+                    {" "}
+                    {job?.job_category1}
+                  </span>
                 </h3>
-                <h6>
-                  <strong>Posted:</strong>{" "}
-                  {moment(job?.createdAt).startOf("day").fromNow()}
-                </h6>
               </div>
-              <div className="space-x-4">
-                <button className="bg-primary rounded-md px-2.5">
+              <div className="space-x-4 ">
+                <button className="bg-primary rounded-md px-3 text-white py-2.5 ">
                   <AiFillEdit className="text-xl"></AiFillEdit>
                 </button>
-                <button className="bg-primary rounded-md px-2.5">
+                <button className="bg-primary rounded-md px-3 text-white py-2.5 ">
                   <RiDeleteBin6Line className="text-xl"></RiDeleteBin6Line>
                 </button>
               </div>
@@ -146,7 +154,8 @@ const ManageAds = () => {
                 color: "#433EBE",
                 fontSize: "18px",
               }}
-              className="join-item btn">
+              className="join-item btn"
+            >
               <IoIosArrowBack></IoIosArrowBack>
             </button>
             {pagesArray?.map((page, index) => {
@@ -162,7 +171,8 @@ const ManageAds = () => {
                     borderRadius: "5px",
                     fontSize: "18px",
                   }}
-                  className="join-item btn">
+                  className="join-item btn"
+                >
                   {page}
                 </button>
               );
@@ -174,7 +184,8 @@ const ManageAds = () => {
                 color: "#433EBE",
                 fontSize: "18px",
               }}
-              className="join-item btn">
+              className="join-item btn"
+            >
               <IoIosArrowForward></IoIosArrowForward>
             </button>
           </div>

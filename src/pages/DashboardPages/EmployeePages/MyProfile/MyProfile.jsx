@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import EmployeeProfileEdit from "./EmployeeProfileEdit";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
-
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 
 const tabs = [
@@ -93,8 +92,8 @@ const MyProfile = () => {
             />
           </div>
           <div className="items-center gap-2 hidden md:flex">
-            <Link className="edit_btn" to="/dashboard/reviews">
-              <GoThumbsup />
+            <Link className="edit_btn" to="/dashboard/reviews/add-review">
+              <GoThumbsup className="text-lg" />
               <span>Give Review</span>
             </Link>
           </div>

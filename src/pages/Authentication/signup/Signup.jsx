@@ -16,6 +16,7 @@ const Signup = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [signUpLoading, setSignUpLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
   const [secret, setSecret] = useState(false);
   const { register, handleSubmit } = useForm();
 
@@ -88,28 +89,30 @@ const Signup = () => {
 
             <div className="grid grid-cols-2 gap-2">
               {/* name field */}
-              <label>
-                <div className="label">
-                  <span className="font-medium">What is your name?</span>
-                </div>
-                <input
-                  type="text"
-                  {...register("name", { required: true })}
-                  placeholder="John Doe"
-                  required
-                />
-              </label>
-
+              <div>
+                <label>
+                  <div className="label">
+                    <span className="font-medium">What is your name?</span>
+                  </div>
+                  <input
+                    type="text"
+                    {...register("name", { required: true })}
+                    placeholder="John Doe"
+                    required
+                  />
+                </label>
+              </div>
               {/*image field */}
               <div className="mt-5">
                 <span className="font-medium ml-1">Your Photo</span>
                 <label
-                  className="font-semibold text-white cursor-pointer font-inter text-base px-4  sm:py-[4px] md:py-[12px] bg-primary rounded-xl transition-all duration-500 text-[15px]"
-                  htmlFor="user_photo">
-                  <div className="flex justify-center ">
+                  className="font-semibold text-white cursor-pointer font-inter text-base px-4 sm:py-[4px] md:py-[12px] bg-primary rounded-xl transition-all duration-500"
+                  htmlFor="user_photo"
+                >
+                  <div className="flex items-center justify-center gap-2">
                     {" "}
-                    <img src={download_icon} alt="" />{" "}
-                    <span> Upload Your Photo</span>{" "}
+                    <img className="w-6 h-5" src={download_icon} alt="" />{" "}
+                    <span className="font-normal"> Upload Your Photo</span>{" "}
                   </div>
                 </label>
                 <input
@@ -156,7 +159,8 @@ const Signup = () => {
                   />
                   <span
                     onClick={() => setOpen(!open)}
-                    className="absolute top-[13px] right-3 cursor-pointer">
+                    className="absolute top-[17px] right-3 cursor-pointer"
+                  >
                     {" "}
                     {open ? (
                       <IoEyeOutline className="text-2xl" />
@@ -180,7 +184,8 @@ const Signup = () => {
                   />
                   <span
                     onClick={() => setSecret(!secret)}
-                    className="absolute top-[13px] right-3 cursor-pointer">
+                    className="absolute top-[17px] right-3 cursor-pointer"
+                  >
                     {" "}
                     {secret ? (
                       <IoEyeOutline className="text-2xl" />
@@ -193,7 +198,7 @@ const Signup = () => {
             </div>
             {/* password field */}
             <div className="form_btn">
-              <button className="text-base flex justify-center items-center">
+              <button className="text-base flex justify-center items-center nbtn">
                 {signUpLoading ? (
                   <span className="loading loading-spinner loading-md"></span>
                 ) : (
@@ -202,15 +207,14 @@ const Signup = () => {
               </button>
             </div>
           </form>
-          <h1 className="text-center text-gray-700 font-medium">Or</h1>
-
+          <div className="divider">OR</div>
           {/** Social Media SignUp System */}
-          <Social_Media setSignInLoading={setSignUpLoading}></Social_Media>
+          <Social_Media setGoogleLoading={setGoogleLoading} googleLoading={googleLoading}></Social_Media>
 
           <div className="text-center py-3">
             <p className="text-sm text-gray-700 font-medium">
               Already Have an account?{" "}
-              <Link to="/signin" className="text-[#248479]">
+              <Link to="/signin" className="text-primary">
                 Sign In
               </Link>
             </p>

@@ -17,7 +17,7 @@ const JobPostCard = ({ jobPost }) => {
       <div>
         <h3> {job_title}</h3>
         <div className="job_status">
-          <span className="bg-[#433EBE]">{job_category1}</span>
+          <span className="category">{job_category1}</span>
           <span>{job_category2}</span>
         </div>
 
@@ -39,7 +39,7 @@ const JobPostCard = ({ jobPost }) => {
         <div className="card-actions flex items-center justify-start ">
           <button className="mt-3 mr-3">Apply Now</button>
           <Link to={`job-details/${_id}`}>
-            <div className="mt-3 mr-3 text-primary  cursor-pointer px-5 py-[8px] rounded-xl border-2 border-primary text-[15px]">
+            <div className="mt-3 mr-3 text-primary font-semibold cursor-pointer px-5 py-[8px] rounded-xl border-2 border-primary text-[15px]">
               Details
             </div>
           </Link>
