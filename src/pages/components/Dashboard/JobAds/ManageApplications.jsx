@@ -5,8 +5,11 @@ import { IoCheckmark } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx";
 import { HiDotsVertical } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import { CiMenuKebab } from "react-icons/ci";
+import { MdHideSource } from "react-icons/md";
 
 const ManageApplications = () => {
+  const [showButtons, setShowButtons] = useState(false);
   const [totalPages, setToalPages] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
@@ -64,13 +67,41 @@ const ManageApplications = () => {
             </div>
             <section className="space-x-3 justify-center items-center hidden md:flex">
               <Link className="rounded-xl w-11 h-11 bg-[#433EBE]">
-                <IoEyeOutline className="text-xl font-bold text-white mt-[12px] ml-3"></IoEyeOutline>
-              </Link>
+                <IoEyeOutline className="text-xl font-bold text-white mt-[12px] ml-3"></IoEyeOutline></Link>
+                <Link className="rounded-xl  w-11 h-11 bg-[#433EBE]">
+                <IoCheckmark className="text-xl font-bold text-white mt-[12px] ml-3"></IoCheckmark>
+                </Link>
               <Link className="rounded-xl  w-11 h-11 bg-[#433EBE]">
-                <IoCheckmark className="text-xl font-bold text-white mt-[12px] ml-3"></IoCheckmark></Link>
-              <Link className="rounded-xl  w-11 h-11 bg-[#433EBE]">
-                <RxCross1 className="text-xl font-bold text-white mt-[12px] ml-3"></RxCross1></Link>
+                <RxCross1 className="text-xl font-bold text-white mt-[12px] ml-3"></RxCross1>
+                </Link>
             </section>
+              <div className="flex-none">
+    <ul className="menu  menu-horizontal">
+      <li>
+        <details>
+          <summary>
+          <Link className="rounded-xl w-11 h-11 bg-[#433EBE]">
+              <CiMenuKebab className="text-xl font-bold text-white mt-[12px] ml-3"></CiMenuKebab>
+              </Link>
+          </summary>
+          <ul>
+          {/* <section className="space-x-3 flex justify-center items-center"> */}
+              <li><Link className="rounded-xl w-11 h-11 bg-[#433EBE]">
+              <IoEyeOutline className="text-xl font-bold text-white mt-[12px] ml-3"></IoEyeOutline>
+              </Link></li>
+              <li><Link className="rounded-xl  w-11 h-11 bg-[#433EBE]">
+                <IoCheckmark className="text-xl font-bold text-white mt-[12px] ml-3"></IoCheckmark>
+                </Link></li>
+              <li><Link className="rounded-xl  w-11 h-11 bg-[#433EBE]">
+                <RxCross1 className="text-xl font-bold text-white mt-[12px] ml-3"></RxCross1>
+                </Link></li>
+            {/* </section> */}
+          </ul>
+        </details>
+      </li>
+    </ul>
+  </div>
+          {/* test */}
          </div>
       </div>
       </div>

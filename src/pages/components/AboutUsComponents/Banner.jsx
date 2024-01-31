@@ -2,7 +2,7 @@ const Banner = () => {
   return (
     <div className="about_banner">
       <div className="left_container">
-        <span className="">
+        <span>
           ABOUT
         </span>
         <h2>

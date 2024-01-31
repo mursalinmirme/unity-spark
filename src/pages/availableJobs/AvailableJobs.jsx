@@ -2,11 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import moment from "moment";
 import { useState } from "react";
-import { FaSearch } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import { Link } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
+import { IoIosSearch } from "react-icons/io";
 import Loading from "../components/Loading/Loading";
 const AvailableJobs = () => {
   const [showSearchBar, setShowSearchBar] = useState(true);
@@ -29,7 +29,7 @@ const AvailableJobs = () => {
     ],
     queryFn: async () => {
       const result = await axios.get(
-        `https://unity-spark-server.vercel.app/available-total-jobs-numbers?searching=${searchValues}&sortdate=${sortDate}&jobtypes=${jobType}&worktype=${workType}`
+        `http://localhost:5000/available-total-jobs-numbers?searching=${searchValues}&sortdate=${sortDate}&jobtypes=${jobType}&worktype=${workType}`
       );
       setTotalPages(Math.ceil(result?.data.total / 5));
       console.log("The current documents number is", result?.data);
@@ -53,7 +53,7 @@ const AvailableJobs = () => {
     ],
     queryFn: async () => {
       const result = await axios.get(
-        `https://unity-spark-server.vercel.app/job-ads?skip=${
+        `http://localhost:5000/job-ads?skip=${
           currentPage * 5
         }&searching=${searchValues}&sortdate=${sortDate}&jobtypes=${jobType}&worktype=${workType}`
       );
@@ -95,18 +95,25 @@ const AvailableJobs = () => {
 
   // handle fatch jobs by users wanted date
   const handleDateOnchange = (date) => {
+    setSearchValues(null)
+    setJobType(null)
+    setWorkType(null)
     setSortDate(date.target.value);
     console.log(sortDate);
   };
 
   // handle fatch jobs by users wanted date
   const handleJobTypeOnchange = (jbType) => {
+    setSearchValues(null)
+    setSortDate(null)
     setWorkType(null);
     setJobType(jbType.target.value);
   };
 
   // handle fatch jobs by users wanted date
   const handleWorkTypeOnchange = (wkType) => {
+    setSearchValues(null)
+    setSortDate(null)
     setJobType(null);
     setWorkType(wkType.target.value);
   };
@@ -124,8 +131,7 @@ const AvailableJobs = () => {
             onChange={handleDateOnchange}
             className="border-2 border-primary p-0.5 md:p-1.5 text-primary font-medium rounded-lg space-y-2 text-sm md:text-base"
             name=""
-            id=""
-          >
+            id="">
             <option value="">Date</option>
             <option value="1">Today</option>
             <option value="3">Last 3 days</option>
@@ -137,8 +143,7 @@ const AvailableJobs = () => {
             onChange={handleJobTypeOnchange}
             className="border-2 border-primary p-0.5 md:p-1.5 text-primary font-medium rounded-lg text-sm md:text-base"
             name=""
-            id=""
-          >
+            id="">
             <option value="null">Job Type</option>
             <option value="On-site">On-site</option>
             <option value="Remote">Remote</option>
@@ -148,8 +153,7 @@ const AvailableJobs = () => {
             onChange={handleWorkTypeOnchange}
             className="border-2 border-primary p-0.5 md:p-1.5 text-primary font-medium rounded-lg text-sm md:text-base"
             name=""
-            id=""
-          >
+            id="">
             <option value="null">Work Type</option>
             <option value="Intern">Intern</option>
             <option value="Full-time">Full-time</option>
@@ -157,37 +161,37 @@ const AvailableJobs = () => {
             <option value="Contract">Contract</option>
           </select>
         </div>
-        <div className="flex">
+        <div className="flex search-animation">
           <form
             onSubmit={handleSearches}
             className={`p-0 border-0 m-0 relative ${
               showSearchBar ? "hidden" : "visible"
-            }`}
-          >
+            }`}>
             <input
               name="search"
               defaultValue={searchValues}
-              className="md:py-3 pr-14 m-0 md:w-60 lg:w-80 border-second"
+              className="md:py-1.5 pr-14 m-0 md:w-60 lg:w-80 border-second"
               type="text"
               placeholder="Search..."
             />
-            <button className="absolute top-0 right-0 h-full rounded-none rounded-r-lg">
-              <FaSearch className="text-lg"></FaSearch>
+            <button
+              style={{ background: "#433EBE" }}
+              className="bg-primary absolute top-0 right-0 h-full rounded-none rounded-r-lg">
+              <IoIosSearch className="text-xl text-white"></IoIosSearch>
             </button>
           </form>
           {showSearchBar ? (
             <button
               onClick={() => setShowSearchBar(false)}
-              className="rounded-md md:h-[51.2px]"
-            >
-              <FaSearch className="text-lg"></FaSearch>
+              style={{ background: "#433EBE" }}
+              className="rounded-md md:h-[38px] bg-primary">
+              <IoIosSearch className="text-xl text-white"></IoIosSearch>
             </button>
           ) : (
             <button
               onClick={handleCloseSearchBar}
-              className="rounded-none bg-none text-primary"
-            >
-              <ImCross className="text-lg"></ImCross>
+              className="rounded-none bg-none text-primary">
+              <ImCross></ImCross>
             </button>
           )}
         </div>
@@ -214,12 +218,12 @@ const AvailableJobs = () => {
                   <div className="flex items-center gap-5 ">
                     <p>
                       {" "}
-                      <strong>Salary:</strong> {job?.salary} per year
+                      <span>Salary :</span> {job?.salary} per year
                     </p>
                     |
                     <p className="my-1">
                       {" "}
-                      <strong>Posted:</strong>{" "}
+                      <span>Posted :</span>{" "}
                       {moment(job?.createdAt).startOf("day").fromNow()}
                     </p>
                   </div>
@@ -229,9 +233,15 @@ const AvailableJobs = () => {
                       : job?.job_description}
                   </p>
                   <div className="card-actions justify-start items-center">
+<<<<<<< HEAD
                     <button className="mt-3 mr-3 nbtn">Apply Now</button>
+=======
+                    <Link to={`/apply-job/${job?._id}`}>
+                      <button className="mt-3 mr-3">Apply Now</button>
+                    </Link>
+>>>>>>> 44d34573d3642e6e4b94a3ced2c1aeb94675aef9
                     <Link to={`/job-details/${job?._id}`}>
-                      <div className="mt-3 mr-3 text-primary  cursor-pointer px-5 py-2 rounded-xl border-2 border-primary text-[15px]">
+                      <div className="mt-3 mr-3 text-primary font-semibold cursor-pointer px-5 py-2 rounded-xl border-2 border-primary text-[15px]">
                         View Details
                       </div>
                     </Link>
@@ -252,8 +262,7 @@ const AvailableJobs = () => {
               color: "#433EBE",
               fontSize: "18px",
             }}
-            className="join-item btn"
-          >
+            className="join-item btn">
             <IoIosArrowBack></IoIosArrowBack>
           </button>
           {pagesArray?.map((page, index) => {
@@ -266,8 +275,7 @@ const AvailableJobs = () => {
                   color: `${currentPage == page ? "#FFFFFF" : "#433EBE"}`,
                   fontSize: "18px",
                 }}
-                className="join-item btn"
-              >
+                className="join-item btn">
                 {page + 1}
               </button>
             );
@@ -279,8 +287,7 @@ const AvailableJobs = () => {
               color: "#433EBE",
               fontSize: "18px",
             }}
-            className="join-item btn"
-          >
+            className="join-item btn">
             <IoIosArrowForward></IoIosArrowForward>
           </button>
         </div>
