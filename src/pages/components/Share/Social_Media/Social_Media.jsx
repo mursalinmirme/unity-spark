@@ -4,10 +4,10 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import google_Icon from "../../../../assets/images/google-icon.png";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 const Social_Media = ({ setGoogleLoading, googleLoading }) => {
   const { googleLoginSystem } = useContext(AuthContext);
   const navigate = useNavigate();
-  const axiosPublic = useAxiosPublic();
   const handlerGoogleLogin = () => {
     setGoogleLoading(true);
     googleLoginSystem()
