@@ -126,10 +126,10 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           {user?.email ? (
-            <button onClick={SignOut}>Sign out </button>
+            <button onClick={SignOut} className="nbtn">Sign out </button>
           ) : (
             <Link to={"/signin"}>
-              <button>Join Now</button>
+              <button className="nbtn">Join Now</button>
             </Link>
           )}
         </div>

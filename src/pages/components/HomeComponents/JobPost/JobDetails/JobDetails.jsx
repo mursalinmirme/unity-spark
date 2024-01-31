@@ -3,15 +3,29 @@ import { GoDotFill } from "react-icons/go";
 import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import useUserInfo from "../../../../../hooks/useUserInfo";
+import { AuthContext } from "../../../../../Provider/AuthProvider";
+import JobApplyForm from "../JobApplyForm";
 
 const JobDetails = () => {
   const { id } = useParams();
   const [currentAds, setCurrentAds] = useState(id);
+  const [users] = useUserInfo()
+  const { profileComplete } = useContext(AuthContext);
+  
+  const {name, image, email, skills, gender, age, current_address, permanent_address, institute_name, phone, resume_link, time_preference, job_preference, education_level} = users || {}
   // const handleReFetch = () => {
   //   refetch();
   //   refetchForMore();
   // }
+
+  const handleApply = () => {
+    profileComplete > 95 ? 
+    toast.success("Successfully applied")
+    :
+    document.getElementById('my_modal_1').showModal()
+  }
 
   // get current page job info
   const { data: jobInfo, refetch } = useQuery({
@@ -148,7 +162,7 @@ const JobDetails = () => {
         <div className="flex gap-4 pt-8">
           <span
             className="px-8 py-2.5 bg-primary text-white rounded-xl cursor-pointer text-[14px]"
-            onClick={() => toast.success("Successfully applied")}
+            onClick={handleApply}
           >
             {" "}
             Apply Now{" "}
@@ -212,6 +226,9 @@ const JobDetails = () => {
           </Link>
         </div>
       </div>
+
+      {/* MODAL */}
+      <JobApplyForm></JobApplyForm>
     </div>
   );
 };

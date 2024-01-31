@@ -3,10 +3,13 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { IoEyeOutline } from "react-icons/io5";
 import { IoCheckmark } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx";
+import { HiDotsVertical } from "react-icons/hi";
 import { Link } from "react-router-dom";
+
 const ManageApplications = () => {
   const [totalPages, setToalPages] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   // handle next btn pagination
   const handleRightPagi = () => {
     if (currentPage + 1 < totalPages) {
@@ -23,7 +26,7 @@ const ManageApplications = () => {
 
   const pagesArray = Array.from({ length: totalPages / 5 }, (_, index) => index);
 
-  return <div className="py-10">
+  return <div className="py-10" id="manage_applications">
 
       <div className="min-h-[460px]">
       <div className="border-2 border-[#D9D9D9] rounded-xl px-2 md:px-5 py-2">
@@ -37,9 +40,32 @@ const ManageApplications = () => {
               <h1 className="font-semibold text-lg text-[#5B5555]">applied 8min ago</h1>
             </div>
             </div>
-            <section className="space-x-3 flex justify-center items-center">
+            <div className="relative md:hidden">
+              <div className="text-white bg-primary p-2 rounded-lg cursor-pointer" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+                <HiDotsVertical />
+              </div>
+              <div className={`absolute right-0 w-12 bg-white drop-shadow-lg rounded-lg p-2 ${isDropdownOpen ? 'block' : 'hidden'}`}>
+                <Link className="rounded-xl bg-[#433EBE]">
+                  <div className="bg-primary w-8 h-7 mx-auto rounded-md flex items-center justify-center">
+                    <IoEyeOutline className="text-md font-bold text-white"></IoEyeOutline>                    
+                  </div>
+                </Link>
+                <Link>
+                  <div className="bg-primary w-8 h-7 mx-auto rounded-md flex items-center justify-center mt-2">
+                    <IoCheckmark className="text-md font-bold text-white"></IoCheckmark>                    
+                  </div>
+                </Link>
+                <Link className="rounded-xl bg-[#433EBE]">
+                  <div className="bg-primary w-8 h-7 mx-auto rounded-md flex items-center justify-center mt-2">
+                    <RxCross1 className="text-md font-bold text-white"></RxCross1>                    
+                  </div>
+                </Link>
+              </div>
+            </div>
+            <section className="space-x-3 justify-center items-center hidden md:flex">
               <Link className="rounded-xl w-11 h-11 bg-[#433EBE]">
-              <IoEyeOutline className="text-xl font-bold text-white mt-[12px] ml-3"></IoEyeOutline></Link>
+                <IoEyeOutline className="text-xl font-bold text-white mt-[12px] ml-3"></IoEyeOutline>
+              </Link>
               <Link className="rounded-xl  w-11 h-11 bg-[#433EBE]">
                 <IoCheckmark className="text-xl font-bold text-white mt-[12px] ml-3"></IoCheckmark></Link>
               <Link className="rounded-xl  w-11 h-11 bg-[#433EBE]">

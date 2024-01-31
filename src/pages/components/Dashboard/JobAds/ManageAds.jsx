@@ -83,14 +83,14 @@ const ManageAds = () => {
               type="text"
               placeholder="Search..."
             />
-            <button className="absolute top-0 left-0 h-full rounded-none rounded-s-lg">
+            <button className="absolute top-0 left-0 h-full rounded-none rounded-s-lg bg-primary text-white px-3">
               <FaSearch className="text-lg"></FaSearch>
             </button>
           </form>
           {showSearchBar ? (
             <button
               onClick={() => setShowSearchBar(false)}
-              className="rounded-md md:h-[40.2px]"
+              className="rounded-md bg-primary text-white p-2"
             >
               <FaSearch className="text-lg"></FaSearch>
             </button>
@@ -106,7 +106,7 @@ const ManageAds = () => {
 
         <div>
           <Link to="/dashboard/addJobs">
-            <p className="flex items-center gap-2 text-[#433ebe] font-inter font-semibold border-[3px] border-[#433ebe] p-2 rounded-lg">
+            <p className="flex items-center gap-2 text-[#433ebe] font-inter font-semibold border-[2px] border-[#433ebe] p-2 rounded-lg">
               <LuPenLine></LuPenLine> <span>New Ad</span>
             </p>
           </Link>

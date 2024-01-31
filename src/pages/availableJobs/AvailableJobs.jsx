@@ -229,7 +229,7 @@ const AvailableJobs = () => {
                       : job?.job_description}
                   </p>
                   <div className="card-actions justify-start items-center">
-                    <button className="mt-3 mr-3">Apply Now</button>
+                    <button className="mt-3 mr-3 nbtn">Apply Now</button>
                     <Link to={`/job-details/${job?._id}`}>
                       <div className="mt-3 mr-3 text-primary  cursor-pointer px-5 py-2 rounded-xl border-2 border-primary text-[15px]">
                         View Details
