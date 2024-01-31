@@ -89,24 +89,21 @@ const ManageAds = () => {
               <IoIosSearch className="text-xl text-white"></IoIosSearch>
             </button>
           </form>
-          <div>
-            {showSearchBar ? (
-              <button
-                style={{ background: "#433EBE" }}
-                onClick={() => setShowSearchBar(false)}
-                className="rounded-md py-2 px-4"
-              >
-                <IoIosSearch className="text-xl text-white"></IoIosSearch>
-              </button>
-            ) : (
-              <button
-                onClick={handleCloseSearchBar}
-                className="rounded-none bg-none text-primary left-0"
-              >
-                <ImCross className="text-lg"></ImCross>
-              </button>
-            )}
-          </div>
+          {showSearchBar ? (
+            <button
+              onClick={() => setShowSearchBar(false)}
+              className="rounded-md bg-primary text-white p-2"
+            >
+              <FaSearch className="text-lg"></FaSearch>
+            </button>
+          ) : (
+            <button
+              onClick={handleCloseSearchBar}
+              className="rounded-none bg-none text-primary left-0"
+            >
+              <ImCross className="text-lg"></ImCross>
+            </button>
+          )}
         </div>
 
         <div>
@@ -122,25 +119,25 @@ const ManageAds = () => {
         {ourAllJobs?.map((job) => {
           return (
             <div
-              className="border-2 px-5 py-3 my-4 rounded-lg flex justify-between items-center"
+              className="border-2 p-3 my-4 rounded-lg flex justify-between items-center"
               key={job?._id}
             >
               <div>
-                <h3 className="text-lg font-semibold">
-                  {job?.job_title} - {job?.job_category2} - {job?.job_category1}
+                <h3 className="text-md font-bold">
+                  {job?.job_title} -{" "}
+                  <span className="text-slate-500 font-medium ">
+                    {" "}
+                    {job?.job_category1}
+                  </span>
                 </h3>
-                <h6>
-                  <strong>Posted:</strong>{" "}
-                  {moment(job?.createdAt).startOf("day").fromNow()}
-                </h6>
               </div>
-              <div className="flex gap-2 text-white text-lg ">
-                <Link className="rounded-md p-2 bg-[#433EBE] flex items-center justify-center">
-                  <AiFillEdit></AiFillEdit>
-                </Link>
-                <Link className="rounded-md p-2 bg-[#433EBE] flex items-center justify-center">
-                  <RiDeleteBin6Line></RiDeleteBin6Line>
-                </Link>
+              <div className="space-x-4 ">
+                <button className="bg-primary rounded-md px-3 text-white py-2.5 ">
+                  <AiFillEdit className="text-xl"></AiFillEdit>
+                </button>
+                <button className="bg-primary rounded-md px-3 text-white py-2.5 ">
+                  <RiDeleteBin6Line className="text-xl"></RiDeleteBin6Line>
+                </button>
               </div>
             </div>
           );

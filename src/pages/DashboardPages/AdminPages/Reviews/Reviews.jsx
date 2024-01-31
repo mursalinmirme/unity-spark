@@ -42,33 +42,40 @@ const Reviews = () => {
         <h1 className="text-2xl md:text-3xl font-bold">Reviews</h1>
         {isUser?.role === "employee" && (
           <Link to={"add-review"}>
-            <a className="flex gap-2 items-center text-primary font-inter font-bold text-sm border-2 rounded-lg cursor-pointer border-primary py-1 px-2 hover:bg-primary hover:text-white transition-all duration-500">
-              <GoThumbsup className="text-lg" />
+            <a className="flex gap-2 items-center text-primary font-inter font-bold text-sm border-2 rounded-lg cursor-pointer border-primary py-2 px-2 md:px-5 hover:bg-primary hover:text-white transition-all duration-500">
+              <AiOutlineLike className="text-2xl" />
               <span>Add Review</span>
             </a>
           </Link>
         )}
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {reviews?.map((item) => (
           <div className="border-2 rounded-lg p-3" key={item._id}>
             <div className="flex items-center gap-5">
               <img className="h-12 w-12 rounded-full" src={item.image} alt="" />
               <div>
-                <h1 className="text-xl font-bold">{item.name}</h1>
-                <p className="text-[#5B5555] font-semibold">
+                <h1 className="text-[20px] font-bold">{item.name}</h1>
+                <p className="text-[#5B5555] text-[14px]">
                   {item.employeePosition}
                 </p>
               </div>
             </div>
             <p className="text-[#5B5555] font-medium mt-3">
-              "
               {item.description.length > 55 ? (
-                <span>{item.description.slice(0, 55)}...</span>
+                <span>
+                  {" "}
+                  {'"'}
+                  {item.description.slice(0, 55)}...{'"'}
+                </span>
               ) : (
-                <span>{item.description}</span>
+                <span>
+                  {" "}
+                  {'"'}
+                  {item.description}
+                  {'"'}
+                </span>
               )}
-              "
             </p>
           </div>
         ))}
