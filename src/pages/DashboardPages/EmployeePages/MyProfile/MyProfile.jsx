@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import EmployeeProfileEdit from "./EmployeeProfileEdit";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 
 const tabs = [
@@ -38,8 +37,8 @@ const MyProfile = () => {
   const [isActive, setIsActive] = useState(0);
   const [openEditor, setOpenEditor] = useState(false);
   const { user } = useContext(AuthContext);
-  const axiosPublic = useAxiosPublic()
-  const { data, isLoading } = useQuery({
+  const axiosPublic = useAxiosPublic();
+  const { data } = useQuery({
     queryKey: ["user_data"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/users/${user?.email}`);

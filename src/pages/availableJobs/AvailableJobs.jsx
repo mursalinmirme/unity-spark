@@ -40,11 +40,7 @@ const AvailableJobs = () => {
   });
 
   // fetch all jobs cards
-  const {
-    data: allJobs = [],
-    refetch,
-    isFetching,
-  } = useQuery({
+  const { data: allJobs = [], isFetching } = useQuery({
     queryKey: [
       "allJobsAds",
       currentPage,
@@ -133,8 +129,7 @@ const AvailableJobs = () => {
             onChange={handleDateOnchange}
             className="border-2 border-primary p-0.5 md:p-1.5 text-primary font-medium rounded-lg space-y-2 text-sm md:text-base"
             name=""
-            id=""
-          >
+            id="">
             <option value="">Date</option>
             <option value="1">Today</option>
             <option value="3">Last 3 days</option>
@@ -146,8 +141,7 @@ const AvailableJobs = () => {
             onChange={handleJobTypeOnchange}
             className="border-2 border-primary p-0.5 md:p-1.5 text-primary font-medium rounded-lg text-sm md:text-base"
             name=""
-            id=""
-          >
+            id="">
             <option value="null">Job Type</option>
             <option value="On-site">On-site</option>
             <option value="Remote">Remote</option>
@@ -157,8 +151,7 @@ const AvailableJobs = () => {
             onChange={handleWorkTypeOnchange}
             className="border-2 border-primary p-0.5 md:p-1.5 text-primary font-medium rounded-lg text-sm md:text-base"
             name=""
-            id=""
-          >
+            id="">
             <option value="null">Work Type</option>
             <option value="Intern">Intern</option>
             <option value="Full-time">Full-time</option>
@@ -171,8 +164,7 @@ const AvailableJobs = () => {
             onSubmit={handleSearches}
             className={`p-0 border-0 m-0 search-box ${
               showSearchBar && "active-search"
-            }`}
-          >
+            }`}>
             <input
               name="search"
               defaultValue={searchValues}
@@ -181,7 +173,10 @@ const AvailableJobs = () => {
               placeholder="Search..."
             />
             <div>
-              <button onClick={() => setShowSearchBar(true)} style={{ background: "#433EBE" }} className="search-btn">
+              <button
+                onClick={() => setShowSearchBar(true)}
+                style={{ background: "#433EBE" }}
+                className="search-btn">
                 <IoIosSearch className="text-xl text-white"></IoIosSearch>
               </button>
             </div>
@@ -189,8 +184,7 @@ const AvailableJobs = () => {
               {showSearchBar && (
                 <button
                   onClick={handleCloseSearchBar}
-                  className="rounded-none bg-none text-primary cancel-btn"
-                >
+                  className="rounded-none bg-none text-primary cancel-btn">
                   <ImCross></ImCross>
                 </button>
               )}
@@ -252,7 +246,9 @@ const AvailableJobs = () => {
                       : job?.job_description}
                   </p>
                   <div className="card-actions justify-start items-center">
-                    <button className="mt-3 mr-3 nbtn">Apply Now</button>
+                    <Link to={`/apply-job/${job?._id}`}>
+                      <button className="mt-3 mr-3 nbtn">Apply Now</button>
+                    </Link>
                     <Link to={`/job-details/${job?._id}`}>
                       <div className="mt-3 mr-3 text-primary font-semibold cursor-pointer px-5 py-2 rounded-xl border-2 border-primary text-[15px]">
                         View Details
@@ -275,8 +271,7 @@ const AvailableJobs = () => {
               color: "#433EBE",
               fontSize: "18px",
             }}
-            className="join-item btn"
-          >
+            className="join-item btn">
             <IoIosArrowBack></IoIosArrowBack>
           </button>
           {pagesArray?.map((page, index) => {
@@ -289,8 +284,7 @@ const AvailableJobs = () => {
                   color: `${currentPage == page ? "#FFFFFF" : "#433EBE"}`,
                   fontSize: "18px",
                 }}
-                className="join-item btn"
-              >
+                className="join-item btn">
                 {page + 1}
               </button>
             );
@@ -302,8 +296,7 @@ const AvailableJobs = () => {
               color: "#433EBE",
               fontSize: "18px",
             }}
-            className="join-item btn"
-          >
+            className="join-item btn">
             <IoIosArrowForward></IoIosArrowForward>
           </button>
         </div>
