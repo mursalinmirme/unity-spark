@@ -203,7 +203,7 @@ const UserProfile = () => {
           )) || "N/A"}
         </label>
         {/* Skills field End */}
-        {/* Resume field */}git
+        {/* Resume field */}
         <label>
           <div className="pt-1 mb-2">
             <span className="font-bold font-inter  ">Resume :</span>
@@ -215,17 +215,6 @@ const UserProfile = () => {
             </div>
           </a>
         </label>
-        {/* <label>
-          <div className="label">
-            <span className="font-bold font-inter">Resume : </span>
-            <label className="font-semibold  text-white cursor-pointer font-inter text-base px-8   sm:py-[4px] md:py-[8px] bg-primary rounded-xl transition-all duration-500 text-[15px]">
-              <div className="flex  gap-2">
-                {" "}
-                <img src={download_icon} alt="" /> <span> Download</span>{" "}
-              </div>
-            </label>
-          </div>
-        </label> */}
       </div>
     </div>
   );
