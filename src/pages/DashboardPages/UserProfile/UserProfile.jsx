@@ -89,7 +89,8 @@ const UserProfile = () => {
 
             <Link
               to="/dashboard/userProfileEdit"
-              className="flex gap-2 items-center text-primary font-inter font-semibold text-sm border-2 rounded-lg cursor-pointer border-primary py-1 px-3 hover:bg-primary hover:text-white transition-all duration-500">
+              className="flex gap-2 items-center text-primary font-inter font-semibold text-sm border-2 rounded-lg cursor-pointer border-primary py-1 px-3 hover:bg-primary hover:text-white transition-all duration-500"
+            >
               <span>Edit Info</span>
               <FiEdit3 />
             </Link>
@@ -122,8 +123,8 @@ const UserProfile = () => {
       <div className="grid md:grid-cols-2 gap-2 mt-7">
         {/* Email field */}
         <label>
-          <div className="label">
-            <span className="font-extrabold font-inter">Email :</span>
+          <div className="">
+            <span className="font-bold font-inter">Email :</span>
           </div>
           <p className="font-inter"> {users?.email} </p>
         </label>
@@ -131,8 +132,8 @@ const UserProfile = () => {
 
         {/* phone Number*/}
         <label>
-          <div className="label">
-            <span className="font-extrabold font-inter">Phone :</span>
+          <div className="">
+            <span className="font-bold font-inter">Phone :</span>
           </div>
           <p className="font-inter"> {users?.phone || "N/A"} </p>
         </label>
@@ -142,7 +143,7 @@ const UserProfile = () => {
       <div className="grid md:grid-cols-2 gap-2">
         {/* Current Address field */}
         <label>
-          <div className="label">
+          <div className="pt-1">
             <span className="font-bold font-inter">Current Address :</span>
           </div>
           <p className="font-inter"> {users?.current_address || "N/A"}</p>
@@ -151,7 +152,7 @@ const UserProfile = () => {
 
         {/* Permanent Address */}
         <label>
-          <div className="label">
+          <div className="pt-1">
             <span className="font-bold font-inter">Permanent Address :</span>
           </div>
 
@@ -163,7 +164,7 @@ const UserProfile = () => {
       <div className="grid md:grid-cols-2 gap-2">
         {/* Age field */}
         <label>
-          <div className="label">
+          <div className="pt-1">
             <span className="font-bold font-inter">Age :</span>
           </div>
           <p className="font-inter"> {users?.age || "N/A"} </p>
@@ -172,7 +173,7 @@ const UserProfile = () => {
 
         {/* Your Gender Select */}
         <label>
-          <div className="label">
+          <div className="pt-1">
             <span className="font-bold font-inter">Gender :</span>
           </div>
           <p className="font-inter"> {users?.gender || "N/A"} </p>
@@ -183,7 +184,7 @@ const UserProfile = () => {
       <div className="grid md:grid-cols-2 gap-2">
         {/* name field */}
         <label>
-          <div className="label">
+          <div className="pt-1">
             <span className="font-bold font-inter">Education Level :</span>
           </div>
           <p className="font-inter"> {users?.education_level || "N/A"} </p>
@@ -192,7 +193,7 @@ const UserProfile = () => {
 
         {/* Institute Name field */}
         <label>
-          <div className="label">
+          <div className="pt-1">
             <span className="font-bold font-inter">Institute Name :</span>
           </div>
           <p className="font-inter"> {users?.institute_name || "N/A"}</p>
@@ -203,7 +204,7 @@ const UserProfile = () => {
       <div className="grid md:grid-cols-2 gap-2">
         {/* Job Preference field */}
         <label>
-          <div className="label">
+          <div className="pt-1">
             <span className="font-bold font-inter">Job Preference :</span>
           </div>
           <p className="font-inter">{users?.job_preference || "N/A"} </p>
@@ -212,7 +213,7 @@ const UserProfile = () => {
 
         {/* Time Preference field */}
         <label>
-          <div className="label">
+          <div className="pt-1">
             <span className="font-bold font-inter">Time Preference :</span>
           </div>
 
@@ -224,14 +225,15 @@ const UserProfile = () => {
       <div className="grid md:grid-cols-2 gap-2">
         {/* Skills field */}
         <label>
-          <div className="label">
+          <div className="pt-1 mb-2">
             <span className="font-bold font-inter">Skills :</span>
           </div>
           {users?.skills?.map((skill, index) => (
             <span
               key={index}
-              className="mr-2 text-primary bg-[#d0d8e0] py-1 px-3 rounded-full text-sm font-medium">
-              {skill?.label}
+              className="mr-2 text-primary bg-[#d0d8e0] py-1 px-3 rounded-full text-sm font-medium"
+            >
+              {skill?.value},{skill?.label}
             </span>
           )) || "N/A"}
         </label>
@@ -240,8 +242,8 @@ const UserProfile = () => {
         {/* Resume field */}
 
         <label>
-          <div className="label">
-            <span className="font-bold font-inter">Resume :</span>
+          <div className="pt-1 mb-2">
+            <span className="font-bold font-inter  ">Resume :</span>
           </div>
           <a href={users?.resume_link} target="blank">
             <div className="flex w-44 gap-2 font-semibold  text-white cursor-pointer font-inter text-base px-8 py-[8px] bg-primary rounded-xl transition-all duration-500 text-[15px]">
