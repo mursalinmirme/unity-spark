@@ -115,7 +115,7 @@ const ContactUs = () => {
               )}
             </div>
             <div>
-              <button>Send Message</button>
+              <button className="nbtn">Send Message</button>
             </div>
           </form>
         </div>
