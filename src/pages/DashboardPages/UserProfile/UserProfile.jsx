@@ -5,62 +5,28 @@ import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import useUserInfo from "../../../hooks/useUserInfo";
 import { LuDownload } from "react-icons/lu";
-import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 const UserProfile = () => {
-  const [count, setCount] = useState(0);
-  const { user } = useContext(AuthContext);
-  const axiosPublic = useAxiosPublic();
-  let total = 0;
-  const { data: users = [] } = useQuery({
-    queryKey: ["usersInformation"],
-    enabled: !!user?.email,
-    queryFn: async () => {
-      const res = await axiosPublic.get(`/users/${user?.email}`);
-      if (res.data.name) {
-        total += 8.3333333333333;
-      }
-      if (res.data.email) {
-        total += 8.3333333333333;
-      }
-      if (res.data.image) {
-        total += 8.3333333333333;
-      }
-      if (res.data.skills.length > 0) {
-        total += 8.3333333333333;
-      }
-      if (res.data.age) {
-        total += 8.3333333333333;
-      }
-      if (res.data.current_address) {
-        total += 8.3333333333333;
-      }
-      if (res.data.gender) {
-        total += 8.3333333333333;
-      }
-      if (res.data.job_preference) {
-        total += 8.3333333333333;
-      }
-      if (res.data.permanent_address) {
-        total += 8.3333333333333;
-      }
-      if (res.data.phone) {
-        total += 8.3333333333333;
-      }
-      if (res.data.resume_link) {
-        total += 8.3333333333333;
-      }
-      if (res.data.time_preference) {
-        total += 8.3333333333333;
-      }
+  const { profileComplete } = useContext(AuthContext);
+  const [users] = useUserInfo();
+  const {
+    name,
+    image,
+    email,
+    skills,
+    gender,
+    age,
+    current_address,
+    permanent_address,
+    institute_name,
+    phone,
+    resume_link,
+    time_preference,
+    job_preference,
+    education_level,
+  } = users || {};
 
-      setCount(total);
-      return res?.data;
-    },
-  });
-
-  console.log(users);
   return (
     <div>
       <div className="user_profile_container">
@@ -103,10 +69,10 @@ const UserProfile = () => {
           <h2 className="text-[22px] font-bold font-inter">
             Completed You Profile
           </h2>
-          <h2> {count.toFixed(2)}% </h2>
+          <h2> {profileComplete.toFixed(2)}% </h2>
         </div>
         <ProgressBar
-          completed={count}
+          completed={profileComplete}
           bgColor="#433ebe"
           height="15px"
           baseBgColor="#e3e2f5"

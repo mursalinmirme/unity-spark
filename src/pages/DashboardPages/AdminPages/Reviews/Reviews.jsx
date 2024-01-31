@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
 import { AiOutlineLike } from "react-icons/ai";
+import { GoThumbsup } from "react-icons/go";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import "./review.css";
 import { Link } from "react-router-dom";

@@ -4,10 +4,10 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import google_Icon from "../../../../assets/images/google-icon.png";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 const Social_Media = ({ setGoogleLoading, googleLoading }) => {
   const { googleLoginSystem } = useContext(AuthContext);
   const navigate = useNavigate();
-
   const handlerGoogleLogin = () => {
     setGoogleLoading(true);
     googleLoginSystem()
@@ -57,11 +57,11 @@ const Social_Media = ({ setGoogleLoading, googleLoading }) => {
 
   return (
     <div onClick={handlerGoogleLogin}>
-      <div className="flex justify-center">
+      <div className="flex justify-center border cursor-pointer border-[#433EBE] py-2.5 rounded-md w-full">
         {googleLoading ? (
-          <span className="border py-2.5 rounded-md loading loading-spinner loading-md"></span>
+          <span className="loading loading-spinner loading-sm"></span>
         ) : (
-          <span className="border btn-outline cursor-pointer border-[#433EBE] px-3 py-2.5 rounded-md w-full  flex items-center justify-center gap-2 text-sm">
+          <span className="flex items-center justify-center gap-2 text-sm">
             <span>
               <img className="h-5" src={google_Icon} alt="Google" />
             </span>{" "}

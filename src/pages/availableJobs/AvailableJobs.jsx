@@ -164,7 +164,7 @@ const AvailableJobs = () => {
             <option value="Contract">Contract</option>
           </select>
         </div>
-        <div className="flex search-animation">
+        <div className="flex gap-2 search-animation">
           <form
             onSubmit={handleSearches}
             className={`p-0 border-0 m-0 relative ${
@@ -180,7 +180,7 @@ const AvailableJobs = () => {
             />
             <button
               style={{ background: "#433EBE" }}
-              className="bg-primary absolute top-0 right-0 h-full rounded-none rounded-r-lg"
+              className="bg-primary absolute top-0 right-0 h-full rounded-none rounded-r-lg px-4"
             >
               <IoIosSearch className="text-xl text-white"></IoIosSearch>
             </button>
@@ -189,7 +189,7 @@ const AvailableJobs = () => {
             <button
               onClick={() => setShowSearchBar(false)}
               style={{ background: "#433EBE" }}
-              className="rounded-md md:h-[38px] bg-primary"
+              className="rounded-md md:h-[38px] bg-primary px-4"
             >
               <IoIosSearch className="text-xl text-white"></IoIosSearch>
             </button>
@@ -240,9 +240,7 @@ const AvailableJobs = () => {
                       : job?.job_description}
                   </p>
                   <div className="card-actions justify-start items-center">
-                    <Link to={`/apply-job/${job?._id}`}>
-                      <button className="mt-3 mr-3">Apply Now</button>
-                    </Link>
+                    <button className="mt-3 mr-3 nbtn">Apply Now</button>
                     <Link to={`/job-details/${job?._id}`}>
                       <div className="mt-3 mr-3 text-primary font-semibold cursor-pointer px-5 py-2 rounded-xl border-2 border-primary text-[15px]">
                         View Details
