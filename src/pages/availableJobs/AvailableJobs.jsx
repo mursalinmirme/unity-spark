@@ -8,8 +8,10 @@ import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosSearch } from "react-icons/io";
 import Loading from "../components/Loading/Loading";
+import "./searchAnimation.css";
+
 const AvailableJobs = () => {
-  const [showSearchBar, setShowSearchBar] = useState(true);
+  const [showSearchBar, setShowSearchBar] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [searchValues, setSearchValues] = useState(null);
@@ -90,7 +92,7 @@ const AvailableJobs = () => {
 
   // handle close search bar
   const handleCloseSearchBar = () => {
-    setShowSearchBar(true);
+    setShowSearchBar(false);
   };
 
   // handle fatch jobs by users wanted date
@@ -164,28 +166,38 @@ const AvailableJobs = () => {
             <option value="Contract">Contract</option>
           </select>
         </div>
-        <div className="flex gap-2 search-animation">
+        <div className="flex gap-2">
           <form
             onSubmit={handleSearches}
-            className={`p-0 border-0 m-0 relative ${
-              showSearchBar ? "hidden" : "visible"
+            className={`p-0 border-0 m-0 search-box ${
+              showSearchBar && "active-search"
             }`}
           >
             <input
               name="search"
               defaultValue={searchValues}
-              className="md:py-1.5 pr-14 m-0 md:w-60 lg:w-80 border-second"
               type="text"
+              className=""
               placeholder="Search..."
             />
-            <button
-              style={{ background: "#433EBE" }}
-              className="bg-primary absolute top-0 right-0 h-full rounded-none rounded-r-lg px-4"
-            >
-              <IoIosSearch className="text-xl text-white"></IoIosSearch>
-            </button>
+            <div>
+              <button onClick={() => setShowSearchBar(true)} style={{ background: "#433EBE" }} className="search-btn">
+                <IoIosSearch className="text-xl text-white"></IoIosSearch>
+              </button>
+            </div>
+            <div>
+              {showSearchBar && (
+                <button
+                  onClick={handleCloseSearchBar}
+                  className="rounded-none bg-none text-primary cancel-btn"
+                >
+                  <ImCross></ImCross>
+                </button>
+              )}
+            </div>
           </form>
-          {showSearchBar ? (
+
+          {/* {showSearchBar ? (
             <button
               onClick={() => setShowSearchBar(false)}
               style={{ background: "#433EBE" }}
@@ -200,7 +212,7 @@ const AvailableJobs = () => {
             >
               <ImCross></ImCross>
             </button>
-          )}
+          )} */}
         </div>
       </div>
       {/* middle */}
