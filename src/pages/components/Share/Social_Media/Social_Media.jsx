@@ -7,7 +7,7 @@ import google_Icon from "../../../../assets/images/google-icon.png";
 const Social_Media = ({ setGoogleLoading, googleLoading }) => {
   const { googleLoginSystem } = useContext(AuthContext);
   const navigate = useNavigate();
-  const axiosPublic = useAxiosPublic();
+
   const handlerGoogleLogin = () => {
     setGoogleLoading(true);
     googleLoginSystem()

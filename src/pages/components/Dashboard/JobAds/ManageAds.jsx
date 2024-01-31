@@ -73,7 +73,8 @@ const ManageAds = () => {
             onSubmit={handleSearches}
             className={`p-0 border-0 m-0 relative ${
               showSearchBar ? "hidden" : "visible"
-            }`}>
+            }`}
+          >
             <input
               name="search"
               className="md:py-2 pl-14 m-0 md:w-60 lg:w-80 border-second"
@@ -87,18 +88,15 @@ const ManageAds = () => {
           {showSearchBar ? (
             <button
               onClick={() => setShowSearchBar(false)}
-<<<<<<< HEAD
               className="rounded-md bg-primary text-white p-2"
             >
-=======
-              className="rounded-md md:h-[40.2px]">
->>>>>>> 44d34573d3642e6e4b94a3ced2c1aeb94675aef9
               <FaSearch className="text-lg"></FaSearch>
             </button>
           ) : (
             <button
               onClick={handleCloseSearchBar}
-              className="rounded-none bg-none text-primary left-0">
+              className="rounded-none bg-none text-primary left-0"
+            >
               <ImCross className="text-lg"></ImCross>
             </button>
           )}
@@ -118,21 +116,22 @@ const ManageAds = () => {
           return (
             <div
               className="border-2 p-3 my-4 rounded-lg flex justify-between items-center"
-              key={job?._id}>
+              key={job?._id}
+            >
               <div>
-                <h3 className="text-lg font-semibold">
-                  {job?.job_title} - {job?.job_category2} - {job?.job_category1}
+                <h3 className="text-md font-bold">
+                  {job?.job_title} -{" "}
+                  <span className="text-slate-500 font-medium ">
+                    {" "}
+                    {job?.job_category1}
+                  </span>
                 </h3>
-                <h6>
-                  <strong>Posted:</strong>{" "}
-                  {moment(job?.createdAt).startOf("day").fromNow()}
-                </h6>
               </div>
-              <div className="space-x-4">
-                <button className="bg-primary rounded-md px-2.5">
+              <div className="space-x-4 ">
+                <button className="bg-primary rounded-md px-3 text-white py-2.5 ">
                   <AiFillEdit className="text-xl"></AiFillEdit>
                 </button>
-                <button className="bg-primary rounded-md px-2.5">
+                <button className="bg-primary rounded-md px-3 text-white py-2.5 ">
                   <RiDeleteBin6Line className="text-xl"></RiDeleteBin6Line>
                 </button>
               </div>
@@ -151,7 +150,8 @@ const ManageAds = () => {
                 color: "#433EBE",
                 fontSize: "18px",
               }}
-              className="join-item btn">
+              className="join-item btn"
+            >
               <IoIosArrowBack></IoIosArrowBack>
             </button>
             {pagesArray?.map((page, index) => {
@@ -167,7 +167,8 @@ const ManageAds = () => {
                     borderRadius: "5px",
                     fontSize: "18px",
                   }}
-                  className="join-item btn">
+                  className="join-item btn"
+                >
                   {page}
                 </button>
               );
@@ -179,7 +180,8 @@ const ManageAds = () => {
                 color: "#433EBE",
                 fontSize: "18px",
               }}
-              className="join-item btn">
+              className="join-item btn"
+            >
               <IoIosArrowForward></IoIosArrowForward>
             </button>
           </div>
