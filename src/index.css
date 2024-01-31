@@ -9,11 +9,11 @@ body {
 }
 
 /* COMMON ITEMS */
-button {
+.nbtn {
   @apply text-white font-semibold font-inter text-base px-4 py-2.5 rounded-xl transition-all duration-500 text-[15px];
 }
 
-button {
+.nbtn {
   background-image: linear-gradient(
     to right,
     #46a6e2,
@@ -25,7 +25,7 @@ button {
   background-position: right;
 }
 
-button:hover {
+.nbtn:hover {
   background-position: left;
 }
 
@@ -376,4 +376,11 @@ h6,
 
 .info p {
   font-weight: 500;
+}
+
+
+/* */
+
+#manage_applications summary::marker {
+  display: none!important
 }

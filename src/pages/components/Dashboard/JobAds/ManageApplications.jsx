@@ -3,13 +3,16 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { IoEyeOutline } from "react-icons/io5";
 import { IoCheckmark } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx";
+import { HiDotsVertical } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { CiMenuKebab } from "react-icons/ci";
 import { MdHideSource } from "react-icons/md";
+
 const ManageApplications = () => {
   const [showButtons, setShowButtons] = useState(false);
   const [totalPages, setToalPages] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   // handle next btn pagination
   const handleRightPagi = () => {
     if (currentPage + 1 < totalPages) {

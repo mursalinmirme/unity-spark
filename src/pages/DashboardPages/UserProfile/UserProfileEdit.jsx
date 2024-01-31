@@ -4,6 +4,7 @@ import { Controller, useForm } from "react-hook-form";
 import download_icon from "../../../assets/images/download-Icon.png";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { SlCloudUpload } from "react-icons/sl";
 import Select from "react-select";
 import { CgProfile } from "react-icons/cg";
 import { AuthContext } from "../../../Provider/AuthProvider";
@@ -12,6 +13,7 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 const UserProfileEdit = () => {
   const { register, handleSubmit, control, reset } = useForm();
+  const [updateLoading, setUpdateLoading] = useState(false);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
@@ -36,7 +38,9 @@ const UserProfileEdit = () => {
 
   // Form Summit
   const onSubmit = async (data) => {
-    console.log(data);
+    console.log("check", data);
+
+    setUpdateLoading(true);
 
     let photos = users?.image;
 
@@ -75,6 +79,7 @@ const UserProfileEdit = () => {
       .put(`/users/${user?.email}`, userInfo)
       .then((res) => {
         console.log(res?.data);
+        setUpdateLoading(false);
         toast.success("User Profile Update Successfully");
         navigate("/dashboard/userProfile");
 
@@ -101,6 +106,7 @@ const UserProfileEdit = () => {
               completed={90}
               bgColor="#433ebe"
               height="12px"
+              width="300px"
               baseBgColor="#e3e2f5"
               labelColor="#ffffff"
               labelSize="10px"
@@ -111,8 +117,9 @@ const UserProfileEdit = () => {
           <div>
             <Link
               to="/dashboard/userProfile"
-              className="edit_btn !border-red-600 hover:!border-primary">
-              <span className="text-red-500 hover:text-white"> X Cancel </span>
+              className="edit_btn !text-red-500 hover:!text-white !border-red-600 hover:!border-red-600 hover:!bg-red-600"
+            >
+              <span> X Cancel </span>
             </Link>
           </div>
         </div>
@@ -120,7 +127,7 @@ const UserProfileEdit = () => {
 
       {/** Form Start  */}
 
-      <form onSubmit={handleSubmit(onSubmit)} className="mt-10">
+      <form onSubmit={handleSubmit(onSubmit)} className="mt-10 space-y-4">
         {/**One Two Part */}
         <div className="grid md:grid-cols-2 gap-3">
           {/* name field */}
@@ -130,7 +137,7 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="text"
-              {...register("name", { required: true })}
+              {...register("name")}
               placeholder="Please Your Name"
               defaultValue={users?.name}
             />
@@ -142,11 +149,14 @@ const UserProfileEdit = () => {
             <div className="label mb-10 md:mb-0 lg:mb-0">
               <span className="font-bold font-inter"> Your Photo : </span>
               <label
-                className="font-semibold w-full absolute bottom-0    text-white cursor-pointer font-inter text-base px-8 py-[8px] bg-primary rounded-xl transition-all duration-500 text-[15px]"
-                htmlFor="user_photo">
-                <div className="flex justify-center gap-2">
+                className="font-semibold w-full absolute bottom-0   text-white cursor-pointer font-inter text-base px-8 py-[8px] bg-primary rounded-md transition-all duration-500 text-[15px]"
+                htmlFor="user_photo"
+              >
+                <div className="flex justify-center items-center gap-4">
                   {" "}
-                  <img src={download_icon} alt="" /> <span> Upload Photo</span>{" "}
+                  {/* <img className="w-5 h-5" src={download_icon} alt="" />{" "} */}
+                  <SlCloudUpload className="w-5 h-5" />
+                  <span> Upload Photo</span>{" "}
                 </div>
               </label>
             </div>
@@ -168,7 +178,7 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="email"
-              {...register("email", { required: true })}
+              {...register("email")}
               placeholder="Your Email"
               readOnly
               defaultValue={users?.email}
@@ -183,7 +193,7 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="number"
-              {...register("number", { required: true })}
+              {...register("number")}
               placeholder="Your Phone Number"
               defaultValue={users?.phone}
             />
@@ -202,7 +212,7 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="text"
-              {...register("current", { required: true })}
+              {...register("current")}
               placeholder="Your Current Address"
               defaultValue={users?.current_address}
             />
@@ -216,7 +226,7 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="text"
-              {...register("permanent", { required: true })}
+              {...register("permanent")}
               placeholder=" Your Permanent Address"
               defaultValue={users?.permanent_address}
             />
@@ -232,7 +242,7 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="number"
-              {...register("age", { required: true })}
+              {...register("age")}
               placeholder="Your Age"
               defaultValue={users?.age}
             />
@@ -244,12 +254,15 @@ const UserProfileEdit = () => {
             <div className="py-1">
               <span className="font-bold font-inter"> Your Gender :</span>
             </div>
-            <input
-              type="text"
-              {...register("gender", { required: true })}
-              placeholder="Male"
-              defaultValue={users?.gender}
-            />
+
+            <select
+              className="w-full py-2 mt-2 border rounded-lg pl-2"
+              {...register("gender")}
+            >
+              <option> {users?.gender} </option>
+              <option value="male">male</option>
+              <option value="female">female</option>
+            </select>
           </label>
         </div>
 
@@ -296,12 +309,16 @@ const UserProfileEdit = () => {
                 Your Job Preference :
               </span>
             </div>
-            <input
-              type="text"
-              {...register("preference", { required: true })}
-              placeholder="Remote"
-              defaultValue={users?.job_preference}
-            />
+
+            <select
+              className="w-full py-2 mt-2 border rounded-lg pl-2"
+              {...register("preference")}
+            >
+              <option> {users?.job_preference} </option>
+              <option value="Remote">Remote</option>
+              <option value="On-site">On-site</option>
+              <option value="Hybrid">Hybrid </option>
+            </select>
           </label>
           {/* Preference field End */}
 
@@ -313,12 +330,16 @@ const UserProfileEdit = () => {
                 Your Time Preference
               </span>
             </div>
-            <input
-              type="text"
-              {...register("time_preference", { required: true })}
-              placeholder="Intern"
-              defaultValue={users?.time_preference}
-            />
+
+            <select
+              className="w-full py-2 mt-2 border rounded-lg pl-2"
+              {...register("time_preference")}
+            >
+              <option> {users?.time_preference} </option>
+              <option value="intern">intern</option>
+              <option value="full-time">full-time</option>
+              <option value="part-time">part-time</option>
+            </select>
           </label>
         </div>
 
@@ -345,7 +366,7 @@ const UserProfileEdit = () => {
           </div>
           <input
             type="text"
-            {...register("resume", { required: true })}
+            {...register("resume")}
             placeholder="Please share your resume drive link"
             defaultValue={users?.resume_link}
           />
@@ -368,15 +389,23 @@ const UserProfileEdit = () => {
               className="hidden"
               id="user_Resume"
               type="file"
-              {...register("resume", { required: true })}
+              {...register("resume",)}
               placeholder="N/A"
               required
             />
           </label>
         </div> */}
 
-        <div className="w-48 mt-10 bg-primary border-none text-white rounded-xl">
-          <input className="cursor-pointer" type="submit" value="Update" />
+        <div className="w-48 mt-10 bg-primary border-none text-white rounded-xl text-center cursor-pointer">
+          {updateLoading ? (
+            <span className="loading loading-spinner loading-md "></span>
+          ) : (
+            <input
+              className="border-none cursor-pointer py-3 font-semibold text-base"
+              type="submit"
+              value="Update"
+            />
+          )}
         </div>
       </form>
     </div>

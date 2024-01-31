@@ -17,6 +17,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [profileComplete, setProfileComplete] = useState(0);
   const axiosPublic = useAxiosPublic();
 
   // Create New User
@@ -93,6 +94,8 @@ const AuthProvider = ({ children }) => {
     userSignIn,
     loginOut,
     googleLoginSystem,
+    profileComplete, 
+    setProfileComplete
   };
 
   useEffect(() => {

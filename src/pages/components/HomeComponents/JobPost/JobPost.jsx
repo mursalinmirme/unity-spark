@@ -24,7 +24,7 @@ const JobPost = () => {
 
       <div className="text-center py-5">
         <Link to={"/available-jobs"}>
-          <button> Explore more Jobs</button>
+          <button className="nbtn"> Explore more Jobs</button>
         </Link>
       </div>
     </div>

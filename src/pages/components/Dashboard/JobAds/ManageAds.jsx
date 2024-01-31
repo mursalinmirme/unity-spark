@@ -95,7 +95,7 @@ const ManageAds = () => {
               onClick={() => setShowSearchBar(false)}
               className="rounded-md md:h-[40.2px]"
             >
-              <IoIosSearch className="text-xl"></IoIosSearch>
+              <FaSearch className="text-lg"></FaSearch>
             </button>
           ) : (
             <button
