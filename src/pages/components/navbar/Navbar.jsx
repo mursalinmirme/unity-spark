@@ -35,7 +35,7 @@ const Navbar = () => {
         )}
       </NavLink>
       {
-        isUser?.role === "admin" && 
+        isUser?.role === "admin" && user?.email &&
         <NavLink to="/dashboard/userProfile">
         {({ isActive }) => (
           <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>

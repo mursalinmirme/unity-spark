@@ -73,7 +73,7 @@ const JobDetails = () => {
                 {" "}
                 <p className="flex items-center gap-2">
                   {" "}
-                  <GoDotFill className="text-[#D9D9D9]" /> {require}{" "}
+                  <GoDotFill className="text-[#ababab]" /> {require}{" "}
                 </p>{" "}
               </div>
             ))}
@@ -93,7 +93,7 @@ const JobDetails = () => {
                 {" "}
                 <p className="flex gap-2 items-center text-base md:text-lg">
                   {" "}
-                  <GoDotFill className="text-[#D9D9D9]" /> {adition}{" "}
+                  <GoDotFill className="text-[#ababab]" /> {adition}{" "}
                 </p>{" "}
               </div>
             ))}
@@ -113,7 +113,7 @@ const JobDetails = () => {
                 {" "}
                 <p className="flex gap-2 items-center">
                   {" "}
-                  <GoDotFill className="text-[#D9D9D9]" /> {edu}{" "}
+                  <GoDotFill className="text-[#ababab]" /> {edu}{" "}
                 </p>{" "}
               </div>
             ))}
@@ -133,7 +133,7 @@ const JobDetails = () => {
                 {" "}
                 <p className="flex gap-2 items-center text-base md:text-lg">
                   {" "}
-                  <GoDotFill className="text-[#D9D9D9]" /> {beni}{" "}
+                  <GoDotFill className="text-[#ababab]" /> {beni}{" "}
                 </p>{" "}
               </div>
             ))}
@@ -147,7 +147,7 @@ const JobDetails = () => {
 
         <div className="flex gap-4 pt-8 font-semibold">
           <span
-            className="px-8 py-2.5 bg-primary text-white rounded-xl cursor-pointer text-[14px]"
+            className="px-8 flex items-center bg-primary text-white rounded-xl cursor-pointer text-[14px]"
             onClick={() => toast.success("Successfully applied")}
           >
             {" "}
@@ -155,7 +155,7 @@ const JobDetails = () => {
           </span>
           <span
             onClick={() => toast.success("Successfully saved")}
-            className="px-8 py-2.5 text-primary border-2 border-primary  rounded-xl cursor-pointer text-[14px]"
+            className="px-8 py-2.5 text-primary border-2 border-primary  rounded-xl cursor-pointer text-[15px]"
           >
             {" "}
             Save{" "}
@@ -204,7 +204,7 @@ const JobDetails = () => {
         </div>
         <div className="text-center pt-10 ">
           <Link to={"/available-jobs"}>
-            <span className="px-6 py-2.5 mx-auto bg-primary text-white font-semibold rounded-xl cursor-pointer text-[14px]">
+            <span className="px-6 py-2.5 mx-auto bg-primary text-white font-semibold rounded-xl cursor-pointer text-[15px]">
               {" "}
               See More{" "}
             </span>

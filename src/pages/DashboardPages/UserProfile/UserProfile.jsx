@@ -100,15 +100,15 @@ const UserProfile = () => {
       <h1 className="border-t border-gray-500 mt-5"></h1>
       <div className="mt-5">
         <div className="flex justify-between items-center mb-1.5 ">
-          <h2 className="text-[22px] font-bold font-inter">
+          <h2 className="text-[18px] font-bold font-inter">
             Completed You Profile
           </h2>
-          <h2> {count.toFixed(2)}% </h2>
+          <h2 className="font-semibold"> {count.toFixed(2)}% </h2>
         </div>
         <ProgressBar
           completed={count}
           bgColor="#433ebe"
-          height="15px"
+          height="10px"
           baseBgColor="#e3e2f5"
           labelColor="#ffffff"
           labelSize="0px"

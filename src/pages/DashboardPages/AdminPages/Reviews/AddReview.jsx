@@ -72,8 +72,8 @@ const AddReview = () => {
       <div className="flex justify-between items-center mb-5">
         <h1 className="text-2xl md:text-3xl font-bold">Add Review</h1>
         <Link to={"/dashboard/reviews"}>
-          <a className="flex gap-2 items-center text-[#F00] font-inter font-bold text-sm border-2 rounded-lg cursor-pointer border-[#F00] py-2 px-2 md:px-5 hover:bg-[#F00] hover:text-white transition-all duration-500">
-            <MdOutlineCancel className="text-2xl" />
+          <a className="flex gap-2 items-center text-[#F00] font-inter font-bold text-sm border-2 rounded-lg cursor-pointer border-[#F00] py-1 px-2 hover:bg-[#F00] hover:text-white transition-all duration-500">
+            <MdOutlineCancel className="text-lg" />
             <span>Cancel</span>
           </a>
         </Link>
