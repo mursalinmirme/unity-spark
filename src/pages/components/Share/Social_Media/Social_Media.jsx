@@ -8,7 +8,6 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 const Social_Media = ({ setGoogleLoading, googleLoading }) => {
   const { googleLoginSystem } = useContext(AuthContext);
   const navigate = useNavigate();
-  const axiosPublic = useAxiosPublic();
   const handlerGoogleLogin = () => {
     setGoogleLoading(true);
     googleLoginSystem()

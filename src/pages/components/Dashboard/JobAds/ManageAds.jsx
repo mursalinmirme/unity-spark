@@ -93,8 +93,7 @@ const ManageAds = () => {
             <button
               style={{ background: "#433EBE" }}
               onClick={() => setShowSearchBar(false)}
-              className="rounded-md md:h-[40.2px]"
-            >
+              className="rounded-md md:h-[40.2px]">
               <FaSearch className="text-lg"></FaSearch>
             </button>
           ) : (
