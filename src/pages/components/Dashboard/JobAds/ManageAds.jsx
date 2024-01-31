@@ -69,7 +69,7 @@ const ManageAds = () => {
   return (
     <div>
       <div className="mt-4 flex justify-between items-center">
-        <div className="flex">
+        <div className="flex items-center gap-3">
           <form
             onSubmit={handleSearches}
             className={`p-0 border-0 m-0 relative ${
@@ -78,32 +78,35 @@ const ManageAds = () => {
           >
             <input
               name="search"
-              className="md:py-2 pl-14 m-0 md:w-60 lg:w-80 border-second"
+              className="md:py-1 pl-14 m-0 md:w-60 lg:w-80 border-second"
               type="text"
               placeholder="Search..."
             />
             <button
               style={{ background: "#433EBE" }}
-              className="absolute top-0 left-0 h-full rounded-none rounded-s-lg"
+              className="absolute top-0 left-0 rounded-none rounded-s-lg h-full px-4"
             >
-              <IoIosSearch className="text-xl"></IoIosSearch>
+              <IoIosSearch className="text-xl text-white"></IoIosSearch>
             </button>
           </form>
-          {showSearchBar ? (
-            <button
-              style={{ background: "#433EBE" }}
-              onClick={() => setShowSearchBar(false)}
-              className="rounded-md md:h-[40.2px]">
-              <FaSearch className="text-lg"></FaSearch>
-            </button>
-          ) : (
-            <button
-              onClick={handleCloseSearchBar}
-              className="rounded-none bg-none text-primary left-0"
-            >
-              <ImCross className="text-lg"></ImCross>
-            </button>
-          )}
+          <div>
+            {showSearchBar ? (
+              <button
+                style={{ background: "#433EBE" }}
+                onClick={() => setShowSearchBar(false)}
+                className="rounded-md py-2 px-4"
+              >
+                <IoIosSearch className="text-xl text-white"></IoIosSearch>
+              </button>
+            ) : (
+              <button
+                onClick={handleCloseSearchBar}
+                className="rounded-none bg-none text-primary left-0"
+              >
+                <ImCross className="text-lg"></ImCross>
+              </button>
+            )}
+          </div>
         </div>
 
         <div>

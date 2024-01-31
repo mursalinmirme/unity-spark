@@ -27,14 +27,14 @@ const JobAds = () => {
 
   return (
     <div>
-      <div className="grid grid-cols-3 text-center text-lg bg-[#e3e2f5] rounded-lg p-3">
+      <div className="grid grid-cols-3 text-center md:text-lg bg-[#e3e2f5] rounded-lg p-2 md:p-3">
         {tabs?.map((tab) => (
           <a
             key={tab.id}
             className={`${
               isActive === tab.id
-                ? "font-medium text-white bg-primary py-3 rounded-lg"
-                : "bg-transparent text-primary px-5 py-3 font-semibold cursor-pointer"
+                ? "font-medium text-white bg-primary py-1 md:py-3 rounded-lg"
+                : "bg-transparent text-primary md:px-5 py-1 md:py-3 font-semibold cursor-pointer"
             }`}
             onClick={() => handleJobAdsTab(tab.id)}
           >
