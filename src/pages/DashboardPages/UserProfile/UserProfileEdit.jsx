@@ -8,11 +8,13 @@ import Select from "react-select";
 import { CgProfile } from "react-icons/cg";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import toast from "react-hot-toast";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 const UserProfileEdit = () => {
   const { register, handleSubmit, control, reset } = useForm();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
   // New Array
   const skillsArray = [
     { value: "JavaScript", label: "JavaScript" },
@@ -27,10 +29,10 @@ const UserProfileEdit = () => {
   const [users, setUsers] = useState(null);
   // User Data Get
   useEffect(() => {
-    axios.get(`http://localhost:5000/users/${user?.email}`).then((res) => {
+    axiosPublic.get(`/users/${user?.email}`).then((res) => {
       setUsers(res?.data);
     });
-  }, [user?.email, setUsers]);
+  }, [user?.email, setUsers, axiosPublic]);
 
   // Form Summit
   const onSubmit = async (data) => {
@@ -69,8 +71,10 @@ const UserProfileEdit = () => {
     console.log(userInfo);
     console.log(users);
 
-    axios
-      .put(`http://localhost:5000/users/${user?.email}`, userInfo)
+    // http://localhost:5000/users/${user?.email
+
+    axiosPublic
+      .put(`/users/${user?.email}`, userInfo)
       .then((res) => {
         console.log(res?.data);
         toast.success("User Profile Update Successfully");
@@ -128,7 +132,7 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="text"
-              {...register("name", { required: true })}
+              {...register("name")}
               placeholder="Please Your Name"
               defaultValue={users?.name}
             />
@@ -166,7 +170,7 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="email"
-              {...register("email", { required: true })}
+              {...register("email")}
               placeholder="Your Email"
               readOnly
               defaultValue={users?.email}
@@ -181,7 +185,7 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="number"
-              {...register("number", { required: true })}
+              {...register("number")}
               placeholder="Your Phone Number"
               defaultValue={users?.phone}
             />
@@ -200,7 +204,7 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="text"
-              {...register("current", { required: true })}
+              {...register("current")}
               placeholder="Your Current Address"
               defaultValue={users?.current_address}
             />
@@ -214,7 +218,7 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="text"
-              {...register("permanent", { required: true })}
+              {...register("permanent")}
               placeholder=" Your Permanent Address"
               defaultValue={users?.permanent_address}
             />
@@ -230,7 +234,7 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="number"
-              {...register("age", { required: true })}
+              {...register("age")}
               placeholder="Your Age"
               defaultValue={users?.age}
             />
@@ -244,7 +248,7 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="text"
-              {...register("gender", { required: true })}
+              {...register("gender")}
               placeholder="Male"
               defaultValue={users?.gender}
             />
@@ -296,7 +300,7 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="text"
-              {...register("preference", { required: true })}
+              {...register("preference")}
               placeholder="Remote"
               defaultValue={users?.job_preference}
             />
@@ -313,7 +317,7 @@ const UserProfileEdit = () => {
             </div>
             <input
               type="text"
-              {...register("time_preference", { required: true })}
+              {...register("time_preference")}
               placeholder="Intern"
               defaultValue={users?.time_preference}
             />
@@ -343,7 +347,7 @@ const UserProfileEdit = () => {
           </div>
           <input
             type="text"
-            {...register("resume", { required: true })}
+            {...register("resume")}
             placeholder="Please share your resume drive link"
             defaultValue={users?.resume_link}
           />
@@ -366,7 +370,7 @@ const UserProfileEdit = () => {
               className="hidden"
               id="user_Resume"
               type="file"
-              {...register("resume", { required: true })}
+              {...register("resume")}
               placeholder="N/A"
               required
             />

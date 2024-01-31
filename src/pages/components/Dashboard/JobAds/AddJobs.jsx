@@ -121,7 +121,7 @@ const AddJobs = () => {
 
   return (
     <div className="font-inter">
-      <h3 className="text-3xl font-semibold">Add a new job ad</h3>
+      <h3 className="text-3xl font-semibold">Add a new job ads</h3>
 
       <div>
         <form className="mt-10" onSubmit={handleSubmit(onSubmit)}>
