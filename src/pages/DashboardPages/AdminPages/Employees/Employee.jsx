@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import "./Employee.css";
+
 const Employee = () => {
   const { data: allUsers = [] } = useQuery({
     queryKey: ["allUsers"],
@@ -10,14 +10,12 @@ const Employee = () => {
     },
   });
 
-  console.log(allUsers);
-
   return (
     <div>
       <div className="overflow-x-auto w-full">
-        <table className="table-no-border ">
+        <table className="table-no-border">
           {/* head */}
-          <thead className="bg-primary text-white text-[18px] h-[70px] rounded-lg text-center ">
+          <thead className="bg-primary text-white text-[18px] rounded-md text-center">
             <tr>
               <th>
                 <label>#</label>
