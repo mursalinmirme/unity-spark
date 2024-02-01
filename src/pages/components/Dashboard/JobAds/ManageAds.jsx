@@ -10,6 +10,8 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { LuPenLine } from "react-icons/lu";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const ManageAds = () => {
   const [totalPages, setToalPages] = useState(0);
@@ -34,7 +36,7 @@ const ManageAds = () => {
   console.log(pagesArray);
 
   // fetch all the jobs list from database one by one
-  const { data: ourAllJobs = [] } = useQuery({
+  const { data: ourAllJobs = [], refetch } = useQuery({
     queryKey: ["seeOurAllJobs", currentPage],
     queryFn: async () => {
       const result = await axios.get(
@@ -43,6 +45,27 @@ const ManageAds = () => {
       return result.data;
     },
   });
+
+  // handle delete job ads
+  const handleDeleteJob = (id) => {
+    console.log(id);
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`http://localhost:5000/job-ads/${id}`).then((res) => {
+          console.log(res.data);
+          toast.success('Successfully deleted');
+          refetch();
+        });
+      }
+    });
+  };
 
   // handle next btn pagination
   const handleRightPagi = () => {
@@ -180,7 +203,10 @@ const ManageAds = () => {
                     <AiFillEdit className="text-lg"></AiFillEdit>
                   </button>
                 </Link>
-                <button className="bg-primary rounded-lg p-2 ">
+                <button
+                  onClick={() => handleDeleteJob(job?._id)}
+                  className="bg-primary rounded-lg p-2 "
+                >
                   <RiDeleteBin6Line className="text-lg"></RiDeleteBin6Line>
                 </button>
               </div>
