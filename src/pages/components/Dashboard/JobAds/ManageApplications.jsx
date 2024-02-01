@@ -8,13 +8,27 @@ import { Link } from "react-router-dom";
 import { CiMenuKebab } from "react-icons/ci";
 import { MdHideSource } from "react-icons/md";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 const ManageApplications = () => {
+  const axiosPublic = useAxiosPublic();
+
+  const {data: jobapplications = [] , refetch} = useQuery({
+    queryKey: ['jobapplications'],
+    queryFn: async () =>{
+    const res = await  axiosPublic.get("/job_applications");
+    return res?.data
+
+
+    }
+    
+  })
   const [showButtons, setShowButtons] = useState(false);
   const [totalPages, setToalPages] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [applicationData, setApplicationData] = useState([]);
+  
   // handle next btn pagination
   const handleRightPagi = () => {
     if (currentPage + 1 < totalPages) {
@@ -33,21 +47,51 @@ const ManageApplications = () => {
     { length: totalPages / 5 },
     (_, index) => index
   );
-  const axiosPublic = useAxiosPublic();
+  
 
-  axiosPublic
-    .get("/job_applications")
-    .then((res) => {
-      setApplicationData(res?.data);
+  
+// delete operation
+  const handleDelete = (id) => {
+    axiosPublic.delete(`/job_applications/${id}`)
+    .then(res =>{
+      console.log(res.data)
+      Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      if(res.data.deletedCount > 0 ){
+        refetch()
+        Swal.fire({
+          title: "Deleted!",
+          text: "Article Deleted",
+          icon: "success"
+        });
+      }
+     
+    }
+  });
+      
     })
-    .catch((error) => {
-      console.log(error);
-    });
+    .catch(error =>{
+      console.log(error)
+    })
+  
+    }
+    
+        
+       
+    // }
 
   return (
     <div className="py-10" id="manage_applications">
       <div className="min-h-[460px] space-y-3">
-        {applicationData?.map((value) => (
+        {jobapplications?.map((value) => (
           <div
             key={value._id}
             className="border-2 border-[#D9D9D9] rounded-xl px-2 md:px-5 py-2"
@@ -102,7 +146,7 @@ const ManageApplications = () => {
                 <Link className="rounded-lg p-2 bg-[#433EBE]">
                   <IoCheckmark className=""></IoCheckmark>
                 </Link>
-                <Link className="rounded-lg p-2 bg-[#433EBE]">
+                <Link onClick={()=> handleDelete(value?._id)} className="rounded-lg p-2 bg-[#433EBE]">
                   <RxCross1 className=""></RxCross1>
                 </Link>
               </section>
