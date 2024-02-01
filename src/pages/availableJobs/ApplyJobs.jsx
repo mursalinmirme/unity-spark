@@ -1,7 +1,6 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { Controller, useForm } from "react-hook-form";
 import { useContext, useEffect, useState } from "react";
-import axios from "axios";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Select from "react-select";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -13,6 +12,10 @@ const ApplyJobs = () => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
+  const location = useLocation();
+  const jobTitle = location.state.title
+  // console.log(jobTitle);
+
   // User Data Get
   useEffect(() => {
     axiosPublic.get(`/users/${user?.email}`).then((res) => {
@@ -49,6 +52,7 @@ const ApplyJobs = () => {
     // });
 
     const userInfo = {
+      job_title : jobTitle,
       name: data?.name || users?.name,
       email: user?.email,
       applied_job_id: id,
@@ -77,7 +81,7 @@ const ApplyJobs = () => {
 
   return (
     <div>
-      <h3 className="mt-4 text-3xl font-semibold">Apply to this job</h3>
+      <h3 className="mt-4 text-3xl font-semibold">Apply to {jobTitle}</h3>
       <form onSubmit={handleSubmit(onSubmit)} className="my-10">
         <div className="grid md:grid-cols-2 gap-2">
           {/* name field */}
@@ -201,7 +205,7 @@ const ApplyJobs = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-2">
-          {/* Age field */}
+          {/* gender field */}
 
           <label>
             <div className="label">
@@ -209,10 +213,11 @@ const ApplyJobs = () => {
             </div>
             <select
               defaultValue="default"
-              className="select select-bordered w-full h-[20px]"
+              className="py-2 w-full mt-2 border-2 rounded-md px-1"
               {...register("gender", {
                 required: true,
-              })}>
+              })}
+            >
               <option disabled value="default">
                 Your Gender
               </option>
@@ -220,7 +225,7 @@ const ApplyJobs = () => {
               <option value="female">Female</option>
             </select>
           </label>
-          {/* Age field End */}
+          {/* gender field End */}
 
           {/* Select skills*/}
           <label>
@@ -255,7 +260,10 @@ const ApplyJobs = () => {
           />
         </label>
 
-        <button type="submit" className="bg-[#433ebe] mt-3 px-8">
+        <button
+          type="submit"
+          className="bg-[#433ebe] mt-4 py-2 px-8 text-white rounded-md"
+        >
           Apply
         </button>
       </form>
