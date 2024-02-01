@@ -4,7 +4,11 @@
 }
 
 .search-box.active-search {
-  @apply w-80 mr-7;
+  @apply w-72 md:w-80 mr-7;
+}
+
+.search-box.active-search-dashboard {
+  @apply w-56 md:w-80 md:mr-7;
 }
 
 .search-box input {
