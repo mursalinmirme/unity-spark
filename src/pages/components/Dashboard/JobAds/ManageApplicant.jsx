@@ -1,17 +1,27 @@
 import { useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { IoEyeOutline } from "react-icons/io5";
-import { IoCheckmark } from "react-icons/io5";
-import { RxCross1 } from "react-icons/rx";
-import { HiDotsVertical } from "react-icons/hi";
-import { Link } from "react-router-dom";
+// import { IoEyeOutline } from "react-icons/io5";
+// import { IoCheckmark } from "react-icons/io5";
+// import { RxCross1 } from "react-icons/rx";
+// import { HiDotsVertical } from "react-icons/hi";
+// import { Link } from "react-router-dom";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import ApplicationsCard from "./ApplicationsCard";
+import Swal from "sweetalert2";
+import { useQuery } from "@tanstack/react-query";
 
 const ManageApplicant = () => {
   const [totalPages, setToalPages] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [applicationData, setApplicationData] = useState([]);
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const axiosPublic = useAxiosPublic();
+  const {data: jobapplications = [] , refetch} = useQuery({
+    queryKey: ['jobapplications'],
+    queryFn: async () =>{
+    const res = await  axiosPublic.get("/job_applications");
+    return res?.data}
+    
+  })
   // handle next btn pagination
   const handleRightPagi = () => {
     if (currentPage + 1 < totalPages) {
@@ -30,83 +40,72 @@ const ManageApplicant = () => {
     { length: totalPages / 5 },
     (_, index) => index
   );
-  const axiosPublic = useAxiosPublic();
-
-  axiosPublic
-    .get("/job_applications")
-    .then((res) => {
-      setApplicationData(res?.data);
+  // delete operation
+  const handleDelete = (id) => {
+    axiosPublic.delete(`/job_applications/${id}`)
+    .then(res =>{
+      console.log(res.data)
+      Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      if(res.data.deletedCount > 0 ){
+        refetch()
+        Swal.fire({
+          title: "Deleted!",
+          text: "Article Deleted",
+          icon: "success"
+        });
+      }
+     
+    }
+  });
+      
     })
-    .catch((error) => {
-      console.log(error);
-    });
+    .catch(error =>{
+      console.log(error)
+    })
+  
+    }
+
+    // update role 
+
+   const handleUpdateRole = (value) => {
+      axiosPublic.put(`/users?email=${value?.email}`)
+      .then(res => {
+        if(res?.data?.modifiedCount > 0){
+          Swal.fire({
+            title: "Role Updated",
+            text: `${value?.email} is now Employee`,
+            icon: "success"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              handleDelete(value._id);
+            }})
+          
+          
+        }
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    }
+  
+
+
   return (
     <div className="py-10">
       <div className="min-h-[460px] space-y-3">
-        {applicationData?.map((values) => (
-          <div
-            key={values?._id}
-            className="border-2 border-[#D9D9D9] rounded-xl px-5 py-2"
-          >
-            <div className="flex items-center justify-between">
-              <div className="flex  items-center gap-5">
-                <img
-                  src={values?.image}
-                  alt="avatar"
-                  className="w-[50px] h-[50px] rounded-full"
-                />
-                <div>
-                  <h1 className="font-semibold text-lg">{values?.name}</h1>
-                  <h1 className="font-semibold text-[#5B5555]">
-                    from{" "}
-                    {values?.permanent_address
-                      ? values?.permanent_address
-                      : "Unknown"}
-                  </h1>
-                </div>
-              </div>
-              <div className="relative md:hidden">
-                <div
-                  className="text-white bg-primary p-2 rounded-lg cursor-pointer"
-                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                >
-                  <HiDotsVertical />
-                </div>
-                <div
-                  className={`absolute z-[3] right-6 w-12 bg-white drop-shadow-lg rounded-lg p-2 ${
-                    isDropdownOpen ? "block" : "hidden"
-                  }`}
-                >
-                  <Link className="rounded-xl bg-[#433EBE]">
-                    <div className="bg-primary w-8 h-7 mx-auto rounded-md flex items-center justify-center">
-                      <IoEyeOutline className="text-md font-bold text-white"></IoEyeOutline>
-                    </div>
-                  </Link>
-                  <Link>
-                    <div className="bg-primary w-8 h-7 mx-auto rounded-md flex items-center justify-center mt-2">
-                      <IoCheckmark className="text-md font-bold text-white"></IoCheckmark>
-                    </div>
-                  </Link>
-                  <Link className="rounded-xl bg-[#433EBE]">
-                    <div className="bg-primary w-8 h-7 mx-auto rounded-md flex items-center justify-center mt-2">
-                      <RxCross1 className="text-md font-bold text-white"></RxCross1>
-                    </div>
-                  </Link>
-                </div>
-              </div>
-              <section className="space-x-3 justify-center items-center hidden md:flex text-white">
-                <Link className="rounded-lg p-2 bg-[#433EBE]">
-                  <IoEyeOutline className=""></IoEyeOutline>
-                </Link>
-                <Link className="rounded-lg p-2 bg-[#433EBE]">
-                  <IoCheckmark className=""></IoCheckmark>
-                </Link>
-                <Link className="rounded-lg p-2 bg-[#433EBE]">
-                  <RxCross1 className=""></RxCross1>
-                </Link>
-              </section>
-            </div>
-          </div>
+        {jobapplications?.map((value) => (
+          <ApplicationsCard key={value._id} value={value} handleUpdateRole={handleUpdateRole} handleDelete={handleDelete}>
+
+          </ApplicationsCard>
         ))}
       </div>
 

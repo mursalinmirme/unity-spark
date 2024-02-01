@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 
 const ApplicationsCard = ({value, handleUpdateRole, handleDelete}) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+   
+
     return (
         <div
         className="border-2 border-[#D9D9D9] rounded-xl px-2 md:px-5 py-2"
@@ -37,17 +39,19 @@ const ApplicationsCard = ({value, handleUpdateRole, handleDelete}) => {
                 isDropdownOpen ? "block" : "hidden"
               }`}
             >
-              <Link className="rounded-xl bg-[#433EBE]">
-                <div className="bg-primary w-8 h-7 mx-auto rounded-md flex items-center justify-center">
+                  <button onClick={()=>document.getElementById('my_modal_3').showModal()}>
+                  <div className="bg-primary w-8 h-7 mx-auto rounded-md flex items-center justify-center">
                   <IoEyeOutline className="text-md"></IoEyeOutline>
                 </div>
-              </Link>
-              <Link>
+                  </button>
+              
+             
+              <Link onClick={() => handleUpdateRole(value)}>
                 <div className="bg-primary w-8 h-7 mx-auto rounded-md flex items-center justify-center mt-2">
                   <IoCheckmark className="text-md"></IoCheckmark>
                 </div>
               </Link>
-              <Link className="rounded-xl bg-[#433EBE]">
+              <Link onClick={()=> handleDelete(value?._id)} className="rounded-xl bg-[#433EBE]">
                 <div className="bg-primary w-8 h-7 mx-auto rounded-md flex items-center justify-center mt-2">
                   <RxCross1 className="text-md"></RxCross1>
                 </div>
@@ -55,9 +59,12 @@ const ApplicationsCard = ({value, handleUpdateRole, handleDelete}) => {
             </div>
           </div>
           <section className="space-x-3 justify-center items-center hidden md:flex text-white">
-            <Link className="rounded-lg p-2 bg-[#433EBE]">
+            {/* <Link className="rounded-lg p-2 bg-[#433EBE]">
               <IoEyeOutline className=""></IoEyeOutline>
-            </Link>
+            </Link> */}
+           <button className="rounded-lg p-2 bg-[#433EBE]" onClick={()=>document.getElementById('my_modal_3').showModal()}><IoEyeOutline className="">
+                </IoEyeOutline></button>
+            
             <Link onClick={() => handleUpdateRole(value)} className="rounded-lg p-2  bg-[#433EBE]">
             <IoCheckmark className=""></IoCheckmark>
           </Link>
@@ -66,6 +73,21 @@ const ApplicationsCard = ({value, handleUpdateRole, handleDelete}) => {
             </Link>
           </section>
         </div>
+        {/* You can open the modal using document.getElementById('ID').showModal() method */}
+
+<dialog id="my_modal_3" className="modal">
+  <div className="modal-box">
+    <form method="dialog">
+      {/* if there is a button in form, it will close the modal */}
+      <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+   <div className="space-y-3">
+   <h3 className="text-xl font-medium text-slate-700 text-center"><span className="font-bold text-black">Applicant Name: </span>{value?.name}</h3>
+        <h3 className="text-xl font-medium text-slate-700 text-center"><span className="font-bold text-black">Applicant Email: </span>{value?.email}</h3>
+        <h3 className="text-xl font-medium text-slate-700 text-center"><span className="font-bold text-black">Applied For: </span>{value?.title}</h3>
+   </div>
+  </div>
+</dialog>
       </div>
     );
 };
