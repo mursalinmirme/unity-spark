@@ -78,6 +78,22 @@ const Dashboard = () => {
               }`}>
               <div>
                 <LuUser />
+                <span>My Performance</span>
+              </div>
+              <IoIosArrowForward className="hov_arrow hidden lg:block" />
+            </li>
+          )}
+        </NavLink>
+      )}
+      {isUser?.role === "employee" && (
+        <NavLink to="/dashboard/userProfile">
+          {({ isActive }) => (
+            <li
+              className={`${
+                isActive ? "dashboard_item_active" : "dashboard_item"
+              }`}>
+              <div>
+                <LuUser />
                 <span>My Profile</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -85,24 +101,6 @@ const Dashboard = () => {
           )}
         </NavLink>
       )}
-      {/* {
-        isUser?.role === "admin" && 
-        <NavLink to="/dashboard/recruiment">
-        {({ isActive }) => (
-          <li
-            className={`${
-              isActive ? "dashboard_item_active" : "dashboard_item"
-            }`}
-          >
-            <div>
-              <LuUserCog  className="text-2xl"/>
-              <span>Recruiment</span>
-            </div>
-            <IoIosArrowForward className="hov_arrow hidden lg:block" />
-          </li>
-        )}
-      </NavLink>
-      } */}
       {isUser?.role === "admin" && (
         <NavLink to="/dashboard/jobs">
           {({ isActive }) => (

@@ -56,7 +56,7 @@ const Navbar = () => {
       }
       {
         isUser?.role === "employee" && 
-        <NavLink to="/dashboard/employee-profile">
+        <NavLink to="/dashboard/attendance">
         {({ isActive }) => (
           <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
             Dashboard
