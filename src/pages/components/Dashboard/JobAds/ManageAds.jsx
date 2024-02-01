@@ -151,7 +151,7 @@ const ManageAds = () => {
 
         <div>
           <Link to="/dashboard/addJobs">
-            <p className="flex items-center gap-2 text-[#433ebe] font-inter font-semibold border-2 border-[#433ebe] py-1 p-1 md:p-2 rounded-lg">
+            <p className="flex items-center gap-2 text-[#433ebe] font-inter font-semibold border-2 border-[#433ebe] p-1 md:px-2 rounded-lg">
               <LuPenLine></LuPenLine> <span>New Ad</span>
             </p>
           </Link>
@@ -175,9 +175,11 @@ const ManageAds = () => {
                 </h3>
               </div>
               <div className="space-x-4 text-white">
-                <button className="bg-primary rounded-lg p-2 ">
-                  <AiFillEdit className="text-lg"></AiFillEdit>
-                </button>
+                <Link to={`/dashboard/jobs/jobs-edit/${job?._id}`}>
+                  <button className="bg-primary rounded-lg p-2">
+                    <AiFillEdit className="text-lg"></AiFillEdit>
+                  </button>
+                </Link>
                 <button className="bg-primary rounded-lg p-2 ">
                   <RiDeleteBin6Line className="text-lg"></RiDeleteBin6Line>
                 </button>
