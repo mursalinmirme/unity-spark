@@ -1,11 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 
 const Employee = () => {
+  const axiosPublic = useAxiosPublic();
   const { data: allUsers = [] } = useQuery({
     queryKey: ["allUsers"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:5000/users");
+      const res = await axiosPublic.get("/employee");
       return res?.data;
     },
   });
@@ -13,36 +15,27 @@ const Employee = () => {
   return (
     <div>
       <div className="overflow-x-auto w-full">
-        <table className="table-no-border">
+        <table style={{ borderRadius: "50px" }} className="table border ">
           {/* head */}
-          <thead className="bg-[#726eec] text-white text-[18px] rounded-md text-center">
+          <thead className="bg-second text-white text-[18px] rounded-md text-center">
             <tr>
               <th>
                 <label>#</label>
               </th>
-
+              <th>Image</th>
               <th>Name</th>
               <th>Email</th>
-              <th>
-                {" "}
-                Profile{" "}
-                <span className="hidden md:hidden lg:inline">
-                  {" "}
-                  Picture{" "}
-                </span>{" "}
-              </th>
+
               <th>Role </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="mt-20">
             {allUsers?.map((user, idx) => (
               <tr key={user?._id}>
                 <td>
                   <label>{idx + 1}</label>
                 </td>
 
-                <td>{user?.name}</td>
-                <td>{user?.email}</td>
                 <td>
                   <div className="flex justify-center gap-3">
                     <div className="avatar ">
@@ -55,6 +48,9 @@ const Employee = () => {
                     </div>
                   </div>
                 </td>
+                <td>{user?.name}</td>
+                <td>{user?.email}</td>
+
                 <td>
                   {user?.position === "guest" ? (
                     <p className="text-primary">{user?.position} </p>
