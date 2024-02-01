@@ -15,7 +15,7 @@ const Employee = () => {
       <div className="overflow-x-auto w-full">
         <table className="table-no-border">
           {/* head */}
-          <thead className="bg-primary text-white text-[18px] rounded-md text-center">
+          <thead className="bg-[#726eec] text-white text-[18px] rounded-md text-center">
             <tr>
               <th>
                 <label>#</label>
@@ -23,8 +23,15 @@ const Employee = () => {
 
               <th>Name</th>
               <th>Email</th>
-              <th>Profile Picture</th>
-              <th>Role</th>
+              <th>
+                {" "}
+                Profile{" "}
+                <span className="hidden md:hidden lg:inline">
+                  {" "}
+                  Picture{" "}
+                </span>{" "}
+              </th>
+              <th>Role </th>
             </tr>
           </thead>
           <tbody>
@@ -49,7 +56,11 @@ const Employee = () => {
                   </div>
                 </td>
                 <td>
-                  <p>{user?.position} </p>
+                  {user?.position === "guest" ? (
+                    <p className="text-primary">{user?.position} </p>
+                  ) : (
+                    <p className="text-green-500">{user?.position} </p>
+                  )}
                 </td>
               </tr>
             ))}
