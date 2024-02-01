@@ -14,7 +14,8 @@ import { Link } from "react-router-dom";
 const ManageAds = () => {
   const [totalPages, setToalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
-  const [showSearchBar, setShowSearchBar] = useState(true);
+  const [showSearchBar, setShowSearchBar] = useState(false);
+  const [searchValues, setSearchValues] = useState(null);
 
   const { data: manageAds = [] } = useQuery({
     queryKey: ["manageOurAds"],
@@ -59,17 +60,24 @@ const ManageAds = () => {
   // handle search system
   const handleSearches = (e) => {
     e.preventDefault();
-    alert("Search button is working");
+    const form = e.target;
+    const searchVal = form.search.value;
+    if (!searchVal) {
+      return;
+    }
+    console.log("Does it overtake");
+    setSearchValues(searchVal);
   };
+
   // handle close search bar
   const handleCloseSearchBar = () => {
-    setShowSearchBar(true);
+    setShowSearchBar(false);
   };
 
   return (
     <div>
       <div className="mt-4 flex justify-between items-center">
-        <div className="flex items-center gap-3">
+        {/* <div className="flex items-center gap-3">
           <form
             onSubmit={handleSearches}
             className={`p-0 border-0 m-0 relative ${
@@ -92,9 +100,9 @@ const ManageAds = () => {
           {showSearchBar ? (
             <button
               onClick={() => setShowSearchBar(false)}
-              className="rounded-md bg-primary text-white p-2"
+              className="rounded-md bg-primary text-white p-2 px-4"
             >
-              <FaSearch className="text-lg"></FaSearch>
+              <IoIosSearch className="text-lg"></IoIosSearch>
             </button>
           ) : (
             <button
@@ -104,11 +112,46 @@ const ManageAds = () => {
               <ImCross className="text-lg"></ImCross>
             </button>
           )}
+        </div> */}
+        <div className="flex gap-2">
+          <form
+            onSubmit={handleSearches}
+            className={`p-0 border-0 m-0 search-box ${
+              showSearchBar && "active-search-dashboard"
+            }`}
+          >
+            <input
+              name="search"
+              defaultValue={searchValues}
+              type="text"
+              className=""
+              placeholder="Search..."
+            />
+            <div>
+              <button
+                onClick={() => setShowSearchBar(true)}
+                style={{ background: "#433EBE" }}
+                className="search-btn"
+              >
+                <IoIosSearch className="text-xl text-white"></IoIosSearch>
+              </button>
+            </div>
+            <div>
+              {showSearchBar && (
+                <button
+                  onClick={handleCloseSearchBar}
+                  className="rounded-none bg-none text-primary cancel-btn"
+                >
+                  <ImCross></ImCross>
+                </button>
+              )}
+            </div>
+          </form>
         </div>
 
         <div>
           <Link to="/dashboard/addJobs">
-            <p className="flex items-center gap-2 text-[#433ebe] font-inter font-semibold border-2 border-[#433ebe] py-1 p-2 rounded-lg">
+            <p className="flex items-center gap-2 text-[#433ebe] font-inter font-semibold border-2 border-[#433ebe] py-1 p-1 md:p-2 rounded-lg">
               <LuPenLine></LuPenLine> <span>New Ad</span>
             </p>
           </Link>
@@ -131,12 +174,12 @@ const ManageAds = () => {
                   </span>
                 </h3>
               </div>
-              <div className="space-x-4 ">
-                <button className="bg-primary rounded-md px-3 text-white py-2.5 ">
-                  <AiFillEdit className="text-xl"></AiFillEdit>
+              <div className="space-x-4 text-white">
+                <button className="bg-primary rounded-lg p-2 ">
+                  <AiFillEdit className="text-lg"></AiFillEdit>
                 </button>
-                <button className="bg-primary rounded-md px-3 text-white py-2.5 ">
-                  <RiDeleteBin6Line className="text-xl"></RiDeleteBin6Line>
+                <button className="bg-primary rounded-lg p-2 ">
+                  <RiDeleteBin6Line className="text-lg"></RiDeleteBin6Line>
                 </button>
               </div>
             </div>

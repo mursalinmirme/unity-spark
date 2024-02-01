@@ -55,7 +55,7 @@ const ApplyJobs = () => {
       name: data?.name || users?.name,
       email: user?.email,
       applied_job_id: id,
-      applied_job_title : jobTitle,
+      title : jobTitle,
       phone: data?.number || users?.phone,
       age: data?.age || users?.age,
       gender: data?.gender || users?.gender,
