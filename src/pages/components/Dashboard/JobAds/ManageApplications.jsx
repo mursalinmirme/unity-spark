@@ -1,15 +1,18 @@
-import { useState } from "react";
+/* eslint-disable no-constant-condition */
+import {  useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { IoEyeOutline } from "react-icons/io5";
-import { IoCheckmark } from "react-icons/io5";
-import { RxCross1 } from "react-icons/rx";
-import { HiDotsVertical } from "react-icons/hi";
-import { Link } from "react-router-dom";
-import { CiMenuKebab } from "react-icons/ci";
-import { MdHideSource } from "react-icons/md";
+// import { IoEyeOutline } from "react-icons/io5";
+// import { IoCheckmark } from "react-icons/io5";
+// import { RxCross1 } from "react-icons/rx";
+// import { HiDotsVertical } from "react-icons/hi";
+// import { Link } from "react-router-dom";
+// import { CiMenuKebab } from "react-icons/ci";
+// import { MdHideSource } from "react-icons/md";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import ApplicationsCard from "./ApplicationsCard";
+
 
 const ManageApplications = () => {
   const axiosPublic = useAxiosPublic();
@@ -18,16 +21,24 @@ const ManageApplications = () => {
     queryKey: ['jobapplications'],
     queryFn: async () =>{
     const res = await  axiosPublic.get("/job_applications");
-    return res?.data
-
-
-    }
+    return res?.data}
     
   })
-  const [showButtons, setShowButtons] = useState(false);
+  // const {data: users = [] } = useQuery({
+  //   queryKey: ['users'],
+  //   queryFn: async () =>{
+  //   const res = await  axiosPublic.get("/users");
+  //   return res?.data;
+  // }
+ 
+    
+  // })
+  // const [showButtons, setShowButtons] = useState(false);
   const [totalPages, setToalPages] = useState(10);
   const [currentPage, setCurrentPage] = useState(0);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  // const [userDataRole , setuserDataRole] = useState({})
+
   
   // handle next btn pagination
   const handleRightPagi = () => {
@@ -83,75 +94,42 @@ const ManageApplications = () => {
     })
   
     }
+
+    // update role 
+
+   const handleUpdateRole = (value) => {
+      axiosPublic.put(`/users?email=${value?.email}`)
+      .then(res => {
+        if(res?.data?.modifiedCount > 0){
+          Swal.fire({
+            title: "Role Updated",
+            text: `${value?.email} is now Employee`,
+            icon: "success"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              handleDelete(value._id);
+            }})
+          
+          
+        }
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    }
     
-        
-       
-    // }
+   
+
+    
+   
 
   return (
     <div className="py-10" id="manage_applications">
       <div className="min-h-[460px] space-y-3">
         {jobapplications?.map((value) => (
-          <div
-            key={value._id}
-            className="border-2 border-[#D9D9D9] rounded-xl px-2 md:px-5 py-2"
-          >
-            <div className="flex items-center justify-between">
-              <div className="flex  items-center gap-5">
-                <img
-                  src={value?.image}
-                  alt="avatar"
-                  className="w-[50px] h-[50px] rounded-full"
-                />
-                <div>
-                  <h1 className="font-semibold text-lg">{value?.title}</h1>
-                  <h1 className="font-semibold text-[#5B5555]">
-                    applied at {value?.createdAt}
-                  </h1>
-                </div>
-              </div>
-              <div className="relative md:hidden">
-                <div
-                  className="text-white bg-primary p-2 rounded-lg cursor-pointer"
-                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                >
-                  <HiDotsVertical />
-                </div>
-                <div
-                  className={`absolute z-[3] right-6 w-12 bg-white text-white drop-shadow-lg rounded-lg p-2 ${
-                    isDropdownOpen ? "block" : "hidden"
-                  }`}
-                >
-                  <Link className="rounded-xl bg-[#433EBE]">
-                    <div className="bg-primary w-8 h-7 mx-auto rounded-md flex items-center justify-center">
-                      <IoEyeOutline className="text-md"></IoEyeOutline>
-                    </div>
-                  </Link>
-                  <Link>
-                    <div className="bg-primary w-8 h-7 mx-auto rounded-md flex items-center justify-center mt-2">
-                      <IoCheckmark className="text-md"></IoCheckmark>
-                    </div>
-                  </Link>
-                  <Link className="rounded-xl bg-[#433EBE]">
-                    <div className="bg-primary w-8 h-7 mx-auto rounded-md flex items-center justify-center mt-2">
-                      <RxCross1 className="text-md"></RxCross1>
-                    </div>
-                  </Link>
-                </div>
-              </div>
-              <section className="space-x-3 justify-center items-center hidden md:flex text-white">
-                <Link className="rounded-lg p-2 bg-[#433EBE]">
-                  <IoEyeOutline className=""></IoEyeOutline>
-                </Link>
-                <Link className="rounded-lg p-2 bg-[#433EBE]">
-                  <IoCheckmark className=""></IoCheckmark>
-                </Link>
-                <Link onClick={()=> handleDelete(value?._id)} className="rounded-lg p-2 bg-[#433EBE]">
-                  <RxCross1 className=""></RxCross1>
-                </Link>
-              </section>
-            </div>
-          </div>
+         <ApplicationsCard key={value} value={value} handleUpdateRole={handleUpdateRole} handleDelete={handleDelete}>
+
+         </ApplicationsCard>
         ))}
       </div>
 
