@@ -69,7 +69,7 @@ const UserProfile = () => {
           <h2 className="text-[22px] font-bold font-inter">
             Completed You Profile
           </h2>
-          <h2> {profileComplete.toFixed(2)}% </h2>
+          <h2>{Math.ceil(profileComplete)}% </h2>
         </div>
         <ProgressBar
           completed={profileComplete}
