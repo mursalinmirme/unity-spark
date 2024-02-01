@@ -24,6 +24,7 @@ import AddJobs from "../pages/components/Dashboard/JobAds/AddJobs";
 import JobDetails from "../pages/components/HomeComponents/JobPost/JobDetails/JobDetails";
 import Home from "../pages/home/Home";
 import PrivateRouter from "../privateRouter.jsx/PrivateRouter";
+import JobsEdit from "../pages/components/Dashboard/JobAds/JobsEdit";
 
 const router = createBrowserRouter([
   {
@@ -128,6 +129,10 @@ const router = createBrowserRouter([
             <JobAds></JobAds>
           </PrivateRouter>
         ),
+      },
+      {
+        path: 'jobs/jobs-edit/:id',
+        element: <JobsEdit></JobsEdit>
       },
       {
         path: "tasks",
