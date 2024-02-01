@@ -15,7 +15,8 @@ import "./dashboard.css";
 import useUserRole from "../../hooks/useUserRole";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
-
+import { TfiAlarmClock } from "react-icons/tfi";
+import { GrDocumentPerformance } from "react-icons/gr";
 const Dashboard = () => {
   const [isUser] = useUserRole();
   const { loginOut } = useContext(AuthContext);
@@ -61,7 +62,7 @@ const Dashboard = () => {
                 isActive ? "dashboard_item_active" : "dashboard_item"
               }`}>
               <div>
-                <LuUser />
+                <TfiAlarmClock />
                 <span>My Attendance</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -77,7 +78,7 @@ const Dashboard = () => {
                 isActive ? "dashboard_item_active" : "dashboard_item"
               }`}>
               <div>
-                <LuUser />
+                <GrDocumentPerformance />
                 <span>My Performance</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
