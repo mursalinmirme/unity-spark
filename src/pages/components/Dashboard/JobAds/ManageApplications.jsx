@@ -12,15 +12,28 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import ApplicationsCard from "./ApplicationsCard";
+import Loading from "../../Loading/Loading";
 
 
 const ManageApplications = () => {
   const axiosPublic = useAxiosPublic();
-
-  const {data: jobapplications = [] , refetch} = useQuery({
-    queryKey: ['jobapplications'],
+  const [totalPages, setToalPages] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
+  // fetch the applications number under the pagination
+  const {data: jobapplicationsNum = [] , refetch:refetchTotalApplyNumbs} = useQuery({
+    queryKey: ['jobapplicationsNums', totalPages, currentPage],
     queryFn: async () =>{
-    const res = await  axiosPublic.get("/job_applications");
+    const res = await  axiosPublic.get("/job_applications_nums");
+    setToalPages(Math.ceil(res?.data?.total / 5))
+    return res?.data}
+    
+  })
+  console.log("total page num is", totalPages);
+  // fetch the applications by pagination
+  const {data: jobapplications = [] , isFetching, refetch} = useQuery({
+    queryKey: ['jobapplications', totalPages, currentPage],
+    queryFn: async () =>{
+    const res = await  axiosPublic.get(`/job_applications?skip=${currentPage * 5}`);
     return res?.data}
     
   })
@@ -34,8 +47,6 @@ const ManageApplications = () => {
     
   // })
   // const [showButtons, setShowButtons] = useState(false);
-  const [totalPages, setToalPages] = useState(10);
-  const [currentPage, setCurrentPage] = useState(0);
   // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   // const [userDataRole , setuserDataRole] = useState({})
 
@@ -55,7 +66,7 @@ const ManageApplications = () => {
   };
 
   const pagesArray = Array.from(
-    { length: totalPages / 5 },
+    { length: totalPages},
     (_, index) => index
   );
   
@@ -119,7 +130,9 @@ const ManageApplications = () => {
     }
     
    
-
+  if(isFetching){
+    return <Loading></Loading>
+  }
     
    
 
@@ -127,14 +140,14 @@ const ManageApplications = () => {
     <div className="py-10" id="manage_applications">
       <div className="min-h-[460px] space-y-3">
         {jobapplications?.map((value) => (
-         <ApplicationsCard key={value} value={value} handleUpdateRole={handleUpdateRole} handleDelete={handleDelete}>
+         <ApplicationsCard key={value?._id} value={value} handleUpdateRole={handleUpdateRole} handleDelete={handleDelete}>
 
          </ApplicationsCard>
         ))}
       </div>
 
       {/* pagination */}
-      <div className="mt-10">
+      <div className={`mt-10 ${jobapplicationsNum?.total > 5 ? 'block' : 'hidden'}`}>
         <div className={`flex justify-center`}>
           <div className={`join flex space-x-2`}>
             <button
@@ -163,7 +176,7 @@ const ManageApplications = () => {
                   }}
                   className="join-item btn"
                 >
-                  {page}
+                  {page + 1}
                 </button>
               );
             })}

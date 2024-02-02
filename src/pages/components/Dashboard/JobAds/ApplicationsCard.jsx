@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import moment from "moment";
 import { useState } from "react";
 import { HiDotsVertical } from "react-icons/hi";
 import { IoCheckmark, IoEyeOutline } from "react-icons/io5";
@@ -23,7 +24,7 @@ const ApplicationsCard = ({value, handleUpdateRole, handleDelete}) => {
             <div>
               <h1 className="font-semibold text-lg">{value?.title}</h1>
               <h1 className="font-semibold text-[#5B5555]">
-                applied at {value?.createdAt}
+                applied at {moment(value?.createdAt).startOf('day').fromNow()}
               </h1>
             </div>
           </div>
