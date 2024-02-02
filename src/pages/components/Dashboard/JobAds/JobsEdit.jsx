@@ -1,11 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { useParams } from "react-router-dom";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import Loading from "../../Loading/Loading";
 import { Controller, useForm } from "react-hook-form";
 import Select from "react-select";
-import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import toast from "react-hot-toast";
+import axios from "axios";
 
-const AddJobs = () => {
+const JobsEdit = () => {
+  const { id } = useParams();
   const axiosPublic = useAxiosPublic();
 
   const { data: jobTypes } = useQuery({
@@ -21,6 +24,14 @@ const AddJobs = () => {
     queryFn: async () => {
       const res = await axios.get("/workTypes.json");
       return res.data;
+    },
+  });
+
+  const { data: job, isFetching } = useQuery({
+    queryKey: ["jobs-edit"],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/job-ads/${id}`);
+      return res?.data;
     },
   });
 
@@ -70,6 +81,7 @@ const AddJobs = () => {
   const {
     control,
     register,
+    reset,
     handleSubmit,
 
     formState: { errors },
@@ -109,19 +121,30 @@ const AddJobs = () => {
       benefits: jobBenefitsArray,
     };
 
+    console.log(newJob);
+
     axiosPublic
-      .post("/job-ads", newJob)
+      .put(`/job-ads/${id}`, newJob)
       .then(() => {
-        toast.success("New Job Ad Added");
+        reset();
+        toast.success("Job updated");
       })
       .catch((error) => {
         toast.error(error.message);
       });
   };
 
+  if (isFetching) {
+    return (
+      <div>
+        <Loading></Loading>
+      </div>
+    );
+  }
+
   return (
     <div className="font-inter">
-      <h3 className="text-3xl font-semibold">Add a new job ads</h3>
+      <h3 className="text-3xl font-semibold">Edit job ads</h3>
 
       <div>
         <form className="mt-10 space-y-3" onSubmit={handleSubmit(onSubmit)}>
@@ -134,9 +157,9 @@ const AddJobs = () => {
             </label>
             <input
               type="text"
-              placeholder="Enter job title"
               className="input input-bordered"
-              {...register("jobTitle", { required: true })}
+              {...register("jobTitle")}
+              defaultValue={job?.job_title}
             />
             {errors.jobTitle && (
               <span className="error text-red-500">
@@ -156,7 +179,7 @@ const AddJobs = () => {
               </label>
               <input
                 type="text"
-                placeholder="Enter job position"
+                defaultValue={job?.position}
                 className="input input-bordered"
                 {...register("position", { required: true })}
               />
@@ -174,7 +197,7 @@ const AddJobs = () => {
               </label>
               <input
                 type="text"
-                placeholder="Enter job salary"
+                defaultValue={job?.salary}
                 className="input input-bordered"
                 {...register("salary", { required: true })}
               />
@@ -197,15 +220,13 @@ const AddJobs = () => {
                 </span>
               </label>
               <select
-                defaultValue="default"
                 className="select select-bordered w-full"
+                defaultValue={job?.job_category1}
                 {...register("jobType", {
                   required: true,
                 })}
               >
-                <option disabled value="default">
-                  Select Job Type
-                </option>
+                <option value="default">{job?.job_category1}</option>
                 {jobTypes &&
                   jobTypes?.map((jobType) => (
                     <option key={jobType.id} value={jobType.name}>
@@ -228,14 +249,12 @@ const AddJobs = () => {
                 </span>
               </label>
               <select
-                defaultValue="default"
+                defaultValue={job?.job_category2}
                 required
                 className="select select-bordered w-full"
                 {...register("workType")}
               >
-                <option disabled value="default">
-                  Select Work Type
-                </option>
+                <option value="default">{job?.job_category2}</option>
 
                 {workTypes &&
                   workTypes?.map((workType) => (
@@ -257,7 +276,7 @@ const AddJobs = () => {
             </label>
             <input
               type="text"
-              placeholder="Enter job description"
+              defaultValue={job?.job_description}
               className="input input-bordered"
               {...register("jobDescription", { required: true })}
             />
@@ -278,14 +297,13 @@ const AddJobs = () => {
             </label>
             <Controller
               name="skills"
-              rules={{ required: "Please select required skills" }}
               control={control}
               render={({ field }) => (
                 <Select
+                  defaultValue={job?.required_Skills.map((i) => i)}
                   {...field}
                   options={skillsArray}
                   isMulti
-                  placeholder="Enter required skills"
                 />
               )}
             />
@@ -310,7 +328,7 @@ const AddJobs = () => {
                   {...field}
                   options={additionalRequirementsArray}
                   isMulti
-                  placeholder="Enter additional requirements"
+                  defaultValue={job?.additional_Require}
                 />
               )}
             />
@@ -331,7 +349,7 @@ const AddJobs = () => {
                   {...field}
                   options={educationalRequirementArray}
                   isMulti
-                  placeholder="Enter educational requirements"
+                  defaultValue={job?.education_Require}
                 />
               )}
             />
@@ -352,7 +370,7 @@ const AddJobs = () => {
                   {...field}
                   options={jobBenefitsArray}
                   isMulti
-                  placeholder="Enter benefits"
+                  defaultValue={job?.benefits}
                 />
               )}
             />
@@ -370,4 +388,4 @@ const AddJobs = () => {
   );
 };
 
-export default AddJobs;
+export default JobsEdit;

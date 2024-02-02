@@ -10,11 +10,15 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { LuPenLine } from "react-icons/lu";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import toast from "react-hot-toast";
+import Loading from "../../Loading/Loading";
 
 const ManageAds = () => {
   const [totalPages, setToalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
-  const [showSearchBar, setShowSearchBar] = useState(true);
+  const [showSearchBar, setShowSearchBar] = useState(false);
+  const [searchValues, setSearchValues] = useState(null);
 
   const { data: manageAds = [] } = useQuery({
     queryKey: ["manageOurAds"],
@@ -22,7 +26,7 @@ const ManageAds = () => {
       const result = await axios.get(
         "http://localhost:5000/total-job-ads-numbers"
       );
-      setToalPages(result.data.total / 5);
+      setToalPages(Math.ceil(result?.data.total / 5));
       console.log("The jobs document count is", result.data.total);
       return result.data.total;
     },
@@ -33,7 +37,7 @@ const ManageAds = () => {
   console.log(pagesArray);
 
   // fetch all the jobs list from database one by one
-  const { data: ourAllJobs = [] } = useQuery({
+  const { data: ourAllJobs = [], isFetching, refetch } = useQuery({
     queryKey: ["seeOurAllJobs", currentPage],
     queryFn: async () => {
       const result = await axios.get(
@@ -42,6 +46,27 @@ const ManageAds = () => {
       return result.data;
     },
   });
+
+  // handle delete job ads
+  const handleDeleteJob = (id) => {
+    console.log(id);
+    Swal.fire({
+      title: "Are you sure?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete(`http://localhost:5000/job-ads/${id}`).then((res) => {
+          console.log(res.data);
+          toast.success('Successfully deleted');
+          refetch();
+        });
+      }
+    });
+  };
 
   // handle next btn pagination
   const handleRightPagi = () => {
@@ -59,17 +84,26 @@ const ManageAds = () => {
   // handle search system
   const handleSearches = (e) => {
     e.preventDefault();
-    alert("Search button is working");
-  };
-  // handle close search bar
-  const handleCloseSearchBar = () => {
-    setShowSearchBar(true);
+    const form = e.target;
+    const searchVal = form.search.value;
+    if (!searchVal) {
+      return;
+    }
+    console.log("Does it overtake");
+    setSearchValues(searchVal);
   };
 
+  // handle close search bar
+  const handleCloseSearchBar = () => {
+    setShowSearchBar(false);
+  };
+  if(isFetching){
+    return <Loading></Loading>
+  }
   return (
     <div>
       <div className="mt-4 flex justify-between items-center">
-        <div className="flex items-center gap-3">
+        {/* <div className="flex items-center gap-3">
           <form
             onSubmit={handleSearches}
             className={`p-0 border-0 m-0 relative ${
@@ -92,9 +126,9 @@ const ManageAds = () => {
           {showSearchBar ? (
             <button
               onClick={() => setShowSearchBar(false)}
-              className="rounded-md bg-primary text-white p-2"
+              className="rounded-md bg-primary text-white p-2 px-4"
             >
-              <FaSearch className="text-lg"></FaSearch>
+              <IoIosSearch className="text-lg"></IoIosSearch>
             </button>
           ) : (
             <button
@@ -104,18 +138,53 @@ const ManageAds = () => {
               <ImCross className="text-lg"></ImCross>
             </button>
           )}
+        </div> */}
+        <div className="flex gap-2">
+          <form
+            onSubmit={handleSearches}
+            className={`p-0 border-0 m-0 search-box ${
+              showSearchBar && "active-search-dashboard"
+            }`}
+          >
+            <input
+              name="search"
+              defaultValue={searchValues}
+              type="text"
+              className=""
+              placeholder="Search..."
+            />
+            <div>
+              <button
+                onClick={() => setShowSearchBar(true)}
+                style={{ background: "#433EBE" }}
+                className="search-btn"
+              >
+                <IoIosSearch className="text-xl text-white"></IoIosSearch>
+              </button>
+            </div>
+            <div>
+              {showSearchBar && (
+                <button
+                  onClick={handleCloseSearchBar}
+                  className="rounded-none bg-none text-primary cancel-btn"
+                >
+                  <ImCross></ImCross>
+                </button>
+              )}
+            </div>
+          </form>
         </div>
 
         <div>
           <Link to="/dashboard/addJobs">
-            <p className="flex items-center gap-2 text-[#433ebe] font-inter font-semibold border-2 border-[#433ebe] py-1 p-2 rounded-lg">
+            <p className="flex items-center gap-2 text-[#433ebe] font-inter font-semibold border-2 border-[#433ebe] p-1 md:px-2 rounded-lg">
               <LuPenLine></LuPenLine> <span>New Ad</span>
             </p>
           </Link>
         </div>
       </div>
       {/* main cards */}
-      <div>
+      <div className="min-h-[60vh]">
         {ourAllJobs?.map((job) => {
           return (
             <div
@@ -131,12 +200,17 @@ const ManageAds = () => {
                   </span>
                 </h3>
               </div>
-              <div className="space-x-4 ">
-                <button className="bg-primary rounded-md px-3 text-white py-2.5 ">
-                  <AiFillEdit className="text-xl"></AiFillEdit>
-                </button>
-                <button className="bg-primary rounded-md px-3 text-white py-2.5 ">
-                  <RiDeleteBin6Line className="text-xl"></RiDeleteBin6Line>
+              <div className="space-x-4 text-white">
+                <Link to={`/dashboard/jobs/jobs-edit/${job?._id}`}>
+                  <button className="bg-primary rounded-lg p-2">
+                    <AiFillEdit className="text-lg"></AiFillEdit>
+                  </button>
+                </Link>
+                <button
+                  onClick={() => handleDeleteJob(job?._id)}
+                  className="bg-primary rounded-lg p-2 "
+                >
+                  <RiDeleteBin6Line className="text-lg"></RiDeleteBin6Line>
                 </button>
               </div>
             </div>
@@ -173,7 +247,7 @@ const ManageAds = () => {
                   }}
                   className="join-item btn"
                 >
-                  {page}
+                  {page + 1}
                 </button>
               );
             })}

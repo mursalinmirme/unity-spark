@@ -3,19 +3,22 @@ import axios from "axios";
 import moment from "moment";
 import { useState } from "react";
 import { ImCross } from "react-icons/im";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosSearch } from "react-icons/io";
 import Loading from "../components/Loading/Loading";
+import "./searchAnimation.css";
+
 const AvailableJobs = () => {
-  const [showSearchBar, setShowSearchBar] = useState(true);
+  const [showSearchBar, setShowSearchBar] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [searchValues, setSearchValues] = useState(null);
   const [sortDate, setSortDate] = useState(null);
   const [jobType, setJobType] = useState(null);
   const [workType, setWorkType] = useState(null);
+  const navigate = useNavigate();
 
   // fetch all jobs cards
   const { data: getTotalJobsNumber = [] } = useQuery({
@@ -38,11 +41,7 @@ const AvailableJobs = () => {
   });
 
   // fetch all jobs cards
-  const {
-    data: allJobs = [],
-    refetch,
-    isFetching,
-  } = useQuery({
+  const { data: allJobs = [], isFetching } = useQuery({
     queryKey: [
       "allJobsAds",
       currentPage,
@@ -90,7 +89,7 @@ const AvailableJobs = () => {
 
   // handle close search bar
   const handleCloseSearchBar = () => {
-    setShowSearchBar(true);
+    setShowSearchBar(false);
   };
 
   // handle fatch jobs by users wanted date
@@ -116,6 +115,12 @@ const AvailableJobs = () => {
     setSortDate(null);
     setJobType(null);
     setWorkType(wkType.target.value);
+  };
+
+  // handle job title and id to apply job page
+  const hanldeNavigate = (id, title) => {
+    console.log(id, title);
+    navigate(`/apply-job/${id}`, { state: { title } })
   };
 
   if (isFetching) {
@@ -164,43 +169,40 @@ const AvailableJobs = () => {
             <option value="Contract">Contract</option>
           </select>
         </div>
-        <div className="flex gap-2 search-animation">
+        <div className="flex gap-2">
           <form
             onSubmit={handleSearches}
-            className={`p-0 border-0 m-0 relative ${
-              showSearchBar ? "hidden" : "visible"
+            className={`p-0 border-0 m-0 search-box ${
+              showSearchBar && "active-search"
             }`}
           >
             <input
               name="search"
               defaultValue={searchValues}
-              className="md:py-1.5 pr-14 m-0 md:w-60 lg:w-80 border-second"
               type="text"
+              className=""
               placeholder="Search..."
             />
-            <button
-              style={{ background: "#433EBE" }}
-              className="bg-primary absolute top-0 right-0 h-full rounded-none rounded-r-lg px-4"
-            >
-              <IoIosSearch className="text-xl text-white"></IoIosSearch>
-            </button>
+            <div>
+              <button
+                onClick={() => setShowSearchBar(true)}
+                style={{ background: "#433EBE" }}
+                className="search-btn"
+              >
+                <IoIosSearch className="text-xl text-white"></IoIosSearch>
+              </button>
+            </div>
+            <div>
+              {showSearchBar && (
+                <button
+                  onClick={handleCloseSearchBar}
+                  className="rounded-none bg-none text-primary cancel-btn"
+                >
+                  <ImCross></ImCross>
+                </button>
+              )}
+            </div>
           </form>
-          {showSearchBar ? (
-            <button
-              onClick={() => setShowSearchBar(false)}
-              style={{ background: "#433EBE" }}
-              className="rounded-md md:h-[38px] bg-primary px-4"
-            >
-              <IoIosSearch className="text-xl text-white"></IoIosSearch>
-            </button>
-          ) : (
-            <button
-              onClick={handleCloseSearchBar}
-              className="rounded-none bg-none text-primary"
-            >
-              <ImCross></ImCross>
-            </button>
-          )}
         </div>
       </div>
       {/* middle */}
@@ -240,7 +242,13 @@ const AvailableJobs = () => {
                       : job?.job_description}
                   </p>
                   <div className="card-actions justify-start items-center">
-                    <button className="mt-3 mr-3 nbtn">Apply Now</button>
+                    <button
+                      onClick={() => hanldeNavigate(job?._id, job?.job_title)}
+                      className="mt-3 mr-3 nbtn"
+                    >
+                      Apply Now
+                    </button>
+
                     <Link to={`/job-details/${job?._id}`}>
                       <div className="mt-3 mr-3 text-primary font-semibold cursor-pointer px-5 py-2 rounded-xl border-2 border-primary text-[15px]">
                         View Details

@@ -233,7 +233,6 @@ body {
   @apply font-semibold;
 }
 
-
 /* GOALS SECTION */
 
 .goals img {
@@ -378,9 +377,17 @@ h6,
   font-weight: 500;
 }
 
-
 /* */
 
 #manage_applications summary::marker {
-  display: none!important
+  display: none !important;
+}
+
+/* Emploee page for style and table */
+.table-no-border {
+  border-collapse: collapse;
+}
+.table-no-border td,
+.table-no-border th {
+  border: none;
 }

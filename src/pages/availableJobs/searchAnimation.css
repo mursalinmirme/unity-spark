@@ -1,0 +1,28 @@
+.search-box {
+  @apply h-9 w-12 relative;
+  transition: 0.5s;
+}
+
+.search-box.active-search {
+  @apply w-72 md:w-80 mr-7;
+}
+
+.search-box.active-search-dashboard {
+  @apply w-56 md:w-80 md:mr-7;
+}
+
+.search-box input {
+  @apply border-second w-full h-full relative m-0;
+}
+
+.search-box .search-btn {
+  @apply absolute right-0 top-0 w-12 h-full flex justify-center items-center rounded-md;
+}
+
+.search-box.active-search .search-btn {
+  @apply rounded-none rounded-r-md;
+}
+
+.search-box .cancel-btn {
+  @apply absolute h-full top-0 -right-7;
+}
