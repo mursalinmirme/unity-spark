@@ -12,6 +12,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import Loading from "../../Loading/Loading";
 
 const ManageAds = () => {
   const [totalPages, setToalPages] = useState(0);
@@ -25,7 +26,7 @@ const ManageAds = () => {
       const result = await axios.get(
         "http://localhost:5000/total-job-ads-numbers"
       );
-      setToalPages(result.data.total / 5);
+      setToalPages(Math.ceil(result?.data.total / 5));
       console.log("The jobs document count is", result.data.total);
       return result.data.total;
     },
@@ -36,7 +37,7 @@ const ManageAds = () => {
   console.log(pagesArray);
 
   // fetch all the jobs list from database one by one
-  const { data: ourAllJobs = [], refetch } = useQuery({
+  const { data: ourAllJobs = [], isFetching, refetch } = useQuery({
     queryKey: ["seeOurAllJobs", currentPage],
     queryFn: async () => {
       const result = await axios.get(
@@ -96,7 +97,9 @@ const ManageAds = () => {
   const handleCloseSearchBar = () => {
     setShowSearchBar(false);
   };
-
+  if(isFetching){
+    return <Loading></Loading>
+  }
   return (
     <div>
       <div className="mt-4 flex justify-between items-center">
@@ -181,7 +184,7 @@ const ManageAds = () => {
         </div>
       </div>
       {/* main cards */}
-      <div>
+      <div className="min-h-[60vh]">
         {ourAllJobs?.map((job) => {
           return (
             <div
@@ -244,7 +247,7 @@ const ManageAds = () => {
                   }}
                   className="join-item btn"
                 >
-                  {page}
+                  {page + 1}
                 </button>
               );
             })}
