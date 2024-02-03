@@ -198,7 +198,7 @@ const UserProfile = () => {
               key={index}
               className="mr-2 text-primary bg-[#d0d8e0] py-1 px-3 rounded-full text-sm font-medium"
             >
-              {skill?.value},{skill?.label}
+              {skill?.value}
             </span>
           )) || "N/A"}
         </label>

@@ -7,7 +7,7 @@ const Employee = () => {
   const { data: allUsers = [] } = useQuery({
     queryKey: ["allUsers"],
     queryFn: async () => {
-      const res = await axiosPublic.get("/employee");
+      const res = await axiosPublic.get("/employees");
       return res?.data;
     },
   });

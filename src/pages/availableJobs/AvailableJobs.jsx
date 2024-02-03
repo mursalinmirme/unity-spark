@@ -12,6 +12,7 @@ import "./searchAnimation.css";
 
 const AvailableJobs = () => {
   const [showSearchBar, setShowSearchBar] = useState(false);
+
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [searchValues, setSearchValues] = useState(null);
@@ -120,7 +121,7 @@ const AvailableJobs = () => {
   // handle job title and id to apply job page
   const hanldeNavigate = (id, title) => {
     console.log(id, title);
-    navigate(`/apply-job/${id}`, { state: { title } })
+    navigate(`/apply-job/${id}`, { state: { title } });
   };
 
   if (isFetching) {
