@@ -10,10 +10,9 @@ import useUserRole from "../../../../hooks/useUserRole";
 
 const Reviews = () => {
   const axiosPublic = useAxiosPublic();
-  const totalReviews = 30;
+  const [totalPages, setToalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
-  const numOfPage = Math.ceil(totalReviews / 6);
-  const pages = [...Array(numOfPage).keys()];
+  const pages = [...Array(totalPages).keys()];
   const [isUser] = useUserRole();
 
   const handlPrev = () => {
@@ -27,10 +26,21 @@ const Reviews = () => {
     }
   };
 
-  const { data: reviews, refetch } = useQuery({
-    queryKey: ["reviews"],
+  // fetch all reviews numbers
+  const { data: reviewsNums, refetch:reFetchReviewsNums } = useQuery({
+    queryKey: ["reviewsNumbers"],
     queryFn: async () => {
-      const res = await axiosPublic.get("/feedbacks");
+      const res = await axiosPublic.get(`/feedbacks-nums`);
+      setToalPages(Math.ceil(res.data?.total / 8));
+      return res.data?.total;
+    },
+  });
+  console.log("total review numbers are", reviewsNums);
+  // fetch all reviews
+  const { data: reviews, refetch } = useQuery({
+    queryKey: ["reviews", totalPages, currentPage],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/feedbacks?skip=${currentPage * 6}`);
       return res.data;
     },
   });
@@ -48,6 +58,7 @@ const Reviews = () => {
           </Link>
         )}
       </div>
+      <div className="min-h-[505px]">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {reviews?.map((item) => (
           <div className="border-2 rounded-lg p-3" key={item._id}>
@@ -79,7 +90,8 @@ const Reviews = () => {
           </div>
         ))}
       </div>
-      <div className="text-cente flex flex-wrap justify-center md:space-x-3 mt-10 review-pagination">
+      </div>
+      <div className="text-cente flex flex-wrap justify-center space-x-2 md:space-x-3 mt-10 review-pagination">
         <a onClick={handlPrev}>
           <GrPrevious className="icons" />
         </a>
@@ -89,7 +101,7 @@ const Reviews = () => {
             className={`${currentPage === i && "pagination-active"}`}
             key={i}
           >
-            {i}
+            {i + 1}
           </a>
         ))}
         <a onClick={handleNext} className="">
