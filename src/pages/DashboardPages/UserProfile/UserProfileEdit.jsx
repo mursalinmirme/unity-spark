@@ -13,6 +13,7 @@ const UserProfileEdit = () => {
   const { register, handleSubmit, control, reset } = useForm();
   const [updateLoading, setUpdateLoading] = useState(false);
   const { user } = useContext(AuthContext);
+  const { profileComplete } = useContext(AuthContext);
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
   // New Array
@@ -103,7 +104,7 @@ const UserProfileEdit = () => {
             <h2>{users?.name}</h2>
             <h3>{users?.email}</h3>
             <ProgressBar
-              completed={90}
+              completed={Math.ceil(profileComplete)}
               bgColor="#433ebe"
               height="12px"
               width="300px"
@@ -117,7 +118,8 @@ const UserProfileEdit = () => {
           <div>
             <Link
               to="/dashboard/userProfile"
-              className="edit_btn !text-red-500 hover:!text-white !border-red-600 hover:!border-red-600 hover:!bg-red-600">
+              className="edit_btn !text-red-500 hover:!text-white !border-red-600 hover:!border-red-600 hover:!bg-red-600"
+            >
               <span> X Cancel </span>
             </Link>
           </div>
@@ -149,7 +151,8 @@ const UserProfileEdit = () => {
               <span className="font-bold font-inter"> Your Photo : </span>
               <label
                 className="font-semibold w-full absolute bottom-0   text-white cursor-pointer font-inter text-base px-8 py-[8px] bg-primary rounded-md transition-all duration-500 text-[15px]"
-                htmlFor="user_photo">
+                htmlFor="user_photo"
+              >
                 <div className="flex justify-center items-center gap-4">
                   {" "}
                   {/* <img className="w-5 h-5" src={download_icon} alt="" />{" "} */}
@@ -255,7 +258,8 @@ const UserProfileEdit = () => {
 
             <select
               className="w-full py-2 mt-2 border rounded-lg pl-2"
-              {...register("gender")}>
+              {...register("gender")}
+            >
               <option> {users?.gender} </option>
               <option value="male">male</option>
               <option value="female">female</option>
@@ -309,7 +313,8 @@ const UserProfileEdit = () => {
 
             <select
               className="w-full py-2 mt-2 border rounded-lg pl-2"
-              {...register("preference")}>
+              {...register("preference")}
+            >
               <option> {users?.job_preference} </option>
               <option value="Remote">Remote</option>
               <option value="On-site">On-site</option>
@@ -329,7 +334,8 @@ const UserProfileEdit = () => {
 
             <select
               className="w-full py-2 mt-2 border rounded-lg pl-2"
-              {...register("time_preference")}>
+              {...register("time_preference")}
+            >
               <option> {users?.time_preference} </option>
               <option value="intern">intern</option>
               <option value="full-time">full-time</option>
