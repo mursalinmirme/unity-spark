@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { Controller, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { SlCloudUpload } from "react-icons/sl";
 import Select from "react-select";
 import { CgProfile } from "react-icons/cg";
@@ -45,7 +44,7 @@ const UserProfileEdit = () => {
 
     if (data?.photo?.length > 0) {
       const imageFile = { image: data.photo[0] };
-      const res = await axios.post(image_Hosting_Api, imageFile, {
+      const res = await axiosPublic.post(image_Hosting_Api, imageFile, {
         headers: {
           "content-type": "multipart/form-data",
         },

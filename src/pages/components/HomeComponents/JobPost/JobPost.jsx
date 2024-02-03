@@ -1,13 +1,15 @@
 import JobPostCard from "./JobPostCard";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+
 import { Link } from "react-router-dom";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 
 const JobPost = () => {
+  const PublicAxios = useAxiosPublic()
   const { data: jobPosts = [] } = useQuery({
     queryKey: ["recentFeaturedJobs"],
     queryFn: async () => {
-      const result = await axios.get("http://localhost:5000/featured-jobs");
+      const result = await PublicAxios.get("/featured-jobs");
       return result.data;
     },
   });

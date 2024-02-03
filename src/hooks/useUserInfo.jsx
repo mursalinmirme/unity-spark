@@ -1,13 +1,14 @@
-import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import useAxiosPublic from "./useAxiosPublic";
 const useUserInfo = () => {
+  const PublicAxios = useAxiosPublic()
   const { user, setProfileComplete } = useContext(AuthContext);
   const { data: users = [] } = useQuery({
     queryKey: ["user_infor"],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/users/${user?.email}`);  
+      const res = await PublicAxios.get(`/${user?.email}`);  
       let profileCount = 0;
   
       profileCount += res.data.name ? 7.142 : 0

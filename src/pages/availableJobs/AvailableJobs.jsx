@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import moment from "moment";
 import { useState } from "react";
 import { ImCross } from "react-icons/im";
@@ -9,8 +8,10 @@ import { IoIosArrowBack } from "react-icons/io";
 import { IoIosSearch } from "react-icons/io";
 import Loading from "../components/Loading/Loading";
 import "./searchAnimation.css";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const AvailableJobs = () => {
+  const PublicAxios = useAxiosPublic()
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
@@ -31,8 +32,8 @@ const AvailableJobs = () => {
       workType,
     ],
     queryFn: async () => {
-      const result = await axios.get(
-        `http://localhost:5000/available-total-jobs-numbers?searching=${searchValues}&sortdate=${sortDate}&jobtypes=${jobType}&worktype=${workType}`
+      const result = await PublicAxios.get(
+        `/available-total-jobs-numbers?searching=${searchValues}&sortdate=${sortDate}&jobtypes=${jobType}&worktype=${workType}`
       );
       setTotalPages(Math.ceil(result?.data.total / 5));
       console.log("The current documents number is", result?.data);
@@ -51,8 +52,8 @@ const AvailableJobs = () => {
       workType,
     ],
     queryFn: async () => {
-      const result = await axios.get(
-        `http://localhost:5000/job-ads?skip=${
+      const result = await PublicAxios.get(
+        `/job-ads?skip=${
           currentPage * 5
         }&searching=${searchValues}&sortdate=${sortDate}&jobtypes=${jobType}&worktype=${workType}`
       );

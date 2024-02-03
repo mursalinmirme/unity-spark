@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import moment from "moment";
 import { useState } from "react";
 import { AiFillEdit } from "react-icons/ai";
@@ -13,8 +12,10 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import Loading from "../../Loading/Loading";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 
 const ManageAds = () => {
+  const PublicAxios = useAxiosPublic()
   const [totalPages, setToalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [showSearchBar, setShowSearchBar] = useState(false);
@@ -23,8 +24,8 @@ const ManageAds = () => {
   const { data: manageAds = [] } = useQuery({
     queryKey: ["manageOurAds"],
     queryFn: async () => {
-      const result = await axios.get(
-        "http://localhost:5000/total-job-ads-numbers"
+      const result = await PublicAxios.get(
+        "/total-job-ads-numbers"
       );
       setToalPages(Math.ceil(result?.data.total / 5));
       console.log("The jobs document count is", result.data.total);
@@ -40,8 +41,8 @@ const ManageAds = () => {
   const { data: ourAllJobs = [], isFetching, refetch } = useQuery({
     queryKey: ["seeOurAllJobs", currentPage],
     queryFn: async () => {
-      const result = await axios.get(
-        `http://localhost:5000/total-job-ads?skip=${currentPage * 5}`
+      const result = await PublicAxios.get(
+        `/total-job-ads?skip=${currentPage * 5}`
       );
       return result.data;
     },
@@ -59,7 +60,7 @@ const ManageAds = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/job-ads/${id}`).then((res) => {
+        PublicAxios.delete(`/job-ads/${id}`).then((res) => {
           console.log(res.data);
           toast.success('Successfully deleted');
           refetch();
