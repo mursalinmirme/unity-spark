@@ -124,9 +124,9 @@ const AvailableJobs = () => {
     navigate(`/apply-job/${id}`, { state: { title } })
   };
 
-  if (isFetching) {
-    return <Loading></Loading>;
-  }
+  // if (isFetching) {
+  //   return <Loading></Loading>;
+  // }
 
   return (
     <div className="mt-6">
@@ -263,7 +263,7 @@ const AvailableJobs = () => {
         </div>
       )}
       {/* bottom */}
-      <div className={`flex justify-center py-10`}>
+      <div className={`flex justify-center py-10 ${getTotalJobsNumber?.total > 5 ? 'block' : 'hidden'}`}>
         <div className={`join flex space-x-2`}>
           <button
             onClick={handlePagiBack}
