@@ -1,12 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { useState } from "react";
 
+import axios from "axios";
+
 const Testimonilas = () => {
+  
   const screenSize = useState(window.innerWidth);
 
   const { data: testimonials } = useQuery({

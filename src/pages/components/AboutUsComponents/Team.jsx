@@ -1,10 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import facebook from "./../../../assets/social/facebook.png";
 import instagram from "./../../../assets/social/instagram.png";
 import linkedIn from "./../../../assets/social/linkedin.png"
+import axios from "axios";
+
 
 const Team = () => {
+ 
   const { data: team } = useQuery({
     queryKey: ["team_info"],
     queryFn: async () => {

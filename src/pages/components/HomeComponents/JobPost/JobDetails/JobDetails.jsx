@@ -2,13 +2,14 @@ import { Link, useParams } from "react-router-dom";
 import { GoDotFill } from "react-icons/go";
 import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { useContext, useState } from "react";
 import useUserInfo from "../../../../../hooks/useUserInfo";
 import { AuthContext } from "../../../../../Provider/AuthProvider";
 import JobApplyForm from "../JobApplyForm";
+import useAxiosPublic from "../../../../../hooks/useAxiosPublic";
 
 const JobDetails = () => {
+  const PublicAxios = useAxiosPublic()
   const { id } = useParams();
   const [currentAds, setCurrentAds] = useState(id);
   const [users] = useUserInfo();
@@ -45,8 +46,8 @@ const JobDetails = () => {
   const { data: jobInfo, refetch } = useQuery({
     queryKey: ["jobsDetails", currentAds],
     queryFn: async () => {
-      const result = await axios.get(
-        `http://localhost:5000/job-ads/${currentAds}`
+      const result = await PublicAxios.get(
+        `/job-ads/${currentAds}`
       );
       return result.data;
     },
@@ -57,8 +58,8 @@ const JobDetails = () => {
     queryKey: ["seeMoreJobs", currentAds],
     enabled: !!jobInfo?.job_category1,
     queryFn: async () => {
-      const result = await axios.get(
-        `http://localhost:5000/similar_jobs?jobtype=${jobInfo?.job_category1}`
+      const result = await PublicAxios.get(
+        `/similar_jobs?jobtype=${jobInfo?.job_category1}`
       );
       console.log("see more jobs result is", result.data);
       return result.data;
