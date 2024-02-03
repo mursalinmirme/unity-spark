@@ -21,17 +21,18 @@ const ManageAds = () => {
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [searchValues, setSearchValues] = useState(null);
 
-  const { data: manageAds = [] } = useQuery({
-    queryKey: ["manageOurAds"],
+  const { data: manageAds = 0 } = useQuery({
+    queryKey: ["manageOurAds", currentPage, searchValues],
     queryFn: async () => {
       const result = await PublicAxios.get(
-        "/total-job-ads-numbers"
+        `/total-job-ads-numbers?searchVal=${searchValues}`
       );
-      setToalPages(Math.ceil(result?.data.total / 5));
+      setToalPages(Math.ceil(result?.data.total / 6));
       console.log("The jobs document count is", result.data.total);
       return result.data.total;
     },
   });
+  console.log('Rw skdjfkdjf', manageAds);
 
   const pagesArray = Array.from({ length: totalPages }, (_, index) => index);
 
@@ -39,10 +40,10 @@ const ManageAds = () => {
 
   // fetch all the jobs list from database one by one
   const { data: ourAllJobs = [], isFetching, refetch } = useQuery({
-    queryKey: ["seeOurAllJobs", currentPage],
+    queryKey: ["seeOurAllJobs", currentPage, searchValues],
     queryFn: async () => {
       const result = await PublicAxios.get(
-        `/total-job-ads?skip=${currentPage * 5}`
+        `/total-job-ads?skip=${currentPage * 6}&searchVal=${searchValues}`
       );
       return result.data;
     },
@@ -90,17 +91,21 @@ const ManageAds = () => {
     if (!searchVal) {
       return;
     }
-    console.log("Does it overtake");
     setSearchValues(searchVal);
   };
-
+  //  HANDLE SHOW SEARCH BAR
+  const handleShowSearchBar = () => {
+    setShowSearchBar(true);
+    setSearchValues(null);
+  }
   // handle close search bar
   const handleCloseSearchBar = () => {
     setShowSearchBar(false);
+    setSearchValues(null)
   };
-  if(isFetching){
-    return <Loading></Loading>
-  }
+  // if(isFetching){
+  //   return <Loading></Loading>
+  // }
   return (
     <div>
       <div className="mt-4 flex justify-between items-center">
@@ -156,7 +161,7 @@ const ManageAds = () => {
             />
             <div>
               <button
-                onClick={() => setShowSearchBar(true)}
+                onClick={handleShowSearchBar}
                 style={{ background: "#433EBE" }}
                 className="search-btn"
               >
@@ -185,7 +190,9 @@ const ManageAds = () => {
         </div>
       </div>
       {/* main cards */}
-      <div className="min-h-[60vh]">
+      {
+        ourAllJobs.length > 0 ?
+        <div className="min-h-[62vh]">
         {ourAllJobs?.map((job) => {
           return (
             <div
@@ -218,8 +225,16 @@ const ManageAds = () => {
           );
         })}
       </div>
+         :
+         <div className="flex justify-center items-center h-[400px]">
+          <h3 className="text-lg font-medium text-primary">
+            There has no job ads to your search.
+          </h3>
+        </div>
+      }
+
       {/* pagination */}
-      <div>
+      <div className={`${manageAds > 5 ? 'block' : 'hidden'}`}>
         <div className={`flex justify-center`}>
           <div className={`join flex space-x-2`}>
             <button
