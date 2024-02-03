@@ -65,20 +65,24 @@ console.log("current employee last present at", new Date(presentStatus).getDate(
 
     return (
         <div>
-           <h1 className="text-center text-[40px] font-bold text-[#1E1E1E]">Employee Attendance Tracker</h1>
-           <h1 className="text-center text-[25px] font-semibold text-[#1E1E1E] my-5">Mark Your Attendance - Time to Clock In</h1>
-           <div className="border-2 border-[#D9D9D9] p-7 rounded-md space-y-5 w-full">
+           <h1 className="text-center text-[35px] font-bold text-[#1E1E1E]">Employee Attendance Tracker</h1>
+           <h1 className="text-center text-[20px] font-semibold text-[#1E1E1E] mt-2 mb-5">Mark Your Attendance - 9 AM to 10.59 AM</h1>
+           <div className="border-2 border-[#D9D9D9] px-7 py-12 rounded-md space-y-6 w-full">
                 <div>
                 <img src={employeeInfo?.image} alt="pp" 
                 className="w-24 h-24 object-cover rounded-full mx-auto" />
                 </div>
                 <h2 className="text-3xl font-semibold text-center">{employeeInfo?.name}</h2>
-                <div className="mt-0 space-y-3">
-                <p className="text-base  md:text-xl font-medium text-center ">{employeeInfo?.email}</p>
+                <div className="mt-0 space-y-4">
+                <p className="text-lg  md:text-xl font-medium text-center">{employeeInfo?.email}</p>
+                <div className="flex flex-col md:flex-row justify-center md:gap-10 space-y-2 md:space-y-0">
                 <p className="text-center text-xl font-medium"><span className="font-semibold">Day:</span> {weekName} </p>
                 <p className="text-center text-xl font-medium"><span className="font-semibold">Time:</span> {currentTime}</p>
+                </div>
+                <div className="flex flex-col md:flex-row justify-center md:gap-10 space-y-2 md:space-y-0">
                 <p className="text-center text-xl font-medium"><span className="font-semibold">Total Presented:</span> {totalPresentation?.total} day </p>
-                <p className="text-center text-xl font-medium"><span className="font-semibold">Today Presented:</span> {new Date(presentStatus)?.getDate() === todayDate ? 'Confirmed' : 'Absence'}</p>
+                <p className="text-center text-xl font-medium"><span className="font-semibold">Today Presented:</span> {new Date(presentStatus)?.getDate() === todayDate ? <span className="text-green-600">Confirmed</span> : <span className="text-red-600">{currentHour === 9 || currentHour === 10 ? 'Not given Yet' : 'Absence'}</span>}</p>
+                </div>
                 </div>
                 <div className={`flex gap-7 items-center justify-center ${currentHour === 9 || currentHour === 10 ? 'visible' : 'hidden'} ${new Date(presentStatus).getDate() === todayDate && 'hidden'}`}>
                    <button onClick={handlePresent} className="rounded-xl px-8 py-2 bg-[#433EBE] text-white font-semibold">Present</button>

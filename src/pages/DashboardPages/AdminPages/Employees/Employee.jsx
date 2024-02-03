@@ -4,8 +4,8 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 
 const Employee = () => {
   const axiosPublic = useAxiosPublic();
-  const { data: allUsers = [] } = useQuery({
-    queryKey: ["allUsers"],
+  const { data: allEmployees = [] } = useQuery({
+    queryKey: ["allEmployees"],
     queryFn: async () => {
       const res = await axiosPublic.get("/employees");
       return res?.data;
@@ -25,12 +25,11 @@ const Employee = () => {
               <th>Image</th>
               <th>Name</th>
               <th>Email</th>
-
-              <th>Role </th>
+              <th>Position </th>
             </tr>
           </thead>
           <tbody className="mt-20">
-            {allUsers?.map((user, idx) => (
+            {allEmployees?.map((user, idx) => (
               <tr key={user?._id}>
                 <td>
                   <label>{idx + 1}</label>
@@ -53,9 +52,9 @@ const Employee = () => {
 
                 <td>
                   {user?.position === "guest" ? (
-                    <p className="text-primary">{user?.position} </p>
+                    <p className="text-second">{user?.position} </p>
                   ) : (
-                    <p className="text-green-500">{user?.position} </p>
+                    <p className="text-primary font-semibold">{user?.position} </p>
                   )}
                 </td>
               </tr>

@@ -15,7 +15,8 @@ import "./dashboard.css";
 import useUserRole from "../../hooks/useUserRole";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
-
+import { TfiAlarmClock } from "react-icons/tfi";
+import { GrDocumentPerformance } from "react-icons/gr";
 const Dashboard = () => {
   const [isUser] = useUserRole();
   const { loginOut } = useContext(AuthContext);
@@ -61,7 +62,7 @@ const Dashboard = () => {
                 isActive ? "dashboard_item_active" : "dashboard_item"
               }`}>
               <div>
-                <LuUser />
+                <TfiAlarmClock />
                 <span>My Attendance</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -77,6 +78,22 @@ const Dashboard = () => {
                 isActive ? "dashboard_item_active" : "dashboard_item"
               }`}>
               <div>
+                <GrDocumentPerformance />
+                <span>My Performance</span>
+              </div>
+              <IoIosArrowForward className="hov_arrow hidden lg:block" />
+            </li>
+          )}
+        </NavLink>
+      )}
+      {isUser?.role === "employee" && (
+        <NavLink to="/dashboard/userProfile">
+          {({ isActive }) => (
+            <li
+              className={`${
+                isActive ? "dashboard_item_active" : "dashboard_item"
+              }`}>
+              <div>
                 <LuUser />
                 <span>My Profile</span>
               </div>
@@ -85,24 +102,6 @@ const Dashboard = () => {
           )}
         </NavLink>
       )}
-      {/* {
-        isUser?.role === "admin" && 
-        <NavLink to="/dashboard/recruiment">
-        {({ isActive }) => (
-          <li
-            className={`${
-              isActive ? "dashboard_item_active" : "dashboard_item"
-            }`}
-          >
-            <div>
-              <LuUserCog  className="text-2xl"/>
-              <span>Recruiment</span>
-            </div>
-            <IoIosArrowForward className="hov_arrow hidden lg:block" />
-          </li>
-        )}
-      </NavLink>
-      } */}
       {isUser?.role === "admin" && (
         <NavLink to="/dashboard/jobs">
           {({ isActive }) => (
