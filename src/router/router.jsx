@@ -27,8 +27,8 @@ import IsAdmin from "../privateRouter.jsx/IsAdmin";
 import IsCommonAccess from "../privateRouter.jsx/IsCommonAccess";
 import IsEmployee from "../privateRouter.jsx/IsEmployee";
 import PrivateRouter from "../privateRouter.jsx/PrivateRouter";
+import ManageEvents from "../pages/DashboardPages/ManageEvents/ManageEvents";
 import JobsEdit from "../pages/components/Dashboard/JobAds/JobsEdit";
-import AddEvent from "../pages/DashboardPages/AdminPages/AddEvent/AddEvent";
 import LeaveManagement from "../pages/DashboardPages/LeaveManagement/LeaveManagement";
 
 const router = createBrowserRouter([
@@ -239,7 +239,7 @@ const router = createBrowserRouter([
         path: "addEvent",
         element: (
           <PrivateRouter>
-            <AddEvent></AddEvent>
+            <ManageEvents/>
           </PrivateRouter>
         ),
       },
