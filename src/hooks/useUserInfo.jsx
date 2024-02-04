@@ -7,6 +7,7 @@ const useUserInfo = () => {
   const { user, setProfileComplete } = useContext(AuthContext);
   const { data: users = [] } = useQuery({
     queryKey: ["user_infor"],
+    enabled: !!user?.email,
     queryFn: async () => {
       const res = await axiosSecure.get(`users/${user?.email}`);  
       let profileCount = 0;

@@ -13,6 +13,7 @@ import Social_Media from "../../components/Share/Social_Media/Social_Media";
 
 import useRandomPasswordGenerate from "../../../hooks/useRandomPasswordGenerate";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import axios from "axios";
 
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 const Signup = () => {
@@ -40,7 +41,7 @@ const Signup = () => {
       return;
     }
     const imageFile = { image: data.photo[0] };
-    const res = await PublicAxios.post(image_Hosting_Api, imageFile, {
+    const res = await axios.post(image_Hosting_Api, imageFile, {
       headers: {
         "content-type": "multipart/form-data",
       },
