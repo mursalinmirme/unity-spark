@@ -28,6 +28,11 @@ import IsAdmin from "../privateRouter.jsx/IsAdmin";
 import IsCommonAccess from "../privateRouter.jsx/IsCommonAccess";
 import IsEmployee from "../privateRouter.jsx/IsEmployee";
 import PrivateRouter from "../privateRouter.jsx/PrivateRouter";
+<<<<<<< HEAD
+import JobsEdit from "../pages/components/Dashboard/JobAds/JobsEdit";
+import AddEvent from "../pages/DashboardPages/AdminPages/AddEvent/AddEvent";
+=======
+>>>>>>> dc84eb41e718e91d11cfaf1c6ac9ee676d00eec9
 
 const router = createBrowserRouter([
   {
@@ -155,6 +160,9 @@ const router = createBrowserRouter([
       },
       {
         path: "jobs/jobs-edit/:id",
+<<<<<<< HEAD
+        element: <JobsEdit></JobsEdit>,
+=======
         element: (
           <PrivateRouter>
             <IsAdmin>
@@ -162,6 +170,7 @@ const router = createBrowserRouter([
             </IsAdmin>
           </PrivateRouter>
         ),
+>>>>>>> dc84eb41e718e91d11cfaf1c6ac9ee676d00eec9
       },
       {
         path: "tasks",
@@ -230,6 +239,14 @@ const router = createBrowserRouter([
             <IsEmployee>
               <Attendance></Attendance>
             </IsEmployee>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "addEvent",
+        element: (
+          <PrivateRouter>
+            <AddEvent></AddEvent>
           </PrivateRouter>
         ),
       },

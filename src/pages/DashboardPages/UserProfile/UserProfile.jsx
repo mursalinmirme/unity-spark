@@ -2,7 +2,7 @@ import "../../DashboardPages/EmployeePages/MyProfile/profile.css";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { FiEdit3 } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { CgProfile } from "react-icons/cg";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import useUserInfo from "../../../hooks/useUserInfo";
@@ -27,6 +27,7 @@ const UserProfile = () => {
     education_level,
   } = users || {};
 
+  console.log(users);
   return (
     <div>
       <div className="user_profile_container">
