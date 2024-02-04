@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import eventCover from '../assets/images/event_page/event_original.jpg'
+import EventCard from './components/EventCard/EventCard';
 const Events = () => {
   const eventStyles = {
     background:`linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),url(${eventCover})`,
@@ -10,6 +11,7 @@ const Events = () => {
 
   }
     return (
+       <>
         <div style={eventStyles}>
            <div className='space-y-5 py-20'>
                 
@@ -24,7 +26,18 @@ const Events = () => {
                     <button className='nbtn mt-3'>Explore Events</button>
                 </div>
            </div>
+          
         </div>
+        <div className='text-center my-10'>
+                <h1 className='text-3xl font-semibold mb-1'>Upcoming HR Events</h1>
+                <h1 className='text-lg font-medium'>Empower your HR journey with insights</h1>
+           </div>
+           <div className='text-xl  font-semibold my-7'>
+            <h1>Check Out More </h1>
+           </div>
+
+           <EventCard></EventCard>
+       </>
     );
 };
 
