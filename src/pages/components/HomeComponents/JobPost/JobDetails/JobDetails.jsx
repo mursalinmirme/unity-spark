@@ -98,7 +98,7 @@ const JobDetails = () => {
               <span> Required Skills:</span>
             </p>
             {jobInfo?.required_Skills?.map((require) => (
-              <div key={require?.id} className="md:ml-20 ">
+              <div key={require?._id} className="md:ml-20 ">
                 {" "}
                 <p className="flex items-center gap-2">
                   {" "}
@@ -118,7 +118,7 @@ const JobDetails = () => {
               <span> Additional Requirement:</span>
             </p>
             {jobInfo?.additional_Require?.map((adition) => (
-              <div key={adition} className="md:ml-20 ">
+              <div key={adition?._id} className="md:ml-20 ">
                 {" "}
                 <p className="flex gap-2 items-center text-base md:text-lg">
                   {" "}
@@ -138,7 +138,7 @@ const JobDetails = () => {
               <span> Education Requirement:</span>
             </p>
             {jobInfo?.education_Require?.map((edu) => (
-              <div key={edu} className="md:ml-20 text-base md:text-lg">
+              <div key={edu?._id} className="md:ml-20 text-base md:text-lg">
                 {" "}
                 <p className="flex gap-2 items-center">
                   {" "}
@@ -158,7 +158,7 @@ const JobDetails = () => {
               <span> Benefits:</span>
             </p>
             {jobInfo?.benefits?.map((beni) => (
-              <div key={beni} className="md:ml-20 ">
+              <div key={beni?._id} className="md:ml-20 ">
                 {" "}
                 <p className="flex gap-2 items-center text-base md:text-lg">
                   {" "}
