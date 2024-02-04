@@ -9,6 +9,7 @@ import EmployeeProfileEdit from "./EmployeeProfileEdit";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const tabs = [
   {
@@ -37,11 +38,11 @@ const MyProfile = () => {
   const [isActive, setIsActive] = useState(0);
   const [openEditor, setOpenEditor] = useState(false);
   const { user } = useContext(AuthContext);
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure()
   const { data } = useQuery({
     queryKey: ["user_data"],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/users/${user?.email}`);
+      const res = await axiosSecure.get(`/users/${user?.email}`);
       return res.data;
     },
   });

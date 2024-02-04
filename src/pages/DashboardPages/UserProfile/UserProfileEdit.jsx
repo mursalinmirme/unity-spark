@@ -8,6 +8,7 @@ import { CgProfile } from "react-icons/cg";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 const UserProfileEdit = () => {
   const { register, handleSubmit, control, reset } = useForm();
@@ -16,6 +17,7 @@ const UserProfileEdit = () => {
   const { profileComplete } = useContext(AuthContext);
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   // New Array
   const skillsArray = [
     { value: "JavaScript", label: "JavaScript" },
@@ -30,10 +32,10 @@ const UserProfileEdit = () => {
   const [users, setUsers] = useState(null);
   // User Data Get
   useEffect(() => {
-    axiosPublic.get(`/users/${user?.email}`).then((res) => {
+    axiosSecure.get(`/users/${user?.email}`).then((res) => {
       setUsers(res?.data);
     });
-  }, [user?.email, setUsers, axiosPublic]);
+  }, [user?.email, setUsers, axiosSecure]);
 
   // Form Summit
   const onSubmit = async (data) => {
@@ -76,7 +78,7 @@ const UserProfileEdit = () => {
 
     // http://localhost:5000/users/${user?.email
 
-    axiosPublic
+    axiosSecure
       .put(`/users/${user?.email}`, userInfo)
       .then((res) => {
         console.log(res?.data);
