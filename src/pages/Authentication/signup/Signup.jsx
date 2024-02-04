@@ -3,22 +3,26 @@ import "../authentication.css";
 import { Link, useNavigate } from "react-router-dom";
 import img from "../../../assets/images/signUps.png";
 import download_icon from "../../../assets/images/download-Icon.png";
+import { SlEnergy } from "react-icons/sl";
 import { useContext, useState } from "react";
 import { IoEyeOutline } from "react-icons/io5";
 import { FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import Social_Media from "../../components/Share/Social_Media/Social_Media";
+
+import useRandomPasswordGenerate from "../../../hooks/useRandomPasswordGenerate";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 const Signup = () => {
-  const PublicAxios = useAxiosPublic()
+  const PublicAxios = useAxiosPublic();
   const { newUserCreate, userUpdateProfile } = useContext(AuthContext);
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [signUpLoading, setSignUpLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
+  const [randomPassword, generatePassword] = useRandomPasswordGenerate();
   const [secret, setSecret] = useState(false);
   const { register, handleSubmit } = useForm();
 
@@ -55,8 +59,7 @@ const Signup = () => {
                 image: res.data.data.display_url,
               };
               // post users info in database
-              PublicAxios
-                .post("/users", newUser)
+              PublicAxios.post("/users", newUser)
                 .then(() => {
                   setSignUpLoading(false);
                   //The navigate path will change when dashboard will complete
@@ -154,10 +157,10 @@ const Signup = () => {
 
                 <div className="relative">
                   <input
+                    value={randomPassword}
                     type={open ? "text" : "password"}
                     {...register("password", { required: true })}
                     placeholder="Create Password"
-                    required
                   />
                   <span
                     onClick={() => setOpen(!open)}
@@ -179,10 +182,10 @@ const Signup = () => {
                 </div>
                 <div className="relative">
                   <input
+                    value={randomPassword}
                     type={secret ? "text" : "password"}
                     {...register("confirm", { required: true })}
                     placeholder="Create Password"
-                    required
                   />
                   <span
                     onClick={() => setSecret(!secret)}
@@ -198,6 +201,18 @@ const Signup = () => {
                 </div>
               </label>
             </div>
+
+            {/* PassWord Random Generator Btn */}
+            <button
+              className="nbtn bg-green-600 mt-5"
+              onClick={generatePassword}
+            >
+              <div className="flex items-center gap-3">
+                <SlEnergy />
+                <span> Password Generator</span>
+              </div>
+            </button>
+
             {/* password field */}
             <div className="form_btn">
               <button className="text-base flex justify-center items-center nbtn">
@@ -211,7 +226,10 @@ const Signup = () => {
           </form>
           <div className="divider">OR</div>
           {/** Social Media SignUp System */}
-          <Social_Media setGoogleLoading={setGoogleLoading} googleLoading={googleLoading}></Social_Media>
+          <Social_Media
+            setGoogleLoading={setGoogleLoading}
+            googleLoading={googleLoading}
+          ></Social_Media>
 
           <div className="text-center py-3">
             <p className="text-sm text-gray-700 font-medium">
