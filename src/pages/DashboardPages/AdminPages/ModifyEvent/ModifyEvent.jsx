@@ -3,11 +3,17 @@ import { PiMicrophoneStageThin } from "react-icons/pi";
 import { MdEditDocument } from "react-icons/md";
 import { MdDeleteForever } from "react-icons/md";
 import { IoIosArrowDropdown } from "react-icons/io";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useState } from "react";
 
 
 const ModifyEvent = () => {
+    const axiosPublic = useAxiosPublic()
+    
     const [isOpen , setisOpen] = useState(false)
+    const handleDelete = (id) =>{
+            console.log(id)
+    }
 
     return (
         <div>
@@ -23,7 +29,7 @@ const ModifyEvent = () => {
                 <div className=" pb-6 flex  items-center gap-6">
 
                 <button className="bg-primary rounded-lg p-2 text-white"><MdEditDocument className="text-xl"/></button>
-                <button className="bg-primary rounded-lg p-2 text-white"><MdDeleteForever className="text-xl"/></button>
+                <button onClick={() => handleDelete()} className="bg-primary rounded-lg p-2 text-white"><MdDeleteForever className="text-xl"/></button>
             
             </div>
             </div>

@@ -54,6 +54,7 @@ const AddEvent = () => {
       axiosPublic.post('/events', userInfo)
       .then(res=>{
         console.log(res.data)
+        reset()
       })
       .catch(error => {
         console.log("Event post error",error)
