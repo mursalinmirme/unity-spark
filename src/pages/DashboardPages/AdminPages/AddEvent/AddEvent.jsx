@@ -8,7 +8,6 @@ import { IoMdTime } from "react-icons/io";
 import useTimePicker from "../../../../hooks/useTimePicker";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
-import axios from "axios";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 const AddEvent = () => {
   const { register, handleSubmit, reset } = useForm();
