@@ -91,7 +91,7 @@ const ManageApplications = () => {
         refetch()
         Swal.fire({
           title: "Deleted!",
-          text: "Article Deleted",
+          text: "Application Deleted",
           icon: "success"
         });
       }
