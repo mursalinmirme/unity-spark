@@ -8,8 +8,10 @@ import { IoMdTime } from "react-icons/io";
 import useTimePicker from "../../../../hooks/useTimePicker";
 import toast from "react-hot-toast";
 import axios from "axios";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 const AddEvent = () => {
+  const axiosPublic = useAxiosPublic()
   const { register, handleSubmit, reset } = useForm();
   const [selectDate, setSelectDate] = useState(new Date());
   const [selectedStartTime, setSelectedStartTime] = useState(null);
@@ -42,14 +44,20 @@ const AddEvent = () => {
 
       const userInfo = {
         eventName: data?.name,
-        timedStart: timeStart,
-        timeEnd: timeEnd,
-        dateS: deted,
+        starting_time: timeStart,
+        ending_time: timeEnd,
+        date: deted,
         hostName: data?.hostName,
         image: res.data.data.display_url,
       };
       console.log(userInfo);
-      toast.success("Successfully form Insert");
+      axiosPublic.post('/events', userInfo)
+      .then(res=>{
+        console.log(res.data)
+      })
+      .catch(error => {
+        console.log("Event post error",error)
+      })
     }
   };
 
