@@ -3,8 +3,8 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import Loading from '../../Loading/Loading';
+import axios from 'axios';
 
 const Banner = () => {
     const { isPending, data: banner } = useQuery({

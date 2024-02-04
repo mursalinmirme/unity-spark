@@ -108,9 +108,9 @@ const ManageApplicant = () => {
       })
     }
   
-  if(isFetching){
-    return <Loading></Loading>
-  }
+  // if(isFetching){
+  //   return <Loading></Loading>
+  // }
 
   return (
     <div className="py-10">

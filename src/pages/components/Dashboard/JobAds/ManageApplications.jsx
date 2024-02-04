@@ -24,7 +24,7 @@ const ManageApplications = () => {
     queryKey: ['jobapplicationsNums', totalPages, currentPage],
     queryFn: async () =>{
     const res = await  axiosPublic.get("/job_applications_nums");
-    setToalPages(Math.ceil(res?.data?.total / 5))
+    setToalPages(Math.ceil(res?.data?.total / 6))
     return res?.data}
     
   })
@@ -33,7 +33,7 @@ const ManageApplications = () => {
   const {data: jobapplications = [] , isFetching, refetch} = useQuery({
     queryKey: ['jobapplications', totalPages, currentPage],
     queryFn: async () =>{
-    const res = await  axiosPublic.get(`/job_applications?skip=${currentPage * 5}`);
+    const res = await  axiosPublic.get(`/job_applications?skip=${currentPage * 6}`);
     return res?.data}
     
   })
@@ -130,9 +130,9 @@ const ManageApplications = () => {
     }
     
    
-  if(isFetching){
-    return <Loading></Loading>
-  }
+  // if(isFetching){
+  //   return <Loading></Loading>
+  // }
     
    
 
@@ -147,7 +147,7 @@ const ManageApplications = () => {
       </div>
 
       {/* pagination */}
-      <div className={`mt-10 ${jobapplicationsNum?.total > 5 ? 'block' : 'hidden'}`}>
+      <div className={`mt-5 ${jobapplicationsNum?.total > 5 ? 'block' : 'hidden'}`}>
         <div className={`flex justify-center`}>
           <div className={`join flex space-x-2`}>
             <button

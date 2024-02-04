@@ -10,10 +10,13 @@ import { FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import Social_Media from "../../components/Share/Social_Media/Social_Media";
-import axios from "axios";
+
 import useRandomPasswordGenerate from "../../../hooks/useRandomPasswordGenerate";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 const Signup = () => {
+  const PublicAxios = useAxiosPublic();
   const { newUserCreate, userUpdateProfile } = useContext(AuthContext);
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
@@ -37,7 +40,7 @@ const Signup = () => {
       return;
     }
     const imageFile = { image: data.photo[0] };
-    const res = await axios.post(image_Hosting_Api, imageFile, {
+    const res = await PublicAxios.post(image_Hosting_Api, imageFile, {
       headers: {
         "content-type": "multipart/form-data",
       },
@@ -56,8 +59,7 @@ const Signup = () => {
                 image: res.data.data.display_url,
               };
               // post users info in database
-              axios
-                .post("http://localhost:5000/users", newUser)
+              PublicAxios.post("/users", newUser)
                 .then(() => {
                   setSignUpLoading(false);
                   //The navigate path will change when dashboard will complete

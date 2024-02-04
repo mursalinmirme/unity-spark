@@ -5,25 +5,29 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import useUserRole from "../../../hooks/useUserRole";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { signOut } from "firebase/auth";
 
 const Navbar = () => {
   const { user, loginOut } = useContext(AuthContext);
   const [isUser] = useUserRole();
+  console.log(user);
   const axiosPublic = useAxiosPublic();
   const SignOut = () => {
-    loginOut().then(() => {
-      axiosPublic.post("/logout")
+    loginOut()
       .then(() => {
-        toast.success(" User Sign Out successfully");
-        console.log("User logout successfully");
+        axiosPublic
+          .post("/logout")
+          .then(() => {
+            toast.success(" User Sign Out successfully");
+            console.log("User logout successfully");
+          })
+          .catch(() => {
+            console.log("The token doesent remove");
+          });
       })
       .catch(() => {
-        console.log("The token doesent remove");
-      })
-    })
-    .catch(() => {
-      console.log("Logout can not wroking");
-    })
+        console.log("Logout can not wroking");
+      });
   };
   const navItem = (
     <>
@@ -34,37 +38,34 @@ const Navbar = () => {
           </li>
         )}
       </NavLink>
-      {
-        isUser?.role === "admin" && user?.email &&
+      {isUser?.role === "admin" && user?.email && (
         <NavLink to="/dashboard/userProfile">
-        {({ isActive }) => (
-          <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
-            Dashboard
-          </li>
-        )}
-      </NavLink>
-      }
-      {
-        isUser?.role === "user" && 
+          {({ isActive }) => (
+            <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
+              Dashboard
+            </li>
+          )}
+        </NavLink>
+      )}
+      {isUser?.role === "user" && (
         <NavLink to="/dashboard/userProfile">
-        {({ isActive }) => (
-          <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
-            Dashboard
-          </li>
-        )}
-      </NavLink>
-      }
-      {
-        isUser?.role === "employee" && 
+          {({ isActive }) => (
+            <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
+              Dashboard
+            </li>
+          )}
+        </NavLink>
+      )}
+      {isUser?.role === "employee" && (
         <NavLink to="/dashboard/attendance">
-        {({ isActive }) => (
-          <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
-            Dashboard
-          </li>
-        )}
-      </NavLink>
-      }
-      
+          {({ isActive }) => (
+            <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
+              Dashboard
+            </li>
+          )}
+        </NavLink>
+      )}
+
       <NavLink to="/available-jobs">
         {({ isActive }) => (
           <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
@@ -86,16 +87,15 @@ const Navbar = () => {
           </li>
         )}
       </NavLink>
-      {
-        !user && <NavLink to="signup">
-        {({ isActive }) => (
-          <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
-            Signup
-          </li>
-        )}
-      </NavLink>
-      }
-      
+      {!user && (
+        <NavLink to="signup">
+          {({ isActive }) => (
+            <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
+              Signup
+            </li>
+          )}
+        </NavLink>
+      )}
     </>
   );
   return (
@@ -109,8 +109,7 @@ const Navbar = () => {
                 className="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
+                stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -121,8 +120,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 p-2 shadow rounded-box w-80 bg-white h-96 z-50 space-y-3"
-            >
+              className="menu menu-sm dropdown-content mt-3 p-2 shadow rounded-box w-80 bg-white h-96 z-50 space-y-3">
               {navItem}
             </ul>
           </div>
@@ -137,7 +135,27 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           {user?.email ? (
-            <button onClick={SignOut} className="nbtn">Sign out </button>
+            // <button onClick={SignOut} className="nbtn">Sign out </button>
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  <img alt="" src={user?.photoURL} />
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content mt-3 z-10 p-2 shadow bg-base-100 rounded-box w-52">
+                <li>
+                  <Link to="dashboard/userProfile">Profile</Link>
+                </li>
+                <li>
+                  <p onClick={SignOut}>Sign Out</p>
+                </li>
+              </ul>
+            </div>
           ) : (
             <Link to={"/signin"}>
               <button className="nbtn">Join Now</button>

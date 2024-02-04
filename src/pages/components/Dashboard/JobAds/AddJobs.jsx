@@ -1,12 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { Controller, useForm } from "react-hook-form";
 import Select from "react-select";
-import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+
 import toast from "react-hot-toast";
+import axios from "axios";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 
 const AddJobs = () => {
-  const axiosPublic = useAxiosPublic();
+ const axiosPublic = useAxiosPublic()
 
   const { data: jobTypes } = useQuery({
     queryKey: ["jobTypes"],

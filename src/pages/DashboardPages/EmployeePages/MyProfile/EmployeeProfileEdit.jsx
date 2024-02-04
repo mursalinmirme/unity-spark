@@ -1,12 +1,13 @@
 import { BsUpload } from "react-icons/bs";
-import axios from "axios";
 import { useForm } from "react-hook-form";
 import { updateProfile } from "firebase/auth";
 import auth from "../../../../firebase/firebase.config";
 import toast from "react-hot-toast";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 
 const EmployeeProfileEdit = ({ user, setOpenEditor }) => {
+  const PublicAxios = useAxiosPublic()
   const { register, handleSubmit } = useForm();
   const { name, email, image, _id } = user || {};
 
@@ -22,12 +23,12 @@ const EmployeeProfileEdit = ({ user, setOpenEditor }) => {
         displayName: data.name,
         photoURL: image,
       });
-      axios.put(`http://localhost:5000/users/${_id}`, newInfo).then(() => {
+      PublicAxios.put(`/users/${_id}`, newInfo).then(() => {
         toast.success("Your Info updated");
         setOpenEditor(false);
       });
     } else {
-      const res = await axios.post(image_Hosting_Api, imageFile, {
+      const res = await PublicAxios.post(image_Hosting_Api, imageFile, {
         headers: {
           "content-type": "multipart/form-data",
         },
@@ -42,7 +43,7 @@ const EmployeeProfileEdit = ({ user, setOpenEditor }) => {
           displayName: data.name,
           photoURL: res.data.data.display_url,
         });
-        axios.put(`http://localhost:5000/users/${_id}`, newInfo).then(() => {
+        PublicAxios.put(`/users/${_id}`, newInfo).then(() => {
           toast.success("Your Info updated");
           setOpenEditor(false);
         });

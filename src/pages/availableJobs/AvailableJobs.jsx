@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import moment from "moment";
 import { useState } from "react";
 import { ImCross } from "react-icons/im";
@@ -9,8 +8,10 @@ import { IoIosArrowBack } from "react-icons/io";
 import { IoIosSearch } from "react-icons/io";
 import Loading from "../components/Loading/Loading";
 import "./searchAnimation.css";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const AvailableJobs = () => {
+  const PublicAxios = useAxiosPublic()
   const [showSearchBar, setShowSearchBar] = useState(false);
 
   const [totalPages, setTotalPages] = useState(0);
@@ -32,8 +33,8 @@ const AvailableJobs = () => {
       workType,
     ],
     queryFn: async () => {
-      const result = await axios.get(
-        `http://localhost:5000/available-total-jobs-numbers?searching=${searchValues}&sortdate=${sortDate}&jobtypes=${jobType}&worktype=${workType}`
+      const result = await PublicAxios.get(
+        `/available-total-jobs-numbers?searching=${searchValues}&sortdate=${sortDate}&jobtypes=${jobType}&worktype=${workType}`
       );
       setTotalPages(Math.ceil(result?.data.total / 5));
       console.log("The current documents number is", result?.data);
@@ -52,8 +53,8 @@ const AvailableJobs = () => {
       workType,
     ],
     queryFn: async () => {
-      const result = await axios.get(
-        `http://localhost:5000/job-ads?skip=${
+      const result = await PublicAxios.get(
+        `/job-ads?skip=${
           currentPage * 5
         }&searching=${searchValues}&sortdate=${sortDate}&jobtypes=${jobType}&worktype=${workType}`
       );
@@ -125,7 +126,70 @@ const AvailableJobs = () => {
   };
 
   if (isFetching) {
-    return <Loading></Loading>;
+    return (
+      <div className="mb-14">
+      <div className="px-5 py-8 mt-6 skeleton bg-[#faf8f8]">
+                <div>
+                  <h3 className="text-2xl skeleton w-32 h-8 bg-[#efeded]"></h3>
+                  <div className="flex items-center mt-5 gap-x-5">
+                    <span className="skeleton w-20 h-6 bg-[#efeded]"></span>
+                    <span className="skeleton w-20 h-6 bg-[#efeded]"></span>
+                  </div>
+                  <div className="flex items-center gap-5 mt-3">
+                    <p className="skeleton w-48 h-6 bg-[#efeded]">
+                    </p>
+                    <span className="skeleton w-2 h-6 bg-[#efeded]"></span>
+                    <p className="my-1 skeleton w-48 h-6 bg-[#efeded]">
+
+                    </p>
+                  </div>
+                  <p className="my-1 skeleton w-full h-10 bg-[#efeded]">
+                  </p>
+                  <div className="card-actions justify-start items-center">
+                    <button
+                      className="mt-3 mr-3 skeleton w-40 h-10 bg-[#efeded]"
+                    >
+                    </button>
+
+                    <button
+                      className="mt-3 mr-3 skeleton w-40 h-10 bg-[#efeded]"
+                    >
+                    </button>
+                  </div>
+                </div>
+      </div>
+      <div className="px-5 py-8 mt-6 skeleton bg-[#faf8f8]">
+                <div>
+                  <h3 className="text-2xl skeleton w-32 h-8 bg-[#efeded]"></h3>
+                  <div className="flex items-center mt-5 gap-x-5">
+                    <span className="skeleton w-20 h-6 bg-[#efeded]"></span>
+                    <span className="skeleton w-20 h-6 bg-[#efeded]"></span>
+                  </div>
+                  <div className="flex items-center gap-5 mt-3">
+                    <p className="skeleton w-48 h-6 bg-[#efeded]">
+                    </p>
+                    <span className="skeleton w-2 h-6 bg-[#efeded]"></span>
+                    <p className="my-1 skeleton w-48 h-6 bg-[#efeded]">
+
+                    </p>
+                  </div>
+                  <p className="my-1 skeleton w-full h-10 bg-[#efeded]">
+                  </p>
+                  <div className="card-actions justify-start items-center">
+                    <button
+                      className="mt-3 mr-3 skeleton w-40 h-10 bg-[#efeded]"
+                    >
+                    </button>
+
+                    <button
+                      className="mt-3 mr-3 skeleton w-40 h-10 bg-[#efeded]"
+                    >
+                    </button>
+                  </div>
+                </div>
+      </div>
+      </div>
+    )
   }
 
   return (
@@ -263,7 +327,7 @@ const AvailableJobs = () => {
         </div>
       )}
       {/* bottom */}
-      <div className={`flex justify-center py-10`}>
+      <div className={`flex justify-center py-10 ${getTotalJobsNumber?.total > 5 ? 'block' : 'hidden'}`}>
         <div className={`join flex space-x-2`}>
           <button
             onClick={handlePagiBack}
