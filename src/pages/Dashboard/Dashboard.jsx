@@ -107,6 +107,23 @@ const Dashboard = () => {
           )}
         </NavLink>
       )}
+      {isUser?.role === "employee" && (
+        <NavLink to="/dashboard/leaveManagement">
+          {({ isActive }) => (
+            <li
+              className={`${
+                isActive ? "dashboard_item_active" : "dashboard_item"
+              }`}
+            >
+              <div>
+                <LuUser />
+                <span>Leave Management</span>
+              </div>
+              <IoIosArrowForward className="hov_arrow hidden lg:block" />
+            </li>
+          )}
+        </NavLink>
+      )}
       {isUser?.role === "admin" && (
         <NavLink to="/dashboard/jobs">
           {({ isActive }) => (

@@ -29,6 +29,7 @@ import IsEmployee from "../privateRouter.jsx/IsEmployee";
 import PrivateRouter from "../privateRouter.jsx/PrivateRouter";
 import JobsEdit from "../pages/components/Dashboard/JobAds/JobsEdit";
 import AddEvent from "../pages/DashboardPages/AdminPages/AddEvent/AddEvent";
+import LeaveManagement from "../pages/DashboardPages/LeaveManagement/LeaveManagement";
 
 const router = createBrowserRouter([
   {
@@ -239,6 +240,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <AddEvent></AddEvent>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "leaveManagement",
+        element: (
+          <PrivateRouter>
+            <LeaveManagement></LeaveManagement>
           </PrivateRouter>
         ),
       },
