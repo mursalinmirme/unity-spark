@@ -7,6 +7,7 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 
 const ModifyEvent = () => {
@@ -19,6 +20,7 @@ const ModifyEvent = () => {
         }
     })
     const [isOpen , setisOpen] = useState(false)
+
     const handleDelete = (id) =>{
         axiosPublic.delete(`/events/${id}`)
         .then(res => {
@@ -46,7 +48,24 @@ const ModifyEvent = () => {
                 }
               });
         })
+        .catch(error => {
+            toast.error(error)
+            console.log(error)
+        })
     }
+
+    // const handleUpdate = (value) => {
+    //     axiosPublic.put(`/events/${value?._id}`)
+    //     .then(res => {
+    //         if(res?.data?.modifiedCount > 0){
+    //             toast.success(`${value?.eventName} is updated`)
+    //         }
+    //     })
+    //     .catch(error => {
+    //         console.log(error)
+    //         toast.error(error)
+    //     })
+    // }
 
     return (
         <div className="grid grid-cols-3 items-center justify-items-center gap-5">
@@ -61,7 +80,7 @@ const ModifyEvent = () => {
                 <h1 className="text-xl font-medium flex  items-center gap-5"><PiMicrophoneStageThin className="text-2xl"></PiMicrophoneStageThin>{items?.hostName}</h1>
                 <div className=" pb-6 flex  items-center gap-6">
 
-                <button className="bg-primary rounded-lg p-2 text-white"><MdEditDocument className="text-xl"/></button>
+                <button onClick={() => handleUpdate(items)} className="bg-primary rounded-lg p-2 text-white"><MdEditDocument className="text-xl"/></button>
                 <button onClick={() => handleDelete(items?._id)} className="bg-primary rounded-lg p-2 text-white"><MdDeleteForever className="text-xl"/></button>
             
             </div>
