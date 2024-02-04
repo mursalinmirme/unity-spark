@@ -66,6 +66,7 @@ const ApplyJobs = () => {
       skills: data.skills || users?.skills,
       image: users?.image,
       resume_link: data.resume || users?.resume_link,
+      user: users?._id
     };
 
     axiosPublic
