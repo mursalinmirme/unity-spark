@@ -7,15 +7,14 @@ import { CiCalendar } from "react-icons/ci";
 import { IoMdTime } from "react-icons/io";
 import useTimePicker from "../../../../hooks/useTimePicker";
 import toast from "react-hot-toast";
-import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import axios from "axios";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 const AddEvent = () => {
   const { register, handleSubmit, reset } = useForm();
   const [selectDate, setSelectDate] = useState(new Date());
-  const axiosPublic = useAxiosPublic();
   const [selectedStartTime, setSelectedStartTime] = useState(null);
   const [selectedEndTime, setSelectedEndTime] = useState(null);
+  const [updateLoading, setUpdateLoading] = useState(false);
 
   const timeStart = useTimePicker(selectedStartTime || null);
   const timeEnd = useTimePicker(selectedEndTime || null);
@@ -29,14 +28,18 @@ const AddEvent = () => {
   let deted = `${day},${month}, ${year}`;
 
   const onSubmit = async (data) => {
+    setUpdateLoading(true);
     const imageFile = { image: data.photo[0] };
-    const res = await axiosPublic.post(image_Hosting_Api, imageFile, {
+    const res = await axios.post(image_Hosting_Api, imageFile, {
       headers: {
         "content-type": "multipart/form-data",
       },
     });
 
     if (res.data.success) {
+      setUpdateLoading(false);
+      toast.success("Event Add Successfully");
+
       const userInfo = {
         eventName: data?.name,
         timedStart: timeStart,
@@ -52,10 +55,7 @@ const AddEvent = () => {
 
   return (
     <div>
-      <h2 className="text-center font-bold text-3xl text-primary">
-        {" "}
-        Add Event
-      </h2>
+      <h2 className="font-bold text-2xl "> Add Event</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="mt-10 space-y-4">
         {/**First Two Part */}
         <div className="grid md:grid-cols-2 gap-2">
@@ -78,7 +78,7 @@ const AddEvent = () => {
             <div className="label mb-10 md:mb-0 lg:mb-0">
               <span className="font-bold font-inter"> Your Event Photo : </span>
               <label
-                className="font-semibold w-full absolute bottom-0   text-white cursor-pointer font-inter text-base px-8 py-[8px] bg-primary rounded-md transition-all duration-500 text-[15px]"
+                className="font-semibold w-full absolute bottom-0  text-white cursor-pointer font-inter text-base px-8 py-[8px] bg-primary rounded-md transition-all duration-500 text-[15px]"
                 htmlFor="user_photo"
               >
                 <div className="flex justify-center items-center gap-4">
@@ -109,7 +109,7 @@ const AddEvent = () => {
             <div className="relative">
               <DatePicker
                 className="px-64 lg:px-[230px] !pl-2"
-                value={selectedStartTime || "Please Select Start Time "}
+                value={selectedStartTime || "Please Select Start Time"}
                 selected={selectedStartTime}
                 onChange={(time) => setSelectedStartTime(time)}
                 showTimeSelect
@@ -146,7 +146,7 @@ const AddEvent = () => {
         </div>
 
         {/**Third Two Part */}
-        <div className="grid md:grid-cols-2 gap-2 mb-12">
+        <div className="grid md:grid-cols-2 gap-2 pb-5">
           {/*  Host Name field */}
           <label>
             <div className="py-1">
@@ -178,10 +178,17 @@ const AddEvent = () => {
           </label>
         </div>
 
-        <button className=" bg-primary text-white  px-7 py-2 rounded-lg">
-          {" "}
-          Insert Event{" "}
-        </button>
+        <div className="w-48  bg-primary border-none text-white rounded-xl text-center cursor-pointer">
+          {updateLoading ? (
+            <span className="loading loading-spinner loading-md "></span>
+          ) : (
+            <input
+              className="border-none cursor-pointer py-3 font-semibold text-base"
+              type="submit"
+              value="Insert Event"
+            />
+          )}
+        </div>
       </form>
     </div>
   );

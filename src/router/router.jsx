@@ -21,13 +21,13 @@ import ApplyJobs from "../pages/availableJobs/ApplyJobs";
 import AvailableJobs from "../pages/availableJobs/AvailableJobs";
 import Attendance from "../pages/components/Attendance/Attendance";
 import AddJobs from "../pages/components/Dashboard/JobAds/AddJobs";
-import JobsEdit from "../pages/components/Dashboard/JobAds/JobsEdit";
 import JobDetails from "../pages/components/HomeComponents/JobPost/JobDetails/JobDetails";
 import Home from "../pages/home/Home";
 import IsAdmin from "../privateRouter.jsx/IsAdmin";
 import IsCommonAccess from "../privateRouter.jsx/IsCommonAccess";
 import IsEmployee from "../privateRouter.jsx/IsEmployee";
 import PrivateRouter from "../privateRouter.jsx/PrivateRouter";
+import JobsEdit from "../pages/components/Dashboard/JobAds/JobsEdit";
 import AddEvent from "../pages/DashboardPages/AdminPages/AddEvent/AddEvent";
 
 const router = createBrowserRouter([
