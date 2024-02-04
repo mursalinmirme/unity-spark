@@ -18,7 +18,7 @@ const ApplyJobs = () => {
 
   // User Data Get
   useEffect(() => {
-    axiosPublic.get(`/users/${user?.email}`).then((res) => {
+    axiosSecure.get(`/users/${user?.email}`).then((res) => {
       setUsers(res?.data);
     });
   }, [axiosPublic, user?.email]);

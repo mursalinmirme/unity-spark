@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const Attendance = () => {
     const [weekName, setWeekName] = useState('');
@@ -9,11 +10,12 @@ const Attendance = () => {
     const [currentHour, setCurrentHour] = useState(0);
     const [todayDate, setTodayDate] = useState(0);
     const {user} = useContext(AuthContext);
+    const axiosSecure = useAxiosSecure();
     const axiosPublic = useAxiosPublic();
     const {data: employeeInfo={}} = useQuery({
       queryKey: ["getEmployeeDetail"],
       queryFn: async () => {
-        const result = await axiosPublic.get(`/users/${user?.email}`);
+        const result = await axiosSecure.get(`/users/${user?.email}`);
         return result.data;
       }
     })
