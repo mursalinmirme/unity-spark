@@ -212,7 +212,7 @@ const Dashboard = () => {
         </NavLink>
       )}
       {isUser?.role === "admin" && (
-        <NavLink to="/dashboard/leaveManagementAdmin">
+        <NavLink to="/dashboard/TaskManagement">
           {({ isActive }) => (
             <li
               className={`${
@@ -221,7 +221,7 @@ const Dashboard = () => {
             >
               <div>
                 <GrUserWorker />
-                <span>Leave Management</span>
+                <span>Task Management</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
             </li>

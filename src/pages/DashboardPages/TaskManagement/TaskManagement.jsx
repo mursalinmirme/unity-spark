@@ -1,8 +1,8 @@
 import { FaPlus } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import LeaveManagementCards from "./LeaveManagementCards";
+import TaskManagementCards from "./TaskManagementCards";
 import { useEffect, useState } from "react";
-const LeaveManagementAdmin = () => {
+const TaskManagement = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     fetch("/JobPost.json")
@@ -23,11 +23,11 @@ const LeaveManagementAdmin = () => {
       </div>
       <div className="my-5 grid grid-cols-1 md:grid-cols-2  gap-4 mt-10">
         {data?.map((item) => (
-          <LeaveManagementCards key={item.id}></LeaveManagementCards>
+          <TaskManagementCards key={item.id}></TaskManagementCards>
         ))}
       </div>
     </div>
   );
 };
 
-export default LeaveManagementAdmin;
+export default TaskManagement;

@@ -3,7 +3,7 @@ import { HiDotsVertical } from "react-icons/hi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { FiEdit3 } from "react-icons/fi";
 import { Link } from "react-router-dom";
-const LeaveManagementCards = () => {
+const TaskManagementCards = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   return (
     <div className="border-2 border-[#D9D9D9] bg-[#ECECF8] rounded-xl px-2 md:px-5 py-2 space-y-4">
@@ -78,4 +78,4 @@ const LeaveManagementCards = () => {
   );
 };
 
-export default LeaveManagementCards;
+export default TaskManagementCards;
