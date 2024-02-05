@@ -17,6 +17,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { TfiAlarmClock } from "react-icons/tfi";
 import { GrDocumentPerformance } from "react-icons/gr";
+import { FaAccessibleIcon } from "react-icons/fa";
 const Dashboard = () => {
   const [isUser] = useUserRole();
   const { loginOut } = useContext(AuthContext);
@@ -152,6 +153,23 @@ const Dashboard = () => {
               <div>
                 <IoDocumentOutline />
                 <span>AddEvent</span>
+              </div>
+              <IoIosArrowForward className="hov_arrow hidden lg:block" />
+            </li>
+          )}
+        </NavLink>
+      )}
+      {isUser?.role === "admin" && (
+        <NavLink to="/dashboard/leave-requests">
+          {({ isActive }) => (
+            <li
+              className={`${
+                isActive ? "dashboard_item_active" : "dashboard_item"
+              }`}
+            >
+              <div>
+                <FaAccessibleIcon />
+                <span>Leave Requests</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
             </li>

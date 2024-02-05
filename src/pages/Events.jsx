@@ -2,14 +2,13 @@ import { Link } from 'react-router-dom';
 import eventCover from '../assets/images/event_page/event_original.jpg'
 import EventCard from './components/EventCard/EventCard';
 const Events = () => {
+
   const eventStyles = {
     background:`linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),url(${eventCover})`,
     backgroundSize:`cover`,
     backgroundRepeat:`no-repeat`,
     backgroundPosition:`center`
-    
-
-  }
+    }
     return (
        <>
         <div style={eventStyles}>

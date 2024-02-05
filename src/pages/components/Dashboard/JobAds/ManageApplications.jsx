@@ -43,8 +43,7 @@ const ManageApplications = () => {
       return res?.data;
     },
   });
-
-  // console.log("checked2", jobapplications);
+  console.log("ayay ayay population", jobapplications);
   // const {data: users = [] } = useQuery({
   //   queryKey: ['users'],
   //   queryFn: async () =>{
@@ -80,24 +79,9 @@ const ManageApplications = () => {
       .then((res) => {
         console.log(res.data);
         Swal.fire({
-          title: "Are you sure?",
-          text: "You won't be able to revert this!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, delete it!",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            if (res.data.deletedCount > 0) {
-              refetch();
-              Swal.fire({
-                title: "Deleted!",
-                text: "Article Deleted",
-                icon: "success",
-              });
-            }
-          }
+          title: "Deleted!",
+          text: "Application Deleted",
+          icon: "success",
         });
       })
       .catch((error) => {
