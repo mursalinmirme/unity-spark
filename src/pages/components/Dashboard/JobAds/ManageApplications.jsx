@@ -37,6 +37,7 @@ const ManageApplications = () => {
     return res?.data}
     
   })
+  console.log("ayay ayay population", jobapplications);
   // const {data: users = [] } = useQuery({
   //   queryKey: ['users'],
   //   queryFn: async () =>{

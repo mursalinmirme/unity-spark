@@ -29,6 +29,7 @@ import IsEmployee from "../privateRouter.jsx/IsEmployee";
 import PrivateRouter from "../privateRouter.jsx/PrivateRouter";
 import ManageEvents from "../pages/DashboardPages/ManageEvents/ManageEvents";
 import JobsEdit from "../pages/components/Dashboard/JobAds/JobsEdit";
+import LeaveRequests from "../pages/DashboardPages/AdminPages/ManageLeave/LeaveRequests";
 import LeaveManagement from "../pages/DashboardPages/LeaveManagement/LeaveManagement";
 import LeaveManagementAdmin from "../pages/DashboardPages/LeaveManagementAdmin/LeaveManagementAdmin";
 import AddNewTask from "../pages/DashboardPages/LeaveManagementAdmin/AddNewTask";
@@ -266,6 +267,16 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <AddNewTask></AddNewTask>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "leave-requests",
+        element: (
+          <PrivateRouter>
+            <IsAdmin>
+              <LeaveRequests></LeaveRequests>
+            </IsAdmin>
           </PrivateRouter>
         ),
       },
