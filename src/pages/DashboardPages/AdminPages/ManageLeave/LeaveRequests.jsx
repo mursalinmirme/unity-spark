@@ -1,20 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import PendingRequests from "./PendingRequests";
 import AcceptedRequested from "./AcceptedRequested";
 import RejectedRequestes from "./RejectedRequestes";
 import { useState } from "react";
 
 const LeaveRequests = () => {
-    // const axiosPublic = useAxiosPublic();
-    // const {data: leaveRequests=[]} = useQuery({
-    //     queryKey: ["GetAllLeaveRequests"],
-    //     queryFn: async () => {
-    //         const result = await axiosPublic.get("/leaves");
-    //         return result.data;
-    //     }
-    // })
-    // console.log("Total leave requests", leaveRequests);
     const [isActive, setIsActive] = useState(0);
 
     const handleJobAdsTab = (id) => {
@@ -55,7 +44,7 @@ const LeaveRequests = () => {
       {isActive === 0 && <PendingRequests></PendingRequests>}
       {isActive === 1 && <AcceptedRequested></AcceptedRequested>}
       {isActive === 2 && <RejectedRequestes></RejectedRequestes>}
-    </div>
+        </div>
     );
 };
 
