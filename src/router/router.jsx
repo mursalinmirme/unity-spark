@@ -27,9 +27,12 @@ import IsAdmin from "../privateRouter.jsx/IsAdmin";
 import IsCommonAccess from "../privateRouter.jsx/IsCommonAccess";
 import IsEmployee from "../privateRouter.jsx/IsEmployee";
 import PrivateRouter from "../privateRouter.jsx/PrivateRouter";
+import ManageEvents from "../pages/DashboardPages/ManageEvents/ManageEvents";
 import JobsEdit from "../pages/components/Dashboard/JobAds/JobsEdit";
-import AddEvent from "../pages/DashboardPages/AdminPages/AddEvent/AddEvent";
 import LeaveRequests from "../pages/DashboardPages/AdminPages/ManageLeave/LeaveRequests";
+import LeaveManagement from "../pages/DashboardPages/LeaveManagement/LeaveManagement";
+import LeaveManagementAdmin from "../pages/DashboardPages/LeaveManagementAdmin/LeaveManagementAdmin";
+import AddNewTask from "../pages/DashboardPages/LeaveManagementAdmin/AddNewTask";
 
 const router = createBrowserRouter([
   {
@@ -239,7 +242,31 @@ const router = createBrowserRouter([
         path: "addEvent",
         element: (
           <PrivateRouter>
-            <AddEvent></AddEvent>
+            <ManageEvents/>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "leaveManagement",
+        element: (
+          <PrivateRouter>
+            <LeaveManagement></LeaveManagement>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "leaveManagementAdmin",
+        element: (
+          <PrivateRouter>
+            <LeaveManagementAdmin></LeaveManagementAdmin>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "addNewTask",
+        element: (
+          <PrivateRouter>
+            <AddNewTask></AddNewTask>
           </PrivateRouter>
         ),
       },
