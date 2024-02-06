@@ -36,6 +36,7 @@ import AddNewTask from "../pages/DashboardPages/TaskManagement/AddNewTask";
 import LeaveRequestForm from "../pages/DashboardPages/LeaveManagement/LeaveRequestForm";
 
 import EmployeeHome from "../pages/DashboardPages/EmployeePages/EmployeeHome/EmployeeHome";
+import MyApplications from "../pages/DashboardPages/UserPages/Myapplications/MyApplications";
 
 const router = createBrowserRouter([
   {
@@ -299,6 +300,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <LeaveRequestForm></LeaveRequestForm>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "my-applications",
+        element: (
+          <PrivateRouter>
+            <MyApplications></MyApplications>
           </PrivateRouter>
         ),
       },
