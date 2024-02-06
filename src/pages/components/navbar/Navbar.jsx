@@ -57,7 +57,7 @@ const Navbar = () => {
         </NavLink>
       )}
       {isUser?.role === "employee" && (
-        <NavLink to="/dashboard/attendance">
+        <NavLink to="/dashboard/employeeHome">
           {({ isActive }) => (
             <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
               Dashboard
@@ -109,8 +109,7 @@ const Navbar = () => {
                 className="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
+                stroke="currentColor">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -121,8 +120,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 p-2 shadow rounded-box w-80 bg-white h-96 z-50 space-y-3"
-            >
+              className="menu menu-sm dropdown-content mt-3 p-2 shadow rounded-box w-80 bg-white h-96 z-50 space-y-3">
               {navItem}
             </ul>
           </div>
@@ -142,16 +140,14 @@ const Navbar = () => {
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
+                className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
                   <img alt="" src={user?.photoURL} />
                 </div>
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-10 p-2 shadow bg-base-100 rounded-box w-52"
-              >
+                className="menu menu-sm dropdown-content mt-3 z-10 p-2 shadow bg-base-100 rounded-box w-52">
                 <li>
                   <Link to="dashboard/userProfile">Profile</Link>
                 </li>
