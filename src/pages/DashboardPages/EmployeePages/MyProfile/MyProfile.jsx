@@ -66,22 +66,22 @@ const MyProfile = () => {
     },
   });
 
-  console.log(totalRest);
+  // console.log("ceched55", totalRest);
 
-  // const dbDate = new Date(data?.createdAt);
-  // console.log(dbDate);
-  // const currentDate = new Date();
-  // console.log(currentDate);
+  const dbDate = new Date(data?.createdAt);
+  console.log(dbDate);
+  const currentDate = new Date();
+  console.log(currentDate);
 
-  // const distanceDate = currentDate - dbDate;
+  const distanceDate = currentDate - dbDate;
 
-  // function millisecondsToDays(milliseconds) {
-  //   const seconds = milliseconds / 1000;
-  //   const days = seconds / (60 * 60 * 24);
-  //   return days;
-  // }
+  function millisecondsToDays(milliseconds) {
+    const seconds = milliseconds / 1000;
+    const days = seconds / (60 * 60 * 24);
+    return days;
+  }
 
-  // const days = millisecondsToDays(distanceDate);
+  const days = millisecondsToDays(distanceDate);
 
   // console.log("check66", days.toFixed());
 
@@ -166,32 +166,32 @@ const MyProfile = () => {
             <tr>
               <th>Attendance</th>
               <th>Rest Day</th>
-              <th>Overtime</th>
+              <th>Employee From</th>
               <th>Scrum Joined</th>
             </tr>
             <tr>
               <td>{totalAttendance?.length} Days</td>
               <td>{totalRest?.length} Days</td>
-              <td>60Days</td>
-              <td>60Days</td>
+              <td>{days.toFixed()} Days</td>
+              <td>5 Days</td>
             </tr>
             <tr>
               <td>{totalAttendance?.length * 24} Hours</td>
               <td>{totalRest?.length * 24} Hours</td>
-              <td>60Hours</td>
-              <td>60Hours</td>
+              <td>{days.toFixed() * 24} Hours</td>
+              <td>120 Hours</td>
             </tr>
             <tr>
               <td>{totalAttendance?.length * 24 * 60} Minutes</td>
               <td>{totalRest?.length * 24 * 60} Minutes</td>
-              <td>60Minutes</td>
-              <td>60Minutes</td>
+              <td> {days.toFixed() * 24 * 60} Minutes</td>
+              <td>7200 Minutes</td>
             </tr>
             <tr>
               <td>{totalAttendance?.length * 24 * 60 * 60} Seconds</td>
               <td>{totalRest?.length * 24 * 60 * 60} Seconds</td>
-              <td>60Seconds</td>
-              <td>60Seconds</td>
+              <td>{days.toFixed() * 24 * 60 * 60} Seconds</td>
+              <td>14200 Seconds</td>
             </tr>
           </table>
         </div>
