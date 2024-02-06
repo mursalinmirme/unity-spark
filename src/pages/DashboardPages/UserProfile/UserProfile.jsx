@@ -2,13 +2,16 @@ import "../../DashboardPages/EmployeePages/MyProfile/profile.css";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { FiEdit3 } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import useUserInfo from "../../../hooks/useUserInfo";
 import { LuDownload } from "react-icons/lu";
+import { TbBookmark } from "react-icons/tb";
+
 const UserProfile = () => {
   const { profileComplete } = useContext(AuthContext);
+  const [openBookmark, setOpenBookmark] = useState(false)
   const [users] = useUserInfo();
   const {
     name,
@@ -27,9 +30,8 @@ const UserProfile = () => {
     education_level,
   } = users || {};
 
-  console.log(users);
   return (
-    <div>
+    <div className="relative overflow-hidden">
       <div className="user_profile_container">
         {users?.image ? (
           <img src={users?.image} alt="profile" />
@@ -42,16 +44,9 @@ const UserProfile = () => {
             <h3>{users?.email}</h3>
           </div>
           <div className="flex gap-3 items-center relative">
-            {/* <div className="border-2 border-primary rounded-lg p-1 sm:hidden  md:hidden ">
-              <img
-                style={{ height: "18px", width: "18px" }}
-                src={counter_icon}
-                alt=""
-              />
-              <span className="bg-primary  w-5 h-5 absolute top-2 md:right-[112px] text-white flex items-center justify-center rounded-lg">
-                7
-              </span>
-            </div> */}
+            <button onClick={() => setOpenBookmark(!openBookmark)} className="py-1 px-1.5 rounded-lg border-2 border-primary hover:bg-primary hover:text-white transition-all duration-500">
+              <TbBookmark className="text-xl" />
+            </button>
 
             <Link
               to="/dashboard/userProfileEdit"
@@ -62,35 +57,25 @@ const UserProfile = () => {
             </Link>
           </div>
         </div>
-      </div>
-
-      <h1 className="border-t border-gray-500 mt-5"></h1>
-      <div className="mt-5">
-        <div className="flex justify-between items-center mb-1.5 ">
-          <h2 className="text-[22px] font-bold font-inter">
-            Completed You Profile
-          </h2>
-          <h2>{Math.ceil(profileComplete)}% </h2>
+        {/* BOOKMARK TAB */}
+        <div className={`${openBookmark ? 'top-6' : '-top-96'} w-[350px] p-5 rounded-xl space-y-4 absolute right-40 bg-white z-10 transition-all duration-500`} style={{boxShadow: '0 0 6px rgba(0, 0, 0, 0.15)'}}>
+          <div className="border border-primary p-3 rounded-lg bg-[#ececf8] cursor-pointer">
+            <h4 className="font-semibold font-inter">Develop training materials for new technologies and processes.</h4>
+          </div>
+          <div className="border border-green-600 p-3 rounded-lg bg-green-50">
+            <h4 className="font-semibold font-inter">Write code for new features or applications</h4>
+          </div>
         </div>
-        <ProgressBar
-          completed={profileComplete}
-          bgColor="#433ebe"
-          height="15px"
-          baseBgColor="#e3e2f5"
-          labelColor="#ffffff"
-          labelSize="0px"
-          maxCompleted={100}
-          animateOnRender
-        />
       </div>
 
       {/** Input Form Area  */}
-
-      <div className="grid md:grid-cols-2 gap-2 mt-7">
+      
+      <div className="border-2 p-5 rounded-xl mt-8">
+      <div className="grid md:grid-cols-2 gap-2">
         {/* Email field */}
         <label>
           <div className="">
-            <span className="font-bold font-inter">Email :</span>
+            <span className="font-semibold font-inter">Email :</span>
           </div>
           <p className="font-inter"> {users?.email} </p>
         </label>
@@ -99,7 +84,7 @@ const UserProfile = () => {
         {/* phone Number*/}
         <label>
           <div className="">
-            <span className="font-bold font-inter">Phone :</span>
+            <span className="font-semibold font-inter">Phone :</span>
           </div>
           <p className="font-inter"> {users?.phone || "N/A"} </p>
         </label>
@@ -110,7 +95,7 @@ const UserProfile = () => {
         {/* Current Address field */}
         <label>
           <div className="pt-1">
-            <span className="font-bold font-inter">Current Address :</span>
+            <span className="font-semibold font-inter">Current Address :</span>
           </div>
           <p className="font-inter"> {users?.current_address || "N/A"}</p>
         </label>
@@ -119,7 +104,7 @@ const UserProfile = () => {
         {/* Permanent Address */}
         <label>
           <div className="pt-1">
-            <span className="font-bold font-inter">Permanent Address :</span>
+            <span className="font-semibold font-inter">Permanent Address :</span>
           </div>
 
           <p className="font-inter">{users?.permanent_address || "N/A"}</p>
@@ -131,7 +116,7 @@ const UserProfile = () => {
         {/* Age field */}
         <label>
           <div className="pt-1">
-            <span className="font-bold font-inter">Age :</span>
+            <span className="font-semibold font-inter">Age :</span>
           </div>
           <p className="font-inter"> {users?.age || "N/A"} </p>
         </label>
@@ -140,7 +125,7 @@ const UserProfile = () => {
         {/* Your Gender Select */}
         <label>
           <div className="pt-1">
-            <span className="font-bold font-inter">Gender :</span>
+            <span className="font-semibold font-inter">Gender :</span>
           </div>
           <p className="font-inter"> {users?.gender || "N/A"} </p>
         </label>
@@ -151,7 +136,7 @@ const UserProfile = () => {
         {/* name field */}
         <label>
           <div className="pt-1">
-            <span className="font-bold font-inter">Education Level :</span>
+            <span className="font-semibold font-inter">Education Level :</span>
           </div>
           <p className="font-inter"> {users?.education_level || "N/A"} </p>
         </label>
@@ -160,7 +145,7 @@ const UserProfile = () => {
         {/* Institute Name field */}
         <label>
           <div className="pt-1">
-            <span className="font-bold font-inter">Institute Name :</span>
+            <span className="font-semibold font-inter">Institute Name :</span>
           </div>
           <p className="font-inter"> {users?.institute_name || "N/A"}</p>
         </label>
@@ -171,7 +156,7 @@ const UserProfile = () => {
         {/* Job Preference field */}
         <label>
           <div className="pt-1">
-            <span className="font-bold font-inter">Job Preference :</span>
+            <span className="font-semibold font-inter">Job Preference :</span>
           </div>
           <p className="font-inter">{users?.job_preference || "N/A"} </p>
         </label>
@@ -180,7 +165,7 @@ const UserProfile = () => {
         {/* Time Preference field */}
         <label>
           <div className="pt-1">
-            <span className="font-bold font-inter">Time Preference :</span>
+            <span className="font-semibold font-inter">Time Preference :</span>
           </div>
 
           <p className="font-inter"> {users?.time_preference || "N/A"}</p>
@@ -192,7 +177,7 @@ const UserProfile = () => {
         {/* Skills field */}
         <label>
           <div className="pt-1 mb-2">
-            <span className="font-bold font-inter">Skills :</span>
+            <span className="font-semibold font-inter">Skills :</span>
           </div>
           {users?.skills?.map((skill, index) => (
             <span
@@ -207,15 +192,16 @@ const UserProfile = () => {
         {/* Resume field */}
         <label>
           <div className="pt-1 mb-2">
-            <span className="font-bold font-inter  ">Resume :</span>
+            <span className="font-semibold font-inter  ">Resume :</span>
           </div>
           <a href={users?.resume_link} target="blank">
-            <div className="flex w-44 gap-2 font-semibold  text-white cursor-pointer font-inter text-base px-8 py-[8px] bg-primary rounded-xl transition-all duration-500 text-[15px]">
+            <div className="inline-flex gap-2 font-semibold items-center text-white cursor-pointer font-inter text-base px-8 py-[8px] bg-primary rounded-xl transition-all duration-500 text-[15px]">
               {" "}
-              <LuDownload className="text-2xl" /> <span> Download</span>{" "}
+              <LuDownload className="text-lg" /> <span> Download</span>{" "}
             </div>
           </a>
         </label>
+      </div>
       </div>
     </div>
   );

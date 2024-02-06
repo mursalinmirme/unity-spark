@@ -15,7 +15,7 @@ import Loading from "../../Loading/Loading";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 
 const ManageAds = () => {
-  const PublicAxios = useAxiosPublic()
+  const PublicAxios = useAxiosPublic();
   const [totalPages, setToalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [showSearchBar, setShowSearchBar] = useState(false);
@@ -28,18 +28,22 @@ const ManageAds = () => {
         `/total-job-ads-numbers?searchVal=${searchValues}`
       );
       setToalPages(Math.ceil(result?.data.total / 6));
-      console.log("The jobs document count is", result.data.total);
+      // console.log("The jobs document count is", result.data.total);
       return result.data.total;
     },
   });
-  console.log('Rw skdjfkdjf', manageAds);
+  // console.log('Rw skdjfkdjf', manageAds);
 
   const pagesArray = Array.from({ length: totalPages }, (_, index) => index);
 
-  console.log(pagesArray);
+  // console.log(pagesArray);
 
   // fetch all the jobs list from database one by one
-  const { data: ourAllJobs = [], isFetching, refetch } = useQuery({
+  const {
+    data: ourAllJobs = [],
+    isFetching,
+    refetch,
+  } = useQuery({
     queryKey: ["seeOurAllJobs", currentPage, searchValues],
     queryFn: async () => {
       const result = await PublicAxios.get(
@@ -51,7 +55,7 @@ const ManageAds = () => {
 
   // handle delete job ads
   const handleDeleteJob = (id) => {
-    console.log(id);
+    // console.log(id);
     Swal.fire({
       title: "Are you sure?",
       icon: "question",
@@ -63,7 +67,7 @@ const ManageAds = () => {
       if (result.isConfirmed) {
         PublicAxios.delete(`/job-ads/${id}`).then((res) => {
           console.log(res.data);
-          toast.success('Successfully deleted');
+          toast.success("Successfully deleted");
           refetch();
         });
       }
@@ -97,11 +101,11 @@ const ManageAds = () => {
   const handleShowSearchBar = () => {
     setShowSearchBar(true);
     setSearchValues(null);
-  }
+  };
   // handle close search bar
   const handleCloseSearchBar = () => {
     setShowSearchBar(false);
-    setSearchValues(null)
+    setSearchValues(null);
   };
   // if(isFetching){
   //   return <Loading></Loading>
@@ -190,51 +194,50 @@ const ManageAds = () => {
         </div>
       </div>
       {/* main cards */}
-      {
-        ourAllJobs.length > 0 ?
+      {ourAllJobs.length > 0 ? (
         <div className="min-h-[62vh]">
-        {ourAllJobs?.map((job) => {
-          return (
-            <div
-              className="border-2 p-3 my-4 rounded-lg flex justify-between items-center"
-              key={job?._id}
-            >
-              <div>
-                <h3 className="text-md font-bold">
-                  {job?.job_title} -{" "}
-                  <span className="text-slate-500 font-medium ">
-                    {" "}
-                    {job?.job_category1}
-                  </span>
-                </h3>
-              </div>
-              <div className="space-x-4 text-white">
-                <Link to={`/dashboard/jobs/jobs-edit/${job?._id}`}>
-                  <button className="bg-primary rounded-lg p-2">
-                    <AiFillEdit className="text-lg"></AiFillEdit>
+          {ourAllJobs?.map((job) => {
+            return (
+              <div
+                className="border-2 p-3 my-4 rounded-lg flex justify-between items-center"
+                key={job?._id}
+              >
+                <div>
+                  <h3 className="text-md font-bold">
+                    {job?.job_title} -{" "}
+                    <span className="text-slate-500 font-medium ">
+                      {" "}
+                      {job?.job_category1}
+                    </span>
+                  </h3>
+                </div>
+                <div className="space-x-4 text-white">
+                  <Link to={`/dashboard/jobs/jobs-edit/${job?._id}`}>
+                    <button className="bg-primary rounded-lg p-2">
+                      <AiFillEdit className="text-lg"></AiFillEdit>
+                    </button>
+                  </Link>
+                  <button
+                    onClick={() => handleDeleteJob(job?._id)}
+                    className="bg-primary rounded-lg p-2 "
+                  >
+                    <RiDeleteBin6Line className="text-lg"></RiDeleteBin6Line>
                   </button>
-                </Link>
-                <button
-                  onClick={() => handleDeleteJob(job?._id)}
-                  className="bg-primary rounded-lg p-2 "
-                >
-                  <RiDeleteBin6Line className="text-lg"></RiDeleteBin6Line>
-                </button>
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
-         :
-         <div className="flex justify-center items-center h-[400px]">
+            );
+          })}
+        </div>
+      ) : (
+        <div className="flex justify-center items-center h-[400px]">
           <h3 className="text-lg font-medium text-primary">
             There has no job ads to your search.
           </h3>
         </div>
-      }
+      )}
 
       {/* pagination */}
-      <div className={`${manageAds > 5 ? 'block' : 'hidden'}`}>
+      <div className={`${manageAds > 5 ? "block" : "hidden"}`}>
         <div className={`flex justify-center`}>
           <div className={`join flex space-x-2`}>
             <button

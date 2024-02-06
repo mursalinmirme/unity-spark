@@ -31,8 +31,11 @@ import ManageEvents from "../pages/DashboardPages/ManageEvents/ManageEvents";
 import JobsEdit from "../pages/components/Dashboard/JobAds/JobsEdit";
 import LeaveRequests from "../pages/DashboardPages/AdminPages/ManageLeave/LeaveRequests";
 import LeaveManagement from "../pages/DashboardPages/LeaveManagement/LeaveManagement";
-import LeaveManagementAdmin from "../pages/DashboardPages/LeaveManagementAdmin/LeaveManagementAdmin";
-import AddNewTask from "../pages/DashboardPages/LeaveManagementAdmin/AddNewTask";
+import TaskManagement from "../pages/DashboardPages/TaskManagement/TaskManagement";
+import AddNewTask from "../pages/DashboardPages/TaskManagement/AddNewTask";
+import LeaveRequestForm from "../pages/DashboardPages/LeaveManagement/LeaveRequestForm";
+
+import EmployeeHome from "../pages/DashboardPages/EmployeePages/EmployeeHome/EmployeeHome";
 
 const router = createBrowserRouter([
   {
@@ -99,6 +102,16 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "employeeHome",
+        element: (
+          <PrivateRouter>
+            <IsEmployee>
+              <EmployeeHome></EmployeeHome>
+            </IsEmployee>
+          </PrivateRouter>
+        ),
+      },
+      {
         path: "employee-profile",
         element: (
           <PrivateRouter>
@@ -108,6 +121,7 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
       },
+
       {
         path: "userProfile",
         element: (
@@ -242,7 +256,7 @@ const router = createBrowserRouter([
         path: "addEvent",
         element: (
           <PrivateRouter>
-            <ManageEvents/>
+            <ManageEvents />
           </PrivateRouter>
         ),
       },
@@ -255,10 +269,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "leaveManagementAdmin",
+        path: "TaskManagement",
         element: (
           <PrivateRouter>
-            <LeaveManagementAdmin></LeaveManagementAdmin>
+            <TaskManagement></TaskManagement>
           </PrivateRouter>
         ),
       },
@@ -277,6 +291,14 @@ const router = createBrowserRouter([
             <IsAdmin>
               <LeaveRequests></LeaveRequests>
             </IsAdmin>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "newLeaveRequest",
+        element: (
+          <PrivateRouter>
+            <LeaveRequestForm></LeaveRequestForm>
           </PrivateRouter>
         ),
       },

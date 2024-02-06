@@ -23,6 +23,24 @@ const Dashboard = () => {
   const { loginOut } = useContext(AuthContext);
   const dashboardItem = (
     <>
+      {isUser?.role === "employee" && (
+        <NavLink to="/dashboard/employeeHome">
+          {({ isActive }) => (
+            <li
+              className={`${
+                isActive ? "dashboard_item_active" : "dashboard_item"
+              }`}
+            >
+              <div>
+                <BiHomeAlt2 />
+                <span>Home</span>
+              </div>
+              <IoIosArrowForward className="hov_arrow hidden lg:block" />
+            </li>
+          )}
+        </NavLink>
+      )}
+
       {isUser?.role === "user" && (
         <NavLink to="/dashboard/userProfile">
           {({ isActive }) => (
@@ -212,7 +230,7 @@ const Dashboard = () => {
         </NavLink>
       )}
       {isUser?.role === "admin" && (
-        <NavLink to="/dashboard/leaveManagementAdmin">
+        <NavLink to="/dashboard/TaskManagement">
           {({ isActive }) => (
             <li
               className={`${
@@ -221,7 +239,7 @@ const Dashboard = () => {
             >
               <div>
                 <GrUserWorker />
-                <span>Leave Management</span>
+                <span>Task Management</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
             </li>

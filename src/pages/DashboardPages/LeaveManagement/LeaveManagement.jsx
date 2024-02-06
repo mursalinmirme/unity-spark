@@ -1,109 +1,59 @@
-import { useForm } from "react-hook-form";
+import { LuPenLine } from "react-icons/lu";
+import { Link } from "react-router-dom";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
+import { useContext } from "react";
+import { AuthContext } from "../../../Provider/AuthProvider";
+import LeavesRow from "./LeavesRow";
+// import LeavesRow from "./LeavesRow";
 
 const LeaveManagement = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const axiosPublic = useAxiosPublic();
+  const { user } = useContext(AuthContext);
 
-  const onSubmit = (data) => {
-    console.log(data);
-    reset();
-  };
+  const { data: userLeaves = [] } = useQuery({
+    queryKey: ["uniqueUserLeaves"],
+
+    queryFn: async () => {
+      const result = await axiosPublic.get(`/leaves/${user?.email}`);
+      return result.data;
+    },
+  });
+
+  console.log("checked", userLeaves);
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-primary">
-        {" "}
-        Create a Leave Application
-      </h2>
-      <form onSubmit={handleSubmit(onSubmit)} className=" mt-3 space-y-4">
-        {/**One Two Part */}
-        <div className="grid md:grid-cols-2 gap-3">
-          {/* name field */}
-          <label>
-            <div className="py-1">
-              <span className="font-bold font-inter"> Your Name :</span>
-            </div>
-            <input
-              type="text"
-              {...register("name", { required: true })}
-              placeholder="Please Your Name"
-            />
-          </label>
-          {/* Name field End */}
+      <div className="flex justify-between items-center">
+        <h3 className="text-3xl font-semibold">Leave Requests</h3>
 
-          <label>
-            <div className="py-1">
-              <span className="font-bold font-inter"> Number of Days:</span>
-            </div>
-            <input
-              type="text"
-              {...register("time", { required: true })}
-              placeholder="Please Your Days"
-              required
-            />
-          </label>
-        </div>
+        <Link to="/dashboard/newLeaveRequest">
+          <p className="flex items-center gap-2 text-[#433ebe] font-inter font-semibold border-2 border-[#433ebe] p-1 md:px-2 rounded-lg">
+            <LuPenLine></LuPenLine> <span>New Request</span>
+          </p>
+        </Link>
+      </div>
 
-        {/**Second Two Part */}
-        <div className="grid md:grid-cols-2 gap-3">
-          {/* name field */}
-          <label>
-            <div className="py-1">
-              <span className="font-bold font-inter"> Your Email :</span>
-            </div>
-            <input
-              type="email"
-              {...register("email", { required: true })}
-              placeholder="Please Your Email"
-              required
-            />
-          </label>
-          {/* Name field End */}
-
-          <label>
-            <div className="py-1">
-              <span className="font-bold font-inter"> HR Email:</span>
-            </div>
-            <input
-              type="email"
-              {...register("hr_email", { required: true })}
-              placeholder="Please Your Hr Email"
-              required
-            />
-          </label>
-        </div>
-
-        {/* Subject  field */}
-        <label>
-          <div className="py-1">
-            <span className="font-bold font-inter">Subject</span>
-          </div>
-          <input
-            type="text"
-            {...register("subject", { required: true })}
-            placeholder="Please Subject Name"
-          />
-        </label>
-
-        {/* Subject  field */}
-        <label>
-          <div className="py-1">
-            <span className="font-bold font-inter"> Reason of Leave</span>
-          </div>
-
-          <textarea
-            className="w-full h-28 border pl-2 pt-2"
-            id="description"
-            {...register("description", {
-              required: "Description is required",
-            })}
-            placeholder="Write details about your leave issue..."
-          />
-        </label>
-        <br />
-        <button className="w-48 py-2  bg-primary border-none text-white rounded-xl text-center cursor-pointer">
-          Send
-        </button>
-      </form>
+      <div>
+        <table className="table-no-border table mt-10">
+          {/* head */}
+          <thead className="bg-[#726eec] text-white text-[18px] rounded-md text-center">
+            <tr className="text-center">
+              <th>Serial</th>
+              <th>Subject</th>
+              <th>Reason</th>
+              <th>Days</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {userLeaves &&
+              userLeaves?.map((leave, idx) => (
+                <LeavesRow key={leave._id} leave={leave} idx={idx}></LeavesRow>
+              ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
