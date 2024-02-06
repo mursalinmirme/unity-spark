@@ -5,6 +5,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { LuUser, LuUsers2, LuUserCog } from "react-icons/lu";
 import { IoDocumentOutline } from "react-icons/io5";
 import { BiTask } from "react-icons/bi";
+import { MdOutlineSave } from "react-icons/md";
 import {} from "react-icons/lu";
 import { GrUserWorker } from "react-icons/gr";
 import { BsChatText } from "react-icons/bs";
@@ -58,6 +59,24 @@ const Dashboard = () => {
           )}
         </NavLink>
       )}
+      {isUser?.role === "user" && (
+        <NavLink to="/dashboard/mySaveJob">
+          {({ isActive }) => (
+            <li
+              className={`${
+                isActive ? "dashboard_item_active" : "dashboard_item"
+              }`}
+            >
+              <div>
+                <MdOutlineSave />
+                <span>My Saved Jobs</span>
+              </div>
+              <IoIosArrowForward className="hov_arrow hidden lg:block" />
+            </li>
+          )}
+        </NavLink>
+      )}
+
       {isUser?.role === "admin" && (
         <NavLink to="/dashboard/userProfile">
           {({ isActive }) => (

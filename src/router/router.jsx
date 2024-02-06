@@ -35,6 +35,7 @@ import TaskManagement from "../pages/DashboardPages/TaskManagement/TaskManagemen
 import AddNewTask from "../pages/DashboardPages/TaskManagement/AddNewTask";
 import LeaveRequestForm from "../pages/DashboardPages/LeaveManagement/LeaveRequestForm";
 import AdminHome from "../pages/DashboardPages/AdminPages/AdminHome/AdminHome";
+import MySaveJob from "../pages/DashboardPages/MySaveJob/MySaveJob";
 
 const router = createBrowserRouter([
   {
@@ -298,6 +299,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <LeaveRequestForm></LeaveRequestForm>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "mySaveJob",
+        element: (
+          <PrivateRouter>
+            <MySaveJob></MySaveJob>
           </PrivateRouter>
         ),
       },
