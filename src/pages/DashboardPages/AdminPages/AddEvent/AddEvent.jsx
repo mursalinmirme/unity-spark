@@ -67,7 +67,7 @@ const AddEvent = () => {
       <h2 className="font-bold text-2xl "> Add Event</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="mt-10 space-y-4">
         {/**First Two Part */}
-        <div className="grid md:grid-cols-2 gap-2">
+        <div className="grid md:grid-cols-2 gap-3">
           {/* Email field */}
           <label>
             <div className="py-1">
@@ -109,7 +109,7 @@ const AddEvent = () => {
         </div>
 
         {/**Second Two Part */}
-        <div className="grid md:grid-cols-2 gap-2">
+        <div className="grid md:grid-cols-2 gap-3">
           {/* Current Address field */}
           <label>
             <div className="py-1">
@@ -117,7 +117,7 @@ const AddEvent = () => {
             </div>
             <div className="relative">
               <DatePicker
-                className="px-64 lg:px-[230px] !pl-2"
+                
                 value={selectedStartTime || "Please Select Start Time"}
                 selected={selectedStartTime}
                 onChange={(time) => setSelectedStartTime(time)}
@@ -139,7 +139,7 @@ const AddEvent = () => {
             </div>
             <div className="relative">
               <DatePicker
-                className="px-64 lg:px-[230px] !pl-2"
+                
                 value={selectedEndTime || "Please End Time Select"}
                 selected={selectedEndTime}
                 onChange={(time) => setSelectedEndTime(time)}
@@ -155,7 +155,7 @@ const AddEvent = () => {
         </div>
 
         {/**Third Two Part */}
-        <div className="grid md:grid-cols-2 gap-2 pb-5">
+        <div className="grid md:grid-cols-2 gap-3 pb-3">
           {/*  Host Name field */}
           <label>
             <div className="py-1">
@@ -177,7 +177,7 @@ const AddEvent = () => {
 
             <div className="relative">
               <DatePicker
-                className="px-64 lg:px-64 !pl-2"
+                
                 selected={selectDate}
                 onChange={(date) => setSelectDate(date)}
                 icon="fa fa-calendar"
