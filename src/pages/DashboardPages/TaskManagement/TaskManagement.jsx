@@ -13,10 +13,10 @@ const TaskManagement = () => {
   return (
     <div>
       <div className="flex justify-between">
-        <h1 className="text-primary font-bold text-2xl"> Task </h1>
+        <h1 className="font-bold text-3xl"> Tasks </h1>
         <Link
           to="/dashboard/addNewTask"
-          className="flex items-center gap-2 cursor-pointer text-[#433ebe] font-inter font-semibold border-2 border-[#433ebe] p-1 md:px-2 rounded-lg hover:bg-primary hover:text-white"
+          className="flex items-center gap-1 cursor-pointer text-[#433ebe] font-inter font-semibold border-2 border-[#433ebe] p-1 md:px-2 rounded-lg hover:bg-primary hover:text-white"
         >
           <FaPlus /> <span>New Task</span>
         </Link>

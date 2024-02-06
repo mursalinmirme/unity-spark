@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 const TaskManagementCards = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   return (
-    <div className="border-2 border-[#D9D9D9] bg-[#ECECF8] rounded-xl px-2 md:px-5 py-2 space-y-4">
-      <div className="flex items-center justify-between ">
+    <div className="border-2 border-[#D9D9D9] bg-[#ECECF8] rounded-xl p-2 py-3 md:px-5 space-y-4">
+      <div className="flex justify-between">
         <div>
           {" "}
           <h2 className="text-[18px] font-bold">
@@ -15,16 +15,15 @@ const TaskManagementCards = () => {
             Write Code for New Feature or <br /> Application
           </h2>
         </div>
-
-        <div className="relative ">
+        <div className="relative mt-1">
           <div
-            className="text-white bg-primary p-2 rounded-lg cursor-pointer"
+            className="text-primary text-xl cursor-pointer"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
             <HiDotsVertical />
           </div>
           <div
-            className={`absolute z-[3] right-6 w-12 bg-white text-white drop-shadow-lg rounded-lg p-2 ${
+            className={`absolute z-[3] right-4 w-12 bg-white text-white drop-shadow-lg rounded-lg p-2 ${
               isDropdownOpen ? "block" : "hidden"
             }`}
           >
