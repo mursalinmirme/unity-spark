@@ -12,7 +12,7 @@ const AcceptedRequested = () => {
     });
     console.log("Total leave requests", leaveRequests);
     return (
-        <div className="mt-3 grid grid-cols-2 gap-5">
+        <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-5">
       {leaveRequests?.map((request) => {
         return (
           <div className="border shadow-sm p-3.5 rounded-md" key={request?._id}>

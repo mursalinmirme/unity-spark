@@ -32,8 +32,8 @@ const LeaveRequests = () => {
             key={tab.id}
             className={`${
               isActive === tab.id
-                ? "font-medium text-white bg-primary py-1 md:py-3 rounded-lg"
-                : "bg-transparent text-primary md:px-5 py-1 md:py-3 font-semibold cursor-pointer"
+                ? "font-medium text-white bg-primary py-1 md:py-3 rounded-lg text-sm md:text-base"
+                : "bg-transparent text-primary md:px-5 py-1 md:py-3 font-semibold cursor-pointer text-sm md:text-base"
             }`}
             onClick={() => handleJobAdsTab(tab.id)}
           >
