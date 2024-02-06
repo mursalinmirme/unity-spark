@@ -4,12 +4,13 @@ import TaskManagementCards from "./TaskManagementCards";
 import { useEffect, useState } from "react";
 const TaskManagement = () => {
   const [data, setData] = useState([]);
+
   useEffect(() => {
-    fetch("/JobPost.json")
+    fetch("http://localhost:5000/tasks")
       .then((res) => res.json())
       .then((data) => setData(data));
   }, []);
-  console.log(data);
+
   return (
     <div>
       <div className="flex justify-between">
@@ -23,7 +24,7 @@ const TaskManagement = () => {
       </div>
       <div className="my-5 grid grid-cols-1 md:grid-cols-2  gap-4 mt-10">
         {data?.map((item) => (
-          <TaskManagementCards key={item.id}></TaskManagementCards>
+          <TaskManagementCards key={item.id} item={item}></TaskManagementCards>
         ))}
       </div>
     </div>
