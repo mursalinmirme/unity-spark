@@ -72,7 +72,7 @@ const JobDetails = () => {
       job_category2: jobInfo?.job_category2,
     };
 
-    PublicAxios.post("/saveJobInfo", saveInfo)
+    PublicAxios.post(`/saveJobInfo?email=${user?.email}`, saveInfo)
       .then((res) => {
         if (res?.data === "All Ready Data Saved") {
           toast.error("All Ready Save Job data");
