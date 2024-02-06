@@ -3,16 +3,17 @@ import { HiDotsVertical } from "react-icons/hi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { FiEdit3 } from "react-icons/fi";
 import { Link } from "react-router-dom";
-const TaskManagementCards = () => {
+const TaskManagementCards = ({item}) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const {task_name, employees} = item || {}
+  console.log(employees.length);
+
   return (
     <div className="border-2 border-[#D9D9D9] bg-[#ECECF8] rounded-xl p-2 py-3 md:px-5 space-y-4">
       <div className="flex justify-between">
         <div>
-          {" "}
           <h2 className="text-[18px] font-bold">
-            {" "}
-            Write Code for New Feature or <br /> Application
+            {task_name}
           </h2>
         </div>
         <div className="relative mt-1">
@@ -50,26 +51,23 @@ const TaskManagementCards = () => {
 
         <div>
           <div className="avatar-group -space-x-6 rtl:space-x-reverse">
-            <div className="avatar">
-              <div className="w-12">
-                <img src="https://i.ibb.co/DRqXm4r/395687920-750115476879631-8529659874036745582-n.jpg" />
+            {
+              employees?.map((employee, idx) => (
+                <div key={idx} className="avatar">
+                  <div className="w-10">
+                    <img src={employee?.image} />
+                  </div>
+                </div>
+              ))
+            }
+            {
+              employees?.length > 3 &&
+              <div className="avatar placeholder">
+                <div className="w-12 bg-white text-primary">
+                  <span>+3</span>
+                </div>
               </div>
-            </div>
-            <div className="avatar">
-              <div className="w-12">
-                <img src="https://i.ibb.co/ZhFn0Ph/profile-pic-6.png" />
-              </div>
-            </div>
-            <div className="avatar">
-              <div className="w-12">
-                <img src="https://i.ibb.co/tLN9ddt/prflPic.jpg" />
-              </div>
-            </div>
-            <div className="avatar placeholder">
-              <div className="w-12 bg-white text-primary">
-                <span>+3</span>
-              </div>
-            </div>
+            }
           </div>
         </div>
       </div>
