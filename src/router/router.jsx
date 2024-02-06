@@ -34,7 +34,8 @@ import LeaveManagement from "../pages/DashboardPages/LeaveManagement/LeaveManage
 import TaskManagement from "../pages/DashboardPages/TaskManagement/TaskManagement";
 import AddNewTask from "../pages/DashboardPages/TaskManagement/AddNewTask";
 import LeaveRequestForm from "../pages/DashboardPages/LeaveManagement/LeaveRequestForm";
-import AdminHome from "../pages/DashboardPages/AdminPages/AdminHome/AdminHome";
+
+import EmployeeHome from "../pages/DashboardPages/EmployeePages/EmployeeHome/EmployeeHome";
 
 const router = createBrowserRouter([
   {
@@ -101,12 +102,12 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "adminHome",
+        path: "employeeHome",
         element: (
           <PrivateRouter>
-            <IsAdmin>
-              <AdminHome></AdminHome>
-            </IsAdmin>
+            <IsEmployee>
+              <EmployeeHome></EmployeeHome>
+            </IsEmployee>
           </PrivateRouter>
         ),
       },

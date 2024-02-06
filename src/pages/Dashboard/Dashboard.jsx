@@ -23,8 +23,8 @@ const Dashboard = () => {
   const { loginOut } = useContext(AuthContext);
   const dashboardItem = (
     <>
-      {isUser?.role === "admin" && (
-        <NavLink to="/dashboard/adminHome">
+      {isUser?.role === "employee" && (
+        <NavLink to="/dashboard/employeeHome">
           {({ isActive }) => (
             <li
               className={`${
