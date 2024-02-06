@@ -15,7 +15,7 @@ const RejectedRequestes = () => {
         <div className="mt-3 grid grid-cols-2 gap-5">
       {leaveRequests?.map((request) => {
         return (
-          <div className="border shadow-sm p-3.5 rounded-md" key={request?._id}>
+          <div className="border shadow-sm p-3.5 rounded-md flex flex-col h-full" key={request?._id}>
             <div className="flex items-center justify-between border-b pb-2">
               <div className="flex">
                 <img
@@ -36,8 +36,8 @@ const RejectedRequestes = () => {
             </div>
             <div className="mt-3">
               <p className="text-lg font-medium">Subject: {request?.subject}</p>
-              <p className="font-normal text-base mt-1">
-                {request?.leaveReason}
+              <p className="font-normal text-base mt-1 flex-grow line-clamp-3">
+                { request?.leaveReason }
               </p>
             </div>
             <div className="mt-3 flex gap-5">
