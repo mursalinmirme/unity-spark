@@ -138,7 +138,7 @@ const ModifyEvent = () => {
   }
 
     return (
-        <div className="flex items-start justify-items-center gap-5">
+        <div className="flex flex-wrap items-start justify-items-center gap-5 gap-y-1">
        {events.map(items => <ModifyEventCard key={items._id} items={items} handleDelete={handleDelete} handlemodalopen={handlemodalopen} ></ModifyEventCard> )}
         <dialog id="my_modal_3" className="modal">
                   <div className="modal-box">
