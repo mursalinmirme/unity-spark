@@ -91,25 +91,54 @@ const ManageApplications = () => {
 
   // update role
 
-  const handleUpdateRole = (value) => {
-    axiosPublic
-      .put(`/users?email=${value?.email}`)
-      .then((res) => {
-        if (res?.data?.modifiedCount > 0) {
-          Swal.fire({
-            title: "Role Updated",
-            text: `${value?.email} is now Employee`,
-            icon: "success",
-          }).then((result) => {
-            if (result.isConfirmed) {
-              handleDelete(value._id);
-            }
+  // const handleUpdateRole = (value) => {
+  //   axiosPublic
+  //     .put(`/users?email=${value?.email}`)
+  //     .then((res) => {
+  //       if (res?.data?.modifiedCount > 0) {
+  //         Swal.fire({
+  //           title: "Role Updated",
+  //           text: `${value?.email} is now Employee`,
+  //           icon: "success",
+  //         }).then((result) => {
+  //           if (result.isConfirmed) {
+  //             handleDelete(value._id);
+  //           }
+  //         });
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+
+  const handleUpdateRole = (id) => {
+    Swal.fire({
+      title: "Are you sure ?",
+      text: "You want to Select for interview",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes,Sure",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosPublic
+          .put(`/application-status/${id}`, { status: "Confirmed" })
+          .then((res) => {
+            console.log(res.data);
+
+            Swal.fire({
+              title: "Successfully!",
+              text: "Candidate Selected.",
+              icon: "success",
+            });
+          })
+          .catch((error) => {
+            console.log(error);
           });
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      }
+    });
   };
 
   // if(isFetching){

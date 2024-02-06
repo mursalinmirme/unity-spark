@@ -15,7 +15,7 @@ const ApplicationsCard = ({
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  console.log("checked33", applicationPreview);
+  // console.log("checked33", applicationPreview);
   return (
     <div className="border-2 border-[#D9D9D9] rounded-xl px-2 md:px-5 py-2">
       <div className="flex items-center justify-between">
@@ -81,10 +81,10 @@ const ApplicationsCard = ({
           </button>
 
           <Link
-            onClick={() => handleUpdateRole(value)}
+            onClick={() => handleUpdateRole(value?._id)}
             className="rounded-lg p-2  bg-[#433EBE]"
           >
-            <IoCheckmark className=""></IoCheckmark>
+            <IoCheckmark className=""> </IoCheckmark>
           </Link>
           <Link
             onClick={() => handleDelete(value?._id)}
@@ -104,7 +104,7 @@ const ApplicationsCard = ({
               ✕
             </button>
           </form>
-          <div className="space-y-3  ">
+          <div className="space-y-3">
             <div className="">
               <img
                 className="w-40 h-40 rounded-lg"

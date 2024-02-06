@@ -11,15 +11,16 @@ const LeaveManagement = () => {
   const axiosPublic = useAxiosPublic();
   const { user } = useContext(AuthContext);
 
-  const { data: userLeaves } = useQuery({
+  const { data: userLeaves = [] } = useQuery({
     queryKey: ["uniqueUserLeaves"],
+
     queryFn: async () => {
       const result = await axiosPublic.get(`/leaves/${user?.email}`);
       return result.data;
     },
   });
 
-  console.log(userLeaves);
+  console.log("checked", userLeaves);
 
   return (
     <div>
