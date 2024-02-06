@@ -8,8 +8,10 @@ import toast from "react-hot-toast";
 import Social_Media from "../../components/Share/Social_Media/Social_Media";
 import { IoEyeOutline } from "react-icons/io5";
 import { FaEyeSlash } from "react-icons/fa";
-import axios from "axios";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+
 const Signin = () => {
+  const PublicAxios = useAxiosPublic()
   const { userSignIn } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const [signInLoading, setSignInLoading] = useState(false);
@@ -22,8 +24,8 @@ const Signin = () => {
     // User Login Method
     userSignIn(data?.email, data?.password)
       .then((res) => {
-        axios
-          .get(`http://localhost:5000/user-role?email=${res?.user?.email}`)
+        PublicAxios
+          .get(`/user-role?email=${res?.user?.email}`)
           .then((resp) => {
             if (resp.data.role) {
               reset();

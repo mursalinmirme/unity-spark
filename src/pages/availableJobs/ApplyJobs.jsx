@@ -18,7 +18,7 @@ const ApplyJobs = () => {
 
   // User Data Get
   useEffect(() => {
-    axiosPublic.get(`/users/${user?.email}`).then((res) => {
+    axiosSecure.get(`/users/${user?.email}`).then((res) => {
       setUsers(res?.data);
     });
   }, [axiosPublic, user?.email]);
@@ -66,6 +66,7 @@ const ApplyJobs = () => {
       skills: data.skills || users?.skills,
       image: users?.image,
       resume_link: data.resume || users?.resume_link,
+      user: users?._id
     };
 
     axiosPublic

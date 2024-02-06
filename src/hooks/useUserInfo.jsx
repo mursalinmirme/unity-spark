@@ -1,13 +1,15 @@
-import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import useAxiosSecure from "./useAxiosSecure";
 const useUserInfo = () => {
+  const axiosSecure = useAxiosSecure()
   const { user, setProfileComplete } = useContext(AuthContext);
   const { data: users = [] } = useQuery({
     queryKey: ["user_infor"],
+    enabled: !!user?.email,
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/users/${user?.email}`);  
+      const res = await axiosSecure.get(`users/${user?.email}`);  
       let profileCount = 0;
   
       profileCount += res.data.name ? 7.142 : 0

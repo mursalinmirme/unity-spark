@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import moment from "moment";
 import { useState } from "react";
 import { AiFillEdit } from "react-icons/ai";
@@ -13,35 +12,42 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import Loading from "../../Loading/Loading";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 
 const ManageAds = () => {
+  const PublicAxios = useAxiosPublic();
   const [totalPages, setToalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [searchValues, setSearchValues] = useState(null);
 
-  const { data: manageAds = [] } = useQuery({
-    queryKey: ["manageOurAds"],
+  const { data: manageAds = 0 } = useQuery({
+    queryKey: ["manageOurAds", currentPage, searchValues],
     queryFn: async () => {
-      const result = await axios.get(
-        "http://localhost:5000/total-job-ads-numbers"
+      const result = await PublicAxios.get(
+        `/total-job-ads-numbers?searchVal=${searchValues}`
       );
-      setToalPages(Math.ceil(result?.data.total / 5));
-      console.log("The jobs document count is", result.data.total);
+      setToalPages(Math.ceil(result?.data.total / 6));
+      // console.log("The jobs document count is", result.data.total);
       return result.data.total;
     },
   });
+  // console.log('Rw skdjfkdjf', manageAds);
 
   const pagesArray = Array.from({ length: totalPages }, (_, index) => index);
 
-  console.log(pagesArray);
+  // console.log(pagesArray);
 
   // fetch all the jobs list from database one by one
-  const { data: ourAllJobs = [], isFetching, refetch } = useQuery({
-    queryKey: ["seeOurAllJobs", currentPage],
+  const {
+    data: ourAllJobs = [],
+    isFetching,
+    refetch,
+  } = useQuery({
+    queryKey: ["seeOurAllJobs", currentPage, searchValues],
     queryFn: async () => {
-      const result = await axios.get(
-        `http://localhost:5000/total-job-ads?skip=${currentPage * 5}`
+      const result = await PublicAxios.get(
+        `/total-job-ads?skip=${currentPage * 6}&searchVal=${searchValues}`
       );
       return result.data;
     },
@@ -49,7 +55,7 @@ const ManageAds = () => {
 
   // handle delete job ads
   const handleDeleteJob = (id) => {
-    console.log(id);
+    // console.log(id);
     Swal.fire({
       title: "Are you sure?",
       icon: "question",
@@ -59,9 +65,9 @@ const ManageAds = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/job-ads/${id}`).then((res) => {
+        PublicAxios.delete(`/job-ads/${id}`).then((res) => {
           console.log(res.data);
-          toast.success('Successfully deleted');
+          toast.success("Successfully deleted");
           refetch();
         });
       }
@@ -89,17 +95,21 @@ const ManageAds = () => {
     if (!searchVal) {
       return;
     }
-    console.log("Does it overtake");
     setSearchValues(searchVal);
   };
-
+  //  HANDLE SHOW SEARCH BAR
+  const handleShowSearchBar = () => {
+    setShowSearchBar(true);
+    setSearchValues(null);
+  };
   // handle close search bar
   const handleCloseSearchBar = () => {
     setShowSearchBar(false);
+    setSearchValues(null);
   };
-  if(isFetching){
-    return <Loading></Loading>
-  }
+  // if(isFetching){
+  //   return <Loading></Loading>
+  // }
   return (
     <div>
       <div className="mt-4 flex justify-between items-center">
@@ -155,7 +165,7 @@ const ManageAds = () => {
             />
             <div>
               <button
-                onClick={() => setShowSearchBar(true)}
+                onClick={handleShowSearchBar}
                 style={{ background: "#433EBE" }}
                 className="search-btn"
               >
@@ -184,41 +194,50 @@ const ManageAds = () => {
         </div>
       </div>
       {/* main cards */}
-      <div className="min-h-[60vh]">
-        {ourAllJobs?.map((job) => {
-          return (
-            <div
-              className="border-2 p-3 my-4 rounded-lg flex justify-between items-center"
-              key={job?._id}
-            >
-              <div>
-                <h3 className="text-md font-bold">
-                  {job?.job_title} -{" "}
-                  <span className="text-slate-500 font-medium ">
-                    {" "}
-                    {job?.job_category1}
-                  </span>
-                </h3>
-              </div>
-              <div className="space-x-4 text-white">
-                <Link to={`/dashboard/jobs/jobs-edit/${job?._id}`}>
-                  <button className="bg-primary rounded-lg p-2">
-                    <AiFillEdit className="text-lg"></AiFillEdit>
+      {ourAllJobs.length > 0 ? (
+        <div className="min-h-[62vh]">
+          {ourAllJobs?.map((job) => {
+            return (
+              <div
+                className="border-2 p-3 my-4 rounded-lg flex justify-between items-center"
+                key={job?._id}
+              >
+                <div>
+                  <h3 className="text-md font-bold">
+                    {job?.job_title} -{" "}
+                    <span className="text-slate-500 font-medium ">
+                      {" "}
+                      {job?.job_category1}
+                    </span>
+                  </h3>
+                </div>
+                <div className="space-x-4 text-white">
+                  <Link to={`/dashboard/jobs/jobs-edit/${job?._id}`}>
+                    <button className="bg-primary rounded-lg p-2">
+                      <AiFillEdit className="text-lg"></AiFillEdit>
+                    </button>
+                  </Link>
+                  <button
+                    onClick={() => handleDeleteJob(job?._id)}
+                    className="bg-primary rounded-lg p-2 "
+                  >
+                    <RiDeleteBin6Line className="text-lg"></RiDeleteBin6Line>
                   </button>
-                </Link>
-                <button
-                  onClick={() => handleDeleteJob(job?._id)}
-                  className="bg-primary rounded-lg p-2 "
-                >
-                  <RiDeleteBin6Line className="text-lg"></RiDeleteBin6Line>
-                </button>
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div className="flex justify-center items-center h-[400px]">
+          <h3 className="text-lg font-medium text-primary">
+            There has no job ads to your search.
+          </h3>
+        </div>
+      )}
+
       {/* pagination */}
-      <div>
+      <div className={`${manageAds > 5 ? "block" : "hidden"}`}>
         <div className={`flex justify-center`}>
           <div className={`join flex space-x-2`}>
             <button

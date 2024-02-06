@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import EmployeeProfileEdit from "./EmployeeProfileEdit";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const tabs = [
   {
@@ -37,18 +37,53 @@ const MyProfile = () => {
   const [isActive, setIsActive] = useState(0);
   const [openEditor, setOpenEditor] = useState(false);
   const { user } = useContext(AuthContext);
-  const axiosPublic = useAxiosPublic();
-  const { data } = useQuery({
+  const axiosSecure = useAxiosSecure();
+  const { data = {} } = useQuery({
     queryKey: ["user_data"],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/users/${user?.email}`);
+      const res = await axiosSecure.get(`/users/${user?.email}`);
       return res.data;
     },
   });
 
-  const handlePerformanceTab = (id) => {
-    setIsActive(id);
-  };
+  // get total Attendance
+  const { data: totalAttendance = [] } = useQuery({
+    queryKey: ["totalAttendance"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/total-attendance/${user?.email}`);
+      return res.data;
+    },
+  });
+
+  // console.log(totalAttendance);
+
+  // get total Rest Days
+  const { data: totalRest = [] } = useQuery({
+    queryKey: ["totalRest"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/total-rest/${user?.email}`);
+      return res.data;
+    },
+  });
+
+  // console.log("ceched55", totalRest);
+
+  const dbDate = new Date(data?.createdAt);
+  console.log(dbDate);
+  const currentDate = new Date();
+  console.log(currentDate);
+
+  const distanceDate = currentDate - dbDate;
+
+  function millisecondsToDays(milliseconds) {
+    const seconds = milliseconds / 1000;
+    const days = seconds / (60 * 60 * 24);
+    return days;
+  }
+
+  const days = millisecondsToDays(distanceDate);
+
+  // console.log("check66", days.toFixed());
 
   return (
     <div className="user_profile">
@@ -60,7 +95,8 @@ const MyProfile = () => {
             {openEditor ? (
               <a
                 className={`flex items-center font-inter text-red-500 text-base gap-1 font-medium border-2 rounded-md border-red-500 px-2 py-0.5 cursor-pointer text-red hover:text-white hover:bg-red-500 transition-all`}
-                onClick={() => setOpenEditor(false)}>
+                onClick={() => setOpenEditor(false)}
+              >
                 <RxCross2 />
                 <span>Cancel</span>
               </a>
@@ -118,7 +154,8 @@ const MyProfile = () => {
                     ? "font-medium text-white bg-primary"
                     : "bg-transperant text-primary font-semibold"
                 }`}
-                onClick={() => handlePerformanceTab(tab.id)}>
+                onClick={() => handlePerformanceTab(tab.id)}
+              >
                 {tab.name}
               </a>
             ))}
@@ -129,32 +166,32 @@ const MyProfile = () => {
             <tr>
               <th>Attendance</th>
               <th>Rest Day</th>
-              <th>Overtime</th>
+              <th>Employee From</th>
               <th>Scrum Joined</th>
             </tr>
             <tr>
-              <td>60Days</td>
-              <td>60Days</td>
-              <td>60Days</td>
-              <td>60Days</td>
+              <td>{totalAttendance?.length} Days</td>
+              <td>{totalRest?.length} Days</td>
+              <td>{days.toFixed()} Days</td>
+              <td>5 Days</td>
             </tr>
             <tr>
-              <td>60Hours</td>
-              <td>60Hours</td>
-              <td>60Hours</td>
-              <td>60Hours</td>
+              <td>{totalAttendance?.length * 24} Hours</td>
+              <td>{totalRest?.length * 24} Hours</td>
+              <td>{days.toFixed() * 24} Hours</td>
+              <td>120 Hours</td>
             </tr>
             <tr>
-              <td>60Minutes</td>
-              <td>60Minutes</td>
-              <td>60Minutes</td>
-              <td>60Minutes</td>
+              <td>{totalAttendance?.length * 24 * 60} Minutes</td>
+              <td>{totalRest?.length * 24 * 60} Minutes</td>
+              <td> {days.toFixed() * 24 * 60} Minutes</td>
+              <td>7200 Minutes</td>
             </tr>
             <tr>
-              <td>60Seconds</td>
-              <td>60Seconds</td>
-              <td>60Seconds</td>
-              <td>60Seconds</td>
+              <td>{totalAttendance?.length * 24 * 60 * 60} Seconds</td>
+              <td>{totalRest?.length * 24 * 60 * 60} Seconds</td>
+              <td>{days.toFixed() * 24 * 60 * 60} Seconds</td>
+              <td>14200 Seconds</td>
             </tr>
           </table>
         </div>
@@ -164,7 +201,8 @@ const MyProfile = () => {
       <div className={`profile-form ${openEditor ? "block" : "hidden"}`}>
         <EmployeeProfileEdit
           user={data}
-          setOpenEditor={setOpenEditor}></EmployeeProfileEdit>
+          setOpenEditor={setOpenEditor}
+        ></EmployeeProfileEdit>
       </div>
     </div>
   );

@@ -23,8 +23,19 @@ import Attendance from "../pages/components/Attendance/Attendance";
 import AddJobs from "../pages/components/Dashboard/JobAds/AddJobs";
 import JobDetails from "../pages/components/HomeComponents/JobPost/JobDetails/JobDetails";
 import Home from "../pages/home/Home";
+import IsAdmin from "../privateRouter.jsx/IsAdmin";
+import IsCommonAccess from "../privateRouter.jsx/IsCommonAccess";
+import IsEmployee from "../privateRouter.jsx/IsEmployee";
 import PrivateRouter from "../privateRouter.jsx/PrivateRouter";
+import ManageEvents from "../pages/DashboardPages/ManageEvents/ManageEvents";
 import JobsEdit from "../pages/components/Dashboard/JobAds/JobsEdit";
+import LeaveRequests from "../pages/DashboardPages/AdminPages/ManageLeave/LeaveRequests";
+import LeaveManagement from "../pages/DashboardPages/LeaveManagement/LeaveManagement";
+import TaskManagement from "../pages/DashboardPages/TaskManagement/TaskManagement";
+import AddNewTask from "../pages/DashboardPages/TaskManagement/AddNewTask";
+import LeaveRequestForm from "../pages/DashboardPages/LeaveManagement/LeaveRequestForm";
+
+import EmployeeHome from "../pages/DashboardPages/EmployeePages/EmployeeHome/EmployeeHome";
 
 const router = createBrowserRouter([
   {
@@ -62,7 +73,11 @@ const router = createBrowserRouter([
       },
       {
         path: "apply-job/:id",
-        element: <ApplyJobs></ApplyJobs>,
+        element: (
+          <PrivateRouter>
+            <ApplyJobs></ApplyJobs>
+          </PrivateRouter>
+        ),
       },
     ],
   },
@@ -70,7 +85,9 @@ const router = createBrowserRouter([
     path: "dashboard",
     element: (
       <PrivateRouter>
-        <Dashboard></Dashboard>
+        <IsCommonAccess>
+          <Dashboard></Dashboard>
+        </IsCommonAccess>
       </PrivateRouter>
     ),
     children: [
@@ -78,7 +95,19 @@ const router = createBrowserRouter([
         path: "",
         element: (
           <PrivateRouter>
-            <DashboardHome></DashboardHome>
+            <IsCommonAccess>
+              <DashboardHome></DashboardHome>
+            </IsCommonAccess>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "employeeHome",
+        element: (
+          <PrivateRouter>
+            <IsEmployee>
+              <EmployeeHome></EmployeeHome>
+            </IsEmployee>
           </PrivateRouter>
         ),
       },
@@ -86,15 +115,20 @@ const router = createBrowserRouter([
         path: "employee-profile",
         element: (
           <PrivateRouter>
-            <MyProfile></MyProfile>
+            <IsEmployee>
+              <MyProfile></MyProfile>
+            </IsEmployee>
           </PrivateRouter>
         ),
       },
+
       {
         path: "userProfile",
         element: (
           <PrivateRouter>
-            <UserProfile></UserProfile>
+            <IsCommonAccess>
+              <UserProfile></UserProfile>
+            </IsCommonAccess>
           </PrivateRouter>
         ),
       },
@@ -102,7 +136,9 @@ const router = createBrowserRouter([
         path: "userProfileEdit",
         element: (
           <PrivateRouter>
-            <UserProfileEdit></UserProfileEdit>
+            <IsCommonAccess>
+              <UserProfileEdit></UserProfileEdit>
+            </IsCommonAccess>
           </PrivateRouter>
         ),
       },
@@ -110,7 +146,9 @@ const router = createBrowserRouter([
         path: "recruitment",
         element: (
           <PrivateRouter>
-            <Recruiment></Recruiment>
+            <IsAdmin>
+              <Recruiment></Recruiment>
+            </IsAdmin>
           </PrivateRouter>
         ),
       },
@@ -118,7 +156,9 @@ const router = createBrowserRouter([
         path: "all-users",
         element: (
           <PrivateRouter>
-            <AllUsers></AllUsers>
+            <IsAdmin>
+              <AllUsers></AllUsers>
+            </IsAdmin>
           </PrivateRouter>
         ),
       },
@@ -126,19 +166,29 @@ const router = createBrowserRouter([
         path: "jobs",
         element: (
           <PrivateRouter>
-            <JobAds></JobAds>
+            <IsAdmin>
+              <JobAds></JobAds>
+            </IsAdmin>
           </PrivateRouter>
         ),
       },
       {
-        path: 'jobs/jobs-edit/:id',
-        element: <JobsEdit></JobsEdit>
+        path: "jobs/jobs-edit/:id",
+        element: (
+          <PrivateRouter>
+            <IsAdmin>
+              <JobsEdit></JobsEdit>
+            </IsAdmin>
+          </PrivateRouter>
+        ),
       },
       {
         path: "tasks",
         element: (
           <PrivateRouter>
-            <JobAds></JobAds>
+            <IsAdmin>
+              <JobAds></JobAds>
+            </IsAdmin>
           </PrivateRouter>
         ),
       },
@@ -146,7 +196,9 @@ const router = createBrowserRouter([
         path: "reviews",
         element: (
           <PrivateRouter>
-            <Reviews></Reviews>
+            <IsCommonAccess>
+              <Reviews></Reviews>
+            </IsCommonAccess>
           </PrivateRouter>
         ),
       },
@@ -154,7 +206,9 @@ const router = createBrowserRouter([
         path: "reviews/add-review",
         element: (
           <PrivateRouter>
-            <AddReview></AddReview>
+            <IsEmployee>
+              <AddReview></AddReview>
+            </IsEmployee>
           </PrivateRouter>
         ),
       },
@@ -162,7 +216,9 @@ const router = createBrowserRouter([
         path: "communication",
         element: (
           <PrivateRouter>
-            <Communication></Communication>
+            <IsCommonAccess>
+              <Communication></Communication>
+            </IsCommonAccess>
           </PrivateRouter>
         ),
       },
@@ -170,7 +226,9 @@ const router = createBrowserRouter([
         path: "employees",
         element: (
           <PrivateRouter>
-            <Employee></Employee>
+            <IsAdmin>
+              <Employee></Employee>
+            </IsAdmin>
           </PrivateRouter>
         ),
       },
@@ -178,7 +236,9 @@ const router = createBrowserRouter([
         path: "addJobs",
         element: (
           <PrivateRouter>
-            <AddJobs></AddJobs>
+            <IsAdmin>
+              <AddJobs></AddJobs>
+            </IsAdmin>
           </PrivateRouter>
         ),
       },
@@ -186,7 +246,59 @@ const router = createBrowserRouter([
         path: "attendance",
         element: (
           <PrivateRouter>
-            <Attendance></Attendance>
+            <IsEmployee>
+              <Attendance></Attendance>
+            </IsEmployee>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "addEvent",
+        element: (
+          <PrivateRouter>
+            <ManageEvents />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "leaveManagement",
+        element: (
+          <PrivateRouter>
+            <LeaveManagement></LeaveManagement>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "TaskManagement",
+        element: (
+          <PrivateRouter>
+            <TaskManagement></TaskManagement>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "addNewTask",
+        element: (
+          <PrivateRouter>
+            <AddNewTask></AddNewTask>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "leave-requests",
+        element: (
+          <PrivateRouter>
+            <IsAdmin>
+              <LeaveRequests></LeaveRequests>
+            </IsAdmin>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "newLeaveRequest",
+        element: (
+          <PrivateRouter>
+            <LeaveRequestForm></LeaveRequestForm>
           </PrivateRouter>
         ),
       },

@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useContext } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +5,7 @@ import { AuthContext } from "../../../../Provider/AuthProvider";
 import google_Icon from "../../../../assets/images/google-icon.png";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 const Social_Media = ({ setGoogleLoading, googleLoading }) => {
+  const PublicAxios = useAxiosPublic()
   const { googleLoginSystem } = useContext(AuthContext);
   const navigate = useNavigate();
   const handlerGoogleLogin = () => {
@@ -17,11 +17,11 @@ const Social_Media = ({ setGoogleLoading, googleLoading }) => {
           email: res?.user?.email,
           image: res?.user?.photoURL,
         };
-        axios
-          .post("http://localhost:5000/users", newUser)
+        PublicAxios
+          .post("/users", newUser)
           .then(() => {
-            axios
-              .get(`http://localhost:5000/user-role?email=${res?.user?.email}`)
+            PublicAxios
+              .get(`/user-role?email=${res?.user?.email}`)
               .then((resp) => {
                 if (resp.data.role === "user") {
                   setGoogleLoading(false);
