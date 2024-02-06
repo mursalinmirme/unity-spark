@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import EmployeeProfileEdit from "./EmployeeProfileEdit";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const tabs = [
@@ -46,7 +45,6 @@ const MyProfile = () => {
       return res.data;
     },
   });
-  post;
   const handlePerformanceTab = (id) => {
     setIsActive(id);
   };
@@ -61,8 +59,7 @@ const MyProfile = () => {
             {openEditor ? (
               <a
                 className={`flex items-center font-inter text-red-500 text-base gap-1 font-medium border-2 rounded-md border-red-500 px-2 py-0.5 cursor-pointer text-red hover:text-white hover:bg-red-500 transition-all`}
-                onClick={() => setOpenEditor(false)}
-              >
+                onClick={() => setOpenEditor(false)}>
                 <RxCross2 />
                 <span>Cancel</span>
               </a>
@@ -120,8 +117,7 @@ const MyProfile = () => {
                     ? "font-medium text-white bg-primary"
                     : "bg-transperant text-primary font-semibold"
                 }`}
-                onClick={() => handlePerformanceTab(tab.id)}
-              >
+                onClick={() => handlePerformanceTab(tab.id)}>
                 {tab.name}
               </a>
             ))}
@@ -167,8 +163,7 @@ const MyProfile = () => {
       <div className={`profile-form ${openEditor ? "block" : "hidden"}`}>
         <EmployeeProfileEdit
           user={data}
-          setOpenEditor={setOpenEditor}
-        ></EmployeeProfileEdit>
+          setOpenEditor={setOpenEditor}></EmployeeProfileEdit>
       </div>
     </div>
   );
