@@ -97,26 +97,83 @@ const ApplicationsCard = ({
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
 
       <dialog id="my_modal_3" className="modal">
-        <div className="modal-box">
+        <div className="  max-h-full modal-box max-w-[800px]  ">
           <form method="dialog">
             {/* if there is a button in form, it will close the modal */}
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-2xl">
               ✕
             </button>
           </form>
-          <div className="space-y-3 border border-second ">
-            <h3 className="text-xl font-medium text-slate-700 text-center">
+          <div className="space-y-3  ">
+            <div className="">
+              <img
+                className="w-40 h-40 rounded-lg"
+                src={applicationPreview?.image}
+                alt=""
+              />
+            </div>
+
+            <h3 className="text-xl font-medium text-slate-700 ">
               <span className="font-bold text-black">Applicant Name: </span>
+              {applicationPreview?.name}
+            </h3>
+            <h3 className="text-xl font-medium text-slate-700">
+              <span className="font-bold text-black">Applicant Email: </span>
+              {applicationPreview?.email}
+            </h3>
+            <h3 className="text-xl font-medium text-slate-700">
+              <span className="font-bold text-black">Applied For: </span>
               {applicationPreview?.title}
             </h3>
-            <h3 className="text-xl font-medium text-slate-700 text-center">
-              <span className="font-bold text-black">Applicant Email: </span>
-              {value?.email}
+            <h3 className="text-xl font-medium text-slate-700">
+              <span className="font-bold text-black">Gender: </span>
+              {applicationPreview?.gender}
             </h3>
-            <h3 className="text-xl font-medium text-slate-700 text-center">
-              <span className="font-bold text-black">Applied For: </span>
-              {value?.title}
+            <h3 className="text-xl font-medium text-slate-700">
+              <span className=" font-inter  font-bold text-black">Skill: </span>
+              {applicationPreview?.skills?.map((skill, index) => (
+                <span
+                  key={index}
+                  className="mr-2 text-primary bg-[#d0d8e0] py-1 px-3 rounded-full text-sm font-medium"
+                >
+                  {skill?.label}
+                </span>
+              )) || "N/A"}
             </h3>
+
+            <div>
+              <div className="flex flex-col  gap-3 text-xl font-medium text-slate-700">
+                <h3>
+                  <span className=" font-inter  font-bold text-black ">
+                    Current :{" "}
+                  </span>
+                  {applicationPreview?.current_address}
+                </h3>
+                <h3>
+                  <span className=" font-inter font-bold text-black">
+                    Permanent :{" "}
+                  </span>
+
+                  {applicationPreview?.permanent_address}
+                </h3>
+              </div>
+              {/** Second Part */}
+              <div className="flex flex-col gap-3 text-xl my-4 font-medium text-slate-700">
+                <h3>
+                  <span className=" font-inter  font-bold text-black ">
+                    Education :{" "}
+                  </span>
+                  {applicationPreview?.education_level}
+                </h3>
+                <h3>
+                  <span className=" font-inter font-bold text-black">
+                    Institute:{" "}
+                  </span>
+
+                  {applicationPreview?.institute_name}
+                </h3>
+              </div>
+            </div>
           </div>
         </div>
       </dialog>

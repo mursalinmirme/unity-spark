@@ -46,7 +46,7 @@ const MyProfile = () => {
       return res.data;
     },
   });
-  post;
+
   const handlePerformanceTab = (id) => {
     setIsActive(id);
   };
