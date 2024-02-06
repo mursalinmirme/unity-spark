@@ -37,6 +37,7 @@ import LeaveRequestForm from "../pages/DashboardPages/LeaveManagement/LeaveReque
 import MySaveJob from "../pages/DashboardPages/MySaveJob/MySaveJob";
 
 import EmployeeHome from "../pages/DashboardPages/EmployeePages/EmployeeHome/EmployeeHome";
+import MyApplications from "../pages/DashboardPages/UserPages/Myapplications/MyApplications";
 
 const router = createBrowserRouter([
   {
@@ -308,6 +309,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <MySaveJob></MySaveJob>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "my-applications",
+        element: (
+          <PrivateRouter>
+            <MyApplications></MyApplications>
           </PrivateRouter>
         ),
       },
