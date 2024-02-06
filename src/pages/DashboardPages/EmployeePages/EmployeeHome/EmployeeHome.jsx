@@ -2,11 +2,14 @@ import { RiUserFollowLine } from "react-icons/ri";
 import { MdAddTask } from "react-icons/md";
 import { IoDocumentOutline } from "react-icons/io5";
 import { TbCalendarStar } from "react-icons/tb";
+import RunningTaskCard from "./RunningTaskCard";
+import CompletedTaskCard from "./CompletedTaskCard";
+import RegisteredEvents from "./RegisteredEvents";
 
 const EmployeeHome = () => {
   return (
     <div>
-      <div className="text-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 border-b-4 pb-4">
+      <div className="text-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 border-b-4 pb-5">
         {/* Total Present */}
         <div className="font-inter bg-[#C7C5EB] py-4 rounded-xl">
           <div className="flex justify-center">
@@ -47,6 +50,11 @@ const EmployeeHome = () => {
           <p className="text-[#4361EE] font-semibold text-xl">Job Posts</p>
         </div>
       </div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-5">
+        <RunningTaskCard></RunningTaskCard>
+        <CompletedTaskCard></CompletedTaskCard>
+      </div>
+      <RegisteredEvents></RegisteredEvents>
     </div>
   );
 };
