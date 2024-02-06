@@ -13,6 +13,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import logo from "../../assets/images/logo.gif";
 import useUserRole from "../../hooks/useUserRole";
 import { IoIosFiling } from "react-icons/io";
+import { MdOutlineSave } from "react-icons/md";
 import "./dashboard.css";
 const Dashboard = () => {
   const [isUser] = useUserRole();
@@ -54,6 +55,24 @@ const Dashboard = () => {
           )}
         </NavLink>
       )}
+      {isUser?.role === "user" && (
+        <NavLink to="/dashboard/mySaveJob">
+          {({ isActive }) => (
+            <li
+              className={`${
+                isActive ? "dashboard_item_active" : "dashboard_item"
+              }`}
+            >
+              <div>
+                <MdOutlineSave />
+                <span>My Saved Jobs</span>
+              </div>
+              <IoIosArrowForward className="hov_arrow hidden lg:block" />
+            </li>
+          )}
+        </NavLink>
+      )}
+
       {isUser?.role === "admin" && (
         <NavLink to="/dashboard/userProfile">
           {({ isActive }) => (

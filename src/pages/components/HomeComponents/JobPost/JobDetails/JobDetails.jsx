@@ -9,11 +9,11 @@ import JobApplyForm from "../JobApplyForm";
 import useAxiosPublic from "../../../../../hooks/useAxiosPublic";
 
 const JobDetails = () => {
-  const PublicAxios = useAxiosPublic()
+  const PublicAxios = useAxiosPublic();
   const { id } = useParams();
   const [currentAds, setCurrentAds] = useState(id);
   const [users] = useUserInfo();
-  const { profileComplete } = useContext(AuthContext);
+  const { profileComplete, user } = useContext(AuthContext);
 
   const {
     name,
@@ -31,10 +31,6 @@ const JobDetails = () => {
     job_preference,
     education_level,
   } = users || {};
-  // const handleReFetch = () => {
-  //   refetch();
-  //   refetchForMore();
-  // }
 
   const handleApply = () => {
     profileComplete > 95
@@ -46,9 +42,7 @@ const JobDetails = () => {
   const { data: jobInfo, refetch } = useQuery({
     queryKey: ["jobsDetails", currentAds],
     queryFn: async () => {
-      const result = await PublicAxios.get(
-        `/job-ads/${currentAds}`
-      );
+      const result = await PublicAxios.get(`/job-ads/${currentAds}`);
       return result.data;
     },
   });
@@ -66,6 +60,31 @@ const JobDetails = () => {
     },
   });
 
+  // Data Save Job info post Method,,
+  const chandlerSaveJobInfo = (jobInfo) => {
+    const saveInfo = {
+      title: jobInfo?.job_title,
+      position: jobInfo?.position,
+      description: jobInfo?.job_description,
+      email: user?.email,
+      applicationId: jobInfo?._id,
+      job_category1: jobInfo?.job_category1,
+      job_category2: jobInfo?.job_category2,
+    };
+
+    PublicAxios.post("/saveJobInfo", saveInfo)
+      .then((res) => {
+        if (res?.data === "All Ready Data Saved") {
+          toast.error("All Ready Save Job data");
+        } else {
+          toast.success("Save Job Info in mongodb");
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+        toast.error(error.message);
+      });
+  };
   return (
     <div className="lg:px-10 mb-20 flex flex-col lg:flex-row gap-8">
       {/**Left Side */}
@@ -177,13 +196,15 @@ const JobDetails = () => {
         <div className="flex gap-4 pt-8 font-semibold">
           <span
             className="px-8 flex items-center bg-primary text-white rounded-xl cursor-pointer text-[14px]"
-            onClick={() => toast.success("Successfully applied")}>
+            onClick={() => toast.success("Successfully applied")}
+          >
             {" "}
             Apply Now{" "}
           </span>
           <span
-            onClick={() => toast.success("Successfully saved")}
-            className="px-8 py-2.5 text-primary border-2 border-primary  rounded-xl cursor-pointer text-[15px]">
+            onClick={() => chandlerSaveJobInfo(jobInfo)}
+            className="px-8 py-2.5 text-primary border-2 border-primary  rounded-xl cursor-pointer text-[15px]"
+          >
             {" "}
             Save{" "}
           </span>
@@ -219,7 +240,8 @@ const JobDetails = () => {
                   <button className="mt-3 mr-3 nbtn">Apply Now</button>
                   <Link
                     onClick={() => setCurrentAds(jobPost?._id)}
-                    to={`/job-details/${jobPost?._id}`}>
+                    to={`/job-details/${jobPost?._id}`}
+                  >
                     <div className="mt-3 mr-3 text-primary font-semibold  cursor-pointer px-4 py-[9px] rounded-xl border-2 border-primary text-[15px]">
                       View Details
                     </div>
