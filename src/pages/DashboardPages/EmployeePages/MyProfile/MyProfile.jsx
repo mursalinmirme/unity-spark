@@ -39,7 +39,7 @@ const MyProfile = () => {
   const [openEditor, setOpenEditor] = useState(false);
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
-  const { data } = useQuery({
+  const { data = {} } = useQuery({
     queryKey: ["user_data"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/users/${user?.email}`);
@@ -47,9 +47,44 @@ const MyProfile = () => {
     },
   });
 
-  const handlePerformanceTab = (id) => {
-    setIsActive(id);
-  };
+  // get total Attendance
+  const { data: totalAttendance = [] } = useQuery({
+    queryKey: ["totalAttendance"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/total-attendance/${user?.email}`);
+      return res.data;
+    },
+  });
+
+  // console.log(totalAttendance);
+
+  // get total Rest Days
+  const { data: totalRest = [] } = useQuery({
+    queryKey: ["totalRest"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/total-rest/${user?.email}`);
+      return res.data;
+    },
+  });
+
+  console.log(totalRest);
+
+  // const dbDate = new Date(data?.createdAt);
+  // console.log(dbDate);
+  // const currentDate = new Date();
+  // console.log(currentDate);
+
+  // const distanceDate = currentDate - dbDate;
+
+  // function millisecondsToDays(milliseconds) {
+  //   const seconds = milliseconds / 1000;
+  //   const days = seconds / (60 * 60 * 24);
+  //   return days;
+  // }
+
+  // const days = millisecondsToDays(distanceDate);
+
+  // console.log("check66", days.toFixed());
 
   return (
     <div className="user_profile">
@@ -136,26 +171,26 @@ const MyProfile = () => {
               <th>Scrum Joined</th>
             </tr>
             <tr>
-              <td>60Days</td>
-              <td>60Days</td>
+              <td>{totalAttendance?.length} Days</td>
+              <td>{totalRest?.length} Days</td>
               <td>60Days</td>
               <td>60Days</td>
             </tr>
             <tr>
-              <td>60Hours</td>
-              <td>60Hours</td>
+              <td>{totalAttendance?.length * 24} Hours</td>
+              <td>{totalRest?.length * 24} Hours</td>
               <td>60Hours</td>
               <td>60Hours</td>
             </tr>
             <tr>
-              <td>60Minutes</td>
-              <td>60Minutes</td>
+              <td>{totalAttendance?.length * 24 * 60} Minutes</td>
+              <td>{totalRest?.length * 24 * 60} Minutes</td>
               <td>60Minutes</td>
               <td>60Minutes</td>
             </tr>
             <tr>
-              <td>60Seconds</td>
-              <td>60Seconds</td>
+              <td>{totalAttendance?.length * 24 * 60 * 60} Seconds</td>
+              <td>{totalRest?.length * 24 * 60 * 60} Seconds</td>
               <td>60Seconds</td>
               <td>60Seconds</td>
             </tr>
