@@ -33,6 +33,8 @@ import LeaveRequests from "../pages/DashboardPages/AdminPages/ManageLeave/LeaveR
 import LeaveManagement from "../pages/DashboardPages/LeaveManagement/LeaveManagement";
 import TaskManagement from "../pages/DashboardPages/TaskManagement/TaskManagement";
 import AddNewTask from "../pages/DashboardPages/TaskManagement/AddNewTask";
+import LeaveRequestForm from "../pages/DashboardPages/LeaveManagement/LeaveRequestForm";
+import AdminHome from "../pages/DashboardPages/AdminPages/AdminHome/AdminHome";
 
 const router = createBrowserRouter([
   {
@@ -99,6 +101,16 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "adminHome",
+        element: (
+          <PrivateRouter>
+            <IsAdmin>
+              <AdminHome></AdminHome>
+            </IsAdmin>
+          </PrivateRouter>
+        ),
+      },
+      {
         path: "employee-profile",
         element: (
           <PrivateRouter>
@@ -108,6 +120,7 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
       },
+
       {
         path: "userProfile",
         element: (
@@ -242,7 +255,7 @@ const router = createBrowserRouter([
         path: "addEvent",
         element: (
           <PrivateRouter>
-            <ManageEvents/>
+            <ManageEvents />
           </PrivateRouter>
         ),
       },
@@ -277,6 +290,14 @@ const router = createBrowserRouter([
             <IsAdmin>
               <LeaveRequests></LeaveRequests>
             </IsAdmin>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "newLeaveRequest",
+        element: (
+          <PrivateRouter>
+            <LeaveRequestForm></LeaveRequestForm>
           </PrivateRouter>
         ),
       },

@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import EmployeeProfileEdit from "./EmployeeProfileEdit";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const tabs = [
