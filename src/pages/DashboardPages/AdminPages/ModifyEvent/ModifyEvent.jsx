@@ -1,10 +1,10 @@
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { CiCalendar, CiClock2 } from "react-icons/ci";
-import { PiMicrophoneStageThin } from "react-icons/pi";
-import { MdEditDocument } from "react-icons/md";
-import { MdDeleteForever } from "react-icons/md";
-import { IoIosArrowDropdown, IoMdTime } from "react-icons/io";
+import { CiCalendar } from "react-icons/ci";
+// import { PiMicrophoneStageThin } from "react-icons/pi";
+// import { MdEditDocument } from "react-icons/md";
+// import { MdDeleteForever } from "react-icons/md";
+import {  IoMdTime } from "react-icons/io";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -14,11 +14,12 @@ import { useForm } from "react-hook-form";
 import { SlCloudUpload } from "react-icons/sl";
 import useTimePicker from "../../../../hooks/useTimePicker";
 import axios from "axios";
+import ModifyEventCard from "./ModifyEventCard";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 
 
 const ModifyEvent = () => {
-  const [isOpen , setisOpen] = useState(false)
+  // const [isOpen , setisOpen] = useState(false)
   const [selectDate, setSelectDate] = useState(new Date());
   const [selectedStartTime, setSelectedStartTime] = useState(null);
   const [selectedEndTime, setSelectedEndTime] = useState(null);
@@ -137,38 +138,16 @@ const ModifyEvent = () => {
   }
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-items-center gap-5">
-       {events.map(items =>  <div key={items._id} className="max-w-[375px] bg-white border border-[#433EBE] rounded-lg my-5 relative">
-                <IoIosArrowDropdown className={`absolute top-7 text-2xl font-medium right-2 transition-all duration-300 ${isOpen ? "rotate-180" : "rotate-0"}`} onClick={() => setisOpen(!isOpen)}/>
-                <h1 className="font-semibold text-[23px] p-5">{items?.eventName}</h1>
-          <div className={`${isOpen ? "block" : "hidden" }`}>
-          <div className="p-5 space-y-3">
-                
-                <h1 className="text-xl font-medium flex  items-center gap-5"><CiClock2 className="text-2xl"></CiClock2>{items?.starting_time} - {items?.ending_time}</h1>
-                <h1 className="text-xl font-medium flex  items-center gap-5"><CiCalendar className="text-2xl"></CiCalendar>{items?.date}</h1>
-                <h1 className="text-xl font-medium flex  items-center gap-5"><PiMicrophoneStageThin className="text-2xl"></PiMicrophoneStageThin>{items?.hostName}</h1>
-                <div className=" pb-6 flex  items-center gap-6">
-
-                <button className="bg-primary rounded-lg p-2 text-white" onClick={()=>handlemodalopen(items?._id)}><MdEditDocument className="text-xl"/></button>
-                <button onClick={() => handleDelete(items?._id)} className="bg-primary rounded-lg p-2 text-white"><MdDeleteForever className="text-xl"/></button>
-              
-                
-                
-            
-            </div>
-            </div>
-            
-          </div>
-           
-        </div>)}
+        <div className="flex items-start justify-items-center gap-5">
+       {events.map(items => <ModifyEventCard key={items._id} items={items} handleDelete={handleDelete} handlemodalopen={handlemodalopen} ></ModifyEventCard> )}
         <dialog id="my_modal_3" className="modal">
                   <div className="modal-box">
                     <form method="dialog">
                       {/* if there is a button in form, it will close the modal */}
                       <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     </form>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="grid md:grid-cols-2 gap-2">
+                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+                    <div className="grid md:grid-cols-2 gap-3">
           {/* Email field */}
           <label>
             <div className="py-1">
@@ -210,7 +189,7 @@ const ModifyEvent = () => {
             />
           </label>
                     </div>
-                    <div className="grid md:grid-cols-2 gap-2">
+                    <div className="grid md:grid-cols-2 gap-3">
           {/* Current Address field */}
           <label>
             <div className="py-1">
@@ -218,7 +197,7 @@ const ModifyEvent = () => {
             </div>
             <div className="relative">
               <DatePicker
-                className="px-52 !pl-2"
+                
                 value={selectedStartTime || eventsId?.starting_time}
                 selected={selectedStartTime}
                 onChange={(time) => setSelectedStartTime(time)}
@@ -240,7 +219,7 @@ const ModifyEvent = () => {
             </div>
             <div className="relative">
               <DatePicker
-                className="px-52  !pl-2"
+                
                 value={selectedEndTime || eventsId?.ending_time}
                 selected={selectedEndTime}
                 onChange={(time) => setSelectedEndTime(time)}
@@ -254,7 +233,7 @@ const ModifyEvent = () => {
             </div>
           </label>
                     </div>
-                    <div className="grid md:grid-cols-2 gap-2 pb-5">
+                    <div className="grid md:grid-cols-2 gap-3 pb-3">
           {/*  Host Name field */}
           <label>
             <div className="py-1">
@@ -277,7 +256,7 @@ const ModifyEvent = () => {
 
             <div className="relative">
               <DatePicker
-                className="px-52 !pl-2"
+               
                 selected={selectDate}
                 onChange={(date) => setSelectDate(date)}
                 icon="fa fa-calendar"

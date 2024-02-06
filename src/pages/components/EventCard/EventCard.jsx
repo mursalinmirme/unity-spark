@@ -14,18 +14,19 @@ const EventCard = () => {
         }
     })
     return (
-        <div className="grid grid-cols-3 items-center justify-items-center">
-        {events.map(items =>     <div key={items?._id} className="max-w-[375px] bg-white border border-[#D9D9D9] rounded-lg my-5">
-            <img src={items?.image} alt="" />
-            <div className="p-5 space-y-3">
+        <div className="grid grid-cols-3 items-center justify-items-center gap-5">
+        {events.map(items =>     <div key={items?._id} className=" bg-white border border-[#D9D9D9] overflow-hidden my-5 rounded-2xl">
+            <img src={items?.image} alt="" className="!-z-10" />
+            <div className="p-5 space-y-3 -mt-4 !z-10 rounded-t-2xl bg-white">
                 <h1 className="font-semibold text-[23px]">{items?.eventName}</h1>
                 <h1 className="text-xl font-medium flex  items-center gap-5"><CiClock2 className="text-2xl"></CiClock2>{items?.starting_time} - {items?.ending_time}</h1>
                 <h1 className="text-xl font-medium flex  items-center gap-5"><CiCalendar className="text-2xl"></CiCalendar>{items?.date}</h1>
                 <h1 className="text-xl font-medium flex  items-center gap-5"><PiMicrophoneStageThin className="text-2xl"></PiMicrophoneStageThin>{items?.hostName}</h1>
-            </div>
-            <div className="px-3 pb-6">
+                <div className="pt-4">
             <Link to="/signup" className="nbtn">Register Now</Link>
             </div>
+            </div>
+            
            
         </div>)}
         </div>

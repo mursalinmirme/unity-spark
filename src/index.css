@@ -391,3 +391,7 @@ h6,
 .table-no-border th {
   border: none;
 }
+
+.react-datepicker-wrapper{
+  @apply !block
+}
