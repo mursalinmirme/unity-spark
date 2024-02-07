@@ -11,6 +11,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 
 const EmployeeHome = () => {
+  
   const axiosPublic = useAxiosPublic()
  const {user} = useContext(AuthContext)
 
@@ -24,6 +25,18 @@ const EmployeeHome = () => {
   
  })
  
+  
+
+  const { data: totalAttendance } = useQuery({
+    queryKey: ["totalAttendance"],
+    queryFn: async () => {
+      const result = await axiosPublic.get(`total-attendance/${user?.email}`);
+      return result.data;
+    },
+  });
+
+  // console.log(totalAttendance);
+
   return (
     <div>
       <div className="text-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 border-b-4 pb-5">
@@ -32,7 +45,9 @@ const EmployeeHome = () => {
           <div className="flex justify-center">
             <RiUserFollowLine className="w-12 h-12 text-[#433EBE]"></RiUserFollowLine>
           </div>
-          <p className="font-bold text-[45px] text-[#433EBE]">45</p>
+          <p className="font-bold text-[45px] text-[#433EBE]">
+            {totalAttendance?.length}
+          </p>
           <p className="text-[#433EBE] font-semibold text-xl">
             Total Present Day
           </p>

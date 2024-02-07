@@ -2,14 +2,14 @@ const Banner = () => {
   return (
     <div className="about_banner">
       <div className="left_container">
-        <span>
-          ABOUT
-        </span>
-        <h2>
-          Chronicles of Excellence Unveiling Our Purpose
-        </h2>
+        <span>ABOUT</span>
+        <h2>Chronicles of Excellence Unveiling Our Purpose</h2>
         <p>
-        At Unity Spark, we specialize in innovative Human Resource Management solutions designed to elevate businesses to new heights. Our platform seamlessly integrates cutting-edge technologies, fostering efficient operations and empowering companies to nurture a thriving workplace culture. 
+          At Unity Spark, we specialize in innovative Human Resource Management
+          solutions designed to elevate businesses to new heights. Our platform
+          seamlessly integrates cutting-edge technologies, fostering efficient
+          operations and empowering companies to nurture a thriving workplace
+          culture.
         </p>
       </div>
       <div className="lg:flex-1 right_container">

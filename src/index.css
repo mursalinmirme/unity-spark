@@ -392,7 +392,6 @@ h6,
   border: none;
 }
 
-.react-datepicker-wrapper{
-  @apply !block
+.react-datepicker-wrapper {
+  @apply !block;
 }
-
