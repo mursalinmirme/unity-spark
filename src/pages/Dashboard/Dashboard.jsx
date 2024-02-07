@@ -19,6 +19,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { TfiAlarmClock } from "react-icons/tfi";
 import { GrDocumentPerformance } from "react-icons/gr";
 import { FaAccessibleIcon } from "react-icons/fa";
+import { VscDiffAdded } from "react-icons/vsc";
 const Dashboard = () => {
   const [isUser] = useUserRole();
   const { loginOut } = useContext(AuthContext);
@@ -188,7 +189,7 @@ const Dashboard = () => {
               }`}
             >
               <div>
-                <IoDocumentOutline />
+                <VscDiffAdded />
                 <span>AddEvent</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
