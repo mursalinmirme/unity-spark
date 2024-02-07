@@ -5,8 +5,25 @@ import { TbCalendarStar } from "react-icons/tb";
 import RunningTaskCard from "./RunningTaskCard";
 import CompletedTaskCard from "./CompletedTaskCard";
 import RegisteredEvents from "./RegisteredEvents";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
+import { useContext } from "react";
+import { AuthContext } from "../../../../Provider/AuthProvider";
 
 const EmployeeHome = () => {
+  const axiosPublic = useAxiosPublic()
+ const {user} = useContext(AuthContext)
+
+ console.log(user.email);
+ const {data: EmployeeReqEvent = []} = useQuery({
+  queryKey: ["EmployeeReqEvent"],
+  queryFn: async () =>{
+  const response =  await axiosPublic.get(`/reqEvents/${user?.email}`)
+    return response?.data
+  }
+  
+ })
+ 
   return (
     <div>
       <div className="text-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 border-b-4 pb-5">
@@ -26,7 +43,7 @@ const EmployeeHome = () => {
           <div className="flex justify-center">
             <TbCalendarStar className="w-12 h-12 text-[#46A3E1]"></TbCalendarStar>
           </div>
-          <p className="font-bold text-[45px] text-[#46A3E1]">5</p>
+          <p className="font-bold text-[45px] text-[#46A3E1]">{EmployeeReqEvent.length}</p>
           <p className="text-[#46A3E1] font-semibold text-xl">Events Joined</p>
         </div>
 
@@ -54,7 +71,7 @@ const EmployeeHome = () => {
         <RunningTaskCard></RunningTaskCard>
         <CompletedTaskCard></CompletedTaskCard>
       </div>
-      <RegisteredEvents></RegisteredEvents>
+      <RegisteredEvents EmployeeReqEvent={EmployeeReqEvent}></RegisteredEvents>
     </div>
   );
 };
