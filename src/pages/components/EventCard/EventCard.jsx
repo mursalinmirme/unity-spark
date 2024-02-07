@@ -10,11 +10,15 @@ import './styles.css';
 import { Navigation } from 'swiper/modules';
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import useUserRole from "../../../hooks/useUserRole";
+import toast from "react-hot-toast";
 
 const EventCard = () => {
-    const { register, handleSubmit } = useForm()
+    const [isUser] = useUserRole()
+    
    
-    const [screenSize, setScreenSize] = useState(window.innerWidth);
+    const { register, handleSubmit , reset } = useForm()
+   const [screenSize, setScreenSize] = useState(window.innerWidth);
     const [currentId , setCurrentId] = useState([])
     const axiosPublic = useAxiosPublic()
     const {data: events = []} = useQuery({
@@ -59,9 +63,21 @@ const EventCard = () => {
              reqeventPosition: data?.employee_position,
              reqeventHost:eventsingleId?.hostName,
              reqeventStartTime: eventsingleId?.starting_time,
-             reqeventEmployeeName: data?.employee_name
+             reqeventEmployeeName: data?.employee_name,
+             reqeventDate: eventsingleId?.date
         }
         console.log(reqEventData)
+        axiosPublic.post('/reqEvents' , reqEventData)
+        .then(res => {
+          if(res?.data){
+            toast.success("Registration Complete")
+            reset()
+          }
+        })
+        .catch(error => {
+            console.log(error.message)
+            toast.error(error.message)
+        })
     }
     
     return (
@@ -77,7 +93,12 @@ const EventCard = () => {
                 <h1 className="text-xl font-medium flex  items-center gap-5"><PiMicrophoneStageThin className="text-2xl"></PiMicrophoneStageThin>{items?.hostName}</h1>
                 <div className="pt-4">
             {/* You can open the modal using document.getElementById('ID').showModal() method */}
-            <button className="nbtn" onClick={()=>handleModalOpen(items?._id)}>Register Now</button>
+           {
+            isUser.role === "employee" ? 
+             <button className="nbtn" onClick={()=>handleModalOpen(items?._id)}>Register Now</button>
+             : 
+             <button className="nbtn" disabled={true}>Employee Only</button>
+           }
             
             </div>
             </div>
