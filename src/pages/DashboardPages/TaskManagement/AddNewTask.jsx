@@ -17,7 +17,6 @@ const AddNewTask = () => {
       return res.data;
     },
   });
-  console.log(data, selectedEmployees);
 
   const {
     control,
@@ -45,6 +44,7 @@ const AddNewTask = () => {
           {
             _id: item._id,
             name: item.name,
+            email: item.email,
             image: item.image,
             position: item.position,
           },
