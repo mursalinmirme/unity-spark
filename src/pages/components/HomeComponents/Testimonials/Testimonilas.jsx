@@ -8,7 +8,6 @@ import { useState } from "react";
 import axios from "axios";
 
 const Testimonilas = () => {
-  
   const screenSize = useState(window.innerWidth);
 
   const { data: testimonials } = useQuery({
@@ -22,9 +21,7 @@ const Testimonilas = () => {
   return (
     <div className="testimonial py-10">
       <h2>Our Testimonials</h2>
-      <h6>
-      Voices of Success: Clients Speak Out.
-      </h6>
+      <h6>Voices of Success: Clients Speak Out.</h6>
       <div className="mt-8">
         <Swiper
           slidesPerView={screenSize[0] > 768 ? 2 : 1}
@@ -38,7 +35,7 @@ const Testimonilas = () => {
           pagination={{
             clickable: true,
           }}
-          navigation={true}
+          navigation={false}
           modules={[Autoplay, Pagination]}
           className="mySwiper"
         >
@@ -46,15 +43,14 @@ const Testimonilas = () => {
             <SwiperSlide key={item.id}>
               <div className="testimonial_card">
                 <div className="text-center mb-2">
-                  <img
-                    src={item.image}
-                    alt="Person"
-                  />
+                  <img src={item.image} alt="Person" />
                   <h3>{item.name}</h3>
                   <h4>{item.title}</h4>
                 </div>
                 <p>
-                  {`"`}{item.review}{`"`}
+                  {`"`}
+                  {item.review}
+                  {`"`}
                 </p>
               </div>
             </SwiperSlide>
