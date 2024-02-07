@@ -51,7 +51,9 @@ const MySaveJob = () => {
     <div>
       <h1 className="text-2xl font-bold"> Job Information Save </h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-5">
+      {
+        saveJobInfos?.length > 0 ?
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-5">
         {saveJobInfos?.map((job) => (
           <div key={job?._id} className="border">
             <div className="p-4 bg-base-100 shadow-md">
@@ -95,7 +97,11 @@ const MySaveJob = () => {
             </div>
           </div>
         ))}
+      </div> : 
+      <div>
+        <h4 className="text-xl font-semibold flex justify-center items-center h-[70vh]">{`You don't have any saved jobs yet!`}</h4>
       </div>
+      }
     </div>
   );
 };

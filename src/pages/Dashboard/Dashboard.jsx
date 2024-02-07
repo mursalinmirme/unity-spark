@@ -1,25 +1,21 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
-import logo from "../../assets/images/logo.gif";
-import { BiHomeAlt2 } from "react-icons/bi";
-import { IoIosArrowForward } from "react-icons/io";
-import { LuUser, LuUsers2, LuUserCog } from "react-icons/lu";
-import { IoDocumentOutline } from "react-icons/io5";
-import { BiTask } from "react-icons/bi";
-import { MdOutlineSave } from "react-icons/md";
-import {} from "react-icons/lu";
-import { GrUserWorker } from "react-icons/gr";
-import { BsChatText } from "react-icons/bs";
-import { LuLogOut } from "react-icons/lu";
-import { BiConversation } from "react-icons/bi";
-import { HiBars3BottomRight } from "react-icons/hi2";
-import "./dashboard.css";
-import useUserRole from "../../hooks/useUserRole";
 import { useContext } from "react";
-import { AuthContext } from "../../Provider/AuthProvider";
-import { TfiAlarmClock } from "react-icons/tfi";
-import { GrDocumentPerformance } from "react-icons/gr";
+import { BiConversation, BiHomeAlt2 } from "react-icons/bi";
+import { BsChatText } from "react-icons/bs";
 import { FaAccessibleIcon } from "react-icons/fa";
 import { VscDiffAdded } from "react-icons/vsc";
+import { GrDocumentPerformance, GrUserWorker } from "react-icons/gr";
+import { HiBars3BottomRight } from "react-icons/hi2";
+import { IoIosArrowForward } from "react-icons/io";
+import { IoDocumentOutline } from "react-icons/io5";
+import { LuLogOut, LuUser, LuUsers2 } from "react-icons/lu";
+import { TfiAlarmClock } from "react-icons/tfi";
+import { Link, NavLink, Outlet } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
+import logo from "../../assets/images/logo.gif";
+import useUserRole from "../../hooks/useUserRole";
+import { IoIosFiling } from "react-icons/io";
+import { MdOutlineSave } from "react-icons/md";
+import "./dashboard.css";
 const Dashboard = () => {
   const [isUser] = useUserRole();
   const { loginOut } = useContext(AuthContext);
@@ -266,7 +262,23 @@ const Dashboard = () => {
           )}
         </NavLink>
       )}
-
+      {isUser?.role === "user" && (
+        <NavLink to="/dashboard/my-applications">
+          {({ isActive }) => (
+            <li
+              className={`${
+                isActive ? "dashboard_item_active" : "dashboard_item"
+              }`}
+            >
+              <div>
+                <IoIosFiling />
+                <span>My Applications</span>
+              </div>
+              <IoIosArrowForward className="hov_arrow hidden lg:block" />
+            </li>
+          )}
+        </NavLink>
+      )}
       <NavLink to="/dashboard/reviews">
         {({ isActive }) => (
           <li

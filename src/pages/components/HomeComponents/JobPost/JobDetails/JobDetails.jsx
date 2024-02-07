@@ -72,7 +72,7 @@ const JobDetails = () => {
       job_category2: jobInfo?.job_category2,
     };
 
-    PublicAxios.post("/saveJobInfo", saveInfo)
+    PublicAxios.post(`/saveJobInfo?email=${user?.email}`, saveInfo)
       .then((res) => {
         if (res?.data === "All Ready Data Saved") {
           toast.error("All Ready Save Job data");
@@ -114,7 +114,7 @@ const JobDetails = () => {
             {" "}
             <p className="mb-1">
               {" "}
-              <span> Required Skills:</span>
+              <span>Required Skills:</span>
             </p>
             {jobInfo?.required_Skills?.map((require) => (
               <div key={require?._id} className="md:ml-20 ">
