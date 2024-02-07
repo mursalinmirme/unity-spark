@@ -33,11 +33,13 @@ const AddNewTask = () => {
     selectedEmployees,
     setSelectedEmployees,
   }) => {
-    const isSelected = selectedEmployees.some(emp => emp._id === item._id);
-  
+    const isSelected = selectedEmployees.some((emp) => emp._id === item._id);
+
     const handleClick = () => {
       if (isSelected) {
-        const updatedEmployees = selectedEmployees.filter(emp => emp._id !== item._id);
+        const updatedEmployees = selectedEmployees.filter(
+          (emp) => emp._id !== item._id
+        );
         setSelectedEmployees(updatedEmployees);
       } else {
         setSelectedEmployees([
@@ -46,12 +48,13 @@ const AddNewTask = () => {
             _id: item._id,
             name: item.name,
             image: item.image,
+            progress: "incomplete",
             position: item.position,
           },
         ]);
       }
     };
-  
+
     return (
       <div className="cursor-pointer" onClick={handleClick}>
         {isSelected ? (
@@ -62,7 +65,6 @@ const AddNewTask = () => {
       </div>
     );
   };
-  
 
   const onSubmit = (data) => {
     const taskData = {
@@ -84,8 +86,7 @@ const AddNewTask = () => {
         <h1 className="font-bold text-3xl"> Add a New Task </h1>
         <Link
           to="/dashboard/taskManagement"
-          className="edit_btn !text-red-500 hover:!text-white !border-red-600 hover:!border-red-600 hover:!bg-red-600"
-        >
+          className="edit_btn !text-red-500 hover:!text-white !border-red-600 hover:!border-red-600 hover:!bg-red-600">
           <span> X Cancel </span>
         </Link>
       </div>
@@ -152,8 +153,7 @@ const AddNewTask = () => {
                 {data?.map((item) => (
                   <div
                     key={item._id}
-                    className="flex justify-between items-center border-2 border-primary rounded-full w-[320px]"
-                  >
+                    className="flex justify-between items-center border-2 border-primary rounded-full w-[320px]">
                     <div className="flex items-center gap-3">
                       <div>
                         <img
@@ -174,8 +174,9 @@ const AddNewTask = () => {
                     <SelectUnselectButton
                       item={item}
                       selectedEmployees={selectedEmployees}
-                      setSelectedEmployees={setSelectedEmployees}
-                    ></SelectUnselectButton>
+                      setSelectedEmployees={
+                        setSelectedEmployees
+                      }></SelectUnselectButton>
                   </div>
                 ))}
               </div>
@@ -184,8 +185,7 @@ const AddNewTask = () => {
 
           <button
             type="submit"
-            className="bg-[#433ebe] mt-5 px-10 text-white font-semibold rounded-md py-2"
-          >
+            className="bg-[#433ebe] mt-5 px-10 text-white font-semibold rounded-md py-2">
             Add
           </button>
         </form>
