@@ -14,7 +14,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import logo from "../../assets/images/logo.gif";
 import useUserRole from "../../hooks/useUserRole";
 import { IoIosFiling } from "react-icons/io";
-import { MdOutlineSave } from "react-icons/md";
+import { MdOutlineAddTask, MdOutlineSave } from "react-icons/md";
 import "./dashboard.css";
 const Dashboard = () => {
   const [isUser] = useUserRole();
@@ -254,7 +254,7 @@ const Dashboard = () => {
               }`}
             >
               <div>
-                <GrUserWorker />
+                <MdOutlineAddTask />
                 <span>Task Management</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
