@@ -11,8 +11,21 @@ import { useContext } from "react";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 
 const EmployeeHome = () => {
-  const axiosPublic = useAxiosPublic();
-  const { user } = useContext(AuthContext);
+  
+  const axiosPublic = useAxiosPublic()
+ const {user} = useContext(AuthContext)
+
+ console.log(user.email);
+ const {data: EmployeeReqEvent = []} = useQuery({
+  queryKey: ["EmployeeReqEvent"],
+  queryFn: async () =>{
+  const response =  await axiosPublic.get(`/reqEvents/${user?.email}`)
+    return response?.data
+  }
+  
+ })
+ 
+  
 
   const { data: totalAttendance } = useQuery({
     queryKey: ["totalAttendance"],
@@ -45,7 +58,7 @@ const EmployeeHome = () => {
           <div className="flex justify-center">
             <TbCalendarStar className="w-12 h-12 text-[#46A3E1]"></TbCalendarStar>
           </div>
-          <p className="font-bold text-[45px] text-[#46A3E1]">5</p>
+          <p className="font-bold text-[45px] text-[#46A3E1]">{EmployeeReqEvent.length}</p>
           <p className="text-[#46A3E1] font-semibold text-xl">Events Joined</p>
         </div>
 
@@ -73,7 +86,7 @@ const EmployeeHome = () => {
         <RunningTaskCard></RunningTaskCard>
         <CompletedTaskCard></CompletedTaskCard>
       </div>
-      <RegisteredEvents></RegisteredEvents>
+      <RegisteredEvents EmployeeReqEvent={EmployeeReqEvent}></RegisteredEvents>
     </div>
   );
 };
