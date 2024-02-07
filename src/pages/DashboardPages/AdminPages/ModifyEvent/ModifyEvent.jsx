@@ -14,6 +14,8 @@ import { useForm } from "react-hook-form";
 import { SlCloudUpload } from "react-icons/sl";
 import useTimePicker from "../../../../hooks/useTimePicker";
 import axios from "axios";
+import { AiFillEdit } from "react-icons/ai";
+import { RiDeleteBin6Line } from "react-icons/ri";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 
 const ModifyEvent = () => {
@@ -160,13 +162,13 @@ const ModifyEvent = () => {
                   className="bg-primary rounded-lg p-2 text-white"
                   onClick={() => handlemodalopen(items?._id)}
                 >
-                  <MdEditDocument className="text-xl" />
+                  <AiFillEdit className="text-xl" />
                 </button>
                 <button
                   onClick={() => handleDelete(items?._id)}
                   className="bg-primary rounded-lg p-2 text-white"
                 >
-                  <MdDeleteForever className="text-xl" />
+                  <RiDeleteBin6Line className="text-xl" />
                 </button>
               </div>
             </div>
@@ -241,7 +243,7 @@ const ModifyEvent = () => {
                 </div>
                 <div className="relative">
                   <DatePicker
-                    className="px-52 !pl-2"
+                    className="pl-2"
                     value={selectedStartTime || eventsId?.starting_time}
                     selected={selectedStartTime}
                     onChange={(time) => setSelectedStartTime(time)}
@@ -263,7 +265,7 @@ const ModifyEvent = () => {
                 </div>
                 <div className="relative">
                   <DatePicker
-                    className="px-52  !pl-2"
+                    className="pl-2"
                     value={selectedEndTime || eventsId?.ending_time}
                     selected={selectedEndTime}
                     onChange={(time) => setSelectedEndTime(time)}
@@ -300,7 +302,7 @@ const ModifyEvent = () => {
 
                 <div className="relative">
                   <DatePicker
-                    className="px-52 !pl-2"
+                    className="pl-2"
                     selected={selectDate}
                     onChange={(date) => setSelectDate(date)}
                     icon="fa fa-calendar"
