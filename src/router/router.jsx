@@ -38,6 +38,7 @@ import MySaveJob from "../pages/DashboardPages/MySaveJob/MySaveJob";
 
 import EmployeeHome from "../pages/DashboardPages/EmployeePages/EmployeeHome/EmployeeHome";
 import MyApplications from "../pages/DashboardPages/UserPages/Myapplications/MyApplications";
+import BlogDetails from "../pages/DashboardPages/BlogDetails/BlogDetails";
 
 const router = createBrowserRouter([
   {
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
       {
         path: "job-details/:id",
         element: <JobDetails></JobDetails>,
+      },
+      {
+        path: "blog-details/:id",
+        element: <BlogDetails></BlogDetails>,
       },
       {
         path: "apply-job/:id",
