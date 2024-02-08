@@ -38,6 +38,8 @@ import MySaveJob from "../pages/DashboardPages/MySaveJob/MySaveJob";
 
 import EmployeeHome from "../pages/DashboardPages/EmployeePages/EmployeeHome/EmployeeHome";
 import MyApplications from "../pages/DashboardPages/UserPages/Myapplications/MyApplications";
+import MyBlogs from "../pages/DashboardPages/EmployeePages/MyBlogs/MyBlogs";
+import AddBlogs from "../pages/DashboardPages/EmployeePages/EmployeeHome/AddBlogs/AddBlogs";
 
 const router = createBrowserRouter([
   {
@@ -267,6 +269,22 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <LeaveManagement></LeaveManagement>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "myBlogs",
+        element: (
+          <PrivateRouter>
+            <MyBlogs></MyBlogs>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "addBlogs",
+        element: (
+          <PrivateRouter>
+            <AddBlogs></AddBlogs>
           </PrivateRouter>
         ),
       },
