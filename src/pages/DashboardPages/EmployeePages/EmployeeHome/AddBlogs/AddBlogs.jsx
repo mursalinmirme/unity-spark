@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../../../Provider/AuthProvider";
 import useUserInfo from "../../../../../hooks/useUserInfo";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const AddBlogs = () => {
   const [users] = useUserInfo();
@@ -23,7 +24,7 @@ const AddBlogs = () => {
   const onSubmit = async (data) => {
     console.log(data);
     const imageFile = { image: data.photo[0] };
-    const res = await axiosPublic.post(image_Hosting_Api, imageFile, {
+    const res = await axios.post(image_Hosting_Api, imageFile, {
       headers: {
         "content-type": "multipart/form-data",
       },
