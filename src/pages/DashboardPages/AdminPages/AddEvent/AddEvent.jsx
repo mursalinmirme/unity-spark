@@ -11,7 +11,7 @@ import axios from "axios";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 const AddEvent = () => {
-  const axiosPublic = useAxiosPublic()
+  const axiosPublic = useAxiosPublic();
   const { register, handleSubmit, reset } = useForm();
   const [selectDate, setSelectDate] = useState(new Date());
   const [selectedStartTime, setSelectedStartTime] = useState(null);
@@ -51,14 +51,15 @@ const AddEvent = () => {
         image: res.data.data.display_url,
       };
       console.log(userInfo);
-      axiosPublic.post('/events', userInfo)
-      .then(res=>{
-        console.log(res.data)
-        reset()
-      })
-      .catch(error => {
-        console.log("Event post error",error)
-      })
+      axiosPublic
+        .post("/events", userInfo)
+        .then((res) => {
+          console.log(res.data);
+          reset();
+        })
+        .catch((error) => {
+          console.log("Event post error", error);
+        });
     }
   };
 
@@ -193,7 +194,7 @@ const AddEvent = () => {
             <input
               className="border-none cursor-pointer py-3 font-semibold text-base"
               type="submit"
-              value="Insert Event"
+              value="Update Event"
             />
           )}
         </div>

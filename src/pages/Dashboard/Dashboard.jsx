@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { BiConversation, BiHomeAlt2 } from "react-icons/bi";
 import { BsChatText } from "react-icons/bs";
 import { FaAccessibleIcon } from "react-icons/fa";
+import { VscDiffAdded } from "react-icons/vsc";
 import { GrDocumentPerformance, GrUserWorker } from "react-icons/gr";
 import { HiBars3BottomRight } from "react-icons/hi2";
 import { IoIosArrowForward } from "react-icons/io";
@@ -13,7 +14,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import logo from "../../assets/images/logo.gif";
 import useUserRole from "../../hooks/useUserRole";
 import { IoIosFiling } from "react-icons/io";
-import { MdOutlineSave } from "react-icons/md";
+import { MdOutlineAddTask, MdOutlineSave } from "react-icons/md";
 import "./dashboard.css";
 const Dashboard = () => {
   const [isUser] = useUserRole();
@@ -184,7 +185,7 @@ const Dashboard = () => {
               }`}
             >
               <div>
-                <IoDocumentOutline />
+                <VscDiffAdded />
                 <span>AddEvent</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -253,7 +254,7 @@ const Dashboard = () => {
               }`}
             >
               <div>
-                <GrUserWorker />
+                <MdOutlineAddTask />
                 <span>Task Management</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
