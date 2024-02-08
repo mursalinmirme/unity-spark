@@ -36,6 +36,7 @@ import AddNewTask from "../pages/DashboardPages/TaskManagement/AddNewTask";
 import LeaveRequestForm from "../pages/DashboardPages/LeaveManagement/LeaveRequestForm";
 
 import EmployeeHome from "../pages/DashboardPages/EmployeePages/EmployeeHome/EmployeeHome";
+import Blogs from "../pages/Blogs/Blogs";
 
 const router = createBrowserRouter([
   {
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
       },
+      {
+        path: '/blog',
+        element: <Blogs></Blogs>
+      }
     ],
   },
   {

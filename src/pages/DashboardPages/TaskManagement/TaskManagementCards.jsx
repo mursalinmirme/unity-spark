@@ -64,7 +64,7 @@ const TaskManagementCards = ({item}) => {
               employees?.length > 3 &&
               <div className="avatar placeholder">
                 <div className="w-12 bg-white text-primary">
-                  <span>+3</span>
+                  <span className="font-semibold">{employees?.length}</span>
                 </div>
               </div>
             }
