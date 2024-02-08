@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import { LuPenLine } from "react-icons/lu";
 
 const MyBlogs = () => {
     const {user} = useContext(AuthContext)
@@ -55,6 +56,13 @@ const MyBlogs = () => {
 
     return (
         <div>
+            <div className="flex justify-end">
+          <Link to="/dashboard/addBlogs">
+            <p className="flex items-center gap-2 text-[#433ebe] font-inter font-semibold border-2 border-[#433ebe] p-1 md:px-2 rounded-lg">
+              <LuPenLine></LuPenLine> <span>Add Blog</span>
+            </p>
+          </Link>
+        </div>
              {blogs.length > 0 ? (
         <div className="min-h-[62vh]">
           {blogs?.map((blog) => {
@@ -69,7 +77,7 @@ const MyBlogs = () => {
                   </h3>
                 </div>
                 <div className="space-x-4 text-white">
-                  <Link to={`/dashboard/jobs/jobs-edit/`}>
+                  <Link to={`/dashboard/editBlogs/blogs/${blog?._id}`}>
                     <button className="bg-primary rounded-lg p-2">
                       <AiFillEdit className="text-lg"></AiFillEdit>
                     </button>
