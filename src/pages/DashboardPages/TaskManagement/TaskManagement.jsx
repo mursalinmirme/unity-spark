@@ -37,18 +37,19 @@ const TaskManagement = () => {
 
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = async (data) => {
-    axiosPublic
-      .put(`/tasks/${currentId}`)
-      .then((res) => {
-        if (res?.data?.modifiedCount > 0) {
-          toast.success("Event Updated");
-          reset();
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        toast.error(error);
-      });
+    const updatedTask = {
+      task_name: data.taskName,
+      starts_date: data.startDate,
+      end_date: data.endDate,
+      employees: selectedEmployees,
+    };
+    console.log(updatedTask);
+    axiosPublic.put(`/tasks/${currentId}`, updatedTask).then((res) => {
+      if (res?.data?.modifiedCount > 0) {
+        toast.success("Task Updated");
+        reset();
+      }
+    });
   };
 
   const handleDelete = (id) => {
@@ -82,6 +83,7 @@ const TaskManagement = () => {
     setSelectedEmployees,
   }) => {
     const isSelected = selectedEmployees.some((emp) => emp._id === item._id);
+    console.log(isSelected);
 
     const handleClick = () => {
       if (isSelected) {
@@ -103,12 +105,14 @@ const TaskManagement = () => {
       }
     };
 
+    console.log(selectedEmployees);
+
     return (
       <div className="cursor-pointer text-white text-3xl" onClick={handleClick}>
         {isSelected ? (
           <MdDone className="bg-primary p-1 mr-1 rounded-full" />
-        ) : (
-          <IoAdd className="bg-primary p-1 mr-1 rounded-full" />
+          ) : (
+            <IoAdd className="bg-primary p-1 mr-1 rounded-full" />
         )}
       </div>
     );
@@ -219,17 +223,13 @@ const TaskManagement = () => {
                   ))}
                 </div>
               </div>
-              {/* <div className="w-48  bg-primary border-none text-white rounded-xl text-center cursor-pointer">
-              {updateLoading ? (
-                <span className="loading loading-spinner loading-md "></span>
-              ) : (
+              <div className="w-48 bg-primary border-none text-white rounded-xl text-center cursor-pointer">
                 <input
                   className="border-none cursor-pointer py-3 font-semibold text-base"
                   type="submit"
-                  value="Insert Event"
+                  value="Insert Task"
                 />
-              )}
-            </div> */}
+              </div>
             </form>
           </div>
         </dialog>
