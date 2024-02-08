@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 const BlogCommonCard = ({blog}) => {
     const {title, description, _id, image, createdAt} = blog || {}
     const today = new Date();
-   const secondsDiff = moment(today).diff(moment(createdAt), 'seconds');
-   const formattedDiff = moment.duration(secondsDiff, 'seconds').humanize();
+    const secondsDiff = moment(today).diff(moment(createdAt), 'seconds');
+    const formattedDiff = moment.duration(secondsDiff, 'seconds').humanize();
 
     return (
         <Link to={`/blog/${_id}`}>

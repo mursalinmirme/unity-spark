@@ -25,8 +25,6 @@ const EmployeeHome = () => {
   
  })
  
-  
-
   const { data: totalAttendance } = useQuery({
     queryKey: ["totalAttendance"],
     queryFn: async () => {
@@ -34,8 +32,24 @@ const EmployeeHome = () => {
       return result.data;
     },
   });
-
   // console.log(totalAttendance);
+
+  // get running task of the loged in employee
+  const {
+    data: myTotalCompletedTaskCount={},
+    refetch: mytotalTaskCountRefetch,
+  } = useQuery({
+    queryKey: ["myTotalCompletedTaskCount"],
+    queryFn: async () => {
+      const result = await axiosPublic.get(
+        `/my-total-task-completed/${user?.email}`
+      );
+      return result.data;
+    },
+  });
+
+  console.log("Oye Oye Oye", myTotalCompletedTaskCount);
+
 
   return (
     <div>
@@ -67,7 +81,7 @@ const EmployeeHome = () => {
           <div className="flex justify-center">
             <MdAddTask className="w-12 h-12 text-[#7209B7]"></MdAddTask>
           </div>
-          <p className="font-bold text-[45px] text-[#7209B7]">10</p>
+          <p className="font-bold text-[45px] text-[#7209B7]">{myTotalCompletedTaskCount?.count}</p>
           <p className="text-[#7209B7] font-semibold text-xl">
             Tasks Completed
           </p>

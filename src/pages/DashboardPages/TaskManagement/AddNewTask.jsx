@@ -47,7 +47,6 @@ const AddNewTask = () => {
             _id: item._id,
             email: item.email,
             name: item.name,
-            email: item.email,
             image: item.image,
             progress: "incomplete",
             position: item.position,

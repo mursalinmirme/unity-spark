@@ -51,19 +51,18 @@ const MySaveJob = () => {
     <div>
       <h1 className="text-2xl font-bold"> Job Information Save </h1>
 
-      {
-        saveJobInfos?.length > 0 ?
+      {saveJobInfos?.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-5">
-        {saveJobInfos?.map((job) => (
-          <div key={job?._id} className="border">
-            <div className="p-4 bg-base-100 shadow-md">
-              <div className="">
-                <h2 className="card-title font-inter">{job?.title}</h2>
-                <p className="mt-1">
-                  <span className="font-semibold"> Position :</span>{" "}
-                  {job?.position}
-                </p>
-                {/* <div className="flex gap-8">
+          {saveJobInfos?.map((job) => (
+            <div key={job?._id} className="border">
+              <div className="p-4 bg-base-100 shadow-md">
+                <div className="">
+                  <h2 className="card-title font-inter">{job?.title}</h2>
+                  <p className="mt-1">
+                    <span className="font-semibold"> Position :</span>{" "}
+                    {job?.position}
+                  </p>
+                  {/* <div className="flex gap-8">
                   <p className="pt-1 text-base md:text-lg">
                     <span className="mr-1 font-semibold">Job Type :</span>{" "}
                     {job?.job_category1}
@@ -73,35 +72,36 @@ const MySaveJob = () => {
                     {job?.job_category2}
                   </p>
                 </div> */}
-                <p className="pb-2 pt-1">
-                  {" "}
-                  {job?.description
-                    ? job?.description.slice(0, 80) + "..."
-                    : job?.description}{" "}
-                </p>
-                <div className="card-actions justify-start mt-2 ">
-                  <Link to={`/job-details/${job?.applicationId}`}>
-                    <button className=" btn-sm bg-primary text-white hover:bg-none rounded-md ">
-                      Views Details
-                    </button>
-                  </Link>
+                  <p className="pb-2 pt-1">
+                    {" "}
+                    {job?.description
+                      ? job?.description.slice(0, 80) + "..."
+                      : job?.description}{" "}
+                  </p>
+                  <div className="card-actions justify-start mt-2 ">
+                    <Link to={`/job-details/${job?.applicationId}`}>
+                      <button className=" btn-sm bg-primary text-white hover:bg-none rounded-md ">
+                        Views Details
+                      </button>
+                    </Link>
 
-                  <button
-                    onClick={() => handlerDeleted(job?._id)}
-                    className=" btn-sm  bg-accent text-white rounded-md"
-                  >
-                    Remove
-                  </button>
+                    <button
+                      onClick={() => handlerDeleted(job?._id)}
+                      className=" btn-sm  bg-accent text-white rounded-md"
+                    >
+                      Remove
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div> : 
-      <div>
-        <h4 className="text-xl font-semibold flex justify-center items-center h-[70vh]">{`You don't have any saved jobs yet!`}</h4>
-      </div>
-      }
+          ))}
+        </div>
+      ) : (
+        <div>
+          <h4 className="text-xl font-semibold flex justify-center items-center h-[70vh]">{`You don't have any saved jobs yet!`}</h4>
+        </div>
+      )}
     </div>
   );
 };
