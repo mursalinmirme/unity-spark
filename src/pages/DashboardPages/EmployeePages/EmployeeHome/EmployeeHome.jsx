@@ -24,6 +24,7 @@ const EmployeeHome = () => {
   }
   
  })
+ console.log(EmployeeReqEvent)
  
   const { data: totalAttendance } = useQuery({
     queryKey: ["totalAttendance"],
