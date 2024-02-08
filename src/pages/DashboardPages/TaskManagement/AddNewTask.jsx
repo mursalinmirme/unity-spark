@@ -46,10 +46,12 @@ const AddNewTask = () => {
           ...selectedEmployees,
           {
             _id: item._id,
+            email: item.email,
             name: item.name,
             image: item.image,
             progress: "incomplete",
             position: item.position,
+            status: 'running'
           },
         ]);
       }
