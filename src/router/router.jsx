@@ -37,6 +37,7 @@ import LeaveRequestForm from "../pages/DashboardPages/LeaveManagement/LeaveReque
 import MySaveJob from "../pages/DashboardPages/MySaveJob/MySaveJob";
 
 import EmployeeHome from "../pages/DashboardPages/EmployeePages/EmployeeHome/EmployeeHome";
+import Blogs from "../pages/Blogs/Blogs";
 import MyApplications from "../pages/DashboardPages/UserPages/Myapplications/MyApplications";
 import MyBlogs from "../pages/DashboardPages/EmployeePages/MyBlogs/MyBlogs";
 import AddBlogs from "../pages/DashboardPages/EmployeePages/EmployeeHome/AddBlogs/AddBlogs";
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
       },
+      {
+        path: '/blog',
+        element: <Blogs></Blogs>
+      }
     ],
   },
   {

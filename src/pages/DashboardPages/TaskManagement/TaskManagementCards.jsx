@@ -76,10 +76,15 @@ const TaskManagementCards = ({ item, handleDelete, handleEditTask }) => {
                 ))}
             {employees?.length > 3 && (
               <div className="avatar placeholder">
+<<<<<<< HEAD
+                <div className="w-12 bg-white text-primary">
+                  <span className="font-semibold">{employees?.length}</span>
+=======
                 <div className="w-10 bg-white text-primary">
                   <span className="font-semibold">
                     {employees?.slice(3, 10).length}+
                   </span>
+>>>>>>> 72f5941c2ce61e9c97879501465d8f833f2d8462
                 </div>
               </div>
             )}
