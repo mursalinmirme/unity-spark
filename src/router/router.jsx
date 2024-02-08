@@ -42,6 +42,8 @@ import MyApplications from "../pages/DashboardPages/UserPages/Myapplications/MyA
 import MyBlogs from "../pages/DashboardPages/EmployeePages/MyBlogs/MyBlogs";
 import AddBlogs from "../pages/DashboardPages/EmployeePages/EmployeeHome/AddBlogs/AddBlogs";
 import EditBlogs from "../pages/DashboardPages/EmployeePages/EditBlogs/EditBlogs";
+import BlogRequests from "../pages/DashboardPages/AdminPages/BlogRequests/BlogRequests";
+import AdminBlogDetails from "../pages/DashboardPages/AdminPages/BlogRequests/AdminBlogDetails";
 
 const router = createBrowserRouter([
   {
@@ -86,9 +88,9 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/blog',
-        element: <Blogs></Blogs>
-      }
+        path: "/blog",
+        element: <Blogs></Blogs>,
+      },
     ],
   },
   {
@@ -333,6 +335,26 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <LeaveRequestForm></LeaveRequestForm>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "blog-requests",
+        element: (
+          <PrivateRouter>
+            <IsAdmin>
+              <BlogRequests></BlogRequests>
+            </IsAdmin>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "adminBlogDetails/:id",
+        element: (
+          <PrivateRouter>
+            <IsAdmin>
+              <AdminBlogDetails></AdminBlogDetails>
+            </IsAdmin>
           </PrivateRouter>
         ),
       },
