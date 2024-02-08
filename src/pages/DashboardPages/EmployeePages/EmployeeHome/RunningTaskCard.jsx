@@ -24,7 +24,6 @@ const RunningTaskCard = () => {
     },
   });
 
-  console.log("checked imployes are", selectedEmployees);
 
   const handleTaskOpenModal = (e) => {
     document.getElementById("modal_running").showModal();
@@ -61,54 +60,64 @@ const RunningTaskCard = () => {
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-3">Running Task</h2>
-      <div
-        className="border-2 border-[#433EBE] bg-[#ECECF8] rounded-xl px-2 md:px-5 py-2 space-y-4 hover:cursor-pointer"
-        onClick={() => handleTaskOpenModal(myRunningTasks?._id)}
-      >
-        <div className="flex items-center justify-between ">
-          <div>
-            <h2 className="text-lg font-bold">{myRunningTasks?.task_name}</h2>
+      {myRunningTasks.task_name ? (
+        <div
+          className="border-2 border-[#433EBE] bg-[#ECECF8] rounded-xl px-2 md:px-5 py-2 space-y-4 hover:cursor-pointer"
+          onClick={() => handleTaskOpenModal(myRunningTasks?._id)}
+        >
+          <div className="flex items-center justify-between ">
+            <div>
+              <h2 className="text-lg font-bold">{myRunningTasks?.task_name}</h2>
+            </div>
           </div>
-        </div>
-        <div className="flex justify-between items-center py-2">
-          <div>
-            <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold">
-              {myRunningTasks?.start_date} --- {myRunningTasks?.end_date}
-            </span>
-          </div>
+          <div className="flex justify-between items-center py-2">
+            <div>
+              <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold">
+                {myRunningTasks?.start_date}{" "}
+                <span className="text-2xl font-bold">-</span>{" "}
+                {myRunningTasks?.end_date}
+              </span>
+            </div>
 
-          <div>
-            <div className="avatar-group -space-x-6 rtl:space-x-reverse">
-              {myRunningTasks?.employees?.length > 5
-                ? myRunningTasks?.employees.slice(0, 5).map((employee) => {
-                    return (
-                      <div key={employee?._id} className="avatar">
-                        <div className="w-12">
-                          <img src={employee?.image} />
+            <div>
+              <div className="avatar-group -space-x-6 rtl:space-x-reverse">
+                {myRunningTasks?.employees?.length > 5
+                  ? myRunningTasks?.employees.slice(0, 5).map((employee) => {
+                      return (
+                        <div key={employee?._id} className="avatar">
+                          <div className="w-12">
+                            <img src={employee?.image} />
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })
-                : myRunningTasks?.employees?.map((employee) => {
-                    return (
-                      <div key={employee?._id} className="avatar">
-                        <div className="w-12">
-                          <img src={employee?.image} />
+                      );
+                    })
+                  : myRunningTasks?.employees?.map((employee) => {
+                      return (
+                        <div key={employee?._id} className="avatar">
+                          <div className="w-12">
+                            <img src={employee?.image} />
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
-              {myRunningTasks?.employees?.length > 5 && (
-                <div className="avatar placeholder">
-                  <div className="w-12 bg-white text-primary font-semibold text-xl">
-                    <span>+{myRunningTasks?.employees?.length - 5}</span>
+                      );
+                    })}
+                {myRunningTasks?.employees?.length > 5 && (
+                  <div className="avatar placeholder">
+                    <div className="w-12 bg-white text-primary font-semibold text-xl">
+                      <span>+{myRunningTasks?.employees?.length - 5}</span>
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <div className="w-full h-36 border border-accent bg-[#ECECF8] rounded-xl flex justify-center items-center">
+          <p className="text-lg font-semibold">
+            There has no running task assign with you
+          </p>
+        </div>
+      )}
 
       <dialog id={"modal_running"} className="modal">
         <div className="modal-box">
