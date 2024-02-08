@@ -38,6 +38,8 @@ import MySaveJob from "../pages/DashboardPages/MySaveJob/MySaveJob";
 
 import EmployeeHome from "../pages/DashboardPages/EmployeePages/EmployeeHome/EmployeeHome";
 import MyApplications from "../pages/DashboardPages/UserPages/Myapplications/MyApplications";
+import BlogRequests from "../pages/DashboardPages/AdminPages/BlogRequests/BlogRequests";
+import AdminBlogDetails from "../pages/DashboardPages/AdminPages/BlogRequests/AdminBlogDetails";
 
 const router = createBrowserRouter([
   {
@@ -301,6 +303,26 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <LeaveRequestForm></LeaveRequestForm>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "blog-requests",
+        element: (
+          <PrivateRouter>
+            <IsAdmin>
+              <BlogRequests></BlogRequests>
+            </IsAdmin>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "adminBlogDetails/:id",
+        element: (
+          <PrivateRouter>
+            <IsAdmin>
+              <AdminBlogDetails></AdminBlogDetails>
+            </IsAdmin>
           </PrivateRouter>
         ),
       },
