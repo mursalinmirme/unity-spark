@@ -70,8 +70,8 @@ const RunningTaskCard = () => {
               <h2 className="text-lg font-bold">{myRunningTasks?.task_name}</h2>
             </div>
           </div>
-          <div className="flex justify-between items-center py-2">
-            <div>
+          <div className="flex flex-col-reverse md:flex-row justify-between items-center py-2">
+            <div className="mt-3 md:mt-0">
               <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold">
                 {myRunningTasks?.start_date}{" "}
                 <span className="text-2xl font-bold">-</span>{" "}
@@ -112,7 +112,7 @@ const RunningTaskCard = () => {
           </div>
         </div>
       ) : (
-        <div className="w-full h-36 border border-accent bg-[#ECECF8] rounded-xl flex justify-center items-center">
+        <div className="w-full h-40 border border-accent bg-[#ECECF8] rounded-xl flex justify-center items-center">
           <p className="text-lg font-semibold">
             There has no running task assign with you
           </p>
@@ -129,15 +129,15 @@ const RunningTaskCard = () => {
           <div>
             <h2 className="text-lg font-bold">{myRunningTasks?.task_name}</h2>
 
-            <div className="mt-4 flex justify-between items-center gap-6">
-              <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold">
-                From: {myRunningTasks?.start_date}
+            <div className="mt-4 flex justify-between items-center gap-2 md:gap-6">
+              <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold flex">
+                <span className="hidden md:block">From:</span> <span>{myRunningTasks?.start_date}</span>
               </span>
               <span>
-                <FaArrowRightLong className="text-xl text-primary"></FaArrowRightLong>
+                <FaArrowRightLong className="text-base md:text-xl text-primary"></FaArrowRightLong>
               </span>
-              <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold">
-                To: {myRunningTasks?.end_date}
+              <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold flex">
+                <span className="hidden md:block">To: </span><span>{myRunningTasks?.end_date}</span>
               </span>
             </div>
             <div className="mt-4">
