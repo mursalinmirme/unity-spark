@@ -80,6 +80,13 @@ const Navbar = () => {
           </li>
         )}
       </NavLink>
+      <NavLink to="/blog">
+        {({ isActive }) => (
+          <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
+            Blog
+          </li>
+        )}
+      </NavLink>
       <NavLink to="/about-us">
         {({ isActive }) => (
           <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>

@@ -93,9 +93,9 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/blog",
-        element: <Blogs></Blogs>,
-      },
+        path: 'blog',
+        element: <Blogs></Blogs>
+      }
     ],
   },
   {
