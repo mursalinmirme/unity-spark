@@ -35,8 +35,8 @@ const CompletedTaskCard = () => {
               </h2>
             </div>
           </div>
-          <div className="flex justify-between items-center py-2">
-            <div>
+          <div className="flex flex-col-reverse md:flex-row justify-between items-center py-2">
+            <div className="mt-3 md:mt-0">
               <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold">
                 {myRecentCompleteTask?.start_date}{" "}
                 <span className="text-2xl font-bold">-</span>{" "}
@@ -99,15 +99,15 @@ const CompletedTaskCard = () => {
               {myRecentCompleteTask?.task_name}
             </h2>
 
-            <div className="mt-4 flex justify-between items-center gap-6">
-              <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold">
-                From: {myRecentCompleteTask?.start_date}
+            <div className="mt-4 flex justify-between items-center gap-1 md:gap-6">
+              <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold flex">
+                <span className="hidden md:block mr-1">From: </span> <span>{myRecentCompleteTask?.start_date}</span>
               </span>
               <span>
-                <FaArrowRightLong className="text-xl text-primary"></FaArrowRightLong>
+                <FaArrowRightLong className="text-base md:text-xl text-primary"></FaArrowRightLong>
               </span>
-              <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold">
-                To: {myRecentCompleteTask?.end_date}
+              <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold flex">
+               <span className="hidden md:block mr-1">To:</span><span>{myRecentCompleteTask?.end_date}</span>
               </span>
             </div>
             <div className="mt-4">
