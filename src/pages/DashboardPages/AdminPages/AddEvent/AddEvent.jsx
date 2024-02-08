@@ -178,7 +178,6 @@ const AddEvent = () => {
 
             <div className="relative">
               <DatePicker
-                
                 selected={selectDate}
                 onChange={(date) => setSelectDate(date)}
                 icon="fa fa-calendar"

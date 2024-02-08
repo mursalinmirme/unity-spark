@@ -17,7 +17,6 @@ const AddNewTask = () => {
       return res.data;
     },
   });
-  console.log(data, selectedEmployees);
 
   const {
     control,
