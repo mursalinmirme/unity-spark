@@ -39,6 +39,7 @@ import MySaveJob from "../pages/DashboardPages/MySaveJob/MySaveJob";
 import EmployeeHome from "../pages/DashboardPages/EmployeePages/EmployeeHome/EmployeeHome";
 import Blogs from "../pages/Blogs/Blogs";
 import MyApplications from "../pages/DashboardPages/UserPages/Myapplications/MyApplications";
+import BlogDetails from "../pages/DashboardPages/BlogDetails/BlogDetails";
 import MyBlogs from "../pages/DashboardPages/EmployeePages/MyBlogs/MyBlogs";
 import AddBlogs from "../pages/DashboardPages/EmployeePages/EmployeeHome/AddBlogs/AddBlogs";
 import EditBlogs from "../pages/DashboardPages/EmployeePages/EditBlogs/EditBlogs";
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
       {
         path: "job-details/:id",
         element: <JobDetails></JobDetails>,
+      },
+      {
+        path: "blog-details/:id",
+        element: <BlogDetails></BlogDetails>,
       },
       {
         path: "apply-job/:id",
