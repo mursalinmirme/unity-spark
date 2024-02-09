@@ -46,7 +46,6 @@ const ManageApplications = () => {
   });
   console.log("ayay ayay population", jobapplications);
 
-
   // handle next btn pagination
   const handleRightPagi = () => {
     if (currentPage + 1 < totalPages) {
@@ -65,7 +64,6 @@ const ManageApplications = () => {
 
   // delete operation
   const handleDelete = (id) => {
-
     Swal.fire({
       title: "Are you sure?",
       text: "You want to delete this application!",
@@ -73,30 +71,26 @@ const ManageApplications = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
         axiosPublic
-        .delete(`/job_applications/${id}`)
-        .then((res) => {
-          console.log(res.data);
-          Swal.fire({
-            title: "Deleted!",
-            text: "Application Deleted successfully",
-            icon: "success",
+          .delete(`/job_applications/${id}`)
+          .then((res) => {
+            console.log(res.data);
+            Swal.fire({
+              title: "Deleted!",
+              text: "Application Deleted successfully",
+              icon: "success",
+            });
+            refetch();
+          })
+          .catch((error) => {
+            console.log(error);
           });
-          refetch();
-        })
-        .catch((error) => {
-          console.log(error);
-        });
       }
     });
-
-
-
   };
-
 
   const handleSelectApplication = (id) => {
     Swal.fire({
@@ -130,7 +124,6 @@ const ManageApplications = () => {
   //   return <Loading></Loading>
   // }
 
-
   const { data: applicationPreview } = useQuery({
     queryKey: ["getIndivisulItems", applicationId],
     enabled: !!applicationId,
@@ -144,25 +137,27 @@ const ManageApplications = () => {
 
   return (
     <div className="py-10" id="manage_applications">
-      {
-        jobapplications.length > 0 ? 
+      {jobapplications.length > 0 ? (
         <div className="min-h-[460px] space-y-3">
-        {jobapplications?.map((value) => (
-          <ApplicationsCard
-            key={value?._id}
-            value={value}
-            handleSelectApplication={handleSelectApplication}
-            handleDelete={handleDelete}
-            jobapplications={jobapplications}
-            setApplicationId={setApplicationId}
-            applicationPreview={applicationPreview}
-          ></ApplicationsCard>
-        ))}
-      </div> :
-      <div className="min-h-[460px] space-y-3 flex justify-center items-center">
-        <h4 className="text-xl font-semibold">There has not job applications</h4>
-      </div>
-      }
+          {jobapplications?.map((value) => (
+            <ApplicationsCard
+              key={value?._id}
+              value={value}
+              handleSelectApplication={handleSelectApplication}
+              handleDelete={handleDelete}
+              jobapplications={jobapplications}
+              setApplicationId={setApplicationId}
+              applicationPreview={applicationPreview}
+            ></ApplicationsCard>
+          ))}
+        </div>
+      ) : (
+        <div className="min-h-[460px] space-y-3 flex justify-center items-center">
+          <h4 className="text-xl font-semibold">
+            There has not job applications
+          </h4>
+        </div>
+      )}
 
       {/* pagination */}
       <div

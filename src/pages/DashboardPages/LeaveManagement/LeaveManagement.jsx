@@ -28,7 +28,7 @@ const LeaveManagement = () => {
         <h3 className="text-3xl font-semibold">Leave Requests</h3>
 
         <Link to="/dashboard/newLeaveRequest">
-          <p className="flex items-center gap-2 text-[#433ebe] font-inter font-semibold border-2 border-[#433ebe] p-1 md:px-2 rounded-lg">
+          <p className="edit_btn">
             <LuPenLine></LuPenLine> <span>New Request</span>
           </p>
         </Link>

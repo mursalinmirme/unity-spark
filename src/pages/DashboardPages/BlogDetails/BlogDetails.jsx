@@ -67,7 +67,7 @@ const BlogDetails = () => {
         </div>
         {/**Blog Image */}
         <div className="mt-5">
-          <img className="rounded-md" src={details?.image} alt="" />
+          <img className="rounded-md w-full h-full" src={details?.image} alt="" />
           {/**Description  */}
           <div>
             <p className="mt-5">

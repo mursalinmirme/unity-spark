@@ -48,6 +48,7 @@ const TaskManagement = () => {
       if (res?.data?.modifiedCount > 0) {
         toast.success("Task Updated");
         reset();
+        refetch();
       }
     });
   };
@@ -77,11 +78,8 @@ const TaskManagement = () => {
     setcurrentId(id);
   };
 
-  const SelectUnselectButton = ({
-    item,
-    selectedEmployees,
-    setSelectedEmployees,
-  }) => {
+  const SelectUnselectButton = ({ item }) => {
+    const [selectedEmployees, setSelectedEmployees] = useState([]);
     const isSelected = selectedEmployees.some((emp) => emp._id === item._id);
     console.log(isSelected);
 
@@ -111,8 +109,8 @@ const TaskManagement = () => {
       <div className="cursor-pointer text-white text-3xl" onClick={handleClick}>
         {isSelected ? (
           <MdDone className="bg-primary p-1 mr-1 rounded-full" />
-          ) : (
-            <IoAdd className="bg-primary p-1 mr-1 rounded-full" />
+        ) : (
+          <IoAdd className="bg-primary p-1 mr-1 rounded-full" />
         )}
       </div>
     );
@@ -122,10 +120,7 @@ const TaskManagement = () => {
     <div>
       <div className="flex justify-between">
         <h1 className="font-bold text-3xl"> Tasks </h1>
-        <Link
-          to="/dashboard/addNewTask"
-          className="flex items-center gap-1 cursor-pointer text-[#433ebe] font-inter font-semibold border-2 border-[#433ebe] p-1 md:px-2 rounded-lg hover:bg-primary hover:text-white"
-        >
+        <Link to="/dashboard/addNewTask" className="edit_btn">
           <FaPlus /> <span>New Task</span>
         </Link>
       </div>

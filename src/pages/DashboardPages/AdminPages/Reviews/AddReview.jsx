@@ -8,6 +8,7 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import useUserInfo from "../../../../hooks/useUserInfo";
 
 const AddReview = () => {
   const axiosPublic = useAxiosPublic();
@@ -17,6 +18,8 @@ const AddReview = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const numOfPage = Math.ceil(totalReviews / 4);
   const pages = [...Array(numOfPage).keys()];
+  const [users] = useUserInfo();
+  console.log(users);
 
   const handlPrev = () => {
     if (currentPage > 0) {
@@ -56,7 +59,7 @@ const AddReview = () => {
     const userReview = {
       name: userInfo.name,
       image: userInfo.image,
-      employeePosition: "IT Security Officer",
+      employeePosition: users?.position,
       description: data.review,
     };
     console.log(userReview);
@@ -73,7 +76,7 @@ const AddReview = () => {
       <div className="flex justify-between items-center mb-5">
         <h1 className="text-2xl md:text-3xl font-bold">Add Review</h1>
         <Link to={"/dashboard/reviews"}>
-          <a className="flex gap-2 items-center text-[#F00] font-inter font-bold text-sm border-2 rounded-lg cursor-pointer border-[#F00] py-1 px-2 hover:bg-[#F00] hover:text-white transition-all duration-500">
+          <a className="edit_btn !text-red-500 hover:!text-white !border-red-600 hover:!border-red-600 hover:!bg-red-600">
             <MdOutlineCancel className="text-lg" />
             <span>Cancel</span>
           </a>
@@ -85,7 +88,7 @@ const AddReview = () => {
             {...register("review", { required: true })}
             rows={3}
             placeholder="Write your review here..."
-            className="textarea focus:outline-none border-2 border-[#D9D9D9] rounded-lg"
+            className="textarea focus:outline-none border-2 border-[#D9D9D9] rounded-lg text-base"
           ></textarea>
           {errors.review && (
             <p className="text-[#F00]"> please provide a review</p>

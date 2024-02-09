@@ -102,14 +102,18 @@ const ManageApplicant = () => {
         axiosPublic
           .put(`/users?email=${value}`)
           .then((res) => {
-            console.log("user role update info is and next id is", res.data, appli_id);
-              axiosPublic
+            console.log(
+              "user role update info is and next id is",
+              res.data,
+              appli_id
+            );
+            axiosPublic
               .put(`/application-status/${appli_id}`, { status: "Selected" })
               .then((res) => {
                 Swal.fire({
-                title: "Make Employee Successfully",
-                text: `${value} is now Employee`,
-                icon: "success",
+                  title: "Make Employee Successfully",
+                  text: `${value} is now Employee`,
+                  icon: "success",
                 });
                 refetch();
               })
