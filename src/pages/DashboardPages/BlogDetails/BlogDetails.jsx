@@ -1,16 +1,21 @@
 import moment from "moment";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
+import { Link, useParams } from "react-router-dom";
 
 const BlogDetails = () => {
-  const [details, setDetails] = useState(null);
+  const { id } = useParams();
   const axiosPublic = useAxiosPublic();
-  useEffect(() => {
-    fetch("http://localhost:5000/blog-details/65c47ae17b7592b188210b56")
-      .then((res) => res.json())
-      .then((data) => setDetails(data));
-  }, []);
+
+  // get current page Blog info
+  const { data: details } = useQuery({
+    queryKey: ["blogDetails"],
+    queryFn: async () => {
+      const result = await axiosPublic.get(`/blog-details/${id}`);
+      return result.data;
+    },
+  });
 
   // console.log("check", details);
   const timestamp = details?.createdAt;
@@ -62,11 +67,7 @@ const BlogDetails = () => {
         </div>
         {/**Blog Image */}
         <div className="mt-5">
-          <img
-            className="rounded-md"
-            src="https://i.ibb.co/2YPvMJq/jason-goodman-vbxy-Fxlgpj-M-unsplash.jpg"
-            alt=""
-          />
+          <img className="rounded-md" src={details?.image} alt="" />
           {/**Description  */}
           <div>
             <p className="mt-5">
@@ -134,7 +135,9 @@ const BlogDetails = () => {
                     : blog?.description}
                 </p>
                 <div className="card-actions justify-start py-1">
-                  <button className="btn btn-sm btn-primary">Read More</button>
+                  <Link>
+                    <div className="btn btn-sm btn-primary">Read More</div>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -143,7 +146,13 @@ const BlogDetails = () => {
 
         <div className="text-center pt-8">
           {" "}
-          <button className="nbtn"> See More</button>
+          <Link to="/blog">
+            {" "}
+            <button className="px-10 py-2 rounded-lg bg-primary text-white">
+              {" "}
+              See More
+            </button>
+          </Link>
         </div>
       </div>
     </div>

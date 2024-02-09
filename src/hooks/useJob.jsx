@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 const useJob = () => {
-const { data: jobs } = useQuery({
+  const { data: jobs } = useQuery({
     queryKey: ["jobs"],
     queryFn: async () => {
       const res = await axios.get("/JobPost.json");
