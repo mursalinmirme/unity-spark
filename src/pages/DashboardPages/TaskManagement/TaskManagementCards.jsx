@@ -2,11 +2,9 @@ import { useState } from "react";
 import { HiDotsVertical } from "react-icons/hi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { FiEdit3 } from "react-icons/fi";
-import { Link } from "react-router-dom";
 const TaskManagementCards = ({ item, handleDelete, handleEditTask }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { _id, task_name, start_date, end_date, employees } = item || {};
-  console.log(employees.length);
 
   return (
     <div className="border-2 border-[#D9D9D9] bg-[#ECECF8] rounded-xl p-2 py-3 md:px-5 space-y-4">

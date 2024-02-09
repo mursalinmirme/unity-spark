@@ -14,7 +14,7 @@ const ApplicationsCard = ({
   applicationPreview,
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-console.log(value);
+  console.log(value);
   return (
     <div className="border-2 border-[#D9D9D9] rounded-xl px-2 md:px-5 py-2">
       <div className="flex items-center justify-between">
@@ -27,7 +27,10 @@ console.log(value);
           <div>
             <h1 className="font-semibold text-lg">{value?.title}</h1>
             <h1 className="font-semibold text-[#5B5555]">
-              applied at {moment(value?.createdAt.toLocaleString()).startOf("day").fromNow()}
+              applied at{" "}
+              {moment(value?.createdAt.toLocaleString())
+                .startOf("day")
+                .fromNow()}
             </h1>
           </div>
         </div>
@@ -53,7 +56,7 @@ console.log(value);
           </button>
           <button
             onClick={() => handleDelete(value?._id)}
-            className="rounded-lg p-2 bg-[#433EBE]"
+            className="rounded-lg p-2 bg-[#DD3333]"
           >
             <RxCross1 className=""></RxCross1>
           </button>

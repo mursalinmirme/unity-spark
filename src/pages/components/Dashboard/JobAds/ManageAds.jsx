@@ -187,7 +187,7 @@ const ManageAds = () => {
 
         <div>
           <Link to="/dashboard/addJobs">
-            <p className="flex items-center gap-2 text-[#433ebe] font-inter font-semibold border-2 border-[#433ebe] p-1 md:px-2 rounded-lg">
+            <p className="edit_btn">
               <LuPenLine></LuPenLine> <span>New Ad</span>
             </p>
           </Link>
@@ -219,7 +219,7 @@ const ManageAds = () => {
                   </Link>
                   <button
                     onClick={() => handleDeleteJob(job?._id)}
-                    className="bg-primary rounded-lg p-2 "
+                    className="bg-[#DD3333] rounded-lg p-2 "
                   >
                     <RiDeleteBin6Line className="text-lg"></RiDeleteBin6Line>
                   </button>

@@ -50,7 +50,7 @@ const AddNewTask = () => {
             image: item.image,
             progress: "incomplete",
             position: item.position,
-            status: 'running'
+            status: "running",
           },
         ]);
       }
@@ -87,7 +87,8 @@ const AddNewTask = () => {
         <h1 className="font-bold text-3xl"> Add a New Task </h1>
         <Link
           to="/dashboard/taskManagement"
-          className="edit_btn !text-red-500 hover:!text-white !border-red-600 hover:!border-red-600 hover:!bg-red-600">
+          className="edit_btn !text-red-500 hover:!text-white !border-red-600 hover:!border-red-600 hover:!bg-red-600"
+        >
           <span> X Cancel </span>
         </Link>
       </div>
@@ -154,7 +155,8 @@ const AddNewTask = () => {
                 {data?.map((item) => (
                   <div
                     key={item._id}
-                    className="flex justify-between items-center border-2 border-primary rounded-full w-[320px]">
+                    className="flex justify-between items-center border-2 border-primary rounded-full w-[320px]"
+                  >
                     <div className="flex items-center gap-3">
                       <div>
                         <img
@@ -175,9 +177,8 @@ const AddNewTask = () => {
                     <SelectUnselectButton
                       item={item}
                       selectedEmployees={selectedEmployees}
-                      setSelectedEmployees={
-                        setSelectedEmployees
-                      }></SelectUnselectButton>
+                      setSelectedEmployees={setSelectedEmployees}
+                    ></SelectUnselectButton>
                   </div>
                 ))}
               </div>
@@ -186,7 +187,8 @@ const AddNewTask = () => {
 
           <button
             type="submit"
-            className="bg-[#433ebe] mt-5 px-10 text-white font-semibold rounded-md py-2">
+            className="bg-[#433ebe] mt-5 px-10 text-white font-semibold rounded-md py-2"
+          >
             Add
           </button>
         </form>

@@ -51,8 +51,8 @@ const Reviews = () => {
         <h1 className="text-2xl md:text-3xl font-bold">Reviews</h1>
         {isUser?.role === "employee" && (
           <Link to={"add-review"}>
-            <a className="flex gap-2 items-center text-primary font-inter font-bold text-sm border-2 rounded-lg cursor-pointer border-primary py-2 px-2 md:px-5 hover:bg-primary hover:text-white transition-all duration-500">
-              <AiOutlineLike className="text-2xl" />
+            <a className="edit_btn text-primary border-primary hover:bg-primary hover:text-white">
+              <AiOutlineLike className="text-xl" />
               <span>Add Review</span>
             </a>
           </Link>

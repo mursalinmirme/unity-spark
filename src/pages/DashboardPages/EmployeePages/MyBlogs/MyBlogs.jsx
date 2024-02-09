@@ -10,60 +10,60 @@ import Swal from "sweetalert2";
 import { LuPenLine } from "react-icons/lu";
 
 const MyBlogs = () => {
-    const {user} = useContext(AuthContext)
-   const axiosPublic = useAxiosPublic()
-   const {data : blogs=[] , refetch} = useQuery({
+  const { user } = useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
+  const { data: blogs = [], refetch } = useQuery({
     queryKey: ["blogs"],
     queryFn: async () => {
-        const res = await axiosPublic.get(`/employee-blogs/${user.email}`)
-        return res?.data
-    }
-   })
-//    console.log(blogs)
+      const res = await axiosPublic.get(`/employee-blogs/${user.email}`);
+      return res?.data;
+    },
+  });
+  //    console.log(blogs)
 
-   const handleDeleteBlog = (id) =>{
-    axiosPublic.delete(`/blogs/${id}`)
-    .then( res =>{
-        if(res?.data){
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
-              }).then((result) => {
-               if(res.data.deletedCount > 0){
-                if (result.isConfirmed) {
-                    Swal.fire({
-                      title: "Deleted!",
-                      text: "Your file has been deleted.",
-                      icon: "success"
-                    });
-                    refetch()
-                  }
-               }
-              });
+  const handleDeleteBlog = (id) => {
+    axiosPublic
+      .delete(`/blogs/${id}`)
+      .then((res) => {
+        if (res?.data) {
+          Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+          }).then((result) => {
+            if (res.data.deletedCount > 0) {
+              if (result.isConfirmed) {
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your file has been deleted.",
+                  icon: "success",
+                });
+                refetch();
+              }
+            }
+          });
         }
-    })
-    .catch(error => {
-        console.log(error.message)
-        toast.error(error.message)
-    })
-   }
+      })
+      .catch((error) => {
+        console.log(error.message);
+        toast.error(error.message);
+      });
+  };
 
-
-    return (
-        <div>
-            <div className="flex justify-end">
-          <Link to="/dashboard/addBlogs">
-            <p className="flex items-center gap-2 text-[#433ebe] font-inter font-semibold border-2 border-[#433ebe] p-1 md:px-2 rounded-lg">
-              <LuPenLine></LuPenLine> <span>Add Blog</span>
-            </p>
-          </Link>
-        </div>
-             {blogs.length > 0 ? (
+  return (
+    <div>
+      <div className="flex justify-end">
+        <Link to="/dashboard/addBlogs">
+          <p className="edit_btn">
+            <LuPenLine></LuPenLine> <span>Add Blog</span>
+          </p>
+        </Link>
+      </div>
+      {blogs.length > 0 ? (
         <div className="min-h-[62vh]">
           {blogs?.map((blog) => {
             return (
@@ -72,9 +72,7 @@ const MyBlogs = () => {
                 key={blog?._id}
               >
                 <div>
-                  <h3 className="text-md font-bold">
-                    {blog?.title} 
-                  </h3>
+                  <h3 className="text-md font-bold">{blog?.title}</h3>
                 </div>
                 <div className="space-x-4 text-white">
                   <Link to={`/dashboard/editBlogs/blogs/${blog?._id}`}>
@@ -83,7 +81,7 @@ const MyBlogs = () => {
                     </button>
                   </Link>
                   <button
-                    onClick={()=> handleDeleteBlog(blog?._id)}
+                    onClick={() => handleDeleteBlog(blog?._id)}
                     className="bg-primary rounded-lg p-2 "
                   >
                     <RiDeleteBin6Line className="text-lg"></RiDeleteBin6Line>
@@ -100,8 +98,8 @@ const MyBlogs = () => {
           </h3>
         </div>
       )}
-        </div>
-    );
+    </div>
+  );
 };
 
 export default MyBlogs;
