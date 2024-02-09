@@ -83,7 +83,7 @@ const Navbar = () => {
       <NavLink to="/blog">
         {({ isActive }) => (
           <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
-            Blog
+            Blogs
           </li>
         )}
       </NavLink>

@@ -8,12 +8,12 @@ const BlogRequests = () => {
   const { data: blogRequests = [], refetch } = useQuery({
     queryKey: ["blogRequests"],
     queryFn: async () => {
-      const result = await axiosPublic.get("pendingBlogs");
+      const result = await axiosPublic.get("/pendingBlogs");
       return result?.data;
     },
   });
 
-  console.log(blogRequests);
+  console.log('get blog requests',blogRequests);
 
   return (
     <div>
