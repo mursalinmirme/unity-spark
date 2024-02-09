@@ -1,23 +1,23 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
-import logo from "../../assets/images/logo.gif";
-import { BiHomeAlt2 } from "react-icons/bi";
-import { IoIosArrowForward } from "react-icons/io";
-import { LuUser, LuUsers2, LuUserCog } from "react-icons/lu";
-import { IoDocumentOutline } from "react-icons/io5";
-import { BiTask } from "react-icons/bi";
-import {} from "react-icons/lu";
-import { GrUserWorker } from "react-icons/gr";
-import { BsChatText } from "react-icons/bs";
-import { LuLogOut } from "react-icons/lu";
-import { BiConversation } from "react-icons/bi";
-import { HiBars3BottomRight } from "react-icons/hi2";
-import "./dashboard.css";
-import useUserRole from "../../hooks/useUserRole";
 import { useContext } from "react";
-import { AuthContext } from "../../Provider/AuthProvider";
-import { TfiAlarmClock } from "react-icons/tfi";
-import { GrDocumentPerformance } from "react-icons/gr";
+import { BiConversation, BiHomeAlt2 } from "react-icons/bi";
+import { BsChatText } from "react-icons/bs";
 import { FaAccessibleIcon } from "react-icons/fa";
+import { VscDiffAdded } from "react-icons/vsc";
+import { GrDocumentPerformance, GrUserWorker } from "react-icons/gr";
+import { HiBars3BottomRight } from "react-icons/hi2";
+import { IoIosArrowForward } from "react-icons/io";
+import { IoDocumentOutline } from "react-icons/io5";
+import { LuLogOut, LuUser, LuUsers2 } from "react-icons/lu";
+import { TfiAlarmClock } from "react-icons/tfi";
+import { Link, NavLink, Outlet } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
+import logo from "../../assets/images/logo.gif";
+import useUserRole from "../../hooks/useUserRole";
+import { IoIosFiling } from "react-icons/io";
+import { MdOutlineAddTask, MdOutlineSave } from "react-icons/md";
+import { GrBlog } from "react-icons/gr";
+
+import "./dashboard.css";
 const Dashboard = () => {
   const [isUser] = useUserRole();
   const { loginOut } = useContext(AuthContext);
@@ -29,8 +29,7 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}
-            >
+              }`}>
               <div>
                 <BiHomeAlt2 />
                 <span>Home</span>
@@ -47,8 +46,7 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}
-            >
+              }`}>
               <div>
                 <GrUserWorker />
                 <span>My Profile</span>
@@ -58,14 +56,30 @@ const Dashboard = () => {
           )}
         </NavLink>
       )}
+      {isUser?.role === "user" && (
+        <NavLink to="/dashboard/mySaveJob">
+          {({ isActive }) => (
+            <li
+              className={`${
+                isActive ? "dashboard_item_active" : "dashboard_item"
+              }`}>
+              <div>
+                <MdOutlineSave />
+                <span>My Saved Jobs</span>
+              </div>
+              <IoIosArrowForward className="hov_arrow hidden lg:block" />
+            </li>
+          )}
+        </NavLink>
+      )}
+
       {isUser?.role === "admin" && (
         <NavLink to="/dashboard/userProfile">
           {({ isActive }) => (
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}
-            >
+              }`}>
               <div>
                 <LuUser />
                 <span>My Profile</span>
@@ -81,8 +95,7 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}
-            >
+              }`}>
               <div>
                 <TfiAlarmClock />
                 <span>My Attendance</span>
@@ -98,8 +111,7 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}
-            >
+              }`}>
               <div>
                 <GrDocumentPerformance />
                 <span>My Performance</span>
@@ -115,8 +127,7 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}
-            >
+              }`}>
               <div>
                 <LuUser />
                 <span>My Profile</span>
@@ -132,11 +143,27 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
+              }`}>
+              <div>
+                <LuUser />
+                <span>Leave Management</span>
+              </div>
+              <IoIosArrowForward className="hov_arrow hidden lg:block" />
+            </li>
+          )}
+        </NavLink>
+      )}
+       {isUser?.role === "employee" && (
+        <NavLink to="/dashboard/myBlogs">
+          {({ isActive }) => (
+            <li
+              className={`${
+                isActive ? "dashboard_item_active" : "dashboard_item"
               }`}
             >
               <div>
                 <LuUser />
-                <span>Leave Management</span>
+                <span>My Blogs</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
             </li>
@@ -149,8 +176,7 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}
-            >
+              }`}>
               <div>
                 <IoDocumentOutline />
                 <span>Job Ads</span>
@@ -166,10 +192,9 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}
-            >
+              }`}>
               <div>
-                <IoDocumentOutline />
+                <VscDiffAdded />
                 <span>AddEvent</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -183,11 +208,27 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}
-            >
+              }`}>
               <div>
                 <FaAccessibleIcon />
                 <span>Leave Requests</span>
+              </div>
+              <IoIosArrowForward className="hov_arrow hidden lg:block" />
+            </li>
+          )}
+        </NavLink>
+      )}
+
+      {isUser?.role === "admin" && (
+        <NavLink to="/dashboard/blog-requests">
+          {({ isActive }) => (
+            <li
+              className={`${
+                isActive ? "dashboard_item_active" : "dashboard_item"
+              }`}>
+              <div>
+                <GrBlog></GrBlog>
+                <span>Blog Requests</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
             </li>
@@ -201,8 +242,7 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}
-            >
+              }`}>
               <div>
                 <LuUsers2 />
                 <span>All Users</span>
@@ -218,8 +258,7 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}
-            >
+              }`}>
               <div>
                 <GrUserWorker />
                 <span>Employees</span>
@@ -235,10 +274,9 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}
-            >
+              }`}>
               <div>
-                <GrUserWorker />
+                <MdOutlineAddTask />
                 <span>Task Management</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -246,14 +284,28 @@ const Dashboard = () => {
           )}
         </NavLink>
       )}
-
+      {isUser?.role === "user" && (
+        <NavLink to="/dashboard/my-applications">
+          {({ isActive }) => (
+            <li
+              className={`${
+                isActive ? "dashboard_item_active" : "dashboard_item"
+              }`}>
+              <div>
+                <IoIosFiling />
+                <span>My Applications</span>
+              </div>
+              <IoIosArrowForward className="hov_arrow hidden lg:block" />
+            </li>
+          )}
+        </NavLink>
+      )}
       <NavLink to="/dashboard/reviews">
         {({ isActive }) => (
           <li
             className={`${
               isActive ? "dashboard_item_active" : "dashboard_item"
-            }`}
-          >
+            }`}>
             <div>
               <BsChatText />
               <span>Reviews</span>
@@ -267,8 +319,7 @@ const Dashboard = () => {
           <li
             className={`${
               isActive ? "dashboard_item_active" : "dashboard_item"
-            }`}
-          >
+            }`}>
             <div>
               <BiConversation />
               <span>Communicate</span>
@@ -290,8 +341,7 @@ const Dashboard = () => {
           </Link>
           <label
             htmlFor="my-drawer-4"
-            className="drawer-button hover:cursor-pointer"
-          >
+            className="drawer-button hover:cursor-pointer">
             <HiBars3BottomRight />
           </label>
         </div>
@@ -299,12 +349,10 @@ const Dashboard = () => {
           <label
             htmlFor="my-drawer-4"
             aria-label="close sidebar"
-            className="drawer-overlay"
-          ></label>
+            className="drawer-overlay"></label>
           <ul
             className="menu p-4 min-h-full bg-base-200 text-base-content"
-            style={{ width: "70%" }}
-          >
+            style={{ width: "70%" }}>
             {dashboardItem}
           </ul>
         </div>

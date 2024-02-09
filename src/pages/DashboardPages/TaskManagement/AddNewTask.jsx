@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import { FaPlus } from "react-icons/fa6";
+import { MdDone } from "react-icons/md";
+import { IoAdd } from "react-icons/io5";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { space } from "postcss/lib/list";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -17,7 +17,6 @@ const AddNewTask = () => {
       return res.data;
     },
   });
-  console.log(data);
 
   const {
     control,
@@ -28,43 +27,58 @@ const AddNewTask = () => {
     formState: { errors },
   } = useForm();
 
-  const toggleEmployeeSelection = (employee) => {
-    if (selectedEmployees.find((emp) => emp._id === employee._id)) {
-      const employeeData = selectedEmployees.filter(
-        (emp) => emp._id !== employee._id
-      );
-      setSelectedEmployees({
-        _id: employeeData._id,
-        name: employeeData.name,
-        image: employeeData.image,
-        position: employeeData.position,
-      });
-    } else {
-      setSelectedEmployees([
-        ...selectedEmployees,
-        {
-          _id: employee._id,
-          name: employee.name,
-          image: employee.image,
-          position: employee.position,
-        },
-      ]);
-    }
+  const SelectUnselectButton = ({
+    item,
+    selectedEmployees,
+    setSelectedEmployees,
+  }) => {
+    const isSelected = selectedEmployees.some((emp) => emp._id === item._id);
+
+    const handleClick = () => {
+      if (isSelected) {
+        const updatedEmployees = selectedEmployees.filter(
+          (emp) => emp._id !== item._id
+        );
+        setSelectedEmployees(updatedEmployees);
+      } else {
+        setSelectedEmployees([
+          ...selectedEmployees,
+          {
+            _id: item._id,
+            email: item.email,
+            name: item.name,
+            image: item.image,
+            progress: "incomplete",
+            position: item.position,
+            status: 'running'
+          },
+        ]);
+      }
+    };
+
+    return (
+      <div className="cursor-pointer" onClick={handleClick}>
+        {isSelected ? (
+          <MdDone className="bg-primary text-white text-4xl mr-2 p-2 rounded-full" />
+        ) : (
+          <IoAdd className="bg-primary text-white text-4xl mr-2 p-2 rounded-full" />
+        )}
+      </div>
+    );
   };
 
   const onSubmit = (data) => {
     const taskData = {
       task_name: data?.taskName,
       start_date: data.startDate,
-      endDate: data.endDate,
-      employees : selectedEmployees
+      end_date: data.endDate,
+      employees: selectedEmployees,
     };
-    axiosSecure.post('/add-task', taskData)
-    .then(res=>{
+    axiosSecure.post("/add-task", taskData).then((res) => {
       console.log(res.data);
-      toast.success('Task successfully added')
+      toast.success("Task successfully added");
       reset();
-    })
+    });
   };
 
   return (
@@ -73,8 +87,7 @@ const AddNewTask = () => {
         <h1 className="font-bold text-3xl"> Add a New Task </h1>
         <Link
           to="/dashboard/taskManagement"
-          className="edit_btn !text-red-500 hover:!text-white !border-red-600 hover:!border-red-600 hover:!bg-red-600"
-        >
+          className="edit_btn !text-red-500 hover:!text-white !border-red-600 hover:!border-red-600 hover:!bg-red-600">
           <span> X Cancel </span>
         </Link>
       </div>
@@ -107,9 +120,8 @@ const AddNewTask = () => {
                   </span>
                 </label>
                 <input
-                  type="text"
+                  type="date"
                   className="input input-bordered"
-                  placeholder="4/2/2024"
                   {...register("startDate", { required: true })}
                 />
                 {errors.startDate && (
@@ -125,9 +137,8 @@ const AddNewTask = () => {
                   </span>
                 </label>
                 <input
-                  type="text"
+                  type="date"
                   className="input input-bordered"
-                  placeholder="6/2/2024"
                   {...register("endDate", { required: true })}
                 />
                 {errors.endDate && (
@@ -143,8 +154,7 @@ const AddNewTask = () => {
                 {data?.map((item) => (
                   <div
                     key={item._id}
-                    className="flex justify-between items-center border-2 border-primary rounded-full w-[320px]"
-                  >
+                    className="flex justify-between items-center border-2 border-primary rounded-full w-[320px]">
                     <div className="flex items-center gap-3">
                       <div>
                         <img
@@ -162,12 +172,12 @@ const AddNewTask = () => {
                         )}{" "}
                       </h1>
                     </div>
-                    <div
-                      onClick={() => toggleEmployeeSelection(item)}
-                      className="cursor-pointer"
-                    >
-                      <FaPlus className="bg-primary text-white text-4xl mr-2 p-2 rounded-full" />
-                    </div>
+                    <SelectUnselectButton
+                      item={item}
+                      selectedEmployees={selectedEmployees}
+                      setSelectedEmployees={
+                        setSelectedEmployees
+                      }></SelectUnselectButton>
                   </div>
                 ))}
               </div>
@@ -176,8 +186,7 @@ const AddNewTask = () => {
 
           <button
             type="submit"
-            className="bg-[#433ebe] mt-5 px-10 text-white font-semibold rounded-md py-2"
-          >
+            className="bg-[#433ebe] mt-5 px-10 text-white font-semibold rounded-md py-2">
             Add
           </button>
         </form>
