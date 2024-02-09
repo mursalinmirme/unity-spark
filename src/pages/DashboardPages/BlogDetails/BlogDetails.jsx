@@ -109,8 +109,8 @@ const BlogDetails = () => {
 
       {/** Right Side  */}
       <div className="w-full  flex-1 p-2">
-        <h1 className="text-2xl font-bold font-inter">Find Out More ....</h1>
-
+        <h1 className="text-2xl font-bold font-inter">Find Out More...</h1>
+        {/* blogs map */}
         <div className="flex flex-col gap-6 mt-6">
           {blogs?.map((blog) => (
             <div
