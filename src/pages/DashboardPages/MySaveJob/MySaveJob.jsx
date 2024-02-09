@@ -87,7 +87,7 @@ const MySaveJob = () => {
 
                     <button
                       onClick={() => handlerDeleted(job?._id)}
-                      className=" btn-sm  bg-accent text-white rounded-md"
+                      className=" btn-sm  bg-[#dd3333] text-white rounded-md"
                     >
                       Remove
                     </button>

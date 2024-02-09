@@ -21,38 +21,24 @@ const TaskManagementCards = ({ item, handleDelete, handleEditTask }) => {
             className="absolute -mr-2 mt-6 z-[1] rounded-lg card-compact dropdown-content w-12 bg-base-100 shadow"
           >
             <div className="p-2 text-white space-y-1">
-              <div onClick={()=>handleEditTask(_id)} className="bg-primary p-2 cursor-pointer rounded-md flex items-center justify-center">
+              <div
+                onClick={() => handleEditTask(_id)}
+                className="bg-primary p-2 cursor-pointer rounded-md flex items-center justify-center"
+              >
                 <FiEdit3 className="text-md"></FiEdit3>
               </div>
-              <div onClick={()=>handleDelete(_id)} className="bg-primary p-2 cursor-pointer rounded-md flex items-center justify-center">
+              <div
+                onClick={() => handleDelete(_id)}
+                className="bg-[#DD3333] p-2 cursor-pointer rounded-md flex items-center justify-center"
+              >
                 <RiDeleteBin6Line className="text-md"></RiDeleteBin6Line>
               </div>
             </div>
           </div>
         </div>
-        {/* <div className="relative mt-1">
-          <div
-            className="text-primary text-xl cursor-pointer"
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-          >
-            <HiDotsVertical />
-          </div>
-          <div
-            className={`absolute z-[3] right-4 w-12 bg-white text-white drop-shadow-lg rounded-lg p-2 ${
-              isDropdownOpen ? "block" : "hidden"
-            }`}
-          >
-            <div className="bg-primary p-2 cursor-pointer mx-auto rounded-md flex items-center justify-center">
-              <FiEdit3 className="text-md"></FiEdit3>
-            </div>
-            <div className="bg-primary p-2 cursor-pointer rounded-md flex items-center justify-center mt-2">
-              <RiDeleteBin6Line className="text-md"></RiDeleteBin6Line>
-            </div>
-          </div>
-        </div> */}
       </div>
-      <div className="flex justify-between items-center py-2">
-        <div>
+      <div className="md:flex justify-between items-center py-2">
+        <div className="mb-5 md:mb-0">
           {" "}
           <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold">
             {" "}

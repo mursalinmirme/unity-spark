@@ -166,7 +166,7 @@ const ModifyEvent = () => {
                 </button>
                 <button
                   onClick={() => handleDelete(items?._id)}
-                  className="bg-primary rounded-lg p-2 text-white"
+                  className="bg-[#dd3333] rounded-lg p-2 text-white"
                 >
                   <RiDeleteBin6Line className="text-xl" />
                 </button>
