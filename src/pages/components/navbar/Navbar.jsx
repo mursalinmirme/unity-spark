@@ -47,7 +47,7 @@ const Navbar = () => {
           )}
         </NavLink>
       )}
-      {isUser?.role === "user" && (
+      {isUser?.role === "user" && user?.email &&(
         <NavLink to="/dashboard/userProfile">
           {({ isActive }) => (
             <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
@@ -56,7 +56,7 @@ const Navbar = () => {
           )}
         </NavLink>
       )}
-      {isUser?.role === "employee" && (
+      {isUser?.role === "employee" && user?.email &&(
         <NavLink to="/dashboard/employeeHome">
           {({ isActive }) => (
             <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
@@ -77,6 +77,13 @@ const Navbar = () => {
         {({ isActive }) => (
           <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
             Events
+          </li>
+        )}
+      </NavLink>
+      <NavLink to="/blog">
+        {({ isActive }) => (
+          <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
+            Blogs
           </li>
         )}
       </NavLink>
@@ -147,7 +154,7 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-10 p-2 shadow bg-base-100 rounded-box w-52">
+                className="menu menu-sm dropdown-content mt-3 z-50 p-2 shadow bg-base-100 rounded-box w-52">
                 <li>
                   <Link to="dashboard/userProfile">Profile</Link>
                 </li>

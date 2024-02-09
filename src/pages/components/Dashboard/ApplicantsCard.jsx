@@ -1,20 +1,18 @@
 /* eslint-disable react/prop-types */
 import moment from "moment";
 import { useState } from "react";
-import { HiDotsVertical } from "react-icons/hi";
 import { IoCheckmark, IoEyeOutline } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx";
-import { Link } from "react-router-dom";
 
-const ApplicationsCard = ({
+const ApplicantsCard = ({
   value,
-  handleSelectApplication,
+  handleUpdateRole,
   handleDelete,
   setApplicationId,
   applicationPreview,
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  console.log(value);
+  console.log("emijkdjfklsdjfdksl", value);
   return (
     <div className="border-2 border-[#D9D9D9] rounded-xl px-2 md:px-5 py-2">
       <div className="flex items-center justify-between">
@@ -27,10 +25,7 @@ const ApplicationsCard = ({
           <div>
             <h1 className="font-semibold text-lg">{value?.title}</h1>
             <h1 className="font-semibold text-[#5B5555]">
-              applied at{" "}
-              {moment(value?.createdAt.toLocaleString())
-                .startOf("day")
-                .fromNow()}
+              {value?.permanent_address}
             </h1>
           </div>
         </div>
@@ -49,16 +44,16 @@ const ApplicationsCard = ({
           </button>
 
           <button
-            onClick={() => handleSelectApplication(value?._id)}
-            className="rounded-lg p-2  bg-[#433EBE]"
+            onClick={() => handleUpdateRole(value?.email, value?._id)}
+            className="rounded-lg p-2  bg-accent"
           >
-            <IoCheckmark className=""> </IoCheckmark>
+            <span>Confirm Employee</span>
           </button>
           <button
             onClick={() => handleDelete(value?._id)}
-            className="rounded-lg p-2 bg-[#DD3333]"
+            className="rounded-lg p-2 bg-[#d62d27]"
           >
-            <RxCross1 className=""></RxCross1>
+            <span>Reject Applicant</span>
           </button>
         </section>
       </div>
@@ -149,4 +144,4 @@ const ApplicationsCard = ({
   );
 };
 
-export default ApplicationsCard;
+export default ApplicantsCard;

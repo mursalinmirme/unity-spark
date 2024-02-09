@@ -34,8 +34,17 @@ import LeaveManagement from "../pages/DashboardPages/LeaveManagement/LeaveManage
 import TaskManagement from "../pages/DashboardPages/TaskManagement/TaskManagement";
 import AddNewTask from "../pages/DashboardPages/TaskManagement/AddNewTask";
 import LeaveRequestForm from "../pages/DashboardPages/LeaveManagement/LeaveRequestForm";
+import MySaveJob from "../pages/DashboardPages/MySaveJob/MySaveJob";
 
 import EmployeeHome from "../pages/DashboardPages/EmployeePages/EmployeeHome/EmployeeHome";
+import Blogs from "../pages/Blogs/Blogs";
+import MyApplications from "../pages/DashboardPages/UserPages/Myapplications/MyApplications";
+import BlogDetails from "../pages/DashboardPages/BlogDetails/BlogDetails";
+import MyBlogs from "../pages/DashboardPages/EmployeePages/MyBlogs/MyBlogs";
+import AddBlogs from "../pages/DashboardPages/EmployeePages/EmployeeHome/AddBlogs/AddBlogs";
+import EditBlogs from "../pages/DashboardPages/EmployeePages/EditBlogs/EditBlogs";
+import BlogRequests from "../pages/DashboardPages/AdminPages/BlogRequests/BlogRequests";
+import AdminBlogDetails from "../pages/DashboardPages/AdminPages/BlogRequests/AdminBlogDetails";
 
 const router = createBrowserRouter([
   {
@@ -72,6 +81,10 @@ const router = createBrowserRouter([
         element: <JobDetails></JobDetails>,
       },
       {
+        path: "blog-details/:id",
+        element: <BlogDetails></BlogDetails>,
+      },
+      {
         path: "apply-job/:id",
         element: (
           <PrivateRouter>
@@ -79,6 +92,10 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
       },
+      {
+        path: 'blog',
+        element: <Blogs></Blogs>
+      }
     ],
   },
   {
@@ -269,6 +286,30 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "myBlogs",
+        element: (
+          <PrivateRouter>
+            <MyBlogs></MyBlogs>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "addBlogs",
+        element: (
+          <PrivateRouter>
+            <AddBlogs></AddBlogs>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "editBlogs/blogs/:id",
+        element: (
+          <PrivateRouter>
+            <EditBlogs></EditBlogs>
+          </PrivateRouter>
+        ),
+      },
+      {
         path: "TaskManagement",
         element: (
           <PrivateRouter>
@@ -299,6 +340,42 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <LeaveRequestForm></LeaveRequestForm>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "blog-requests",
+        element: (
+          <PrivateRouter>
+            <IsAdmin>
+              <BlogRequests></BlogRequests>
+            </IsAdmin>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "adminBlogDetails/:id",
+        element: (
+          <PrivateRouter>
+            <IsAdmin>
+              <AdminBlogDetails></AdminBlogDetails>
+            </IsAdmin>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "mySaveJob",
+        element: (
+          <PrivateRouter>
+            <MySaveJob></MySaveJob>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "my-applications",
+        element: (
+          <PrivateRouter>
+            <MyApplications></MyApplications>
           </PrivateRouter>
         ),
       },

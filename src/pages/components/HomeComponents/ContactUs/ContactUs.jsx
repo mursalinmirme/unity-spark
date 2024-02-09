@@ -107,8 +107,8 @@ const ContactUs = () => {
               <textarea
                 {...register("message", { required: true })}
                 rows={3}
-                placeholder="Your Comments here"
-                className="textarea textarea-bordered"
+                placeholder="Your Comments here..."
+                className="textarea textarea-bordered text-base"
               ></textarea>
               {errors.message && (
                 <p className="text-red-500"> please provide a message</p>

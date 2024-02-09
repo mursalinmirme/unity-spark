@@ -50,7 +50,7 @@ const UserProfile = () => {
 
             <Link
               to="/dashboard/userProfileEdit"
-              className="flex gap-2 items-center text-primary font-inter font-semibold text-sm border-2 rounded-lg cursor-pointer border-primary py-1 px-3 hover:bg-primary hover:text-white transition-all duration-500"
+              className="edit_btn"
             >
               <span>Edit Info</span>
               <FiEdit3 />

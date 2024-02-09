@@ -18,6 +18,7 @@ const ManageApplications = () => {
   const axiosPublic = useAxiosPublic();
   const [totalPages, setToalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
+  const [applicationId, setApplicationId] = useState(" ");
   // fetch the applications number under the pagination
   const { data: jobapplicationsNum = [], refetch: refetchTotalApplyNumbs } =
     useQuery({
@@ -44,17 +45,6 @@ const ManageApplications = () => {
     },
   });
   console.log("ayay ayay population", jobapplications);
-  // const {data: users = [] } = useQuery({
-  //   queryKey: ['users'],
-  //   queryFn: async () =>{
-  //   const res = await  axiosPublic.get("/users");
-  //   return res?.data;
-  // }
-
-  // })
-  // const [showButtons, setShowButtons] = useState(false);
-  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  // const [userDataRole , setuserDataRole] = useState({})
 
   // handle next btn pagination
   const handleRightPagi = () => {
@@ -74,65 +64,54 @@ const ManageApplications = () => {
 
   // delete operation
   const handleDelete = (id) => {
-    axiosPublic
-      .delete(`/job_applications/${id}`)
-      .then((res) => {
-        console.log(res.data);
-        Swal.fire({
-          title: "Deleted!",
-          text: "Application Deleted",
-          icon: "success",
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  // update role
-
-  // const handleUpdateRole = (value) => {
-  //   axiosPublic
-  //     .put(`/users?email=${value?.email}`)
-  //     .then((res) => {
-  //       if (res?.data?.modifiedCount > 0) {
-  //         Swal.fire({
-  //           title: "Role Updated",
-  //           text: `${value?.email} is now Employee`,
-  //           icon: "success",
-  //         }).then((result) => {
-  //           if (result.isConfirmed) {
-  //             handleDelete(value._id);
-  //           }
-  //         });
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-
-  const handleUpdateRole = (id) => {
     Swal.fire({
-      title: "Are you sure ?",
-      text: "You want to Select for interview",
+      title: "Are you sure?",
+      text: "You want to delete this application!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes,Sure",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosPublic
+          .delete(`/job_applications/${id}`)
+          .then((res) => {
+            console.log(res.data);
+            Swal.fire({
+              title: "Deleted!",
+              text: "Application Deleted successfully",
+              icon: "success",
+            });
+            refetch();
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    });
+  };
+
+  const handleSelectApplication = (id) => {
+    Swal.fire({
+      title: "Are you sure ?",
+      text: "You want to shortlist this application",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Sure",
     }).then((result) => {
       if (result.isConfirmed) {
         axiosPublic
           .put(`/application-status/${id}`, { status: "Confirmed" })
           .then((res) => {
-            console.log(res.data);
-
             Swal.fire({
               title: "Successfully!",
-              text: "Candidate Selected.",
+              text: "Application shortlisted successfully.",
               icon: "success",
             });
+            refetch();
           })
           .catch((error) => {
             console.log(error);
@@ -144,8 +123,6 @@ const ManageApplications = () => {
   // if(isFetching){
   //   return <Loading></Loading>
   // }
-
-  const [applicationId, setApplicationId] = useState(" ");
 
   const { data: applicationPreview } = useQuery({
     queryKey: ["getIndivisulItems", applicationId],
@@ -160,23 +137,31 @@ const ManageApplications = () => {
 
   return (
     <div className="py-10" id="manage_applications">
-      <div className="min-h-[460px] space-y-3">
-        {jobapplications?.map((value) => (
-          <ApplicationsCard
-            key={value?._id}
-            value={value}
-            handleUpdateRole={handleUpdateRole}
-            handleDelete={handleDelete}
-            jobapplications={jobapplications}
-            setApplicationId={setApplicationId}
-            applicationPreview={applicationPreview}
-          ></ApplicationsCard>
-        ))}
-      </div>
+      {jobapplications.length > 0 ? (
+        <div className="min-h-[460px] space-y-3">
+          {jobapplications?.map((value) => (
+            <ApplicationsCard
+              key={value?._id}
+              value={value}
+              handleSelectApplication={handleSelectApplication}
+              handleDelete={handleDelete}
+              jobapplications={jobapplications}
+              setApplicationId={setApplicationId}
+              applicationPreview={applicationPreview}
+            ></ApplicationsCard>
+          ))}
+        </div>
+      ) : (
+        <div className="min-h-[460px] space-y-3 flex justify-center items-center">
+          <h4 className="text-xl font-semibold">
+            There has not job applications
+          </h4>
+        </div>
+      )}
 
       {/* pagination */}
       <div
-        className={`mt-5 ${jobapplicationsNum?.total > 5 ? "block" : "hidden"}`}
+        className={`mt-5 ${jobapplicationsNum?.total > 6 ? "block" : "hidden"}`}
       >
         <div className={`flex justify-center`}>
           <div className={`join flex space-x-2`}>

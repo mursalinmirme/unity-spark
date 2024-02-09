@@ -31,9 +31,9 @@ const Events = () => {
                 <h1 className='text-3xl font-semibold mb-1'>Upcoming HR Events</h1>
                 <h1 className='text-lg font-medium'>Empower your HR journey with insights</h1>
            </div>
-           <div className='text-xl  font-semibold my-7'>
+           {/* <div className='text-xl  font-semibold my-7 flex justify-between'>
             <h1>Check Out More </h1>
-           </div>
+           </div> */}
 
            <EventCard></EventCard>
        </>

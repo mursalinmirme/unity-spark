@@ -308,7 +308,7 @@ body {
 }
 
 #contact .contact_info {
-  @apply flex items-center gap-2 md:text-lg;
+  @apply flex items-center gap-2;
 }
 
 .contact_info svg {
@@ -390,4 +390,8 @@ h6,
 .table-no-border td,
 .table-no-border th {
   border: none;
+}
+
+.react-datepicker-wrapper {
+  @apply !block;
 }
