@@ -22,7 +22,7 @@ const MyApplications = () => {
     <h3 className="text-center text-xl font-semibold border-b pb-5">My Applied Applications</h3>
     {
       myApplications?.length > 0 ? 
-      <div className="grid grid-cols-2 gap-5 mt-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
           {
             myApplications?.map(application => {
               return <div key={application?._id} className="border p-4 rounded-md hover:border hover:border-primary hover:-mt-0.5">

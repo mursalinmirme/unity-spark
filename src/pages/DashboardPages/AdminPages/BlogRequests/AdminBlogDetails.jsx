@@ -17,10 +17,10 @@ const AdminBlogDetails = () => {
   return (
     <div>
       <h4 className="text-center  font-semibold text-2xl border-b-2 pb-3 ">Preview Blog Post</h4>
-      <div className="mt-4 flex justify-between items-center">
+      <div className="mt-4 flex flex-col md:flex-row justify-between md:items-center">
         <div className="flex items-center gap-3">
         <img
-          className="rounded-full w-14 h-14"
+          className="rounded-full w-12 md:w-14 h-12 md:h-14"
           src={reqBlogDetails?.bloggerInfo?.image}
           alt=""
         />
@@ -33,16 +33,16 @@ const AdminBlogDetails = () => {
           </p>
         </div>
         </div>
-        <p className="text-lg font-semibold">Posted: {moment(reqBlogDetails?.createdAt).startOf('day').fromNow()}</p>
+        <p className="text-lg md:font-semibold mt-3 md:mt-0">Posted: {moment(reqBlogDetails?.createdAt).startOf('day').fromNow()}</p>
       </div>
       <div>
-        <h3 className="text-3xl font-semibold mt-4 leading-snug">
+        <h3 className="text-2xl md:text-3xl font-semibold mt-4 leading-snug">
           {reqBlogDetails?.title}
         </h3>
       </div>
       <div>
         <img
-          className="w-full mt-4 h-[500px]"
+          className="w-full mt-4 md:h-[500px]"
           src={reqBlogDetails?.image}
           alt=""
         />

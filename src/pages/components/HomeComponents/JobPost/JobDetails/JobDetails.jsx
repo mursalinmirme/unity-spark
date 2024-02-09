@@ -196,7 +196,6 @@ const JobDetails = () => {
         <div className="flex gap-4 pt-8 font-semibold">
           <span
             className="px-8 flex items-center bg-primary text-white rounded-xl cursor-pointer text-[14px]"
-            onClick={() => toast.success("Successfully applied")}
           >
             {" "}
             Apply Now{" "}
