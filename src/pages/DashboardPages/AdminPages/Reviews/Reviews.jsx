@@ -51,7 +51,7 @@ const Reviews = () => {
         <h1 className="text-2xl md:text-3xl font-bold">Reviews</h1>
         {isUser?.role === "employee" && (
           <Link to={"add-review"}>
-            <a className="edit_btn text-primary border-primary hover:bg-primary hover:text-white">
+            <a className="edit_btn">
               <AiOutlineLike className="text-xl" />
               <span>Add Review</span>
             </a>

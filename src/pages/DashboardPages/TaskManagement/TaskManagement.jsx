@@ -120,8 +120,10 @@ const TaskManagement = () => {
     <div>
       <div className="flex justify-between">
         <h1 className="font-bold text-3xl"> Tasks </h1>
-        <Link to="/dashboard/addNewTask" className="edit_btn">
-          <FaPlus /> <span>New Task</span>
+        <Link to="/dashboard/addNewTask">
+          <a className="edit_btn">
+            <FaPlus /> <span>New Task</span>
+          </a>
         </Link>
       </div>
       <div className="my-5 grid grid-cols-1 md:grid-cols-2  gap-4 mt-7">
@@ -134,7 +136,7 @@ const TaskManagement = () => {
           ></TaskManagementCards>
         ))}
         <dialog id="my_modal_3" className="modal">
-          <div className="modal-box w-[800px] max-w-5xl">
+          <div className="modal-box md:w-[800px] max-w-5xl">
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
               <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
@@ -218,7 +220,7 @@ const TaskManagement = () => {
                   ))}
                 </div>
               </div>
-              <div className="w-48 bg-primary border-none text-white rounded-xl text-center cursor-pointer">
+              <div className="md:w-48 mt-10 md:mt-0 bg-primary border-none text-white rounded-xl text-center cursor-pointer">
                 <input
                   className="border-none cursor-pointer py-3 font-semibold text-base"
                   type="submit"
