@@ -7,7 +7,7 @@ const useUserRole = () => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const { data: isUser = [], isLoading } = useQuery({
-    queryKey: ["user-role"],
+    queryKey: ["user-role", user?.email],
     enabled: !!user?.email,
     queryFn: async () => {
       // ToDo : replace mursalinmir02@gmail.com to user?.email

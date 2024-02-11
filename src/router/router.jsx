@@ -45,6 +45,7 @@ import AddBlogs from "../pages/DashboardPages/EmployeePages/EmployeeHome/AddBlog
 import EditBlogs from "../pages/DashboardPages/EmployeePages/EditBlogs/EditBlogs";
 import BlogRequests from "../pages/DashboardPages/AdminPages/BlogRequests/BlogRequests";
 import AdminBlogDetails from "../pages/DashboardPages/AdminPages/BlogRequests/AdminBlogDetails";
+import Interview from "../pages/DashboardPages/UserPages/Interview/Interview";
 
 const router = createBrowserRouter([
   {
@@ -93,9 +94,9 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: 'blog',
-        element: <Blogs></Blogs>
-      }
+        path: "blog",
+        element: <Blogs></Blogs>,
+      },
     ],
   },
   {
@@ -118,6 +119,11 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
       },
+      {
+        path: "interview",
+        element: <Interview></Interview>,
+      },
+
       {
         path: "employeeHome",
         element: (

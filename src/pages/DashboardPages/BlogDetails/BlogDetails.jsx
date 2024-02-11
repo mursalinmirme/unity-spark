@@ -10,12 +10,14 @@ import BlogComments from "./BlogComments";
 
 const BlogDetails = () => {
   const { id } = useParams();
+  // const { detailsId, setDetailsId } = useState(id);
+  // console.log("check33", detailsId);
   const axiosPublic = useAxiosPublic();
 
   const [users] = useUserInfo();
 
   // get current page Blog info
-  const { data: details } = useQuery({
+  const { data: details = {} } = useQuery({
     queryKey: ["blogDetails"],
     queryFn: async () => {
       const result = await axiosPublic.get(`/blog-details/${id}`);
@@ -31,7 +33,7 @@ const BlogDetails = () => {
   const { data: blogs } = useQuery({
     queryKey: ["blogs"],
     queryFn: async () => {
-      const result = await axiosPublic.get(`/all-blogs`);
+      const result = await axiosPublic.get("/all-blogs");
       return result.data;
     },
   });
