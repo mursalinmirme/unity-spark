@@ -8,6 +8,7 @@ import { AuthContext } from "../../../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import { LuPenLine } from "react-icons/lu";
+import parse from 'html-react-parser';
 
 const MyBlogs = () => {
   const { user } = useContext(AuthContext);
@@ -72,7 +73,7 @@ const MyBlogs = () => {
                 key={blog?._id}
               >
                 <div>
-                  <h3 className="text-md font-bold">{blog?.title}</h3>
+                  <h3 className="text-base font-bold">{blog?.title}</h3>
                 </div>
                 <div className="space-x-4 text-white">
                   <Link to={`/dashboard/editBlogs/blogs/${blog?._id}`}>
@@ -94,7 +95,7 @@ const MyBlogs = () => {
       ) : (
         <div className="flex justify-center items-center h-[400px]">
           <h3 className="text-lg font-medium text-primary">
-            There has no job ads to your search.
+            {`You don't have create any blogs.`}
           </h3>
         </div>
       )}

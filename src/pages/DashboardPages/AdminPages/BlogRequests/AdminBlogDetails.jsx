@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import moment from "moment";
-
+import parse from 'html-react-parser';
 const AdminBlogDetails = () => {
   const { id } = useParams();
   const axiosPublic = useAxiosPublic();
@@ -48,22 +48,7 @@ const AdminBlogDetails = () => {
         />
       </div>
       <div className="text-lg pt-3">
-        <p className="mt-5">
-          {reqBlogDetails?.description &&
-            reqBlogDetails?.description.slice(0, 307)}
-        </p>
-        <p className="my-5">
-          {reqBlogDetails?.description &&
-            reqBlogDetails?.description.slice(308, 600)}
-        </p>
-        <p className="my-5">
-          {reqBlogDetails?.description &&
-            reqBlogDetails?.description.slice(608, 907)}
-        </p>
-        <p className="my-5">
-          {reqBlogDetails?.description &&
-            reqBlogDetails?.description.slice(908, 1500)}
-        </p>
+        {reqBlogDetails?.description && parse(reqBlogDetails?.description)}
       </div>
       <div className="flex gap-5 pt-3">
         <button className="border bg-accent text-white px-5 py-2.5 rounded-md font-medium">Accept Blog</button>

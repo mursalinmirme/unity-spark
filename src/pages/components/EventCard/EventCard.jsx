@@ -84,7 +84,7 @@ const EventCard = () => {
         <Swiper   slidesPerView={screenSize < 768 ? 1  : (screenSize < 1024 ?  2 : 3 )}
         spaceBetween={30} navigation={true} modules={[Navigation]} className="mySwiper eventSwiper  my-10">
         
-        {events.map(items =>  <SwiperSlide key={items?._id}>   <div  className=" bg-white border border-[#D9D9D9] overflow-hidden my-5 rounded-2xl min-h-[535px] relative">
+        {events.map(items =>  <SwiperSlide key={items?._id}>   <div  className=" bg-white border border-[#D9D9D9] overflow-hidden my-5 rounded-3xl min-h-[535px] relative">
             <img src={items?.image} alt="" className="!-z-10 !min-h-[250px]" />
             <div className="p-5 space-y-3 -mt-6 !z-10 rounded-t-3xl bg-white absolute">
                 <h1 className="font-semibold text-[23px] text-left">{items?.eventName}</h1>
