@@ -4,27 +4,31 @@ import { useQuery } from "@tanstack/react-query";
 import { BsUpload } from "react-icons/bs";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import useUserInfo from "../../../../hooks/useUserInfo";
 import axios from "axios";
+import JoditEditor from "jodit-react";
+import "../EmployeeHome/AddBlogs/addBlogs.css"
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 
 const EditBlogs = () => {
     const {user} = useContext(AuthContext)
+  const [content, setContent] = useState("");
     const [users] = useUserInfo();
-    console.log(user)
+    // console.log(user)
     const {id} = useParams()
-    console.log(id)
+    // console.log(id)
     const axiosPublic = useAxiosPublic()
-    const {data: SingleEvent = []} = useQuery({
+    const {data: SingleEvent = [], refetch} = useQuery({
         queryKey:["SingleEvent"],
         queryFn: async () => {
             const res = await axiosPublic.get(`/blogs/${id}`)
+            setContent(res.data?.description);
             return res?.data
         }
     })
-    console.log(SingleEvent)
+    // console.log(SingleEvent)
 
     const {
         register,
@@ -34,34 +38,39 @@ const EditBlogs = () => {
       } = useForm();
 
       const onSubmit = async (data) => {
-        console.log(data);
-        const imageFile = { image: data.photo[0] };
-        const res = await axios.post(image_Hosting_Api, imageFile, {
-          headers: {
-            "content-type": "multipart/form-data",
-          },
+        // console.log(data);
+        let newImage = SingleEvent?.image;
+        if(data.photo.length !== 0){
+          const imageFile = { image: data.photo[0] };
+          const res = await axios.post(image_Hosting_Api, imageFile, {
+            headers: {
+              "content-type": "multipart/form-data",
+            },
         });
-        if (res.data.success) {
+        newImage = res?.data?.data?.display_url
+        }
+        
           const newInfo = {
             title: data?.title,
-            image: res?.data?.data?.display_url,
-            description: data?.description,
+            image: newImage || SingleEvent?.image,
+            description: content,
             bloggerEmail: user?.email,
             bloggerInfo: users?._id,
           };
-          console.log(newInfo);
+
          axiosPublic.put(`/blogs/${id}` , newInfo)
          .then(res => {
             if(res?.data?.modifiedCount > 0){
                 toast.success("Blog Updated Successfully")
-                reset()
+                reset();
+                refetch();
             }
          })
          .catch(error => {
             console.log(error.message)
             toast.error(error.message)
          })
-        }
+
       };
     
     return (
@@ -100,26 +109,27 @@ const EditBlogs = () => {
               />
             </div>
           </div>
-          <div className="form-control">
+          <div className="form-control pt-2">
             <label className="label">
               <span className="label-text font-bold text-lg">Description</span>
             </label>
-            <textarea
-              {...register("description", { required: true })}
-              rows={7}
-              placeholder="Description..."
-              className="textarea textarea-bordered text-base p-2"
-              defaultValue={SingleEvent?.description}
-            ></textarea>
+            <JoditEditor
+            className="h-{500px}"
+            value={content}
+            tabIndex={1} 
+            onBlur={(newContent) => setContent(newContent)}
+          />
             {errors.description && (
               <p className="text-red-500">description is required.</p>
             )}
           </div>
+          <div className="pt-4">
           <input
-            className="w-32 bg-primary text-white cursor-pointer font-semibold"
+            className="w-32 h-12 bg-primary text-white cursor-pointer font-semibold"
             type="submit"
             value="Update"
           />
+          </div>
         </form>
       </div>
     );

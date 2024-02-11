@@ -2,6 +2,7 @@ import moment from "moment";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
+import parse from 'html-react-parser';
 import useUserInfo from "../../../hooks/useUserInfo";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -9,12 +10,14 @@ import BlogComments from "./BlogComments";
 
 const BlogDetails = () => {
   const { id } = useParams();
+  // const { detailsId, setDetailsId } = useState(id);
+  // console.log("check33", detailsId);
   const axiosPublic = useAxiosPublic();
 
   const [users] = useUserInfo();
 
   // get current page Blog info
-  const { data: details } = useQuery({
+  const { data: details = {} } = useQuery({
     queryKey: ["blogDetails"],
     queryFn: async () => {
       const result = await axiosPublic.get(`/blog-details/${id}`);
@@ -30,7 +33,7 @@ const BlogDetails = () => {
   const { data: blogs } = useQuery({
     queryKey: ["blogs"],
     queryFn: async () => {
-      const result = await axiosPublic.get(`/all-blogs`);
+      const result = await axiosPublic.get("/all-blogs");
       return result.data;
     },
   });
@@ -99,19 +102,8 @@ const BlogDetails = () => {
             alt=""
           />
           {/**Description  */}
-          <div>
-            <p className="mt-5">
-              {details?.description && details?.description.slice(0, 307)}
-            </p>
-            <p className="my-5">
-              {details?.description && details?.description.slice(308, 600)}
-            </p>
-            <p>
-              {details?.description && details?.description.slice(608, 907)}
-            </p>
-            <p>
-              {details?.description && details?.description.slice(908, 1500)}
-            </p>
+          <div className="text-lg mt-8">
+            {details?.description && parse(details?.description)}
           </div>
 
           {/**freedBack Form */}

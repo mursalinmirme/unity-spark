@@ -48,6 +48,7 @@ import AdminBlogDetails from "../pages/DashboardPages/AdminPages/BlogRequests/Ad
 import Training from "../pages/DashboardPages/EmployeePages/Training/Training";
 import TrainingManagement from "../pages/DashboardPages/AdminPages/TrainingManagement/TrainingManagement";
 import AddNewCourse from "../pages/DashboardPages/AdminPages/AddNewCourse/AddNewCourse";
+import Interview from "../pages/DashboardPages/UserPages/Interview/Interview";
 
 const router = createBrowserRouter([
   {
@@ -96,9 +97,9 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: 'blog',
-        element: <Blogs></Blogs>
-      }
+        path: "blog",
+        element: <Blogs></Blogs>,
+      },
     ],
   },
   {
@@ -121,6 +122,11 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
       },
+      {
+        path: "interview",
+        element: <Interview></Interview>,
+      },
+
       {
         path: "employeeHome",
         element: (

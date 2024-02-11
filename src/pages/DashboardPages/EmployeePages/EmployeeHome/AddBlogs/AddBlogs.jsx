@@ -1,15 +1,18 @@
-import { useForm } from "react-hook-form";
-import useAxiosPublic from "../../../../../hooks/useAxiosPublic";
-const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
-import { BsUpload } from "react-icons/bs";
-import { useContext } from "react";
-import { AuthContext } from "../../../../../Provider/AuthProvider";
-import useUserInfo from "../../../../../hooks/useUserInfo";
-import toast from "react-hot-toast";
 import axios from "axios";
+import JoditEditor from "jodit-react";
+import { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { BsUpload } from "react-icons/bs";
+import { AuthContext } from "../../../../../Provider/AuthProvider";
+import useAxiosPublic from "../../../../../hooks/useAxiosPublic";
+import useUserInfo from "../../../../../hooks/useUserInfo";
+import "./addBlogs.css"
+const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 
 const AddBlogs = () => {
   const [users] = useUserInfo();
+  const [content, setContent] = useState("");
   console.log(users?._id);
 
   const {
@@ -23,6 +26,16 @@ const AddBlogs = () => {
 
   const onSubmit = async (data) => {
     console.log(data);
+    if(data.photo.length === 0){
+      toast.error("Please Select your blog image");
+      return
+    }
+
+    if(!content){
+      toast.error("Please write your blog");
+      return
+    }
+
     const imageFile = { image: data.photo[0] };
     const res = await axios.post(image_Hosting_Api, imageFile, {
       headers: {
@@ -33,14 +46,15 @@ const AddBlogs = () => {
       const newInfo = {
         title: data.title,
         image: res.data.data.display_url,
-        description: data.description,
+        description: content,
         bloggerEmail: user?.email,
         bloggerInfo: users?._id,
       };
-      console.log(newInfo);
+      // console.log(newInfo);
       axiosPublic.post("/blogs", newInfo).then(() => {
         toast.success("blog successfully added");
         reset();
+        setContent('');
       });
     }
   };
@@ -84,21 +98,19 @@ const AddBlogs = () => {
           <label className="label">
             <span className="label-text font-bold text-lg">Description</span>
           </label>
-          <textarea
-            {...register("description", { required: true })}
-            rows={3}
-            placeholder="Description..."
-            className="textarea textarea-bordered text-base"
-          ></textarea>
-          {errors.description && (
-            <p className="text-red-500">description is required.</p>
-          )}
+          <JoditEditor
+            value={content}
+            tabIndex={1} 
+            onBlur={(newContent) => setContent(newContent)}
+          />
         </div>
+        <div className="pt-4">
         <input
-          className="w-32 bg-primary text-white cursor-pointer font-semibold"
+          className="w-32 bg-primary text-white cursor-pointer font-semibold h-12"
           type="submit"
-          value="Add"
+          value="Publish"
         />
+        </div>
       </form>
     </div>
   );
