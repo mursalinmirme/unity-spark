@@ -47,6 +47,7 @@ import BlogRequests from "../pages/DashboardPages/AdminPages/BlogRequests/BlogRe
 import AdminBlogDetails from "../pages/DashboardPages/AdminPages/BlogRequests/AdminBlogDetails";
 import Training from "../pages/DashboardPages/EmployeePages/Training/Training";
 import TrainingManagement from "../pages/DashboardPages/AdminPages/TrainingManagement/TrainingManagement";
+import AddNewCourse from "../pages/DashboardPages/AdminPages/AddNewCourse/AddNewCourse";
 
 const router = createBrowserRouter([
   {
@@ -379,6 +380,16 @@ const router = createBrowserRouter([
           <PrivateRouter>
             <IsAdmin>
             <TrainingManagement/>
+            </IsAdmin>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "add-new-course",
+        element: (
+          <PrivateRouter>
+            <IsAdmin>
+            <AddNewCourse></AddNewCourse>
             </IsAdmin>
           </PrivateRouter>
         ),
