@@ -45,6 +45,9 @@ import AddBlogs from "../pages/DashboardPages/EmployeePages/EmployeeHome/AddBlog
 import EditBlogs from "../pages/DashboardPages/EmployeePages/EditBlogs/EditBlogs";
 import BlogRequests from "../pages/DashboardPages/AdminPages/BlogRequests/BlogRequests";
 import AdminBlogDetails from "../pages/DashboardPages/AdminPages/BlogRequests/AdminBlogDetails";
+import Training from "../pages/DashboardPages/EmployeePages/Training/Training";
+import TrainingManagement from "../pages/DashboardPages/AdminPages/TrainingManagement/TrainingManagement";
+import AddNewCourse from "../pages/DashboardPages/AdminPages/AddNewCourse/AddNewCourse";
 import Interview from "../pages/DashboardPages/UserPages/Interview/Interview";
 
 const router = createBrowserRouter([
@@ -300,6 +303,14 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "training",
+        element: (
+          <PrivateRouter>
+            <Training></Training>
+          </PrivateRouter>
+        ),
+      },
+      {
         path: "addBlogs",
         element: (
           <PrivateRouter>
@@ -365,6 +376,26 @@ const router = createBrowserRouter([
           <PrivateRouter>
             <IsAdmin>
               <AdminBlogDetails></AdminBlogDetails>
+            </IsAdmin>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "training-management",
+        element: (
+          <PrivateRouter>
+            <IsAdmin>
+            <TrainingManagement/>
+            </IsAdmin>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "add-new-course",
+        element: (
+          <PrivateRouter>
+            <IsAdmin>
+            <AddNewCourse></AddNewCourse>
             </IsAdmin>
           </PrivateRouter>
         ),
