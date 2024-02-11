@@ -3,6 +3,7 @@ import { useState } from "react";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
+import parse from 'html-react-parser';
 
 const BlogDetails = () => {
   const { id } = useParams();
@@ -69,19 +70,8 @@ const BlogDetails = () => {
         <div className="mt-5">
           <img className="rounded-md w-full h-full" src={details?.image} alt="" />
           {/**Description  */}
-          <div>
-            <p className="mt-5">
-              {details?.description && details?.description.slice(0, 307)}
-            </p>
-            <p className="my-5">
-              {details?.description && details?.description.slice(308, 600)}
-            </p>
-            <p>
-              {details?.description && details?.description.slice(608, 907)}
-            </p>
-            <p>
-              {details?.description && details?.description.slice(908, 1500)}
-            </p>
+          <div className="text-lg mt-8">
+            {details?.description && parse(details?.description)}
           </div>
 
           {/**freedBack Form */}
