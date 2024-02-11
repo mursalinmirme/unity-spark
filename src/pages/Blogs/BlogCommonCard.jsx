@@ -14,9 +14,9 @@ const BlogCommonCard = ({ blog }) => {
           src={image}
           className="h-44 md:h-36 rounded-xl w-full col-span-1 md:col-span-2 lg:col-span-1"
         />
-        <div className="col-span-1 md:col-span-3 space-y-2 py-2">
+        <div className="col-span-1 md:col-span-4 space-y-2 py-2">
           <p className="font-medium text-gray-700">
-            posted {formattedDiff} ago
+            Posted {formattedDiff} ago
           </p>
           <h2 className="text-2xl font-semibold font-inter block md:hidden lg:block">
             {title}
