@@ -27,7 +27,7 @@ const Events = () => {
            </div>
           
         </div>
-        <div className='text-center my-10'>
+        <div className='text-center mt-10'>
                 <h1 className='text-3xl font-semibold mb-1'>Upcoming HR Events</h1>
                 <h1 className='text-lg font-medium'>Empower your HR journey with insights</h1>
            </div>
