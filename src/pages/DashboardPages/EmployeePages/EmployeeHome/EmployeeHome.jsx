@@ -9,6 +9,7 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { AuthContext } from "../../../../Provider/AuthProvider";
+import EnrolledCourse from "./AddBlogs/EnrolledCourse";
 
 const EmployeeHome = () => {
   
@@ -100,8 +101,10 @@ const EmployeeHome = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-5">
         <RunningTaskCard></RunningTaskCard>
         <CompletedTaskCard></CompletedTaskCard>
+       
       </div>
       <RegisteredEvents EmployeeReqEvent={EmployeeReqEvent}></RegisteredEvents>
+      <EnrolledCourse></EnrolledCourse>
     </div>
   );
 };
