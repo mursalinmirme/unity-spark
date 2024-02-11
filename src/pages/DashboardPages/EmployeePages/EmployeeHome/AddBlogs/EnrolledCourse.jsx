@@ -2,6 +2,7 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import { FaCirclePlay } from "react-icons/fa6";
 import { FaCircleCheck } from "react-icons/fa6";
 
+
 const EnrolledCourse = () => {
     return (
         <div>
@@ -33,6 +34,8 @@ const EnrolledCourse = () => {
 
               </div>
               {/* main card */}
+
+             
         </div>
     );
 };
