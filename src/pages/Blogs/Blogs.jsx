@@ -3,6 +3,7 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../components/Loading/Loading";
 import BlogCommonCard from "./BlogCommonCard";
+import { useState } from "react";
 
 const Blogs = () => {
   const { data, isPending } = useQuery({
@@ -12,6 +13,10 @@ const Blogs = () => {
       return res.data;
     },
   });
+
+  const [slicedBlog, setSlicedBlog] = useState(8);
+
+  console.log(slicedBlog);
 
   return (
     <div className="blogs py-10">
@@ -35,10 +40,26 @@ const Blogs = () => {
           </div>
           <div className="mt-10">
             <h2 className="text-xl font-semibold">Explore All Blogs</h2>
-            {data?.map((blog) => (
-              <BlogCommonCard key={blog._id} blog={blog}></BlogCommonCard>
-            ))}
+            {data
+              ?.map((blog) => (
+                <BlogCommonCard key={blog._id} blog={blog}></BlogCommonCard>
+              ))
+              .slice(3, slicedBlog)}
           </div>
+
+          {data.length > 8 && data.length >= slicedBlog ? (
+            <div className="text-center mt-8">
+              <button
+                onClick={() => {
+                  setSlicedBlog(slicedBlog + 5);
+                }}
+                className="nbtn">
+                See More
+              </button>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       )}
     </div>
