@@ -14,7 +14,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import logo from "../../assets/images/logo.gif";
 import useUserRole from "../../hooks/useUserRole";
 import { IoIosFiling } from "react-icons/io";
-import { MdOutlineAddTask, MdOutlineSave } from "react-icons/md";
+import { MdOutlineAddTask, MdOutlineSave,MdOutlinePayments } from "react-icons/md";
 import { GrBlog } from "react-icons/gr";
 import { RiGraduationCapLine } from "react-icons/ri";
 import { LuPresentation } from "react-icons/lu";
@@ -313,6 +313,22 @@ const Dashboard = () => {
               <div>
                 <LuPresentation />
                 <span>Training Management</span>
+              </div>
+              <IoIosArrowForward className="hov_arrow hidden lg:block" />
+            </li>
+          )}
+        </NavLink>
+      )}
+      {isUser?.role === "admin" && (
+        <NavLink to="/dashboard/payment-management">
+          {({ isActive }) => (
+            <li
+              className={`${
+                isActive ? "dashboard_item_active" : "dashboard_item"
+              }`}>
+              <div>
+                <MdOutlinePayments />
+                <span>Payment Management</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
             </li>
