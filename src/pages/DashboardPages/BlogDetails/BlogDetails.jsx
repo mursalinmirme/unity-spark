@@ -2,7 +2,7 @@ import moment from "moment";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
 import useUserInfo from "../../../hooks/useUserInfo";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -100,7 +100,7 @@ const BlogDetails = () => {
             alt=""
           />
           {/**Description  */}
-          <div className="text-lg mt-8">
+          <div className="text-lg mt-8 text-justify">
             {details?.description && parse(details?.description)}
           </div>
 
