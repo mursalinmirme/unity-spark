@@ -16,6 +16,7 @@ import useUserRole from "../../hooks/useUserRole";
 import { IoIosFiling } from "react-icons/io";
 import { MdOutlineAddTask, MdOutlineSave,MdOutlinePayments } from "react-icons/md";
 import { GrBlog } from "react-icons/gr";
+import { GrUserManager } from "react-icons/gr";
 import { RiGraduationCapLine } from "react-icons/ri";
 import { LuPresentation } from "react-icons/lu";
 
@@ -345,6 +346,22 @@ const Dashboard = () => {
               <div>
                 <IoIosFiling />
                 <span>My Applications</span>
+              </div>
+              <IoIosArrowForward className="hov_arrow hidden lg:block" />
+            </li>
+          )}
+        </NavLink>
+      )}
+      {isUser?.role === "user" && (
+        <NavLink to="/dashboard/interview">
+          {({ isActive }) => (
+            <li
+              className={`${
+                isActive ? "dashboard_item_active" : "dashboard_item"
+              }`}>
+              <div>
+                <GrUserManager />
+                <span>My Interviews</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
             </li>

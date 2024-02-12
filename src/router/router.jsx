@@ -6,11 +6,18 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import AllUsers from "../pages/DashboardPages/AdminPages/AllUsers/AllUsers";
 import Employee from "../pages/DashboardPages/AdminPages/Employees/Employee";
 import JobAds from "../pages/DashboardPages/AdminPages/JobAds/JobAds";
+import LeaveRequests from "../pages/DashboardPages/AdminPages/ManageLeave/LeaveRequests";
 import Recruiment from "../pages/DashboardPages/AdminPages/Recruiment/Recruiment";
 import AddReview from "../pages/DashboardPages/AdminPages/Reviews/AddReview";
 import Reviews from "../pages/DashboardPages/AdminPages/Reviews/Reviews";
 import DashboardHome from "../pages/DashboardPages/DashboardHome/DashboardHome";
 import MyProfile from "../pages/DashboardPages/EmployeePages/MyProfile/MyProfile";
+import LeaveManagement from "../pages/DashboardPages/LeaveManagement/LeaveManagement";
+import LeaveRequestForm from "../pages/DashboardPages/LeaveManagement/LeaveRequestForm";
+import ManageEvents from "../pages/DashboardPages/ManageEvents/ManageEvents";
+import MySaveJob from "../pages/DashboardPages/MySaveJob/MySaveJob";
+import AddNewTask from "../pages/DashboardPages/TaskManagement/AddNewTask";
+import TaskManagement from "../pages/DashboardPages/TaskManagement/TaskManagement";
 import UserProfile from "../pages/DashboardPages/UserProfile/UserProfile";
 import UserProfileEdit from "../pages/DashboardPages/UserProfile/UserProfileEdit";
 import Communication from "../pages/DashboardPages/communication/Communication";
@@ -21,34 +28,27 @@ import ApplyJobs from "../pages/availableJobs/ApplyJobs";
 import AvailableJobs from "../pages/availableJobs/AvailableJobs";
 import Attendance from "../pages/components/Attendance/Attendance";
 import AddJobs from "../pages/components/Dashboard/JobAds/AddJobs";
+import JobsEdit from "../pages/components/Dashboard/JobAds/JobsEdit";
 import JobDetails from "../pages/components/HomeComponents/JobPost/JobDetails/JobDetails";
 import Home from "../pages/home/Home";
 import IsAdmin from "../privateRouter.jsx/IsAdmin";
 import IsCommonAccess from "../privateRouter.jsx/IsCommonAccess";
 import IsEmployee from "../privateRouter.jsx/IsEmployee";
 import PrivateRouter from "../privateRouter.jsx/PrivateRouter";
-import ManageEvents from "../pages/DashboardPages/ManageEvents/ManageEvents";
-import JobsEdit from "../pages/components/Dashboard/JobAds/JobsEdit";
-import LeaveRequests from "../pages/DashboardPages/AdminPages/ManageLeave/LeaveRequests";
-import LeaveManagement from "../pages/DashboardPages/LeaveManagement/LeaveManagement";
-import TaskManagement from "../pages/DashboardPages/TaskManagement/TaskManagement";
-import AddNewTask from "../pages/DashboardPages/TaskManagement/AddNewTask";
-import LeaveRequestForm from "../pages/DashboardPages/LeaveManagement/LeaveRequestForm";
-import MySaveJob from "../pages/DashboardPages/MySaveJob/MySaveJob";
-
-import EmployeeHome from "../pages/DashboardPages/EmployeePages/EmployeeHome/EmployeeHome";
 import Blogs from "../pages/Blogs/Blogs";
-import MyApplications from "../pages/DashboardPages/UserPages/Myapplications/MyApplications";
-import BlogDetails from "../pages/DashboardPages/BlogDetails/BlogDetails";
-import MyBlogs from "../pages/DashboardPages/EmployeePages/MyBlogs/MyBlogs";
-import AddBlogs from "../pages/DashboardPages/EmployeePages/EmployeeHome/AddBlogs/AddBlogs";
-import EditBlogs from "../pages/DashboardPages/EmployeePages/EditBlogs/EditBlogs";
-import BlogRequests from "../pages/DashboardPages/AdminPages/BlogRequests/BlogRequests";
 import AdminBlogDetails from "../pages/DashboardPages/AdminPages/BlogRequests/AdminBlogDetails";
+import BlogRequests from "../pages/DashboardPages/AdminPages/BlogRequests/BlogRequests";
+import BlogDetails from "../pages/DashboardPages/BlogDetails/BlogDetails";
+import EditBlogs from "../pages/DashboardPages/EmployeePages/EditBlogs/EditBlogs";
+import AddBlogs from "../pages/DashboardPages/EmployeePages/EmployeeHome/AddBlogs/AddBlogs";
+import EmployeeHome from "../pages/DashboardPages/EmployeePages/EmployeeHome/EmployeeHome";
+import MyBlogs from "../pages/DashboardPages/EmployeePages/MyBlogs/MyBlogs";
+import Interview from "../pages/DashboardPages/UserPages/Interview/Interview";
+import InterviewCall from "../pages/DashboardPages/UserPages/InterviewCall/InterviewCall";
+import MyApplications from "../pages/DashboardPages/UserPages/Myapplications/MyApplications";
 import Training from "../pages/DashboardPages/EmployeePages/Training/Training";
 import TrainingManagement from "../pages/DashboardPages/AdminPages/TrainingManagement/TrainingManagement";
 import AddNewCourse from "../pages/DashboardPages/AdminPages/AddNewCourse/AddNewCourse";
-import Interview from "../pages/DashboardPages/UserPages/Interview/Interview";
 import PaymentManagement from "../pages/DashboardPages/AdminPages/PaymentManagement/PaymentManagement";
 
 const router = createBrowserRouter([
@@ -127,7 +127,16 @@ const router = createBrowserRouter([
         path: "interview",
         element: <Interview></Interview>,
       },
-
+      {
+        path: "interview-call",
+        element: (
+          <PrivateRouter>
+            <IsCommonAccess>
+              <InterviewCall></InterviewCall>
+            </IsCommonAccess>
+          </PrivateRouter>
+        ),
+      },
       {
         path: "employeeHome",
         element: (
