@@ -1,3 +1,4 @@
+import TrendingCourse from "../TrendingCourse/TrendingCourse";
 
 const AvailableCourse = () => {
     return (
@@ -76,6 +77,8 @@ const AvailableCourse = () => {
                    </div>
                 </div>
             </div>
+
+            <TrendingCourse/>
         </div>
     );
 };
