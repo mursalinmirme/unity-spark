@@ -9,8 +9,6 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import ApplicantsCard from "../ApplicantsCard";
-import DatePicker from "react-datepicker";
-import useTimePicker from "../../../../hooks/useTimePicker";
 
 const ManageApplicant = () => {
   const [totalPages, setToalPages] = useState(0);
@@ -144,20 +142,6 @@ const ManageApplicant = () => {
   // if(isFetching){
   //   return <Loading></Loading>
   // }
-  const [selectedStartTime, setSelectedStartTime] = useState(null);
-  const [selectedEndTime, setSelectedEndTime] = useState(null);
-
-  const timeStart = useTimePicker(selectedStartTime || null);
-  const timeEnd = useTimePicker(selectedEndTime || null);
-
-  const handlerSubmit = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const email = form?.email.value;
-    const info = form?.info?.value;
-    console.log(email, info);
-    console.log("start", timeStart, "end", timeEnd);
-  };
 
   return (
     <div className="py-10">
@@ -231,103 +215,6 @@ const ManageApplicant = () => {
           </div>
         </div>
       </div>
-      {/* <div className="border border-red-800 flex justify-between p-2 items-center">
-        <h2> React Developer </h2>
-        <button
-          onClick={() => document.getElementById("my_modal_99").showModal()}
-          className="nbtn"
-        >
-          {" "}
-          Invited Interview
-        </button>
-      </div>
-
-      {/* You can open the modal using document.getElementById('ID').showModal() method */}
-      <dialog id="my_modal_99" className="modal">
-        <div className="modal-box">
-          <form method="dialog">
-            {/* if there is a button in form, it will close the modal */}
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-              ✕
-            </button>
-          </form>
-
-          {/**Form Submit */}
-          <form onSubmit={handlerSubmit}>
-            <div className="space-y-3">
-              <label className="font-bold font-inter"> Email Name</label>
-              <input type="email" name="email" placeholder="Enter Email Name" />
-
-              {/**Second Two Part */}
-              <div className="grid md:grid-cols-2 gap-3">
-                {/* Current Address field */}
-                <label>
-                  <div className="py-1">
-                    <span className="font-bold font-inter">
-                      {" "}
-                      Your Start Time:
-                    </span>
-                  </div>
-                  <div className="relative">
-                    <DatePicker
-                      value={selectedStartTime || "Select Start Time"}
-                      selected={selectedStartTime}
-                      onChange={(time) => setSelectedStartTime(time)}
-                      showTimeSelect
-                      showTimeSelectOnly
-                      timeIntervals={15}
-                      required
-                      dateFormat="h:mm aa"
-                    />
-                    <IoMdTime className="absolute top-4 lg:top-4 right-4 cursor-pointer" />
-                  </div>
-                </label>
-                {/* Current Address field End */}
-
-                {/* Permanent Address */}
-                <label>
-                  <div className="py-1">
-                    <span className="font-bold font-inter">Your End Time</span>
-                  </div>
-                  <div className="relative">
-                    <DatePicker
-                      value={selectedEndTime || "End Time Select"}
-                      selected={selectedEndTime}
-                      onChange={(time) => setSelectedEndTime(time)}
-                      showTimeSelect
-                      showTimeSelectOnly
-                      timeIntervals={15}
-                      required
-                      dateFormat="h:mm aa"
-                    />
-                    <IoMdTime className="absolute top-4 lg:top-4 right-4 cursor-pointer" />
-                  </div>
-                </label>
-              </div>
-
-              <p className="font-bold font-inter">Date</p>
-              <input
-                type="date"
-                name="date"
-                placeholder="Please Select Date"
-                id=""
-              />
-
-              <p className="font-bold font-inter">Other info</p>
-              <textarea
-                className="w-full border pl-2 pt-2"
-                name="info"
-                id=""
-                cols="10"
-                rows="5"
-                placeholder="Please Share Another Information Optional"
-              ></textarea>
-
-              <button className="nbtn w-full"> Send Email</button>
-            </div>
-          </form>
-        </div>
-      </dialog>{" "}
     </div>
   );
 };

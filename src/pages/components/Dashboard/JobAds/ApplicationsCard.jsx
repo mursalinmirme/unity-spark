@@ -5,6 +5,7 @@ import { HiDotsVertical } from "react-icons/hi";
 import { IoCheckmark, IoEyeOutline } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx";
 import { Link } from "react-router-dom";
+import { FcInvite } from "react-icons/fc";
 
 const ApplicationsCard = ({
   value,
@@ -12,9 +13,10 @@ const ApplicationsCard = ({
   handleDelete,
   setApplicationId,
   applicationPreview,
+  setStoreInfo,
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  console.log(value);
+  // console.log(value);
   return (
     <div className="border-2 border-[#D9D9D9] rounded-xl px-2 md:px-5 py-2">
       <div className="flex items-center justify-between">
@@ -48,12 +50,15 @@ const ApplicationsCard = ({
             ></IoEyeOutline>
           </button>
 
-          <button
-            onClick={() => handleSelectApplication(value?._id)}
-            className="rounded-lg p-2  bg-[#433EBE]"
-          >
-            <IoCheckmark className=""> </IoCheckmark>
-          </button>
+          <div onClick={() => setStoreInfo(value)}>
+            <button
+              className="rounded-lg p-2 bg-[#433EBE]"
+              onClick={() => document.getElementById("my_modal_99").showModal()}
+            >
+              <FcInvite />
+            </button>
+          </div>
+
           <button
             onClick={() => handleDelete(value?._id)}
             className="rounded-lg p-2 bg-[#DD3333]"
