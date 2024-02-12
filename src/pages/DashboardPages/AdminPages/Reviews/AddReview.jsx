@@ -59,7 +59,7 @@ const AddReview = () => {
     const userReview = {
       name: userInfo.name,
       image: userInfo.image,
-      employeePosition: users?.position,
+      employeePosition: users?.position? users?.position : 'guest',
       description: data.review,
     };
     console.log(userReview);

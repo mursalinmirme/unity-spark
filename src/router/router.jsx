@@ -49,6 +49,7 @@ import Training from "../pages/DashboardPages/EmployeePages/Training/Training";
 import TrainingManagement from "../pages/DashboardPages/AdminPages/TrainingManagement/TrainingManagement";
 import AddNewCourse from "../pages/DashboardPages/AdminPages/AddNewCourse/AddNewCourse";
 import Interview from "../pages/DashboardPages/UserPages/Interview/Interview";
+import PaymentManagement from "../pages/DashboardPages/AdminPages/PaymentManagement/PaymentManagement";
 
 const router = createBrowserRouter([
   {
@@ -385,7 +386,7 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <IsAdmin>
-            <TrainingManagement/>
+              <TrainingManagement />
             </IsAdmin>
           </PrivateRouter>
         ),
@@ -395,7 +396,7 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <IsAdmin>
-            <AddNewCourse></AddNewCourse>
+              <AddNewCourse></AddNewCourse>
             </IsAdmin>
           </PrivateRouter>
         ),
@@ -413,6 +414,16 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <MyApplications></MyApplications>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "payment-management",
+        element: (
+          <PrivateRouter>
+            <IsAdmin>
+              <PaymentManagement></PaymentManagement>
+            </IsAdmin>
           </PrivateRouter>
         ),
       },
