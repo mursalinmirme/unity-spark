@@ -10,7 +10,7 @@ import { signOut } from "firebase/auth";
 const Navbar = () => {
   const { user, loginOut } = useContext(AuthContext);
   const [isUser] = useUserRole();
-  console.log(user);
+
   const axiosPublic = useAxiosPublic();
   const SignOut = () => {
     loginOut()
@@ -47,7 +47,7 @@ const Navbar = () => {
           )}
         </NavLink>
       )}
-      {isUser?.role === "user" && user?.email &&(
+      {isUser?.role === "user" && user?.email && (
         <NavLink to="/dashboard/userProfile">
           {({ isActive }) => (
             <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>
@@ -56,7 +56,7 @@ const Navbar = () => {
           )}
         </NavLink>
       )}
-      {isUser?.role === "employee" && user?.email &&(
+      {isUser?.role === "employee" && user?.email && (
         <NavLink to="/dashboard/employeeHome">
           {({ isActive }) => (
             <li className={`${isActive ? "nav_item_active" : ""} nav_item`}>

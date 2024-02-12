@@ -1,15 +1,23 @@
 import moment from "moment";
-import { useState } from "react";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
+import parse from "html-react-parser";
+import useUserInfo from "../../../hooks/useUserInfo";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import BlogComments from "./BlogComments";
 
 const BlogDetails = () => {
   const { id } = useParams();
+  // const { detailsId, setDetailsId } = useState(id);
+  // console.log("check33", detailsId);
   const axiosPublic = useAxiosPublic();
 
+  const [users] = useUserInfo();
+
   // get current page Blog info
-  const { data: details } = useQuery({
+  const { data: details = {} } = useQuery({
     queryKey: ["blogDetails"],
     queryFn: async () => {
       const result = await axiosPublic.get(`/blog-details/${id}`);
@@ -22,19 +30,40 @@ const BlogDetails = () => {
   const timeDifference = moment(timestamp).fromNow();
 
   // get current page job info
-  const { data: blogs, refetch } = useQuery({
+  const { data: blogs } = useQuery({
     queryKey: ["blogs"],
     queryFn: async () => {
-      const result = await axiosPublic.get(`/all-blogs`);
+      const result = await axiosPublic.get("/all-blogs");
       return result.data;
     },
   });
 
-  // console.log(blogs);
-  const handlerComment = (e) => {
-    e.preventDefault();
-    const textareaValue = e.target.name.value;
-    console.log(textareaValue);
+  const { data: comments = [], refetch } = useQuery({
+    queryKey: ["comments"],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/comments/${id}`);
+      return res.data;
+    },
+  });
+
+  const { register, handleSubmit } = useForm();
+
+  const handleCommentSubmit = (data) => {
+    const newComment = {
+      commentTxt: data?.comment,
+      blogId: id,
+      commenterInfo: users?._id,
+    };
+
+    axiosPublic
+      .post("/comments", newComment)
+      .then(() => {
+        refetch();
+        toast.success("Comment Added");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
 
   return (
@@ -67,43 +96,50 @@ const BlogDetails = () => {
         </div>
         {/**Blog Image */}
         <div className="mt-5">
-          <img className="rounded-md w-full h-full" src={details?.image} alt="" />
+          <img
+            className="rounded-md w-full h-full"
+            src={details?.image}
+            alt=""
+          />
           {/**Description  */}
-          <div>
-            <p className="mt-5">
-              {details?.description && details?.description.slice(0, 307)}
-            </p>
-            <p className="my-5">
-              {details?.description && details?.description.slice(308, 600)}
-            </p>
-            <p>
-              {details?.description && details?.description.slice(608, 907)}
-            </p>
-            <p>
-              {details?.description && details?.description.slice(908, 1500)}
-            </p>
+          <div className="text-lg mt-8 text-justify">
+            {details?.description && parse(details?.description)}
           </div>
 
           {/**freedBack Form */}
           <div className="mt-10">
-            <form onSubmit={handlerComment}>
+            <form onSubmit={handleSubmit(handleCommentSubmit)}>
               <label>
                 Give your Comment:
                 <textarea
+                  {...register("comment")}
                   className="w-full h-28 border pl-2 mt-3 pt-2"
-                  name="comment"
                   placeholder="Enter Your Comment..."
                 />
               </label>
               <br />
               <button
                 className="btn-sm bg-primary text-white mt-3 rounded-md"
-                type="submit"
-              >
-                Submit
+                type="submit">
+                Comment
               </button>
             </form>
           </div>
+
+          {comments && comments?.length > 0 ? (
+            <div className="mt-10">
+              <h3 className="font-inter font-semibold text-xl">Comments...</h3>
+              {comments?.map((comment) => (
+                <BlogComments
+                  key={comment?._id}
+                  comment={comment}></BlogComments>
+              ))}
+            </div>
+          ) : (
+            <div className="mt-10">
+              <p>No comments yet</p>
+            </div>
+          )}
         </div>
       </div>
 
@@ -115,8 +151,7 @@ const BlogDetails = () => {
           {blogs?.map((blog) => (
             <div
               key={blog._id}
-              className="card card-compact lg:w-96 bg-base-100 shadow-md "
-            >
+              className="card card-compact lg:w-96 bg-base-100 shadow-md ">
               <figure>
                 <img src={blog?.image} alt="Shoes" />
               </figure>
