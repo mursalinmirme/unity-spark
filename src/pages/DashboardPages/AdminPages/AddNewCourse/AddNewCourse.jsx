@@ -1,12 +1,27 @@
 import axios from "axios";
-import { useForm } from "react-hook-form";
+import { Controller,useForm } from "react-hook-form";
 import { BsUpload } from "react-icons/bs";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
-
+import Select from "react-select"
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import toast from "react-hot-toast";
 const AddNewCourse = () => {
-    const { register, handleSubmit ,  formState: { errors },} = useForm()
+  const axiosPublic = useAxiosPublic()
+    const { control,register, handleSubmit ,  formState: { errors },reset} = useForm()
+    const skillsArray = [
+      { value: "Programming", label: "Programming" },
+      { value: "UI/UI Design", label: "UI/UX Design" },
+      { value: "Graphics Design", label: "Graphics Design" },
+      { value: "SEO & SMM", label: "SEO & SMM" },
+      { value: "Video Editing", label: "Video Editing" },
+      { value: "Content Writing", label: "Content Writing" },
+      
+    ];
 const onSubmit = async (data) => {
-    
+  let skillsArray = [];
+  data?.skills?.map((skill) => {
+    skillsArray.push(skill.label);
+  });
     const imageFile = { image: data.photo[0] };
     const res = await axios.post(image_Hosting_Api, imageFile, {
       headers: {
@@ -19,9 +34,23 @@ const onSubmit = async (data) => {
             tags: data?.tags,
             image: res?.data?.data?.display_url,
             description: data?.description,
+            category: skillsArray
             
           };
           console.log(courseInfo);
+
+          axiosPublic.post("/courses", courseInfo)
+          .then(res =>{
+          if(res?.data){
+            toast.success("Course Added")
+            reset()
+          }
+
+          })
+          .catch(error => {
+            console.log(error.message);
+            toast.error(error.message)
+          })
     }
   
 }
@@ -33,8 +62,8 @@ const onSubmit = async (data) => {
             <div className="border-2 border-[#D9D9D9] p-5 rounded-lg">
             <form onSubmit={handleSubmit(onSubmit)}>
 
-            <div>
-          <div className="form-control w-full">
+            <div className="flex-row md:flex justify-center items-center gap-5">
+          <div className="form-control flex-1">
             <label className="label">
               <span className="label-text font-bold text-lg">Course Name</span>
             </label>
@@ -46,8 +75,31 @@ const onSubmit = async (data) => {
             />
             {errors.title && <p className="text-red-500">title is required.</p>}
           </div>
-          
+          <div className="flex-1">
+            <label>
+              <span className="font-inter text-[18px] font-bold">
+                Course Category
+              </span>
+            </label>
+            <Controller
+              name="skills"
+              rules={{ required: "Please select required skills" }}
+              control={control}
+              render={({ field }) => (
+                <Select
+                  {...field}
+                  options={skillsArray}
+                  isMulti
+                  placeholder="Enter required skills"
+                />
+              )}
+            />
+          </div>
+          {errors.skills && (
+            <span className="error text-red-500">{errors.skills.message}</span>
+          )}
             </div>
+
             <div className="flex-row md:flex justify-center items-center gap-5">
             <div className="flex-1">
           <div className="form-control w-full">
