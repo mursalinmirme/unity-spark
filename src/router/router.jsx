@@ -50,6 +50,7 @@ import Training from "../pages/DashboardPages/EmployeePages/Training/Training";
 import TrainingManagement from "../pages/DashboardPages/AdminPages/TrainingManagement/TrainingManagement";
 import AddNewCourse from "../pages/DashboardPages/AdminPages/AddNewCourse/AddNewCourse";
 import PaymentManagement from "../pages/DashboardPages/AdminPages/PaymentManagement/PaymentManagement";
+import CourseDetails from "../pages/DashboardPages/EmployeePages/Training/CourseDetails";
 
 const router = createBrowserRouter([
   {
@@ -100,6 +101,14 @@ const router = createBrowserRouter([
       {
         path: "blog",
         element: <Blogs></Blogs>,
+      },
+      {
+        path: "course/me",
+        element: (
+          <PrivateRouter>
+            <CourseDetails></CourseDetails>
+          </PrivateRouter>
+        ),
       },
     ],
   },
