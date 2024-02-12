@@ -13,12 +13,12 @@ const BlogRequests = () => {
     },
   });
 
-  console.log('get blog requests',blogRequests);
+  console.log("get blog requests", blogRequests);
 
   return (
     <div>
       <div className="overflow-x-auto">
-        <h3 className="text-3xl font-semibold">All our users</h3>
+        <h3 className="text-3xl font-semibold">New Blog Requests</h3>
         <table className=" table mt-10">
           {/* head */}
           <thead className=" text-black text-[18px] rounded-md text-center">

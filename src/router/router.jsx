@@ -35,7 +35,6 @@ import IsAdmin from "../privateRouter.jsx/IsAdmin";
 import IsCommonAccess from "../privateRouter.jsx/IsCommonAccess";
 import IsEmployee from "../privateRouter.jsx/IsEmployee";
 import PrivateRouter from "../privateRouter.jsx/PrivateRouter";
-
 import Blogs from "../pages/Blogs/Blogs";
 import AdminBlogDetails from "../pages/DashboardPages/AdminPages/BlogRequests/AdminBlogDetails";
 import BlogRequests from "../pages/DashboardPages/AdminPages/BlogRequests/BlogRequests";
@@ -47,6 +46,10 @@ import MyBlogs from "../pages/DashboardPages/EmployeePages/MyBlogs/MyBlogs";
 import Interview from "../pages/DashboardPages/UserPages/Interview/Interview";
 import InterviewCall from "../pages/DashboardPages/UserPages/InterviewCall/InterviewCall";
 import MyApplications from "../pages/DashboardPages/UserPages/Myapplications/MyApplications";
+import Training from "../pages/DashboardPages/EmployeePages/Training/Training";
+import TrainingManagement from "../pages/DashboardPages/AdminPages/TrainingManagement/TrainingManagement";
+import AddNewCourse from "../pages/DashboardPages/AdminPages/AddNewCourse/AddNewCourse";
+import PaymentManagement from "../pages/DashboardPages/AdminPages/PaymentManagement/PaymentManagement";
 
 const router = createBrowserRouter([
   {
@@ -310,6 +313,14 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "training",
+        element: (
+          <PrivateRouter>
+            <Training></Training>
+          </PrivateRouter>
+        ),
+      },
+      {
         path: "addBlogs",
         element: (
           <PrivateRouter>
@@ -380,6 +391,26 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "training-management",
+        element: (
+          <PrivateRouter>
+            <IsAdmin>
+              <TrainingManagement />
+            </IsAdmin>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "add-new-course",
+        element: (
+          <PrivateRouter>
+            <IsAdmin>
+              <AddNewCourse></AddNewCourse>
+            </IsAdmin>
+          </PrivateRouter>
+        ),
+      },
+      {
         path: "mySaveJob",
         element: (
           <PrivateRouter>
@@ -392,6 +423,16 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <MyApplications></MyApplications>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "payment-management",
+        element: (
+          <PrivateRouter>
+            <IsAdmin>
+              <PaymentManagement></PaymentManagement>
+            </IsAdmin>
           </PrivateRouter>
         ),
       },

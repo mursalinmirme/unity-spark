@@ -14,9 +14,12 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import logo from "../../assets/images/logo.gif";
 import useUserRole from "../../hooks/useUserRole";
 import { IoIosFiling } from "react-icons/io";
-import { MdOutlineAddTask, MdOutlineSave } from "react-icons/md";
+import { MdOutlineAddTask, MdOutlineSave,MdOutlinePayments } from "react-icons/md";
 import { GrBlog } from "react-icons/gr";
 import { GrUserManager } from "react-icons/gr";
+import { RiGraduationCapLine } from "react-icons/ri";
+import { LuPresentation } from "react-icons/lu";
+
 import "./dashboard.css";
 const Dashboard = () => {
   const [isUser] = useUserRole();
@@ -170,6 +173,23 @@ const Dashboard = () => {
           )}
         </NavLink>
       )}
+       {isUser?.role === "employee" && (
+        <NavLink to="/dashboard/training">
+          {({ isActive }) => (
+            <li
+              className={`${
+                isActive ? "dashboard_item_active" : "dashboard_item"
+              }`}
+            >
+              <div>
+                <RiGraduationCapLine/>
+                <span>Training</span>
+              </div>
+              <IoIosArrowForward className="hov_arrow hidden lg:block" />
+            </li>
+          )}
+        </NavLink>
+      )}
       {isUser?.role === "admin" && (
         <NavLink to="/dashboard/jobs">
           {({ isActive }) => (
@@ -278,6 +298,38 @@ const Dashboard = () => {
               <div>
                 <MdOutlineAddTask />
                 <span>Task Management</span>
+              </div>
+              <IoIosArrowForward className="hov_arrow hidden lg:block" />
+            </li>
+          )}
+        </NavLink>
+      )}
+      {isUser?.role === "admin" && (
+        <NavLink to="/dashboard/training-management">
+          {({ isActive }) => (
+            <li
+              className={`${
+                isActive ? "dashboard_item_active" : "dashboard_item"
+              }`}>
+              <div>
+                <LuPresentation />
+                <span>Training Management</span>
+              </div>
+              <IoIosArrowForward className="hov_arrow hidden lg:block" />
+            </li>
+          )}
+        </NavLink>
+      )}
+      {isUser?.role === "admin" && (
+        <NavLink to="/dashboard/payment-management">
+          {({ isActive }) => (
+            <li
+              className={`${
+                isActive ? "dashboard_item_active" : "dashboard_item"
+              }`}>
+              <div>
+                <MdOutlinePayments />
+                <span>Payment Management</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
             </li>
