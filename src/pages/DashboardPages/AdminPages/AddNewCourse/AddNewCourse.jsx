@@ -33,8 +33,12 @@ const onSubmit = async (data) => {
             title: data?.title,
             tags: data?.tags,
             image: res?.data?.data?.display_url,
+            short_Description: data?.short_Description,
             description: data?.description,
-            category: skillsArray
+            category: skillsArray,
+            instructor_name: data?.instructor_name,
+            intro: data?.intro,
+            instructor_bio: data?.instructor_bio
             
           };
           console.log(courseInfo);
@@ -137,6 +141,20 @@ const onSubmit = async (data) => {
             </div>
             <div className="form-control">
           <label className="label">
+            <span className="label-text font-bold text-lg">Short Description</span>
+          </label>
+          <textarea
+            {...register("short_Description", { required: true })}
+            rows={3}
+            placeholder="Write About Your Course Intro"
+            className="textarea textarea-bordered text-base"
+          ></textarea>
+          {errors.description && (
+            <p className="text-red-500">short description is required.</p>
+          )}
+        </div>
+            <div className="form-control">
+          <label className="label">
             <span className="label-text font-bold text-lg">Description</span>
           </label>
           <textarea
@@ -147,6 +165,50 @@ const onSubmit = async (data) => {
           ></textarea>
           {errors.description && (
             <p className="text-red-500">description is required.</p>
+          )}
+        </div>
+       <div className="flex-row md:flex justify-center items-center gap-5">
+            <div className="flex-1">
+            <div className="form-control flex-1">
+            <label className="label">
+              <span className="label-text font-bold text-lg">Course Instructor Name</span>
+            </label>
+            <input
+              {...register("instructor_name", { required: true })}
+              type="text"
+              placeholder="Enter Your Course Instructor Name"
+              className="input input-bordered"
+            />
+            {errors.title && <p className="text-red-500">instructor Name is required.</p>}
+          </div>
+            </div>
+            <div className="flex-1">
+            <div className="form-control flex-1">
+            <label className="label">
+              <span className="label-text font-bold text-lg">Course Intro link</span>
+            </label>
+            <input
+              {...register("intro", { required: true })}
+              type="text"
+              placeholder="Enter Your Course Intro Link"
+              className="input input-bordered"
+            />
+            {errors.title && <p className="text-red-500">intro link  is required.</p>}
+          </div>
+            </div>
+       </div>
+       <div className="form-control">
+          <label className="label">
+            <span className="label-text font-bold text-lg">Instructor Bio</span>
+          </label>
+          <textarea
+            {...register("instructor_bio", { required: true })}
+            rows={3}
+            placeholder="Write  Your Course Instructor Bio"
+            className="textarea textarea-bordered text-base"
+          ></textarea>
+          {errors.description && (
+            <p className="text-red-500">short description is required.</p>
           )}
         </div>
 
