@@ -1,21 +1,21 @@
 #dashboard {
-  @apply flex flex-col lg:flex-row min-h-screen p-5 gap-0 lg:gap-5 bg-[#e3e2f5];
+    @apply grid grid-cols-1 lg:grid-cols-4 min-h-screen max-h-screen p-5 gap-0 lg:gap-5 relative mx-auto max-w-[1300px] overflow-hidden;
 }
 
 #dashboard .left_container {
-  @apply h-full p-5 lg:block hidden sm:fixed px-4 min-h-full w-full sm:w-[32%] lg:w-[23%] sm:top-0 sm:left-0 z-40;
+    @apply h-full lg:block hidden min-h-full w-full overflow-y-auto
+}
+
+#dashboard .right_container {
+    @apply lg:col-span-3 bg-white rounded-xl p-5 mt-5 lg:mt-0 w-full md:p-5 lg:p-10 overflow-y-auto;
 }
 
 #dashboard .left_container .nav_container {
-  @apply bg-white p-5 justify-between text-[#151515] rounded-xl min-h-full flex flex-col;
+    @apply bg-white p-5 justify-between text-[#151515] rounded-xl flex flex-col overflow-y-auto
 }
 
 #dashboard ul {
   @apply flex sm:flex-col gap-3 md:gap-0 mt-0 sm:mt-5 space-y-0 md:space-y-1 w-full;
-}
-
-#dashboard .right_container {
-  @apply lg:col-span-4 bg-white rounded-xl p-5 mt-5 lg:mt-0 w-full sm:top-0 sm:right-0 lg:ml-[23%] md:p-5 lg:p-10;
 }
 
 .dashboard_item {

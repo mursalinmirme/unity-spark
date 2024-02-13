@@ -395,3 +395,21 @@ h6,
 .react-datepicker-wrapper {
   @apply !block;
 }
+
+
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px; /* Set the width of the scrollbar */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #c7c5eb; /* Set the background color of the scrollbar track */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #433EBE; /* Set the color of the scrollbar handle */
+  border-radius: 5px; /* Set the border radius of the scrollbar handle */
+}
