@@ -29,18 +29,15 @@ const PaymentDetails = () => {
 
   return (
     <div
-      className="h-[800px] md:h-[1230px] w-full rounded-2xl bg-no-repeat bg-cover"
+      className="h-[800px] md:h-[1000px] w-full rounded-2xl bg-no-repeat bg-cover bg-center"
       style={{ backgroundImage: `url(${image})` }}
     >
-      <div>
-        <div className="text-center">
-          <h1 className="text-3xl font-bold">Payment Detials</h1>
-          <p className="font-semibold">
-            {" "}
-            Complete your payment by providing your details
-          </p>
+      <div className="">
+        <div className="text-center py-10 font-bold">
+          <h1 className="text-3xl mb-2">Payment Detials</h1>
+          <p> Complete your payment by providing your details</p>
         </div>
-        <div className="rounded-xl max-w-[800px] mx-auto mt-32 flex-1 shadow-xl bg-white bg-opacity-40  border border-opacity-30 border-r-0 border-b-0 backdrop-filter backdrop-blur-sm relative z-2 p-8 text-black">
+        <div className="rounded-xl max-w-[800px] mx-auto flex-1 shadow-xl bg-white bg-opacity-40  border border-opacity-30 border-r-0 border-b-0 backdrop-filter backdrop-blur-sm relative z-2 p-4 md:p-8 text-black">
           <h1 className="font-bold text-lg">Total Amount : $5000</h1>
           <div>
             <div className="form-control my-5">
@@ -48,7 +45,7 @@ const PaymentDetails = () => {
                 <input
                   type="checkbox"
                   onClick={() => setIsChecked(!isChecked)}
-                  className="checkbox"
+                  className="checkbox border-2 [--chkbg:theme(colors.primary)]"
                 />
                 <span className="font-semibold">
                   Save your payment info for next time
@@ -66,12 +63,12 @@ const PaymentDetails = () => {
                     </label>
                     <input
                       type="text"
-                      className="input bg-opacity-70"
+                      className="input bg-opacity-70 focus:outline-none"
                       placeholder="Your Email"
                       {...register("email", { required: true })}
                     />
                     {errors.email && (
-                      <span className="error text-red-500">
+                      <span className="error text-red-600">
                         Please fill up this field
                       </span>
                     )}
@@ -95,6 +92,7 @@ const PaymentDetails = () => {
                       }}
                       inputClass="py-6"
                       dropdownStyle={{ width: "200px", marginTop: "-0.1px" }}
+                      buttonStyle={{ borderRadius: "8px 0 0 8px" }}
                     />
                   </div>
                   <div className="form-control">
@@ -105,12 +103,12 @@ const PaymentDetails = () => {
                     </label>
                     <input
                       type="text"
-                      className="input bg-opacity-70"
+                      className="input bg-opacity-70 focus:outline-none"
                       placeholder="Your Name"
                       {...register("name", { required: true })}
                     />
                     {errors.name && (
-                      <span className="error text-red-500">
+                      <span className="error text-red-600">
                         Please fill up this field
                       </span>
                     )}
