@@ -22,7 +22,7 @@ const ManageApplications = () => {
   const [storeLength, setStoreLength] = useState(4);
   const [selectDate, setSelectDate] = useState(new Date());
   const date = new Date(selectDate);
-
+  const [design, setDesign] = useState(false);
   const day = date.getDate();
   const month = date.toLocaleString("en", { month: "long" });
   const year = date.getFullYear();
@@ -349,7 +349,7 @@ const ManageApplications = () => {
                   <CiCalendar className="absolute top-4 lg:top-4 right-4 cursor-pointer" />
                 </div>
               </label>
-              {/* Your Gender Select */}
+              {/* Please Interviewer Select */}
               <label>
                 <div className="py-1">
                   <span className="font-bold font-inter"> InterViewer:</span>
@@ -359,8 +359,14 @@ const ManageApplications = () => {
                   {allAdmins?.slice(0, storeLength)?.map((admin) => (
                     <div
                       key={admin._id}
-                      className="flex items-center border p-2 gap-3 cursor-pointer rounded-full"
-                      onClick={() => setAdminInfo(admin)}
+                      className={` flex items-center border p-2 gap-3 cursor-pointer rounded-full hover:border-blue-600 ${
+                        admin === adminInfo ? "border-blue-600" : ""
+                      }`}
+                      onClick={() => {
+                        setAdminInfo({});
+                        setAdminInfo(admin);
+                        setDesign(true);
+                      }}
                     >
                       <img
                         className="w-10 h-10 rounded-full"
@@ -375,6 +381,7 @@ const ManageApplications = () => {
                     </div>
                   ))}
                 </div>
+                {/** condition Used Show less and show more */}
                 <div className="mt-3">
                   {show ? (
                     <button
