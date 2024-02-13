@@ -473,8 +473,8 @@ const Dashboard = () => {
           </ul>
         </div>
       </div>
-      <div className="left_container">
-        <div className="nav_container card-normal">
+      <div className="left_container overflow-y-auto">
+        <div className="nav_container">
           <div>
             <Link to="/">
               <img src={logo} className="w-3/4" alt="" />

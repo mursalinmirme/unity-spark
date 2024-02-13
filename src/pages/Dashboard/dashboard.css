@@ -1,55 +1,52 @@
 #dashboard {
-    @apply flex flex-col lg:flex-row min-h-screen p-5 gap-0 lg:gap-5 bg-[#e3e2f5]
+  @apply flex flex-col lg:flex-row min-h-screen p-5 gap-0 lg:gap-5 bg-[#e3e2f5];
 }
 
 #dashboard .left_container {
-    @apply h-full p-5 lg:block hidden sm:fixed px-4 min-h-full w-full sm:w-[32%] lg:w-[23%] sm:top-0 sm:left-0 z-40
+  @apply h-full p-5 lg:block hidden sm:fixed px-4 min-h-full w-full sm:w-[32%] lg:w-[23%] sm:top-0 sm:left-0 z-40;
 }
 
 #dashboard .left_container .nav_container {
-    @apply bg-white p-5 justify-between text-[#151515] rounded-xl min-h-full flex flex-col
+  @apply bg-white p-5 justify-between text-[#151515] rounded-xl min-h-full flex flex-col;
 }
 
 #dashboard ul {
-    @apply flex sm:flex-col gap-3 md:gap-0 mt-0 sm:mt-5 space-y-0 md:space-y-1 w-full
+  @apply flex sm:flex-col gap-3 md:gap-0 mt-0 sm:mt-5 space-y-0 md:space-y-1 w-full;
 }
 
 #dashboard .right_container {
-    @apply lg:col-span-4 bg-white rounded-xl p-5 mt-5 lg:mt-0 w-full sm:top-0 sm:right-0 lg:ml-[23%] md:p-5 lg:p-10
+  @apply lg:col-span-4 bg-white rounded-xl p-5 mt-5 lg:mt-0 w-full sm:top-0 sm:right-0 lg:ml-[23%] md:p-5 lg:p-10;
 }
 
 .dashboard_item {
-    @apply flex items-start lg:items-center justify-between text-primary py-1 lg:py-2.5 p-2.5 rounded-xl hover:bg-[#e3e2f5] transition-all duration-300 overflow-hidden
+  @apply flex items-start lg:items-center justify-between text-primary py-1 lg:py-2.5 p-2.5 rounded-xl hover:bg-[#e3e2f5] transition-all duration-300 overflow-hidden;
 }
 
-.dashboard_item_active, 
+.dashboard_item_active,
 #dashboard .log_btn {
-    @apply flex items-start lg:items-center justify-between text-white py-1 lg:py-2.5 p-2.5 rounded-xl bg-primary hover:bg-primary
+  @apply flex items-start lg:items-center justify-between text-white py-1 lg:py-2.5 p-2.5 rounded-xl bg-primary hover:bg-primary;
 }
 
 #dashboard .log_btn {
-    @apply capitalize font-inter font-semibold px-4 cursor-pointer hover:scale-110 transition-all
+  @apply capitalize font-inter font-semibold px-4 cursor-pointer hover:scale-110 transition-all;
 }
 
 .dashboard_item div,
 .dashboard_item_active div {
-    @apply flex gap-2 items-center
+  @apply flex gap-2 items-center;
 }
 
 .dashboard_item div svg,
 .dashboard_item_active div svg {
-    @apply mt-0 text-xl md:text-lg
+  @apply mt-0 text-xl md:text-lg;
 }
 
 .dashboard_item span,
 .dashboard_item_active span {
-    @apply capitalize font-inter font-semibold md:text-sm lg:text-base
+  @apply capitalize font-inter font-semibold md:text-sm lg:text-base;
 }
 
 .hov_arrow {
-    @apply text-primary invisible transition-all duration-500
+  @apply text-primary invisible transition-all duration-500;
 }
 
-.dashboard_item:hover .hov_arrow {
-    @apply ml-0 visible
-}
