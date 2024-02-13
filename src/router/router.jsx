@@ -111,6 +111,14 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
       },
+      {
+        path: "course/details",
+        element: (
+          <PrivateRouter>
+            <CourseDetails></CourseDetails>
+          </PrivateRouter>
+        ),
+      },
     ],
   },
   {

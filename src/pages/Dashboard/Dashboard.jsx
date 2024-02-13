@@ -445,54 +445,57 @@ const Dashboard = () => {
   );
 
   return (
-    <div id="dashboard">
-      <div className="drawer drawer-start lg:hidden">
-        <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content bg-white rounded-xl flex justify-between items-center p-3">
-          <Link to="/">
-            <img src={logo} className="w-2/6" alt="" />
-          </Link>
-          <label
-            htmlFor="my-drawer-4"
-            className="drawer-button hover:cursor-pointer"
-          >
-            <HiBars3BottomRight />
-          </label>
-        </div>
-        <div className="drawer-side z-50">
-          <label
-            htmlFor="my-drawer-4"
-            aria-label="close sidebar"
-            className="drawer-overlay"
-          ></label>
-          <ul
-            className="menu p-4 min-h-full bg-base-200 text-base-content"
-            style={{ width: "70%" }}
-          >
-            {dashboardItem}
-          </ul>
-        </div>
-      </div>
-      <div className="left_container">
-        <div className="nav_container">
-          <div>
+    <div className="bg-[#e3e2f5]">
+      <div id="dashboard">
+        <div className="drawer drawer-start lg:hidden">
+          <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
+          <div className="drawer-content bg-white rounded-xl flex justify-between items-center p-3">
             <Link to="/">
-              <img src={logo} className="w-3/4" alt="" />
+              <img src={logo} className="w-2/6" alt="" />
             </Link>
-            <ul>{dashboardItem}</ul>
+            <label
+              htmlFor="my-drawer-4"
+              className="drawer-button hover:cursor-pointer"
+            >
+              <HiBars3BottomRight />
+            </label>
           </div>
-          <div>
-            <div onClick={() => loginOut()} className="log_btn">
-              <span>Log Out</span>
-              <LuLogOut />
+          <div className="drawer-side z-50">
+            <label
+              htmlFor="my-drawer-4"
+              aria-label="close sidebar"
+              className="drawer-overlay"
+            ></label>
+            <ul
+              className="menu p-4 min-h-full bg-base-200 text-base-content"
+              style={{ width: "70%" }}
+            >
+              {dashboardItem}
+            </ul>
+          </div>
+        </div>
+        <div className="left_container">
+          <div className="nav_container" style={{height: 'calc(100vh - 3rem)'}}>
+            <div>
+              <Link to="/">
+                <img src={logo} className="w-3/4" alt="" />
+              </Link>
+              <ul>{dashboardItem}</ul>
+            </div>
+            <div className="mt-5">
+              <div onClick={() => loginOut()} className="log_btn">
+                <span>Log Out</span>
+                <LuLogOut />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="right_container">
-        <Outlet></Outlet>
+        <div className="right_container" style={{height: 'calc(100vh - 3rem)'}}>
+          <Outlet></Outlet>
+        </div>
       </div>
     </div>
+    
   );
 };
 
