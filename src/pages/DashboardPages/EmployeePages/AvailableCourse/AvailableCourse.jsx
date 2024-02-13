@@ -77,7 +77,7 @@ const AvailableCourse = () => {
                    </div>
                 </div>
             </div>
-
+            <h2 className="text-2xl font-semibold my-5">Trending Course</h2>
             <TrendingCourse/>
         </div>
     );
