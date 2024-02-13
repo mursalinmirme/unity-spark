@@ -14,6 +14,7 @@
     "@ramonak/react-progress-bar": "^5.2.0",
     "@react-icons/all-files": "^4.1.0",
     "@tanstack/react-query": "^5.17.12",
+    "@zegocloud/zego-uikit-prebuilt": "^1.10.2",
     "axios": "^1.6.5",
     "firebase": "^10.7.1",
     "html-react-parser": "^5.1.2",

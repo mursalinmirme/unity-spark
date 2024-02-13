@@ -139,14 +139,8 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "interview-call",
-        element: (
-          <PrivateRouter>
-            <IsCommonAccess>
-              <InterviewCall></InterviewCall>
-            </IsCommonAccess>
-          </PrivateRouter>
-        ),
+        path: "interview-call/:roomId",
+        element: <InterviewCall></InterviewCall>,
       },
 
       {
