@@ -53,6 +53,7 @@ import PaymentManagement from "../pages/DashboardPages/AdminPages/PaymentManagem
 import MyTrainingDetails from "../pages/DashboardPages/EmployeePages/Training/MyTrainingDetails";
 import Interviews from "../pages/DashboardPages/AdminPages/Interviews/Interviews";
 import CourseDetails from "../pages/DashboardPages/CourseDetails/CourseDetails";
+import PaymentDetails from "../pages/DashboardPages/AdminPages/PaymentManagement/PaymentDetails";
 
 const router = createBrowserRouter([
   {
@@ -464,6 +465,16 @@ const router = createBrowserRouter([
           <PrivateRouter>
             <IsAdmin>
               <PaymentManagement></PaymentManagement>
+            </IsAdmin>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "payment-management/payment-details",
+        element: (
+          <PrivateRouter>
+            <IsAdmin>
+              <PaymentDetails></PaymentDetails>
             </IsAdmin>
           </PrivateRouter>
         ),

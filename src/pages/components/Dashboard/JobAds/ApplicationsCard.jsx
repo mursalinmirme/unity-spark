@@ -9,14 +9,13 @@ import { FcInvite } from "react-icons/fc";
 
 const ApplicationsCard = ({
   value,
-  handleSelectApplication,
   handleDelete,
   setApplicationId,
   applicationPreview,
   setStoreInfo,
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  // console.log(value);
+  console.log('lalalalallal',value);
   return (
     <div className="border-2 border-[#D9D9D9] rounded-xl px-2 md:px-5 py-2">
       <div className="flex items-center justify-between">
@@ -52,7 +51,7 @@ const ApplicationsCard = ({
 
           <div onClick={() => setStoreInfo(value)}>
             <button
-              className="rounded-lg p-2 bg-[#433EBE]"
+              className="rounded-lg p-2 bg-accent"
               onClick={() => document.getElementById("my_modal_99").showModal()}
             >
               <FcInvite />
