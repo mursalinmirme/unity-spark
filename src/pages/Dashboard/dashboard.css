@@ -50,19 +50,3 @@
   @apply text-primary invisible transition-all duration-500;
 }
 
-.dashboard_item:hover .hov_arrow {
-  @apply ml-0 visible;
-}
-
-.custom-scroll::-webkit-scrollbar {
-  @apply w-2;
-}
-
-.custom-scroll::-webkit-scrollbar-thumb {
-    border: 1px solid #ccc;
-  @apply rounded-full bg-[#fff]
-}
-
-.custom-scroll::-webkit-scrollbar-thumb:hover {
-  background-color: #ccc;
-}

@@ -473,7 +473,7 @@ const Dashboard = () => {
           </ul>
         </div>
       </div>
-      <div className="left_container overflow-y-auto custom-scroll">
+      <div className="left_container overflow-y-auto">
         <div className="nav_container">
           <div>
             <Link to="/">
