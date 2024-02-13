@@ -51,6 +51,7 @@ import TrainingManagement from "../pages/DashboardPages/AdminPages/TrainingManag
 import AddNewCourse from "../pages/DashboardPages/AdminPages/AddNewCourse/AddNewCourse";
 import PaymentManagement from "../pages/DashboardPages/AdminPages/PaymentManagement/PaymentManagement";
 import CourseDetails from "../pages/DashboardPages/EmployeePages/Training/CourseDetails";
+import Interviews from "../pages/DashboardPages/AdminPages/Interviews/Interviews";
 
 const router = createBrowserRouter([
   {
@@ -136,6 +137,7 @@ const router = createBrowserRouter([
         path: "interview",
         element: <Interview></Interview>,
       },
+
       {
         path: "interview-call",
         element: (
@@ -146,6 +148,18 @@ const router = createBrowserRouter([
           </PrivateRouter>
         ),
       },
+
+      {
+        path: "interviews",
+        element: (
+          <PrivateRouter>
+            <IsCommonAccess>
+              <Interviews></Interviews>
+            </IsCommonAccess>
+          </PrivateRouter>
+        ),
+      },
+
       {
         path: "employeeHome",
         element: (
