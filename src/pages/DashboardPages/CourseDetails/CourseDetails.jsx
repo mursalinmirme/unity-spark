@@ -10,10 +10,13 @@ const CourseDetails = () => {
     const [myarr, setMyarr] = useState([])
 
     const handleForm = e => {
+        const form = e.target
+        console.log(form);
         if(e.key === 'Enter'){
             const newval = {name: value}
             setValue('')
             myarr.push(newval);
+            form.reset()
         }
     }
     
