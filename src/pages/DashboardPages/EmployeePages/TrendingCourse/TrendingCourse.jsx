@@ -23,8 +23,8 @@ const TrendingCourse = () => {
 //    document.getElementById('my_modal_3').showModal()
 //    }
     return (
-   <Swiper slidesPerView={screenSize < 768 ? 1  : (screenSize < 1024 ?  2 : 3 )}
-        spaceBetween={10} navigation={true} modules={[Navigation]} className="mySwiper eventSwiper  my-10">
+   <Swiper  slidesPerView={screenSize < 768 ? 1  : 2}
+        spaceBetween={30} navigation={true} modules={[Navigation]} className="mySwiper courseSwiper  my-10">
         {/* second card */}
             <SwiperSlide>
             <div className="  border-2 border-[#46A3E1] rounded-xl overflow-hidden">
