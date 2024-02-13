@@ -7,7 +7,7 @@
 }
 
 #dashboard .right_container {
-    @apply lg:col-span-3 bg-white rounded-xl p-5 mt-5 lg:mt-0 w-full md:p-5 lg:p-10 overflow-y-scroll;
+    @apply lg:col-span-3 bg-white rounded-xl p-5 mt-5 lg:mt-0 w-full md:p-5 lg:p-10 overflow-y-auto;
 }
 
 #dashboard .left_container .nav_container {

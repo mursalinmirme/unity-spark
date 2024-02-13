@@ -1,8 +1,7 @@
 import ProgressBar from "@ramonak/react-progress-bar";
 import { MdOutlinePlayCircleFilled } from "react-icons/md";
 
-
-const CourseDetails = () => {
+const MyTrainingDetails = () => {
     return (
         <div className="py-10">
             <div className="grid grid-cols-5 gap-5">
@@ -84,4 +83,4 @@ const CourseDetails = () => {
     );
 };
 
-export default CourseDetails;
+export default MyTrainingDetails;

@@ -50,8 +50,9 @@ import Training from "../pages/DashboardPages/EmployeePages/Training/Training";
 import TrainingManagement from "../pages/DashboardPages/AdminPages/TrainingManagement/TrainingManagement";
 import AddNewCourse from "../pages/DashboardPages/AdminPages/AddNewCourse/AddNewCourse";
 import PaymentManagement from "../pages/DashboardPages/AdminPages/PaymentManagement/PaymentManagement";
-import CourseDetails from "../pages/DashboardPages/EmployeePages/Training/CourseDetails";
+import MyTrainingDetails from "../pages/DashboardPages/EmployeePages/Training/MyTrainingDetails";
 import Interviews from "../pages/DashboardPages/AdminPages/Interviews/Interviews";
+import CourseDetails from "../pages/DashboardPages/CourseDetails/CourseDetails";
 
 const router = createBrowserRouter([
   {
@@ -107,7 +108,7 @@ const router = createBrowserRouter([
         path: "course/me",
         element: (
           <PrivateRouter>
-            <CourseDetails></CourseDetails>
+            <MyTrainingDetails></MyTrainingDetails>
           </PrivateRouter>
         ),
       },
