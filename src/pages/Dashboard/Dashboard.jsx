@@ -474,7 +474,7 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="left_container">
-        <div className="nav_container">
+        <div className="nav_container card-normal">
           <div>
             <Link to="/">
               <img src={logo} className="w-3/4" alt="" />
