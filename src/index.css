@@ -395,3 +395,7 @@ h6,
 .react-datepicker-wrapper {
   @apply !block;
 }
+
+.row-border td {
+  @apply border-2 border-[#45A5E1];
+}
