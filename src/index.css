@@ -413,3 +413,9 @@ h6,
   background: #433EBE; /* Set the color of the scrollbar handle */
   border-radius: 5px; /* Set the border radius of the scrollbar handle */
 }
+
+
+
+.new_course .css-art2ul-ValueContainer2 {
+  @apply py-1.5
+}
