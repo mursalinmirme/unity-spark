@@ -2,8 +2,15 @@ import { BiSupport } from "react-icons/bi";
 import { BsClock } from "react-icons/bs";
 import { FaCirclePlay } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa6";
+import useCourses from "../../../hooks/useCourses";
+import { useParams } from "react-router-dom";
 
 const CourseDetails = () => {
+    const [courses] = useCourses()
+    const {id} = useParams()
+    const course = courses?.find(course => course?.id == id)
+    const {title, intro, instructor_name, instructor_image, instructor_bio} = course || {}
+    console.log(course);
 
     return (
         <div className="py-10">
@@ -11,9 +18,9 @@ const CourseDetails = () => {
             <div className="grid grid-cols-3 gap-8 relative">
                 <div className="space-y-5 md:sticky md:top-[100px]">
                     <div className="border rounded-lg">
-                        <iframe width="100%" height="200" className="rounded-t-xl" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameBorder="0" allow="autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>    
+                        <iframe width="100%" height="200" className="rounded-t-xl" src={intro} frameBorder="0" allow="autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>    
                         <div className="p-4 space-y-3">
-                            <h2 className="font-semibold text-xl">Click to open this one and close others</h2>
+                            <h2 className="font-semibold text-xl">{title}</h2>
                             <div className="space-y-1">
                                 <div className="flex items-center gap-2">
                                     <FaCirclePlay className="text-second"></FaCirclePlay>
@@ -33,17 +40,17 @@ const CourseDetails = () => {
                     </div>                
                     <div>
                         <h3 className="text-xl font-semibold">Course Instructor</h3>
-                        <div className="border rounded-lg p-2 flex gap-3 mt-2">
-                            <img src="https://i.ibb.co/vcBNZ2H/founder-1.jpg" className="w-12 h-12 rounded-full" alt="" />
-                            <div>
-                                <h3 className="text-lg font-inter font-medium">Ashraful Islam</h3>
-                                <h4>Junior Web Developer, Bekar Company</h4>
+                        <div className="border rounded-lg p-2 grid grid-cols-5 gap-3 mt-2">
+                            <img src={instructor_image} className="w-12 h-12 rounded-full" alt="" />
+                            <div className="col-span-4">
+                                <h3 className="text-lg font-inter font-medium">{instructor_name}</h3>
+                                <h4>J{instructor_bio}</h4>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="col-span-2 space-y-3">
-                    <h2 className="text-3xl font-semibold leading-normal">Click to open this one and close others Click to open this one and close others</h2>
+                    <h2 className="text-3xl font-semibold leading-normal">{title}</h2>
                     <p className="font-medium font-itner">HTML, CSS, ওয়েবসাইট লেআউট, রেসপন্সিভ ও ইন্ট্যারাক্টিভ ডিজাইনের মাধ্যমে ওয়েব ডিজাইনের জন্য প্রয়োজনীয় স্কিল শেখার পাশাপাশি ওয়েব ডিজাইনার হিসেবে ক্যারিয়ার শুরু করার পরিপূর্ণ গাইডলাইন রয়েছে এই কোর্সে!</p>
                     <h3 className="text-xl font-semibold">What you will learn</h3>
                     <div className="grid grid-cols-2 gap-2.5 border rounded-lg p-5">
@@ -121,7 +128,8 @@ const CourseDetails = () => {
                         </div>
                     </div>
                 </div>
-            </div>            
+            </div>    
+
         </div>
     );
 };
