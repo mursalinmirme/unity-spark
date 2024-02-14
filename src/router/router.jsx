@@ -278,7 +278,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "course/:category",
+        path: "courses/:category",
         element: (
           <PrivateRouter>
             <IsEmployee>
