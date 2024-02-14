@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BsClock } from "react-icons/bs";
 import { FaCirclePlay } from "react-icons/fa6";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -8,8 +8,12 @@ import "./trendingcourse.css"
 import { Navigation } from 'swiper/modules';
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import { AuthContext } from "../../../../Provider/AuthProvider";
 
 const TrendingCourse = () => {
+    const {user} = useContext(AuthContext)
+    console.log(user)
     const axiosPublic = useAxiosPublic()
    const [screenSize, setScreenSize] = useState(window.innerWidth);
    const  {data : courseData = []} = useQuery({
@@ -29,7 +33,27 @@ const TrendingCourse = () => {
           window.removeEventListener('resize', handleResize);
       };
   }, []);
+    const handlePost = (data) =>{
+        
+        const MyCourse = {
+            uniqueID: data?._id,
+            userEmail: user?.email,
+            CourseTitle: data?.title,
+            CourseBanner: data?.image
+        }
+        axiosPublic.post("/my_course" , MyCourse)
+        .then(res =>{
+           if(res?.data){
+            toast.success("Course Added to My Course")
+            console.log(res?.data)
+           }
+        })
+        .catch(error =>{
+            console.log(error.message)
+        })
 
+        
+    }
     return (
    <Swiper  slidesPerView={screenSize < 768 ? 1  : 2}
         spaceBetween={30} navigation={true} modules={[Navigation]} className="mySwiper courseSwiper  my-10">
@@ -51,7 +75,7 @@ const TrendingCourse = () => {
                             
                         </div>
 
-                        <button className="px-6 py-3 bg-[#433EBE] text-white font-semibold text-xl rounded-xl">Enroll Now</button>
+                        <button onClick={() => handlePost(allData)} className="px-6 py-3 bg-[#433EBE] text-white font-semibold text-xl rounded-xl">Enroll Now</button>
                 </div>
               </div>
              </SwiperSlide>)}
