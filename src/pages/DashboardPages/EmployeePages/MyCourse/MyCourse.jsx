@@ -21,7 +21,7 @@ const MyCourse = () => {
          {
                 my_course?.map(info => <div key={info.id} className="border-2 border-[#46A3E1] rounded-xl overflow-hidden h-[500px]">
                     <img src={info?.image} alt="course-img" className="rounded-t-lg w-full overflow-hidden" />
-                    <div className="space-y-5 flex flex-col justify-between  p-4 h-full">
+                    <div className="space-y-5 flex flex-col justify-between p-4 h-full max-h-[270px]">
                        <div>
                        <h1 className="text-2xl font-bold">{info?.title}</h1>
                         <div className="flex items-center justify-start gap-5 mt-4">
