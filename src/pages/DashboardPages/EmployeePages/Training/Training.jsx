@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AvailableCourse from "../AvailableCourse/AvailableCourse";
+import MyCourse from "../MyCourse/MyCourse";
 
 const Training = () => {
     const [isActive, setIsActive] = useState(0);
@@ -36,7 +37,7 @@ const Training = () => {
         ))}
       </div>
       {isActive === 0 && <AvailableCourse/>}
-      {isActive === 1 && "admin er budget nai tai course o nai"}
+      {isActive === 1 && <MyCourse></MyCourse>}
    
         </div>
     );
