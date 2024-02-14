@@ -106,7 +106,7 @@ const router = createBrowserRouter([
         element: <Blogs></Blogs>,
       },
       {
-        path: "course/me",
+        path: "mycourse/:id",
         element: (
           <PrivateRouter>
             <MyTrainingDetails></MyTrainingDetails>
@@ -114,7 +114,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "course/details",
+        path: "course/:id",
         element: (
           <PrivateRouter>
             <CourseDetails></CourseDetails>
@@ -428,7 +428,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "add-new-course",
+        path: "training-management/add-new-course",
         element: (
           <PrivateRouter>
             <IsAdmin>

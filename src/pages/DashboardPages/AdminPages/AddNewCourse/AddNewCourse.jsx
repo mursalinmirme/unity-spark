@@ -136,7 +136,6 @@ const AddNewCourse = () => {
         benefits: benefits,
         modules: modules
       };
-      console.log(courseInfo);
 
       axiosPublic.post("/courses", courseInfo)
       .then(res =>{
@@ -154,15 +153,15 @@ const AddNewCourse = () => {
   }
 
     return (
-      <div className="p-3 new_course">
-        <h1 className="text-2xl font-bold my-3">Add a New Course</h1>
+      <div className="p-3 pt-0 new_course">
+        <h1 className="text-2xl font-bold mb-3">Add a New Course</h1>
 
         {/* form  */}
         
         <div className="border-2 border-[#D9D9D9] p-5 rounded-lg">
           <div>
             <div>
-              <h4 className="mt-4 font-inter font-semibold text-lg">Basic Info</h4>
+              <h4 className="font-inter font-semibold text-lg">Basic Info</h4>
               <div className="border-2 rounded-lg p-4 mt-2">
                 <input type="text" placeholder="Course name" {...register("course_name", { required: true })} />
                 {errors.course_name && <p className="text-red-500">name is required.</p>}
