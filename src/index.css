@@ -419,3 +419,7 @@ h6,
 .new_course .css-art2ul-ValueContainer2 {
   @apply py-1.5
 }
+
+.new_course input {
+  @apply py-2 rounded-lg px-3 !mt-0 border w-full outline-none
+}

@@ -4,7 +4,7 @@ import { BsUpload } from "react-icons/bs";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import toast from "react-hot-toast";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import Select from "react-select";
@@ -16,9 +16,12 @@ const AddNewCourse = () => {
   const [features, setFeatures] = useState([])
   const [benefits, setBenefits] = useState([])
   const [courseCategory, setCourseCategory] = useState('')
+  const featuresRef = useRef(null);
+  const benefitsRef = useRef(null);
   const [modules, setModules] = useState([
     {name: '', video: ''}
   ])
+  console.log(modules.some(module => module.name === '' || module.video === ''));
 
   const categoryArray = [
     { value: "Programming", label: "Programming" },
@@ -36,7 +39,7 @@ const AddNewCourse = () => {
         const newVal = {name: value}
         setValue('')
         features.push(newVal);
-        reset()
+        featuresRef.current.value = ''
     }
   }
 
@@ -46,7 +49,7 @@ const AddNewCourse = () => {
         const newVal = {name: value}
         setValue('')
         benefits.push(newVal);
-        reset()
+        benefitsRef.current.value = ''
     }
   }
 
@@ -77,46 +80,76 @@ const AddNewCourse = () => {
   };
 
   const onSubmit = async (data) => {
-    console.log('form submitted', data);
-    // let skillsArray = [];
-    // data?.skills?.map((skill) => {
-    //   skillsArray.push(skill.label);
-    // });
-    // const bannerImage = { image: data.banner_photo[0] };
-    // const instructorImage = { image: data.instructor_photo[0] };
-    // const certificateImage = { image: data.certificate_photo[0] };
-    // const res = await axios.post(image_Hosting_Api, bannerImage, {
-    //   headers: {
-    //     "content-type": "multipart/form-data",
-    //   },
-    // });
-    // if(res.data.success){
-    //     const courseInfo = {
-    //         title: data?.title,
-    //         tags: data?.tags,
-    //         image: res?.data?.data?.display_url,
-    //         description: data?.description,
-    //         category: skillsArray,
-    //         instructor_name: data?.instructor_name,
-    //         intro: data?.intro,
-    //         instructor_bio: data?.instructor_bio
-            
-    //       };
-    //       console.log(courseInfo);
+    if(!courseCategory) {
+      toast.error('Please provide category')
+      return
+    }
 
-    //       axiosPublic.post("/courses", courseInfo)
-    //       .then(res =>{
-    //       if(res?.data){
-    //         toast.success("Course Added")
-    //         reset()
-    //       }
+    if(features?.length <= 0) {
+      toast.error('Please provide some features')
+      return
+    }
 
-    //       })
-    //       .catch(error => {
-    //         console.log(error.message);
-    //         toast.error(error.message)
-    //       })
-    // }
+    if(benefits?.length <= 0) {
+      toast.error('Please provide some benefits')
+      return
+    }
+
+    if(modules.some(module => module.name === '' || module.video === '')) {
+      toast.error('Please fill the module form')
+      return
+    }
+
+    const bannerImage = { image: data.banner_photo[0] };
+    const instructorImage = { image: data.instructor_photo[0] };
+    const certificateImage = { image: data.certificate_photo[0] };
+
+    const res1 = await axios.post(image_Hosting_Api, bannerImage, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    const res2 = await axios.post(image_Hosting_Api, instructorImage, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+    const res3 = await axios.post(image_Hosting_Api, certificateImage, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+
+    if(res1.data.success && res2.data.success && res3.data.success){
+      console.log('successfull');
+      const courseInfo = {
+        title: data?.course_name,
+        banner_image: res1?.data?.data?.display_url,
+        category: courseCategory?.value,
+        description: data?.description,
+        instructor_name: data?.instructor_name,
+        instructor_image: res2?.data?.data?.display_url,
+        instructor_bio: data?.instructor_name,
+        intro: data?.intro_video,
+        certificate_image: res3?.data?.data?.display_url,
+        features: features,
+        benefits: benefits,
+        modules: modules
+      };
+      console.log(courseInfo);
+
+      axiosPublic.post("/courses", courseInfo)
+      .then(res =>{
+        if(res?.data){
+          toast.success("Course Added")
+          reset()
+        }
+
+      })
+      .catch(error => {
+        toast.error(error.message)
+      })
+    }
     
   }
 
@@ -131,7 +164,7 @@ const AddNewCourse = () => {
             <div>
               <h4 className="mt-4 font-inter font-semibold text-lg">Basic Info</h4>
               <div className="border-2 rounded-lg p-4 mt-2">
-                <input type="text" className="border !mt-0 py-2" placeholder="Course name" {...register("course_name", { required: true })} />
+                <input type="text" placeholder="Course name" {...register("course_name", { required: true })} />
                 {errors.course_name && <p className="text-red-500">name is required.</p>}
                 <div className="grid grid-cols-2 gap-5 mt-5">
                   <label className="w-full !mb-0" htmlFor="user_photo">
@@ -168,8 +201,8 @@ const AddNewCourse = () => {
               <h4 className="mt-4 font-inter font-semibold text-lg">Instructor Info</h4>
               <div className="border-2 rounded-lg p-4 mt-2">
                 <div className="grid grid-cols-2 gap-5">
-                  <input {...register("instructor_name", {required: true})} type="text" className="border !mt-0" placeholder="Instructor name" />
-                  <label className="w-full !mb-0" htmlFor="_photo">
+                  <input {...register("instructor_name", {required: true})} type="text" placeholder="Instructor name" />
+                  <label className="w-full !mb-0" htmlFor="instructor_photo">
                     <div className="bg-primary rounded-md py-3 text-white font-inter text-sm font-medium flex items-center justify-center gap-2 cursor-pointer">
                       <BsUpload />
                       <span> Instructor Photo</span>{" "}
@@ -179,13 +212,15 @@ const AddNewCourse = () => {
                     {...register("instructor_photo", {required: true})}
                     className="hidden"
                     type="file"
-                    id="_photo"
+                    id="instructor_photo"
                   />
                 </div>
                 {errors.instructor_name && <p className="text-red-500">name is required.</p>}
                 {errors.instructor_photo && <p className="text-red-500">photo is required.</p>}
-                <input {...register("instructor_bio", {required: true})} type="text" className="border py-2 mt-5" placeholder="Instructor bio" />
-                {errors.instructor_bio && <p className="text-red-500">bio is required.</p>}
+                <div className="mt-4">
+                  <input {...register("instructor_bio", {required: true})} type="text" placeholder="Instructor bio" />
+                  {errors.instructor_bio && <p className="text-red-500">bio is required.</p>}
+                </div>
               </div>
             </div>
 
@@ -193,7 +228,7 @@ const AddNewCourse = () => {
               <h4 className="mt-4 font-inter font-semibold text-lg">Course Detail Info</h4>
               <div className="border-2 rounded-lg p-4 mt-2 space-y-4">
                 <div className="grid grid-cols-2 gap-5">
-                  <input {...register("intro_video", {required: true})} type="text" className="border py-2 !mt-0" placeholder="Intro video link" />
+                  <input {...register("intro_video", {required: true})} type="text" placeholder="Intro video link" />
                   <label className="w-full !mb-0" htmlFor="certificate_photo">
                       <div className="bg-primary rounded-md py-3 text-white font-inter text-sm font-medium flex items-center justify-center gap-2 cursor-pointer">
                         <BsUpload />
@@ -201,7 +236,7 @@ const AddNewCourse = () => {
                       </div>
                     </label>
                     <input
-                      {...register("photo")}
+                      {...register("certificate_photo")}
                       className="hidden"
                       type="file"
                       id="certificate_photo"
@@ -210,7 +245,7 @@ const AddNewCourse = () => {
                 {errors.intro_video && <p className="text-red-500">intro video is required.</p>}
 
                 {/* Features input */}
-                <div className="border w-full rounded-lg flex flex-wrap py-1 items-center gap-2">
+                <div className="border w-full rounded-lg flex flex-wrap p-1 items-center gap-2">
                     {
                         features && features?.map((arr, idx) => (
                             <div key={idx} className="bg-slate-200 p-1 border border-slate-500 rounded inline-flex gap-1 items-center">
@@ -220,12 +255,12 @@ const AddNewCourse = () => {
                         ))
                     }
                     <div className={`${features?.length > 0 ? 'w-auto' : 'w-full'}`}>
-                        <input type="text" className="w-full rounded-lg outline-none border-0 !mt-0" placeholder="Course features" onChange={e => setValue(e.target.value)} onKeyPress={handleFeatures}/>
+                        <input type="text" className="!border-0" placeholder="Course features" ref={featuresRef} onChange={e => setValue(e.target.value)} onKeyPress={handleFeatures} />
                     </div>
                 </div>
 
                 {/* Benefits input */}
-                <div className="border w-full rounded-lg flex flex-wrap py-1 items-center gap-2">
+                <div className="border w-full rounded-lg flex flex-wrap p-1 items-center gap-2">
                     {
                         benefits && benefits?.map((arr, idx) => (
                             <div key={idx} className="bg-slate-200 p-1 border border-slate-500 rounded inline-flex gap-1 items-center">
@@ -235,13 +270,13 @@ const AddNewCourse = () => {
                         ))
                     }
                     <div className={`${benefits?.length > 0 ? 'w-auto' : 'w-full'}`}>
-                        <input type="text" className="w-full rounded-md outline-none border-0 !mt-0" placeholder="Course benefits" onChange={e => setValue(e.target.value)} onKeyPress={handleBenefits}/>
+                        <input type="text" className="!border-0" placeholder="Course benefits" ref={benefitsRef} onChange={e => setValue(e.target.value)} onKeyPress={handleBenefits}/>
                     </div>
                 </div>
               </div>
             </div>
 
-            {/* <div>
+            <div>
               <div className="mt-4 flex items-center justify-between">
                 <h4 className="font-inter font-semibold text-lg">Course Content</h4>
                 <AiOutlinePlusCircle className="text-2xl text-primary cursor-pointer hover:scale-105" onClick={handleNewModule} />
@@ -250,7 +285,7 @@ const AddNewCourse = () => {
                 {
                   modules && modules?.map((module, idx) => (
                     <div key={idx}>
-                      <h5 className="font-inter font-medium">Module {idx + 1}</h5>
+                      <h5 className="font-inter font-medium mb-1.5">Module {idx + 1}</h5>
                       <div className="grid grid-cols-2 gap-5">
                         <input type="text" className="border" placeholder="Module name" onChange={e => handleModuleName(e, idx)} />
                         <input type="text" className="border py-2" placeholder="Module video link" onChange={e => handleModuleVideo(e, idx)} />
@@ -259,7 +294,7 @@ const AddNewCourse = () => {
                   ))
                 }
               </div>
-            </div> */}
+            </div>
 
             
           </div>
