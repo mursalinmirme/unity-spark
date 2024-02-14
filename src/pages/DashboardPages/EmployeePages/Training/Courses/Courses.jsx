@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useCourses from "../../../../../hooks/useCourses";
 import { FaCirclePlay } from "react-icons/fa6";
 import { BsClock } from "react-icons/bs";
@@ -37,7 +37,7 @@ const Courses = () => {
             {
                 catCourse?.length > 0 ?
                 catCourse?.map(course => (
-                    <div key={course?._id} className="border border-second rounded-xl overflow-hidden h-[430px]">
+                    <Link to={`/course/${course._id}`} key={course?._id} className="border border-second rounded-xl overflow-hidden h-[430px]">
                         <img src={course?.image} alt="course-img" className="rounded-t-lg overflow-hidden h-[150px]" />
                         <div className="font-inter p-4 flex flex-col justify-between" style={{height: 'calc(430px - 150px)'}}>
                             <div className="space-y-3">
@@ -59,11 +59,11 @@ const Courses = () => {
                             </div>
                             <button onClick={() => handlePost(course)} className="px-4 py-2 bg-primary text-white font-semibold text-base rounded-xl">Enroll Now</button>
                         </div>
-                    </div>
+                    </Link>
                 ))
                 :
                 courses?.map(course => (
-                    <div key={course?._id} className="border border-second rounded-xl overflow-hidden h-[430px]">
+                    <Link to={`/course/${course._id}`} key={course?._id} className="border border-second rounded-xl overflow-hidden h-[430px]">
                         <img src={course?.image} alt="course-img" className="rounded-t-lg overflow-hidden h-[150px]" />
                         <div className="font-inter p-4 flex flex-col justify-between" style={{height: 'calc(430px - 150px)'}}>
                             <div className="space-y-3">
@@ -85,7 +85,7 @@ const Courses = () => {
                             </div>
                             <button onClick={() => handlePost(course)} className="px-4 py-2 bg-primary text-white font-semibold text-base rounded-xl">Enroll Now</button>
                         </div>
-                    </div>
+                    </Link>
                 ))
             }
         </div>
