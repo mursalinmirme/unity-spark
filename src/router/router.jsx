@@ -55,6 +55,7 @@ import Interviews from "../pages/DashboardPages/AdminPages/Interviews/Interviews
 import CourseDetails from "../pages/DashboardPages/CourseDetails/CourseDetails";
 import PaymentDetails from "../pages/DashboardPages/AdminPages/PaymentManagement/PaymentDetails";
 
+
 const router = createBrowserRouter([
   {
     path: "",
