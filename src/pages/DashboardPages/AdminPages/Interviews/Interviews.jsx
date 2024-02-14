@@ -4,6 +4,7 @@ import { useState } from "react";
 import { AiOutlineAudio, AiOutlineAudioMuted } from "react-icons/ai";
 import { MdOutlineVideocam, MdOutlineVideocamOff } from "react-icons/md";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import { Link } from "react-router-dom";
 
 const Interviews = () => {
   const [open, setOpen] = useState(false);
@@ -20,8 +21,12 @@ const Interviews = () => {
       return res?.data;
     },
   });
+  // const currentDate = moment().format("D/M/YYYY");
+  const currentDate = moment().format("DD,MMMM,YYYY");
 
-  console.log("checked", allInterviews);
+  console.log("check this time", currentDate.toString());
+
+  // console.log("checked", allInterviews);
 
   return (
     <div>
@@ -109,10 +114,23 @@ const Interviews = () => {
           </div>
           {/**Button */}
           <div className="text-center mt-10">
-            <button className=" btn bg-primary px-7 py-1 text-white rounded-lg hover:bg-primary">
-              Ask to join
-            </button>
-          </div>{" "}
+            {interviews &&
+            new Date(interviews.date).toDateString() ===
+              new Date(currentDate).toDateString() ? (
+              <Link to={`/dashboard/interview-call/${interviews._id}`}>
+                <button className="btn bg-primary px-7 py-1 text-white rounded-lg hover:bg-primary">
+                  Ask to join
+                </button>
+              </Link>
+            ) : (
+              <button
+                disabled
+                className="btn bg-primary px-7 py-1 text-white rounded-lg hover:bg-primary"
+              >
+                Ask to join
+              </button>
+            )}
+          </div>
         </div>
       ))}
     </div>
