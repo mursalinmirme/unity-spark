@@ -56,6 +56,7 @@ import CourseDetails from "../pages/DashboardPages/CourseDetails/CourseDetails";
 import PaymentDetails from "../pages/DashboardPages/AdminPages/PaymentManagement/PaymentDetails";
 import Courses from "../pages/DashboardPages/EmployeePages/Training/Courses/Courses";
 
+
 const router = createBrowserRouter([
   {
     path: "",

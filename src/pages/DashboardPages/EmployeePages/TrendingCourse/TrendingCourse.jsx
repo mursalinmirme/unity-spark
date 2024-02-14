@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BsClock } from "react-icons/bs";
 import { FaCirclePlay } from "react-icons/fa6";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -6,10 +6,24 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import "./trendingcourse.css"
 import { Navigation } from 'swiper/modules';
-import { Link } from "react-router-dom";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import { AuthContext } from "../../../../Provider/AuthProvider";
 
 const TrendingCourse = () => {
+    const {user} = useContext(AuthContext)
+    console.log(user)
+    const axiosPublic = useAxiosPublic()
    const [screenSize, setScreenSize] = useState(window.innerWidth);
+   const  {data : courseData = []} = useQuery({
+        queryKey:["courseData"],
+        queryFn: async () => {
+        const res = await axiosPublic.get('/courses')
+        return res?.data
+        }
+    })
+    console.log(courseData)
     
    useEffect(() => {
       const handleResize = () => {
@@ -20,120 +34,53 @@ const TrendingCourse = () => {
           window.removeEventListener('resize', handleResize);
       };
   }, []);
-//   const handleModalOpen = () => {
-//    document.getElementById('my_modal_3').showModal()
-//    }
+    const handlePost = (data) =>{
+        
+        const MyCourse = {
+            uniqueID: data?._id,
+            userEmail: user?.email,
+            CourseTitle: data?.title,
+            CourseBanner: data?.image
+        }
+        axiosPublic.post("/my_course" , MyCourse)
+        .then(res =>{
+           if(res?.data){
+            toast.success("Course Added to My Course")
+            console.log(res?.data)
+           }
+        })
+        .catch(error =>{
+            console.log(error.message)
+        })
+
+        
+    }
     return (
-        <div>            
-            <h2 className="text-2xl font-semibold my-5">Trending Course</h2>
-            <Swiper  slidesPerView={screenSize < 768 ? 1  : 2} spaceBetween={30} navigation={true} modules={[Navigation]} className="mySwiper courseSwiper">
-                <SwiperSlide>
-                    <Link to="" className="border border-[#46A3E1] rounded-xl overflow-hidden text-left">
-                        <img src="https://i.ibb.co/3RMT44t/excel-live-crash-course-thumbnail.jpg" alt="course-img" className="rounded-t-lg overflow-hidden" />
-                        <div className="space-y-3 p-4">
-                            <h1 className="text-xl font-semibold font-inter">Microsoft Excel: Beginner to Advanced LIVE Crash Course</h1>
-                            <div className="flex items-center justify-start gap-5">
-                                <div className="bg-[#BBDDF4] px-2.5 flex items-center gap-2 rounded-lg py-1">
-                                    <FaCirclePlay className="text-second bg-white rounded-full text-[15px]"></FaCirclePlay>
-                                    <span className="font-semibold text-second text-[15px]">40 Lessons</span>
-                                </div>
-                                <div className="bg-[#BBDDF4] px-2.5 py-1 flex items-center gap-2 rounded-lg">
-                                    <BsClock className="text-second text-[15px]"></BsClock>
-                                    <span className="text-[15px] font-medium text-second">240 Hour</span>
-                                </div>                                
-                            </div>  
-                            <div>
-                                <button className="px-6 py-2 mt-1 bg-primary text-white font-semibold rounded-xl">Enroll Now</button>  
-                            </div>                        
+   <Swiper  slidesPerView={screenSize < 768 ? 1  : 2}
+        spaceBetween={30} navigation={true} modules={[Navigation]} className="mySwiper courseSwiper  my-10">
+        
+           { courseData?.map(allData => <SwiperSlide key={allData._id}>
+                 <div className="  border-2 border-[#46A3E1] rounded-xl overflow-hidden">
+                <img src={allData?.image} alt="course-img" className="rounded-t-lg overflow-hidden" />
+                <div className="space-y-5 p-4">
+                    <h1 className="text-2xl font-bold">{allData?.title}</h1>
+                    <div className="flex items-center justify-start gap-5 mt-4">
+                            <button className="bg-[#BBDDF4] px-2.5  flex items-center gap-2 rounded-lg">
+                               <FaCirclePlay className="text-[#46A3e1] text-lg bg-white rounded-full"></FaCirclePlay>
+                               <h1 className="text-lg font-medium text-[#46A3e1]">40 Lessons</h1>
+                            </button>
+                            <button className="bg-[#BBDDF4] px-2.5 flex items-center gap-2 rounded-lg">
+                               <BsClock className="text-[#46A3e1] text-lg "></BsClock>
+                               <h1 className="text-lg font-medium text-[#46A3e1]">240 Hour</h1>
+                            </button>
+                            
                         </div>
-                    </Link>                    
-                </SwiperSlide>
-                <SwiperSlide>
-                    <Link to="" className="border border-[#46A3E1] rounded-xl overflow-hidden text-left">
-                        <img src="https://i.ibb.co/3RMT44t/excel-live-crash-course-thumbnail.jpg" alt="course-img" className="rounded-t-lg overflow-hidden" />
-                        <div className="space-y-3 p-4">
-                            <h1 className="text-xl font-semibold font-inter">Microsoft Excel: Beginner to Advanced LIVE Crash Course</h1>
-                            <div className="flex items-center justify-start gap-5">
-                                <div className="bg-[#BBDDF4] px-2.5 flex items-center gap-2 rounded-lg py-1">
-                                    <FaCirclePlay className="text-second bg-white rounded-full text-[15px]"></FaCirclePlay>
-                                    <span className="font-semibold text-second text-[15px]">40 Lessons</span>
-                                </div>
-                                <div className="bg-[#BBDDF4] px-2.5 py-1 flex items-center gap-2 rounded-lg">
-                                    <BsClock className="text-second text-[15px]"></BsClock>
-                                    <span className="text-[15px] font-medium text-second">240 Hour</span>
-                                </div>                                
-                            </div>  
-                            <div>
-                                <button className="px-6 py-2 mt-1 bg-primary text-white font-semibold rounded-xl">Enroll Now</button>  
-                            </div>                        
-                        </div>
-                    </Link>                    
-                </SwiperSlide>
-                <SwiperSlide>
-                    <Link to="" className="border border-[#46A3E1] rounded-xl overflow-hidden text-left">
-                        <img src="https://i.ibb.co/3RMT44t/excel-live-crash-course-thumbnail.jpg" alt="course-img" className="rounded-t-lg overflow-hidden" />
-                        <div className="space-y-3 p-4">
-                            <h1 className="text-xl font-semibold font-inter">Microsoft Excel: Beginner to Advanced LIVE Crash Course</h1>
-                            <div className="flex items-center justify-start gap-5">
-                                <div className="bg-[#BBDDF4] px-2.5 flex items-center gap-2 rounded-lg py-1">
-                                    <FaCirclePlay className="text-second bg-white rounded-full text-[15px]"></FaCirclePlay>
-                                    <span className="font-semibold text-second text-[15px]">40 Lessons</span>
-                                </div>
-                                <div className="bg-[#BBDDF4] px-2.5 py-1 flex items-center gap-2 rounded-lg">
-                                    <BsClock className="text-second text-[15px]"></BsClock>
-                                    <span className="text-[15px] font-medium text-second">240 Hour</span>
-                                </div>                                
-                            </div>  
-                            <div>
-                                <button className="px-6 py-2 mt-1 bg-primary text-white font-semibold rounded-xl">Enroll Now</button>  
-                            </div>                        
-                        </div>
-                    </Link>                    
-                </SwiperSlide>
-                <SwiperSlide>
-                    <Link to="" className="border border-[#46A3E1] rounded-xl overflow-hidden text-left">
-                        <img src="https://i.ibb.co/3RMT44t/excel-live-crash-course-thumbnail.jpg" alt="course-img" className="rounded-t-lg overflow-hidden" />
-                        <div className="space-y-3 p-4">
-                            <h1 className="text-xl font-semibold font-inter">Microsoft Excel: Beginner to Advanced LIVE Crash Course</h1>
-                            <div className="flex items-center justify-start gap-5">
-                                <div className="bg-[#BBDDF4] px-2.5 flex items-center gap-2 rounded-lg py-1">
-                                    <FaCirclePlay className="text-second bg-white rounded-full text-[15px]"></FaCirclePlay>
-                                    <span className="font-semibold text-second text-[15px]">40 Lessons</span>
-                                </div>
-                                <div className="bg-[#BBDDF4] px-2.5 py-1 flex items-center gap-2 rounded-lg">
-                                    <BsClock className="text-second text-[15px]"></BsClock>
-                                    <span className="text-[15px] font-medium text-second">240 Hour</span>
-                                </div>                                
-                            </div>  
-                            <div>
-                                <button className="px-6 py-2 mt-1 bg-primary text-white font-semibold rounded-xl">Enroll Now</button>  
-                            </div>                        
-                        </div>
-                    </Link>                    
-                </SwiperSlide>
-                <SwiperSlide>
-                    <Link to="" className="border border-[#46A3E1] rounded-xl overflow-hidden text-left">
-                        <img src="https://i.ibb.co/3RMT44t/excel-live-crash-course-thumbnail.jpg" alt="course-img" className="rounded-t-lg overflow-hidden" />
-                        <div className="space-y-3 p-4">
-                            <h1 className="text-xl font-semibold font-inter">Microsoft Excel: Beginner to Advanced LIVE Crash Course</h1>
-                            <div className="flex items-center justify-start gap-5">
-                                <div className="bg-[#BBDDF4] px-2.5 flex items-center gap-2 rounded-lg py-1">
-                                    <FaCirclePlay className="text-second bg-white rounded-full text-[15px]"></FaCirclePlay>
-                                    <span className="font-semibold text-second text-[15px]">40 Lessons</span>
-                                </div>
-                                <div className="bg-[#BBDDF4] px-2.5 py-1 flex items-center gap-2 rounded-lg">
-                                    <BsClock className="text-second text-[15px]"></BsClock>
-                                    <span className="text-[15px] font-medium text-second">240 Hour</span>
-                                </div>                                
-                            </div>  
-                            <div>
-                                <button className="px-6 py-2 mt-1 bg-primary text-white font-semibold rounded-xl">Enroll Now</button>  
-                            </div>                        
-                        </div>
-                    </Link>                    
-                </SwiperSlide>
-            </Swiper>
-        </div>
+
+                        <button onClick={() => handlePost(allData)} className="px-6 py-3 bg-[#433EBE] text-white font-semibold text-xl rounded-xl">Enroll Now</button>
+                </div>
+              </div>
+             </SwiperSlide>)}
+        </Swiper>
            
        
     );
