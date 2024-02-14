@@ -45,8 +45,8 @@ const ManageApplications = () => {
       return res?.data;
     },
   });
-    // fetch the applications number under the pagination
-    const { data: jobapplicationsNum = [], refetch: refetchTotalApplyNumbs } =
+  // fetch the applications number under the pagination
+  const { data: jobapplicationsNum = [], refetch: refetchTotalApplyNumbs } =
     useQuery({
       queryKey: ["jobapplicationsNums", totalPages, currentPage],
       queryFn: async () => {
@@ -116,24 +116,27 @@ const ManageApplications = () => {
           end: timeEnd,
         };
         console.log("la ki ko ja ji do", sendEmail);
-         axiosPublic.post("/sent-invite-email", sendEmail)
-         .then(response => {
-          axiosPublic
-          .put(`/application-status/${storeInfo?._id}`, { status: "Confirmed" })
-          .then(() => {
-          console.log("Finally result is ", response.data);
-          setSuccessMsg("Invitation email sent successfully.");
-          setIsPosting(false);
+        axiosPublic
+          .post("/sent-invite-email", sendEmail)
+          .then((response) => {
+            axiosPublic
+              .put(`/application-status/${storeInfo?._id}`, {
+                status: "Confirmed",
+              })
+              .then(() => {
+                console.log("Finally result is ", response.data);
+                setSuccessMsg("Invitation email sent successfully.");
+                setIsPosting(false);
+              })
+              .catch((erro) => {
+                setIsPosting(false);
+                setErrorMsg(erro.message);
+              });
           })
-          .catch((erro) => {
+          .catch((error) => {
+            setErrorMsg(error.message);
             setIsPosting(false);
-            setErrorMsg(erro.message);
           });
-         })
-         .catch(error => {
-          setErrorMsg(error.message);
-          setIsPosting(false);
-         })
       })
       .catch((err) => {
         setErrorMsg(err.data);
@@ -143,8 +146,6 @@ const ManageApplications = () => {
   };
 
   console.log("checked222", adminInfo);
-
-
 
   // handle next btn pagination
   const handleRightPagi = () => {
@@ -337,7 +338,9 @@ const ManageApplications = () => {
             <p className="text-red-600 py-2 text-center">{errorMsg}</p>
           )}
           {successMsg && (
-            <p className="text-green-600 font-semibold text-base py-2 text-center">{successMsg}</p>
+            <p className="text-green-600 font-semibold text-base py-2 text-center">
+              {successMsg}
+            </p>
           )}
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="">
@@ -477,7 +480,13 @@ const ManageApplications = () => {
                   </p>
                 )}
               </div>
-              <button className="nbtn w-full mt-7 flex justify-center items-center">{isPosting ? <span className="loading loading-spinner loading-md"></span> : 'Send Invitation'}</button>
+              <button className="nbtn w-full mt-7 flex justify-center items-center">
+                {isPosting ? (
+                  <span className="loading loading-spinner loading-md"></span>
+                ) : (
+                  "Send Invitation"
+                )}
+              </button>
             </div>
           </form>
         </div>
