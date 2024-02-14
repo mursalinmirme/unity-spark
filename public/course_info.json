@@ -1,6 +1,6 @@
 [
     {
-        "id": 1,
+        
         "title":"Microsoft Excel: Beginner to Advanced LIVE Crash Course",
         "category":"Content_writing",
         "image":"https://i.ibb.co/3RMT44t/excel-live-crash-course-thumbnail.jpg",
@@ -39,7 +39,7 @@
         ]
     },
     {
-        "id": 2,
+        
         "title":"Communication Masterclass by Tahsan Khan",
         "category":"Content_writing",
         "image":"https://i.ibb.co/HYT1F7R/communication-masterclass-course-by-tahsan-khan-16x9.jpg",
@@ -77,7 +77,7 @@
         ]
     },
     {
-        "id": 3,
+       
         "title":"Graphic Designing with Photoshop",
         "category":"Graphics_design",
         "image":"https://i.ibb.co/ZXtdTsV/graphic-design-with-photoshop-course-thumbnail-by-sadman-sadik-16x9.jpg",
@@ -115,7 +115,7 @@
         ]
     },
     {
-        "id": 4,
+        
         "title":"Web Design",
         "category":"Programming",
         "image":"https://i.ibb.co/VYBjj1L/Web-Design-course-thumbnail-by-Fahim-Murshed-16x9.jpg",
@@ -155,7 +155,7 @@
         ]
     },
     {
-        "id": 5,
+       
         "title":"Web Design",
         "category":"Programming",
         "image":"https://i.ibb.co/VYBjj1L/Web-Design-course-thumbnail-by-Fahim-Murshed-16x9.jpg",
@@ -195,7 +195,7 @@
         ]
     },
     
-    {   "id": 6,
+    {  
         "title":"Video Editing with Premiere ProVideo Editing with Premiere Pro",
         "category":"Video_editing",
         "image":"https://i.ibb.co/0tdn08X/Video-Editing-with-Premiere-Pro-course-thumbnail-by-James-Prince-Barai-16x9.jpg",
