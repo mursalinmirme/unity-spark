@@ -1,37 +1,41 @@
-.courseSwiper  .swiper {
-    width: 100%;
-    height: 100%;
-  }
-  
-  .courseSwiper  .swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
-  
-    /* Center slide text vertically */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .courseSwiper  .swiper-slide img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  .courseSwiper  .swiper-button-prev,
-  .courseSwiper  .swiper-button-next {
-    @apply text-primary border-2 border-primary top-10 p-5  rounded-full transition-colors;
-  }
-  .courseSwiper  .swiper-button-prev {
-    @apply left-[70%] md:left-[86%] lg:left-[88%]  hover:bg-primary hover:text-white;
-  }
-  .courseSwiper  .swiper-button-next {
-    @apply right-0  hover:bg-primary hover:text-white;
-  }
-  
-  .courseSwiper  .swiper-button-prev::after,
-  .swiper-button-next::after {
-    @apply text-lg;
-  }  
+.courseSwiper .swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.courseSwiper .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.courseSwiper .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.courseSwiper .swiper-button-prev,
+.courseSwiper .swiper-button-next {
+  @apply text-primary border-2 border-primary top-10 p-5  rounded-full transition-colors;
+}
+.courseSwiper .swiper-button-prev {
+  @apply left-[70%] md:left-[86%] lg:left-[88%]  hover:bg-primary hover:text-white;
+}
+.courseSwiper .swiper-button-next {
+  @apply right-0  hover:bg-primary hover:text-white;
+}
+
+.courseSwiper .swiper-button-prev::after,
+.swiper-button-next::after {
+  @apply text-lg;
+}
+
+.courseSwiper .swiper-wrapper {
+  padding: 80px 0px;
+}
