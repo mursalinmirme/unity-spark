@@ -13,13 +13,8 @@ const Interview = () => {
   const [open, setOpen] = useState(false);
   const axiosPublic = useAxiosPublic();
   const [videoOpen, setVideoOpen] = useState(false);
-  const currentDayString = moment().format("dddd");
-  const currentTime = moment().format("h:mm A");
-  //   console.log("check", currentDayString);
   const [userId] = useUserId();
-
   const { user } = useContext(AuthContext);
-
   const { data } = useQuery({
     queryKey: ["interviewsInfo"],
     enabled: !!user?.email,

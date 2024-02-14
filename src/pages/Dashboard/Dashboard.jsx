@@ -445,7 +445,7 @@ const Dashboard = () => {
   );
 
   return (
-    <div className="bg-[#e3e2f5]">
+    <div className="bg-[#f5f5fb]">
       <div id="dashboard">
         <div className="drawer drawer-start lg:hidden">
           <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
