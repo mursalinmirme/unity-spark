@@ -24,6 +24,7 @@ const TrendingCourse = () => {
         }
     })
     console.log(courseData)
+    
    useEffect(() => {
       const handleResize = () => {
           setScreenSize(window.innerWidth);

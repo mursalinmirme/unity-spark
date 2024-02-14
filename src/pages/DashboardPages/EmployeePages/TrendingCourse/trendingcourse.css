@@ -34,9 +34,4 @@
   .courseSwiper  .swiper-button-prev::after,
   .swiper-button-next::after {
     @apply text-lg;
-  }
-  
-  .courseSwiper  .swiper-wrapper {
-    padding: 80px 0px;
-  }
-  
+  }  
