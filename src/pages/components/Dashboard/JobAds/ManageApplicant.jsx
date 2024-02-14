@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowBack, IoIosArrowForward, IoMdTime } from "react-icons/io";
 // import { IoEyeOutline } from "react-icons/io5";
 // import { IoCheckmark } from "react-icons/io5";
 // import { RxCross1 } from "react-icons/rx";
@@ -161,11 +161,10 @@ const ManageApplicant = () => {
       ) : (
         <div className="min-h-[460px] space-y-3 flex justify-center items-center">
           <h4 className="text-xl font-semibold">
-            There has not job applications
+            There has not job applications Yes No Problem
           </h4>
         </div>
       )}
-
       {/* pagination */}
       <div
         className={`mt-10 ${jobapplicantsNum?.total > 6 ? "block" : "hidden"}`}

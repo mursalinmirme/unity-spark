@@ -399,3 +399,27 @@ h6,
 .row-border td {
   @apply border-2 border-[#45A5E1];
 }
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px; /* Set the width of the scrollbar */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #c7c5eb; /* Set the background color of the scrollbar track */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #433ebe; /* Set the color of the scrollbar handle */
+  border-radius: 5px; /* Set the border radius of the scrollbar handle */
+}
+
+.new_course .css-art2ul-ValueContainer2 {
+  @apply py-1.5;
+}
+
+.new_course input {
+  @apply py-2 rounded-lg px-3 !mt-0 border w-full outline-none;
+}

@@ -1,43 +1,40 @@
+import { useQuery } from "@tanstack/react-query";
 import moment from "moment";
-import { useCallback, useContext, useState } from "react";
+import { useState } from "react";
 import { AiOutlineAudio, AiOutlineAudioMuted } from "react-icons/ai";
 import { MdOutlineVideocam, MdOutlineVideocamOff } from "react-icons/md";
-import { Link, Navigate } from "react-router-dom";
-import useUserId from "../../../../hooks/useUserId";
-import { AuthContext } from "../../../../Provider/AuthProvider";
-import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
-import image from "../../../../assets/images/waiting-interview.png";
 
-const Interview = () => {
+const Interviews = () => {
   const [open, setOpen] = useState(false);
   const axiosPublic = useAxiosPublic();
   const [videoOpen, setVideoOpen] = useState(false);
-  const [userId] = useUserId();
-  const { user } = useContext(AuthContext);
-  const { data } = useQuery({
-    queryKey: ["interviewsInfo"],
-    enabled: !!user?.email,
+  const currentDayString = moment().format("dddd");
+  const currentTime = moment().format("h:mm A");
+  //   console.log("check", currentDayString);
+
+  const { data: allInterviews } = useQuery({
+    queryKey: ["allInterviews"],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/get-user-interview/${user?.email}`);
-      return res.data;
+      const res = await axiosPublic.get("/get-interview");
+      return res?.data;
     },
   });
 
-  // console.log("checked", data, user?.email);
+  console.log("checked", allInterviews);
 
   return (
     <div>
-      {data?.candidateEmail ? (
-        <div>
+      {allInterviews?.map((interviews) => (
+        <div key={interviews?._id} className="border my-10 py-7">
           {" "}
           {/**Home Part */}
           <div className="space-y-3">
             <h3 className="text-[20px] font-inter font-semibold text-center">
-              {data?.date}
+              {interviews?.date}
             </h3>
             <p className="text-[20px] font-inter font-semibold text-center">
-              Time : {data?.startTime} - {data?.endTime}
+              Time : {interviews?.startTime} - {interviews?.endTime}
             </p>
           </div>
           {/**Body Part Candidate and Interviewer */}
@@ -50,16 +47,14 @@ const Interview = () => {
               <div className="text-center mx-auto mt-5 pb-4">
                 <img
                   className="w-16 h-16 rounded-full mx-auto"
-                  src={data?.candidateImage}
+                  src={interviews?.candidateImage}
                   alt=""
                 />
                 <h2 className="text-[20px] font-semibold font-inter mt-1">
-                  {" "}
-                  {data?.candidateName}
+                  {interviews?.candidateName}
                 </h2>
                 <p className="font-inter font-semibold">
-                  {" "}
-                  {data?.candidateEmail}{" "}
+                  {interviews?.candidateEmail}
                 </p>
               </div>
             </div>
@@ -71,16 +66,14 @@ const Interview = () => {
               <div className="text-center mx-auto mt-5 pb-4">
                 <img
                   className="w-16 h-16 rounded-full mx-auto"
-                  src={data?.interViewerImage}
+                  src={interviews?.interViewerImage}
                   alt=""
                 />
                 <h2 className="text-[20px] font-semibold font-inter mt-1">
-                  {" "}
-                  {data?.interViewerName}
+                  {interviews?.interViewerName}
                 </h2>
                 <p className="font-inter font-semibold">
-                  {" "}
-                  {data?.interViewerEmail}{" "}
+                  {interviews?.interViewerEmail}
                 </p>
               </div>
             </div>
@@ -116,28 +109,14 @@ const Interview = () => {
           </div>
           {/**Button */}
           <div className="text-center mt-10">
-            <div className="text-center">
-              <Link to={`/dashboard/interview-call/${userId?._id}`}>
-                <button className="btn bg-primary px-7 py-1 text-white rounded-lg hover:bg-primary">
-                  Ask to join
-                </button>
-              </Link>
-            </div>
+            <button className=" btn bg-primary px-7 py-1 text-white rounded-lg hover:bg-primary">
+              Ask to join
+            </button>
           </div>{" "}
         </div>
-      ) : (
-        <div className="flex flex-col items-center justify-center h-[70vh] ">
-          <div className=" text-center mx-auto w-72 opacity-75">
-            <img src={image} alt="" />
-          </div>
-          <p className=" text-lg pt-5 font-bold font-inter text-gray-600">
-            {" "}
-            You have not been selected for an interview yet{" "}
-          </p>
-        </div>
-      )}
+      ))}
     </div>
   );
 };
 
-export default Interview;
+export default Interviews;

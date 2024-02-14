@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AvailableCourse from "../AvailableCourse/AvailableCourse";
 
 const Training = () => {
     const [isActive, setIsActive] = useState(0);
@@ -8,11 +9,11 @@ const Training = () => {
   };
   const tabs = [
     {
-      name: "My Course",
+      name: "Available Course",
       id: 0,
     },
     {
-      name: "Available Course",
+      name: "My Course",
       id: 1,
     },
     
@@ -34,7 +35,7 @@ const Training = () => {
           </a>
         ))}
       </div>
-      {isActive === 0 && "taka nai course kini nai "}
+      {isActive === 0 && <AvailableCourse/>}
       {isActive === 1 && "admin er budget nai tai course o nai"}
    
         </div>
