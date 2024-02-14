@@ -56,7 +56,9 @@ const TrendingCourse = () => {
         
     }
     return (
-   <Swiper  slidesPerView={screenSize < 768 ? 1  : 2}
+        <>
+        <h1 className="my-5 font-semibold text-xl">Trending Course</h1>
+         <Swiper  slidesPerView={screenSize < 768 ? 1  : 2}
         spaceBetween={30} navigation={true} modules={[Navigation]} className="mySwiper courseSwiper  my-10">
         
            { courseData?.map(allData => <SwiperSlide key={allData._id}>
@@ -81,6 +83,8 @@ const TrendingCourse = () => {
               </div>
              </SwiperSlide>)}
         </Swiper>
+        </>
+  
            
        
     );
