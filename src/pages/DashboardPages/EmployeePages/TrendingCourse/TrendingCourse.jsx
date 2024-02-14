@@ -7,23 +7,15 @@ import 'swiper/css/navigation';
 import "./trendingcourse.css"
 import { Navigation } from 'swiper/modules';
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
-import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../../../Provider/AuthProvider";
+import useCourses from "../../../../hooks/useCourses";
 
 const TrendingCourse = () => {
     const {user} = useContext(AuthContext)
-    console.log(user)
     const axiosPublic = useAxiosPublic()
-   const [screenSize, setScreenSize] = useState(window.innerWidth);
-   const  {data : courseData = []} = useQuery({
-        queryKey:["courseData"],
-        queryFn: async () => {
-        const res = await axiosPublic.get('/courses')
-        return res?.data
-        }
-    })
-    console.log(courseData)
+    const [screenSize, setScreenSize] = useState(window.innerWidth);
+    const [courses] = useCourses()
     
    useEffect(() => {
       const handleResize = () => {
@@ -34,6 +26,7 @@ const TrendingCourse = () => {
           window.removeEventListener('resize', handleResize);
       };
   }, []);
+  
     const handlePost = (data) =>{
         
         const MyCourse = {
@@ -59,7 +52,7 @@ const TrendingCourse = () => {
    <Swiper  slidesPerView={screenSize < 768 ? 1  : 2}
         spaceBetween={30} navigation={true} modules={[Navigation]} className="mySwiper courseSwiper  my-10">
         
-           { courseData?.map(allData => <SwiperSlide key={allData._id}>
+           { courses?.map(allData => <SwiperSlide key={allData._id}>
                  <div className="  border-2 border-[#46A3E1] rounded-xl overflow-hidden">
                 <img src={allData?.image} alt="course-img" className="rounded-t-lg overflow-hidden" />
                 <div className="space-y-5 p-4">

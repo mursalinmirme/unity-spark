@@ -16,12 +16,12 @@ const AddNewCourse = () => {
   const [features, setFeatures] = useState([])
   const [benefits, setBenefits] = useState([])
   const [courseCategory, setCourseCategory] = useState('')
+  const [courseSlag, setCourseSlag] = useState('')
   const featuresRef = useRef(null);
   const benefitsRef = useRef(null);
   const [modules, setModules] = useState([
     {name: '', video: ''}
   ])
-  console.log(modules.some(module => module.name === '' || module.video === ''));
 
   const categoryArray = [
     { value: "Programming", label: "Programming" },
@@ -31,6 +31,16 @@ const AddNewCourse = () => {
     { value: "Video Editing", label: "Video Editing" },
     { value: "UI/UX Design", label: "UI/UX Design" },
     { value: "Content Writing", label: "Content Writing" },
+  ];
+
+  const categorySlags = [
+    { value: "programming", label: "programming" },
+    { value: "draphics-design", label: "draphics-design" },
+    { value: "marketing", label: "marketing" },
+    { value: "seo-&-smm", label: "seo-&-smm" },
+    { value: "video-editing", label: "video-editing" },
+    { value: "ui-ux-design", label: "ui-ux-design" },
+    { value: "content-writing", label: "content-writing" },
   ];
 
   const handleFeatures = e => {
@@ -85,6 +95,11 @@ const AddNewCourse = () => {
       return
     }
 
+    if(!courseSlag) {
+      toast.error('Please provide slag')
+      return
+    }
+
     if(features?.length <= 0) {
       toast.error('Please provide some features')
       return
@@ -126,6 +141,7 @@ const AddNewCourse = () => {
         title: data?.course_name,
         banner_image: res1?.data?.data?.display_url,
         category: courseCategory?.value,
+        slag: courseSlag?.value,
         description: data?.description,
         instructor_name: data?.instructor_name,
         instructor_image: res2?.data?.data?.display_url,
@@ -164,9 +180,8 @@ const AddNewCourse = () => {
             <div>
               <h4 className="font-inter font-semibold text-lg">Basic Info</h4>
               <div className="border-2 rounded-lg p-4 mt-2">
-                <input type="text" placeholder="Course name" {...register("course_name", { required: true })} />
-                {errors.course_name && <p className="text-red-500">name is required.</p>}
                 <div className="grid grid-cols-2 gap-5 mt-5">
+                  <input type="text" placeholder="Course name" {...register("course_name", { required: true })} />
                   <label className="w-full !mb-0" htmlFor="user_photo">
                     <div className="bg-primary rounded-md py-3 text-white font-inter text-sm font-medium flex items-center justify-center gap-2 cursor-pointer">
                       <BsUpload />
@@ -179,14 +194,23 @@ const AddNewCourse = () => {
                     type="file"
                     id="user_photo"
                   />
+                </div>
+                {errors.course_name && <p className="text-red-500">name is required.</p>}
+                {errors.banner_photo && <p className="text-red-500">photo is required.</p>}
+                <div className="grid grid-cols-2 gap-5 mt-5">                  
                   <Select
                       options={categoryArray}
                       placeholder="Course category"
                       value={courseCategory}
                       onChange={setCourseCategory}
                   />
+                  <Select
+                      options={categorySlags}
+                      placeholder="Course slag"
+                      value={courseSlag}
+                      onChange={setCourseSlag}
+                  />
                 </div>                  
-                {errors.banner_photo && <p className="text-red-500">photo is required.</p>}
                 <textarea
                   {...register("description", {required: true})}
                   rows={3}
