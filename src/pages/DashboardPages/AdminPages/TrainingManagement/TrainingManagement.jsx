@@ -12,7 +12,7 @@ const TrainingManagement = () => {
         <div>
             <div className="flex items-center justify-between">
                 <h2 className="text-2xl font-inter font-semibold">Manage Your Courses</h2>
-                <Link to="/" className="flex gap-2 items-center py-2 px-3 border-2 border-primary rounded-lg text-sm font-inter font-semibold text-primary transition-all hover:text-white hover:bg-primary duration-500">
+                <Link to="/dashboard/training-management/add-new-course" className="flex gap-2 items-center py-2 px-3 border-2 border-primary rounded-lg text-sm font-inter font-semibold text-primary transition-all hover:text-white hover:bg-primary duration-500">
                     <span>Add New</span>
                     <FaPlus />
                 </Link>

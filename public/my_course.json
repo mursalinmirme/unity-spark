@@ -1,0 +1,46 @@
+[
+    {
+        "id": 5,
+        "title":"Web Design",
+        "category":"Programming",
+        "image":"https://i.ibb.co/VYBjj1L/Web-Design-course-thumbnail-by-Fahim-Murshed-16x9.jpg",
+        
+        "certificate":"https://i.ibb.co/RY23h3D/updated3-Certificate-Web-Design.jpg",
+        "course_content":[
+            {"title":"Introduction for Web development",
+            "link":"https://www.youtube.com/embed/SX5pkj_qsmo"},
+            {"title":"Setup VS Code",
+            "link":"https://www.youtube.com/embed/SX5pkj_qsmo"},
+            {"title":"Learn HTML",
+            "link":"https://www.youtube.com/embed/SX5pkj_qsmo"},
+            {"title":"Learn CSS",
+            "link":"https://www.youtube.com/embed/SX5pkj_qsmo"},
+            {"title":"Responsive Website",
+            "link":"https://www.youtube.com/embed/SX5pkj_qsmo"},
+            {"title":"Deploy & Course Summary",
+            "link":"https://www.youtube.com/embed/SX5pkj_qsmo"}
+        ]
+    },
+    
+    {   "id": 6,
+        "title":"Video Editing with Premiere ProVideo Editing with Premiere Pro",
+        "category":"Video_editing",
+        "image":"https://i.ibb.co/0tdn08X/Video-Editing-with-Premiere-Pro-course-thumbnail-by-James-Prince-Barai-16x9.jpg",
+        
+        "certificate":"https://i.ibb.co/RY23h3D/updated3-Certificate-Web-Design.jpg",
+        "course_content":[
+            {"title":"Introduction to Premium Pro",
+            "link":"https://www.youtube.com/embed/PHLCeVyNlCs"},
+            {"title":"Premium Pro Tools",
+            "link":"https://www.youtube.com/embed/PHLCeVyNlCs"},
+            {"title":"What is TimeLine",
+            "link":"https://www.youtube.com/embed/PHLCeVyNlCs"},
+            {"title":"Premium Pro Layer",
+            "link":"https://www.youtube.com/embed/PHLCeVyNlCs"},
+            {"title":"Color Grading in Premium Pro",
+            "link":"https://www.youtube.com/embed/PHLCeVyNlCs"},
+            {"title":"Course Summary",
+            "link":"https://www.youtube.com/embed/PHLCeVyNlCs"}
+        ]
+    }
+]

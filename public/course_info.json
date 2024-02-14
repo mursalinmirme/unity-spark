@@ -32,7 +32,7 @@
             "link":"https://www.youtube.com/embed/oLvUf5TQgIU"},
             {"title":"Use Excel With Ai",
             "link":"https://www.youtube.com/embed/oLvUf5TQgIU"},
-            {"title":"5 Important Rules of Exel",
+            {"title":"5 Important Rules of Excel",
             "link":"https://www.youtube.com/embed/oLvUf5TQgIU"},
             {"title":"Course Summary",
             "link":"https://www.youtube.com/embed/oLvUf5TQgIU"}
@@ -194,46 +194,8 @@
             "link":"https://www.youtube.com/embed/SX5pkj_qsmo"}
         ]
     },
-    {
-        "title":"Web Design",
-        "category":"Programming",
-        "image":"https://i.ibb.co/VYBjj1L/Web-Design-course-thumbnail-by-Fahim-Murshed-16x9.jpg",
-        "description":"HTML, CSS, ওয়েবসাইট লেআউট, রেসপন্সিভ ও ইন্ট্যারাক্টিভ ডিজাইনের মাধ্যমে ওয়েব ডিজাইনের জন্য প্রয়োজনীয় স্কিল শেখার পাশাপাশি ওয়েব ডিজাইনার হিসেবে ক্যারিয়ার শুরু করার পরিপূর্ণ গাইডলাইন রয়েছে এই কোর্সে!",
-        "instructor_name":"Fahim Murshed",
-        "intro":"https://www.youtube.com/embed/SX5pkj_qsmo",
-        "instructor_bio":"Full-Stack Web Developer & Product Designer; Co-Founder & CEO, Symbl;Entrepreneur ; Product Designer ; AI Enthusiast",
-        "instructor_img":"https://i.ibb.co/64ZcT59/rsz-web-designing-instructor-dp.jpg",
-        "course_feature":[
-            {"name":"ওয়েবসাইট তৈরির প্ল্যানিং, ডিজাইনিং এবং কোডিং সম্পর্কে সঠিক ধারণা"},
-            {"name":"ওয়েবসাইটের লেআউট ও টেমপ্লেট তৈরি করা"},
-            {"name":"রেসপন্সিভ ও ইন্টার‍্যাক্টিভ ওয়েবসাইট ডিজাইন"},
-            {"name":"ওয়েব হোস্টিং-এর প্রক্রিয়া"},
-            {"name":"ইউজার ফ্রেন্ডলি ওয়েবসাইট তৈরির পদ্ধতি"}
-          
-
-        ],
-        "benefits":[
-            {"name":"যারা HTML & CSS ল্যাংগুয়েজ, ডোমেইন হোস্টিং, ওয়েবসাইট রেসপন্সিভ ও ইন্টার‍্যাক্টিভ বানানোর উপায় থেকে শুরু করে একজন ভালো ওয়েব ডিজাইনার হয়ে ওঠার খুঁটিনাটি জানতে চান"},
-            {"name":"যারা ফ্রিল্যান্সিং করার জন্য বা দেশীয় ইন্ডাস্ট্রিতে চাকরির জন্য ওয়েব ডিজাইন শিখতে চান"},
-            {"name":"যারা নিজের ওয়েবসাইট তৈরির জন্য ইন্ডাস্ট্রির বেস্ট প্র্যাকটিস জানতে চান"}
-        ],
-        "certificate":"https://i.ibb.co/RY23h3D/updated3-Certificate-Web-Design.jpg",
-        "course_content":[
-            {"title":"Introduction for Web development",
-            "link":"https://www.youtube.com/embed/SX5pkj_qsmo"},
-            {"title":"Setup VS Code",
-            "link":"https://www.youtube.com/embed/SX5pkj_qsmo"},
-            {"title":"Learn HTML",
-            "link":"https://www.youtube.com/embed/SX5pkj_qsmo"},
-            {"title":"Learn CSS",
-            "link":"https://www.youtube.com/embed/SX5pkj_qsmo"},
-            {"title":"Responsive Website",
-            "link":"https://www.youtube.com/embed/SX5pkj_qsmo"},
-            {"title":"Deploy & Course Summary",
-            "link":"https://www.youtube.com/embed/SX5pkj_qsmo"}
-        ]
-    },
-    {
+    
+    {   "id": 6,
         "title":"Video Editing with Premiere ProVideo Editing with Premiere Pro",
         "category":"Video_editing",
         "image":"https://i.ibb.co/0tdn08X/Video-Editing-with-Premiere-Pro-course-thumbnail-by-James-Prince-Barai-16x9.jpg",
