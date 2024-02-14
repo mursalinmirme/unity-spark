@@ -54,6 +54,7 @@ import MyTrainingDetails from "../pages/DashboardPages/EmployeePages/Training/My
 import Interviews from "../pages/DashboardPages/AdminPages/Interviews/Interviews";
 import CourseDetails from "../pages/DashboardPages/CourseDetails/CourseDetails";
 import PaymentDetails from "../pages/DashboardPages/AdminPages/PaymentManagement/PaymentDetails";
+import Courses from "../pages/DashboardPages/EmployeePages/Training/Courses/Courses";
 
 const router = createBrowserRouter([
   {
@@ -271,6 +272,16 @@ const router = createBrowserRouter([
           <PrivateRouter>
             <IsEmployee>
               <AddReview></AddReview>
+            </IsEmployee>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "course/:category",
+        element: (
+          <PrivateRouter>
+            <IsEmployee>
+              <Courses></Courses>
             </IsEmployee>
           </PrivateRouter>
         ),

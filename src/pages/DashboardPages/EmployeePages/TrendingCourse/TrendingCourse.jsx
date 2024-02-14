@@ -6,6 +6,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import "./trendingcourse.css"
 import { Navigation } from 'swiper/modules';
+import { Link } from "react-router-dom";
 
 const TrendingCourse = () => {
    const [screenSize, setScreenSize] = useState(window.innerWidth);
@@ -23,100 +24,116 @@ const TrendingCourse = () => {
 //    document.getElementById('my_modal_3').showModal()
 //    }
     return (
-   <Swiper  slidesPerView={screenSize < 768 ? 1  : 2}
-        spaceBetween={30} navigation={true} modules={[Navigation]} className="mySwiper courseSwiper  my-10">
-        {/* second card */}
-            <SwiperSlide>
-            <div className="  border-2 border-[#46A3E1] rounded-xl overflow-hidden">
-                <img src="https://i.ibb.co/3RMT44t/excel-live-crash-course-thumbnail.jpg" alt="course-img" className="rounded-t-lg overflow-hidden" />
-                <div className="space-y-5 p-4">
-                    <h1 className="text-2xl font-bold">Microsoft Excel: Beginner to Advanced LIVE Crash Course</h1>
-                    <div className="flex items-center justify-start gap-5 mt-4">
-                            <button className="bg-[#BBDDF4] px-2.5  flex items-center gap-2 rounded-lg">
-                               <FaCirclePlay className="text-[#46A3e1] text-lg bg-white rounded-full"></FaCirclePlay>
-                               <h1 className="text-lg font-medium text-[#46A3e1]">40 Lessons</h1>
-                            </button>
-                            <button className="bg-[#BBDDF4] px-2.5 flex items-center gap-2 rounded-lg">
-                               <BsClock className="text-[#46A3e1] text-lg "></BsClock>
-                               <h1 className="text-lg font-medium text-[#46A3e1]">240 Hour</h1>
-                            </button>
-                            
+        <div>            
+            <h2 className="text-2xl font-semibold my-5">Trending Course</h2>
+            <Swiper  slidesPerView={screenSize < 768 ? 1  : 2} spaceBetween={30} navigation={true} modules={[Navigation]} className="mySwiper courseSwiper">
+                <SwiperSlide>
+                    <Link to="" className="border border-[#46A3E1] rounded-xl overflow-hidden text-left">
+                        <img src="https://i.ibb.co/3RMT44t/excel-live-crash-course-thumbnail.jpg" alt="course-img" className="rounded-t-lg overflow-hidden" />
+                        <div className="space-y-3 p-4">
+                            <h1 className="text-xl font-semibold font-inter">Microsoft Excel: Beginner to Advanced LIVE Crash Course</h1>
+                            <div className="flex items-center justify-start gap-5">
+                                <div className="bg-[#BBDDF4] px-2.5 flex items-center gap-2 rounded-lg py-1">
+                                    <FaCirclePlay className="text-second bg-white rounded-full text-[15px]"></FaCirclePlay>
+                                    <span className="font-semibold text-second text-[15px]">40 Lessons</span>
+                                </div>
+                                <div className="bg-[#BBDDF4] px-2.5 py-1 flex items-center gap-2 rounded-lg">
+                                    <BsClock className="text-second text-[15px]"></BsClock>
+                                    <span className="text-[15px] font-medium text-second">240 Hour</span>
+                                </div>                                
+                            </div>  
+                            <div>
+                                <button className="px-6 py-2 mt-1 bg-primary text-white font-semibold rounded-xl">Enroll Now</button>  
+                            </div>                        
                         </div>
-
-                        <button className="px-6 py-3 bg-[#433EBE] text-white font-semibold text-xl rounded-xl">Enroll Now</button>
-                </div>
-              </div>
-             
-            </SwiperSlide>
-            <SwiperSlide>
-            <div className="  border-2 border-[#46A3E1] rounded-xl overflow-hidden">
-                <img src="https://i.ibb.co/3RMT44t/excel-live-crash-course-thumbnail.jpg" alt="course-img" className="rounded-t-lg w-96 overflow-hidden" />
-                <div className="space-y-5 p-4">
-                    <h1 className="text-2xl font-bold">Microsoft Excel: Beginner to Advanced LIVE Crash Course</h1>
-                    <div className="flex items-center justify-start gap-5 mt-4">
-                            <button className="bg-[#BBDDF4] px-2.5  flex items-center gap-2 rounded-lg">
-                               <FaCirclePlay className="text-[#46A3e1] text-lg bg-white rounded-full"></FaCirclePlay>
-                               <h1 className="text-lg font-medium text-[#46A3e1]">40 Lessons</h1>
-                            </button>
-                            <button className="bg-[#BBDDF4] px-2.5 flex items-center gap-2 rounded-lg">
-                               <BsClock className="text-[#46A3e1] text-lg "></BsClock>
-                               <h1 className="text-lg font-medium text-[#46A3e1]">240 Hour</h1>
-                            </button>
-                            
+                    </Link>                    
+                </SwiperSlide>
+                <SwiperSlide>
+                    <Link to="" className="border border-[#46A3E1] rounded-xl overflow-hidden text-left">
+                        <img src="https://i.ibb.co/3RMT44t/excel-live-crash-course-thumbnail.jpg" alt="course-img" className="rounded-t-lg overflow-hidden" />
+                        <div className="space-y-3 p-4">
+                            <h1 className="text-xl font-semibold font-inter">Microsoft Excel: Beginner to Advanced LIVE Crash Course</h1>
+                            <div className="flex items-center justify-start gap-5">
+                                <div className="bg-[#BBDDF4] px-2.5 flex items-center gap-2 rounded-lg py-1">
+                                    <FaCirclePlay className="text-second bg-white rounded-full text-[15px]"></FaCirclePlay>
+                                    <span className="font-semibold text-second text-[15px]">40 Lessons</span>
+                                </div>
+                                <div className="bg-[#BBDDF4] px-2.5 py-1 flex items-center gap-2 rounded-lg">
+                                    <BsClock className="text-second text-[15px]"></BsClock>
+                                    <span className="text-[15px] font-medium text-second">240 Hour</span>
+                                </div>                                
+                            </div>  
+                            <div>
+                                <button className="px-6 py-2 mt-1 bg-primary text-white font-semibold rounded-xl">Enroll Now</button>  
+                            </div>                        
                         </div>
-
-                        <button className="px-6 py-3 bg-[#433EBE] text-white font-semibold text-xl rounded-xl">Enroll Now</button>
-                </div>
-              </div>
-             
-            </SwiperSlide>
-            <SwiperSlide>
-            <div className="  border-2 border-[#46A3E1] rounded-xl overflow-hidden">
-                <img src="https://i.ibb.co/3RMT44t/excel-live-crash-course-thumbnail.jpg" alt="course-img" className="rounded-t-lg w-96 overflow-hidden" />
-                <div className="space-y-5 p-4">
-                    <h1 className="text-2xl font-bold">Microsoft Excel: Beginner to Advanced LIVE Crash Course</h1>
-                    <div className="flex items-center justify-start gap-5 mt-4">
-                            <button className="bg-[#BBDDF4] px-2.5  flex items-center gap-2 rounded-lg">
-                               <FaCirclePlay className="text-[#46A3e1] text-lg bg-white rounded-full"></FaCirclePlay>
-                               <h1 className="text-lg font-medium text-[#46A3e1]">40 Lessons</h1>
-                            </button>
-                            <button className="bg-[#BBDDF4] px-2.5 flex items-center gap-2 rounded-lg">
-                               <BsClock className="text-[#46A3e1] text-lg "></BsClock>
-                               <h1 className="text-lg font-medium text-[#46A3e1]">240 Hour</h1>
-                            </button>
-                            
+                    </Link>                    
+                </SwiperSlide>
+                <SwiperSlide>
+                    <Link to="" className="border border-[#46A3E1] rounded-xl overflow-hidden text-left">
+                        <img src="https://i.ibb.co/3RMT44t/excel-live-crash-course-thumbnail.jpg" alt="course-img" className="rounded-t-lg overflow-hidden" />
+                        <div className="space-y-3 p-4">
+                            <h1 className="text-xl font-semibold font-inter">Microsoft Excel: Beginner to Advanced LIVE Crash Course</h1>
+                            <div className="flex items-center justify-start gap-5">
+                                <div className="bg-[#BBDDF4] px-2.5 flex items-center gap-2 rounded-lg py-1">
+                                    <FaCirclePlay className="text-second bg-white rounded-full text-[15px]"></FaCirclePlay>
+                                    <span className="font-semibold text-second text-[15px]">40 Lessons</span>
+                                </div>
+                                <div className="bg-[#BBDDF4] px-2.5 py-1 flex items-center gap-2 rounded-lg">
+                                    <BsClock className="text-second text-[15px]"></BsClock>
+                                    <span className="text-[15px] font-medium text-second">240 Hour</span>
+                                </div>                                
+                            </div>  
+                            <div>
+                                <button className="px-6 py-2 mt-1 bg-primary text-white font-semibold rounded-xl">Enroll Now</button>  
+                            </div>                        
                         </div>
-
-                        <button className="px-6 py-3 bg-[#433EBE] text-white font-semibold text-xl rounded-xl">Enroll Now</button>
-                </div>
-              </div>
-             
-            </SwiperSlide>
-            <SwiperSlide>
-            <div className="  border-2 border-[#46A3E1] rounded-xl overflow-hidden">
-                <img src="https://i.ibb.co/3RMT44t/excel-live-crash-course-thumbnail.jpg" alt="course-img" className="rounded-t-lg w-96 overflow-hidden" />
-                <div className="space-y-5 p-4">
-                    <h1 className="text-2xl font-bold">Microsoft Excel: Beginner to Advanced LIVE Crash Course</h1>
-                    <div className="flex items-center justify-start gap-5 mt-4">
-                            <button className="bg-[#BBDDF4] px-2.5  flex items-center gap-2 rounded-lg">
-                               <FaCirclePlay className="text-[#46A3e1] text-lg bg-white rounded-full"></FaCirclePlay>
-                               <h1 className="text-lg font-medium text-[#46A3e1]">40 Lessons</h1>
-                            </button>
-                            <button className="bg-[#BBDDF4] px-2.5 flex items-center gap-2 rounded-lg">
-                               <BsClock className="text-[#46A3e1] text-lg "></BsClock>
-                               <h1 className="text-lg font-medium text-[#46A3e1]">240 Hour</h1>
-                            </button>
-                            
+                    </Link>                    
+                </SwiperSlide>
+                <SwiperSlide>
+                    <Link to="" className="border border-[#46A3E1] rounded-xl overflow-hidden text-left">
+                        <img src="https://i.ibb.co/3RMT44t/excel-live-crash-course-thumbnail.jpg" alt="course-img" className="rounded-t-lg overflow-hidden" />
+                        <div className="space-y-3 p-4">
+                            <h1 className="text-xl font-semibold font-inter">Microsoft Excel: Beginner to Advanced LIVE Crash Course</h1>
+                            <div className="flex items-center justify-start gap-5">
+                                <div className="bg-[#BBDDF4] px-2.5 flex items-center gap-2 rounded-lg py-1">
+                                    <FaCirclePlay className="text-second bg-white rounded-full text-[15px]"></FaCirclePlay>
+                                    <span className="font-semibold text-second text-[15px]">40 Lessons</span>
+                                </div>
+                                <div className="bg-[#BBDDF4] px-2.5 py-1 flex items-center gap-2 rounded-lg">
+                                    <BsClock className="text-second text-[15px]"></BsClock>
+                                    <span className="text-[15px] font-medium text-second">240 Hour</span>
+                                </div>                                
+                            </div>  
+                            <div>
+                                <button className="px-6 py-2 mt-1 bg-primary text-white font-semibold rounded-xl">Enroll Now</button>  
+                            </div>                        
                         </div>
-
-                        <button className="px-6 py-3 bg-[#433EBE] text-white font-semibold text-xl rounded-xl">Enroll Now</button>
-                </div>
-              </div>
-             
-            </SwiperSlide>
-             
-              {/* second card */}
-        </Swiper>
+                    </Link>                    
+                </SwiperSlide>
+                <SwiperSlide>
+                    <Link to="" className="border border-[#46A3E1] rounded-xl overflow-hidden text-left">
+                        <img src="https://i.ibb.co/3RMT44t/excel-live-crash-course-thumbnail.jpg" alt="course-img" className="rounded-t-lg overflow-hidden" />
+                        <div className="space-y-3 p-4">
+                            <h1 className="text-xl font-semibold font-inter">Microsoft Excel: Beginner to Advanced LIVE Crash Course</h1>
+                            <div className="flex items-center justify-start gap-5">
+                                <div className="bg-[#BBDDF4] px-2.5 flex items-center gap-2 rounded-lg py-1">
+                                    <FaCirclePlay className="text-second bg-white rounded-full text-[15px]"></FaCirclePlay>
+                                    <span className="font-semibold text-second text-[15px]">40 Lessons</span>
+                                </div>
+                                <div className="bg-[#BBDDF4] px-2.5 py-1 flex items-center gap-2 rounded-lg">
+                                    <BsClock className="text-second text-[15px]"></BsClock>
+                                    <span className="text-[15px] font-medium text-second">240 Hour</span>
+                                </div>                                
+                            </div>  
+                            <div>
+                                <button className="px-6 py-2 mt-1 bg-primary text-white font-semibold rounded-xl">Enroll Now</button>  
+                            </div>                        
+                        </div>
+                    </Link>                    
+                </SwiperSlide>
+            </Swiper>
+        </div>
            
        
     );
