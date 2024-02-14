@@ -1,45 +1,13 @@
-import { useState } from "react";
 import { BiSupport } from "react-icons/bi";
 import { BsClock } from "react-icons/bs";
 import { FaCirclePlay } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa6";
-import { RxCross2 } from "react-icons/rx";
 
 const CourseDetails = () => {
-    const [value, setValue] = useState('hello')
-    const [myarr, setMyarr] = useState([])
-
-    const handleForm = e => {
-        const form = e.target
-        console.log(form);
-        if(e.key === 'Enter'){
-            const newval = {name: value}
-            setValue('')
-            myarr.push(newval);
-            form.reset()
-        }
-    }
-    
-    const handleRemove = (idx) => {
-        const updateArray = myarr?.filter((arr, index) => idx !== index)
-        setMyarr(updateArray)
-    }
 
     return (
         <div className="py-10">
-            <div className="my-10 border px-2 border-primary w-full rounded-lg flex flex-wrap py-2 items-center gap-2">
-                {
-                    myarr && myarr?.map((arr, idx) => (
-                        <div key={idx} className="bg-slate-200 p-1 border border-slate-500 rounded inline-flex gap-1 items-center">
-                            <span className="text-sm">{arr.name}</span>
-                            <RxCross2 className="text-sm cursor-pointer" onClick={() => handleRemove(idx)} />
-                        </div>
-                    ))
-                }
-                <div className={`${myarr?.length > 0 ? 'w-auto' : 'w-full'}`}>
-                    <input type="text" className="w-full rounded-lg py-2 outline-none" placeholder="hello" onChange={e => setValue(e.target.value)} onKeyPress={handleForm}/>
-                </div>
-            </div>
+            
             <div className="grid grid-cols-3 gap-8 relative">
                 <div className="space-y-5 md:sticky md:top-[100px]">
                     <div className="border rounded-lg">
