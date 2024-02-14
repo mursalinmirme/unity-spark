@@ -396,7 +396,9 @@ h6,
   @apply !block;
 }
 
-
+.row-border td {
+  @apply border-2 border-[#45A5E1];
+}
 
 /* SCROLLBAR */
 ::-webkit-scrollbar {
@@ -410,16 +412,14 @@ h6,
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #433EBE; /* Set the color of the scrollbar handle */
+  background: #433ebe; /* Set the color of the scrollbar handle */
   border-radius: 5px; /* Set the border radius of the scrollbar handle */
 }
 
-
-
 .new_course .css-art2ul-ValueContainer2 {
-  @apply py-1.5
+  @apply py-1.5;
 }
 
 .new_course input {
-  @apply py-2 rounded-lg px-3 !mt-0 border w-full outline-none
+  @apply py-2 rounded-lg px-3 !mt-0 border w-full outline-none;
 }
