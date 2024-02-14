@@ -37,7 +37,7 @@ const PaymentDetails = () => {
           <h1 className="text-3xl mb-2">Payment Detials</h1>
           <p> Complete your payment by providing your details</p>
         </div>
-        <div className="rounded-xl max-w-[800px] mx-auto flex-1 shadow-xl bg-white bg-opacity-40  border border-opacity-30 border-r-0 border-b-0 backdrop-filter backdrop-blur-sm relative z-2 p-4 md:p-8 text-black">
+        <div className="rounded-xl max-w-[650px] mx-auto flex-1 shadow-xl bg-white bg-opacity-40  border border-opacity-30 border-r-0 border-b-0 backdrop-filter backdrop-blur-sm relative z-2 p-4 md:p-8 text-black">
           <h1 className="font-bold text-lg">Total Amount : $5000</h1>
           <div>
             <div className="form-control my-5">
@@ -47,7 +47,7 @@ const PaymentDetails = () => {
                   onClick={() => setIsChecked(!isChecked)}
                   className="checkbox border-2 [--chkbg:theme(colors.primary)]"
                 />
-                <span className="font-semibold">
+                <span className="font-semibold text-sm">
                   Save your payment info for next time
                 </span>
               </label>
@@ -75,7 +75,7 @@ const PaymentDetails = () => {
                   </div>
 
                   <div>
-                    <h1 className="font-inter text-[18px] font-semibold mb-1">
+                    <h1 className="font-inter text-[18px] font-semibold mb-2">
                       Phone
                     </h1>
                     <PhoneInput
