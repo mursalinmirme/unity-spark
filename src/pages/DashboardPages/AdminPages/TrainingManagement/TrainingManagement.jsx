@@ -51,6 +51,10 @@ const TrainingManagement = () => {
                                     <button onClick={() => handleDeleteCourse(course?._id)} className="bg-[#DD3333] rounded-lg p-2 ">
                                         <RiDeleteBin6Line className="text-lg text-white"></RiDeleteBin6Line>
                                     </button>
+
+                                    <button className="bg-[#DD3333] rounded-lg p-2">
+                                      update
+                                    </button>
                                     
                                 </div>
                               
