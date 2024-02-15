@@ -1,4 +1,4 @@
-import ProgressBar from "@ramonak/react-progress-bar";
+// import ProgressBar from "@ramonak/react-progress-bar";
 import { useEffect, useState } from "react";
 import { MdOutlinePlayCircleFilled } from "react-icons/md";
 import useMyCourses from "../../../../hooks/useMyCourses";
@@ -18,13 +18,13 @@ const MyTrainingDetails = () => {
     return (
         <div className="py-10">
             <div className="grid grid-cols-5 gap-5">
-                <div className="col-span-3">
+                <div className="col-span-5 lg:col-span-3">
                     <iframe width="100%" height="420" className="rounded-xl" src={currentModule?.link} frameBorder="0" allow="autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <h2 className="mt-5 font-semibold text-2xl">
                         {currentModule?.title}
                     </h2>
                 </div>
-                <div className="col-span-2">
+                <div className="col-span-5 lg:col-span-2">
                     <div className="border-2 rounded-xl space-y-5 p-3 bg-[#ececf8]">
                         {/* <div className="bg-white p-4 rounded-lg">
                             <h2 className="font-semibold text-base mb-2">Your Progress</h2>
