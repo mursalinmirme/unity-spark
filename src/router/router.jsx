@@ -57,6 +57,7 @@ import PrivateRouter from "../privateRouter.jsx/PrivateRouter";
 import InterviewsDetails from "../pages/DashboardPages/AdminPages/Interviews/interviewsDetails";
 import Courses from "../pages/DashboardPages/EmployeePages/Training/Courses/Courses";
 import Payment from "../pages/DashboardPages/AdminPages/PaymentManagement/Payment";
+import CourseUpdate from "../pages/DashboardPages/AdminPages/TrainingManagement/CourseUpdate";
 
 const router = createBrowserRouter([
   {
@@ -456,6 +457,16 @@ const router = createBrowserRouter([
           <PrivateRouter>
             <IsAdmin>
               <AddNewCourse></AddNewCourse>
+            </IsAdmin>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "update-course/:id",
+        element: (
+          <PrivateRouter>
+            <IsAdmin>
+              <CourseUpdate></CourseUpdate>
             </IsAdmin>
           </PrivateRouter>
         ),
