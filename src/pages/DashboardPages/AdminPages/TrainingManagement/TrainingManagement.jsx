@@ -10,7 +10,7 @@ import { GrView } from "react-icons/gr";
 
 const TrainingManagement = () => {
     const axiosPublic = useAxiosPublic()
-    const [courses , refetch] = useCourses()
+    const [courses , , refetch] = useCourses()
     
     const handleDeleteCourse = (id) => {
         Swal.fire({
@@ -22,7 +22,7 @@ const TrainingManagement = () => {
             confirmButtonText: "Yes, delete it!",
         }).then((result) => {
         if (result.isConfirmed) {
-            axiosPublic.delete(`/job-ads/${id}`).then((res) => {
+            axiosPublic.delete(`/courses/${id}`).then((res) => {
             console.log(res.data);
             toast.success("Successfully deleted");
             refetch();
