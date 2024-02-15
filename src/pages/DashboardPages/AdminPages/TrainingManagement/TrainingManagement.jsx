@@ -1,11 +1,35 @@
-import { BsClock } from "react-icons/bs";
-import { FaCirclePlay, FaPlus } from "react-icons/fa6";
+import { FaPlus } from "react-icons/fa6";
 import useCourses from "../../../../hooks/useCourses";
 import { Link } from "react-router-dom";
-
+import { RiDeleteBin6Line } from "react-icons/ri";
+import Swal from "sweetalert2";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import toast from "react-hot-toast";
+import { FiEdit2, FiTrash } from "react-icons/fi";
+import { GrView } from "react-icons/gr";
 
 const TrainingManagement = () => {
-    const [courses] = useCourses()
+    const axiosPublic = useAxiosPublic()
+    const [courses , refetch] = useCourses()
+    
+    const handleDeleteCourse = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+        if (result.isConfirmed) {
+            axiosPublic.delete(`/job-ads/${id}`).then((res) => {
+            console.log(res.data);
+            toast.success("Successfully deleted");
+            refetch();
+            });
+        }
+        });
+    };
 
     return (
         <div>
@@ -16,30 +40,38 @@ const TrainingManagement = () => {
                     <FaPlus />
                 </Link>
             </div>
-            <div className="grid grid-cols-2 gap-8 mt-5">
-                {
-                    courses && courses?.map((course, idx) => (
-                        <Link to={`/course/${course.id}`} key={idx} className="border-2 border-[#46A3E1] rounded-xl overflow-hidden">
-                            <img src="https://i.ibb.co/3RMT44t/excel-live-crash-course-thumbnail.jpg" alt="course-img" className="rounded-t-lg w-full overflow-hidden" />
-                            <div className="space-y-5 p-4">
-                                <h1 className="text-2xl font-bold">Microsoft Excel: Beginner to Advanced LIVE Crash Course</h1>
-                                <div className="flex items-center justify-start gap-5 mt-4">
-                                    <div className="bg-[#BBDDF4] px-2.5  flex items-center gap-2 rounded-lg">
-                                        <FaCirclePlay className="text-[#46A3e1] text-lg bg-white rounded-full"></FaCirclePlay>
-                                        <h1 className="text-lg font-medium text-[#46A3e1]">40 Lessons</h1>
-                                    </div>
-                                    <div className="bg-[#BBDDF4] px-2.5 flex items-center gap-2 rounded-lg">
-                                        <BsClock className="text-[#46A3e1] text-lg "></BsClock>
-                                        <h1 className="text-lg font-medium text-[#46A3e1]">240 Hour</h1>
-                                    </div>
-                                    
-                                </div>
-                                <button className="px-6 py-3 bg-[#433EBE] text-white font-semibold text-xl rounded-xl">Enroll Now</button>
-                            </div>
-                        </Link>
-                    ))
-                }
-            </div>
+            <table className="table border mt-8 ">
+                <thead className="bg-second text-white text-[18px] rounded-md">
+                    <tr>
+                    <th>SL</th>
+                    <th>Title</th>
+                    <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody className="mt-20">
+                    {courses?.map((course, idx) => (
+                    <tr key={idx}>
+                        <td className="text-left">
+                            <h3 className="text-lg font-semibold">{idx + 1}</h3>
+                        </td>
+                        <td className="text-left">
+                            <h2 className="font-inter text-xl font-semibold">{course?.title}</h2>
+                        </td>
+                        <td className="text-left flex items-center gap-3">
+                            <Link to={`/course/${course?._id}`}>
+                                <GrView className="text-3xl border-2 p-1 rounded-xl text-primary border-primary hover:bg-primary cursor-pointer hover:text-white transition-all" />
+                            </Link>   
+                            <Link to={`/dashboard/update-course/${course?._id}`}>
+                                <FiEdit2 className="text-3xl border-2 p-1 rounded-xl text-primary border-primary hover:bg-primary cursor-pointer hover:text-white transition-all" />
+                            </Link>                          
+                            
+                            <FiTrash onClick={() => handleDeleteCourse(course?._id)} className="text-3xl border-2 p-1 rounded-xl text-red-500 border-red-500 hover:bg-red-500 cursor-pointer hover:text-white transition-all" />
+                        </td>
+                    </tr>
+                    ))}
+                </tbody>
+            </table>
+            
         </div>
     );
 };

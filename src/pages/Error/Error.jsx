@@ -7,7 +7,7 @@ const Error = () => {
             <img src={errorImage} />
             <div className='text-center'>
                 <Link to="/">
-                    <button className="button">Back to Home</button>     
+                    <button className="nbtn">Back to Home</button>     
                 </Link>           
             </div>
         </div>
