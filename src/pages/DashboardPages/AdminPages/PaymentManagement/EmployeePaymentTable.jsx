@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 
 const EmployeePaymentTable = ({ employee }) => {
   const navigate = useNavigate();
-  const handleNavigate = (id, salary) => {
+  const handleNavigate = (id, salary, email) => {
     const salaryInfo = {
       id,
       salary,
+      email,
     };
     navigate("/dashboard/payment-management/payment", { state: salaryInfo });
   };
@@ -20,10 +21,12 @@ const EmployeePaymentTable = ({ employee }) => {
           onClick={() =>
             handleNavigate(
               employee?._id,
-              employee?.salary ? employee?.salary : 5000
+              employee?.salary ? employee?.salary : 5000,
+              employee?.email
             )
           }
-          className="bg-[#433EBE] text-white px-4 rounded-2xl py-1">
+          className="bg-[#433EBE] text-white px-4 rounded-2xl py-1"
+        >
           Pay
         </button>
         {/* /dashboard/payment-management/payment */}
