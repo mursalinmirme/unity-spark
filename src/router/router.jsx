@@ -486,11 +486,11 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "payment-management/payment-details",
+        path: "payment-management/payment",
         element: (
           <PrivateRouter>
             <IsAdmin>
-              <PaymentDetails></PaymentDetails>
+              <Payment></Payment>
             </IsAdmin>
           </PrivateRouter>
         ),
