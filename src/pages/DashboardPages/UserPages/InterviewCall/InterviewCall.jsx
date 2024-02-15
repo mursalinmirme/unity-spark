@@ -10,29 +10,33 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useContext } from "react";
 import { AuthContext } from "../../../../Provider/AuthProvider";
+import useUserId from "../../../../hooks/useUserId";
 
 const InterviewCall = () => {
-  const { roomId } = useParams();
+  const { interviwId } = useParams();
+  const [userId] = useUserId();
   const axiosPublic = useAxiosPublic();
   const {user} = useContext(AuthContext)
-  const { data:interviewerPersons } = useQuery({
+  const { data:interviewerPersons, isFetching } = useQuery({
     queryKey: ["interviewPersons"],
-    enabled: !!user?.email,
     queryFn: async () => {
-      const res = await axiosPublic.get(`/get-user-interview/${user?.email}`);
+      const res = await axiosPublic.get(`/get-user-interview/${interviwId}`);
       return res.data;
     },
   });
-
+  console.log("my user id is", userId);
+  if(isFetching){
+    return <div>Loading...</div>
+  }
   const myMeeting = async (element) => {
     const appID = 1454166134;
     const serverSecret = "923792b6b7e4b3ddbd3d11c5a518e74b";
     const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
       appID,
       serverSecret,
-      roomId,
+      interviwId,
       Date.now().toString(),
-      interviewerPersons?.candidateName
+      user?.displayName
     );
     const ze = ZegoUIKitPrebuilt.create(kitToken);
     ze.joinRoom({
@@ -43,13 +47,14 @@ const InterviewCall = () => {
       },
       showScreenSharingButton: true,
     });
+    
   };
 
   console.log("check 444", myMeeting);
 
   return (
     <div className="">
-      <div className="grid grid-cols-5 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
         <div className="border p-3 shadow-md rounded-2xl relative">
           <img
             className="w-16 h-16 border rounded-full mx-auto"
@@ -59,9 +64,9 @@ const InterviewCall = () => {
           <h3 className="text-center mt-3 font-semibold text-lg">
             {interviewerPersons?.candidateName}
           </h3>
-          <div className="absolute top-2 left-2 border p-0.5  rounded-full border-primary">
+          {/* <div className="absolute top-2 left-2 border p-0.5  rounded-full border-primary">
             <AiOutlineAudioMuted className="text-2xl text-primary"></AiOutlineAudioMuted>
-          </div>
+          </div> */}
         </div>
         <div className="border p-3 shadow-md rounded-2xl relative">
           <img
@@ -72,9 +77,9 @@ const InterviewCall = () => {
           <h3 className="text-center mt-3 font-semibold text-lg">
           {interviewerPersons?.interViewerName}
           </h3>
-          <div className="absolute top-2 left-2 border p-0.5  rounded-full border-primary">
+          {/* <div className="absolute top-2 left-2 border p-0.5  rounded-full border-primary">
             <AiOutlineAudioMuted className="text-2xl text-primary"></AiOutlineAudioMuted>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="mt-7 relative">

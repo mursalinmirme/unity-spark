@@ -19,7 +19,7 @@ const Interview = () => {
     queryKey: ["interviewsInfo"],
     enabled: !!user?.email,
     queryFn: async () => {
-      const res = await axiosPublic.get(`/get-user-interview/${user?.email}`);
+      const res = await axiosPublic.get(`/user-interview/${user?.email}`);
       return res.data;
     },
   });
@@ -86,19 +86,20 @@ const Interview = () => {
             </div>
           </div>
           {/**Bottom part */}
-          <div className="mt-10 text-center flex justify-center items-center gap-5">
+          <div className="mt-10 text-center flex flex-col md:flex-row justify-center items-center gap-5">
             <span className="font-inter font-semibold text-[20px]">
               Check Your Connections
             </span>
             {/** Audio Icons */}
+            <div className="flex gap-5">
             <div
               className="cursor-pointer w-10 h-10 rounded-full border border-primary flex items-center justify-center"
               onClick={() => setOpen(!open)}
             >
               {open ? (
-                <AiOutlineAudio className="text-2xl text-primary" />
-              ) : (
                 <AiOutlineAudioMuted className="text-2xl text-primary" />
+              ) : (
+                <AiOutlineAudio className="text-2xl text-primary" />
               )}
             </div>
 
@@ -108,16 +109,17 @@ const Interview = () => {
               onClick={() => setVideoOpen(!videoOpen)}
             >
               {videoOpen ? (
-                <MdOutlineVideocam className="text-2xl text-primary" />
-              ) : (
                 <MdOutlineVideocamOff className="text-2xl text-primary" />
+              ) : (
+                <MdOutlineVideocam className="text-2xl text-primary" />
               )}
+            </div>
             </div>
           </div>
           {/**Button */}
           <div className="text-center mt-10">
             <div className="text-center">
-              <Link to={`/dashboard/interview-call/${userId?._id}`}>
+              <Link to={`/dashboard/interview-call/${data?._id}`}>
                 <button className="btn bg-primary px-7 py-1 text-white rounded-lg hover:bg-primary">
                   Ask to join
                 </button>

@@ -4,13 +4,36 @@ import { FaCirclePlay } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa6";
 import useCourses from "../../../hooks/useCourses";
 import { useParams } from "react-router-dom";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { AuthContext } from "../../../Provider/AuthProvider";
+import { useContext } from "react";
+import toast from "react-hot-toast";
 
 const CourseDetails = () => {
+    const axiosPublic = useAxiosPublic()
+    const {user} = useContext(AuthContext)
     const [courses] = useCourses()
     const {id} = useParams()
-    const course = courses?.find(course => course?.id == id)
+    const course = courses?.find(course => course?._id == id)
     const {title, intro, instructor_name, instructor_image, instructor_bio, description, course_feature, benefits} = course || {}
-    console.log(course);
+
+    const handlePost = (data) =>{        
+        const MyCourse = {
+            uniqueID: data?._id,
+            userEmail: user?.email,
+            CourseTitle: data?.title,
+            CourseBanner: data?.image
+        }
+        axiosPublic.post("/my_course" , MyCourse)
+        .then(res =>{
+           if(res?.data){
+            toast.success("Course Added to My Course")
+           }
+        })
+        .catch(error =>{
+            console.log(error.message)
+        })        
+    }
 
     return (
         <div className="py-10">
@@ -35,7 +58,7 @@ const CourseDetails = () => {
                                     <h6 className="font-medium">Support from Senior Developer</h6>
                                 </div>
                             </div>
-                            <button className="bg-primary text-white font-inter font-semibold rounded-lg px-4 py-2 transition-all hover:scale-105">Enroll Now</button>                    
+                            <button onClick={() => handlePost(course)} className="bg-primary text-white font-inter font-semibold rounded-lg px-4 py-2 transition-all hover:scale-105">Enroll Now</button>                    
                         </div>            
                     </div>                
                     <div>
@@ -44,7 +67,7 @@ const CourseDetails = () => {
                             <img src={instructor_image} className="w-12 h-12 rounded-full" alt="" />
                             <div className="col-span-4">
                                 <h3 className="text-lg font-inter font-medium">{instructor_name}</h3>
-                                <h4>J{instructor_bio}</h4>
+                                <h4>{instructor_bio}</h4>
                             </div>
                         </div>
                     </div>

@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import useAxiosPublic from "./useAxiosPublic";
 
 const useCourses = () => {
-    const { data: courses, isPending } = useQuery({
-        queryKey: ["my_courses"],
+    const axiosPublic = useAxiosPublic()
+    const { data: courses = [], isPending } = useQuery({
+        queryKey: ["courseData"],
         queryFn: async () => {
-          const res = await axios.get("/course_info.json");
+          const res = await axiosPublic.get("/courses");
           return res.data;
         },
     });

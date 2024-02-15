@@ -2,22 +2,41 @@ import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../mainLayout/MainLayout";
 import Signin from "../pages/Authentication/signin/Signin";
 import Signup from "../pages/Authentication/signup/Signup";
+import Blogs from "../pages/Blogs/Blogs";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import AddNewCourse from "../pages/DashboardPages/AdminPages/AddNewCourse/AddNewCourse";
 import AllUsers from "../pages/DashboardPages/AdminPages/AllUsers/AllUsers";
+import AdminBlogDetails from "../pages/DashboardPages/AdminPages/BlogRequests/AdminBlogDetails";
+import BlogRequests from "../pages/DashboardPages/AdminPages/BlogRequests/BlogRequests";
 import Employee from "../pages/DashboardPages/AdminPages/Employees/Employee";
+import Interviews from "../pages/DashboardPages/AdminPages/Interviews/Interviews";
 import JobAds from "../pages/DashboardPages/AdminPages/JobAds/JobAds";
 import LeaveRequests from "../pages/DashboardPages/AdminPages/ManageLeave/LeaveRequests";
+import PaymentDetails from "../pages/DashboardPages/AdminPages/PaymentManagement/PaymentDetails";
+import PaymentManagement from "../pages/DashboardPages/AdminPages/PaymentManagement/PaymentManagement";
 import Recruiment from "../pages/DashboardPages/AdminPages/Recruiment/Recruiment";
 import AddReview from "../pages/DashboardPages/AdminPages/Reviews/AddReview";
 import Reviews from "../pages/DashboardPages/AdminPages/Reviews/Reviews";
+import TrainingManagement from "../pages/DashboardPages/AdminPages/TrainingManagement/TrainingManagement";
+import BlogDetails from "../pages/DashboardPages/BlogDetails/BlogDetails";
+import CourseDetails from "../pages/DashboardPages/CourseDetails/CourseDetails";
 import DashboardHome from "../pages/DashboardPages/DashboardHome/DashboardHome";
+import EditBlogs from "../pages/DashboardPages/EmployeePages/EditBlogs/EditBlogs";
+import AddBlogs from "../pages/DashboardPages/EmployeePages/EmployeeHome/AddBlogs/AddBlogs";
+import EmployeeHome from "../pages/DashboardPages/EmployeePages/EmployeeHome/EmployeeHome";
+import MyBlogs from "../pages/DashboardPages/EmployeePages/MyBlogs/MyBlogs";
 import MyProfile from "../pages/DashboardPages/EmployeePages/MyProfile/MyProfile";
+import MyTrainingDetails from "../pages/DashboardPages/EmployeePages/Training/MyTrainingDetails";
+import Training from "../pages/DashboardPages/EmployeePages/Training/Training";
 import LeaveManagement from "../pages/DashboardPages/LeaveManagement/LeaveManagement";
 import LeaveRequestForm from "../pages/DashboardPages/LeaveManagement/LeaveRequestForm";
 import ManageEvents from "../pages/DashboardPages/ManageEvents/ManageEvents";
 import MySaveJob from "../pages/DashboardPages/MySaveJob/MySaveJob";
 import AddNewTask from "../pages/DashboardPages/TaskManagement/AddNewTask";
 import TaskManagement from "../pages/DashboardPages/TaskManagement/TaskManagement";
+import Interview from "../pages/DashboardPages/UserPages/Interview/Interview";
+import InterviewCall from "../pages/DashboardPages/UserPages/InterviewCall/InterviewCall";
+import MyApplications from "../pages/DashboardPages/UserPages/Myapplications/MyApplications";
 import UserProfile from "../pages/DashboardPages/UserProfile/UserProfile";
 import UserProfileEdit from "../pages/DashboardPages/UserProfile/UserProfileEdit";
 import Communication from "../pages/DashboardPages/communication/Communication";
@@ -35,26 +54,8 @@ import IsAdmin from "../privateRouter.jsx/IsAdmin";
 import IsCommonAccess from "../privateRouter.jsx/IsCommonAccess";
 import IsEmployee from "../privateRouter.jsx/IsEmployee";
 import PrivateRouter from "../privateRouter.jsx/PrivateRouter";
-import Blogs from "../pages/Blogs/Blogs";
-import AdminBlogDetails from "../pages/DashboardPages/AdminPages/BlogRequests/AdminBlogDetails";
-import BlogRequests from "../pages/DashboardPages/AdminPages/BlogRequests/BlogRequests";
-import BlogDetails from "../pages/DashboardPages/BlogDetails/BlogDetails";
-import EditBlogs from "../pages/DashboardPages/EmployeePages/EditBlogs/EditBlogs";
-import AddBlogs from "../pages/DashboardPages/EmployeePages/EmployeeHome/AddBlogs/AddBlogs";
-import EmployeeHome from "../pages/DashboardPages/EmployeePages/EmployeeHome/EmployeeHome";
-import MyBlogs from "../pages/DashboardPages/EmployeePages/MyBlogs/MyBlogs";
-import Interview from "../pages/DashboardPages/UserPages/Interview/Interview";
-import InterviewCall from "../pages/DashboardPages/UserPages/InterviewCall/InterviewCall";
-import MyApplications from "../pages/DashboardPages/UserPages/Myapplications/MyApplications";
-import Training from "../pages/DashboardPages/EmployeePages/Training/Training";
-import TrainingManagement from "../pages/DashboardPages/AdminPages/TrainingManagement/TrainingManagement";
-import AddNewCourse from "../pages/DashboardPages/AdminPages/AddNewCourse/AddNewCourse";
-import PaymentManagement from "../pages/DashboardPages/AdminPages/PaymentManagement/PaymentManagement";
-import MyTrainingDetails from "../pages/DashboardPages/EmployeePages/Training/MyTrainingDetails";
-import Interviews from "../pages/DashboardPages/AdminPages/Interviews/Interviews";
-import CourseDetails from "../pages/DashboardPages/CourseDetails/CourseDetails";
-
-import Payment from "../pages/DashboardPages/AdminPages/PaymentManagement/Payment";
+import InterviewsDetails from "../pages/DashboardPages/AdminPages/Interviews/interviewsDetails";
+import Courses from "../pages/DashboardPages/EmployeePages/Training/Courses/Courses";
 
 const router = createBrowserRouter([
   {
@@ -150,7 +151,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "interview-call/:roomId",
+        path: "interview-call/:interviwId",
         element: <InterviewCall></InterviewCall>,
       },
 
@@ -161,6 +162,16 @@ const router = createBrowserRouter([
             <IsCommonAccess>
               <Interviews></Interviews>
             </IsCommonAccess>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "interview-details/:id",
+        element: (
+          <PrivateRouter>
+            <IsAdmin>
+              <InterviewsDetails></InterviewsDetails>
+            </IsAdmin>
           </PrivateRouter>
         ),
       },
@@ -272,6 +283,16 @@ const router = createBrowserRouter([
           <PrivateRouter>
             <IsEmployee>
               <AddReview></AddReview>
+            </IsEmployee>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "courses/:category",
+        element: (
+          <PrivateRouter>
+            <IsEmployee>
+              <Courses></Courses>
             </IsEmployee>
           </PrivateRouter>
         ),

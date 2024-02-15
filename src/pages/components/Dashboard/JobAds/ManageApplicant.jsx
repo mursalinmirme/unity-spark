@@ -9,11 +9,15 @@ import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import ApplicantsCard from "../ApplicantsCard";
+import { useForm } from "react-hook-form";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const ManageApplicant = () => {
   const [totalPages, setToalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [applicationId, setApplicationId] = useState(" ");
+  const [individual, setIndividual] = useState("");
 
   // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const axiosPublic = useAxiosPublic();
@@ -107,19 +111,6 @@ const ManageApplicant = () => {
               res.data,
               appli_id
             );
-            axiosPublic
-              .put(`/application-status/${appli_id}`, { status: "Selected" })
-              .then((res) => {
-                Swal.fire({
-                  title: "Make Employee Successfully",
-                  text: `${value} is now Employee`,
-                  icon: "success",
-                });
-                refetch();
-              })
-              .catch((error) => {
-                console.log(error);
-              });
           })
           .catch((error) => {
             console.log(error);
@@ -137,11 +128,54 @@ const ManageApplicant = () => {
     },
   });
 
-  console.log("Indivisual37", applicationPreview);
+  // console.log("Indivisual37", applicationPreview);
 
   // if(isFetching){
   //   return <Loading></Loading>
   // }
+
+  const axiosSecure = useAxiosSecure();
+
+  const { data: usersId } = useQuery({
+    queryKey: ["usersId", individual],
+    enabled: !!individual,
+    queryFn: async () => {
+      // ToDo : replace mursalinmir02@gmail.com to user?.email
+      const res = await axiosSecure.get(`/user-id?email=${individual}`);
+      return res.data;
+    },
+  });
+
+  const { register, handleSubmit, reset } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+    const interViewInfo = {
+      position: data?.position,
+      salary: data?.salary,
+      role: "employee",
+    };
+
+    axiosPublic
+      .patch(`/confirm-employee/${usersId?._id}`, interViewInfo)
+      .then((res) => {
+        console.log(res?.data);
+
+        axiosPublic
+          .put(`/application-status/${applicationId}`, { status: "Selected" })
+          .then((res) => {
+            toast.success("Update Your Employee");
+            refetch();
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
+
+  console.log("checked333", applicationId);
 
   return (
     <div className="py-10">
@@ -151,6 +185,7 @@ const ManageApplicant = () => {
             <ApplicantsCard
               key={value._id}
               value={value}
+              setIndividual={setIndividual}
               handleUpdateRole={handleUpdateRole}
               handleDelete={handleDelete}
               setApplicationId={setApplicationId}
@@ -161,7 +196,7 @@ const ManageApplicant = () => {
       ) : (
         <div className="min-h-[460px] space-y-3 flex justify-center items-center">
           <h4 className="text-xl font-semibold">
-            There has not job applications Yes No Problem
+            There has not job applicants
           </h4>
         </div>
       )}
@@ -215,6 +250,45 @@ const ManageApplicant = () => {
           </div>
         </div>
       </div>
+      {/** Modal Some DDDDDDDD */}
+      {/* You can open the modal using document.getElementById('ID').showModal() method */}
+      <dialog id="my_modal_88" className="modal">
+        <div className="modal-box min-w-[600px]">
+          <form method="dialog">
+            {/* if there is a button in form, it will close the modal */}
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
+            </button>
+          </form>
+
+          {/**Form Submit */}
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="">
+              <label className="font-semibold text-sm font-inter">
+                Candidate Position
+              </label>
+              <input
+                className="h-12"
+                type="text"
+                {...register("position", { required: true })}
+                placeholder="Enter Position Name"
+              />
+            </div>
+            <div className="">
+              <label className="font-semibold text-sm font-inter">
+                Candidate Salary
+              </label>
+              <input
+                className="h-12"
+                type="text"
+                {...register("salary", { required: true })}
+                placeholder="Enter Salary"
+              />
+            </div>
+            <button className="nbtn mt-7"> Confirem Now</button>
+          </form>
+        </div>
+      </dialog>{" "}
     </div>
   );
 };
