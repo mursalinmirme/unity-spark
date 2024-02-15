@@ -1,4 +1,6 @@
 import { useState } from "react";
+import AvailableCourse from "../AvailableCourse/AvailableCourse";
+import MyCourse from "../MyCourse/MyCourse";
 
 const Training = () => {
     const [isActive, setIsActive] = useState(0);
@@ -8,14 +10,13 @@ const Training = () => {
   };
   const tabs = [
     {
-      name: "My Course",
+      name: "Available Course",
       id: 0,
     },
     {
-      name: "Available Course",
+      name: "My Course",
       id: 1,
     },
-    
   ];
     return (
         <div>
@@ -34,8 +35,8 @@ const Training = () => {
           </a>
         ))}
       </div>
-      {isActive === 0 && "taka nai course kini nai "}
-      {isActive === 1 && "admin er budget nai tai course o nai"}
+      {isActive === 0 && <AvailableCourse/>}
+      {isActive === 1 && <MyCourse></MyCourse>}
    
         </div>
     );

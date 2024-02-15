@@ -395,3 +395,30 @@ h6,
 .react-datepicker-wrapper {
   @apply !block;
 }
+
+.row-border td {
+  @apply border-2 border-[#45A5E1];
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #c7c5eb;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #433ebe;
+  border-radius: 5px;
+}
+
+.new_course .css-art2ul-ValueContainer2 {
+  @apply py-1.5;
+}
+
+.new_course input,
+.update_course input {
+  @apply py-2 rounded-lg px-3 !mt-0 border w-full outline-none;
+}

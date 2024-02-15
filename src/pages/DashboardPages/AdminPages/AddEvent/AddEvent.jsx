@@ -23,7 +23,9 @@ const AddEvent = () => {
   //   console.log(selectDate);
 
   // Year and month day convert
+
   const date = new Date(selectDate);
+
   const day = date.getDate();
   const month = date.toLocaleString("en", { month: "long" });
   const year = date.getFullYear();
@@ -118,7 +120,6 @@ const AddEvent = () => {
             </div>
             <div className="relative">
               <DatePicker
-                
                 value={selectedStartTime || "Please Select Start Time"}
                 selected={selectedStartTime}
                 onChange={(time) => setSelectedStartTime(time)}
@@ -140,7 +141,6 @@ const AddEvent = () => {
             </div>
             <div className="relative">
               <DatePicker
-                
                 value={selectedEndTime || "Please End Time Select"}
                 selected={selectedEndTime}
                 onChange={(time) => setSelectedEndTime(time)}

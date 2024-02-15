@@ -9,9 +9,7 @@ const TaskManagementCards = ({ item, handleDelete, handleEditTask }) => {
   return (
     <div className="border-2 border-[#D9D9D9] bg-[#ECECF8] rounded-xl p-2 py-3 md:px-5 space-y-4">
       <div className="flex justify-between">
-        <div>
-          <h2 className="text-[18px] font-bold">{task_name}</h2>
-        </div>
+        <h2 className="text-[18px] font-bold">{task_name}</h2>
         <div className="relative dropdown dropdown-hover dropdown-left">
           <div tabIndex={0} className="btn btn-sm btn-ghost">
             <HiDotsVertical className="text-primary text-lg" />
@@ -37,7 +35,7 @@ const TaskManagementCards = ({ item, handleDelete, handleEditTask }) => {
           </div>
         </div>
       </div>
-      <div className="md:flex justify-between items-center py-2">
+      <div className="md:flex justify-between items-center py-2 mt-auto">
         <div className="mb-5 md:mb-0">
           {" "}
           <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold">

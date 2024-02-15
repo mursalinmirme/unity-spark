@@ -104,7 +104,7 @@ const EmployeeHome = () => {
        
       </div>
       <RegisteredEvents EmployeeReqEvent={EmployeeReqEvent}></RegisteredEvents>
-      <EnrolledCourse></EnrolledCourse>
+      {/* <EnrolledCourse></EnrolledCourse> */}
     </div>
   );
 };
