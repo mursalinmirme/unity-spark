@@ -196,7 +196,7 @@ const ManageApplicant = () => {
       ) : (
         <div className="min-h-[460px] space-y-3 flex justify-center items-center">
           <h4 className="text-xl font-semibold">
-            There has not job applications Yes No Problem
+            There has not job applicants
           </h4>
         </div>
       )}
@@ -285,7 +285,7 @@ const ManageApplicant = () => {
                 placeholder="Enter Salary"
               />
             </div>
-            <button className="nbtn mt-7"> Submit Now</button>
+            <button className="nbtn mt-7"> Confirem Now</button>
           </form>
         </div>
       </dialog>{" "}
