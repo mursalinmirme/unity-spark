@@ -1,0 +1,47 @@
+[
+  {
+    "_id": 1,
+    "name": "WiFi Bill",
+    "cost": 50
+  },
+  {
+    "_id": 2,
+    "name": "Electricity Bill",
+    "cost": 100
+  },
+  {
+    "_id": 3,
+    "name": "Water Bill",
+    "cost": 80
+  },
+  {
+    "_id": 4,
+    "name": "Cleaning Supplies",
+    "cost": 30
+  },
+  {
+    "_id": 5,
+    "name": "Office Supplies",
+    "cost": 50
+  },
+  {
+    "_id": 6,
+    "name": "Gas Bill",
+    "cost": 70
+  },
+  {
+    "_id": 7,
+    "name": "Software Subscription",
+    "cost": 200
+  },
+  {
+    "_id": 8,
+    "name": "Training Cost",
+    "cost": 150
+  },
+  {
+    "_id": 9,
+    "name": "Advertising",
+    "cost": 300
+  }
+]

@@ -13,6 +13,8 @@
     "@emailjs/browser": "^3.12.1",
     "@ramonak/react-progress-bar": "^5.2.0",
     "@react-icons/all-files": "^4.1.0",
+    "@stripe/react-stripe-js": "^2.5.0",
+    "@stripe/stripe-js": "^3.0.2",
     "@tanstack/react-query": "^5.17.12",
     "@zegocloud/zego-uikit-prebuilt": "^1.10.2",
     "axios": "^1.6.5",
