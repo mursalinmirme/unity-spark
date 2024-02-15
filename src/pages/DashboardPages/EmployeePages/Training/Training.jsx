@@ -17,7 +17,6 @@ const Training = () => {
       name: "My Course",
       id: 1,
     },
-    
   ];
     return (
         <div>
