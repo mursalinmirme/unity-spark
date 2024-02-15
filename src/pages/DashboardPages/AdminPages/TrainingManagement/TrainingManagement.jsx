@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 const TrainingManagement = () => {
     const [courses] = useCourses()
-    console.log(courses);
 
     return (
         <div>
