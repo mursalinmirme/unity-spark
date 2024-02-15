@@ -90,9 +90,9 @@ const InterviewsDetails = () => {
               onClick={() => setOpen(!open)}
             >
               {open ? (
-                <AiOutlineAudio className="text-2xl text-primary" />
-              ) : (
-                <AiOutlineAudioMuted className="text-2xl text-primary" />
+                 <AiOutlineAudioMuted className="text-2xl text-primary" />
+              ) : (             
+                 <AiOutlineAudio className="text-2xl text-primary" />
               )}
             </div>
 
@@ -102,9 +102,9 @@ const InterviewsDetails = () => {
               onClick={() => setVideoOpen(!videoOpen)}
             >
               {videoOpen ? (
-                <MdOutlineVideocam className="text-2xl text-primary" />
+                <MdOutlineVideocamOff className="text-2xl text-primary" /> 
               ) : (
-                <MdOutlineVideocamOff className="text-2xl text-primary" />
+                <MdOutlineVideocam className="text-2xl text-primary" />
               )}
             </div>
             </div>

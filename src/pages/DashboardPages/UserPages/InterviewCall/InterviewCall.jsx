@@ -36,7 +36,7 @@ const InterviewCall = () => {
       serverSecret,
       interviwId,
       Date.now().toString(),
-      interviewerPersons?.candidateName
+      user?.displayName
     );
     const ze = ZegoUIKitPrebuilt.create(kitToken);
     ze.joinRoom({
@@ -47,6 +47,7 @@ const InterviewCall = () => {
       },
       showScreenSharingButton: true,
     });
+    
   };
 
   console.log("check 444", myMeeting);
@@ -63,9 +64,9 @@ const InterviewCall = () => {
           <h3 className="text-center mt-3 font-semibold text-lg">
             {interviewerPersons?.candidateName}
           </h3>
-          <div className="absolute top-2 left-2 border p-0.5  rounded-full border-primary">
+          {/* <div className="absolute top-2 left-2 border p-0.5  rounded-full border-primary">
             <AiOutlineAudioMuted className="text-2xl text-primary"></AiOutlineAudioMuted>
-          </div>
+          </div> */}
         </div>
         <div className="border p-3 shadow-md rounded-2xl relative">
           <img
@@ -76,9 +77,9 @@ const InterviewCall = () => {
           <h3 className="text-center mt-3 font-semibold text-lg">
           {interviewerPersons?.interViewerName}
           </h3>
-          <div className="absolute top-2 left-2 border p-0.5  rounded-full border-primary">
+          {/* <div className="absolute top-2 left-2 border p-0.5  rounded-full border-primary">
             <AiOutlineAudioMuted className="text-2xl text-primary"></AiOutlineAudioMuted>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="mt-7 relative">
