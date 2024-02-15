@@ -3,13 +3,14 @@ import moment from "moment";
 import { useState } from "react";
 import { IoCheckmark, IoEyeOutline } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx";
-
+import { GiConfirmed } from "react-icons/gi";
 const ApplicantsCard = ({
   value,
   handleUpdateRole,
   handleDelete,
   setApplicationId,
   applicationPreview,
+  setIndividual,
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   console.log("emijkdjfklsdjfdksl", value);
@@ -44,16 +45,19 @@ const ApplicantsCard = ({
           </button>
 
           <button
-            onClick={() => handleUpdateRole(value?.email, value?._id)}
+            onClick={() => {
+              setIndividual(value?.email), setApplicationId(value?._id);
+              document.getElementById("my_modal_88").showModal();
+            }}
             className="rounded-lg p-2  bg-accent"
           >
-            <span>Confirm Employee</span>
+            <span>Confirm</span>
           </button>
           <button
             onClick={() => handleDelete(value?._id)}
-            className="rounded-lg p-2 bg-[#d62d27]"
+            className="rounded-lg py-1 px-3 bg-[#d62d27]"
           >
-            <span>Reject Applicant</span>
+            <span>Reject</span>
           </button>
         </section>
       </div>

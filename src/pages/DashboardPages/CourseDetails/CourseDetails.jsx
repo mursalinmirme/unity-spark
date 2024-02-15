@@ -4,13 +4,36 @@ import { FaCirclePlay } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa6";
 import useCourses from "../../../hooks/useCourses";
 import { useParams } from "react-router-dom";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { AuthContext } from "../../../Provider/AuthProvider";
+import { useContext } from "react";
+import toast from "react-hot-toast";
 
 const CourseDetails = () => {
+    const axiosPublic = useAxiosPublic()
+    const {user} = useContext(AuthContext)
     const [courses] = useCourses()
     const {id} = useParams()
-    const course = courses?.find(course => course?.id == id)
-    const {title, intro, instructor_name, instructor_image, instructor_bio} = course || {}
-    console.log(course);
+    const course = courses?.find(course => course?._id == id)
+    const {title, intro, instructor_name, instructor_image, instructor_bio, description, course_feature, benefits} = course || {}
+
+    const handlePost = (data) =>{        
+        const MyCourse = {
+            uniqueID: data?._id,
+            userEmail: user?.email,
+            CourseTitle: data?.title,
+            CourseBanner: data?.image
+        }
+        axiosPublic.post("/my_course" , MyCourse)
+        .then(res =>{
+           if(res?.data){
+            toast.success("Course Added to My Course")
+           }
+        })
+        .catch(error =>{
+            console.log(error.message)
+        })        
+    }
 
     return (
         <div className="py-10">
@@ -35,7 +58,7 @@ const CourseDetails = () => {
                                     <h6 className="font-medium">Support from Senior Developer</h6>
                                 </div>
                             </div>
-                            <button className="bg-primary text-white font-inter font-semibold rounded-lg px-4 py-2 transition-all hover:scale-105">Enroll Now</button>                    
+                            <button onClick={() => handlePost(course)} className="bg-primary text-white font-inter font-semibold rounded-lg px-4 py-2 transition-all hover:scale-105">Enroll Now</button>                    
                         </div>            
                     </div>                
                     <div>
@@ -44,83 +67,39 @@ const CourseDetails = () => {
                             <img src={instructor_image} className="w-12 h-12 rounded-full" alt="" />
                             <div className="col-span-4">
                                 <h3 className="text-lg font-inter font-medium">{instructor_name}</h3>
-                                <h4>J{instructor_bio}</h4>
+                                <h4>{instructor_bio}</h4>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="col-span-2 space-y-3">
                     <h2 className="text-3xl font-semibold leading-normal">{title}</h2>
-                    <p className="font-medium font-itner">HTML, CSS, ওয়েবসাইট লেআউট, রেসপন্সিভ ও ইন্ট্যারাক্টিভ ডিজাইনের মাধ্যমে ওয়েব ডিজাইনের জন্য প্রয়োজনীয় স্কিল শেখার পাশাপাশি ওয়েব ডিজাইনার হিসেবে ক্যারিয়ার শুরু করার পরিপূর্ণ গাইডলাইন রয়েছে এই কোর্সে!</p>
+                    <p className="font-medium font-itner">{description}</p>
                     <h3 className="text-xl font-semibold">What you will learn</h3>
                     <div className="grid grid-cols-2 gap-2.5 border rounded-lg p-5">
-                        <div className="flex gap-2 items-center">
-                            <FaCheck className="text-primary" />
-                            <span className="font-inter font-medium">What you will learn</span>
-                        </div>
-                        <div className="flex gap-2 items-center">
-                            <FaCheck className="text-primary" />
-                            <span className="font-inter font-medium">What you will learn</span>
-                        </div>
-                        <div className="flex gap-2 items-center">
-                            <FaCheck className="text-primary" />
-                            <span className="font-inter font-medium">What you will learn</span>
-                        </div>
-                        <div className="flex gap-2 items-center">
-                            <FaCheck className="text-primary" />
-                            <span className="font-inter font-medium">What you will learn</span>
-                        </div>
-                        <div className="flex gap-2 items-center">
-                            <FaCheck className="text-primary" />
-                            <span className="font-inter font-medium">What you will learn</span>
-                        </div>
-                        <div className="flex gap-2 items-center">
-                            <FaCheck className="text-primary" />
-                            <span className="font-inter font-medium">What you will learn</span>
-                        </div>
-                        <div className="flex gap-2 items-center">
-                            <FaCheck className="text-primary" />
-                            <span className="font-inter font-medium">What you will learn</span>
-                        </div>
-                        <div className="flex gap-2 items-center">
-                            <FaCheck className="text-primary" />
-                            <span className="font-inter font-medium">What you will learn</span>
-                        </div>
-                        <div className="flex gap-2 items-center">
-                            <FaCheck className="text-primary" />
-                            <span className="font-inter font-medium">What you will learn</span>
-                        </div>
-                        <div className="flex gap-2 items-center">
-                            <FaCheck className="text-primary" />
-                            <span className="font-inter font-medium">What you will learn</span>
-                        </div>
-                        <div className="flex gap-2 items-center">
-                            <FaCheck className="text-primary" />
-                            <span className="font-inter font-medium">What you will learn</span>
-                        </div>
-                        <div className="flex gap-2 items-center">
-                            <FaCheck className="text-primary" />
-                            <span className="font-inter font-medium">What you will learn</span>
-                        </div>
-                        <div className="flex gap-2 items-center">
-                            <FaCheck className="text-primary" />
-                            <span className="font-inter font-medium">What you will learn</span>
-                        </div>
+                        {
+                            course_feature?.map((feature, idx) => (
+                                <div key={idx} className="flex gap-2 items-center">
+                                    <FaCheck className="text-primary" />
+                                    <span className="font-inter font-medium">{feature?.name}</span>
+                                </div>
+                            ))
+                        }
                     </div>
                     <div className="pt-3">
                         <h3 className="text-xl font-semibold">What you will get</h3>
                         <div className="space-y-2.5 mt-3 border p-5 rounded-lg">
+                            {
+                                benefits?.map((benefit, idx) => (
+                                    <div key={idx} className="flex gap-2 items-center">
+                                        <FaCheck className="text-primary" />
+                                        <span className="font-inter font-medium">{benefit?.name}</span>
+                                    </div>
+                                ))
+                            }
                             <div className="flex gap-2 items-center">
                                 <FaCheck className="text-primary" />
-                                <span className="font-inter font-medium">What you will learn</span>
-                            </div>
-                            <div className="flex gap-2 items-center">
-                                <FaCheck className="text-primary" />
-                                <span className="font-inter font-medium">What you will learn</span>
-                            </div>
-                            <div className="flex gap-2 items-center">
-                                <FaCheck className="text-primary" />
-                                <span className="font-inter font-medium">What you will learn</span>
+                                <span className="font-inter font-medium"> একটি সার্টিফিকেট পাবেন</span>
                             </div>
                             <div>
                                 <img src="https://i.ibb.co/MfQMrcG/updated3-Certificate-Web-Design.jpg" className="border rounded-lg mt-5" alt="" />

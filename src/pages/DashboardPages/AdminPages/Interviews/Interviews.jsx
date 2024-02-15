@@ -1,19 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import moment from "moment";
-import { useContext, useState } from "react";
-import { AiOutlineAudio, AiOutlineAudioMuted } from "react-icons/ai";
-import { MdOutlineVideocam, MdOutlineVideocamOff } from "react-icons/md";
+import { useContext } from "react";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import { Link } from "react-router-dom";
 
 const Interviews = () => {
-  const [open, setOpen] = useState(false);
   const axiosPublic = useAxiosPublic();
-  const [videoOpen, setVideoOpen] = useState(false);
   const {user} = useContext(AuthContext);
-  const currentDayString = moment().format("dddd");
-  const currentTime = moment().format("h:mm A");
+
   //   console.log("check", currentDayString);
 
   const { data: allInterviews } = useQuery({
@@ -23,6 +17,7 @@ const Interviews = () => {
       return res?.data;
     },
   });
+  // const currentDate = moment().format("D/M/YYYY");
 
   console.log("checked999999", allInterviews);
 

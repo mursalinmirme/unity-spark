@@ -55,6 +55,7 @@ import IsCommonAccess from "../privateRouter.jsx/IsCommonAccess";
 import IsEmployee from "../privateRouter.jsx/IsEmployee";
 import PrivateRouter from "../privateRouter.jsx/PrivateRouter";
 import InterviewsDetails from "../pages/DashboardPages/AdminPages/Interviews/interviewsDetails";
+import Courses from "../pages/DashboardPages/EmployeePages/Training/Courses/Courses";
 
 const router = createBrowserRouter([
   {
@@ -282,6 +283,16 @@ const router = createBrowserRouter([
           <PrivateRouter>
             <IsEmployee>
               <AddReview></AddReview>
+            </IsEmployee>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "courses/:category",
+        element: (
+          <PrivateRouter>
+            <IsEmployee>
+              <Courses></Courses>
             </IsEmployee>
           </PrivateRouter>
         ),
