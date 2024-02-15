@@ -50,7 +50,7 @@ const TrendingCourse = () => {
     }
     return (
         <>
-        <h1 className="my-5 font-semibold text-xl">Trending Course</h1>
+        <h1 className="-mb-24 font-semibold text-xl">Trending Course</h1>
          <Swiper  slidesPerView={screenSize < 768 ? 1  : 2}
         spaceBetween={30} navigation={true} modules={[Navigation]} className="mySwiper courseSwiper  my-10">
         
@@ -58,8 +58,8 @@ const TrendingCourse = () => {
                  <div className="border-2 border-[#46A3E1] rounded-xl">
                 <img src={allData?.image} alt="course-img" className="rounded-t-lg h-[228px] w-[408px]" />
                 <div className="space-y-5 p-4">
-                    <h1 className="text-2xl font-bold p-5">{allData?.title}</h1>
-                    <div className="flex items-center justify-start gap-5 mt-4">
+                    <h1 className="text-2xl text-left font-bold">{allData?.title}</h1>
+                    <div className="flex items-center justify-start gap-5">
                             <button className="bg-[#BBDDF4] px-2.5  flex items-center gap-2 rounded-lg">
                                <FaCirclePlay className="text-[#46A3e1] text-lg bg-white rounded-full"></FaCirclePlay>
                                <h1 className="text-lg font-medium text-[#46A3e1]">40 Lessons</h1>
@@ -71,7 +71,9 @@ const TrendingCourse = () => {
                             
                         </div>
 
+                        <div className="text-left">
                         <button onClick={() => handlePost(allData)} className="px-6 py-3 bg-[#433EBE] text-white font-semibold text-xl rounded-xl">Enroll Now</button>
+                        </div>
                 </div>
               </div>
              </SwiperSlide>)}
