@@ -23,9 +23,9 @@ const AllUsersTable = ({ user, idx, refetch }) => {
   };
 
   return (
-    <tr>
-      <td>{idx + 1}</td>
-      <td>
+    <tr className="border-b-2">
+      <td className="text-left font-semibold">{idx + 1}</td>
+      <td className="pr-10">
         <div>
           <div className="avatar flex justify-center">
             <div className="mask mask-squircle w-12 h-12">
@@ -34,12 +34,12 @@ const AllUsersTable = ({ user, idx, refetch }) => {
           </div>
         </div>
       </td>
-      <td>{user?.name}</td>
-      <td>{user?.email}</td>
+      <td className="text-left">{user?.name}</td>
+      <td className="text-left">{user?.email}</td>
       <td className="font-bold">
         <select
           onChange={handleChangeRole}
-          className=" p-2 rounded-lg hover:cursor-pointer"
+          className="py-2 rounded-lg hover:cursor-pointer text-left"
           defaultValue={newRole}
           name=""
           id="">

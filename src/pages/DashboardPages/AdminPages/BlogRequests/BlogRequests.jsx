@@ -22,11 +22,11 @@ const BlogRequests = () => {
         <table className=" table mt-10">
           {/* head */}
           <thead className=" text-black text-[18px] rounded-md text-center">
-            <tr className="text-center">
-              <th>Serial</th>
+            <tr className="text-left">
+              <th className="text-left">Serial</th>
               <th>Title</th>
-              <th>Blogger</th>
-              <th>Actions</th>
+              <th className="text-left">Blogger</th>
+              <th className="text-left">Actions</th>
             </tr>
           </thead>
           <tbody>
