@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import EmployeePaymentTable from "./EmployeePaymentTable";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const EmployeesPayment = () => {
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure()
 
   const { data: employees = [] } = useQuery({
     queryKey: ["employees"],
     queryFn: async () => {
-      const result = await axiosPublic.get("/employees");
+      const result = await axiosSecure.get("/employees");
       return result.data;
     },
   });
