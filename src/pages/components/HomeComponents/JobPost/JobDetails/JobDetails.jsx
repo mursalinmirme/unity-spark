@@ -1,30 +1,31 @@
-import { Link, useParams } from "react-router-dom";
-import { GoDotFill } from "react-icons/go";
-import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
-import { useContext, useState } from "react";
-import useUserInfo from "../../../../../hooks/useUserInfo";
-import { AuthContext } from "../../../../../Provider/AuthProvider";
-import JobApplyForm from "../JobApplyForm";
-import useAxiosPublic from "../../../../../hooks/useAxiosPublic";
-import JobDetailsSkeleton from "./JobDetailsSkeleton";
 import moment from "moment";
+import { useContext, useState } from "react";
+import toast from "react-hot-toast";
+import { GoDotFill } from "react-icons/go";
+import { Link, useParams } from "react-router-dom";
+import { AuthContext } from "../../../../../Provider/AuthProvider";
+import useAxiosPublic from "../../../../../hooks/useAxiosPublic";
+import useUserInfo from "../../../../../hooks/useUserInfo";
+import useUserRole from "../../../../../hooks/useUserRole";
+import JobApplyForm from "../JobApplyForm";
+import JobDetailsSkeleton from "./JobDetailsSkeleton";
 
 const JobDetails = () => {
   const PublicAxios = useAxiosPublic();
   const { id } = useParams();
   const [currentAds, setCurrentAds] = useState(id);
   const [users] = useUserInfo();
-  const { profileComplete, user } = useContext(AuthContext);
-
-  const handleApply = () => {
-    profileComplete > 95
-      ? toast.success("Successfully applied")
-      : document.getElementById("my_modal_1").showModal();
-  };
+  const { user } = useContext(AuthContext);
+  const [isUser] = useUserRole();
+  console.log(isUser?.role);
 
   // get current page job info
-  const { data: jobInfo, refetch, isFetching } = useQuery({
+  const {
+    data: jobInfo,
+    refetch,
+    isFetching,
+  } = useQuery({
     queryKey: ["jobsDetails", currentAds],
     queryFn: async () => {
       const result = await PublicAxios.get(`/job-ads/${currentAds}`);
@@ -33,7 +34,11 @@ const JobDetails = () => {
   });
 
   // get see more jobs based on job type type
-  const { data: moreJobs, refetch: refetchForMore, isLoading } = useQuery({
+  const {
+    data: moreJobs,
+    refetch: refetchForMore,
+    isLoading,
+  } = useQuery({
     queryKey: ["seeMoreJobs", currentAds],
     enabled: !!jobInfo?.job_title,
     queryFn: async () => {
@@ -71,11 +76,16 @@ const JobDetails = () => {
       });
   };
 
+  // handle job title and id to apply job page
+  // const handleApply = (id, title) => {
+  //   console.log(id, title);
+  //   Navigate(`/apply-job/${id}`, { state: { title } });
+  // };
 
-// skeleton display when fetching the data
+  // skeleton display when fetching the data
 
-  if(isFetching || isLoading){
-    return <JobDetailsSkeleton></JobDetailsSkeleton>
+  if (isFetching || isLoading) {
+    return <JobDetailsSkeleton></JobDetailsSkeleton>;
   }
 
   return (
@@ -186,20 +196,43 @@ const JobDetails = () => {
           <p>{jobInfo?.job_description}</p>
         </div>
 
-        <div className="flex gap-4 pt-8 font-semibold">
-          <span
-            className="px-8 flex items-center bg-primary text-white rounded-xl cursor-pointer text-[14px]"
-          >
-            {" "}
-            Apply Now{" "}
-          </span>
-          <span
-            onClick={() => chandlerSaveJobInfo(jobInfo)}
-            className="px-8 py-2.5 text-primary border-2 border-primary  rounded-xl cursor-pointer text-[15px]"
-          >
-            {" "}
-            Save{" "}
-          </span>
+        <div className={`flex items-center gap-4 pt-8 font-semibold`}>
+          {user?.email ? (
+            <Link to={`/apply-job/${jobInfo?._id}`}>
+            <span
+              className={`px-8 flex items-center bg-primary text-white rounded-xl cursor-pointer text-[14px] py-3 ${
+                isUser?.role === "user" ? "visible" : "invisible"
+              }`}
+            >
+              Apply Now
+            </span>
+            </Link>
+          ) : (
+            <Link to={"/signin"}>
+              <span className="px-8 flex items-center bg-primary text-white rounded-xl cursor-pointer text-[14px] py-3">
+                Apply Now
+              </span>
+            </Link>
+          )}
+          {user?.email ? (
+            <span
+              onClick={() => chandlerSaveJobInfo(jobInfo)}
+              className={`px-8 py-2.5 text-primary border-2 border-primary  rounded-xl cursor-pointer text-[15px] ${
+                isUser?.role === "user" ? "visible" : "invisible"
+              }`}
+            >
+              Save
+            </span>
+          ) : (
+            <Link to={"/signin"}>
+              <span
+                onClick={() => chandlerSaveJobInfo(jobInfo)}
+                className="px-8 py-2.5 text-primary border-2 border-primary  rounded-xl cursor-pointer text-[15px]"
+              >
+                Save
+              </span>
+            </Link>
+          )}
         </div>
       </div>
 
@@ -207,50 +240,75 @@ const JobDetails = () => {
       <div className="mt-10 p-2 lg:w-96">
         <h1 className="text-2xl font-semibold mb-5"> Find Out More ....</h1>
 
-        {
-          moreJobs?.length > 0 ? <div className="space-y-5">
-          {moreJobs?.map((jobPost) => (
-            <div key={jobPost?._id} className="job_post_card">
-              <div>
-                <h3> {jobPost?.job_title}</h3>
-                <div className="job_status">
-                  <span> {jobPost?.job_category1}</span>
-                  <span>{jobPost?.job_category2}</span>
-                </div>
-                <div className="flex items-center gap-5 ">
-                  <p>
-                    {" "}
-                    <span>Salary :</span> {jobPost?.salary}
+        {moreJobs?.length > 0 ? (
+          <div className="space-y-5">
+            {moreJobs?.map((jobPost) => (
+              <div key={jobPost?._id} className="job_post_card">
+                <div>
+                  <h3> {jobPost?.job_title}</h3>
+                  <div className="job_status">
+                    <span> {jobPost?.job_category1}</span>
+                    <span>{jobPost?.job_category2}</span>
+                  </div>
+                  <div className="flex items-center gap-5 ">
+                    <p>
+                      {" "}
+                      <span>Salary :</span> {jobPost?.salary}
+                    </p>
+                    |
+                    <p className="my-1">
+                      {moment(jobPost?.createdAt).local().fromNow()}
+                    </p>
+                  </div>
+                  <p className="mt-1">
+                    {jobPost?.job_description.length > 180
+                      ? jobPost?.job_description.slice(0, 180) + "..."
+                      : jobPost?.job_description}
                   </p>
-                  |
-                  <p className="my-1">
-                    {moment(jobPost?.createdAt).local().fromNow()}
-                  </p>
-                </div>
-                <p className="mt-1">{jobPost?.job_description.length > 180 ? jobPost?.job_description.slice(0, 180) + '...' : jobPost?.job_description}</p>
-                <div className="card-actions justify-start mt-1">
-                  <button className="mt-3 mr-3 nbtn">Apply Now</button>
-                  <Link
-                    onClick={() => setCurrentAds(jobPost?._id)}
-                    to={`/job-details/${jobPost?._id}`}
-                  >
-                    <div className="mt-3 mr-3 text-primary font-semibold  cursor-pointer px-4 py-[9px] rounded-xl border-2 border-primary text-[15px]">
-                      View Details
-                    </div>
-                  </Link>
+                  <div className="flex card-actions items-center justify-start mt-4 gap-4">
+                  {user?.email ? (
+            <Link to={`/apply-job/${jobPost?._id}`}>
+            <span
+              className={`px-8 flex items-center bg-primary text-white rounded-xl cursor-pointer text-[14px] py-3 ${
+                isUser?.role === "user" ? "visible" : "invisible"
+              }`}
+            >
+              Apply Now
+            </span>
+            </Link>
+          ) : (
+            <Link to={"/signin"}>
+              <span className="px-8 flex items-center bg-primary text-white rounded-xl cursor-pointer text-[14px] py-3">
+                Apply Now
+              </span>
+            </Link>
+          )}
+                    <Link
+                      onClick={() => setCurrentAds(jobPost?._id)}
+                      to={`/job-details/${jobPost?._id}`}
+                    >
+                      <div className="mr-3 text-primary font-semibold  cursor-pointer px-4 py-[9px] rounded-xl border-2 border-primary text-[15px]">
+                        View Details
+                      </div>
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div> : 
-        <div className="border rounded-lg h-40 flex justify-center items-center font-medium">There has no similar job title ads</div>
-        }
-        <div className={`text-center pt-10 ${moreJobs?.length > 0 ? 'block' : 'hidden'}`}>
-
+            ))}
+          </div>
+        ) : (
+          <div className="border rounded-lg h-40 flex justify-center items-center font-medium">
+            There has no similar job title ads
+          </div>
+        )}
+        <div
+          className={`text-center pt-10 ${
+            moreJobs?.length > 0 ? "block" : "hidden"
+          }`}
+        >
           <Link to={"/available-jobs"}>
-            <span className="px-6 py-2.5 mx-auto bg-primary text-white font-semibold rounded-xl cursor-pointer text-[15px]">
-              {" "}
-              See More{" "}
+            <span className="px-6 py-2.5 mx-auto bg-primary text-white font-medium rounded-md cursor-pointer text-[15px]">
+              See More
             </span>
           </Link>
         </div>
