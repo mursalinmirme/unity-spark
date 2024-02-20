@@ -7,6 +7,8 @@ import useUserInfo from "../../../../../hooks/useUserInfo";
 import { AuthContext } from "../../../../../Provider/AuthProvider";
 import JobApplyForm from "../JobApplyForm";
 import useAxiosPublic from "../../../../../hooks/useAxiosPublic";
+import JobDetailsSkeleton from "./JobDetailsSkeleton";
+import moment from "moment";
 
 const JobDetails = () => {
   const PublicAxios = useAxiosPublic();
@@ -15,23 +17,6 @@ const JobDetails = () => {
   const [users] = useUserInfo();
   const { profileComplete, user } = useContext(AuthContext);
 
-  const {
-    name,
-    image,
-    email,
-    skills,
-    gender,
-    age,
-    current_address,
-    permanent_address,
-    institute_name,
-    phone,
-    resume_link,
-    time_preference,
-    job_preference,
-    education_level,
-  } = users || {};
-
   const handleApply = () => {
     profileComplete > 95
       ? toast.success("Successfully applied")
@@ -39,7 +24,7 @@ const JobDetails = () => {
   };
 
   // get current page job info
-  const { data: jobInfo, refetch } = useQuery({
+  const { data: jobInfo, refetch, isFetching } = useQuery({
     queryKey: ["jobsDetails", currentAds],
     queryFn: async () => {
       const result = await PublicAxios.get(`/job-ads/${currentAds}`);
@@ -48,12 +33,12 @@ const JobDetails = () => {
   });
 
   // get see more jobs based on job type type
-  const { data: moreJobs, refetch: refetchForMore } = useQuery({
+  const { data: moreJobs, refetch: refetchForMore, isLoading } = useQuery({
     queryKey: ["seeMoreJobs", currentAds],
-    enabled: !!jobInfo?.job_category1,
+    enabled: !!jobInfo?.job_title,
     queryFn: async () => {
       const result = await PublicAxios.get(
-        `/similar_jobs?jobtype=${jobInfo?.job_category1}`
+        `/similar_jobs?job_title=${jobInfo?.job_title}&jobId=${jobInfo?._id}`
       );
       console.log("see more jobs result is", result.data);
       return result.data;
@@ -85,10 +70,18 @@ const JobDetails = () => {
         toast.error(error.message);
       });
   };
+
+
+// skeleton display when fetching the data
+
+  if(isFetching || isLoading){
+    return <JobDetailsSkeleton></JobDetailsSkeleton>
+  }
+
   return (
     <div className="lg:px-10 mb-20 flex flex-col lg:flex-row gap-8">
       {/**Left Side */}
-      <div className="mt-10 space-y-1 content-container text-[#1E1E1E] text-[18px] flex-1">
+      <div className="mt-10 space-y-2.5 content-container text-[#1E1E1E] text-[18px] flex-1">
         <h3 className="text-3xl md:text-4xl font-semibold mb-5">
           {" "}
           {jobInfo?.job_title}{" "}
@@ -214,7 +207,8 @@ const JobDetails = () => {
       <div className="mt-10 p-2 lg:w-96">
         <h1 className="text-2xl font-semibold mb-5"> Find Out More ....</h1>
 
-        <div className="space-y-5">
+        {
+          moreJobs?.length > 0 ? <div className="space-y-5">
           {moreJobs?.map((jobPost) => (
             <div key={jobPost?._id} className="job_post_card">
               <div>
@@ -230,12 +224,11 @@ const JobDetails = () => {
                   </p>
                   |
                   <p className="my-1">
-                    {" "}
-                    <span>Posted</span> {jobPost?.job_posted}
+                    {moment(jobPost?.createdAt).local().fromNow()}
                   </p>
                 </div>
-                <p>{jobPost?.job_description}</p>
-                <div className="card-actions justify-start">
+                <p className="mt-1">{jobPost?.job_description.length > 180 ? jobPost?.job_description.slice(0, 180) + '...' : jobPost?.job_description}</p>
+                <div className="card-actions justify-start mt-1">
                   <button className="mt-3 mr-3 nbtn">Apply Now</button>
                   <Link
                     onClick={() => setCurrentAds(jobPost?._id)}
@@ -249,8 +242,11 @@ const JobDetails = () => {
               </div>
             </div>
           ))}
-        </div>
-        <div className="text-center pt-10 ">
+        </div> : 
+        <div className="border rounded-lg h-40 flex justify-center items-center font-medium">There has no similar job title ads</div>
+        }
+        <div className={`text-center pt-10 ${moreJobs?.length > 0 ? 'block' : 'hidden'}`}>
+
           <Link to={"/available-jobs"}>
             <span className="px-6 py-2.5 mx-auto bg-primary text-white font-semibold rounded-xl cursor-pointer text-[15px]">
               {" "}

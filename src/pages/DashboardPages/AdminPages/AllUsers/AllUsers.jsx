@@ -1,15 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-
-import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import AllUsersTable from "./AllUsersTable";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const AllUsers = () => {
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   const { data: allUsers = [], refetch } = useQuery({
     queryKey: ["getAllUsers"],
     queryFn: async () => {
-      const result = await axiosPublic.get("/users");
+      const result = await axiosSecure.get("/users");
       return result.data;
     },
   });
@@ -17,11 +16,11 @@ const AllUsers = () => {
   return (
     <div>
       <div className="overflow-x-auto">
-        <h3 className="text-3xl font-semibold">All our users</h3>
-        <table className="table-no-border table mt-10">
+        <h3 className="text-2xl font-semibold">Our All Users</h3>
+        <table className="table-no-border table mt-5">
           {/* head */}
           <thead className="bg-[#726eec] text-white text-[18px] rounded-md text-center">
-            <tr className="text-center">
+            <tr className="text-left">
               <th>Serial</th>
               <th>Image</th>
               <th>Name</th>
@@ -29,7 +28,7 @@ const AllUsers = () => {
               <th>Role</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="">
             {allUsers &&
               allUsers?.map((user, idx) => (
                 <AllUsersTable

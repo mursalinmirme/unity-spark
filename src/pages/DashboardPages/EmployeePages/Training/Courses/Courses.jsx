@@ -33,12 +33,12 @@ const Courses = () => {
     }
 
     return (
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {
                 catCourse?.length > 0 ?
                 catCourse?.map(course => (
                     <Link to={`/course/${course._id}`} key={course?._id} className="border border-second rounded-xl overflow-hidden h-[430px]">
-                        <img src={course?.image} alt="course-img" className="rounded-t-lg overflow-hidden h-[150px]" />
+                        <img src={course?.image} alt="course-img" className="rounded-t-lg overflow-hidden h-[150px]"/>
                         <div className="font-inter p-4 flex flex-col justify-between" style={{height: 'calc(430px - 150px)'}}>
                             <div className="space-y-3">
                                 <h1 className="text-xl font-bold">{course?.title}</h1>

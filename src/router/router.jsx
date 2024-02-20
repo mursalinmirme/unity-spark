@@ -12,7 +12,6 @@ import Employee from "../pages/DashboardPages/AdminPages/Employees/Employee";
 import Interviews from "../pages/DashboardPages/AdminPages/Interviews/Interviews";
 import JobAds from "../pages/DashboardPages/AdminPages/JobAds/JobAds";
 import LeaveRequests from "../pages/DashboardPages/AdminPages/ManageLeave/LeaveRequests";
-import PaymentDetails from "../pages/DashboardPages/AdminPages/PaymentManagement/PaymentDetails";
 import PaymentManagement from "../pages/DashboardPages/AdminPages/PaymentManagement/PaymentManagement";
 import Recruiment from "../pages/DashboardPages/AdminPages/Recruiment/Recruiment";
 import AddReview from "../pages/DashboardPages/AdminPages/Reviews/AddReview";
@@ -57,6 +56,7 @@ import PrivateRouter from "../privateRouter.jsx/PrivateRouter";
 import InterviewsDetails from "../pages/DashboardPages/AdminPages/Interviews/interviewsDetails";
 import Courses from "../pages/DashboardPages/EmployeePages/Training/Courses/Courses";
 import Payment from "../pages/DashboardPages/AdminPages/PaymentManagement/Payment";
+import CourseUpdate from "../pages/DashboardPages/AdminPages/TrainingManagement/CourseUpdate";
 
 const router = createBrowserRouter([
   {
@@ -456,6 +456,16 @@ const router = createBrowserRouter([
           <PrivateRouter>
             <IsAdmin>
               <AddNewCourse></AddNewCourse>
+            </IsAdmin>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "update-course/:id",
+        element: (
+          <PrivateRouter>
+            <IsAdmin>
+              <CourseUpdate></CourseUpdate>
             </IsAdmin>
           </PrivateRouter>
         ),
