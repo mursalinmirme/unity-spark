@@ -38,7 +38,7 @@ const MyTrainingDetails = () => {
                     </h2>
                     <div className="flex justify-start items-center gap-5 mt-3">
                         <button onClick={handlePreviousModule} className="bg-primary text-white px-4 py-2 font-semibold font-inter rounded-lg">Previous</button>
-                        <button onClick={handleNextModule} className="bg-primary text-white px-4 py-2 font-semibold font-inter rounded-lg">Next</button>
+                        <button onClick={handleNextModule} className="bg-primary text-white px-4 py-2 font-semibold font-inter">Next</button>
                     </div>
                 </div>
                 <div className="col-span-5 lg:col-span-2">
