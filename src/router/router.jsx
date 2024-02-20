@@ -12,7 +12,6 @@ import Employee from "../pages/DashboardPages/AdminPages/Employees/Employee";
 import Interviews from "../pages/DashboardPages/AdminPages/Interviews/Interviews";
 import JobAds from "../pages/DashboardPages/AdminPages/JobAds/JobAds";
 import LeaveRequests from "../pages/DashboardPages/AdminPages/ManageLeave/LeaveRequests";
-import PaymentDetails from "../pages/DashboardPages/AdminPages/PaymentManagement/PaymentDetails";
 import PaymentManagement from "../pages/DashboardPages/AdminPages/PaymentManagement/PaymentManagement";
 import Recruiment from "../pages/DashboardPages/AdminPages/Recruiment/Recruiment";
 import AddReview from "../pages/DashboardPages/AdminPages/Reviews/AddReview";

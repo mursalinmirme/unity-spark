@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import moment from "moment";
+import PropTypes from "prop-types";
 
 const BlogsBanner = ({ blog }) => {
   const { title, _id, createdAt, image } = blog || {};
@@ -16,13 +17,16 @@ const BlogsBanner = ({ blog }) => {
     <Link to={`/blog-details/${_id}`}>
       <div
         style={bannerBlogStyle}
-        className="h-[400px] rounded-xl flex flex-col gap-3 justify-end p-5"
-      >
-        <h5 className="text-gray-300">posted {formattedDiff} ago</h5>
+        className="h-[400px] rounded-xl flex flex-col gap-3 justify-end p-5">
+        <h5 className="text-gray-300">Posted {formattedDiff} ago</h5>
         <h2 className="text-white text-2xl font-medium font-inter">{title}</h2>
       </div>
     </Link>
   );
+};
+
+BlogsBanner.propTypes = {
+  blog: PropTypes.object,
 };
 
 export default BlogsBanner;
