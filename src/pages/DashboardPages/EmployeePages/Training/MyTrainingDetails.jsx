@@ -8,21 +8,38 @@ const MyTrainingDetails = () => {
     const [my_course] = useMyCourses()
     const {id} = useParams()
     const currentCourse = my_course?.find(course => course?.uniqueID._id === id)
-    const [currentModule, setCurrentModule] = useState()
+    const [currentModule, setCurrentModule] = useState(0)
 
     useEffect(() => {
-        setCurrentModule(currentCourse?.uniqueID?.course_content[0])
+        setCurrentModule(0)
     }, [currentCourse])
-    console.log(currentCourse);
+    // console.log(currentCourse);
+
+    // handleNextModule
+    const handleNextModule = () =>{
+        if(currentModule < currentCourse?.uniqueID?.course_content.length - 1){
+            setCurrentModule(prevIndex => prevIndex + 1);
+        }
+    }
+
+    const handlePreviousModule = () => {
+        if (currentModule > 0) {
+            setCurrentModule(prevIndex => prevIndex - 1);
+        }
+    };
 
     return (
         <div className="py-10">
             <div className="grid grid-cols-5 gap-5">
                 <div className="col-span-5 lg:col-span-3">
-                    <iframe width="100%" height="420" className="rounded-xl" src={currentModule?.link} frameBorder="0" allow="autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="100%" height="420" className="rounded-xl" src={currentCourse?.uniqueID?.course_content[currentModule]?.link} frameBorder="0" allow="autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     <h2 className="mt-5 font-semibold text-2xl">
-                        {currentModule?.title}
+                    {currentCourse?.uniqueID?.course_content[currentModule]?.title}
                     </h2>
+                    <div className="flex justify-start items-center gap-5 mt-3">
+                        <button onClick={handlePreviousModule} className="bg-primary text-white px-4 py-2 font-semibold font-inter rounded-lg">Previous</button>
+                        <button onClick={handleNextModule} className="bg-primary text-white px-4 py-2 font-semibold font-inter rounded-lg">Next</button>
+                    </div>
                 </div>
                 <div className="col-span-5 lg:col-span-2">
                     <div className="border-2 rounded-xl space-y-5 p-3 bg-[#ececf8]">
@@ -47,7 +64,7 @@ const MyTrainingDetails = () => {
                             <div className="collapse-content space-y-2 pt-3"> 
                                 {
                                     currentCourse?.uniqueID?.course_content?.map((content, idx) => (
-                                        <div key={idx} className="bg-[#ececf8] rounded-lg px-3 py-1 flex gap-2 items-center cursor-pointer" onClick={() => setCurrentModule(content)}>
+                                        <div key={idx} className="bg-[#ececf8] rounded-lg px-3 py-1 flex gap-2 items-center cursor-pointer" onClick={() => setCurrentModule(idx)}>
                                             < MdOutlinePlayCircleFilled className="text-primary" />
                                             <span>{content?.title}</span>
                                         </div>
