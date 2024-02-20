@@ -88,9 +88,12 @@ const AddEvent = () => {
           {/*image field */}
           <label className="relative">
             <div className="label mb-10 md:mb-0 lg:mb-0">
-              <span className="font-bold font-inter"> Your Event Photo : </span>
+              <span className="font-bold font-inter md:mb-10 lg:mb-10 ">
+                {" "}
+                Your Event Photo :{" "}
+              </span>
               <label
-                className="font-semibold w-full absolute bottom-0  text-white cursor-pointer font-inter text-base px-8 py-[8px] bg-primary rounded-md transition-all duration-500 text-[15px]"
+                className="font-semibold w-full absolute bottom-0  text-white cursor-pointer font-inter text-base px-8 py-[6px] bg-primary rounded-md transition-all duration-500 text-[15px]"
                 htmlFor="user_photo"
               >
                 <div className="flex justify-center items-center gap-4">
