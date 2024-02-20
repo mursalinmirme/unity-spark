@@ -56,6 +56,7 @@ import IsEmployee from "../privateRouter.jsx/IsEmployee";
 import PrivateRouter from "../privateRouter.jsx/PrivateRouter";
 import InterviewsDetails from "../pages/DashboardPages/AdminPages/Interviews/interviewsDetails";
 import Courses from "../pages/DashboardPages/EmployeePages/Training/Courses/Courses";
+import Payment from "../pages/DashboardPages/AdminPages/PaymentManagement/Payment";
 
 const router = createBrowserRouter([
   {

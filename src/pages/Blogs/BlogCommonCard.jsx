@@ -1,5 +1,6 @@
 import moment from "moment";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const BlogCommonCard = ({ blog }) => {
   const { title, description, _id, image, createdAt } = blog || {};
@@ -9,7 +10,7 @@ const BlogCommonCard = ({ blog }) => {
 
   return (
     <Link to={`/blog-details/${_id}`}>
-      <div className="border border-gray-300 p-2 mt-5 rounded-xl grid grid-cols-1 md:grid-cols-5 gap-5 items-center">
+      <div className="border border-gray-300 p-2 mt-5 rounded-xl grid grid-cols-1 md:grid-cols-6 gap-5 items-center">
         <img
           src={image}
           className="h-44 md:h-36 rounded-xl w-full col-span-1 md:col-span-2 lg:col-span-1"
@@ -46,6 +47,10 @@ const BlogCommonCard = ({ blog }) => {
       </div>
     </Link>
   );
+};
+
+BlogCommonCard.propTypes = {
+  blog: PropTypes.object,
 };
 
 export default BlogCommonCard;
