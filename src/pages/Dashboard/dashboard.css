@@ -1,5 +1,5 @@
 #dashboard {
-    @apply grid grid-cols-1 lg:grid-cols-4 min-h-screen max-h-screen p-5 gap-0 lg:gap-5 relative mx-auto max-w-[1300px] overflow-hidden;
+    @apply grid grid-cols-1 lg:grid-cols-4 min-h-screen max-h-screen p-5 gap-0 lg:gap-5 relative mx-auto max-w-[1450px] overflow-hidden;
 }
 
 #dashboard .left_container {

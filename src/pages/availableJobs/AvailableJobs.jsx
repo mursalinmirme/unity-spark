@@ -298,7 +298,7 @@ const AvailableJobs = () => {
                     <p className="my-1">
                       {" "}
                       <span>Posted :</span>{" "}
-                      {moment(job?.createdAt).startOf("day").fromNow()}
+                      {moment(job?.createdAt).local().fromNow()}
                     </p>
                   </div>
                   <p>
