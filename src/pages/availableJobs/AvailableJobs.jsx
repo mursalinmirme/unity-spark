@@ -92,6 +92,7 @@ const AvailableJobs = () => {
   // handle close search bar
   const handleCloseSearchBar = () => {
     setShowSearchBar(false);
+    setSearchValues(null);
   };
 
   // handle fatch jobs by users wanted date
@@ -284,12 +285,12 @@ const AvailableJobs = () => {
                     <span>{job?.job_category1}</span>
                     <span>{job?.job_category2}</span>
                   </div>
-                  <div className="flex items-center gap-5 ">
+                  <div className="flex flex-col md:flex-row md:items-center md:gap-5 ">
                     <p>
                       {" "}
                       <span>Salary :</span> {job?.salary} per year
                     </p>
-                    |
+                    <p className="hidden md:block">|</p>
                     <p className="my-1">
                       {" "}
                       <span>Posted :</span>{" "}
