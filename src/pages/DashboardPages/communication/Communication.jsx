@@ -114,7 +114,7 @@ const Communication = () => {
                     <div className="grid gap-3 overflow-y-auto">
                         {
                             employees && employees?.map((friend, idx) =>(
-                                <div key={idx} className={`flex gap-3 items-center cursor-pointer p-1 hover:bg-[#ececf8] rounded-lg transition-all ${selectedChat === idx ? 'bg-[#ececf8]' : ''}`} onClick={() => {
+                                <div key={idx} className={`flex gap-3 items-center cursor-pointer p-1 hover:bg-[#ececf8] rounded-lg transition-all ${selectedChat === friend?._id ? 'bg-[#ececf8]' : ''}`} onClick={() => {
                                     setSelectedChat(friend?._id)
                                     setSelectedUserEmail(friend?.email)
                                 }}>
