@@ -302,9 +302,9 @@ const router = createBrowserRouter([
         path: "communication",
         element: (
           <PrivateRouter>
-            <IsCommonAccess>
+            <IsEmployee>
               <Communication></Communication>
-            </IsCommonAccess>
+            </IsEmployee>
           </PrivateRouter>
         ),
       },
