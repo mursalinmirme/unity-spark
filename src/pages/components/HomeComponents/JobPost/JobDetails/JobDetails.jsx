@@ -6,7 +6,6 @@ import { GoDotFill } from "react-icons/go";
 import { Link, useParams } from "react-router-dom";
 import { AuthContext } from "../../../../../Provider/AuthProvider";
 import useAxiosPublic from "../../../../../hooks/useAxiosPublic";
-import useUserInfo from "../../../../../hooks/useUserInfo";
 import useUserRole from "../../../../../hooks/useUserRole";
 import JobApplyForm from "../JobApplyForm";
 import JobDetailsSkeleton from "./JobDetailsSkeleton";
@@ -15,17 +14,13 @@ const JobDetails = () => {
   const PublicAxios = useAxiosPublic();
   const { id } = useParams();
   const [currentAds, setCurrentAds] = useState(id);
-  const [users] = useUserInfo();
   const { user } = useContext(AuthContext);
   const [isUser] = useUserRole();
+  const [isSaving, setIsSaving] = useState(false);
   console.log(isUser?.role);
 
   // get current page job info
-  const {
-    data: jobInfo,
-    refetch,
-    isFetching,
-  } = useQuery({
+  const { data: jobInfo, isFetching } = useQuery({
     queryKey: ["jobsDetails", currentAds],
     queryFn: async () => {
       const result = await PublicAxios.get(`/job-ads/${currentAds}`);
@@ -34,11 +29,7 @@ const JobDetails = () => {
   });
 
   // get see more jobs based on job type type
-  const {
-    data: moreJobs,
-    refetch: refetchForMore,
-    isLoading,
-  } = useQuery({
+  const { data: moreJobs, isLoading } = useQuery({
     queryKey: ["seeMoreJobs", currentAds],
     enabled: !!jobInfo?.job_title,
     queryFn: async () => {
@@ -51,7 +42,8 @@ const JobDetails = () => {
   });
 
   // Data Save Job info post Method,,
-  const chandlerSaveJobInfo = (jobInfo) => {
+  const handlerSaveJobInfo = (jobInfo) => {
+    setIsSaving(true);
     const saveInfo = {
       title: jobInfo?.job_title,
       position: jobInfo?.position,
@@ -65,9 +57,11 @@ const JobDetails = () => {
     PublicAxios.post(`/saveJobInfo?email=${user?.email}`, saveInfo)
       .then((res) => {
         if (res?.data === "All Ready Data Saved") {
-          toast.error("All Ready Save Job data");
+          toast.error("You have already saved the job");
+          setIsSaving(false);
         } else {
-          toast.success("Save Job Info in mongodb");
+          toast.success("Job saved successfully");
+          setIsSaving(false);
         }
       })
       .catch((error) => {
@@ -76,11 +70,6 @@ const JobDetails = () => {
       });
   };
 
-  // handle job title and id to apply job page
-  // const handleApply = (id, title) => {
-  //   console.log(id, title);
-  //   Navigate(`/apply-job/${id}`, { state: { title } });
-  // };
 
   // skeleton display when fetching the data
 
@@ -199,13 +188,13 @@ const JobDetails = () => {
         <div className={`flex items-center gap-4 pt-8 font-semibold`}>
           {user?.email ? (
             <Link to={`/apply-job/${jobInfo?._id}`}>
-            <span
-              className={`px-8 flex items-center bg-primary text-white rounded-xl cursor-pointer text-[14px] py-3 ${
-                isUser?.role === "user" ? "visible" : "invisible"
-              }`}
-            >
-              Apply Now
-            </span>
+              <span
+                className={`px-8 flex items-center bg-primary text-white rounded-xl cursor-pointer text-[14px] py-3 ${
+                  isUser?.role === "user" ? "visible" : "invisible"
+                }`}
+              >
+                Apply Now
+              </span>
             </Link>
           ) : (
             <Link to={"/signin"}>
@@ -216,17 +205,16 @@ const JobDetails = () => {
           )}
           {user?.email ? (
             <span
-              onClick={() => chandlerSaveJobInfo(jobInfo)}
-              className={`px-8 py-2.5 text-primary border-2 border-primary  rounded-xl cursor-pointer text-[15px] ${
+              onClick={() => handlerSaveJobInfo(jobInfo)}
+              className={`px-8 h-11 flex justify-center items-center text-primary border-2 border-primary  rounded-xl cursor-pointer text-[15px] ${
                 isUser?.role === "user" ? "visible" : "invisible"
               }`}
             >
-              Save
+              {isSaving ? <span className="loading loading-spinner loading-md p-0"></span> : 'Save'}
             </span>
           ) : (
             <Link to={"/signin"}>
               <span
-                onClick={() => chandlerSaveJobInfo(jobInfo)}
                 className="px-8 py-2.5 text-primary border-2 border-primary  rounded-xl cursor-pointer text-[15px]"
               >
                 Save
@@ -266,23 +254,23 @@ const JobDetails = () => {
                       : jobPost?.job_description}
                   </p>
                   <div className="flex card-actions items-center justify-start mt-4 gap-4">
-                  {user?.email ? (
-            <Link to={`/apply-job/${jobPost?._id}`}>
-            <span
-              className={`px-8 flex items-center bg-primary text-white rounded-xl cursor-pointer text-[14px] py-3 ${
-                isUser?.role === "user" ? "visible" : "invisible"
-              }`}
-            >
-              Apply Now
-            </span>
-            </Link>
-          ) : (
-            <Link to={"/signin"}>
-              <span className="px-8 flex items-center bg-primary text-white rounded-xl cursor-pointer text-[14px] py-3">
-                Apply Now
-              </span>
-            </Link>
-          )}
+                    {user?.email ? (
+                      <Link to={`/apply-job/${jobPost?._id}`}>
+                        <span
+                          className={`px-8 flex items-center bg-primary text-white rounded-xl cursor-pointer text-[14px] py-3 ${
+                            isUser?.role === "user" ? "visible" : "invisible"
+                          }`}
+                        >
+                          Apply Now
+                        </span>
+                      </Link>
+                    ) : (
+                      <Link to={"/signin"}>
+                        <span className="px-8 flex items-center bg-primary text-white rounded-xl cursor-pointer text-[14px] py-3">
+                          Apply Now
+                        </span>
+                      </Link>
+                    )}
                     <Link
                       onClick={() => setCurrentAds(jobPost?._id)}
                       to={`/job-details/${jobPost?._id}`}

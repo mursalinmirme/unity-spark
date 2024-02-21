@@ -13,6 +13,7 @@ const ApplyJobs = () => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const {id} = useParams();
   console.log("mr id is", id);
 
@@ -44,23 +45,19 @@ const ApplyJobs = () => {
     { value: "Mongoose", label: "Mongoose" },
   ];
 
+  
+  const {data:doesApplied, isFetching:doesAppliedIsFetching, refetch:applicationRefetch} = useQuery({
+    queryKey: ['doesTheUserAlreadyApplied'],
+    queryFn: async () => {
+      const result = await axiosPublic.get(`/does-user-applied?applied_jobs_id=${id}&email=${user?.email}`);
+      return result.data.applied;
+    }
+  })
+
   const { register, handleSubmit, control, reset } = useForm();
 
   const onSubmit = (data) => {
-    // let skillsArray = [];
-    // data?.skills?.map((skill) => {
-    //   skillsArray.push(skill.label);
-    // });
-    // {
-    //   skillsArray.length === 0 &&
-    //     users?.skills?.map((skill) => {
-    //       skillsArray.push(skill);
-    //     });
-    // }
-    // data?.skills?.map((skill) => {
-    //   skillsArray.push(skill.label);
-    // });
-
+    setIsSubmitting(true);
     const userInfo = {
       name: data?.name || users?.name,
       email: user?.email,
@@ -83,36 +80,30 @@ const ApplyJobs = () => {
       .post("/job_applications", userInfo)
       .then(() => {
         reset();
+        applicationRefetch();
+        setIsSubmitting(false);
         toast.success("Applied Successfully");
       })
       .catch((error) => {
+        setIsSubmitting(false);
         toast.error(error.message);
       });
   };
 
-  const {data:doesApplied, isFetching:doesAppliedIsFetching} = useQuery({
-    queryKey: ['doesTheUserAlreadyApplied'],
-    queryFn: async () => {
-      const result = await axiosPublic.get(`/does-user-applied?applied_jobs_id=${id}&email=${user?.email}`);
-      return result.data.applied;
-    }
-  })
-
-console.log('hello testing 1234', doesApplied);
-
-if(userInfoIsFetching || jobDetailsIsFetching || doesAppliedIsFetching){
+if(userInfoIsFetching || jobDetailsIsFetching){
  return <ApplyJobsSkeleton></ApplyJobsSkeleton>;
 }
 
   return (
     <div>
       <h3 className="mt-4 text-3xl font-semibold">Apply to {applyJobDetails?.job_title}</h3>
+      <h5 className="mt-2 text-base font-semibold">Position: {applyJobDetails?.position}</h5>
       {
         doesApplied ? <div className="w-full h-[60vh] flex justify-center items-center">
           <div className="border p-16  shadow-sm rounded-xl">
             <div className="flex justify-center flex-col items-center space-y-3">
             <FaCheckCircle className="text-green-500 text-3xl"></FaCheckCircle>
-            <p>You have already applied for the job</p>
+            <p>You have successfully applied for the job</p>
             </div>
             <p className="text-center mt-1">Please, wait for response</p>
           </div>
@@ -305,9 +296,9 @@ if(userInfoIsFetching || jobDetailsIsFetching || doesAppliedIsFetching){
       
               <button
                 type="submit"
-                className="bg-[#433ebe] mt-6 py-2 px-8 text-white rounded-md"
+                className="bg-[#433ebe] mt-6 font-medium h-11 flex justify-center items-center w-32 text-white rounded-md"
               >
-                Submit
+                {isSubmitting ? <span className="loading loading-spinner loading-md p-0"></span> : 'Submit'}
               </button>
             </form>
       }
