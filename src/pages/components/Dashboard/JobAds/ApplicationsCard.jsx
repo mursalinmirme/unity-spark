@@ -15,7 +15,7 @@ const ApplicationsCard = ({
   setStoreInfo,
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  console.log('lalalalallal',value);
+  console.log("lalalalallal", value);
   return (
     <div className="border-2 border-[#D9D9D9] rounded-xl px-2 md:px-5 py-2">
       <div className="flex items-center justify-between">

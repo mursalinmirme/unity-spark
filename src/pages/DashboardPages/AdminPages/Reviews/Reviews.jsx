@@ -27,7 +27,7 @@ const Reviews = () => {
   };
 
   // fetch all reviews numbers
-  const { data: reviewsNums, refetch:reFetchReviewsNums } = useQuery({
+  const { data: reviewsNums, refetch: reFetchReviewsNums } = useQuery({
     queryKey: ["reviewsNumbers"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/feedbacks-nums`);
@@ -45,6 +45,7 @@ const Reviews = () => {
     },
   });
 
+  const [systems, setSystems] = useState({});
   return (
     <div>
       <div className="flex justify-between items-center mb-5">
@@ -58,38 +59,41 @@ const Reviews = () => {
           </Link>
         )}
       </div>
-      <div className="min-h-[505px]">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {reviews?.map((item) => (
-          <div className="border-2 rounded-lg p-3" key={item._id}>
-            <div className="flex items-center gap-5">
-              <img className="h-12 w-12 rounded-full" src={item.image} alt="" />
-              <div>
-                <h1 className="text-[20px] font-bold">{item.name}</h1>
-                <p className="text-[#5B5555] text-[14px]">
-                  {item.employeePosition}
-                </p>
+      <div
+        onClick={() => document.getElementById("my_modal_80").showModal()}
+        className="min-h-[505px] cursor-pointer"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {reviews?.map((item) => (
+            <div
+              className="border-2 rounded-lg p-3"
+              key={item._id}
+              onClick={() => setSystems(item)}
+            >
+              <div className="flex items-center gap-5">
+                <img
+                  className="h-12 w-12 rounded-full"
+                  src={item.image}
+                  alt=""
+                />
+
+                <div>
+                  <h1 className="text-[20px] font-bold">{item.name}</h1>
+                  <p className="text-[#5B5555] text-[14px]">
+                    {item.employeePosition}
+                  </p>
+                </div>
               </div>
+              <p className="text-[#5B5555] font-medium mt-3">
+                {item.description.length > 55 ? (
+                  <span>{item.description.slice(0, 48)}...</span>
+                ) : (
+                  <span>{item.description}</span>
+                )}
+              </p>
             </div>
-            <p className="text-[#5B5555] font-medium mt-3">
-              {item.description.length > 55 ? (
-                <span>
-                  {" "}
-                  {'"'}
-                  {item.description.slice(0, 55)}...{'"'}
-                </span>
-              ) : (
-                <span>
-                  {" "}
-                  {'"'}
-                  {item.description}
-                  {'"'}
-                </span>
-              )}
-            </p>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
       </div>
       <div className="text-cente flex flex-wrap justify-center space-x-2 md:space-x-3 mt-10 review-pagination">
         <a onClick={handlPrev}>
@@ -108,6 +112,30 @@ const Reviews = () => {
           <GrNext className="icons" />
         </a>
       </div>
+
+      {/* You can open the modal using document.getElementById('ID').showModal() method */}
+
+      <dialog id="my_modal_80" className="modal">
+        <div className="   modal-box  ">
+          <form method="dialog">
+            {/* if there is a button in form, it will close the modal */}
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-2xl">
+              ✕
+            </button>
+          </form>
+
+          <div>
+            <img className="w-36 h-36 rounded-lg" src={systems?.image} alt="" />
+            <div>
+              <h1 className="text-[20px] font-bold">{systems?.name}</h1>
+              <p className="text-[#5B5555] text-[14px]">
+                {systems?.employeePosition}
+              </p>
+              <p className="pt-3">{systems?.description}</p>
+            </div>
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 };
