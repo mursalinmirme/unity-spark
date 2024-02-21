@@ -65,6 +65,7 @@ import FAQs from "../pages/AllFooterPage/FAQs/FAQs";
 import TermsCondition from "../pages/AllFooterPage/TermsCondition/TermsCondition";
 import PrivacyPolicy from "../pages/AllFooterPage/PrivacyPolicy/PrivacyPolicy";
 import Disclaimer from "../pages/AllFooterPage/Disclaimer/Disclaimer";
+import Accessibility from "../pages/AllFooterPage/Accessibility/Accessibility";
 
 const router = createBrowserRouter([
   {
@@ -130,6 +131,10 @@ const router = createBrowserRouter([
       {
         path: "disclaimer",
         element: <Disclaimer></Disclaimer>,
+      },
+      {
+        path: "accessibility",
+        element: <Accessibility></Accessibility>,
       },
       // All Footer Page End
 
