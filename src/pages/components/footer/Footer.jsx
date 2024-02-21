@@ -39,15 +39,15 @@ const Footer = () => {
           <header>Services</header>
           <Link to="/recruitmentService">Recruitment Services</Link>
           <Link to="/support">Support</Link>
-          <a>Security Measure</a>
-          <a>Copyright Information</a>
+          <Link to="/securityMeasure">Security Measure</Link>
+          <Link to="/copyrightInfo">Copyright Information</Link>
         </nav>
         <nav>
           <header>Company</header>
 
           <Link to="/about-us">About Us</Link>
           <Link to="/blog"> Blogs</Link>
-          <a> FAQs</a>
+          <Link to="/faq"> FAQs</Link>
           <Link to="/events">Events</Link>
         </nav>
         <nav>

@@ -59,6 +59,9 @@ import Payment from "../pages/DashboardPages/AdminPages/PaymentManagement/Paymen
 import CourseUpdate from "../pages/DashboardPages/AdminPages/TrainingManagement/CourseUpdate";
 import RecruitmentService from "../pages/AllFooterPage/RecruitmentService/RecruitmentService";
 import Support from "../pages/AllFooterPage/Support/Support";
+import SecurityMeasure from "../pages/AllFooterPage/SecurityMeasure/SecurityMeasure";
+import CopyrightInfo from "../pages/AllFooterPage/CopyrightInfo/CopyrightInfo";
+import FAQs from "../pages/AllFooterPage/FAQs/FAQs";
 
 const router = createBrowserRouter([
   {
@@ -96,6 +99,20 @@ const router = createBrowserRouter([
       {
         path: "support",
         element: <Support></Support>,
+      },
+      {
+        path: "securityMeasure",
+        element: <SecurityMeasure></SecurityMeasure>,
+      },
+      {
+        path: "copyrightInfo",
+        element: <CopyrightInfo></CopyrightInfo>,
+      },
+
+      //  company Part link Page
+      {
+        path: "faq",
+        element: <FAQs></FAQs>,
       },
 
       // All Footer Page End
