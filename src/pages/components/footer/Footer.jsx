@@ -38,7 +38,7 @@ const Footer = () => {
         <nav>
           <header>Services</header>
           <Link to="/recruitmentService">Recruitment Services</Link>
-          <a>Support</a>
+          <Link to="/support">Support</Link>
           <a>Security Measure</a>
           <a>Copyright Information</a>
         </nav>

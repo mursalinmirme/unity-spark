@@ -58,6 +58,7 @@ import Courses from "../pages/DashboardPages/EmployeePages/Training/Courses/Cour
 import Payment from "../pages/DashboardPages/AdminPages/PaymentManagement/Payment";
 import CourseUpdate from "../pages/DashboardPages/AdminPages/TrainingManagement/CourseUpdate";
 import RecruitmentService from "../pages/AllFooterPage/RecruitmentService/RecruitmentService";
+import Support from "../pages/AllFooterPage/Support/Support";
 
 const router = createBrowserRouter([
   {
@@ -91,6 +92,10 @@ const router = createBrowserRouter([
       {
         path: "recruitmentService",
         element: <RecruitmentService></RecruitmentService>,
+      },
+      {
+        path: "support",
+        element: <Support></Support>,
       },
 
       // All Footer Page End
