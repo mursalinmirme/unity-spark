@@ -37,7 +37,7 @@ const Footer = () => {
         </aside>
         <nav>
           <header>Services</header>
-          <a>Recruitment Services</a>
+          <Link to="/recruitmentService">Recruitment Services</Link>
           <a>Support</a>
           <a>Security Measure</a>
           <a>Copyright Information</a>
@@ -46,9 +46,9 @@ const Footer = () => {
           <header>Company</header>
 
           <Link to="/about-us">About Us</Link>
-          <Link to="/blog"> Blog page</Link>
+          <Link to="/blog"> Blogs</Link>
           <a> FAQs</a>
-          <a>Events</a>
+          <Link to="/events">Events</Link>
         </nav>
         <nav>
           <header>Legal</header>
