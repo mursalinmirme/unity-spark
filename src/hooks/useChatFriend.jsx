@@ -1,13 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
-// import useAxiosPublic from "./useAxiosPublic";
-import axios from "axios";
+import useAxiosSecure from "./useAxiosSecure";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const useChatFriend = () => {
-    // const axiosPublic = useAxiosPublic()
+    const {user} = useContext(AuthContext)
+    const axiosSecure = useAxiosSecure()
     const { data: friends = [], isPending , refetch } = useQuery({
         queryKey: ["chat_friends"],
         queryFn: async () => {
-          const res = await axios.get("/chat_user.json");
+          const res = await axiosSecure.get(`/chat-friends?email=${user?.email}`);
           return res.data;
         },
     });
