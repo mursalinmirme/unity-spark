@@ -34,6 +34,7 @@ const ApplyJobs = () => {
     }
   })
 
+  console.log("Helllo check mr hello", users?.skills);
 
   const skillsArray = [
     { value: "JavaScript", label: "JavaScript" },
@@ -272,7 +273,7 @@ if(userInfoIsFetching || jobDetailsIsFetching){
                         className="text-base bg-red-300"
                         {...field}
                         options={skillsArray}
-                       
+                        defaultValue={users?.skills}
                         isMulti
                       />
                     )}
