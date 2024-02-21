@@ -27,7 +27,7 @@ const Counter = () => {
         .then(res => {
             setJobadsCount(res?.data?.count)
         })
-    },[axiosPublic])
+    },[])
 
     return (
         <div className="counter">

@@ -5,9 +5,11 @@ import Select from "react-select";
 import toast from "react-hot-toast";
 import axios from "axios";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import { useState } from "react";
 
 const AddJobs = () => {
- const axiosPublic = useAxiosPublic()
+ const axiosPublic = useAxiosPublic();
+ const [isSubmitting, setIsSubmittion] = useState(false);
 
   const { data: jobTypes } = useQuery({
     queryKey: ["jobTypes"],
@@ -33,6 +35,9 @@ const AddJobs = () => {
     { value: "MongoDB", label: "MongoDB" },
     { value: "MySQL", label: "MySQL" },
     { value: "Mongoose", label: "Mongoose" },
+    { value: "Express", label: "Express" },
+    { value: "Bootstrap", label: "Bootstrap" },
+    { value: "Tailwind", label: "Tailwind" },
   ];
 
   const additionalRequirementsArray = [
@@ -71,12 +76,14 @@ const AddJobs = () => {
   const {
     control,
     register,
+    reset,
     handleSubmit,
 
     formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
+    setIsSubmittion(true);
     let skillsArray = [];
     data?.skills?.map((skill) => {
       skillsArray.push(skill.label);
@@ -114,22 +121,25 @@ const AddJobs = () => {
       .post("/job-ads", newJob)
       .then(() => {
         toast.success("New Job Ad Added");
+        reset()
+        setIsSubmittion(false);
       })
       .catch((error) => {
         toast.error(error.message);
+        setIsSubmittion(false);
       });
   };
 
   return (
     <div className="font-inter">
-      <h3 className="text-3xl font-semibold">Add a new job ads</h3>
+      <h3 className="text-2xl font-semibold">Add a new job ads</h3>
 
       <div>
-        <form className="mt-10 space-y-3" onSubmit={handleSubmit(onSubmit)}>
+        <form className="mt-5 space-y-3" onSubmit={handleSubmit(onSubmit)}>
           {/* Job Title */}
-          <div className="form-control">
+          <div className="">
             <label className="">
-              <span className="font-inter text-[18px] font-bold">
+              <span className="font-inter text-base font-medium">
                 Job Title
               </span>
             </label>
@@ -147,11 +157,11 @@ const AddJobs = () => {
           </div>
 
           {/* Position and Salary */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="grid pt-1 grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Position */}
-            <div className="form-control">
+            <div className="">
               <label className="">
-                <span className="font-inter text-[18px] font-bold">
+                <span className="font-inter text-base font-medium">
                   Position
                 </span>
               </label>
@@ -169,9 +179,9 @@ const AddJobs = () => {
             </div>
 
             {/* Salary */}
-            <div className="form-control">
+            <div className="">
               <label className="">
-                <span className="font-inter text-[18px] font-bold">Salary</span>
+                <span className="font-inter text-base font-medium">Salary</span>
               </label>
               <input
                 type="text"
@@ -189,11 +199,11 @@ const AddJobs = () => {
 
           {/* Job Type and Work-Type */}
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="grid pt-1 grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Job Type */}
             <div className="form-control">
               <label className="pb-1">
-                <span className="font-inter text-[18px] font-bold">
+                <span className="font-inter text-base font-medium">
                   Job Type
                 </span>
               </label>
@@ -224,7 +234,7 @@ const AddJobs = () => {
 
             <div className="form-control">
               <label className="pb-1">
-                <span className="font-inter text-[18px] font-bold">
+                <span className="font-inter text-base font-medium">
                   Work Type
                 </span>
               </label>
@@ -250,9 +260,9 @@ const AddJobs = () => {
 
           {/* Job Description */}
 
-          <div className="form-control">
+          <div className="form-control pt-1">
             <label className="">
-              <span className="font-inter text-xl text-[18px] font-bold">
+              <span className="font-inter text-base font-medium">
                 Job Description
               </span>
             </label>
@@ -271,9 +281,9 @@ const AddJobs = () => {
 
           {/* Required Skills */}
 
-          <div className="space-y-1">
+          <div className="space-y-1 pt-1">
             <label>
-              <span className="font-inter text-[18px] font-bold">
+              <span className="font-inter text-base font-medium">
                 Required Skills
               </span>
             </label>
@@ -297,9 +307,9 @@ const AddJobs = () => {
 
           {/* Additional Requirement */}
 
-          <div className="space-y-1">
+          <div className="space-y-1 pt-3">
             <label>
-              <span className="font-inter text-[18px] font-bold">
+              <span className="font-inter text-base font-medium">
                 Additional Requirements (Optional)
               </span>
             </label>
@@ -318,9 +328,9 @@ const AddJobs = () => {
           </div>
 
           {/* Educational Requirements */}
-          <div className="space-y-1">
+          <div className="space-y-1 pt-3">
             <label>
-              <span className="font-inter text-[18px] font-bold">
+              <span className="font-inter text-base font-medium">
                 Educational Requirements (Optional)
               </span>
             </label>
@@ -339,9 +349,9 @@ const AddJobs = () => {
           </div>
 
           {/* Benefits */}
-          <div className="space-y-1">
+          <div className="space-y-1 pt-3">
             <label className="">
-              <span className="font-inter text-[18px] font-bold">
+              <span className="font-inter text-base font-medium">
                 Benefits of this job (optional)
               </span>
             </label>
@@ -359,12 +369,14 @@ const AddJobs = () => {
             />
           </div>
 
+          <div className="pt-4">
           <button
             type="submit"
-            className="bg-[#433ebe] mt-3 px-8 text-white rounded-md py-1"
+            className="bg-[#433ebe] w-36 flex justify-center items-center text-white rounded-md h-12"
           >
-            Post
+            {isSubmitting ? <span className="loading loading-spinner loading-md p-0"></span> : 'Add Job'}
           </button>
+          </div>
         </form>
       </div>
     </div>
