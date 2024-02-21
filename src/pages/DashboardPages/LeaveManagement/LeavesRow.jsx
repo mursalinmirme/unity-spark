@@ -5,29 +5,30 @@ const LeavesRow = ({ leave, idx }) => {
   console.log(leave);
   return (
     <tr>
-      <td>{idx + 1}</td>
-      <td>
+      <td className="!text-left">{idx + 1}</td>
+      <td className="!text-left">
         <div>
           <div>
             <div>{leave?.subject}</div>
           </div>
         </div>
       </td>
-      <td>
+      <td className="!text-left">
         {leave?.leaveReason.length > 50 ? (
           <span>{leave?.leaveReason.slice(0, 50)}...</span>
         ) : (
           leave?.leaveReason
         )}
       </td>
-      <td>{leave?.numberOfDays}</td>
-      <td className="font-bold">
+      <td className="!text-left">{leave?.numberOfDays}</td>
+      <td className="font-bold !text-left ">
         {leave?.status === "Rejected" ? (
           <button
             onClick={() =>
               document.getElementById(`modal_${leave?._id}`).showModal()
-            }>
-            <div className="flex items-center gap-2">
+            }
+          >
+            <div className="flex items-center gap-2 !text-left">
               <div className="bg-primary w-8 h-7 mx-auto rounded-md flex items-center justify-center text-white">
                 <IoEyeOutline className="text-md"></IoEyeOutline>
               </div>
@@ -35,7 +36,7 @@ const LeavesRow = ({ leave, idx }) => {
             </div>
           </button>
         ) : (
-          <span>{leave?.status}</span>
+          <span className="!text-left">{leave?.status}</span>
         )}
         {/* <h3>{leave?.feedback}</h3> */}
       </td>
