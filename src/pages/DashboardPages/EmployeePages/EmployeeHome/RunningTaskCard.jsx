@@ -81,11 +81,11 @@ const RunningTaskCard = () => {
 
             <div>
               <div className="avatar-group -space-x-6 rtl:space-x-reverse">
-                {myRunningTasks?.employees?.length > 5
-                  ? myRunningTasks?.employees.slice(0, 5).map((employee) => {
+                {myRunningTasks?.employees?.length > 3
+                  ? myRunningTasks?.employees.slice(0, 3).map((employee) => {
                       return (
                         <div key={employee?._id} className="avatar">
-                          <div className="w-12">
+                          <div className="w-10">
                             <img src={employee?.image} />
                           </div>
                         </div>
@@ -94,16 +94,16 @@ const RunningTaskCard = () => {
                   : myRunningTasks?.employees?.map((employee) => {
                       return (
                         <div key={employee?._id} className="avatar">
-                          <div className="w-12">
+                          <div className="w-10">
                             <img src={employee?.image} />
                           </div>
                         </div>
                       );
                     })}
-                {myRunningTasks?.employees?.length > 5 && (
+                {myRunningTasks?.employees?.length > 3 && (
                   <div className="avatar placeholder">
-                    <div className="w-12 bg-white text-primary font-semibold text-xl">
-                      <span>+{myRunningTasks?.employees?.length - 5}</span>
+                    <div className="w-10 bg-white text-primary font-semibold text-xl">
+                      <span>+{myRunningTasks?.employees?.length - 3}</span>
                     </div>
                   </div>
                 )}

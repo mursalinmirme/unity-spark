@@ -46,13 +46,13 @@ const CompletedTaskCard = () => {
 
             <div>
               <div className="avatar-group -space-x-6 rtl:space-x-reverse">
-                {myRecentCompleteTask?.employees?.length > 5
+                {myRecentCompleteTask?.employees?.length > 3
                   ? myRecentCompleteTask?.employees
-                      .slice(0, 5)
+                      .slice(0, 3)
                       .map((employee) => {
                         return (
                           <div key={employee?._id} className="avatar">
-                            <div className="w-12">
+                            <div className="w-10">
                               <img src={employee?.image} />
                             </div>
                           </div>
@@ -61,17 +61,17 @@ const CompletedTaskCard = () => {
                   : myRecentCompleteTask?.employees?.map((employee) => {
                       return (
                         <div key={employee?._id} className="avatar">
-                          <div className="w-12">
+                          <div className="w-10">
                             <img src={employee?.image} />
                           </div>
                         </div>
                       );
                     })}
-                {myRecentCompleteTask?.employees?.length > 5 && (
+                {myRecentCompleteTask?.employees?.length > 3 && (
                   <div className="avatar placeholder">
-                    <div className="w-12 bg-white text-primary font-semibold text-xl">
+                    <div className="w-10 bg-white text-primary font-semibold text-xl">
                       <span>
-                        +{myRecentCompleteTask?.employees?.length - 5}
+                        +{myRecentCompleteTask?.employees?.length - 3}
                       </span>
                     </div>
                   </div>
