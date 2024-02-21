@@ -4,11 +4,12 @@ import { useContext } from "react";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import MyApplicationsSkeleton from "./MyApplicationsSkeleton";
 
 const MyApplications = () => {
   const axiosPublic = useAxiosPublic();
   const { user } = useContext(AuthContext);
-  const { data: myApplications=[] } = useQuery({
+  const { data: myApplications=[], isFetching } = useQuery({
     queryKey: ["myApplicatins"],
     queryFn: async () => {
       const result = await axiosPublic.get(`/my-applications?email=${user?.email}`);
@@ -18,8 +19,11 @@ const MyApplications = () => {
   });
   console.log("Under the user has total application", myApplications);
 
+  if(isFetching){
+    return <MyApplicationsSkeleton></MyApplicationsSkeleton>
+  }
   return <div>
-    <h3 className="text-center text-xl font-semibold border-b pb-5">My Applied Applications</h3>
+    <h3 className="text-left text-xl font-semibold border-b pb-5">My Applied Applications</h3>
     {
       myApplications?.length > 0 ? 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
@@ -32,7 +36,7 @@ const MyApplications = () => {
                             <p className="font-semibold">Status: {application?.status}</p>
                             </div>
                             <p className="text-base mt-1">Application Submitted: <span className="text-base font-semibold">{moment(application?.createdAt).startOf('day').fromNow()}</span></p>
-                            <Link to={`/job-details/${application?.applied_job_id}`}><button className="bg-primary text-white px-3 h-9 font-medium mt-3 w-full rounded-md flex justify-center items-center">See Details</button></Link>
+                            <Link to={`/job-details/${application?.applied_job_id}`}><button className="bg-accent text-white px-3 h-9 font-medium mt-3 w-full rounded-md flex justify-center items-center">See Details</button></Link>
                         </div>
               </div>
             })

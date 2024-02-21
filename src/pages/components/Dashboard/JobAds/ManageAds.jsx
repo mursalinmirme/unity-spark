@@ -59,11 +59,12 @@ const ManageAds = () => {
     // console.log(id);
     Swal.fire({
       title: "Are you sure?",
+      text: "You want to delete this job ad.",
       icon: "question",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Yes, Delete",
     }).then((result) => {
       if (result.isConfirmed) {
         PublicAxios.delete(`/job-ads/${id}`).then((res) => {
