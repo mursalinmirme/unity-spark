@@ -92,6 +92,7 @@ const AvailableJobs = () => {
   // handle close search bar
   const handleCloseSearchBar = () => {
     setShowSearchBar(false);
+    setSearchValues(null);
   };
 
   // handle fatch jobs by users wanted date

@@ -205,7 +205,7 @@ const ManageApplications = () => {
     },
   });
 
-  // console.log("Indivisual37", applicationPreview);
+  console.log("hello check form mursalin", applicationPreview);
 
   //handler Show more button
   const handlerShowMore = () => {

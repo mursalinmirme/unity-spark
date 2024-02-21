@@ -145,6 +145,9 @@ const ApplicationsCard = ({
                   {applicationPreview?.institute_name}
                 </h3>
               </div>
+              <div className={`${applicationPreview?.resume_link ? 'block' : 'hidden'}`}>
+                <button><a className="bg-accent px-4 py-2 font-semibold text-white rounded-md" href={applicationPreview?.resume_link}>View Resume</a></button>
+              </div>
             </div>
           </div>
         </div>
