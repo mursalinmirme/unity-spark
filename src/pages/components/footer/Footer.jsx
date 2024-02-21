@@ -7,6 +7,10 @@ import { FaPinterest } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+  // this function just click link and top page show
+  const newSystem = () => {
+    window.scrollTo({ top: 1, behavior: "smooth" });
+  };
   return (
     <div id="footer">
       <footer>
@@ -35,14 +39,14 @@ const Footer = () => {
             </a>
           </div>
         </aside>
-        <nav>
+        <nav onClick={newSystem}>
           <header>Services</header>
           <Link to="/recruitmentService">Recruitment Services</Link>
           <Link to="/support">Support</Link>
           <Link to="/securityMeasure">Security Measure</Link>
           <Link to="/copyrightInfo">Copyright Information</Link>
         </nav>
-        <nav>
+        <nav onClick={newSystem}>
           <header>Company</header>
 
           <Link to="/about-us">About Us</Link>
@@ -50,7 +54,7 @@ const Footer = () => {
           <Link to="/faq"> FAQs</Link>
           <Link to="/events">Events</Link>
         </nav>
-        <nav>
+        <nav onClick={newSystem}>
           <header>Legal</header>
           <Link to="/termsCondition">Terms of Condition </Link>
           <Link to="/privacyPolicy">Privacy policy</Link>
