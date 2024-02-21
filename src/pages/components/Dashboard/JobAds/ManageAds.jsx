@@ -178,7 +178,7 @@ const ManageAds = () => {
                     </span>
                   </h3>
                 </div>
-                <div className="space-x-4 text-white">
+                <div className="space-x-4 flex text-white">
                   <Link to={`/dashboard/jobs/jobs-edit/${job?._id}`}>
                     <button className="bg-primary rounded-lg p-2">
                       <AiFillEdit className="text-lg"></AiFillEdit>

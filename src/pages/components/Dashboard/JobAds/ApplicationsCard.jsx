@@ -36,7 +36,7 @@ const ApplicationsCard = ({
           </div>
         </div>
 
-        <section className="space-x-3 justify-center items-center hidden md:flex text-white">
+        <div className="space-y-1 md:space-y-0 md:space-x-3 flex flex-col md:flex-row md:justify-center items-center text-white">
           {/* <Link className="rounded-lg p-2 bg-[#433EBE]">
               <IoEyeOutline className=""></IoEyeOutline>
             </Link> */}
@@ -64,7 +64,7 @@ const ApplicationsCard = ({
           >
             <RxCross1 className=""></RxCross1>
           </button>
-        </section>
+        </div>
       </div>
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
 
