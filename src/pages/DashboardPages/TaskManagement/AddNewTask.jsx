@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import './tasks.css'
 
 const AddNewTask = () => {
   const axiosSecure = useAxiosSecure();
@@ -59,9 +60,9 @@ const AddNewTask = () => {
     return (
       <div className="cursor-pointer" onClick={handleClick}>
         {isSelected ? (
-          <MdDone className="bg-primary text-white text-4xl mr-0.5 p-2 rounded-full" />
+          <MdDone className="add-task-icons"/>
         ) : (
-          <IoAdd className="bg-primary text-white text-4xl mr-0.5 p-2 rounded-full" />
+          <IoAdd className="add-task-icons"/>
         )}
       </div>
     );
@@ -150,24 +151,24 @@ const AddNewTask = () => {
             </div>
             <div>
               <h1 className="text-xl font-semibold mb-4">Assign Employees</h1>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-3">
                 {data?.map((item) => (
                   <div
                     key={item._id}
-                    className="flex justify-between items-center border-2 border-primary rounded-full w-full md:w-[255px]"
+                    className="flex justify-between items-center border-2 border-primary rounded-full w-full md:w-[293px]"
                   >
                     <div className="flex items-center gap-2">
                       <div>
                         <img
-                          className="h-10 w-10 border-r-2 border-primary rounded-full"
+                          className="h-12 w-12 border-r-2 border-primary rounded-full"
                           src={item.image}
                           alt=""
                         />
                       </div>
                       <h1 className="text-lg font-semibold">
                         {" "}
-                        {item.name.length > 13 ? (
-                          <span>{item.name.slice(0, 13)}...</span>
+                        {item.name.length > 16 ? (
+                          <span>{item.name.slice(0, 16)}...</span>
                         ) : (
                           <span>{item.name}</span>
                         )}{" "}
