@@ -1,8 +1,14 @@
+import { TiTick } from "react-icons/ti";
 const RecruitmentService = () => {
   return (
-    <div className="mt-10">
-      <h3 className="text-2xl font-inter font-bold my-2">
-        Welcome to Our Recruitment Services{" "}
+    <div className="my-10">
+      <img
+        className="rounded-lg"
+        src="https://globaljob.com.np/uploads/service/4494recruitment-services-2.jpg"
+        alt=""
+      />
+      <h3 className="text-2xl font-inter font-bold mb-1 mt-8">
+        Welcome to Our Recruitment Services
       </h3>
       <p className="text-slate-500  text-justify">
         At Unity Spark, we understand that finding the right talent is crucial
@@ -23,23 +29,6 @@ const RecruitmentService = () => {
         </p>
       </div>
 
-      {/* <div>
-        <h3 className="text-2xl font-inter font-bold my-2">
-          {" "}
-          Proactive Talent Sourcing.
-        </h3>
-
-        <p className="text-slate-500 text-justify my-2">
-          Rather than waiting for candidates to come to us, we take a proactive
-          approach to talent sourcing. Our team utilizes a variety of channels,
-          including our extensive network, online job boards, social media
-          platforms, and industry events, to identify and engage top-tier
-          talent. By casting a wide net and leveraging our expertise in
-          candidate assessment, we ensure that you have access to the best
-          candidates available.
-        </p>
-      </div> */}
-
       <div>
         <h3 className="text-2xl font-inter font-bold my-2">
           {" "}
@@ -47,24 +36,31 @@ const RecruitmentService = () => {
         </h3>
 
         <div className="text-slate-500 text-justify space-y-2">
-          <p>
-            Expertise: Our team consists of seasoned recruiters with deep
-            industry knowledge and a proven track record of identifying and
-            placing exceptional .
-          </p>
-          <p>
-            {" "}
+          <p className="flex gap-2">
+            <TiTick className="text-2xl" />
             Customized Solutions: We understand that every business is
             different. That is why we work closely with you to develop
             customized recruitment strategies that align with your company
             culture, values, and objectives.
           </p>
-          <p>
-            {" "}
+          <p className="flex gap-2">
+            <TiTick className="text-2xl" />
             Comprehensive Candidate Screening: We go beyond resumes and
             qualifications, conducting thorough assessments to ensure that
             candidates not only have the right skills but also fit seamlessly
             into your organization.
+          </p>
+          <p className="flex gap-2">
+            <TiTick className="text-2xl" />
+            Time and Cost Efficiency: With our efficient processes and extensive
+            network, we help you reduce time-to-hire and minimize recruitment
+            costs without compromising on quality.
+          </p>
+          <p className="flex gap-2">
+            <TiTick className="text-2xl" />
+            Continuous Support: Our commitment to your success does not end with
+            the placement. We provide ongoing support to both clients and
+            candidates to ensure a smooth transition and long-term satisfaction.
           </p>
         </div>
       </div>
