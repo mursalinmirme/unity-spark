@@ -57,6 +57,7 @@ import InterviewsDetails from "../pages/DashboardPages/AdminPages/Interviews/int
 import Courses from "../pages/DashboardPages/EmployeePages/Training/Courses/Courses";
 import Payment from "../pages/DashboardPages/AdminPages/PaymentManagement/Payment";
 import CourseUpdate from "../pages/DashboardPages/AdminPages/TrainingManagement/CourseUpdate";
+import RecruitmentService from "../pages/AllFooterPage/RecruitmentService/RecruitmentService";
 
 const router = createBrowserRouter([
   {
@@ -84,6 +85,16 @@ const router = createBrowserRouter([
         path: "events",
         element: <Events></Events>,
       },
+
+      // All Footer Page Start
+
+      {
+        path: "recruitmentService",
+        element: <RecruitmentService></RecruitmentService>,
+      },
+
+      // All Footer Page End
+
       {
         path: "available-jobs",
         element: <AvailableJobs></AvailableJobs>,
