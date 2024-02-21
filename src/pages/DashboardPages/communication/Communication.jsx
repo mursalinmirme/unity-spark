@@ -1,78 +1,94 @@
-import { useContext, useState } from "react";
-import { ImCross } from "react-icons/im";
+import { useContext, useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
+import { RxCross2 } from "react-icons/rx";
 import useChatFriend from "../../../hooks/useChatFriend";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { AiOutlineSend } from "react-icons/ai";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import useEmployees from "../../../hooks/useEmployees";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 
 const Communication = () => {
-    // const [showSearchBar, setShowSearchBar] = useState(false);
-    // const [searchValues, setSearchValues] = useState(null);
-    const [selectedChat, setSelectedChat] = useState(0)
-    const {friends} = useChatFriend()
+    const [showSearchBar, setShowSearchBar] = useState(false);
+    const [searchValue, setSearchValue] = useState(null);
+    const {allEmployees} = useEmployees()
+    const [selectedChat, setSelectedChat] = useState(13)
+    const [selectedUserEmail, setSelectedUserEmail] = useState('')
     const {user} = useContext(AuthContext);
     const [value, setValue] = useState('')
-    console.log(!!value);
+    const { register, handleSubmit, reset } = useForm();
+    const axiosSecure = useAxiosSecure()
 
+    const searchedEmployees = allEmployees?.filter(employee => employee.name.toLowerCase().includes(searchValue?.toLowerCase()))
 
-    // const handleSearches = (e) => {
-    //     e.preventDefault();
-    //     const form = e.target;
-    //     const searchVal = form.search.value;
-    //     if (!searchVal) {
-    //       return;
-    //     }
-    //     setSearchValues(searchVal);
-    // };
+    useEffect(() => {
+        setSelectedUserEmail(allEmployees[13]?.email)
+    }, [allEmployees])
+
+    const { data: messages = [], isPending } = useQuery({
+        queryKey: ["chat_message", user?.email, selectedUserEmail],
+        // enabled: !!user?.email && !!selectedUserEmail,
+        queryFn: async () => {
+          const res = await axios.get(`http://localhost:5000/chat?sender_email=${user?.email}&reciever_email=${selectedUserEmail}`);
+          return res.data;
+        },
+    });
+    
+    const onSubmit = (data) => {
+        const messageInfo = {
+            message: data.message,
+            reciever: selectedUserEmail,
+            sender: user?.email
+        }
+        axiosSecure.post('/chat', messageInfo)
+            .then(() => {
+                reset();
+            })
+    }
 
     return (
         <div>
-            <div className="grid grid-cols-6 gap-3 bg-[#ececf8] p-2 rounded-lg">
+            <div className="grid grid-cols-6 gap-3 bg-[#ececf8] p-2 rounded-lg overflow-hidden">
                 <div className="col-span-2 bg-white p-2 rounded-lg">
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between relative">
                         <h2 className="font-inter font-bold text-2xl">Chats</h2>
-                        {/* <div className="flex gap-2">
-                            <form
-                                onSubmit={handleSearches}
-                                className={`p-0 border-0 m-0 search-box ${
-                                showSearchBar && "active-search"
-                                }`}
-                            >
-                                <input
-                                name="search"
-                                defaultValue={searchValues}
-                                type="text"
-                                className=""
-                                placeholder="Search..."
-                                />
-                                <div>
-                                    <button
-                                        onClick={() => setShowSearchBar(true)}
-                                        style={{ background: "#433EBE" }}
-                                        className="search-btn"
-                                    >
-                                        <IoIosSearch className="text-xl text-white"></IoIosSearch>
-                                    </button>
-                                </div>
-                                <div>
-                                {showSearchBar && (
-                                    <button
-                                        onClick={() => setShowSearchBar(false)}
-                                        className="rounded-none bg-none text-primary cancel-btn"
-                                        >
-                                        <ImCross></ImCross>
-                                    </button>
-                                )}
-                                </div>
-                            </form>
-                        </div> */}
+                        <div className={`flex items-center justify-between border-2 rounded-lg p-1 bg-white absolute ${showSearchBar ? 'top-0' : '-top-14'} right-0 w-full transition-all duration-700`}>
+                            <input onChange={e => setSearchValue(e.target.value)} type="text" className="border-0 m-0 outline-none pl-1 w-full" />      
+                            <button type="submit" className={`bg-red-500 text-white p-1 rounded-lg`} onClick={() => {
+                                setShowSearchBar(false)
+                                setSearchValue(null)
+                            }}>
+                                <RxCross2 className="text-lg" />
+                            </button>
+                        </div>
+                        <button type="submit" className={`bg-primary text-white p-1.5 rounded-lg transition-all duration-700 ${showSearchBar ? '-mt-32' : 'mt-0'}`} onClick={() => setShowSearchBar(true)}>
+                            <IoIosSearch className="text-lg" />
+                        </button>
                     </div>
                     <hr className="my-3 border border-slate-300" />
+                    <div className={`p-2 -mt-3 rounded-b-lg space-y-3 ${searchValue ? 'block' : 'hidden'}`} style={{boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)'}}>
+                        {
+                            searchedEmployees && searchedEmployees?.map(employee => (
+                                <div key={employee._id} className={`flex gap-3 items-center cursor-pointer p-1 hover:bg-[#ececf8] rounded-lg transition-all`}>
+                                    <img src={employee?.image} className="w-12 h-12 rounded-full" alt="" />
+                                    <div>
+                                        <h3 className="font-inter font-semibold text-[17px]">{employee?.name}</h3>
+                                        <h4 className="font-inter text-sm font-medium">{employee?.position}</h4>
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
                     <div className="grid gap-3">
                         {
-                            friends && friends?.map((friend, idx) =>(
-                                <div key={idx} className={`flex gap-3 items-center cursor-pointer p-1 hover:bg-[#ececf8] rounded-lg transition-all ${selectedChat === idx ? 'bg-[#ececf8]' : ''}`} onClick={() => setSelectedChat(idx)}>
+                            allEmployees && allEmployees?.map((friend, idx) =>(
+                                <div key={idx} className={`flex gap-3 items-center cursor-pointer p-1 hover:bg-[#ececf8] rounded-lg transition-all ${selectedChat === idx ? 'bg-[#ececf8]' : ''}`} onClick={() => {
+                                    setSelectedChat(idx)
+                                    setSelectedUserEmail(friend?.email)
+                                }}>
                                     <img src={friend?.image} className="w-12 h-12 rounded-full" alt="" />
                                     <div>
                                         <h3 className="font-inter font-semibold text-[17px]">{friend?.name}</h3>
@@ -87,7 +103,7 @@ const Communication = () => {
                 
 
                 <div className="col-span-4 bg-white rounded-lg relative">
-                    <div className={`flex gap-3 items-center cursor-pointer p-3 hover:bg-[#ececf8] rounded-lg transition-all`}>
+                    <div className={`flex gap-3 items-center p-3`}>
                         <img src="https://i.ibb.co/ByK4Hpd/founder-4.jpg" className="w-12 h-12 rounded-full" alt="" />
                         <div>
                             <h3 className="font-inter font-semibold text-[17px]">Ashraful Islam</h3>
@@ -95,29 +111,23 @@ const Communication = () => {
                         </div>
                     </div>
                     <hr className="my-1 border border-slate-300" />
-                    <div className="p-4 space-y-4">
-                        <div className="left_chat flex justify-start">
-                            {
-                                
-                            }
-                            <div className="px-2 py-1 rounded-lg bg-[#c7e3f6] max-w-3/4">
-                                <span className="font-medium font-inter">Hello</span>
-                            </div>
-                        </div>
-                        <div className="right_chat flex justify-end">
-                            {
-                                
-                            }
-                            <div className="px-2 py-1 rounded-lg bg-[#c7c5eb] max-w-3/4">
-                                <span className="font-medium font-inter">Hello</span>
-                            </div>
-                        </div>
+                    <div className="p-4 space-y-1.5">
+                        {
+                            messages && messages?.map(message => (
+                                <div key={message._id} className={`flex w-full ${message.sender === user?.email ? 'justify-end' : 'justify-srart'}`}>
+                                    <div className={`px-2 py-1 rounded-lg max-w-3/4 ${message.sender === user?.email ? 'bg-[#c7e3f6]' : 'bg-[#c7c5eb]'}`}>
+                                        <span className="font-medium font-inter">{message.message}</span>
+                                    </div>
+                                </div>
+                            ))
+                        }
+                        
                     </div>
 
                     {/* MESSAGE INPUT */}
                     <div className="px-4 absolute w-full bottom-4">
-                        <form className="border-2 rounded-lg flex items-center justify-between p-1">
-                            <input onChange={e => setValue(e.target.value)} type="text" className="border-none mt-0 p-0 pl-2" placeholder="Enter your message" />
+                        <form onSubmit={handleSubmit(onSubmit)} className="border-2 rounded-lg flex items-center justify-between p-1">
+                            <input {...register("message", { required: true })} onChange={e => setValue(e.target.value)} type="text" className="border-none mt-0 p-0 pl-2" placeholder="Enter your message" />
                             <button type="submit" className={`text-white bg-primary px-2 py-1.5 rounded-lg`}>
                                 <AiOutlineSend className="text-lg" />
                             </button>
