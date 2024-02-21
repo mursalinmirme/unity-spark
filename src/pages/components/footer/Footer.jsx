@@ -55,7 +55,7 @@ const Footer = () => {
           <Link to="/termsCondition">Terms of Condition </Link>
           <Link to="/privacyPolicy">Privacy policy</Link>
           <Link to="/disclaimer">Disclaimer</Link>
-          <a>Accessibility Statement</a>
+          <Link to="/accessibility">Accessibility Statement</Link>
         </nav>
       </footer>
       <p className="copyright">
