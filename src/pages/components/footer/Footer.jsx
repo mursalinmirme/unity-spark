@@ -52,9 +52,9 @@ const Footer = () => {
         </nav>
         <nav>
           <header>Legal</header>
-          <a>Terms of Condition </a>
-          <a>Privacy policy</a>
-          <a>Disclaimer</a>
+          <Link to="/termsCondition">Terms of Condition </Link>
+          <Link to="/privacyPolicy">Privacy policy</Link>
+          <Link to="/disclaimer">Disclaimer</Link>
           <a>Accessibility Statement</a>
         </nav>
       </footer>

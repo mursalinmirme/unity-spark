@@ -62,6 +62,9 @@ import Support from "../pages/AllFooterPage/Support/Support";
 import SecurityMeasure from "../pages/AllFooterPage/SecurityMeasure/SecurityMeasure";
 import CopyrightInfo from "../pages/AllFooterPage/CopyrightInfo/CopyrightInfo";
 import FAQs from "../pages/AllFooterPage/FAQs/FAQs";
+import TermsCondition from "../pages/AllFooterPage/TermsCondition/TermsCondition";
+import PrivacyPolicy from "../pages/AllFooterPage/PrivacyPolicy/PrivacyPolicy";
+import Disclaimer from "../pages/AllFooterPage/Disclaimer/Disclaimer";
 
 const router = createBrowserRouter([
   {
@@ -115,6 +118,19 @@ const router = createBrowserRouter([
         element: <FAQs></FAQs>,
       },
 
+      // Legal Part link Page
+      {
+        path: "termsCondition",
+        element: <TermsCondition></TermsCondition>,
+      },
+      {
+        path: "privacyPolicy",
+        element: <PrivacyPolicy></PrivacyPolicy>,
+      },
+      {
+        path: "disclaimer",
+        element: <Disclaimer></Disclaimer>,
+      },
       // All Footer Page End
 
       {
