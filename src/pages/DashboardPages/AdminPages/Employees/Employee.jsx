@@ -1,13 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 
-import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const Employee = () => {
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure()
   const { data: allEmployees = [] } = useQuery({
     queryKey: ["allEmployees"],
     queryFn: async () => {
-      const res = await axiosPublic.get("/employees");
+      const res = await axiosSecure.get("/employees");
       return res?.data;
     },
   });
@@ -15,10 +16,11 @@ const Employee = () => {
   return (
     <div>
       <div className="overflow-x-auto w-full">
+        <h4 className="text-2xl font-semibold mb-5">All Employees List</h4>
         <table style={{ borderRadius: "50px" }} className="table border ">
           {/* head */}
           <thead className="bg-second text-white text-[18px] rounded-md text-center">
-            <tr>
+            <tr className="text-left">
               <th>
                 <label>#</label>
               </th>
@@ -31,8 +33,8 @@ const Employee = () => {
           <tbody className="mt-20">
             {allEmployees?.map((user, idx) => (
               <tr key={user?._id}>
-                <td>
-                  <label>{idx + 1}</label>
+                <td className="text-left">
+                  <label className="font-semibold">{idx + 1}</label>
                 </td>
 
                 <td>
@@ -47,14 +49,14 @@ const Employee = () => {
                     </div>
                   </div>
                 </td>
-                <td>{user?.name}</td>
-                <td>{user?.email}</td>
+                <td className="text-left">{user?.name}</td>
+                <td className="text-left">{user?.email}</td>
 
                 <td>
                   {user?.position === "guest" ? (
-                    <p className="text-second">{user?.position} </p>
+                    <p className="text-second text-left">{user?.position} </p>
                   ) : (
-                    <p className="text-primary font-semibold">{user?.position} </p>
+                    <p className="text-primary font-semibold text-left">{user?.position} </p>
                   )}
                 </td>
               </tr>

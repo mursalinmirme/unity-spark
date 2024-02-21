@@ -66,17 +66,20 @@ const AuthProvider = ({ children }) => {
       if(currentUser?.email){
         axiosPublic.post('/jwt', loggedUser)
         .then(res=>{
-          console.log(res.data);
+          if(res?.data?.token){
+            localStorage.setItem('Token' , res?.data?.token)
+            setLoading(false)
+        }
+      
+        })
+        .catch(error => {
+          console.log(error)
         })
       }
       else{
-        axiosPublic.post('/logout', loggedUser)
-        .then(res=>{
-          console.log(res.data);
-        })
-        .catch((error) => {
-          console.log(error.message);
-        })
+        
+        localStorage.removeItem('Token')
+        setLoading(false)
       }
 
     });

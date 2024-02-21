@@ -1,6 +1,6 @@
 const Banner = () => {
   return (
-    <div className="about_banner">
+    <div className="about_banner  !border-primary">
       <div className="left_container">
         <span>ABOUT</span>
         <h2>Chronicles of Excellence Unveiling Our Purpose</h2>
@@ -13,7 +13,7 @@ const Banner = () => {
         </p>
       </div>
       <div className="lg:flex-1 right_container">
-        <div className="img_container">
+        <div className="img_container ">
           <div className=""></div>
           <img
             className="first_img"

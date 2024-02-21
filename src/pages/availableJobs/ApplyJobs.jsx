@@ -6,23 +6,34 @@ import Select from "react-select";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-
+import { useQuery } from "@tanstack/react-query";
+import { FaCheckCircle } from "react-icons/fa";
+import ApplyJobsSkeleton from "./ApplyJobsSkeleton";
 const ApplyJobs = () => {
-  const [users, setUsers] = useState(null);
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
-  const location = useLocation();
-  const jobTitle = location.state.title
-  // console.log(jobTitle);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const {id} = useParams();
+  console.log("mr id is", id);
 
-  // User Data Get
-  useEffect(() => {
-    axiosSecure.get(`/users/${user?.email}`).then((res) => {
-      setUsers(res?.data);
-    });
-  }, [axiosPublic, user?.email]);
-  const { id } = useParams();
+  const {data:applyJobDetails, isFetching: jobDetailsIsFetching} = useQuery({
+    queryKey: ['getIndividualJobDetails'], 
+    enabled: !!id,
+    queryFn: async () => {
+      const result = await axiosPublic.get(`/job-ads/${id}`);
+      return result.data;
+    },
+  })
+
+  const {data:users, isFetching:userInfoIsFetching} = useQuery({
+    queryKey: ['getUsersAllInformation'],
+    queryFn: async () => {
+      const result = await axiosSecure.get(`/users/${user?.email}`);
+      return result.data;
+    }
+  })
+
 
   const skillsArray = [
     { value: "JavaScript", label: "JavaScript" },
@@ -34,28 +45,24 @@ const ApplyJobs = () => {
     { value: "Mongoose", label: "Mongoose" },
   ];
 
+  
+  const {data:doesApplied, isFetching:doesAppliedIsFetching, refetch:applicationRefetch} = useQuery({
+    queryKey: ['doesTheUserAlreadyApplied'],
+    queryFn: async () => {
+      const result = await axiosPublic.get(`/does-user-applied?applied_jobs_id=${id}&email=${user?.email}`);
+      return result.data.applied;
+    }
+  })
+
   const { register, handleSubmit, control, reset } = useForm();
 
   const onSubmit = (data) => {
-    // let skillsArray = [];
-    // data?.skills?.map((skill) => {
-    //   skillsArray.push(skill.label);
-    // });
-    // {
-    //   skillsArray.length === 0 &&
-    //     users?.skills?.map((skill) => {
-    //       skillsArray.push(skill);
-    //     });
-    // }
-    // data?.skills?.map((skill) => {
-    //   skillsArray.push(skill.label);
-    // });
-
+    setIsSubmitting(true);
     const userInfo = {
       name: data?.name || users?.name,
       email: user?.email,
       applied_job_id: id,
-      title : jobTitle,
+      title : applyJobDetails?.job_title,
       phone: data?.number || users?.phone,
       age: data?.age || users?.age,
       gender: data?.gender || users?.gender,
@@ -73,201 +80,229 @@ const ApplyJobs = () => {
       .post("/job_applications", userInfo)
       .then(() => {
         reset();
+        applicationRefetch();
+        setIsSubmitting(false);
         toast.success("Applied Successfully");
       })
       .catch((error) => {
+        setIsSubmitting(false);
         toast.error(error.message);
       });
   };
 
+if(userInfoIsFetching || jobDetailsIsFetching){
+ return <ApplyJobsSkeleton></ApplyJobsSkeleton>;
+}
+
   return (
     <div>
-      <h3 className="mt-4 text-3xl font-semibold">Apply to {jobTitle}</h3>
-      <form onSubmit={handleSubmit(onSubmit)} className="my-10">
-        <div className="grid md:grid-cols-2 gap-2">
-          {/* name field */}
-          <label>
-            <div className="label">
-              <span className="font-bold font-inter"> Your Name :</span>
+      <h3 className="mt-4 text-3xl font-semibold">Apply to {applyJobDetails?.job_title}</h3>
+      <h5 className="mt-2 text-base font-semibold">Position: {applyJobDetails?.position}</h5>
+      {
+        doesApplied ? <div className="w-full h-[60vh] flex justify-center items-center">
+          <div className="border p-16  shadow-sm rounded-xl">
+            <div className="flex justify-center flex-col items-center space-y-3">
+            <FaCheckCircle className="text-green-500 text-3xl"></FaCheckCircle>
+            <p>You have successfully applied for the job</p>
             </div>
-            <input
-              type="text"
-              {...register("name")}
-              placeholder="Please Your Name"
-              defaultValue={users?.name}
-            />
-          </label>
-          {/* Name field End */}
-
-          {/* Age */}
-          <label>
-            <div className="label">
-              <span className="font-bold font-inter"> Your Age</span>
-            </div>
-            <input
-              type="age"
-              {...register("age")}
-              placeholder="Your Age"
-              defaultValue={users?.age}
-            />
-          </label>
-        </div>
-        <div className="grid md:grid-cols-2 gap-2">
-          {/* Email field */}
-          <label>
-            <div className="label">
-              <span className="font-bold font-inter"> Your Email :</span>
-            </div>
-            <input
-              type="email"
-              {...register("email")}
-              placeholder="Your Email"
-              readOnly
-              defaultValue={users?.email}
-            />
-          </label>
-          {/* email field End */}
-
-          {/* phone Number*/}
-          <label>
-            <div className="label">
-              <span className="font-bold font-inter">Phone :</span>
-            </div>
-            <input
-              type="number"
-              {...register("phone")}
-              placeholder="Your Phone Number"
-              defaultValue={users?.phone}
-            />
-          </label>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-2">
-          {/* Current Address field */}
-          <label>
-            <div className="label">
-              <span className="font-bold font-inter">
-                {" "}
-                Your Current Address:
-              </span>
-            </div>
-            <input
-              type="address"
-              {...register("current")}
-              placeholder="Your Current Address"
-              defaultValue={users?.current_address}
-            />
-          </label>
-          {/* Current Address field End */}
-
-          {/* Permanent Address */}
-          <label>
-            <div className="label">
-              <span className="font-bold font-inter">Permanent Address</span>
-            </div>
-            <input
-              type="address"
-              {...register("permanent")}
-              placeholder=" Your Permanent Address"
-              defaultValue={users?.permanent_address}
-            />
-          </label>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-2">
-          {/* Education Level*/}
-          <label>
-            <div className="label">
-              <span className="font-bold font-inter">
-                {" "}
-                Your Education Level :
-              </span>
-            </div>
-            <input
-              type="text"
-              {...register("education_level")}
-              placeholder="Eduction Level"
-              defaultValue={users?.education_level}
-            />
-          </label>
-
-          {/* Institute */}
-          <label>
-            <div className="label">
-              <span className="font-bold font-inter"> Your Institute Name</span>
-            </div>
-            <input
-              type="text"
-              {...register("institute_name")}
-              placeholder="Please Institute Name"
-              defaultValue={users?.institute_name}
-            />
-          </label>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-2">
-          {/* gender field */}
-
-          <label>
-            <div className="label">
-              <span className="font-bold font-inter"> Your Gender :</span>
-            </div>
-            <select
-              defaultValue="default"
-              className="py-2 w-full mt-2 border-2 rounded-md px-1"
-              {...register("gender", {
-                required: true,
-              })}
-            >
-              <option disabled value="default">
-                Your Gender
-              </option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
-          </label>
-          {/* gender field End */}
-
-          {/* Select skills*/}
-          <label>
-            <div className="label">
-              <span className="font-bold font-inter"> Your Skills :</span>
-            </div>
-            <Controller
-              name="skills"
-              control={control}
-              render={({ field }) => (
-                <Select
-                  className="py-2"
-                  {...field}
-                  options={skillsArray}
-                  isMulti
-                />
-              )}
-            />
-          </label>
-        </div>
-
-        {/* Resume field */}
-        <label>
-          <div className="label">
-            <span className="font-bold font-inter">Your Resume</span>
+            <p className="text-center mt-1">Please, wait for response</p>
           </div>
-          <input
-            type="text"
-            {...register("resume")}
-            placeholder="Please share your resume drive link"
-            defaultValue={users?.resume_link}
-          />
-        </label>
+        </div>: 
+              <form onSubmit={handleSubmit(onSubmit)} className="my-5">
+              <div className="flex gap-5 items-center">
+                {/* name field */}
+                <label className="flex-1">
+                  <div className="label text-sm">
+                    <span className="font-bold font-inter"> Your Name :</span>
+                  </div>
+                  <input
+                    type="text"
+                    className="text-base py-2.5"
+                    {...register("name")}
+                    placeholder="Please Your Name"
+                    defaultValue={users?.name}
+                  />
+                </label>
+                {/* Name field End */}
+      
+                {/* Age */}
+                <label className="flex-1">
+                  <div className="label text-sm">
+                    <span className="font-bold font-inter"> Your Age</span>
+                  </div>
+                  <input
+                    type="age"
+                    className="text-base py-2.5"
+                    {...register("age")}
+                    placeholder="Your Age"
+                    defaultValue={users?.age}
+                  />
+                </label>
+              </div>
+              <div className="flex gap-5 items-center mt-2">
+                {/* Email field */}
+                <label className="flex-1">
+                  <div className="label text-sm">
+                    <span className="font-bold font-inter"> Your Email :</span>
+                  </div>
+                  <input
+                    type="email"
+                    className="text-base py-2.5"
+                    {...register("email")}
+                    placeholder="Your Email"
+                    readOnly
+                    defaultValue={users?.email}
+                  />
+                </label>
+                {/* email field End */}
+      
+                {/* phone Number*/}
+                <label className="flex-1">
+                  <div className="label text-sm">
+                    <span className="font-bold font-inter">Phone :</span>
+                  </div>
+                  <input
+                    type="number"
+                    className="text-base py-2.5"
+                    {...register("phone")}
+                    placeholder="Your Phone Number"
+                    defaultValue={users?.phone}
+                  />
+                </label>
+              </div>
+      
+              <div className="flex gap-5 items-center mt-2">
+                {/* Current Address field */}
+                <label className="flex-1">
+                  <div className="label text-sm">
+                    <span className="font-bold font-inter">
+                      Your Current Address:
+                    </span>
+                  </div>
+                  <input
+                    type="address"
+                    className="text-base py-2.5"
+                    {...register("current")}
+                    placeholder="Your Current Address"
+                    defaultValue={users?.current_address}
+                  />
+                </label>
+                {/* Current Address field End */}
+      
+                {/* Permanent Address */}
+                <label className="flex-1">
+                  <div className="label text-sm">
+                    <span className="font-bold font-inter">Permanent Address</span>
+                  </div>
+                  <input
+                    type="address"
+                    className="text-base py-2.5"
+                    {...register("permanent")}
+                    placeholder=" Your Permanent Address"
+                    defaultValue={users?.permanent_address}
+                  />
+                </label>
+              </div>
+      
+              <div className="flex gap-5 items-center mt-2">
+                {/* Education Level*/}
+                <label className="flex-1">
+                  <div className="label text-sm">
+                    <span className="font-bold font-inter">
+                      Your Education Level :
+                    </span>
+                  </div>
+                  <input
+                    type="text"
+                    className="text-base py-2.5"
+                    {...register("education_level")}
+                    placeholder="Eduction Level"
+                    defaultValue={users?.education_level}
+                  />
+                </label>
+      
+                {/* Institute */}
+                <label className="flex-1">
+                  <div className="label text-sm">
+                    <span className="font-bold font-inter"> Your Institute Name</span>
+                  </div>
+                  <input
+                    type="text"
+                    className="text-base py-2.5"
+                    {...register("institute_name")}
+                    placeholder="Please Institute Name"
+                    defaultValue={users?.institute_name}
+                  />
+                </label>
+              </div>
+      
+              <div className="flex gap-5 items-center mt-2">
+                {/* gender field */}
+      
+                <label className="flex-1">
+                  <div className="label text-sm">
+                    <span className="font-bold font-inter"> Your Gender :</span>
+                  </div>
+                  <select
+                    defaultValue="default"
+                    className="w-full mt-2 border-2 rounded-md px-1 text-base py-2.5 "
+                    {...register("gender", {
+                      required: true,
+                    })}
+                  >
+                    <option disabled value="default">
+                      Your Gender
+                    </option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
+                </label>
+                {/* gender field End */}
+      
+                {/* Select skills*/}
+                <label className="flex-1">
+                  <div className="label text-sm">
+                    <span className="font-bold font-inter"> Your Skills :</span>
+                  </div>
+                  <Controller
+                    name="skills"
+                    control={control}
+                    render={({ field }) => (
+                      <Select
+                        className="text-base bg-red-300"
+                        {...field}
+                        options={skillsArray}
+                       
+                        isMulti
+                      />
+                    )}
+                  />
+                </label>
+              </div>
+      
+              {/* Resume field */}
+              <label>
+                <div className="label text-sm">
+                  <span className="font-bold font-inter">Your Resume</span>
+                </div>
+                <input
+                  type="text"
+                  className="text-base py-2.5"
+                  {...register("resume")}
+                  placeholder="Please share your resume drive link"
+                  defaultValue={users?.resume_link}
+                />
+              </label>
+      
+              <button
+                type="submit"
+                className="bg-[#433ebe] mt-6 font-medium h-11 flex justify-center items-center w-32 text-white rounded-md"
+              >
+                {isSubmitting ? <span className="loading loading-spinner loading-md p-0"></span> : 'Submit'}
+              </button>
+            </form>
+      }
 
-        <button
-          type="submit"
-          className="bg-[#433ebe] mt-4 py-2 px-8 text-white rounded-md"
-        >
-          Apply
-        </button>
-      </form>
     </div>
   );
 };

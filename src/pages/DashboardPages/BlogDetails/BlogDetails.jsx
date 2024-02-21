@@ -10,30 +10,27 @@ import BlogComments from "./BlogComments";
 
 const BlogDetails = () => {
   const { id } = useParams();
-  // const { detailsId, setDetailsId } = useState(id);
-  // console.log("check33", detailsId);
+
   const axiosPublic = useAxiosPublic();
 
   const [users] = useUserInfo();
 
   // get current page Blog info
   const { data: details = {} } = useQuery({
-    queryKey: ["blogDetails"],
+    queryKey: ["blogDetails", id],
     queryFn: async () => {
       const result = await axiosPublic.get(`/blog-details/${id}`);
       return result.data;
     },
   });
 
-  // console.log("check", details);
   const timestamp = details?.createdAt;
   const timeDifference = moment(timestamp).fromNow();
 
-  // get current page job info
   const { data: blogs } = useQuery({
-    queryKey: ["blogs"],
+    queryKey: ["blogs", id],
     queryFn: async () => {
-      const result = await axiosPublic.get("/all-blogs");
+      const result = await axiosPublic.get(`/top-blogs/${id}`);
       return result.data;
     },
   });
@@ -69,7 +66,7 @@ const BlogDetails = () => {
   return (
     <div className="flex lg:flex-row flex-col justify-between gap-5 my-5">
       {/** Left Side  */}
-      <div className="w-full  p-2 flex-wrap">
+      <div className="w-full  p-2 flex-wrap overflow-y-auto max-h-[100vh]">
         <h1 className="text-2xl font-bold font-inter"> {details?.title} </h1>
         {/**Author Info */}
         <div className="flex justify-between items-center mt-5">
@@ -155,10 +152,7 @@ const BlogDetails = () => {
               <figure>
                 <img src={blog?.image} alt="Shoes" />
               </figure>
-              <p className="pt-2 text-[14px] font-inter pl-4">
-                {" "}
-                Post : {blogs?.length} demo
-              </p>
+
               <div className="p-4 pt-0">
                 <h2 className="text-[16px] font-inter font-bold">
                   {" "}
@@ -170,7 +164,7 @@ const BlogDetails = () => {
                     : blog?.description}
                 </p>
                 <div className="card-actions justify-start py-1">
-                  <Link>
+                  <Link to={`/blog-details/${blog?._id}`}>
                     <div className="btn btn-sm btn-primary">Read More</div>
                   </Link>
                 </div>

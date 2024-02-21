@@ -11,6 +11,9 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import useTimePicker from "../../../../hooks/useTimePicker";
 import ApplicationsCard from "./ApplicationsCard";
 import toast from "react-hot-toast";
+import Loading from "../../Loading/Loading";
+import ManageAdsSkeleton from "./ManageAdsSkeleton";
+import ManageApplicationsSkeleton from "./ManageApplicationsSkeleton";
 const ManageApplications = () => {
   const axiosPublic = useAxiosPublic();
   const [totalPages, setToalPages] = useState(0);
@@ -193,38 +196,6 @@ const ManageApplications = () => {
     });
   };
 
-  // const handleSelectApplication = (id) => {
-  //   Swal.fire({
-  //     title: "Are you sure ?",
-  //     text: "You want to shortlist this application",
-  //     icon: "warning",
-  //     showCancelButton: true,
-  //     confirmButtonColor: "#3085d6",
-  //     cancelButtonColor: "#d33",
-  //     confirmButtonText: "Yes, Sure",
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       axiosPublic
-  //         .put(`/application-status/${id}`, { status: "Confirmed" })
-  //         .then((res) => {
-  //           Swal.fire({
-  //             title: "Successfully!",
-  //             text: "Application shortlisted successfully.",
-  //             icon: "success",
-  //           });
-  //           refetch();
-  //         })
-  //         .catch((error) => {
-  //           console.log(error);
-  //         });
-  //     }
-  //   });
-  // };
-
-  // if(isFetching){
-  //   return <Loading></Loading>
-  // }
-
   const { data: applicationPreview } = useQuery({
     queryKey: ["getIndivisulItems", applicationId],
     enabled: !!applicationId,
@@ -250,6 +221,9 @@ const ManageApplications = () => {
 
   console.log("I got admin info data ", adminInfo);
 
+  if(isFetching){
+    return <ManageApplicationsSkeleton></ManageApplicationsSkeleton>
+  }
   return (
     <div className="py-10" id="manage_applications">
       {jobapplications.length > 0 ? (

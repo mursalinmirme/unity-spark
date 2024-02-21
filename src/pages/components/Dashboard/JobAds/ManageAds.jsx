@@ -13,6 +13,7 @@ import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import Loading from "../../Loading/Loading";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import ManageAdsSkeleton from "./ManageAdsSkeleton";
 
 const ManageAds = () => {
   const PublicAxios = useAxiosPublic();
@@ -58,11 +59,12 @@ const ManageAds = () => {
     // console.log(id);
     Swal.fire({
       title: "Are you sure?",
+      text: "You want to delete this job ad.",
       icon: "question",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Yes, Delete",
     }).then((result) => {
       if (result.isConfirmed) {
         PublicAxios.delete(`/job-ads/${id}`).then((res) => {
@@ -107,48 +109,13 @@ const ManageAds = () => {
     setShowSearchBar(false);
     setSearchValues(null);
   };
-  // if(isFetching){
-  //   return <Loading></Loading>
-  // }
+
+  if(isFetching){
+    return <ManageAdsSkeleton></ManageAdsSkeleton>
+  }
   return (
     <div>
       <div className="mt-4 flex justify-between items-center">
-        {/* <div className="flex items-center gap-3">
-          <form
-            onSubmit={handleSearches}
-            className={`p-0 border-0 m-0 relative ${
-              showSearchBar ? "hidden" : "visible"
-            }`}
-          >
-            <input
-              name="search"
-              className="md:py-1 pl-14 m-0 md:w-60 lg:w-80 border-second"
-              type="text"
-              placeholder="Search..."
-            />
-            <button
-              style={{ background: "#433EBE" }}
-              className="absolute top-0 left-0 rounded-none rounded-s-lg h-full px-4"
-            >
-              <IoIosSearch className="text-xl text-white"></IoIosSearch>
-            </button>
-          </form>
-          {showSearchBar ? (
-            <button
-              onClick={() => setShowSearchBar(false)}
-              className="rounded-md bg-primary text-white p-2 px-4"
-            >
-              <IoIosSearch className="text-lg"></IoIosSearch>
-            </button>
-          ) : (
-            <button
-              onClick={handleCloseSearchBar}
-              className="rounded-none bg-none text-primary left-0"
-            >
-              <ImCross className="text-lg"></ImCross>
-            </button>
-          )}
-        </div> */}
         <div className="flex gap-2">
           <form
             onSubmit={handleSearches}
