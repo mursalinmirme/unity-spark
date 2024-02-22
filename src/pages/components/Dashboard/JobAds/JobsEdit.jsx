@@ -1,17 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { useParams } from "react-router-dom";
+import Select from "react-select";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import Loading from "../../Loading/Loading";
-import { Controller, useForm } from "react-hook-form";
-import Select from "react-select";
-import toast from "react-hot-toast";
-import axios from "axios";
-
 
 const JobsEdit = () => {
   const { id } = useParams();
   const axiosPublic = useAxiosPublic();
-
+  const [isSubmitting, setIsSubmittion] = useState(false);
   const { data: jobTypes } = useQuery({
     queryKey: ["jobTypes"],
     queryFn: async () => {
@@ -28,7 +28,11 @@ const JobsEdit = () => {
     },
   });
 
-  const { data: job, isFetching } = useQuery({
+  const {
+    data: job,
+    isFetching,
+    refetch,
+  } = useQuery({
     queryKey: ["jobs-edit"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/job-ads/${id}`);
@@ -36,6 +40,31 @@ const JobsEdit = () => {
     },
   });
 
+  console.log("hello check224", job);
+  // get all default addtional requrirement
+  const defaultAdditionalReq = [];
+  job?.additional_Require?.map((val) => {
+    defaultAdditionalReq.push({ value: val, label: val });
+  });
+
+  // get all default requirement skills
+  const defaultReqSkills = [];
+  job?.required_Skills?.map((val) => {
+    defaultReqSkills.push({ value: val, label: val });
+  });
+
+  // get all default required ducational qualification
+  const defaultReqEdu = [];
+  job?.education_Require?.map((val) => {
+    defaultReqEdu.push({ value: val, label: val });
+  });
+
+  // get all default required ducational qualification
+  const defaultBefifites = [];
+  job?.benefits?.map((val) => {
+    defaultBefifites.push({ value: val, label: val });
+  });
+  console.log("nanananan", defaultBefifites);
   const skillsArray = [
     { value: "JavaScript", label: "JavaScript" },
     { value: "React", label: "React.js" },
@@ -89,6 +118,7 @@ const JobsEdit = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+    setIsSubmittion(true);
     let skillsArray = [];
     data?.skills?.map((skill) => {
       skillsArray.push(skill.label);
@@ -128,9 +158,12 @@ const JobsEdit = () => {
       .put(`/job-ads/${id}`, newJob)
       .then(() => {
         reset();
-        toast.success("Job updated");
+        setIsSubmittion(false);
+        refetch();
+        toast.success("Job updated successfully");
       })
       .catch((error) => {
+        setIsSubmittion(false);
         toast.error(error.message);
       });
   };
@@ -145,14 +178,14 @@ const JobsEdit = () => {
 
   return (
     <div className="font-inter">
-      <h3 className="text-3xl font-semibold">Edit job ads</h3>
+      <h3 className="text-2xl font-semibold">Edit job ads</h3>
 
       <div>
-        <form className="mt-10 space-y-3" onSubmit={handleSubmit(onSubmit)}>
+        <form className="mt-5 space-y-3" onSubmit={handleSubmit(onSubmit)}>
           {/* Job Title */}
-          <div className="form-control">
+          <div className="">
             <label className="">
-              <span className="font-inter text-[18px] font-bold">
+              <span className="font-inter text-base font-medium">
                 Job Title
               </span>
             </label>
@@ -172,9 +205,9 @@ const JobsEdit = () => {
           {/* Position and Salary */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Position */}
-            <div className="form-control">
+            <div className="">
               <label className="">
-                <span className="font-inter text-[18px] font-bold">
+                <span className="font-inter text-base font-medium">
                   Position
                 </span>
               </label>
@@ -192,9 +225,9 @@ const JobsEdit = () => {
             </div>
 
             {/* Salary */}
-            <div className="form-control">
+            <div className="">
               <label className="">
-                <span className="font-inter text-[18px] font-bold">Salary</span>
+                <span className="font-inter text-base font-medium">Salary</span>
               </label>
               <input
                 type="text"
@@ -212,11 +245,11 @@ const JobsEdit = () => {
 
           {/* Job Type and Work-Type */}
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 pt-1 lg:grid-cols-2 gap-4">
             {/* Job Type */}
             <div className="form-control">
               <label className="pb-1">
-                <span className="font-inter text-[18px] font-bold">
+                <span className="font-inter text-base font-medium">
                   Job Type
                 </span>
               </label>
@@ -245,7 +278,7 @@ const JobsEdit = () => {
 
             <div className="form-control">
               <label className="pb-1">
-                <span className="font-inter text-[18px] font-bold">
+                <span className="font-inter text-base font-medium">
                   Work Type
                 </span>
               </label>
@@ -269,9 +302,9 @@ const JobsEdit = () => {
 
           {/* Job Description */}
 
-          <div className="form-control">
+          <div className="pt-1">
             <label className="">
-              <span className="font-inter text-xl text-[18px] font-bold">
+              <span className="font-inter text-base font-medium">
                 Job Description
               </span>
             </label>
@@ -292,7 +325,7 @@ const JobsEdit = () => {
 
           <div className="space-y-1">
             <label>
-              <span className="font-inter text-[18px] font-bold">
+              <span className="font-inter text-base font-medium">
                 Required Skills
               </span>
             </label>
@@ -301,7 +334,7 @@ const JobsEdit = () => {
               control={control}
               render={({ field }) => (
                 <Select
-                  defaultValue={job?.required_Skills.map((i) => i)}
+                  defaultValue={defaultReqSkills}
                   {...field}
                   options={skillsArray}
                   isMulti
@@ -317,7 +350,7 @@ const JobsEdit = () => {
 
           <div className="space-y-1">
             <label>
-              <span className="font-inter text-[18px] font-bold">
+              <span className="font-inter text-base font-medium">
                 Additional Requirements (Optional)
               </span>
             </label>
@@ -329,7 +362,7 @@ const JobsEdit = () => {
                   {...field}
                   options={additionalRequirementsArray}
                   isMulti
-                  defaultValue={job?.additional_Require}
+                  defaultValue={defaultAdditionalReq}
                 />
               )}
             />
@@ -338,7 +371,7 @@ const JobsEdit = () => {
           {/* Educational Requirements */}
           <div className="space-y-1">
             <label>
-              <span className="font-inter text-[18px] font-bold">
+              <span className="font-inter text-base font-medium">
                 Educational Requirements (Optional)
               </span>
             </label>
@@ -350,7 +383,7 @@ const JobsEdit = () => {
                   {...field}
                   options={educationalRequirementArray}
                   isMulti
-                  defaultValue={job?.education_Require}
+                  defaultValue={defaultReqEdu}
                 />
               )}
             />
@@ -359,7 +392,7 @@ const JobsEdit = () => {
           {/* Benefits */}
           <div className="space-y-1">
             <label className="">
-              <span className="font-inter text-[18px] font-bold">
+              <span className="font-inter text-base font-medium">
                 Benefits of this job (optional)
               </span>
             </label>
@@ -371,18 +404,24 @@ const JobsEdit = () => {
                   {...field}
                   options={jobBenefitsArray}
                   isMulti
-                  defaultValue={job?.benefits}
+                  defaultValue={defaultBefifites}
                 />
               )}
             />
           </div>
 
-          <button
-            type="submit"
-            className="bg-[#433ebe] mt-3 px-8 text-white rounded-md py-1"
-          >
-            Post
-          </button>
+          <div className="pt-4">
+            <button
+              type="submit"
+              className="bg-[#433ebe] w-36 flex justify-center items-center text-white rounded-md h-12"
+            >
+              {isSubmitting ? (
+                <span className="loading loading-spinner loading-md p-0"></span>
+              ) : (
+                "Update Job"
+              )}
+            </button>
+          </div>
         </form>
       </div>
     </div>

@@ -92,28 +92,28 @@ const Interview = () => {
             </span>
             {/** Audio Icons */}
             <div className="flex gap-5">
-            <div
-              className="cursor-pointer w-10 h-10 rounded-full border border-primary flex items-center justify-center"
-              onClick={() => setOpen(!open)}
-            >
-              {open ? (
-                <AiOutlineAudioMuted className="text-2xl text-primary" />
-              ) : (
-                <AiOutlineAudio className="text-2xl text-primary" />
-              )}
-            </div>
+              <div
+                className="cursor-pointer w-10 h-10 rounded-full border border-primary flex items-center justify-center"
+                onClick={() => setOpen(!open)}
+              >
+                {open ? (
+                  <AiOutlineAudioMuted className="text-2xl text-primary" />
+                ) : (
+                  <AiOutlineAudio className="text-2xl text-primary" />
+                )}
+              </div>
 
-            {/** Video Icons */}
-            <div
-              className="cursor-pointer w-10 h-10 rounded-full border border-primary flex items-center justify-center"
-              onClick={() => setVideoOpen(!videoOpen)}
-            >
-              {videoOpen ? (
-                <MdOutlineVideocamOff className="text-2xl text-primary" />
-              ) : (
-                <MdOutlineVideocam className="text-2xl text-primary" />
-              )}
-            </div>
+              {/** Video Icons */}
+              <div
+                className="cursor-pointer w-10 h-10 rounded-full border border-primary flex items-center justify-center"
+                onClick={() => setVideoOpen(!videoOpen)}
+              >
+                {videoOpen ? (
+                  <MdOutlineVideocamOff className="text-2xl text-primary" />
+                ) : (
+                  <MdOutlineVideocam className="text-2xl text-primary" />
+                )}
+              </div>
             </div>
           </div>
           {/**Button */}
@@ -121,7 +121,7 @@ const Interview = () => {
             <div className="text-center">
               <Link to={`/dashboard/interview-call/${data?._id}`}>
                 <button className="btn bg-primary px-7 py-1 text-white rounded-lg hover:bg-primary">
-                  Ask to join
+                  Join Now
                 </button>
               </Link>
             </div>

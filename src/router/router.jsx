@@ -12,7 +12,6 @@ import Employee from "../pages/DashboardPages/AdminPages/Employees/Employee";
 import Interviews from "../pages/DashboardPages/AdminPages/Interviews/Interviews";
 import JobAds from "../pages/DashboardPages/AdminPages/JobAds/JobAds";
 import LeaveRequests from "../pages/DashboardPages/AdminPages/ManageLeave/LeaveRequests";
-import PaymentDetails from "../pages/DashboardPages/AdminPages/PaymentManagement/PaymentDetails";
 import PaymentManagement from "../pages/DashboardPages/AdminPages/PaymentManagement/PaymentManagement";
 import Recruiment from "../pages/DashboardPages/AdminPages/Recruiment/Recruiment";
 import AddReview from "../pages/DashboardPages/AdminPages/Reviews/AddReview";
@@ -59,6 +58,17 @@ import Courses from "../pages/DashboardPages/EmployeePages/Training/Courses/Cour
 import Payment from "../pages/DashboardPages/AdminPages/PaymentManagement/Payment";
 import CourseUpdate from "../pages/DashboardPages/AdminPages/TrainingManagement/CourseUpdate";
 import IsAdminOrEmployee from "../privateRouter.jsx/IsAdminOrEmployee";
+import RecruitmentService from "../pages/AllFooterPage/RecruitmentService/RecruitmentService";
+import Support from "../pages/AllFooterPage/Support/Support";
+import SecurityMeasure from "../pages/AllFooterPage/SecurityMeasure/SecurityMeasure";
+import CopyrightInfo from "../pages/AllFooterPage/CopyrightInfo/CopyrightInfo";
+import FAQs from "../pages/AllFooterPage/FAQs/FAQs";
+import TermsCondition from "../pages/AllFooterPage/TermsCondition/TermsCondition";
+import Disclaimer from "../pages/AllFooterPage/Disclaimer/Disclaimer";
+import Accessibility from "../pages/AllFooterPage/Accessibility/Accessibility";
+import PrivacyPolicy from "../pages/AllFooterPage/PrivacyPolicy/PrivacyPolicy";
+import SavedBlogs from "../pages/DashboardPages/EmployeePages/SavedBlogs/SavedBlogs";
+// import PrivacyPolicy from "../pages/AllFooterPage/PrivacyPolicy/PrivacyPolicy"
 
 const router = createBrowserRouter([
   {
@@ -86,6 +96,51 @@ const router = createBrowserRouter([
         path: "events",
         element: <Events></Events>,
       },
+
+      // All Footer Page Start
+
+      {
+        path: "recruitmentService",
+        element: <RecruitmentService></RecruitmentService>,
+      },
+      {
+        path: "support",
+        element: <Support></Support>,
+      },
+      {
+        path: "securityMeasure",
+        element: <SecurityMeasure></SecurityMeasure>,
+      },
+      {
+        path: "copyrightInfo",
+        element: <CopyrightInfo></CopyrightInfo>,
+      },
+
+      //  company Part link Page
+      {
+        path: "faq",
+        element: <FAQs></FAQs>,
+      },
+
+      // Legal Part link Page
+      {
+        path: "termsCondition",
+        element: <TermsCondition></TermsCondition>,
+      },
+      {
+        path: "privacyPolicy",
+        element: <PrivacyPolicy></PrivacyPolicy>,
+      },
+      {
+        path: "disclaimer",
+        element: <Disclaimer></Disclaimer>,
+      },
+      {
+        path: "accessibility",
+        element: <Accessibility></Accessibility>,
+      },
+      // All Footer Page End
+
       {
         path: "available-jobs",
         element: <AvailableJobs></AvailableJobs>,
@@ -361,6 +416,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <MyBlogs></MyBlogs>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "savedBlogs",
+        element: (
+          <PrivateRouter>
+            <SavedBlogs></SavedBlogs>
           </PrivateRouter>
         ),
       },

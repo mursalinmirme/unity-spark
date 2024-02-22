@@ -1,8 +1,3 @@
-import { AiOutlineAudioMuted } from "react-icons/ai";
-import { BsCameraVideoOff } from "react-icons/bs";
-import mursalinmir from "../../../../assets/images/Mursalin Mir.jpg";
-import mursalinMir from "../../../../assets/images/Mursalin-Mir.jpg";
-import { IoCall } from "react-icons/io5";
 import { useParams } from "react-router-dom";
 import { ZegoUIKitPrebuilt } from "@zegocloud/zego-uikit-prebuilt";
 import "./InterviewCall.css";
@@ -16,8 +11,8 @@ const InterviewCall = () => {
   const { interviwId } = useParams();
   const [userId] = useUserId();
   const axiosPublic = useAxiosPublic();
-  const {user} = useContext(AuthContext)
-  const { data:interviewerPersons, isFetching } = useQuery({
+  const { user } = useContext(AuthContext);
+  const { data: interviewerPersons, isFetching } = useQuery({
     queryKey: ["interviewPersons"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/get-user-interview/${interviwId}`);
@@ -25,9 +20,11 @@ const InterviewCall = () => {
     },
   });
   console.log("my user id is", userId);
-  if(isFetching){
-    return <div>Loading...</div>
+  if (isFetching) {
+    return <div>Loading...</div>;
   }
+
+  // Video Call System Main Function
   const myMeeting = async (element) => {
     const appID = 1454166134;
     const serverSecret = "923792b6b7e4b3ddbd3d11c5a518e74b";
@@ -47,10 +44,9 @@ const InterviewCall = () => {
       },
       showScreenSharingButton: true,
     });
-    
   };
 
-  console.log("check 444", myMeeting);
+  // console.log("check 444", myMeeting);
 
   return (
     <div className="">
@@ -75,7 +71,7 @@ const InterviewCall = () => {
             alt=""
           />
           <h3 className="text-center mt-3 font-semibold text-lg">
-          {interviewerPersons?.interViewerName}
+            {interviewerPersons?.interViewerName}
           </h3>
           {/* <div className="absolute top-2 left-2 border p-0.5  rounded-full border-primary">
             <AiOutlineAudioMuted className="text-2xl text-primary"></AiOutlineAudioMuted>

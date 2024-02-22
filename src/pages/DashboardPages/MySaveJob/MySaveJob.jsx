@@ -4,12 +4,14 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { LoaderIcon } from "react-hot-toast";
+import MySaveJobSkeleton from "./MySaveJobSkeleton";
 
 const MySaveJob = () => {
   const PublicAxios = useAxiosPublic();
   const { user } = useContext(AuthContext);
   // get current page job info
-  const { data: saveJobInfos, refetch } = useQuery({
+  const { data: saveJobInfos, refetch, isFetching } = useQuery({
     queryKey: ["saveJobInfos", user?.email],
     queryFn: async () => {
       const result = await PublicAxios.get(`/getSaveInfo/${user?.email}`);
@@ -47,6 +49,10 @@ const MySaveJob = () => {
       }
     });
   };
+
+  if(isFetching){
+    return <MySaveJobSkeleton></MySaveJobSkeleton>
+  }
   return (
     <div>
       <h1 className="text-2xl font-bold"> Job Information Save </h1>
@@ -78,10 +84,10 @@ const MySaveJob = () => {
                       ? job?.description.slice(0, 80) + "..."
                       : job?.description}{" "}
                   </p>
-                  <div className="card-actions justify-start mt-2 ">
+                  <div className="card-actions gap-4 justify-start mt-2 ">
                     <Link to={`/job-details/${job?.applicationId}`}>
-                      <button className=" btn-sm bg-primary text-white hover:bg-none rounded-md ">
-                        Views Details
+                      <button className=" btn-sm bg-accent text-white hover:bg-none rounded-md font-medium">
+                        Details
                       </button>
                     </Link>
 

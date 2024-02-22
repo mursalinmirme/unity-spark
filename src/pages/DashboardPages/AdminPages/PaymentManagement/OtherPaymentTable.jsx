@@ -1,5 +1,7 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import "./payment.css";
+
 
 const OtherPaymentTable = ({ utensil }) => {
   const navigate = useNavigate();
@@ -13,10 +15,10 @@ const OtherPaymentTable = ({ utensil }) => {
     navigate("/dashboard/payment-management/payment", { state: salaryInfo });
   };
   return (
-    <tr className="row-border border-r-2 border-r-[#45A5E1]">
+    <tr className="row-border table-style">
       <td>{utensil?.name}</td>
 
-      <td>{utensil?.cost ? utensil?.cost : "$5000"}</td>
+      <td>${utensil?.cost ? utensil?.cost : "50"}</td>
       <td>
         <button
           onClick={() =>

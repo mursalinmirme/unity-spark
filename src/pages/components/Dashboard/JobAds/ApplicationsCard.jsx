@@ -15,7 +15,7 @@ const ApplicationsCard = ({
   setStoreInfo,
 }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  console.log('lalalalallal',value);
+  console.log("lalalalallal", value);
   return (
     <div className="border-2 border-[#D9D9D9] rounded-xl px-2 md:px-5 py-2">
       <div className="flex items-center justify-between">
@@ -36,7 +36,7 @@ const ApplicationsCard = ({
           </div>
         </div>
 
-        <section className="space-x-3 justify-center items-center hidden md:flex text-white">
+        <div className="space-y-1 md:space-y-0 md:space-x-3 flex flex-col md:flex-row md:justify-center items-center text-white">
           {/* <Link className="rounded-lg p-2 bg-[#433EBE]">
               <IoEyeOutline className=""></IoEyeOutline>
             </Link> */}
@@ -64,7 +64,7 @@ const ApplicationsCard = ({
           >
             <RxCross1 className=""></RxCross1>
           </button>
-        </section>
+        </div>
       </div>
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
 
@@ -144,6 +144,9 @@ const ApplicationsCard = ({
 
                   {applicationPreview?.institute_name}
                 </h3>
+              </div>
+              <div className={`${applicationPreview?.resume_link ? 'block' : 'hidden'}`}>
+                <button><a className="bg-accent px-4 py-2 font-semibold text-white rounded-md" href={applicationPreview?.resume_link}>View Resume</a></button>
               </div>
             </div>
           </div>

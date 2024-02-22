@@ -35,10 +35,10 @@ const LeaveManagement = () => {
       </div>
 
       <div>
-        <table className="table-no-border table mt-10">
+        <table className="table-no-border table mt-10 ">
           {/* head */}
-          <thead className="bg-[#726eec] text-white text-[18px] rounded-md text-center">
-            <tr className="text-center">
+          <thead className="bg-[#726eec] text-white text-[18px] rounded-md ">
+            <tr>
               <th>Serial</th>
               <th>Subject</th>
               <th>Reason</th>

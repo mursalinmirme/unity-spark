@@ -4,17 +4,17 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { useState } from "react";
-
-import axios from "axios";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 
 const Testimonilas = () => {
   const screenSize = useState(window.innerWidth);
+  const axiosPublic = useAxiosPublic();
 
   const { data: testimonials } = useQuery({
     queryKey: ["testimonials"],
     queryFn: async () => {
-      const res = await axios.get("testimonials.json");
-      return res.data;
+      const res = await axiosPublic.get("/all-feedback");
+      return res?.data;
     },
   });
 
@@ -40,16 +40,16 @@ const Testimonilas = () => {
           className="mySwiper"
         >
           {testimonials?.map((item) => (
-            <SwiperSlide key={item.id}>
+            <SwiperSlide key={item._id}>
               <div className="testimonial_card">
                 <div className="text-center mb-2">
                   <img src={item.image} alt="Person" />
                   <h3>{item.name}</h3>
-                  <h4>{item.title}</h4>
+                  <h4>{item.employeePosition}</h4>
                 </div>
-                <p>
+                <p className="line-clamp-3">
                   {`"`}
-                  {item.review}
+                  {item.description}
                   {`"`}
                 </p>
               </div>

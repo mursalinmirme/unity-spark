@@ -7,13 +7,12 @@ import { BsUpload } from "react-icons/bs";
 import { AuthContext } from "../../../../../Provider/AuthProvider";
 import useAxiosPublic from "../../../../../hooks/useAxiosPublic";
 import useUserInfo from "../../../../../hooks/useUserInfo";
-import "./addBlogs.css"
+import "./addBlogs.css";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 
 const AddBlogs = () => {
   const [users] = useUserInfo();
   const [content, setContent] = useState("");
-  console.log(users?._id);
 
   const {
     register,
@@ -26,14 +25,14 @@ const AddBlogs = () => {
 
   const onSubmit = async (data) => {
     console.log(data);
-    if(data.photo.length === 0){
-      toast.error("Please Select your blog image");
-      return
+    if (data.photo.length === 0) {
+      toast.error("An image must be added");
+      return;
     }
 
-    if(!content){
-      toast.error("Please write your blog");
-      return
+    if (!content) {
+      toast.error("You haven't added any content yet!");
+      return;
     }
 
     const imageFile = { image: data.photo[0] };
@@ -54,7 +53,7 @@ const AddBlogs = () => {
       axiosPublic.post("/blogs", newInfo).then(() => {
         toast.success("blog successfully added");
         reset();
-        setContent('');
+        setContent("");
       });
     }
   };
@@ -81,7 +80,7 @@ const AddBlogs = () => {
               <span className="label-text font-bold text-lg">Add photo</span>
             </label>
             <label className="w-full" htmlFor="user_photo">
-              <div className="bg-primary rounded-md py-[11px] text-white font-inter font-medium flex items-center justify-center gap-2 cursor-pointer">
+              <div className="bg-primary rounded-md mt-1 py-[15px] text-white font-inter font-medium flex items-center justify-center gap-2 cursor-pointer">
                 <BsUpload />
                 <span> Upload Photo</span>{" "}
               </div>
@@ -100,16 +99,16 @@ const AddBlogs = () => {
           </label>
           <JoditEditor
             value={content}
-            tabIndex={1} 
+            tabIndex={1}
             onBlur={(newContent) => setContent(newContent)}
           />
         </div>
         <div className="pt-4">
-        <input
-          className="w-32 bg-primary text-white cursor-pointer font-semibold h-12"
-          type="submit"
-          value="Publish"
-        />
+          <input
+            className="w-32 bg-primary text-white cursor-pointer font-semibold h-12"
+            type="submit"
+            value="Publish"
+          />
         </div>
       </form>
     </div>

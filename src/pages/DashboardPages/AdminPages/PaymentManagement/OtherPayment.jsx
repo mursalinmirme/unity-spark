@@ -14,10 +14,10 @@ const OtherPayment = () => {
   return (
     <div>
       <div>
-        <table className="table border-[#45A5E1] mt-10">
+        <table className="table mt-10">
           {/* head */}
-          <thead className="bg-[#45A5E1] text-white text-[18px] text-center">
-            <tr className="row-border border-2 border-[#45A5E1] rounded-lg">
+          <thead className="bg-[#45A5E1] text-white">
+            <tr className="row-border table-style">
               <th>Name</th>
 
               <th>Cost</th>
