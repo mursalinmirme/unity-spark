@@ -20,7 +20,7 @@ const EditBlogs = () => {
   const { id } = useParams();
   // console.log(id)
   const axiosPublic = useAxiosPublic();
-  const { data: SingleEvent = [], refetch } = useQuery({
+  const { data: SingleEvent, refetch } = useQuery({
     queryKey: ["SingleEvent"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/blogs/${id}`);
@@ -28,7 +28,7 @@ const EditBlogs = () => {
       return res?.data;
     },
   });
-  // console.log(SingleEvent)
+  console.log(SingleEvent);
 
   const {
     register,
@@ -51,7 +51,7 @@ const EditBlogs = () => {
     }
 
     const newInfo = {
-      title: data?.title,
+      title: data?.title || SingleEvent?.title,
       image: newImage || SingleEvent?.image,
       description: content,
       bloggerEmail: user?.email,
@@ -65,6 +65,8 @@ const EditBlogs = () => {
           toast.success("Blog Updated Successfully");
           reset();
           refetch();
+        } else {
+          toast.error("Up to date");
         }
       })
       .catch((error) => {
@@ -82,20 +84,20 @@ const EditBlogs = () => {
               <span className="label-text font-bold text-lg">Blog Title</span>
             </label>
             <input
-              {...register("title", { required: true })}
+              {...register("title")}
               type="text"
               placeholder="Blog title..."
               className="input input-bordered"
               defaultValue={SingleEvent?.title}
             />
-            {errors.title && <p className="text-red-500">title is required.</p>}
+            {/* {errors.title && <p className="text-red-500">title is required.</p>} */}
           </div>
           <div className="form-control w-full">
             <label className="label mb-1.5">
               <span className="label-text font-bold text-lg">Add photo</span>
             </label>
             <label className="w-full" htmlFor="user_photo">
-              <div className="bg-primary rounded-md py-[11px] text-white font-inter font-medium flex items-center justify-center gap-2 cursor-pointer">
+              <div className="bg-primary rounded-md mt-1 py-[15px] text-white font-inter font-medium flex items-center justify-center gap-2 cursor-pointer">
                 <BsUpload />
                 <span> Upload Photo</span>{" "}
               </div>
@@ -113,13 +115,13 @@ const EditBlogs = () => {
             <span className="label-text font-bold text-lg">Description</span>
           </label>
           <JoditEditor
-            className="h-{500px}"
+            className="h-[500px]"
             value={content}
             tabIndex={1}
             onBlur={(newContent) => setContent(newContent)}
           />
           {errors.description && (
-            <p className="text-red-500">description is required.</p>
+            <p className="text-red-500">Description is required.</p>
           )}
         </div>
         <div className="pt-4">
