@@ -23,6 +23,8 @@ const InterviewCall = () => {
   if (isFetching) {
     return <div>Loading...</div>;
   }
+
+  // Video Call System Main Function
   const myMeeting = async (element) => {
     const appID = 1454166134;
     const serverSecret = "923792b6b7e4b3ddbd3d11c5a518e74b";
@@ -44,7 +46,7 @@ const InterviewCall = () => {
     });
   };
 
-  console.log("check 444", myMeeting);
+  // console.log("check 444", myMeeting);
 
   return (
     <div className="">
