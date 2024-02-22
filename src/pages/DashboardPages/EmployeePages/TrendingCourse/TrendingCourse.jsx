@@ -50,12 +50,12 @@ const TrendingCourse = () => {
     }
     return (
         <>
-        <h1 className="-mb-24 font-semibold text-xl">Trending Course</h1>
+        <h1 className="-mb-24 font-semibold text-2xl">Trending Course</h1>
          <Swiper  slidesPerView={screenSize < 768 ? 1  : 2}
         spaceBetween={30} navigation={true} modules={[Navigation]} className="mySwiper courseSwiper  my-10">
         
            { courses?.map(allData => <SwiperSlide key={allData._id}>
-                 <div className="border-2 border-[#46A3E1] rounded-xl">
+                 <div className="border-2 border-[#46A3E1] rounded-xl max-w-96">
                 <img src={allData?.image} alt="course-img" className="rounded-t-lg h-[228px] w-[408px]" />
                 <div className="space-y-5 p-4">
                     <h1 className="text-2xl text-left font-bold">{allData?.title}</h1>

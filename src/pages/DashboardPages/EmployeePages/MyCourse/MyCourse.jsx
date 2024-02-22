@@ -7,10 +7,11 @@ const MyCourse = () => {
     const [my_course] = useMyCourses()
     
     return (
+        <>
         <div className="my-5">
          <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-5">
          {
-                my_course?.map(info => <div key={info?._id} className="border-2 border-[#46A3E1] rounded-xl overflow-hidden h-[500px]">
+             my_course.length > 0 ?    my_course?.map(info => <div key={info?._id} className="border-2 border-[#46A3E1] rounded-xl overflow-hidden h-[500px] max-w-96">
                     <img src={info?.uniqueID?.image} alt="course-img" className="rounded-t-lg w-full overflow-hidden" />
                     <div className="space-y-5 flex flex-col justify-between p-4 h-full max-h-[270px]">
                        <div>
@@ -33,10 +34,24 @@ const MyCourse = () => {
                     </div>
                   </div>
                 )
+
+                : <div></div>
             }
          </div>
            
         </div>
+        {
+            my_course.length === 0 && <div>
+            <div className="flex justify-center items-center my-10">
+        <img src="https://i.ibb.co/w6RkCpg/not-found.gif" alt="not found gif" className="w-60"/>
+        </div>
+        <h1 className="text-center text-3xl font-inter font-semibold">You have not enrolled the course yet</h1> 
+       <div className="text-center pt-10">
+       <Link className="bg-primary text-white font-inter py-2 px-4 rounded-lg text-lg  " to="/dashboard/training" >Select Course</Link>
+       </div>
+         </div>
+        }
+        </>
     );
 };
 
