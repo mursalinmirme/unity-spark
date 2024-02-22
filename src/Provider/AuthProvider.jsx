@@ -59,29 +59,26 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log(user);
+      // console.log(user);
       setLoading(false);
       const userEmail = currentUser?.email || user?.email;
-      const loggedUser ={email: userEmail} 
-      if(currentUser?.email){
-        axiosPublic.post('/jwt', loggedUser)
-        .then(res=>{
-          if(res?.data?.token){
-            localStorage.setItem('Token' , res?.data?.token)
-            setLoading(false)
-        }
-      
-        })
-        .catch(error => {
-          console.log(error)
-        })
+      const loggedUser = { email: userEmail };
+      if (currentUser?.email) {
+        axiosPublic
+          .post("/jwt", loggedUser)
+          .then((res) => {
+            if (res?.data?.token) {
+              localStorage.setItem("Token", res?.data?.token);
+              setLoading(false);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        localStorage.removeItem("Token");
+        setLoading(false);
       }
-      else{
-        
-        localStorage.removeItem('Token')
-        setLoading(false)
-      }
-
     });
 
     return () => {
@@ -97,8 +94,8 @@ const AuthProvider = ({ children }) => {
     userSignIn,
     loginOut,
     googleLoginSystem,
-    profileComplete, 
-    setProfileComplete
+    profileComplete,
+    setProfileComplete,
   };
 
   useEffect(() => {
