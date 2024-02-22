@@ -25,7 +25,7 @@ const TermsCondition = () => {
         </h1>
         </h1>
       </div>
-      <div className="my-3 space-y-4">
+      <div className="mt-3 space-y-4 mb-5">
         <h1 className="text-xl font-semibold font-inter">3.Disclaimer</h1>
         <h1 className="text-lg font-medium font-inter">3.1. The materials on Unity Sparks's website are provided on an 'as is' basis. Unity Sparks's makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.</h1>
       </div>
