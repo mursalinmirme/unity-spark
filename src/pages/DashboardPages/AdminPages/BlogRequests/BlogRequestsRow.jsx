@@ -66,6 +66,7 @@ const BlogRequestsRow = ({ blogRequest, idx, refetch }) => {
 BlogRequestsRow.propTypes = {
   blogRequest: PropTypes.object,
   idx: PropTypes.number,
+  refetch: PropTypes.func,
 };
 
 export default BlogRequestsRow;
