@@ -7,7 +7,9 @@ import { useContext } from "react";
 import { AuthContext } from "../../../../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 
+
 const Courses = () => {
+
     const axiosPublic = useAxiosPublic()
     const {user} = useContext(AuthContext)
     const [courses] = useCourses()
@@ -33,6 +35,9 @@ const Courses = () => {
     }
 
     return (
+
+        <>
+        
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {
                 catCourse?.length > 0 ?
@@ -89,12 +94,29 @@ const Courses = () => {
                             </div>
                         </Link>
                     ))
-                    :
-                    <h1>No Course available</h1>
+                   : <div>
+
+                   </div>
                 )
                 
             }
         </div>
+        {
+            catCourse.length === 0 && category !== "all"  ? 
+             <div>
+                <div className="flex justify-center items-center w-full my-10">
+            <img src="https://i.ibb.co/w6RkCpg/not-found.gif" alt="not found gif" className="w-60"/>
+            </div>
+            <h1 className="text-center text-3xl font-inter font-semibold">No content available in this section </h1> 
+           <div className="text-center pt-10">
+           <Link className="bg-primary text-white font-inter py-2 px-4 rounded-lg text-lg  " to="/dashboard/training" >Go Back</Link>
+           </div>
+             </div>: 
+             <div>
+
+            </div>
+        }
+        </>
     );
 };
 
