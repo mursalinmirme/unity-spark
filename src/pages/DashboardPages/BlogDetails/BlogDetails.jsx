@@ -69,7 +69,6 @@ const BlogDetails = () => {
 
   const { data: countComments, refetch: fetchComment } = useQuery({
     queryKey: ["countComments", id],
-    enabled: !!user?.email,
     queryFn: async () => {
       const result = await axiosPublic.get(`/count-comments/${id}`);
       setTotalComments(result?.data?.totalComments);
@@ -99,7 +98,6 @@ const BlogDetails = () => {
 
   const { data: countLikes, refetch: fetchLike } = useQuery({
     queryKey: ["countLikes", id],
-    enabled: !!user?.email,
     queryFn: async () => {
       const result = await axiosPublic.get(`/count-likes/${id}`);
       setTotalLikes(result?.data?.totalLikes);
@@ -122,6 +120,20 @@ const BlogDetails = () => {
   const scrollToCommentSection = () => {
     const commentSection = document.getElementById("commentSection");
     commentSection.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleBlogSave = () => {
+    axiosPublic
+      .post("/bookmarked-blogs", { email: user?.email, blogInfo: id })
+      .then((res) => {
+        if (res.data === "exists") {
+          return toast.error("Blog Saved Already");
+        }
+        toast.success("Successfully Saved");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
 
   return (
@@ -156,24 +168,46 @@ const BlogDetails = () => {
         <div className="border-2 my-4 p-3 border-s-0 border-e-0 flex justify-between">
           <div className="flex gap-8 text-xl">
             <div className="flex items-center gap-2">
-              <button onClick={likeHandler}>
-                {isLiked ? <AiFillLike /> : <AiOutlineLike />}
-              </button>
+              {user?.email ? (
+                <button onClick={likeHandler}>
+                  {isLiked ? <AiFillLike /> : <AiOutlineLike />}
+                </button>
+              ) : (
+                <button>
+                  <Link to="/signin">
+                    <AiOutlineLike />
+                  </Link>
+                </button>
+              )}
               <p>{totalLikes}</p>
             </div>
             <div className="flex gap-2 items-center">
-              <button onClick={scrollToCommentSection}>
-                <FaRegComments></FaRegComments>
-              </button>
+              {user?.email ? (
+                <button onClick={scrollToCommentSection}>
+                  <FaRegComments></FaRegComments>
+                </button>
+              ) : (
+                <button>
+                  <Link to="/signin">
+                    <FaRegComments></FaRegComments>
+                  </Link>
+                </button>
+              )}
 
               <p>{totalComments}</p>
             </div>
           </div>
 
           <div className="text-xl">
-            <button>
-              <CiBookmark></CiBookmark>
-            </button>
+            {user?.email ? (
+              <button onClick={handleBlogSave}>
+                <CiBookmark></CiBookmark>
+              </button>
+            ) : (
+              <Link to="/signin">
+                <CiBookmark></CiBookmark>
+              </Link>
+            )}
           </div>
         </div>
         {/**Blog Image */}
