@@ -14,23 +14,29 @@
 .QajuHzlZleFtiTUp_E8u .pOvRwHj19chJGkgemUH3 {
   @apply p-0;
 }
-.QajuHzlZleFtiTUp_E8u .pOvRwHj19chJGkgemUH3 ._M8cCug8H18ALQ05cNMt {
-  @apply text-center !text-2xl;
-}
+
 .TYiiRFB3EhYJGVPE4k4q {
   @apply min-w-full;
 }
 .VsTVUAD89KWleD0YRVsD {
   @apply min-w-full mt-3 !bg-second !text-lg;
 }
-.sCsSbKP9yxvw4LQAeaTz {
-  @apply !bg-[#0a056741] rounded-2xl;
+
+.QajuHzlZleFtiTUp_E8u .pOvRwHj19chJGkgemUH3 ._M8cCug8H18ALQ05cNMt {
+  @apply text-center !text-2xl;
 }
+
 .ji5jASszKFf2CGCmbxEh {
   @apply !bg-transparent rounded-2xl;
 }
 .vjwEXnTmP6jAK8LlvWL_ > div {
   @apply !bg-primary;
+}
+.sCsSbKP9yxvw4LQAeaTz {
+  @apply !bg-[#0a056741] rounded-2xl;
+}
+.ji5jASszKFf2CGCmbxEh {
+  @apply !bg-transparent rounded-2xl;
 }
 .vjwEXnTmP6jAK8LlvWL_ > div:hover {
   @apply !bg-second;
