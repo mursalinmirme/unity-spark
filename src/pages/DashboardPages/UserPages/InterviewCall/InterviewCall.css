@@ -38,15 +38,19 @@
 .vjwEXnTmP6jAK8LlvWL_ .QeMJj1LEulq1ApqLHxuM {
   @apply !bg-red-500 !text-white;
 }
-.vjwEXnTmP6jAK8LlvWL_ .QeMJj1LEulq1ApqLHxuM:hover{
-  @apply !bg-red-700
+.vjwEXnTmP6jAK8LlvWL_ .QeMJj1LEulq1ApqLHxuM:hover {
+  @apply !bg-red-700;
 }
-.JtRS8dNV0vDLnpBoA6kZ > div{
+.JtRS8dNV0vDLnpBoA6kZ > div {
   @apply !bg-primary;
 }
 .JtRS8dNV0vDLnpBoA6kZ > div:hover {
   @apply !bg-second;
 }
-.Xfk1RtGH65gHx0iQ5uPA .GBqD5akUB0siCNWbAPQr{
-  @apply !bg-[#322bb9a0]
+.Xfk1RtGH65gHx0iQ5uPA .GBqD5akUB0siCNWbAPQr {
+  @apply !bg-[#322bb9a0];
+}
+
+.j9ygOVxEl2nClTPs77Ta.tkC3S6XQehKbTEIfFYVM {
+  @apply !bg-[#322bb9a0] !rounded-lg !p-4 !mt-6;
 }
