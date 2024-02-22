@@ -7,11 +7,14 @@ import { useForm } from "react-hook-form";
 import useEmployees from "../../../hooks/useEmployees";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import CommunicationForMobile from "./CommunicationForMobile";
+import useAdmins from "../../../hooks/useAdmins";
 
 const Communication = () => {
     const [showSearchBar, setShowSearchBar] = useState(false);
     const [searchValue, setSearchValue] = useState(null);
     const {allEmployees} = useEmployees()
+    const {allAdmins} = useAdmins()
+    const [allChatUser, setAllChatUser] = useState([])
     const [selectedChat, setSelectedChat] = useState(null)
     const [selectedUserEmail, setSelectedUserEmail] = useState('')
     const {user} = useContext(AuthContext);
@@ -21,9 +24,13 @@ const Communication = () => {
     const [sortedEmployees, setShortedEmployees] = useState([])
     const [myFriends, setMyFriends] = useState([])
 
-    const employees =  allEmployees?.filter(employee => employee?.email !== user?.email)   
+    const employees =  allChatUser?.filter(employee => employee?.email !== user?.email)   
     const searchedEmployees = employees?.filter(employee => employee.name.toLowerCase().includes(searchValue?.toLowerCase()))
     const selectedEmployee = employees?.find(employee => employee.email === selectedUserEmail)
+
+    useEffect(() => {
+        setAllChatUser([...allEmployees, ...allAdmins])
+    } ,[allAdmins, allEmployees])
     
     useEffect(() => {
         const timeOut = setTimeout(() => {
@@ -200,6 +207,7 @@ const Communication = () => {
                             <form onSubmit={handleSubmit(onSubmit)} className="border-2 rounded-lg flex items-center justify-between p-1">
                                 <input onKeyDown={e => {
                                     if(e.key === 'Enter'){
+                                        e.preventDefault();
                                         handleSubmit(onSubmit)
                                     }
                                 }} {...register("message", { required: true })} type="text" className="border-none mt-0 p-0 pl-2" placeholder="Enter your message" />
@@ -207,7 +215,7 @@ const Communication = () => {
                                     <AiOutlineSend className="text-lg" />
                                 </button>
                             </form>
-                        </div>                    
+                        </div>
                     </div>
                 }
                 
