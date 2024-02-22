@@ -2,12 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
 import { AuthContext } from "../../../Provider/AuthProvider";
-import { AiOutlineSend } from "react-icons/ai";
-import { useForm } from "react-hook-form";
 import useEmployees from "../../../hooks/useEmployees";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import CommunicationForMobile from "./CommunicationForMobile";
 import useAdmins from "../../../hooks/useAdmins";
+import MessageForm from "./MessageForm";
 
 const Communication = () => {
     const [showSearchBar, setShowSearchBar] = useState(false);
@@ -18,7 +17,6 @@ const Communication = () => {
     const [selectedChat, setSelectedChat] = useState(null)
     const [selectedUserEmail, setSelectedUserEmail] = useState('')
     const {user} = useContext(AuthContext);
-    const { register, handleSubmit, reset } = useForm();
     const axiosSecure = useAxiosSecure()
     const [messages, setMessages] = useState([])
     const [sortedEmployees, setShortedEmployees] = useState([])
@@ -73,17 +71,7 @@ const Communication = () => {
         !sortedEmployees.some(sortedEmployee => sortedEmployee.email === employee.email)
     );
 
-    const onSubmit = (data) => {
-        const messageInfo = {
-            message: data.message,
-            reciever: selectedUserEmail,
-            sender: user?.email
-        }
-        axiosSecure.post('/chat', messageInfo)
-        .then(() => {
-            reset();
-        })
-    }
+    
 
     return (
         <div>
@@ -204,22 +192,12 @@ const Communication = () => {
 
                         {/* MESSAGE INPUT */}
                         <div className="p-3 bg-white h-[70px]">
-                            <form onSubmit={handleSubmit(onSubmit)} className="border-2 rounded-lg flex items-center justify-between p-1">
-                                <input onKeyDown={e => {
-                                    if(e.key === 'Enter'){
-                                        e.preventDefault();
-                                        handleSubmit(onSubmit)
-                                    }
-                                }} {...register("message", { required: true })} type="text" className="border-none mt-0 p-0 pl-2" placeholder="Enter your message" />
-                                <button type="submit" className={`text-white bg-primary px-2 py-1.5 rounded-lg`}>
-                                    <AiOutlineSend className="text-lg" />
-                                </button>
-                            </form>
+                            <MessageForm selectedUserEmail={selectedUserEmail}></MessageForm>
                         </div>
                     </div>
                 }
                 
-            </div>
+            </div>           
 
             {/* COMPONENT FOR RESPONSIVENESS */}
             <div className="block md:hidden">
@@ -236,10 +214,8 @@ const Communication = () => {
                     selectedChat={selectedChat}
                     selectedEmployee={selectedEmployee}
                     messages={messages}
-                    handleSubmit={handleSubmit}
-                    register={register}
-                    onSubmit={onSubmit}
                     user={user}
+                    selectedUserEmail={selectedUserEmail}
                 ></CommunicationForMobile>
             </div>
         </div>

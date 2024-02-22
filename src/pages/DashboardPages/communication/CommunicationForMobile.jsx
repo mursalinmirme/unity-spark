@@ -1,11 +1,11 @@
-import { AiOutlineSend } from "react-icons/ai";
 import { IoIosSearch } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { IoChevronBackOutline } from "react-icons/io5";
+import MessageForm from "./MessageForm";
 
-const CommunicationForMobile = ({showSearchBar, setSearchValue, setShowSearchBar, searchValue, searchedEmployees, setSelectedUserEmail, setSelectedChat, sortedEmployees, remainingEmployees, selectedChat, selectedEmployee, messages, handleSubmit, register, onSubmit, user}) => {    
+const CommunicationForMobile = ({showSearchBar, setSearchValue, setShowSearchBar, searchValue, searchedEmployees, setSelectedUserEmail, setSelectedChat, sortedEmployees, remainingEmployees, selectedChat, selectedEmployee, messages, user, selectedUserEmail}) => {    
     const [showChat, setShowChat] = useState(false)
 
     return (
@@ -134,16 +134,7 @@ const CommunicationForMobile = ({showSearchBar, setSearchValue, setShowSearchBar
 
                     {/* MESSAGE INPUT */}
                     <div className="p-3 bg-white h-[70px]">
-                        <form onSubmit={handleSubmit(onSubmit)} className="border-2 rounded-lg flex items-center justify-between p-1">
-                            <input onKeyDown={e => {
-                                if(e.key === 'Enter'){
-                                    handleSubmit(onSubmit)
-                                }
-                            }} {...register("message", { required: true })} type="text" className="border-none mt-0 p-0 pl-2" placeholder="Enter your message" />
-                            <button type="submit" className={`text-white bg-primary px-2 py-1.5 rounded-lg`}>
-                                <AiOutlineSend className="text-lg" />
-                            </button>
-                        </form>
+                        <MessageForm selectedUserEmail={selectedUserEmail}></MessageForm>
                     </div>                    
                 </div>
             }
@@ -153,22 +144,20 @@ const CommunicationForMobile = ({showSearchBar, setSearchValue, setShowSearchBar
 };
 
 CommunicationForMobile.propTypes = {
-    showSearchBar: PropTypes.object,
-    setSearchValue: PropTypes.object,
-    setSelectedChat: PropTypes.object,
-    setShowSearchBar: PropTypes.object,
-    searchValue: PropTypes.object,
-    searchedEmployees: PropTypes.object,
-    setSelectedUserEmail: PropTypes.object,
-    sortedEmployees: PropTypes.object,
-    selectedChat: PropTypes.object,
-    remainingEmployees: PropTypes.object,
-    selectedEmployee: PropTypes.object,
-    messages: PropTypes.object,
-    handleSubmit: PropTypes.object,
-    register: PropTypes.object,
-    onSubmit: PropTypes.object,
+    showSearchBar: PropTypes.bool,
+    setSearchValue: PropTypes.string,
+    setSelectedChat: PropTypes.string,
+    setShowSearchBar: PropTypes.bool,
+    searchValue: PropTypes.string,
+    searchedEmployees: PropTypes.array,
+    setSelectedUserEmail: PropTypes.string,
+    sortedEmployees: PropTypes.array,
+    selectedChat: PropTypes.string,
+    remainingEmployees: PropTypes.array,
+    selectedEmployee: PropTypes.string,
+    messages: PropTypes.array,
     user: PropTypes.object,
+    selectedUserEmail: PropTypes.string,
 };
 
 export default CommunicationForMobile;
