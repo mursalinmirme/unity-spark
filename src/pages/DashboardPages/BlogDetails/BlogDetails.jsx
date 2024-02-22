@@ -273,7 +273,7 @@ const BlogDetails = () => {
               </figure>
 
               <div className="p-4 pt-0">
-                <h2 className="text-[16px] font-inter font-bold">
+                <h2 className="text-lg font-inter  font-bold mt-4">
                   {" "}
                   {blog?.title}
                 </h2>
@@ -284,7 +284,7 @@ const BlogDetails = () => {
                 </p>
                 <div className="card-actions justify-start py-1">
                   <Link to={`/blog-details/${blog?._id}`}>
-                    <div className="btn btn-sm btn-primary">Read More</div>
+                    <div className="nbtn mt-2">Read More</div>
                   </Link>
                 </div>
               </div>
@@ -296,7 +296,7 @@ const BlogDetails = () => {
           {" "}
           <Link to="/blog">
             {" "}
-            <button className="px-10 py-2 rounded-lg bg-primary text-white">
+            <button className="px-10 py-2 rounded-lg nbtn text-white">
               {" "}
               See More
             </button>
