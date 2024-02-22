@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const SavedBlogCard = ({ singleBlog }) => {
   console.log(singleBlog);
@@ -24,6 +25,10 @@ const SavedBlogCard = ({ singleBlog }) => {
       </div>
     </div>
   );
+};
+
+SavedBlogCard.propTypes = {
+  singleBlog: PropTypes.object,
 };
 
 export default SavedBlogCard;
