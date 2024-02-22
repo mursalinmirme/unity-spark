@@ -6,13 +6,15 @@ import { AiOutlineSend } from "react-icons/ai";
 import { useForm } from "react-hook-form";
 import useEmployees from "../../../hooks/useEmployees";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import useUserInfo from "../../../hooks/useUserInfo";
+import CommunicationForMobile from "./CommunicationForMobile";
+import useAdmins from "../../../hooks/useAdmins";
 
 const Communication = () => {
     const [showSearchBar, setShowSearchBar] = useState(false);
     const [searchValue, setSearchValue] = useState(null);
-    const [users] = useUserInfo()
     const {allEmployees} = useEmployees()
+    const {allAdmins} = useAdmins()
+    const [allChatUser, setAllChatUser] = useState([])
     const [selectedChat, setSelectedChat] = useState(null)
     const [selectedUserEmail, setSelectedUserEmail] = useState('')
     const {user} = useContext(AuthContext);
@@ -20,9 +22,15 @@ const Communication = () => {
     const axiosSecure = useAxiosSecure()
     const [messages, setMessages] = useState([])
     const [sortedEmployees, setShortedEmployees] = useState([])
-    
-    const employees =  allEmployees?.filter(employee => employee?.email !== user?.email)   
+    const [myFriends, setMyFriends] = useState([])
+
+    const employees =  allChatUser?.filter(employee => employee?.email !== user?.email)   
     const searchedEmployees = employees?.filter(employee => employee.name.toLowerCase().includes(searchValue?.toLowerCase()))
+    const selectedEmployee = employees?.find(employee => employee.email === selectedUserEmail)
+
+    useEffect(() => {
+        setAllChatUser([...allEmployees, ...allAdmins])
+    } ,[allAdmins, allEmployees])
     
     useEffect(() => {
         const timeOut = setTimeout(() => {
@@ -31,29 +39,40 @@ const Communication = () => {
                 setMessages(res.data)
             })
         }, 100)
+    
+        return () => clearTimeout(timeOut)        
+    })
+
+    useEffect(() => {
+        const timeOut = setTimeout(() => {
+            axiosSecure.get(`/chat-friends/${user?.email}`)
+            .then(res => {
+                setMyFriends(res.data)
+            })
+        }, 200)
 
         return () => clearTimeout(timeOut)        
     })
 
-    // useEffect(() => {
-    //     const newSortedEmployees = [...employees].sort((a, b) => {
-    //         const messageOfA = messages?.find(message => message.sender === a.email)
-    //         const messageOfB = messages?.find(message => message.sender === b.email)
+    useEffect(() => {
+        const combinedArray = [];
     
-    //         if(messageOfA && messageOfB){
-    //             return new Date(messageOfB.createdAt) - new Date(messageOfA.createdAt);
-    //         } else if(messageOfA) {
-    //             return -1
-    //         } else if(messageOfB){
-    //             return 1
-    //         } else {
-    //             return 0
-    //         }
-    //     })
+        myFriends.forEach(friend => {
+            const newFriends = employees?.filter(employee => employee.email === friend);
+            if (newFriends.length > 0 && !sortedEmployees.some(e => JSON.stringify(e) === JSON.stringify(newFriends))) {
+                combinedArray.push(...newFriends);
+            }
+        });
+    
+        if (JSON.stringify(combinedArray) !== JSON.stringify(sortedEmployees)) {
+            setShortedEmployees(combinedArray);
+        }
+    }, [myFriends, employees, sortedEmployees]);
+    
+    const remainingEmployees = employees.filter(employee =>
+        !sortedEmployees.some(sortedEmployee => sortedEmployee.email === employee.email)
+    );
 
-    //     setShortedEmployees(newSortedEmployees)
-    // }, [messages])
-    
     const onSubmit = (data) => {
         const messageInfo = {
             message: data.message,
@@ -66,11 +85,10 @@ const Communication = () => {
         })
     }
 
-
     return (
         <div>
-            <div className="grid grid-cols-6 gap-3 bg-[#ececf8] p-2 rounded-lg overflow-hidden" style={{height: 'calc(100vh - 20vh)'}}>
-                <div className="col-span-2 bg-white p-2 rounded-lg overflow-y-hidden flex flex-col" style={{height: 'calc(100% - 2px)'}}>
+            <div className="hidden md:grid grid-cols-7 lg:grid-cols-6 gap-3 bg-[#ececf8] p-2 rounded-lg overflow-hidden" style={{height: 'calc(100vh - 20vh)'}}>
+                <div className={`col-span-3 lg:col-span-2 bg-white p-2 rounded-lg overflow-y-hidden flex flex-col`} style={{height: 'calc(100% - 2px)'}}>
                     <div className="h-14">
                         <div className="flex items-center justify-between relative">
                             <h2 className="font-inter font-bold text-2xl">Chats</h2>
@@ -112,8 +130,26 @@ const Communication = () => {
                         }
                     </div>
                     <div className="grid gap-3 overflow-y-auto">
+                        <h2 className="font-inter font-semibold">Your Friends</h2>
                         {
-                            employees && employees?.map((friend, idx) =>(
+                            sortedEmployees && sortedEmployees?.map((friend, idx) =>(
+                                <div key={idx} className={`flex gap-3 items-center cursor-pointer p-1 hover:bg-[#ececf8] rounded-lg transition-all ${selectedChat === friend?._id ? 'bg-[#ececf8]' : ''}`} onClick={() => {
+                                    setSelectedChat(friend?._id)
+                                    setSelectedUserEmail(friend?.email)
+                                }}>
+                                    <img src={friend?.image} className="w-12 h-12 rounded-full" alt="" />
+                                    <div>
+                                        <h3 className="font-inter font-semibold text-[17px]">{friend?.name}</h3>
+                                        <h4 className="font-inter text-sm font-medium">{friend?.position}</h4>
+                                    </div>
+                                </div>
+                                
+                            ))
+                        }
+                        <hr className="my-1 border border-slate-300" />
+                        <h2 className="font-inter font-semibold">Make More Friends</h2>
+                        {
+                            remainingEmployees && remainingEmployees?.map((friend, idx) =>(
                                 <div key={idx} className={`flex gap-3 items-center cursor-pointer p-1 hover:bg-[#ececf8] rounded-lg transition-all ${selectedChat === friend?._id ? 'bg-[#ececf8]' : ''}`} onClick={() => {
                                     setSelectedChat(friend?._id)
                                     setSelectedUserEmail(friend?.email)
@@ -133,17 +169,18 @@ const Communication = () => {
                 {
                     selectedChat === null ? 
                     <div className="col-span-4 bg-white rounded-lg flex flex-col justify-center">
-
                         <h2 className="my-10 text-2xl font-semibold text-center font-inter">Please Select a User to Start Conversation</h2>
                     </div>
                     :
                     <div className="col-span-4 bg-white rounded-lg relative overflow-y-hidden flex flex-col justify-between" style={{height: 'calc(100% - 2px)'}}>
                         <div className="h-20">
                             <div className={`flex gap-3 items-center p-3`}>
-                                <img src={users?.image} className="w-12 h-12 rounded-full" alt="" />
+                                <img src={selectedEmployee?.image} className="w-12 h-12 rounded-full" alt="" />
                                 <div>
-                                    <h3 className="font-inter font-semibold text-[17px]">{users?.name}</h3>
-                                    <h4 className="font-inter text-sm font-medium">{users.position}</h4>
+                                    <h3 className="font-inter font-semibold text-[17px] hidden sm:block">{selectedEmployee?.name}</h3>
+                                    <h3 className="font-inter font-semibold text-[17px] sm:hidden">{selectedEmployee?.name?.length > 8 ? selectedEmployee?.name?.slice(0, 8) + '...' : selectedEmployee?.name}</h3>
+                                    <h4 className="font-inter text-sm font-medium hidden sm:block">{selectedEmployee?.position}</h4>
+                                    <h4 className="font-inter text-sm font-medium sm:hidden">{selectedEmployee?.position?.length > 15 ? selectedEmployee?.position?.slice(0, 15) + '...' : selectedEmployee?.position}</h4>
                                 </div>
                             </div>
                             <hr className="my-1 border border-slate-300" />
@@ -170,6 +207,7 @@ const Communication = () => {
                             <form onSubmit={handleSubmit(onSubmit)} className="border-2 rounded-lg flex items-center justify-between p-1">
                                 <input onKeyDown={e => {
                                     if(e.key === 'Enter'){
+                                        e.preventDefault();
                                         handleSubmit(onSubmit)
                                     }
                                 }} {...register("message", { required: true })} type="text" className="border-none mt-0 p-0 pl-2" placeholder="Enter your message" />
@@ -177,10 +215,32 @@ const Communication = () => {
                                     <AiOutlineSend className="text-lg" />
                                 </button>
                             </form>
-                        </div>                    
+                        </div>
                     </div>
                 }
                 
+            </div>
+
+            {/* COMPONENT FOR RESPONSIVENESS */}
+            <div className="block md:hidden">
+                <CommunicationForMobile
+                    showSearchBar={showSearchBar}
+                    setSearchValue={setSearchValue}
+                    setShowSearchBar={setShowSearchBar}
+                    searchValue={searchValue}
+                    searchedEmployees={searchedEmployees}
+                    setSelectedUserEmail={setSelectedUserEmail}
+                    setSelectedChat={setSelectedChat}
+                    sortedEmployees={sortedEmployees}
+                    remainingEmployees={remainingEmployees}
+                    selectedChat={selectedChat}
+                    selectedEmployee={selectedEmployee}
+                    messages={messages}
+                    handleSubmit={handleSubmit}
+                    register={register}
+                    onSubmit={onSubmit}
+                    user={user}
+                ></CommunicationForMobile>
             </div>
         </div>
     );
