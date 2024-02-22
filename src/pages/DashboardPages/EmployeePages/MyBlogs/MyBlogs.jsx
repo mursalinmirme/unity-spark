@@ -8,7 +8,7 @@ import { AuthContext } from "../../../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import { LuPenLine } from "react-icons/lu";
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
 
 const MyBlogs = () => {
   const { user } = useContext(AuthContext);
@@ -40,7 +40,7 @@ const MyBlogs = () => {
               if (result.isConfirmed) {
                 Swal.fire({
                   title: "Deleted!",
-                  text: "Your file has been deleted.",
+                  text: "Your blog has been deleted.",
                   icon: "success",
                 });
                 refetch();
@@ -50,7 +50,6 @@ const MyBlogs = () => {
         }
       })
       .catch((error) => {
-        console.log(error.message);
         toast.error(error.message);
       });
   };
@@ -70,8 +69,7 @@ const MyBlogs = () => {
             return (
               <div
                 className="border-2 p-3 my-4 rounded-lg flex justify-between items-center"
-                key={blog?._id}
-              >
+                key={blog?._id}>
                 <div>
                   <h3 className="text-base font-bold">{blog?.title}</h3>
                 </div>
@@ -83,8 +81,7 @@ const MyBlogs = () => {
                   </Link>
                   <button
                     onClick={() => handleDeleteBlog(blog?._id)}
-                    className="bg-primary rounded-lg p-2 "
-                  >
+                    className="bg-primary rounded-lg p-2 ">
                     <RiDeleteBin6Line className="text-lg"></RiDeleteBin6Line>
                   </button>
                 </div>
