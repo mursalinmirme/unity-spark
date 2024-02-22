@@ -219,7 +219,10 @@ const ModifyEvent = () => {
                       {" "}
                       {/* <img className="w-5 h-5" src={download_icon} alt="" />{" "} */}
                       <SlCloudUpload className="w-5 h-5" />
-                      <span className="text-base font-medium"> Upload Photo</span>{" "}
+                      <span className="text-base font-medium">
+                        {" "}
+                        Upload Photo
+                      </span>{" "}
                     </div>
                   </label>
                 </div>
@@ -262,7 +265,9 @@ const ModifyEvent = () => {
               {/* Permanent Address */}
               <label>
                 <div className="">
-                  <span className="font-medium text-base font-inter">End Time</span>
+                  <span className="font-medium text-base font-inter">
+                    End Time
+                  </span>
                 </div>
                 <div className="relative">
                   <DatePicker
@@ -284,7 +289,10 @@ const ModifyEvent = () => {
               {/*  Host Name field */}
               <label>
                 <div className="">
-                  <span className="font-medium text-base font-inter"> Your Host Name:</span>
+                  <span className="font-medium text-base font-inter">
+                    {" "}
+                    Your Host Name:
+                  </span>
                 </div>
                 <input
                   type="text"
@@ -299,7 +307,9 @@ const ModifyEvent = () => {
               {/*Event Date */}
               <label>
                 <div className="">
-                  <span className="font-medium text-base font-inter">Event Date</span>
+                  <span className="font-medium text-base font-inter">
+                    Event Date
+                  </span>
                 </div>
 
                 <div className="relative">
@@ -321,7 +331,6 @@ const ModifyEvent = () => {
                   className="border-none cursor-pointer py-3 font-semibold text-base"
                   type="submit"
                   value="Update Event"
-
                 />
               )}
             </div>
