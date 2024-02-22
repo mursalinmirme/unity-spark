@@ -58,6 +58,7 @@ import InterviewsDetails from "../pages/DashboardPages/AdminPages/Interviews/int
 import Courses from "../pages/DashboardPages/EmployeePages/Training/Courses/Courses";
 import Payment from "../pages/DashboardPages/AdminPages/PaymentManagement/Payment";
 import CourseUpdate from "../pages/DashboardPages/AdminPages/TrainingManagement/CourseUpdate";
+import IsAdminOrEmployee from "../privateRouter.jsx/IsAdminOrEmployee";
 
 const router = createBrowserRouter([
   {
@@ -233,9 +234,9 @@ const router = createBrowserRouter([
         path: "all-users",
         element: (
           <PrivateRouter>
-            <IsAdmin>
+            <IsAdminOrEmployee>
               <AllUsers></AllUsers>
-            </IsAdmin>
+            </IsAdminOrEmployee>
           </PrivateRouter>
         ),
       },
