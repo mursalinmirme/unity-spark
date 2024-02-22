@@ -7,13 +7,23 @@ import useUserInfo from "../../../hooks/useUserInfo";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import BlogComments from "./BlogComments";
+import { AiOutlineLike } from "react-icons/ai";
+import { FaRegComments } from "react-icons/fa";
+import { CiBookmark } from "react-icons/ci";
+import { AiFillLike } from "react-icons/ai";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 const BlogDetails = () => {
   const { id } = useParams();
-
   const axiosPublic = useAxiosPublic();
+  const [isLiked, setIsLiked] = useState(null);
+  const [totalLikes, setTotalLikes] = useState(0);
+  const [totalComments, setTotalComments] = useState(0);
 
   const [users] = useUserInfo();
+
+  const { user } = useContext(AuthContext);
 
   // get current page Blog info
   const { data: details = {} } = useQuery({
@@ -35,6 +45,18 @@ const BlogDetails = () => {
     },
   });
 
+  const { data: checkLiked } = useQuery({
+    queryKey: ["checkLiked", id],
+    enabled: !!user?.email,
+    queryFn: async () => {
+      const result = await axiosPublic.get(
+        `/check-like?email=${user?.email}&blogId=${id}`
+      );
+      setIsLiked(result?.data?.isLiked);
+      return result.data;
+    },
+  });
+
   const { data: comments = [], refetch } = useQuery({
     queryKey: ["comments"],
     queryFn: async () => {
@@ -43,7 +65,17 @@ const BlogDetails = () => {
     },
   });
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
+
+  const { data: countComments, refetch: fetchComment } = useQuery({
+    queryKey: ["countComments", id],
+    enabled: !!user?.email,
+    queryFn: async () => {
+      const result = await axiosPublic.get(`/count-comments/${id}`);
+      setTotalComments(result?.data?.totalComments);
+      return result.data;
+    },
+  });
 
   const handleCommentSubmit = (data) => {
     const newComment = {
@@ -56,6 +88,8 @@ const BlogDetails = () => {
       .post("/comments", newComment)
       .then(() => {
         refetch();
+        fetchComment();
+        reset();
         toast.success("Comment Added");
       })
       .catch((error) => {
@@ -63,10 +97,37 @@ const BlogDetails = () => {
       });
   };
 
+  const { data: countLikes, refetch: fetchLike } = useQuery({
+    queryKey: ["countLikes", id],
+    enabled: !!user?.email,
+    queryFn: async () => {
+      const result = await axiosPublic.get(`/count-likes/${id}`);
+      setTotalLikes(result?.data?.totalLikes);
+      return result.data;
+    },
+  });
+
+  const likeHandler = async () => {
+    await axiosPublic
+      .post("/toggleLike", {
+        email: users?.email,
+        blogId: id,
+      })
+      .then((res) => {
+        setIsLiked(res?.data?.isLiked);
+        fetchLike();
+      });
+  };
+
+  const scrollToCommentSection = () => {
+    const commentSection = document.getElementById("commentSection");
+    commentSection.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <div className="flex lg:flex-row flex-col justify-between gap-5 my-5">
       {/** Left Side  */}
-      <div className="w-full  p-2 flex-wrap overflow-y-auto max-h-[100vh]">
+      <div className="w-full  p-2 flex-wrap lg:overflow-y-auto lg:max-h-[100vh] lg:pr-6">
         <h1 className="text-2xl font-bold font-inter"> {details?.title} </h1>
         {/**Author Info */}
         <div className="flex justify-between items-center mt-5">
@@ -91,6 +152,30 @@ const BlogDetails = () => {
             {timeDifference}
           </div>
         </div>
+
+        <div className="border-2 my-4 p-3 border-s-0 border-e-0 flex justify-between">
+          <div className="flex gap-8 text-xl">
+            <div className="flex items-center gap-2">
+              <button onClick={likeHandler}>
+                {isLiked ? <AiFillLike /> : <AiOutlineLike />}
+              </button>
+              <p>{totalLikes}</p>
+            </div>
+            <div className="flex gap-2 items-center">
+              <button onClick={scrollToCommentSection}>
+                <FaRegComments></FaRegComments>
+              </button>
+
+              <p>{totalComments}</p>
+            </div>
+          </div>
+
+          <div className="text-xl">
+            <button>
+              <CiBookmark></CiBookmark>
+            </button>
+          </div>
+        </div>
         {/**Blog Image */}
         <div className="mt-5">
           <img
@@ -104,7 +189,7 @@ const BlogDetails = () => {
           </div>
 
           {/**freedBack Form */}
-          <div className="mt-10">
+          <div className="mt-10" id="commentSection">
             <form onSubmit={handleSubmit(handleCommentSubmit)}>
               <label>
                 Give your Comment:
