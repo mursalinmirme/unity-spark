@@ -65,6 +65,7 @@ import FAQs from "../pages/AllFooterPage/FAQs/FAQs";
 import TermsCondition from "../pages/AllFooterPage/TermsCondition/TermsCondition";
 import Disclaimer from "../pages/AllFooterPage/Disclaimer/Disclaimer";
 import Accessibility from "../pages/AllFooterPage/Accessibility/Accessibility";
+import PrivacyPolicy from "../pages/AllFooterPage/PrivacyPolicy/PrivacyPolicy";
 // import PrivacyPolicy from "../pages/AllFooterPage/PrivacyPolicy/PrivacyPolicy"
 
 const router = createBrowserRouter([
@@ -124,10 +125,10 @@ const router = createBrowserRouter([
         path: "termsCondition",
         element: <TermsCondition></TermsCondition>,
       },
-      // {
-      //   path: "privacyPolicy",
-      //   element: <PrivacyPolicy></PrivacyPolicy>,
-      // },
+      {
+        path: "privacyPolicy",
+        element: <PrivacyPolicy></PrivacyPolicy>,
+      },
       {
         path: "disclaimer",
         element: <Disclaimer></Disclaimer>,
