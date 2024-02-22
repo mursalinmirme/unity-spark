@@ -10,7 +10,7 @@ const FAQs = () => {
         <h3 className="text-3xl font-bold font-inter">
           {" "}
           <span className="text-primary">Frequently</span>{" "}
-          <span className="border-b-4 border-primary">Asked </span> Question
+          <span className="border-b-4 border-second">Asked </span> Question
         </h3>
         {/*  Just Question Part*/}
         <div className="space-y-4 mt-10">
