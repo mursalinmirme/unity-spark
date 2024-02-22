@@ -15,7 +15,8 @@ const ApplicantsCard = ({
   console.log("emijkdjfklsdjfdksl", value);
   return (
     <div className="border-2 border-[#D9D9D9] rounded-xl px-2 md:px-5 py-2">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+        <div>
         <div className="flex  items-center gap-5">
           <img
             src={value?.image}
@@ -29,8 +30,9 @@ const ApplicantsCard = ({
             </h1>
           </div>
         </div>
+        </div>
 
-        <section className="space-x-5 justify-center items-center hidden md:flex text-white">
+        <section className="md:space-x-5 mt-4 md:mt-0 flex gap-4 md:gap-0 justify-start md:justify-center md:items-center text-white">
           <button
             onClick={() => {
               setIndividual(value?.email), setApplicationId(value?._id);

@@ -213,7 +213,7 @@ const Dashboard = () => {
             >
               <div>
                 <IoDocumentOutline />
-                <span>Job Ads</span>
+                <span>Recruitment</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
             </li>
