@@ -9,6 +9,7 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { AuthContext } from "../../../../Provider/AuthProvider";
+import { PiFileVideo } from "react-icons/pi";
 import EnrolledCourse from "./AddBlogs/EnrolledCourse";
 
 const EmployeeHome = () => {
@@ -31,11 +32,8 @@ const EmployeeHome = () => {
     },
   });
 
-  
   // get running task of the loged in employee
-  const {
-    data: myTotalCompletedTaskCount = {}
-  } = useQuery({
+  const { data: myTotalCompletedTaskCount = {} } = useQuery({
     queryKey: ["myTotalCompletedTaskCount"],
     queryFn: async () => {
       const result = await axiosPublic.get(
@@ -48,7 +46,9 @@ const EmployeeHome = () => {
   const { data: myTotalEnrolledCourses } = useQuery({
     queryKey: ["myTotalEnrolledCourses"],
     queryFn: async () => {
-      const result = await axiosPublic.get(`enrolled_course_length/${user?.email}`);
+      const result = await axiosPublic.get(
+        `enrolled_course_length/${user?.email}`
+      );
       return result?.data;
     },
   });
@@ -96,10 +96,14 @@ const EmployeeHome = () => {
         {/* Job Posts */}
         <div className="font-inter bg-[#4361EE4D] py-4 rounded-xl">
           <div className="flex justify-center">
-            <IoDocumentOutline className="w-12 h-12 text-[#4361EE]"></IoDocumentOutline>
+            <PiFileVideo className="w-12 h-12 text-[#4361EE]"></PiFileVideo>
           </div>
-          <p className="font-bold text-[45px] text-[#4361EE]">{myTotalEnrolledCourses?.count}</p>
-          <p className="text-[#4361EE] font-semibold text-xl">Course Enrolled</p>
+          <p className="font-bold text-[45px] text-[#4361EE]">
+            {myTotalEnrolledCourses?.count}
+          </p>
+          <p className="text-[#4361EE] font-semibold text-xl">
+            Course Enrolled
+          </p>
         </div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-5">

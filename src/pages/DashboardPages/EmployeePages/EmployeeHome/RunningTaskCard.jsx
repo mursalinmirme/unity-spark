@@ -102,8 +102,8 @@ const RunningTaskCard = () => {
                     })}
                 {myRunningTasks?.employees?.length > 3 && (
                   <div className="avatar placeholder">
-                    <div className="w-10 bg-white text-primary font-semibold text-xl">
-                      <span>+{myRunningTasks?.employees?.length - 3}</span>
+                    <div className="w-10 bg-white text-primary font-semibold">
+                      <span>{myRunningTasks?.employees?.length - 3}+</span>
                     </div>
                   </div>
                 )}
