@@ -358,9 +358,9 @@ const router = createBrowserRouter([
         path: "communication",
         element: (
           <PrivateRouter>
-            <IsEmployee>
+            <IsAdminOrEmployee>
               <Communication></Communication>
-            </IsEmployee>
+            </IsAdminOrEmployee>
           </PrivateRouter>
         ),
       },
