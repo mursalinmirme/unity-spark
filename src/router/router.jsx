@@ -66,9 +66,9 @@ import FAQs from "../pages/AllFooterPage/FAQs/FAQs";
 import TermsCondition from "../pages/AllFooterPage/TermsCondition/TermsCondition";
 import Disclaimer from "../pages/AllFooterPage/Disclaimer/Disclaimer";
 import Accessibility from "../pages/AllFooterPage/Accessibility/Accessibility";
-import PrivacyPolicy from "../pages/AllFooterPage/PrivacyPolicy/PrivacyPolicy";
+// import PrivacyPolicy from "../pages/AllFooterPage/PrivacyPolicy/PrivacyPolicy";
 import SavedBlogs from "../pages/DashboardPages/EmployeePages/SavedBlogs/SavedBlogs";
-// import PrivacyPolicy from "../pages/AllFooterPage/PrivacyPolicy/PrivacyPolicy"
+import PrivacyPolicy from "../pages/AllFooterPage/PrivacyPolicy/PrivacyPolicy";
 
 const router = createBrowserRouter([
   {
