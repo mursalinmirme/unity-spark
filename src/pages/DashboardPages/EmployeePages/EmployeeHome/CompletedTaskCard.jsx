@@ -9,10 +9,7 @@ const CompletedTaskCard = () => {
   const axiosPublic = useAxiosPublic();
   const { user } = useContext(AuthContext);
   // get running task of the loged in employee
-  const {
-    data: myRecentCompleteTask = {},
-    refetch: recentCompleteTaskRefetch,
-  } = useQuery({
+  const { data: myRecentCompleteTask = {} } = useQuery({
     queryKey: ["myRecentCompleteTasks"],
     queryFn: async () => {
       const result = await axiosPublic.get(
@@ -27,7 +24,12 @@ const CompletedTaskCard = () => {
     <div>
       <h2 className="text-2xl font-semibold mb-3">Completed Task</h2>
       {myRecentCompleteTask?.task_name ? (
-        <div onClick={() => document.getElementById("completed_task_modal").showModal()} className="border-2 border-[#38B000] bg-[#EBF7E5] rounded-xl px-2 md:px-5 py-2 space-y-4">
+        <div
+          onClick={() =>
+            document.getElementById("completed_task_modal").showModal()
+          }
+          className="border-2 border-[#38B000] bg-[#EBF7E5] rounded-xl px-2 md:px-5 py-2 space-y-4"
+        >
           <div className="flex items-center justify-between ">
             <div>
               <h2 className="text-lg font-bold">
@@ -101,13 +103,15 @@ const CompletedTaskCard = () => {
 
             <div className="mt-4 flex justify-between items-center gap-1 md:gap-6">
               <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold flex">
-                <span className="hidden md:block mr-1">From: </span> <span>{myRecentCompleteTask?.start_date}</span>
+                <span className="hidden md:block mr-1">From: </span>{" "}
+                <span>{myRecentCompleteTask?.start_date}</span>
               </span>
               <span>
                 <FaArrowRightLong className="text-base md:text-xl text-primary"></FaArrowRightLong>
               </span>
               <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold flex">
-               <span className="hidden md:block mr-1">To:</span><span>{myRecentCompleteTask?.end_date}</span>
+                <span className="hidden md:block mr-1">To:</span>
+                <span>{myRecentCompleteTask?.end_date}</span>
               </span>
             </div>
             <div className="mt-4">

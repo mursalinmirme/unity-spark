@@ -1,6 +1,5 @@
 import { RiUserFollowLine } from "react-icons/ri";
 import { MdAddTask } from "react-icons/md";
-import { IoDocumentOutline } from "react-icons/io5";
 import { TbCalendarStar } from "react-icons/tb";
 import RunningTaskCard from "./RunningTaskCard";
 import CompletedTaskCard from "./CompletedTaskCard";
@@ -10,7 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import { PiFileVideo } from "react-icons/pi";
-import EnrolledCourse from "./AddBlogs/EnrolledCourse";
+// import EnrolledCourse from "./AddBlogs/EnrolledCourse";
 
 const EmployeeHome = () => {
   const axiosPublic = useAxiosPublic();

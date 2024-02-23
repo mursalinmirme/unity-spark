@@ -24,7 +24,6 @@ const RunningTaskCard = () => {
     },
   });
 
-
   const handleTaskOpenModal = (e) => {
     document.getElementById("modal_running").showModal();
   };
@@ -131,13 +130,15 @@ const RunningTaskCard = () => {
 
             <div className="mt-4 flex justify-between items-center gap-2 md:gap-6">
               <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold flex">
-                <span className="hidden md:block">From:</span> <span>{myRunningTasks?.start_date}</span>
+                <span className="hidden md:block">From:</span>{" "}
+                <span>{myRunningTasks?.start_date}</span>
               </span>
               <span>
                 <FaArrowRightLong className="text-base md:text-xl text-primary"></FaArrowRightLong>
               </span>
               <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold flex">
-                <span className="hidden md:block">To: </span><span>{myRunningTasks?.end_date}</span>
+                <span className="hidden md:block">To: </span>
+                <span>{myRunningTasks?.end_date}</span>
               </span>
             </div>
             <div className="mt-4">
