@@ -35,7 +35,7 @@ const AddNewCourse = () => {
 
   const categorySlags = [
     { value: "programming", label: "programming" },
-    { value: "draphics-design", label: "draphics-design" },
+    { value: "draphics-design", label: "graphics-design" },
     { value: "marketing", label: "marketing" },
     { value: "seo-&-smm", label: "seo-&-smm" },
     { value: "video-editing", label: "video-editing" },

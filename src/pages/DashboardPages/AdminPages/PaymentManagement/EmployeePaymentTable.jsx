@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+import "./payment.css";
 
 const EmployeePaymentTable = ({ employee }) => {
   const navigate = useNavigate();
@@ -12,10 +13,10 @@ const EmployeePaymentTable = ({ employee }) => {
     navigate("/dashboard/payment-management/payment", { state: salaryInfo });
   };
   return (
-    <tr className="row-border border-r-2 border-r-[#45A5E1]">
+    <tr className="row-border table-style">
       <td>{employee?.name}</td>
       <td>{employee?.position}</td>
-      <td>{employee?.salary ? employee?.salary : "$5000"}</td>
+      <td>${employee?.salary ? employee?.salary : "5000"}</td>
       <td>
         <button
           onClick={() =>

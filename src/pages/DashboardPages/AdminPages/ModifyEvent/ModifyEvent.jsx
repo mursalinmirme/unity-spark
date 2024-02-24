@@ -137,7 +137,7 @@ const ModifyEvent = () => {
           className="max-w-[375px] bg-white border border-[#433EBE] rounded-lg my-5 relative"
         >
           <IoIosArrowDropdown
-            className={`absolute top-7 text-2xl font-medium right-2 transition-all duration-300 ${
+            className={`absolute top-7 text-2xl font-medium right-1 transition-all duration-300 ${
               isOpen ? "rotate-180" : "rotate-0"
             }`}
             onClick={() => setisOpen(!isOpen)}
@@ -157,7 +157,7 @@ const ModifyEvent = () => {
                 <PiMicrophoneStageThin className="text-2xl"></PiMicrophoneStageThin>
                 {items?.hostName}
               </h1>
-              <div className=" pb-6 flex  items-center gap-6">
+              <div className="pb-1 pt-3 flex  items-center gap-6">
                 <button
                   className="bg-primary rounded-lg p-2 text-white"
                   onClick={() => handlemodalopen(items?._id)}
@@ -176,9 +176,9 @@ const ModifyEvent = () => {
         </div>
       ))}
       <dialog id="my_modal_3" className="modal">
-        <div className="modal-box">
+        <div className="modal-box min-w-[60%]">
           <form method="dialog">
-            {/* if there is a button in form, it will close the modal */}
+            {/* if there is a button in form, it will close the modal Update Modal !!!!! */}
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
               ✕
             </button>
@@ -188,13 +188,14 @@ const ModifyEvent = () => {
               {/* Email field */}
               <label>
                 <div className="py-1">
-                  <span className="font-bold font-inter">
+                  <span className="font-medium text-base font-inter">
                     {" "}
                     Your Event Name:
                   </span>
                 </div>
                 <input
                   defaultValue={eventsId?.eventName}
+                  className="text-base font-medium py-2"
                   type="text"
                   {...register("name")}
                   placeholder="Please Add Event Name"
@@ -206,19 +207,22 @@ const ModifyEvent = () => {
               {/*image field */}
               <label className="relative">
                 <div className="label mb-10 md:mb-0 lg:mb-0">
-                  <span className="font-bold font-inter">
+                  <span className="font-medium text-base font-inter">
                     {" "}
-                    Your Event Photo :{" "}
+                    Event Photo :{" "}
                   </span>
                   <label
-                    className="font-semibold w-full absolute bottom-0  text-white cursor-pointer font-inter text-base px-8 py-[8px] bg-primary rounded-md transition-all duration-500 text-[15px]"
+                    className="font-semibold w-full absolute bottom-0  text-white cursor-pointer font-inter text-base px-8 py-2.5 bg-primary rounded-md transition-all duration-500 text-[15px] m-0"
                     htmlFor="user_photo"
                   >
                     <div className="flex justify-center items-center gap-4">
                       {" "}
                       {/* <img className="w-5 h-5" src={download_icon} alt="" />{" "} */}
                       <SlCloudUpload className="w-5 h-5" />
-                      <span> Upload Photo</span>{" "}
+                      <span className="text-base font-medium">
+                        {" "}
+                        Upload Photo
+                      </span>{" "}
                     </div>
                   </label>
                 </div>
@@ -232,18 +236,18 @@ const ModifyEvent = () => {
                 />
               </label>
             </div>
-            <div className="grid md:grid-cols-2 gap-2">
+            <div className="grid md:grid-cols-2 gap-2 pt-2.5">
               {/* Current Address field */}
               <label>
-                <div className="py-1">
-                  <span className="font-bold font-inter">
+                <div className="">
+                  <span className="font-medium text-base font-inter">
                     {" "}
-                    Your Start Time:
+                    Start Time:
                   </span>
                 </div>
                 <div className="relative">
                   <DatePicker
-                    className="pl-2"
+                    className="pl-2 text-base py-2 font-medium"
                     value={selectedStartTime || eventsId?.starting_time}
                     selected={selectedStartTime}
                     onChange={(time) => setSelectedStartTime(time)}
@@ -253,19 +257,21 @@ const ModifyEvent = () => {
                     required
                     dateFormat="h:mm aa"
                   />
-                  <IoMdTime className="absolute top-4 lg:top-4 right-4 cursor-pointer" />
+                  <IoMdTime className="absolute top-4 text-2xl lg:top-4 right-4 cursor-pointer" />
                 </div>
               </label>
               {/* Current Address field End */}
 
               {/* Permanent Address */}
               <label>
-                <div className="py-1">
-                  <span className="font-bold font-inter">Your End Time</span>
+                <div className="">
+                  <span className="font-medium text-base font-inter">
+                    End Time
+                  </span>
                 </div>
                 <div className="relative">
                   <DatePicker
-                    className="pl-2"
+                    className="pl-2 text-base font-medium py-2"
                     value={selectedEndTime || eventsId?.ending_time}
                     selected={selectedEndTime}
                     onChange={(time) => setSelectedEndTime(time)}
@@ -275,18 +281,22 @@ const ModifyEvent = () => {
                     required
                     dateFormat="h:mm aa"
                   />
-                  <IoMdTime className="absolute top-4 lg:top-4 right-4 cursor-pointer" />
+                  <IoMdTime className="absolute top-4 text-2xl lg:top-4 right-4 cursor-pointer" />
                 </div>
               </label>
             </div>
-            <div className="grid md:grid-cols-2 gap-2 pb-5">
+            <div className="grid md:grid-cols-2 gap-2 pb-5 pt-3">
               {/*  Host Name field */}
               <label>
-                <div className="py-1">
-                  <span className="font-bold font-inter"> Your Host Name:</span>
+                <div className="">
+                  <span className="font-medium text-base font-inter">
+                    {" "}
+                    Your Host Name:
+                  </span>
                 </div>
                 <input
                   type="text"
+                  className="text-base font-medium py-2"
                   defaultValue={eventsId?.hostName}
                   {...register("hostName")}
                   placeholder="Your Host Name"
@@ -296,18 +306,20 @@ const ModifyEvent = () => {
 
               {/*Event Date */}
               <label>
-                <div className="py-1">
-                  <span className="font-bold font-inter">Your Event Date</span>
+                <div className="">
+                  <span className="font-medium text-base font-inter">
+                    Event Date
+                  </span>
                 </div>
 
                 <div className="relative">
                   <DatePicker
-                    className="pl-2"
+                    className="pl-2 text-base font-medium py-2"
                     selected={selectDate}
                     onChange={(date) => setSelectDate(date)}
                     icon="fa fa-calendar"
                   />
-                  <CiCalendar className="absolute top-4 lg:top-4 right-4 cursor-pointer" />
+                  <CiCalendar className="absolute top-4 text-2xl lg:top-4 right-4 cursor-pointer" />
                 </div>
               </label>
             </div>

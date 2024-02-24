@@ -7,7 +7,7 @@ import { GrDocumentPerformance, GrUserWorker } from "react-icons/gr";
 import { HiBars3BottomRight } from "react-icons/hi2";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoDocumentOutline } from "react-icons/io5";
-import { LuLogOut, LuUser, LuUsers2 } from "react-icons/lu";
+import { LuBookMarked, LuLogOut, LuUser, LuUsers2 } from "react-icons/lu";
 import { TfiAlarmClock } from "react-icons/tfi";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
@@ -49,7 +49,7 @@ const Dashboard = () => {
       )}
 
       {isUser?.role === "user" && (
-        <NavLink to="/dashboard/userProfile">
+        <NavLink to="/dashboard/user-profile">
           {({ isActive }) => (
             <li
               className={`${
@@ -84,7 +84,7 @@ const Dashboard = () => {
       )}
 
       {isUser?.role === "admin" && (
-        <NavLink to="/dashboard/userProfile">
+        <NavLink to="/dashboard/user-profile">
           {({ isActive }) => (
             <li
               className={`${
@@ -136,7 +136,7 @@ const Dashboard = () => {
         </NavLink>
       )}
       {isUser?.role === "employee" && (
-        <NavLink to="/dashboard/userProfile">
+        <NavLink to="/dashboard/user-profile">
           {({ isActive }) => (
             <li
               className={`${
@@ -186,6 +186,25 @@ const Dashboard = () => {
           )}
         </NavLink>
       )}
+
+      {isUser?.role !== "admin" && (
+        <NavLink to="/dashboard/savedBlogs">
+          {({ isActive }) => (
+            <li
+              className={`${
+                isActive ? "dashboard_item_active" : "dashboard_item"
+              }`}
+            >
+              <div>
+                <LuBookMarked></LuBookMarked>
+                <span>Saved Blogs</span>
+              </div>
+              <IoIosArrowForward className="hov_arrow hidden lg:block" />
+            </li>
+          )}
+        </NavLink>
+      )}
+
       {isUser?.role === "employee" && (
         <NavLink to="/dashboard/training">
           {({ isActive }) => (
@@ -213,7 +232,7 @@ const Dashboard = () => {
             >
               <div>
                 <IoDocumentOutline />
-                <span>Job Ads</span>
+                <span>Recruitment</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
             </li>
@@ -475,7 +494,10 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="left_container">
-          <div className="nav_container" style={{height: 'calc(100vh - 3rem)'}}>
+          <div
+            className="nav_container"
+            style={{ height: "calc(100vh - 3rem)" }}
+          >
             <div>
               <Link to="/">
                 <img src={logo} className="w-3/4" alt="" />
@@ -490,12 +512,14 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className="right_container" style={{height: 'calc(100vh - 3rem)'}}>
+        <div
+          className="right_container"
+          style={{ height: "calc(100vh - 3rem)" }}
+        >
           <Outlet></Outlet>
         </div>
       </div>
     </div>
-    
   );
 };
 

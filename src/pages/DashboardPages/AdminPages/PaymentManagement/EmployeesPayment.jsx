@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import EmployeePaymentTable from "./EmployeePaymentTable";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 const EmployeesPayment = () => {
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   const { data: employees = [] } = useQuery({
     queryKey: ["employees"],
     queryFn: async () => {
-      const result = await axiosPublic.get("/employees");
+      const result = await axiosSecure.get("/employees");
       return result.data;
     },
   });
@@ -16,10 +16,10 @@ const EmployeesPayment = () => {
   return (
     <div>
       <div>
-        <table className="table border-[#45A5E1] mt-10">
+        <table className="table mt-10">
           {/* head */}
-          <thead className="bg-[#45A5E1] text-white text-[18px] text-center">
-            <tr className="row-border border-2 border-[#45A5E1] rounded-lg">
+          <thead className="bg-[#45A5E1] text-white">
+            <tr className="row-border table-style">
               <th>Name</th>
               <th>Position</th>
               <th>Salary</th>
@@ -32,7 +32,8 @@ const EmployeesPayment = () => {
                 <EmployeePaymentTable
                   key={employee?._id}
                   employee={employee}
-                  idx={idx}></EmployeePaymentTable>
+                  idx={idx}
+                ></EmployeePaymentTable>
               ))}
           </tbody>
         </table>

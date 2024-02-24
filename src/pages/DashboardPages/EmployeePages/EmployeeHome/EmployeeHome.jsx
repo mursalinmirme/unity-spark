@@ -9,24 +9,21 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { AuthContext } from "../../../../Provider/AuthProvider";
+import { PiFileVideo } from "react-icons/pi";
 import EnrolledCourse from "./AddBlogs/EnrolledCourse";
 
 const EmployeeHome = () => {
-  
-  const axiosPublic = useAxiosPublic()
- const {user} = useContext(AuthContext)
+  const axiosPublic = useAxiosPublic();
+  const { user } = useContext(AuthContext);
 
- console.log(user.email);
- const {data: EmployeeReqEvent = []} = useQuery({
-  queryKey: ["EmployeeReqEvent"],
-  queryFn: async () =>{
-  const response =  await axiosPublic.get(`/reqEvents/${user?.email}`)
-    return response?.data
-  }
-  
- })
- console.log(EmployeeReqEvent)
- 
+  const { data: EmployeeReqEvent = [] } = useQuery({
+    queryKey: ["EmployeeReqEvent"],
+    queryFn: async () => {
+      const response = await axiosPublic.get(`/reqEvents/${user?.email}`);
+      return response?.data;
+    },
+  });
+
   const { data: totalAttendance } = useQuery({
     queryKey: ["totalAttendance"],
     queryFn: async () => {
@@ -34,13 +31,9 @@ const EmployeeHome = () => {
       return result.data;
     },
   });
-  // console.log(totalAttendance);
 
   // get running task of the loged in employee
-  const {
-    data: myTotalCompletedTaskCount={},
-    refetch: mytotalTaskCountRefetch,
-  } = useQuery({
+  const { data: myTotalCompletedTaskCount = {} } = useQuery({
     queryKey: ["myTotalCompletedTaskCount"],
     queryFn: async () => {
       const result = await axiosPublic.get(
@@ -50,8 +43,15 @@ const EmployeeHome = () => {
     },
   });
 
-  console.log("Oye Oye Oye", myTotalCompletedTaskCount);
-
+  const { data: myTotalEnrolledCourses } = useQuery({
+    queryKey: ["myTotalEnrolledCourses"],
+    queryFn: async () => {
+      const result = await axiosPublic.get(
+        `enrolled_course_length/${user?.email}`
+      );
+      return result?.data;
+    },
+  });
 
   return (
     <div>
@@ -74,7 +74,9 @@ const EmployeeHome = () => {
           <div className="flex justify-center">
             <TbCalendarStar className="w-12 h-12 text-[#46A3E1]"></TbCalendarStar>
           </div>
-          <p className="font-bold text-[45px] text-[#46A3E1]">{EmployeeReqEvent.length}</p>
+          <p className="font-bold text-[45px] text-[#46A3E1]">
+            {EmployeeReqEvent.length}
+          </p>
           <p className="text-[#46A3E1] font-semibold text-xl">Events Joined</p>
         </div>
 
@@ -83,7 +85,9 @@ const EmployeeHome = () => {
           <div className="flex justify-center">
             <MdAddTask className="w-12 h-12 text-[#7209B7]"></MdAddTask>
           </div>
-          <p className="font-bold text-[45px] text-[#7209B7]">{myTotalCompletedTaskCount?.count}</p>
+          <p className="font-bold text-[45px] text-[#7209B7]">
+            {myTotalCompletedTaskCount?.count}
+          </p>
           <p className="text-[#7209B7] font-semibold text-xl">
             Tasks Completed
           </p>
@@ -92,16 +96,19 @@ const EmployeeHome = () => {
         {/* Job Posts */}
         <div className="font-inter bg-[#4361EE4D] py-4 rounded-xl">
           <div className="flex justify-center">
-            <IoDocumentOutline className="w-12 h-12 text-[#4361EE]"></IoDocumentOutline>
+            <PiFileVideo className="w-12 h-12 text-[#4361EE]"></PiFileVideo>
           </div>
-          <p className="font-bold text-[45px] text-[#4361EE]">20</p>
-          <p className="text-[#4361EE] font-semibold text-xl">Job Posts</p>
+          <p className="font-bold text-[45px] text-[#4361EE]">
+            {myTotalEnrolledCourses?.count}
+          </p>
+          <p className="text-[#4361EE] font-semibold text-xl">
+            Course Enrolled
+          </p>
         </div>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-5">
         <RunningTaskCard></RunningTaskCard>
         <CompletedTaskCard></CompletedTaskCard>
-       
       </div>
       <RegisteredEvents EmployeeReqEvent={EmployeeReqEvent}></RegisteredEvents>
       {/* <EnrolledCourse></EnrolledCourse> */}

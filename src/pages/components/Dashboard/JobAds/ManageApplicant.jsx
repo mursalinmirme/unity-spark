@@ -12,6 +12,7 @@ import ApplicantsCard from "../ApplicantsCard";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import ManageApplicantSkeleton from "./ManageApplicantSkeleton";
 
 const ManageApplicant = () => {
   const [totalPages, setToalPages] = useState(0);
@@ -130,9 +131,7 @@ const ManageApplicant = () => {
 
   // console.log("Indivisual37", applicationPreview);
 
-  // if(isFetching){
-  //   return <Loading></Loading>
-  // }
+
 
   const axiosSecure = useAxiosSecure();
 
@@ -176,7 +175,9 @@ const ManageApplicant = () => {
   };
 
   console.log("checked333", applicationId);
-
+  if(isFetching){
+    return <ManageApplicantSkeleton></ManageApplicantSkeleton>
+  }
   return (
     <div className="py-10">
       {jobapplicants.length > 0 ? (

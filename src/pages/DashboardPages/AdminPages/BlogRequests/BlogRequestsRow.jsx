@@ -37,10 +37,10 @@ const BlogRequestsRow = ({ blogRequest, idx, refetch }) => {
 
   return (
     <tr>
-      <td>{idx + 1}</td>
-      <td>{blogRequest.title}</td>
-      <td>{blogRequest?.bloggerInfo?.name}</td>
-      <td>
+      <td className="text-left">{idx + 1}</td>
+      <td className="text-left">{blogRequest.title}</td>
+      <td className="text-left">{blogRequest?.bloggerInfo?.name}</td>
+      <td className="text-left">
         <div className="flex items-center gap-2">
           <div className="bg-primary w-8 h-7 mx-auto rounded-md flex items-center justify-center text-white">
             <Link to={`/dashboard/adminBlogDetails/${blogRequest._id}`}>
@@ -66,6 +66,7 @@ const BlogRequestsRow = ({ blogRequest, idx, refetch }) => {
 BlogRequestsRow.propTypes = {
   blogRequest: PropTypes.object,
   idx: PropTypes.number,
+  refetch: PropTypes.func,
 };
 
 export default BlogRequestsRow;
