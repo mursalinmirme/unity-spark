@@ -255,7 +255,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "userProfile",
+        path: "user-profile",
         element: (
           <PrivateRouter>
             <IsCommonAccess>
@@ -265,7 +265,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "userProfileEdit",
+        path: "user-profile-edit",
         element: (
           <PrivateRouter>
             <IsCommonAccess>
