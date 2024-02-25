@@ -46,100 +46,96 @@ const LeaveRequestForm = () => {
   };
   return (
     <div>
-      <h2 className="text-2xl font-bold text-primary">
-        {" "}
+      <h2 className="text-2xl font-semibold font-inter">
         Create a Leave Application
       </h2>
-      <form onSubmit={handleSubmit(onSubmit)} className=" mt-3 space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="mt-4 space-y-4">
         {/**One Two Part */}
         <div className="grid md:grid-cols-2 gap-3">
           {/* name field */}
-          <label>
+          <div>
             <div className="py-1">
-              <span className="font-bold font-inter"> Your Name :</span>
+              <span className="font-semibold font-inter"> Your Name :</span>
             </div>
             <input
               type="text"
               {...register("name")}
               placeholder="Please Your Name"
-              readOnly
               defaultValue={leave_user?.name}
             />
-          </label>
+          </div>
           {/* Name field End */}
 
-          <label>
+          <div>
             <div className="py-1">
-              <span className="font-bold font-inter"> Number of Days:</span>
+              <span className="font-semibold font-inter"> Number of Days:</span>
             </div>
             <input
-              type="text"
+              type="number"
               {...register("numberOfDays", { required: true })}
-              placeholder="Please Your Days"
+              placeholder="Enter your leave duration"
               required
             />
-          </label>
+          </div>
         </div>
 
         {/**Second Two Part */}
         <div className="grid md:grid-cols-2 gap-3">
           {/* name field */}
-          <label>
+          <div>
             <div className="py-1">
-              <span className="font-bold font-inter"> Your Email :</span>
+              <span className="font-semibold font-inter"> Your Email :</span>
             </div>
             <input
               type="email"
               {...register("email")}
               placeholder="Please Your Email"
               defaultValue={leave_user?.email}
-              readOnly
             />
-          </label>
+          </div>
           {/* Name field End */}
 
-          <label>
+          <div>
             <div className="py-1">
-              <span className="font-bold font-inter"> HR Email:</span>
+              <span className="font-semibold font-inter"> HR Email:</span>
             </div>
             <input
               type="email"
               {...register("hrEmail", { required: true })}
-              placeholder="Please Your Hr Email"
+              placeholder="Enter Your Hr Email"
               required
             />
-          </label>
+          </div>
         </div>
 
         {/* Subject  field */}
-        <label>
+        <div>
           <div className="py-1">
-            <span className="font-bold font-inter">Subject</span>
+            <span className="font-semibold font-inter">Subject</span>
           </div>
           <input
             type="text"
             {...register("subject", { required: true })}
-            placeholder="Please Subject Name"
+            placeholder="Enter Subject Name"
           />
-        </label>
+        </div>
 
         {/* Subject  field */}
-        <label>
-          <div className="py-1">
-            <span className="font-bold font-inter"> Reason of Leave</span>
+        <div>
+          <div className="py-1 pb-2">
+            <span className="font-semibold font-inter"> Reason of Leave</span>
           </div>
 
           <textarea
-            className="w-full h-28 border pl-2 pt-2"
+            className="w-full h-32 rounded-lg border-2 pl-2 pt-2 outline-none"
             id="description"
             {...register("description", {
               required: "Description is required",
             })}
             placeholder="Write details about your leave issue..."
           />
-        </label>
-        <br />
-        <button className="w-48 py-2  bg-primary border-none text-white rounded-xl text-center cursor-pointer">
+        </div>
+        <button className="w-24 py-2 bg-primary border-none text-white rounded-lg text-center cursor-pointer font-inter font-semibold">
           Send
         </button>
       </form>
