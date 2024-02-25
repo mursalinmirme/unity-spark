@@ -33,7 +33,7 @@ const Counter = () => {
     <div className="counter">
       <div className="counter_container">
         <div className="counter_box">
-          <CountUp end={userCount} duration={5} suffix="+" start={startCount}>
+          <CountUp end={userCount} duration={4} suffix="+" start={startCount}>
             {({ countUpRef }) => (
               <VisibilitySensor onChange={handleCounter} delayedCall>
                 <span ref={countUpRef} />
