@@ -10,10 +10,8 @@ import Swal from "sweetalert2";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import useTimePicker from "../../../../hooks/useTimePicker";
 import ApplicationsCard from "./ApplicationsCard";
-import toast from "react-hot-toast";
-import Loading from "../../Loading/Loading";
-import ManageAdsSkeleton from "./ManageAdsSkeleton";
 import ManageApplicationsSkeleton from "./ManageApplicationsSkeleton";
+import toast from "react-hot-toast";
 const ManageApplications = () => {
   const axiosPublic = useAxiosPublic();
   const [totalPages, setToalPages] = useState(0);
@@ -39,7 +37,7 @@ const ManageApplications = () => {
   const timeStart = useTimePicker(selectedStartTime || null);
   const timeEnd = useTimePicker(selectedEndTime || null);
 
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
   // All Admin Get
   const { data: allAdmins } = useQuery({
     queryKey: ["allAdmins"],
@@ -49,7 +47,7 @@ const ManageApplications = () => {
     },
   });
   // fetch the applications number under the pagination
-  const { data: jobapplicationsNum = [], refetch: refetchTotalApplyNumbs } =
+  const { data: jobapplicationsNum = [] } =
     useQuery({
       queryKey: ["jobapplicationsNums", totalPages, currentPage],
       queryFn: async () => {
@@ -73,10 +71,9 @@ const ManageApplications = () => {
       return res?.data;
     },
   });
-  // console.log("ayay ayay population", jobapplications);
-  // My Working Modal
 
-  const onSubmit = (data) => {
+  // My Working Modal
+  const onSubmit = () => {
     setErrorMsg("");
     setSuccessMsg("");
     setIsPosting(true);
@@ -121,13 +118,12 @@ const ManageApplications = () => {
         console.log("la ki ko ja ji do", sendEmail);
         axiosPublic
           .post("/sent-invite-email", sendEmail)
-          .then((response) => {
+          .then(() => {
             axiosPublic
               .put(`/application-status/${storeInfo?._id}`, {
                 status: "Confirmed",
               })
               .then(() => {
-                console.log("Finally result is ", response.data);
                 setSuccessMsg("Invitation email sent successfully.");
                 setIsPosting(false);
               })
@@ -147,8 +143,6 @@ const ManageApplications = () => {
       });
     console.log("I got  the full array", interview);
   };
-
-  console.log("checked222", adminInfo);
 
   // handle next btn pagination
   const handleRightPagi = () => {
@@ -180,8 +174,7 @@ const ManageApplications = () => {
       if (result.isConfirmed) {
         axiosPublic
           .delete(`/job_applications/${id}`)
-          .then((res) => {
-            console.log(res.data);
+          .then(() => {
             Swal.fire({
               title: "Deleted!",
               text: "Application Deleted successfully",
@@ -190,7 +183,7 @@ const ManageApplications = () => {
             refetch();
           })
           .catch((error) => {
-            console.log(error);
+            toast.error(error.message);
           });
       }
     });
@@ -207,19 +200,17 @@ const ManageApplications = () => {
 
   console.log("hello check form mursalin", applicationPreview);
 
-  //handler Show more button
+  //handler Show more button for admin select
   const handlerShowMore = () => {
     setStoreLength(allAdmins?.length);
     setShow(true);
   };
 
-  //
+  // handler show less button for admins select
   const handlerShowLess = () => {
     setStoreLength(4);
     setShow(false);
   };
-
-  console.log("I got admin info data ", adminInfo);
 
   if(isFetching){
     return <ManageApplicationsSkeleton></ManageApplicationsSkeleton>

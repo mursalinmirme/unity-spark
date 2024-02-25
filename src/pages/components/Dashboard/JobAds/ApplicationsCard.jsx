@@ -29,9 +29,7 @@ const ApplicationsCard = ({
             <h1 className="font-semibold text-lg">{value?.title}</h1>
             <h1 className="font-semibold text-[#5B5555]">
               applied at{" "}
-              {moment(value?.createdAt.toLocaleString())
-                .startOf("day")
-                .fromNow()}
+                 {moment(value?.createdAt).local().fromNow()}
             </h1>
           </div>
         </div>
