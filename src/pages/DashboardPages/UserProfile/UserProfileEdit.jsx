@@ -84,7 +84,7 @@ const UserProfileEdit = () => {
         console.log(res?.data);
         setUpdateLoading(false);
         toast.success("User Profile Update Successfully");
-        navigate("/dashboard/userProfile");
+        navigate("/dashboard/user-profile");
 
         reset();
       })
@@ -119,7 +119,7 @@ const UserProfileEdit = () => {
           </div>
           <div>
             <Link
-              to="/dashboard/userProfile"
+              to="/dashboard/user-profile"
               className="edit_btn !text-red-500 hover:!text-white !border-red-600 hover:!border-red-600 hover:!bg-red-600"
             >
               <span> X Cancel </span>
@@ -150,7 +150,10 @@ const UserProfileEdit = () => {
           {/*image field */}
           <label className="relative">
             <div className="label mb-10 md:mb-0 lg:mb-0">
-              <span className="font-bold font-inter"> Your Photo : </span>
+              <span className="font-bold font-inter pb-4 md:pb-0 md:mb-10 lg:mb-10 ">
+                {" "}
+                Your Photo :{" "}
+              </span>
               <label
                 className="font-semibold w-full absolute bottom-0   text-white cursor-pointer font-inter text-base px-8 py-[8px] bg-primary rounded-md transition-all duration-500 text-[15px]"
                 htmlFor="user_photo"

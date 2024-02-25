@@ -1,17 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { AiFillEdit } from "react-icons/ai";
-
-import { IoIosSearch } from "react-icons/io";
 import { ImCross } from "react-icons/im";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowBack, IoIosArrowForward, IoIosSearch } from "react-icons/io";
 import { LuPenLine } from "react-icons/lu";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import toast from "react-hot-toast";
-
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import ManageAdsSkeleton from "./ManageAdsSkeleton";
 
@@ -29,15 +25,12 @@ const ManageAds = () => {
         `/total-job-ads-numbers?searchVal=${searchValues}`
       );
       setToalPages(Math.ceil(result?.data.total / 6));
-      // console.log("The jobs document count is", result.data.total);
       return result.data.total;
     },
   });
-  // console.log('Rw skdjfkdjf', manageAds);
 
+  // make a array for get total pages
   const pagesArray = Array.from({ length: totalPages }, (_, index) => index);
-
-  // console.log(pagesArray);
 
   // fetch all the jobs list from database one by one
   const {
@@ -56,7 +49,6 @@ const ManageAds = () => {
 
   // handle delete job ads
   const handleDeleteJob = (id) => {
-    // console.log(id);
     Swal.fire({
       title: "Are you sure?",
       text: "You want to delete this job ad.",
@@ -67,8 +59,7 @@ const ManageAds = () => {
       confirmButtonText: "Yes, Delete",
     }).then((result) => {
       if (result.isConfirmed) {
-        PublicAxios.delete(`/job-ads/${id}`).then((res) => {
-          console.log(res.data);
+        PublicAxios.delete(`/job-ads/${id}`).then(() => {
           toast.success("Successfully deleted");
           refetch();
         });
@@ -121,7 +112,8 @@ const ManageAds = () => {
             onSubmit={handleSearches}
             className={`p-0 border-0 m-0 search-box ${
               showSearchBar && "active-search-dashboard"
-            }`}>
+            }`}
+          >
             <input
               name="search"
               defaultValue={searchValues}
@@ -133,7 +125,8 @@ const ManageAds = () => {
               <button
                 onClick={handleShowSearchBar}
                 style={{ background: "#433EBE" }}
-                className="search-btn">
+                className="search-btn"
+              >
                 <IoIosSearch className="text-xl text-white"></IoIosSearch>
               </button>
             </div>
@@ -141,7 +134,8 @@ const ManageAds = () => {
               {showSearchBar && (
                 <button
                   onClick={handleCloseSearchBar}
-                  className="rounded-none bg-none text-primary cancel-btn">
+                  className="rounded-none bg-none text-primary cancel-btn"
+                >
                   <ImCross></ImCross>
                 </button>
               )}
@@ -164,7 +158,8 @@ const ManageAds = () => {
             return (
               <div
                 className="border-2 p-3 my-4 rounded-lg flex justify-between items-center"
-                key={job?._id}>
+                key={job?._id}
+              >
                 <div>
                   <h3 className="text-md font-bold">
                     {job?.job_title} -{" "}
@@ -182,7 +177,8 @@ const ManageAds = () => {
                   </Link>
                   <button
                     onClick={() => handleDeleteJob(job?._id)}
-                    className="bg-[#DD3333] rounded-lg p-2 ">
+                    className="bg-[#DD3333] rounded-lg p-2 "
+                  >
                     <RiDeleteBin6Line className="text-lg"></RiDeleteBin6Line>
                   </button>
                 </div>
@@ -209,7 +205,8 @@ const ManageAds = () => {
                 color: "#433EBE",
                 fontSize: "18px",
               }}
-              className="join-item btn">
+              className="join-item btn"
+            >
               <IoIosArrowBack></IoIosArrowBack>
             </button>
             {pagesArray?.map((page, index) => {
@@ -225,7 +222,8 @@ const ManageAds = () => {
                     borderRadius: "5px",
                     fontSize: "18px",
                   }}
-                  className="join-item btn">
+                  className="join-item btn"
+                >
                   {page + 1}
                 </button>
               );
@@ -237,7 +235,8 @@ const ManageAds = () => {
                 color: "#433EBE",
                 fontSize: "18px",
               }}
-              className="join-item btn">
+              className="join-item btn"
+            >
               <IoIosArrowForward></IoIosArrowForward>
             </button>
           </div>
