@@ -84,7 +84,7 @@ const UserProfileEdit = () => {
         console.log(res?.data);
         setUpdateLoading(false);
         toast.success("User Profile Update Successfully");
-        navigate("/dashboard/userProfile");
+        navigate("/dashboard/user-profile");
 
         reset();
       })
