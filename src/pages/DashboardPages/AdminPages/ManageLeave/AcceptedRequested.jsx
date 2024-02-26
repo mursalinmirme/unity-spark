@@ -46,9 +46,7 @@ const AcceptedRequested = () => {
               </p>
             </div>
             <div className="mt-3 flex gap-5">
-              <button className="border border-green-600 font-medium text-green-600 px-4 h-9 rounded-md">
-                Confirmed
-              </button>
+            <div className="badge text-base px-4 h-9 rounded-md badge-ghost font-medium text-green-600">Confirmed</div>
             </div>
           </div>
         );

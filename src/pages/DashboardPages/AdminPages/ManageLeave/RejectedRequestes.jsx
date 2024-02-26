@@ -44,9 +44,7 @@ const RejectedRequestes = () => {
               </p>
             </div>
             <div className="mt-3 flex gap-5">
-              <button className="font-medium text-red-600 border border-red-600 px-4 h-9 rounded-md">
-                Rejected
-              </button>
+              <div className="badge text-base px-4 h-9 rounded-md badge-ghost font-medium text-red-600">Rejected</div>
             </div>
           </div>
         );
