@@ -1,5 +1,4 @@
 import { BsUpload } from "react-icons/bs";
-import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useForm } from "react-hook-form";
 import Select from "react-select";
 import { useEffect, useRef, useState } from "react";
@@ -9,11 +8,12 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import useCourses from "../../../../hooks/useCourses";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+const image_Hosting_Api = "https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411";
 
-const CourseUpdate = () => {
-    const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
-    const axiosPublic = useAxiosPublic()
-    const { register, handleSubmit , formState: { errors }, reset} = useForm()
+const CourseUpdate = () => {   
+    const axiosSecure = useAxiosSecure()
+    const { register, handleSubmit , reset} = useForm()
     const [value, setValue] = useState('')
     const [features, setFeatures] = useState([])
     const [benefits, setBenefits] = useState([])
@@ -27,8 +27,10 @@ const CourseUpdate = () => {
     const {id} = useParams()
     const [courses] = useCourses()
     const currentCourse = courses?.find(course => course._id === id)
-    const {_id, title, category, slag, description, instructor_name, instructor_bio, intro, benefits: course_benefits, course_feature, course_content} = currentCourse || {}
-    console.log(modules)
+    const {_id, title, category, slag, description, instructor_name, instructor_bio, intro, 
+        image, instructor_img, 
+        certificate, benefits: course_benefits, course_feature, course_content} = currentCourse || {}
+    console.log(course_feature.length < features.length ?  features : course_content)
 
     useEffect(() => {
         setFeatures(course_feature)
@@ -48,7 +50,7 @@ const CourseUpdate = () => {
     
     const categorySlags = [
         { value: "programming", label: "programming" },
-        { value: "draphics-design", label: "draphics-design" },
+        { value: "graphics-design", label: "graphics-design" },
         { value: "marketing", label: "marketing" },
         { value: "seo-&-smm", label: "seo-&-smm" },
         { value: "video-editing", label: "video-editing" },
@@ -86,9 +88,7 @@ const CourseUpdate = () => {
           setBenefits(updateArray)
     }
     
-    const handleNewModule = () => {
-        setModules([...modules, {name: '', video: ''}])
-    }
+   
     
     const handleModuleName = (e, idx) => {
         const updatedModules = [...modules];
@@ -103,59 +103,75 @@ const CourseUpdate = () => {
     };
 
     const onSubmit = async (data) => {
-        toast.success("Course updated")
+        var newBannerImage 
+        var newInstructorImage 
+        var newCertificateImage
+        const bannerImage = { image: data.banner_photo[0] };
+        const instructorImage = { image: data.instructor_photo[0] };
+        const certificateImage = { image: data.certificate_photo[0] };
+      
+        if((bannerImage.image !== undefined) || (instructorImage.image !== undefined) || (certificateImage.image !== undefined)){
+            if(bannerImage.image !== undefined){
+                const res1 = await axios.post(image_Hosting_Api, bannerImage, {
+                    headers: {
+                      "content-type": "multipart/form-data",
+                    },
+                  });
+                 if( res1.data.success){
+                   newBannerImage = res1?.data?.data?.display_url
+                   
+                 }
+            }
+            if(instructorImage.image !== undefined){
+                const res2 = await axios.post(image_Hosting_Api, instructorImage, {
+                    headers: {
+                      "content-type": "multipart/form-data",
+                    },
+                  });
+                  if(res2.data.success){
+                    newInstructorImage = res2?.data?.data?.display_url
+                  }
+            }
+              if(certificateImage.image !== undefined){
+                  const res3 = await axios.post(image_Hosting_Api, certificateImage, {
+                      headers: {
+                      "content-type": "multipart/form-data",
+                    },
+                  });
+
+                  if(res3.data.success){
+                      newCertificateImage = res3?.data?.data?.display_url
+                    }
+                }
+            }
+            
+            const courseInfo = {
+            title: data?.course_name ? data?.course_name : title,
+            image: bannerImage.image !== undefined ? newBannerImage : image,
+            category: courseCategory?.value ? courseCategory?.value : category,
+            slag: courseSlag?.value ? courseSlag?.value : slag,
+            description: data?.description ? data?.description : description,
+            instructor_name: data?.instructor_name ? data?.instructor_name : instructor_name,
+            instructor_img: instructorImage.image !== undefined ? newInstructorImage : instructor_img,
+            instructor_bio: data?.instructor_name ? data?.instructor_name : instructor_bio  ,
+            intro: data?.intro_video ? data?.intro_video : intro,
+            certificate: certificateImage.image !== undefined ? newCertificateImage : certificate,
+            course_feature: course_feature.length < features.length ?  features : course_content,
+            benefits: course_benefits.length < benefits.length ? benefits : course_benefits,
+            course_content: course_content.length < modules.length ? modules : course_content
+          };
     
-        // const bannerImage = { image: data.banner_photo[0] };
-        // const instructorImage = { image: data.instructor_photo[0] };
-        // const certificateImage = { image: data.certificate_photo[0] };
-    
-        // const res1 = await axios.post(image_Hosting_Api, bannerImage, {
-        //   headers: {
-        //     "content-type": "multipart/form-data",
-        //   },
-        // });
-        // const res2 = await axios.post(image_Hosting_Api, instructorImage, {
-        //   headers: {
-        //     "content-type": "multipart/form-data",
-        //   },
-        // });
-        // const res3 = await axios.post(image_Hosting_Api, certificateImage, {
-        //   headers: {
-        //     "content-type": "multipart/form-data",
-        //   },
-        // });
-    
-        // if(res1.data.success && res2.data.success && res3.data.success){
-        //   console.log('successfull');
-        //   const courseInfo = {
-        //     title: data?.course_name,
-        //     banner_image: res1?.data?.data?.display_url,
-        //     category: courseCategory?.value,
-        //     slag: courseSlag?.value,
-        //     description: data?.description,
-        //     instructor_name: data?.instructor_name,
-        //     instructor_image: res2?.data?.data?.display_url,
-        //     instructor_bio: data?.instructor_name,
-        //     intro: data?.intro_video,
-        //     certificate_image: res3?.data?.data?.display_url,
-        //     features: features,
-        //     benefits: benefits,
-        //     modules: modules
-        //   };
-    
-        //   axiosPublic.post("/courses", courseInfo)
-        //   .then(res =>{
-        //     if(res?.data){
-        //       toast.success("Course Added")
-        //       reset()
-        //     }
-    
-        //   })
-        //   .catch(error => {
-        //     toast.error(error.message)
-        //     console.log(error.message)
-        //   })
-        // }
+          axiosSecure.put(`/courses/${_id}`, courseInfo)
+          .then(res =>{
+            if(res?.data){
+              toast.success("Course Updated")
+              reset()
+            }    
+          })
+          .catch(error => {
+            toast.error(error.message)
+          })
+        
     }
 
     return (
@@ -282,7 +298,7 @@ const CourseUpdate = () => {
                 <div>
                     <div className="mt-4 flex items-center justify-between">
                     <h4 className="font-inter font-semibold text-lg">Course Content</h4>
-                    <AiOutlinePlusCircle className="text-2xl text-primary cursor-pointer hover:scale-105" onClick={handleNewModule} />
+                    <AiOutlinePlusCircle  className="text-2xl text-primary cursor-pointer hover:scale-105" onClick={() => setModules([...modules , {name: '', video: ''}])} />
                     </div>
                     <div className="border-2 rounded-lg p-3 mt-2 space-y-3">
                     {
