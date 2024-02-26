@@ -13,7 +13,7 @@ const image_Hosting_Api = "https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d
 
 const CourseUpdate = () => {   
     const axiosSecure = useAxiosSecure()
-    const { register, handleSubmit , reset} = useForm()
+    const { register, handleSubmit} = useForm()
     const [value, setValue] = useState('')
     const [features, setFeatures] = useState([])
     const [benefits, setBenefits] = useState([])
@@ -22,16 +22,14 @@ const CourseUpdate = () => {
     const featuresRef = useRef(null);
     const benefitsRef = useRef(null);
     const [modules, setModules] = useState([
-      {name: '', video: ''}
+      {title: '', link: ''}
     ])    
     const {id} = useParams()
     const [courses] = useCourses()
     const currentCourse = courses?.find(course => course._id === id)
-    const {_id, title, category, slag, description, instructor_name, instructor_bio, intro, 
-        image, instructor_img, 
-        certificate, benefits: course_benefits, course_feature, course_content} = currentCourse || {}
-    console.log(course_feature.length < features.length ?  features : course_content)
-
+    const {_id, title, category, slag, description, instructor_name, instructor_bio, intro, image, instructor_img, certificate, benefits: course_benefits, course_feature, course_content} = currentCourse || {}
+   
+        console.log(modules)
     useEffect(() => {
         setFeatures(course_feature)
         setBenefits(course_benefits)
@@ -92,13 +90,13 @@ const CourseUpdate = () => {
     
     const handleModuleName = (e, idx) => {
         const updatedModules = [...modules];
-        updatedModules[idx] = { ...updatedModules[idx], name: e.target.value };
+        updatedModules[idx] = { ...updatedModules[idx], title: e.target.value };
         setModules(updatedModules);
     };
     
     const handleModuleVideo = (e, idx) => {
         const updatedModules = [...modules];
-        updatedModules[idx] = { ...updatedModules[idx], video: e.target.value }; 
+        updatedModules[idx] = { ...updatedModules[idx], link: e.target.value }; 
         setModules(updatedModules); 
     };
 
@@ -156,16 +154,20 @@ const CourseUpdate = () => {
             instructor_bio: data?.instructor_name ? data?.instructor_name : instructor_bio  ,
             intro: data?.intro_video ? data?.intro_video : intro,
             certificate: certificateImage.image !== undefined ? newCertificateImage : certificate,
-            course_feature: course_feature.length < features.length ?  features : course_content,
-            benefits: course_benefits.length < benefits.length ? benefits : course_benefits,
-            course_content: course_content.length < modules.length ? modules : course_content
+            course_feature: features,
+            benefits: benefits,
+            course_content: modules
+            
           };
-    
+         
+
+         
           axiosSecure.put(`/courses/${_id}`, courseInfo)
           .then(res =>{
-            if(res?.data){
+            if(res?.data.modifiedCount > 0){
+            console.log(res.data)
               toast.success("Course Updated")
-              reset()
+             
             }    
           })
           .catch(error => {
@@ -173,6 +175,9 @@ const CourseUpdate = () => {
           })
         
     }
+    
+
+   
 
     return (
         <div className="update_course">
@@ -298,7 +303,7 @@ const CourseUpdate = () => {
                 <div>
                     <div className="mt-4 flex items-center justify-between">
                     <h4 className="font-inter font-semibold text-lg">Course Content</h4>
-                    <AiOutlinePlusCircle  className="text-2xl text-primary cursor-pointer hover:scale-105" onClick={() => setModules([...modules , {name: '', video: ''}])} />
+                    <AiOutlinePlusCircle  className="text-2xl text-primary cursor-pointer hover:scale-105" onClick={() => setModules([...modules , {title: '', link: ''}])} />
                     </div>
                     <div className="border-2 rounded-lg p-3 mt-2 space-y-3">
                     {
@@ -306,7 +311,7 @@ const CourseUpdate = () => {
                         <div key={idx}>
                             <h5 className="font-inter font-medium mb-1.5">Module {idx + 1}</h5>
                             <div className="grid grid-cols-2 gap-5">
-                            <input type="text" defaultValue={module.title} className="border" placeholder="Module name" onChange={e => handleModuleName(e, idx)} />
+                            <input type="text" defaultValue={module.title} className="border" placeholder="Module Title" onChange={e => handleModuleName(e, idx)} />
                             <input type="text" defaultValue={module.link} className="border py-2" placeholder="Module video link" onChange={e => handleModuleVideo(e, idx)} />
                             </div>
                         </div>

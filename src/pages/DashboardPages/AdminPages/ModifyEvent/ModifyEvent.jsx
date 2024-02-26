@@ -137,7 +137,7 @@ const ModifyEvent = () => {
           className="max-w-[375px] bg-white border border-[#433EBE] rounded-lg my-5 relative"
         >
           <IoIosArrowDropdown
-            className={`absolute top-7 text-2xl font-medium right-2 transition-all duration-300 ${
+            className={`absolute top-7 text-2xl font-medium right-1 transition-all duration-300 ${
               isOpen ? "rotate-180" : "rotate-0"
             }`}
             onClick={() => setisOpen(!isOpen)}
@@ -178,7 +178,7 @@ const ModifyEvent = () => {
       <dialog id="my_modal_3" className="modal">
         <div className="modal-box min-w-[60%]">
           <form method="dialog">
-            {/* if there is a button in form, it will close the modal */}
+            {/* if there is a button in form, it will close the modal Update Modal !!!!! */}
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
               ✕
             </button>
@@ -281,7 +281,7 @@ const ModifyEvent = () => {
                     required
                     dateFormat="h:mm aa"
                   />
-                  <IoMdTime className="absolute top-4 lg:top-4 right-4 cursor-pointer" />
+                  <IoMdTime className="absolute top-4 text-2xl lg:top-4 right-4 cursor-pointer" />
                 </div>
               </label>
             </div>
@@ -319,7 +319,7 @@ const ModifyEvent = () => {
                     onChange={(date) => setSelectDate(date)}
                     icon="fa fa-calendar"
                   />
-                  <CiCalendar className="absolute top-4 lg:top-4 right-4 cursor-pointer" />
+                  <CiCalendar className="absolute top-4 text-2xl lg:top-4 right-4 cursor-pointer" />
                 </div>
               </label>
             </div>
