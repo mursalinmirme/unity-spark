@@ -20,9 +20,9 @@ const AddNewCourse = () => {
   const featuresRef = useRef(null);
   const benefitsRef = useRef(null);
   const [modules, setModules] = useState([
-    {name: '', video: ''}
+    {title: '', link: ''}
   ])
-
+  console.log(modules)
   const categoryArray = [
     { value: "Programming", label: "Programming" },
     { value: "Graphics Design", label: "Graphics Design" },
@@ -74,18 +74,18 @@ const AddNewCourse = () => {
   }
 
   const handleNewModule = () => {
-    setModules([...modules, {name: '', video: ''}])
+    setModules([...modules, {title: '', link: ''}])
   }
 
   const handleModuleName = (e, idx) => {
     const updatedModules = [...modules];
-    updatedModules[idx] = { ...updatedModules[idx], name: e.target.value };
+    updatedModules[idx] = { ...updatedModules[idx], title: e.target.value };
     setModules(updatedModules);
   };
 
   const handleModuleVideo = (e, idx) => {
     const updatedModules = [...modules];
-    updatedModules[idx] = { ...updatedModules[idx], video: e.target.value }; 
+    updatedModules[idx] = { ...updatedModules[idx], link: e.target.value }; 
     setModules(updatedModules); 
   };
 
@@ -110,7 +110,7 @@ const AddNewCourse = () => {
       return
     }
 
-    if(modules.some(module => module.name === '' || module.video === '')) {
+    if(modules.some(module => module.title === '' || module.link === '')) {
       toast.error('Please fill the module form')
       return
     }
@@ -139,18 +139,18 @@ const AddNewCourse = () => {
       console.log('successfull');
       const courseInfo = {
         title: data?.course_name,
-        banner_image: res1?.data?.data?.display_url,
+        image: res1?.data?.data?.display_url,
         category: courseCategory?.value,
         slag: courseSlag?.value,
         description: data?.description,
         instructor_name: data?.instructor_name,
-        instructor_image: res2?.data?.data?.display_url,
+        instructor_img: res2?.data?.data?.display_url,
         instructor_bio: data?.instructor_name,
         intro: data?.intro_video,
-        certificate_image: res3?.data?.data?.display_url,
-        features: features,
+        certificate: res3?.data?.data?.display_url,
+        course_feature: features,
         benefits: benefits,
-        modules: modules
+        course_content: modules
       };
 
       axiosPublic.post("/courses", courseInfo)
@@ -311,7 +311,7 @@ const AddNewCourse = () => {
                     <div key={idx}>
                       <h5 className="font-inter font-medium mb-1.5">Module {idx + 1}</h5>
                       <div className="grid grid-cols-2 gap-5">
-                        <input type="text" className="border" placeholder="Module name" onChange={e => handleModuleName(e, idx)} />
+                        <input type="text" className="border" placeholder="Module Title" onChange={e => handleModuleName(e, idx)} />
                         <input type="text" className="border py-2" placeholder="Module video link" onChange={e => handleModuleVideo(e, idx)} />
                       </div>
                     </div>

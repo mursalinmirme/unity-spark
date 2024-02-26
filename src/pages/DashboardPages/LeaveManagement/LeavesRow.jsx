@@ -29,10 +29,10 @@ const LeavesRow = ({ leave, idx }) => {
             }
           >
             <div className="flex items-center gap-2 !text-left">
+            {leave?.status}
               <div className="bg-primary w-8 h-7 mx-auto rounded-md flex items-center justify-center text-white">
                 <IoEyeOutline className="text-md"></IoEyeOutline>
               </div>
-              {leave?.status}
             </div>
           </button>
         ) : (
@@ -50,8 +50,9 @@ const LeavesRow = ({ leave, idx }) => {
             </button>
           </form>
           <div className="mt-5 text-xl font-inter">
+            <h3 className="text-lg font-semibold border-b-2 pb-1">Leave Rejected Reason</h3>
             {leave?.feedback
-              ? leave?.feedback
+              ? <p className="text-base  mt-5">{leave?.feedback}</p>
               : `Your application isn't granted due to unavoidable reason`}
           </div>
         </div>
