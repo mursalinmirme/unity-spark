@@ -3,6 +3,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import PendingLeaveSkeleton from "./PendingLeaveSkeleton";
 
 const PendingRequests = () => {
   const [rejectedId, setRejectedId] = useState("");
@@ -10,7 +11,7 @@ const PendingRequests = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const axiosPublic = useAxiosPublic();
-  const { data: leaveRequests = [], refetch } = useQuery({
+  const { data: leaveRequests = [], refetch, isFetching } = useQuery({
     queryKey: ["GetAllLeaveRequests"],
     queryFn: async () => {
       const result = await axiosPublic.get("/leaves");
@@ -87,6 +88,10 @@ const PendingRequests = () => {
         console.log(err.message);
       });
   };
+
+  if(isFetching){
+    return <PendingLeaveSkeleton></PendingLeaveSkeleton>
+  }
 
   return (
     <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-5">

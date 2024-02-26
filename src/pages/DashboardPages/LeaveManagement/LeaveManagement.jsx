@@ -34,7 +34,7 @@ const LeaveManagement = () => {
 
       <div>
         {
-          userLeaves && !userLeaves?.length > 0 ?
+          userLeaves?.length > 0 ?
           <table className="table-no-border table mt-10 ">
             {/* head */}
             <thead className="bg-[#726eec] text-white text-[18px] rounded-md ">
@@ -55,7 +55,7 @@ const LeaveManagement = () => {
           </table>
           :
           <div className="py-12 text-center">
-            <h2 className="font-semibold text-2xl font-inter">You don{"'"}t have any laeve requests</h2>
+            <h2 className="font-semibold text-2xl font-inter">You don{"'"}t have any leave requests</h2>
           </div>
         }
       </div>
