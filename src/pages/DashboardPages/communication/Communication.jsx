@@ -36,7 +36,7 @@ const Communication = () => {
             .then(res => {
                 setMessages(res.data)
             })
-        }, 100)
+        }, 200)
     
         return () => clearTimeout(timeOut)        
     })
@@ -47,7 +47,7 @@ const Communication = () => {
             .then(res => {
                 setMyFriends(res.data)
             })
-        }, 200)
+        }, 100)
 
         return () => clearTimeout(timeOut)        
     })
