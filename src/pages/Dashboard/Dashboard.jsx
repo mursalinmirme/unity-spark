@@ -23,7 +23,7 @@ import { GrBlog } from "react-icons/gr";
 import { GrUserManager } from "react-icons/gr";
 import { RiGraduationCapLine } from "react-icons/ri";
 import { LuPresentation } from "react-icons/lu";
-
+import { GrAnnounce } from "react-icons/gr";
 import "./dashboard.css";
 const Dashboard = () => {
   const [isUser] = useUserRole();
@@ -424,6 +424,23 @@ const Dashboard = () => {
               <div>
                 <GrUserManager />
                 <span>My Interviews</span>
+              </div>
+              <IoIosArrowForward className="hov_arrow hidden lg:block" />
+            </li>
+          )}
+        </NavLink>
+      )}
+      {isUser?.role === "admin" && (
+        <NavLink to="/dashboard/newsletter-subscribers">
+          {({ isActive }) => (
+            <li
+              className={`${
+                isActive ? "dashboard_item_active" : "dashboard_item"
+              }`}
+            >
+              <div>
+                <GrAnnounce />
+                <span>Newsletter Subscribers</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
             </li>
