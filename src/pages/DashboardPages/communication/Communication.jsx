@@ -7,6 +7,9 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import CommunicationForMobile from "./CommunicationForMobile";
 import useAdmins from "../../../hooks/useAdmins";
 import MessageForm from "./MessageForm";
+import { io } from "socket.io-client";
+import { useQuery } from "@tanstack/react-query";
+var socket
 
 const Communication = () => {
     const [showSearchBar, setShowSearchBar] = useState(false);
@@ -18,27 +21,49 @@ const Communication = () => {
     const [selectedUserEmail, setSelectedUserEmail] = useState('')
     const {user} = useContext(AuthContext);
     const axiosSecure = useAxiosSecure()
-    const [messages, setMessages] = useState([])
+    // const [messages, setMessages] = useState([])
     const [sortedEmployees, setShortedEmployees] = useState([])
     const [myFriends, setMyFriends] = useState([])
+    const [socketConnected, setSocketConnected] = useState(false)
 
     const employees =  allChatUser?.filter(employee => employee?.email !== user?.email)   
     const searchedEmployees = employees?.filter(employee => employee.name.toLowerCase().includes(searchValue?.toLowerCase()))
     const selectedEmployee = employees?.find(employee => employee.email === selectedUserEmail)
 
     useEffect(() => {
+        socket = io('http://localhost:5000')
+        socket.emit('setup', user)
+        socket.on('connection', () => setSocketConnected(true))
+    }, [user])
+
+    useEffect(() => {
         setAllChatUser([...allEmployees, ...allAdmins])
     } ,[allAdmins, allEmployees])
     
-    useEffect(() => {
-        const timeOut = setTimeout(() => {
-            axiosSecure.get(`/chat?sender_email=${user?.email}&reciever_email=${selectedUserEmail}`)
-            .then(res => {
-                setMessages(res.data)
-            })
-        }, 200)
     
-        return () => clearTimeout(timeOut)        
+    
+    const { data: messages } = useQuery({
+        queryKey: ["messages"],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/chat?sender_email=${user?.email}&reciever_email=${selectedUserEmail}`);
+            
+            socket.emit('join-room', selectedUserEmail)
+            return res.data;
+        },
+    });
+
+    // useEffect(() => {
+    //     setMessages([...message])
+    // }, [message])
+
+    useEffect(() => {
+        socket.on('new-message', newMessage => {
+            if(!selectedChat){
+                console.log('not this one');
+            } else {
+                console.log(newMessage);
+            }
+        })
     })
 
     useEffect(() => {
@@ -71,7 +96,6 @@ const Communication = () => {
         !sortedEmployees.some(sortedEmployee => sortedEmployee.email === employee.email)
     );
 
-    
 
     return (
         <div>
