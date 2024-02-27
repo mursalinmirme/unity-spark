@@ -2,32 +2,50 @@
   {
     "name": "Mursalin Mir",
     "position": "CEO of UnitySpark",
-    "image": "https://i.ibb.co/0qn3rws/mursalin-bhai.png"
+    "image": "https://i.ibb.co/0qn3rws/mursalin-bhai.png",
+    "fb":"https://www.facebook.com/mursalinmir02",
+    "ig":"https://www.instagram.com/mursalinmir02",
+    "link":"https://www.linkedin.com/in/mursalin-mir"
   },
   {
     "name": "Abdur Rahman",
     "position": "Manager of UnitySpark",
-    "image": "https://i.ibb.co/HTmw43j/IMG-2410-01.jpg"
+    "image": "https://i.ibb.co/HTmw43j/IMG-2410-01.jpg",
+    "fb":"https://www.facebook.com/jamilrahman07",
+    "ig":"https://www.instagram.com/jamil.official_07",
+    "link":""
   },
   {
     "name": "Nadiatul Islam",
     "position": "Director of UnitySpark",
-    "image": "https://i.ibb.co/fXRVrb0/421245478-1761190561015455-57569.png"
+    "image": "https://i.ibb.co/fXRVrb0/421245478-1761190561015455-57569.png",
+    "fb":"https://www.facebook.com/nisakib19",
+    "ig":"https://www.instagram.com/nadiatulsakib",
+    "link":"https://www.linkedin.com/in/nadiatul-islam-sakib-3560b9243"
   },
   {
     "name": "Mizan Chowdhury",
     "position": "HR of UnitySpark",
-    "image": "https://i.ibb.co/mTyVJCC/329371224-728479455417873-680854.png"
+    "image": "https://i.ibb.co/mTyVJCC/329371224-728479455417873-680854.png",
+    "fb":"https://www.facebook.com/Mizan1034",
+    "ig":"https://www.linkedin.com/in/mizan-chowdhury-5333962a3",
+    "link":"https://www.instagram.com/mizan1034"
   },
   {
     "name": "Ashraful Islam",
     "position": "COO of UnitySpark",
-    "image": "https://i.ibb.co/Z242dnH/395687920-750115476879631-852965.jpg"
+    "image": "https://i.ibb.co/Z242dnH/395687920-750115476879631-852965.jpg",
+    "fb":"https://www.facebook.com/Ashrafulislam320",
+    "ig":"https://www.instagram.com/ashrafulislam8700",
+    "link":"https://www.linkedin.com/in/imashrafulislam"
   },
   {
     "name": "Rifajul Islam",
     "position": "CFO of UnitySpark",
-    "image": "https://i.ibb.co/rsxSdZH/B.jpg"
+    "image": "https://i.ibb.co/rsxSdZH/B.jpg",
+    "fb":"https://www.facebook.com/rifajulislam.rifat",
+    "ig":"https://www.instagram.com/rifazul145",
+    "link":"https://www.linkedin.com/in/rifazul-islam"
   }
 ]
 
