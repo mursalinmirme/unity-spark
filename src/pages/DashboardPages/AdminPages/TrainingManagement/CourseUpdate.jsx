@@ -13,7 +13,7 @@ const image_Hosting_Api = "https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d
 
 const CourseUpdate = () => {   
     const axiosSecure = useAxiosSecure()
-    const { register, handleSubmit , reset} = useForm()
+    const { register, handleSubmit} = useForm()
     const [value, setValue] = useState('')
     const [features, setFeatures] = useState([])
     const [benefits, setBenefits] = useState([])
