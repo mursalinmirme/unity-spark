@@ -5,7 +5,7 @@ import BlogRequestsRow from "./BlogRequestsRow";
 const BlogRequests = () => {
   const axiosPublic = useAxiosPublic();
 
-  const { data: blogRequests = [], refetch } = useQuery({
+  const { data: blogRequests = [], refetch, isFetching } = useQuery({
     queryKey: ["blogRequests"],
     queryFn: async () => {
       const result = await axiosPublic.get("/pendingBlogs");
@@ -36,6 +36,7 @@ const BlogRequests = () => {
                   blogRequest={blogRequest}
                   key={blogRequest._id}
                   idx={idx}
+                  isFetching={isFetching}
                   refetch={refetch}></BlogRequestsRow>
               ))}
           </tbody>
