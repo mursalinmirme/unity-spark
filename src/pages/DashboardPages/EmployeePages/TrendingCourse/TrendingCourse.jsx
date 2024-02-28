@@ -50,7 +50,7 @@ const TrendingCourse = () => {
         
     }
     
-    if(!isFetching){
+    if(isFetching){
         return <TrendingCourseSkeleton></TrendingCourseSkeleton>
     }
 
