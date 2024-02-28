@@ -8,7 +8,6 @@ import CommunicationForMobile from "./CommunicationForMobile";
 import useAdmins from "../../../hooks/useAdmins";
 import MessageForm from "./MessageForm";
 import { io } from "socket.io-client";
-import { useQuery } from "@tanstack/react-query";
 var socket
 
 const Communication = () => {
@@ -21,10 +20,9 @@ const Communication = () => {
     const [selectedUserEmail, setSelectedUserEmail] = useState('')
     const {user} = useContext(AuthContext);
     const axiosSecure = useAxiosSecure()
-    // const [messages, setMessages] = useState([])
+    const [messages, setMessages] = useState([])
     const [sortedEmployees, setShortedEmployees] = useState([])
     const [myFriends, setMyFriends] = useState([])
-    const [socketConnected, setSocketConnected] = useState(false)
 
     const employees =  allChatUser?.filter(employee => employee?.email !== user?.email)   
     const searchedEmployees = employees?.filter(employee => employee.name.toLowerCase().includes(searchValue?.toLowerCase()))
@@ -32,50 +30,48 @@ const Communication = () => {
 
     useEffect(() => {
         socket = io('http://localhost:5000')
-        socket.emit('setup', user)
-        socket.on('connection', () => setSocketConnected(true))
+        socket.emit('setup', user.email)
+        socket.on('connection', () => console.log('connected'))
     }, [user])
-
+    
     useEffect(() => {
         setAllChatUser([...allEmployees, ...allAdmins])
     } ,[allAdmins, allEmployees])
-    
-    
-    
-    const { data: messages } = useQuery({
-        queryKey: ["messages"],
-        queryFn: async () => {
-            const res = await axiosSecure.get(`/chat?sender_email=${user?.email}&reciever_email=${selectedUserEmail}`);
-            
-            socket.emit('join-room', selectedUserEmail)
-            return res.data;
-        },
-    });
 
-    // useEffect(() => {
-    //     setMessages([...message])
-    // }, [message])
+    const getMessages = async () => {
+        axiosSecure.get(`/chat?sender_email=${user?.email}&reciever_email=${selectedUserEmail}`)
+        .then(res => {
+                setMessages(res.data)
+            })
+    }
 
-    useEffect(() => {
-        socket.on('new-message', newMessage => {
-            if(!selectedChat){
-                console.log('not this one');
-            } else {
-                console.log(newMessage);
-            }
-        })
-    })
-
-    useEffect(() => {
-        const timeOut = setTimeout(() => {
-            axiosSecure.get(`/chat-friends/${user?.email}`)
+    const getFriends = async () => {
+        axiosSecure.get(`/chat-friends/${user?.email}`)
             .then(res => {
                 setMyFriends(res.data)
             })
-        }, 100)
+    }
 
-        return () => clearTimeout(timeOut)        
+    useEffect(() => {
+        getMessages()
+    }, [selectedUserEmail])
+    
+    useEffect(() => {
+        getFriends()      
     })
+
+    useEffect(() => {
+        socket.on('new-message-received', newMessage => {
+            setMessages(prevMessages => [newMessage, ...prevMessages]);
+
+            return () => socket.disconnect();
+        });
+    
+        // Clean up the effect to avoid memory leaks
+        return () => {
+            socket.off('new-message-received');
+        };
+    });
 
     useEffect(() => {
         const combinedArray = [];
@@ -216,7 +212,7 @@ const Communication = () => {
 
                         {/* MESSAGE INPUT */}
                         <div className="p-3 bg-white h-[70px]">
-                            <MessageForm selectedUserEmail={selectedUserEmail}></MessageForm>
+                            <MessageForm socket={socket} selectedUserEmail={selectedUserEmail} setMessages={setMessages} messages={messages}></MessageForm>
                         </div>
                     </div>
                 }
