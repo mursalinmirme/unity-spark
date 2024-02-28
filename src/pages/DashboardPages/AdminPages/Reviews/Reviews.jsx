@@ -7,6 +7,7 @@ import "./review.css";
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import useUserRole from "../../../../hooks/useUserRole";
+import ReviewsSkeleton from "./ReviewsSkeleton";
 
 const Reviews = () => {
   const axiosPublic = useAxiosPublic();
@@ -37,7 +38,7 @@ const Reviews = () => {
   });
   console.log("total review numbers are", reviewsNums);
   // fetch all reviews
-  const { data: reviews, refetch } = useQuery({
+  const { data: reviews , isFetching} = useQuery({
     queryKey: ["reviews", totalPages, currentPage],
     queryFn: async () => {
       const res = await axiosPublic.get(`/feedbacks?skip=${currentPage * 6}`);
@@ -46,6 +47,9 @@ const Reviews = () => {
   });
 
   const [systems, setSystems] = useState({});
+  if(isFetching){
+    return <ReviewsSkeleton></ReviewsSkeleton>
+  }
   return (
     <div>
       <div className="flex justify-between items-center mb-5">

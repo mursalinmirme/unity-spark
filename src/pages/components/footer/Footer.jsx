@@ -22,19 +22,19 @@ const Footer = () => {
           </p>
           <h6>Social Media</h6>
           <div>
-            <a className="text-[#0866FF]" href="#">
+            <a className="text-[#0866FF]" href="https://www.facebook.com/unity-spark">
               <FaFacebook />
             </a>
-            <a className="text-[#0A66C2]" href="#">
+            <a className="text-[#0A66C2]" href="https://www.linkedin.com/unity-spark">
               <FaLinkedinIn />
             </a>
-            <a href="#">
+            <a href="https://www.instagram.com/unity-spark">
               <img src={instagram} className="w-[27px]" alt="" />
             </a>
-            <a href="#">
+            <a href="https://twitter.com/unity-spark">
               <FaXTwitter />
             </a>
-            <a className="text-[#E60023]" href="#">
+            <a className="text-[#E60023]" href="https://www.pinterest.com/unity-spark">
               <FaPinterest />
             </a>
           </div>
