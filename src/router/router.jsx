@@ -68,8 +68,6 @@ import Disclaimer from "../pages/AllFooterPage/Disclaimer/Disclaimer";
 import Accessibility from "../pages/AllFooterPage/Accessibility/Accessibility";
 import SavedBlogs from "../pages/DashboardPages/EmployeePages/SavedBlogs/SavedBlogs";
 import PrivacyPolicy from "../pages/AllFooterPage/PrivacyPolicy/PrivacyPolicy";
-import NewsletterSubscribers from "../pages/DashboardPages/AdminPages/Subscribers/NewsletterSubscribers";
-import AddAnnouncement from "../pages/DashboardPages/AdminPages/Subscribers/AddAnnouncement";
 
 const router = createBrowserRouter([
   {
@@ -568,26 +566,6 @@ const router = createBrowserRouter([
           <PrivateRouter>
             <IsAdmin>
               <Payment></Payment>
-            </IsAdmin>
-          </PrivateRouter>
-        ),
-      },
-      {
-        path: "newsletter-subscribers",
-        element: (
-          <PrivateRouter>
-            <IsAdmin>
-              <NewsletterSubscribers></NewsletterSubscribers>
-            </IsAdmin>
-          </PrivateRouter>
-        ),
-      },
-      {
-        path: "add-announcement",
-        element: (
-          <PrivateRouter>
-            <IsAdmin>
-              <AddAnnouncement></AddAnnouncement>
             </IsAdmin>
           </PrivateRouter>
         ),

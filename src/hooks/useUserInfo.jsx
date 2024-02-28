@@ -5,7 +5,7 @@ import useAxiosSecure from "./useAxiosSecure";
 const useUserInfo = () => {
   const axiosSecure = useAxiosSecure()
   const { user, setProfileComplete } = useContext(AuthContext);
-  const { data: users = [], isFetching } = useQuery({
+  const { data: users = [] } = useQuery({
     queryKey: ["user_infor"],
     enabled: !!user?.email,
     queryFn: async () => {
@@ -32,7 +32,7 @@ const useUserInfo = () => {
     },
   });
 
-  return [users, isFetching];
+  return [users];
 };
 
 export default useUserInfo;
