@@ -1,5 +1,5 @@
 #dashboard {
-    @apply grid grid-cols-1 lg:grid-cols-4 min-h-screen max-h-screen p-5 gap-0 lg:gap-5 relative mx-auto max-w-[1450px] overflow-hidden;
+    @apply grid grid-cols-1 lg:grid-cols-4 min-h-screen max-h-screen p-1 md:p-5 gap-0 lg:gap-5 relative mx-auto max-w-[1450px] overflow-hidden;
 }
 
 #dashboard .left_container {
@@ -7,7 +7,7 @@
 }
 
 #dashboard .right_container {
-    @apply lg:col-span-3 bg-white rounded-xl p-5 mt-5 lg:mt-0 w-full md:p-5 lg:p-10 overflow-y-auto;
+    @apply lg:col-span-3 bg-white rounded-xl p-3 mt-5 lg:mt-0 w-full md:p-5 lg:p-10 overflow-y-auto;
 }
 
 #dashboard .left_container .nav_container {

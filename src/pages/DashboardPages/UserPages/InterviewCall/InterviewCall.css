@@ -2,7 +2,7 @@
   @apply !py-5 min-w-[100%] flex flex-col justify-center items-center min-h-[450px] !shadow-none;
 }
 .sJcgXLqA2Va2eqymgksg {
-  @apply min-w-[500px] max-h-[250px];
+  @apply lg:min-w-[500px] max-h-[250px];
 }
 .LW7EjqPdWOz2byf1EuLg {
   @apply max-h-[250px];

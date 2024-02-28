@@ -12,7 +12,7 @@ import { TbBookmark } from "react-icons/tb";
 const UserProfile = () => {
   const { profileComplete } = useContext(AuthContext);
   const [openBookmark, setOpenBookmark] = useState(false);
-  const [users] = useUserInfo();
+  const [users, isFetching] = useUserInfo();
   const {
     name,
     image,
@@ -38,18 +38,18 @@ const UserProfile = () => {
         ) : (
           <CgProfile className="text-3xl" />
         )}
-        <div className="flex justify-between w-full">
+        <div className="flex flex-col md:flex-row justify-between w-full">
           <div>
             <h2>{users?.name}</h2>
             <h3>{users?.email}</h3>
           </div>
           <div className="flex gap-3 items-center relative">
-            <button
+            {/* <button
               onClick={() => setOpenBookmark(!openBookmark)}
               className="py-1 px-1.5 rounded-lg border-2 border-primary hover:bg-primary hover:text-white transition-all duration-500"
             >
               <TbBookmark className="text-xl" />
-            </button>
+            </button> */}
 
             <Link to="/dashboard/user-profile-edit" className="edit_btn">
               <span>Edit Info</span>
@@ -79,137 +79,140 @@ const UserProfile = () => {
 
       {/** Input Form Area  */}
 
-      <div className="border-2 p-5 rounded-xl mt-8">
-        <div className="grid md:grid-cols-2 gap-2">
+      <div className="border-2 p-3 md:p-5 rounded-xl mt-8 ">
+        <div className="grid md:grid-cols-2 gap-2 mt-0.5">
           {/* Email field */}
-          <label>
+          <label className="space-y-0.5">
             <div className="">
-              <span className="font-semibold font-inter">Email :</span>
+              <span className="font-semibold text-gray-600 text-base font-inter">Email :</span>
             </div>
-            <p className="font-inter"> {users?.email} </p>
+            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[50%] h-5"></p> : users?.email} </p>
           </label>
           {/* email field End */}
 
           {/* phone Number*/}
-          <label>
+          <label className="space-y-0.5">
             <div className="">
-              <span className="font-semibold font-inter">Phone :</span>
+              <span className="font-semibold text-gray-600 text-base font-inte">Phone :</span>
             </div>
-            <p className="font-inter"> {users?.phone || "N/A"} </p>
+            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[50%] h-5"></p> : users?.phone || "N/A"} </p>
           </label>
         </div>
 
         {/**Second Two Part */}
-        <div className="grid md:grid-cols-2 gap-2">
+        <div className="grid md:grid-cols-2 gap-2 mt-0.5">
           {/* Current Address field */}
           <label>
             <div className="pt-1">
-              <span className="font-semibold font-inter">
+              <span className="font-semibold text-gray-600 text-base font-inte">
                 Current Address :
               </span>
             </div>
-            <p className="font-inter"> {users?.current_address || "N/A"}</p>
+            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[60%] h-5"></p> : users?.current_address || "N/A"} </p>
           </label>
           {/* Current Address field End */}
 
           {/* Permanent Address */}
           <label>
             <div className="pt-1">
-              <span className="font-semibold font-inter">
+              <span className="font-semibold text-gray-600 text-base font-inte">
                 Permanent Address :
               </span>
             </div>
-
-            <p className="font-inter">{users?.permanent_address || "N/A"}</p>
+            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[60%] h-5"></p> : users?.permanent_address || "N/A"} </p>
           </label>
         </div>
 
         {/**Three Two Part */}
-        <div className="grid md:grid-cols-2 gap-2">
+        <div className="grid md:grid-cols-2 gap-2 mt-0.5">
           {/* Age field */}
           <label>
             <div className="pt-1">
-              <span className="font-semibold font-inter">Age :</span>
+              <span className="font-semibold text-gray-600 text-base font-inte">Age :</span>
             </div>
-            <p className="font-inter"> {users?.age || "N/A"} </p>
+            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[20%] h-5"></p> : users?.age || "N/A"} </p>
           </label>
           {/* Age field End */}
 
           {/* Your Gender Select */}
           <label>
             <div className="pt-1">
-              <span className="font-semibold font-inter">Gender :</span>
+              <span className="font-semibold text-gray-600 text-base font-inte">Gender :</span>
             </div>
-            <p className="font-inter"> {users?.gender || "N/A"} </p>
+            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[20%] h-5"></p> : users?.gender || "N/A"} </p>
           </label>
         </div>
 
         {/**Four Two Part */}
-        <div className="grid md:grid-cols-2 gap-2">
+        <div className="grid md:grid-cols-2 gap-2 mt-0.5">
           {/* name field */}
           <label>
             <div className="pt-1">
-              <span className="font-semibold font-inter">
+              <span className="font-semibold text-gray-600 text-base font-inte">
                 Education Level :
               </span>
             </div>
-            <p className="font-inter"> {users?.education_level || "N/A"} </p>
+            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[60%] h-5"></p> : users?.education_level || "N/A"} </p>
           </label>
           {/* Education field End */}
 
           {/* Institute Name field */}
           <label>
             <div className="pt-1">
-              <span className="font-semibold font-inter">Institute Name :</span>
+              <span className="font-semibold text-gray-600 text-base font-inte">Institute Name :</span>
             </div>
-            <p className="font-inter"> {users?.institute_name || "N/A"}</p>
+            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[70%] h-5"></p> : users?.institute_name || "N/A"} </p>
           </label>
         </div>
 
         {/**five Two Part */}
-        <div className="grid md:grid-cols-2 gap-2">
+        <div className="grid md:grid-cols-2 gap-2 mt-0.5">
           {/* Job Preference field */}
           <label>
             <div className="pt-1">
-              <span className="font-semibold font-inter">Job Preference :</span>
+              <span className="font-semibold text-gray-600 text-base font-inte">Job Preference :</span>
             </div>
-            <p className="font-inter">{users?.job_preference || "N/A"} </p>
+            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[30%] h-5"></p> : users?.job_preference || "N/A"} </p>
           </label>
           {/* Preference field End */}
 
           {/* Time Preference field */}
           <label>
             <div className="pt-1">
-              <span className="font-semibold font-inter">
+              <span className="font-semibold text-gray-600 text-base font-inte">
                 Time Preference :
               </span>
             </div>
 
-            <p className="font-inter"> {users?.time_preference || "N/A"}</p>
+            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[30%] h-5"></p> : users?.time_preference || "N/A"} </p>
           </label>
         </div>
 
         {/**Six Two Part */}
-        <div className="grid md:grid-cols-2 gap-2">
+        <div className="grid md:grid-cols-2 gap-2 mt-0.5">
           {/* Skills field */}
           <label>
             <div className="pt-1 mb-2">
-              <span className="font-semibold font-inter">Skills :</span>
+              <span className="font-semibold text-gray-600 text-base font-inte">Skills :</span>
             </div>
-            {users?.skills?.map((skill, index) => (
-              <span
-                key={index}
-                className="mr-2 text-primary bg-[#d0d8e0] py-1 px-3 rounded-full text-sm font-medium"
-              >
-                {skill?.value}
-              </span>
-            )) || "N/A"}
+            {
+              isFetching ? <p className="skeleton rounded-full w-[50%] h-8"></p> : 
+              users?.skills?.map((skill, index) => (
+                <span
+                  key={index}
+                  className="mr-2 text-primary bg-[#d0d8e0] py-1 px-3 rounded-full text-base font-semibold"
+                >
+                  {skill?.value}
+                </span>
+              )) || "N/A"
+            }
+            
           </label>
           {/* Skills field End */}
           {/* Resume field */}
           <label>
             <div className="pt-1 mb-2">
-              <span className="font-semibold font-inter  ">Resume :</span>
+              <span className="font-semibold text-gray-600 text-base font-inter">Resume :</span>
             </div>
             <a href={users?.resume_link} target="blank">
               <div className="inline-flex gap-2 font-semibold items-center text-white cursor-pointer font-inter text-base px-8 py-[8px] bg-primary rounded-xl transition-all duration-500 text-[15px]">

@@ -85,7 +85,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup p-8">
+    <div className="signup md:px-8 py-8">
       <section>
         {/* form */}
         <div className="left_container">
@@ -93,12 +93,12 @@ const Signup = () => {
             <h1>Lets Start a new journey</h1>
             <p>Create Your Account</p>
 
-            <div className="grid grid-cols-2 gap-2">
+            <div className="flex flex-col md:flex-row gap-2">
               {/* name field */}
-              <div>
+              <div className="flex-1"> 
                 <label>
                   <div className="label">
-                    <span className="font-medium">What is your name?</span>
+                    <span className="text-sm font-medium">What is your name?</span>
                   </div>
                   <input
                     type="text"
@@ -109,13 +109,13 @@ const Signup = () => {
                 </label>
               </div>
               {/*image field */}
-              <div className="mt-5">
-                <span className="font-medium ml-1">Your Photo</span>
+              <div className="mt-1 md:mt-5 flex-1">
+                <span className="text-sm font-medium ml-1">Your Photo</span>
                 <label
                   className="font-semibold text-white cursor-pointer font-inter text-base px-4 sm:py-[4px] md:py-[12px] bg-primary rounded-xl transition-all duration-500"
                   htmlFor="user_photo"
                 >
-                  <div className="flex items-center justify-center gap-2">
+                  <div className="flex items-center h-11 md:h-auto justify-center gap-2">
                     {" "}
                     <img className="w-6 h-5" src={download_icon} alt="" />{" "}
                     <span className="font-normal"> Upload Your Photo</span>{" "}
@@ -137,7 +137,7 @@ const Signup = () => {
             {/* email field */}
             <label>
               <div className="label">
-                <span className="font-medium">What is your email?</span>
+                <span className="font-medium text-sm">What is your email?</span>
               </div>
               <input
                 type="email"
@@ -150,10 +150,10 @@ const Signup = () => {
 
             {/* password field */}
 
-            <div className="grid grid-cols-2 gap-4">
-              <label>
+            <div className="flex flex-col md:flex-row md:gap-4">
+              <label className="flex-1">
                 <div className="label">
-                  <span className="font-medium">Your password</span>
+                  <span className="font-medium text-sm">Your password</span>
                 </div>
 
                 <div className="relative">
@@ -177,9 +177,9 @@ const Signup = () => {
                 </div>
               </label>
 
-              <label>
+              <label className="flex-1">
                 <div className="label">
-                  <span className="font-medium">Confirm Password</span>
+                  <span className="font-medium text-sm">Confirm Password</span>
                 </div>
                 <div className="relative">
                   <input

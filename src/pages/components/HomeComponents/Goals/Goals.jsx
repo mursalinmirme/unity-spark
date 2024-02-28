@@ -1,7 +1,6 @@
 import goalsImage from '../../../../assets/images/goals.gif'
 
-const Goals = () => {
-    
+const Goals = () => {    
     return (
         <div className='goals'>
             <h2>Ambitions Unveiled</h2>
