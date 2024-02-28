@@ -20,8 +20,6 @@ const LeaveManagement = () => {
     },
   });
 
-  console.log("checked", userLeaves);
-
   return (
     <div>
       <div className="flex justify-between items-center">
@@ -35,24 +33,31 @@ const LeaveManagement = () => {
       </div>
 
       <div>
-        <table className="table-no-border table mt-10 ">
-          {/* head */}
-          <thead className="bg-[#726eec] text-white text-[18px] rounded-md ">
-            <tr>
-              <th>Serial</th>
-              <th>Subject</th>
-              <th>Reason</th>
-              <th>Days</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {userLeaves &&
-              userLeaves?.map((leave, idx) => (
-                <LeavesRow key={leave._id} leave={leave} idx={idx}></LeavesRow>
-              ))}
-          </tbody>
-        </table>
+        {
+          userLeaves?.length > 0 ?
+          <table className="table-no-border table mt-10 ">
+            {/* head */}
+            <thead className="bg-[#726eec] text-white text-[18px] rounded-md ">
+              <tr>
+                <th>Serial</th>
+                <th>Subject</th>
+                <th>Reason</th>
+                <th>Days</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {userLeaves &&
+                userLeaves?.map((leave, idx) => (
+                  <LeavesRow key={leave._id} leave={leave} idx={idx}></LeavesRow>
+                ))}
+            </tbody>
+          </table>
+          :
+          <div className="py-12 text-center">
+            <h2 className="font-semibold text-2xl font-inter">You don{"'"}t have any leave requests</h2>
+          </div>
+        }
       </div>
     </div>
   );

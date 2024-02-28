@@ -1,16 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import AcceptAndRejectLeaveSkeleton from "./AcceptAndRejectLeaveSkeleton";
 
 const AcceptedRequested = () => {
     const axiosPublic = useAxiosPublic();
-    const { data: leaveRequests = [] } = useQuery({
+    const { data: leaveRequests = [], isFetching } = useQuery({
       queryKey: ["GetAllLeaveRequests"],
       queryFn: async () => {
         const result = await axiosPublic.get("/leaves-confirmed");
         return result.data;
       },
     });
-    console.log("Total leave requests", leaveRequests);
+    
+    if(isFetching){
+      return <AcceptAndRejectLeaveSkeleton></AcceptAndRejectLeaveSkeleton>
+    }
+
     return (
         <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-5">
       {leaveRequests?.map((request) => {
@@ -41,9 +46,7 @@ const AcceptedRequested = () => {
               </p>
             </div>
             <div className="mt-3 flex gap-5">
-              <button className="bg-accent font-medium text-white px-4 h-9 rounded-md">
-                Confirmed
-              </button>
+            <div className="badge text-base px-4 h-9 rounded-md badge-ghost font-medium text-green-600">Confirmed</div>
             </div>
           </div>
         );

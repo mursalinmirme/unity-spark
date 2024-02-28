@@ -4,7 +4,7 @@ import useAxiosSecure from "./useAxiosSecure";
 
 const useMyCourse = () => {
     const axiosSecure = useAxiosSecure();
-    const { data: jobs } = useQuery({
+    const { data: jobs} = useQuery({
         queryKey: ["my_courses"],
         queryFn: async () => {
           const res = await axiosSecure.get("/course_info.json");

@@ -1,6 +1,7 @@
 import moment from "moment";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import parse from "html-react-parser";
 
 const BlogCommonCard = ({ blog }) => {
   const { title, description, _id, image, createdAt } = blog || {};
@@ -24,7 +25,8 @@ const BlogCommonCard = ({ blog }) => {
           {title.length > 50 ? `${title.slice(0, 50)}...` : title}
         </h2>
         <p className="font-medium text-gray-600 block md:hidden lg:block">
-          {description?.length > 210 ? description?.slice(0, 210) : description}
+          {}
+          {description && parse(description?.length > 210 ? description?.slice(0, 210) : description)}
           ...
           <Link to={`/blog-details/${_id}`}>
             <span className="underline text-gray-700">Read More</span>

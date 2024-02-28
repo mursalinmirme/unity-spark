@@ -7,6 +7,8 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import CommunicationForMobile from "./CommunicationForMobile";
 import useAdmins from "../../../hooks/useAdmins";
 import MessageForm from "./MessageForm";
+import { io } from "socket.io-client";
+var socket
 
 const Communication = () => {
     const [showSearchBar, setShowSearchBar] = useState(false);
@@ -27,30 +29,49 @@ const Communication = () => {
     const selectedEmployee = employees?.find(employee => employee.email === selectedUserEmail)
 
     useEffect(() => {
+        socket = io('http://localhost:5000')
+        socket.emit('setup', user.email)
+        socket.on('connection', () => console.log('connected'))
+    }, [user])
+    
+    useEffect(() => {
         setAllChatUser([...allEmployees, ...allAdmins])
     } ,[allAdmins, allEmployees])
-    
-    useEffect(() => {
-        const timeOut = setTimeout(() => {
-            axiosSecure.get(`/chat?sender_email=${user?.email}&reciever_email=${selectedUserEmail}`)
-            .then(res => {
+
+    const getMessages = async () => {
+        axiosSecure.get(`/chat?sender_email=${user?.email}&reciever_email=${selectedUserEmail}`)
+        .then(res => {
                 setMessages(res.data)
             })
-        }, 100)
-    
-        return () => clearTimeout(timeOut)        
-    })
+    }
 
-    useEffect(() => {
-        const timeOut = setTimeout(() => {
-            axiosSecure.get(`/chat-friends/${user?.email}`)
+    const getFriends = async () => {
+        axiosSecure.get(`/chat-friends/${user?.email}`)
             .then(res => {
                 setMyFriends(res.data)
             })
-        }, 200)
+    }
 
-        return () => clearTimeout(timeOut)        
+    useEffect(() => {
+        getMessages()
+    }, [selectedUserEmail])
+    
+    useEffect(() => {
+        getFriends()      
     })
+
+    useEffect(() => {
+        socket.on('new-message-received', newMessage => {
+            setMessages(prevMessages => [newMessage, ...prevMessages]);
+
+            return () => socket.disconnect();
+        });
+    
+        // Clean up the effect to avoid memory leaks
+        return () => {
+            socket.off('new-message-received');
+        };
+    });
 
     useEffect(() => {
         const combinedArray = [];
@@ -71,7 +92,6 @@ const Communication = () => {
         !sortedEmployees.some(sortedEmployee => sortedEmployee.email === employee.email)
     );
 
-    
 
     return (
         <div>
@@ -192,7 +212,7 @@ const Communication = () => {
 
                         {/* MESSAGE INPUT */}
                         <div className="p-3 bg-white h-[70px]">
-                            <MessageForm selectedUserEmail={selectedUserEmail}></MessageForm>
+                            <MessageForm socket={socket} selectedUserEmail={selectedUserEmail} setMessages={setMessages} messages={messages}></MessageForm>
                         </div>
                     </div>
                 }

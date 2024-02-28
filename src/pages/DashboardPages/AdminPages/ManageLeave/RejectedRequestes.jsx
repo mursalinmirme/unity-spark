@@ -1,16 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import AcceptAndRejectLeaveSkeleton from "./AcceptAndRejectLeaveSkeleton";
 
 const RejectedRequestes = () => {
     const axiosPublic = useAxiosPublic();
-    const { data: leaveRequests = [] } = useQuery({
+    const { data: leaveRequests = [], isFetching } = useQuery({
       queryKey: ["GetAllLeaveRequests"],
       queryFn: async () => {
         const result = await axiosPublic.get("/leaves-rejected");
         return result.data;
       },
     });
-    console.log("Total leave requests", leaveRequests);
+    if(isFetching){
+      return <AcceptAndRejectLeaveSkeleton></AcceptAndRejectLeaveSkeleton>
+    }
     return (
         <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-5">
       {leaveRequests?.map((request) => {
@@ -41,9 +44,7 @@ const RejectedRequestes = () => {
               </p>
             </div>
             <div className="mt-3 flex gap-5">
-              <button className="bg-red-500 font-medium text-white px-4 h-9 rounded-md">
-                Rejected
-              </button>
+              <div className="badge text-base px-4 h-9 rounded-md badge-ghost font-medium text-red-600">Rejected</div>
             </div>
           </div>
         );
