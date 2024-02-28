@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import PropTypes from "prop-types";
 
-const MessageForm = ({selectedUserEmail}) => {
+const MessageForm = ({selectedUserEmail, socket, setMessages, messages}) => {
     const { register, handleSubmit, reset } = useForm();
     const axiosSecure = useAxiosSecure()
     const {user} = useContext(AuthContext)
@@ -18,6 +18,8 @@ const MessageForm = ({selectedUserEmail}) => {
         }
         axiosSecure.post('/chat', messageInfo)
         .then(() => {
+            socket.emit('new-message-sent', messageInfo)
+            setMessages([messageInfo, ...messages])
             reset();
         })
     }
@@ -38,6 +40,9 @@ const MessageForm = ({selectedUserEmail}) => {
 
 MessageForm.propTypes = {
     selectedUserEmail: PropTypes.string,
+    socket: PropTypes.object,
+    setMessages: PropTypes.object,
+    messages: PropTypes.object,
 };
 
 export default MessageForm;
