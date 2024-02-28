@@ -8,7 +8,6 @@ import { AuthContext } from "../../../../Provider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import image from "../../../../assets/images/waiting-interview.png";
-import SkeletonInterview from "./SkeletonInterview";
 
 const Interview = () => {
   const [open, setOpen] = useState(false);
@@ -16,7 +15,7 @@ const Interview = () => {
   const [videoOpen, setVideoOpen] = useState(false);
   const [userId] = useUserId();
   const { user } = useContext(AuthContext);
-  const { data, isFetched } = useQuery({
+  const { data } = useQuery({
     queryKey: ["interviewsInfo"],
     enabled: !!user?.email,
     queryFn: async () => {
@@ -26,12 +25,6 @@ const Interview = () => {
   });
 
   // console.log("checked", data, user?.email);
-
-  // let isTrue = true;
-
-  // if (isFetched) {
-  //   return <SkeletonInterview></SkeletonInterview>;
-  // }
 
   return (
     <div>

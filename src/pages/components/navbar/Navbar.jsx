@@ -125,7 +125,7 @@ const Navbar = () => {
             </div>
           </div>
           <Link to="/">
-            <img src={logo} className="w-full lg:w-1/2 ml-12 md:ml-20" alt="" />
+            <img src={logo} className="w-full md:w-1/2 ml-12 md:ml-0" alt="" />
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">

@@ -24,7 +24,7 @@ const Testimonilas = () => {
       <h6>Voices of Success: Clients Speak Out.</h6>
       <div className="mt-8">
         <Swiper
-          // slidesPerView={screenSize[0] > 768 ? 2 : 1}
+          slidesPerView={screenSize[0] > 768 ? 2 : 1}
           spaceBetween={30}
           centeredSlides={true}
           loop={true}
@@ -35,18 +35,9 @@ const Testimonilas = () => {
           pagination={{
             clickable: true,
           }}
-          
           navigation={false}
           modules={[Autoplay, Pagination]}
           className="mySwiper"
-          breakpoints={{
-            480: {
-              slidesPerView: 1,
-            },
-            768: {
-              slidesPerView: 2,
-            },
-          }}
         >
           {testimonials?.map((item) => (
             <SwiperSlide key={item._id}>

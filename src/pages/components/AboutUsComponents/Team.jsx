@@ -28,19 +28,19 @@ const Team = () => {
               <img src={singleMember.image} />
             </figure>
             <div className="founder_info">
-              <p>{singleMember?.name}</p> 
-              <p>{singleMember?.position}</p>
+              <p>{singleMember.name}</p> 
+              <p>{singleMember.position}</p>
             </div>
             </div>
             <div className="socialIcons">
                 <div>
-                  <a href={singleMember?.fb}>
+                  <a href="facebook.com">
                     <img src={facebook} alt="" />
                   </a>
-                  <a href={singleMember?.ig}>
+                  <a href="instagram.com">
                     <img src={instagram} alt="" />
                   </a>
-                  <a href={singleMember?.link}>
+                  <a href="linkedin.com">
                     <img src={linkedIn} alt="" />
                   </a>
                 </div>
