@@ -38,7 +38,7 @@ const Reviews = () => {
   });
   console.log("total review numbers are", reviewsNums);
   // fetch all reviews
-  const { data: reviews , isFetching} = useQuery({
+  const { data: reviews, isFetching } = useQuery({
     queryKey: ["reviews", totalPages, currentPage],
     queryFn: async () => {
       const res = await axiosPublic.get(`/feedbacks?skip=${currentPage * 6}`);
@@ -47,8 +47,8 @@ const Reviews = () => {
   });
 
   const [systems, setSystems] = useState({});
-  if(isFetching){
-    return <ReviewsSkeleton></ReviewsSkeleton>
+  if (isFetching) {
+    return <ReviewsSkeleton></ReviewsSkeleton>;
   }
   return (
     <div>
