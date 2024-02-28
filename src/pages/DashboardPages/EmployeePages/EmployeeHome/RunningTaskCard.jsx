@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import { FaArrowRightLong } from "react-icons/fa6";
+import moment from "moment";
 const RunningTaskCard = () => {
   const [selectedEmployees, setSelectedEmployees] = useState([]);
   const axiosPublic = useAxiosPublic();
@@ -27,6 +28,11 @@ const RunningTaskCard = () => {
       return result.data;
     },
   });
+
+  const startDate = moment(myRunningTasks?.start_date);
+  const endDate = moment(myRunningTasks?.end_date);
+  const formattedStartDate = startDate.format("DD MMM");
+  const formattedEndDate = endDate.format("DD MMM");
 
   const handleTaskOpenModal = (e) => {
     document.getElementById("modal_running").showModal();
@@ -57,7 +63,6 @@ const RunningTaskCard = () => {
 
   const progressTotal =
     selectedEmployees.length * (100 / myRunningTasks?.employees?.length);
-
   const progress = progressTotal.toFixed();
 
   if (isFetching) {
@@ -99,9 +104,8 @@ const RunningTaskCard = () => {
           <div className="flex flex-col-reverse md:flex-row justify-between items-center py-2">
             <div className="mt-3 md:mt-0">
               <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold">
-                {myRunningTasks?.start_date}{" "}
-                <span className="text-2xl font-bold">-</span>{" "}
-                {myRunningTasks?.end_date}
+                {formattedStartDate}{" "}
+                <span className="text-2xl font-bold">-</span> {formattedEndDate}
               </span>
             </div>
 
