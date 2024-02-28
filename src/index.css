@@ -290,7 +290,7 @@ body {
 }
 
 .newsletter button {
-  @apply md:rounded-none md:rounded-r-xl md:px-8 lg:px-10;
+  @apply py-2 mt-2 md:mt-0 md:rounded-none md:rounded-r-xl md:px-8 lg:px-10;
 }
 
 /* CONTACT SECTION */
