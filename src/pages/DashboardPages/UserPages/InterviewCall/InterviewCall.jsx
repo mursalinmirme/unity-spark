@@ -13,6 +13,7 @@ const InterviewCall = () => {
   const axiosPublic = useAxiosPublic();
   const { user } = useContext(AuthContext);
   const { data: interviewerPersons, isFetching } = useQuery({
+    // Id data Get
     queryKey: ["interviewPersons"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/get-user-interview/${interviwId}`);
@@ -60,9 +61,6 @@ const InterviewCall = () => {
           <h3 className="text-center mt-3 font-semibold text-lg">
             {interviewerPersons?.candidateName}
           </h3>
-          {/* <div className="absolute top-2 left-2 border p-0.5  rounded-full border-primary">
-            <AiOutlineAudioMuted className="text-2xl text-primary"></AiOutlineAudioMuted>
-          </div> */}
         </div>
         <div className="border p-3 shadow-md rounded-2xl relative">
           <img
@@ -73,9 +71,6 @@ const InterviewCall = () => {
           <h3 className="text-center mt-3 font-semibold text-lg">
             {interviewerPersons?.interViewerName}
           </h3>
-          {/* <div className="absolute top-2 left-2 border p-0.5  rounded-full border-primary">
-            <AiOutlineAudioMuted className="text-2xl text-primary"></AiOutlineAudioMuted>
-          </div> */}
         </div>
       </div>
       <div className="mt-7 relative">
@@ -94,21 +89,6 @@ const InterviewCall = () => {
             </div>
           </div>
         </div>
-        {/* <div className="absolute bottom-5 w-full">
-          <div className="w-full">
-            <div className="w-60 h-16 bg-[#ffffffad] mx-auto rounded-3xl flex justify-center items-center gap-6">
-              <div className="rounded-full bg-primary p-2 border-2 border-white">
-                <AiOutlineAudioMuted className="text-2xl text-white"></AiOutlineAudioMuted>
-              </div>
-              <div className="rounded-full bg-primary p-2 border-2 border-white">
-                <BsCameraVideoOff className="text-2xl text-white"></BsCameraVideoOff>
-              </div>
-              <div className="rounded-full bg-red-600 p-2 border-2 border-white">
-                <IoCall className="text-2xl text-white"></IoCall>
-              </div>
-            </div>
-          </div>
-        </div> */}
       </div>
     </div>
   );
