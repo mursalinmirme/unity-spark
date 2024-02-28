@@ -9,7 +9,7 @@ const CompletedTaskCard = () => {
   const axiosPublic = useAxiosPublic();
   const { user } = useContext(AuthContext);
   // get running task of the loged in employee
-  const { data: myRecentCompleteTask = {} } = useQuery({
+  const { data: myRecentCompleteTask = {}, isFetching } = useQuery({
     queryKey: ["myRecentCompleteTasks"],
     queryFn: async () => {
       const result = await axiosPublic.get(
@@ -20,6 +20,30 @@ const CompletedTaskCard = () => {
   });
 
   console.log("checked completed tasks", myRecentCompleteTask);
+
+  if (isFetching) {
+    return (
+      <div>
+        <h1 className="text-2xl font-semibold mb-3">Running Task</h1>
+        <div className="border-2 border-gray-300 p-5">
+          <div className="space-y-2">
+            <div className="skeleton w-full h-4"></div>
+            <div className="skeleton w-full h-4"></div>
+            <div className="skeleton w-2/3 h-4"></div>
+          </div>
+          <div className="flex justify-between gap-5 items-center mt-3">
+            <div className="skeleton w-1/2 h-6"></div>
+            <div className="avatar-group -space-x-6 rtl:space-x-reverse">
+              <div className="skeleton w-10 h-10 rounded-full"></div>
+              <div className="skeleton w-10 h-10 rounded-full"></div>
+              <div className="skeleton w-10 h-10 rounded-full"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-3">Completed Task</h2>

@@ -15,7 +15,7 @@ const EmployeeHome = () => {
   const axiosPublic = useAxiosPublic();
   const { user } = useContext(AuthContext);
 
-  const { data: EmployeeReqEvent = [] } = useQuery({
+  const { data: EmployeeReqEvent = [], isFetching } = useQuery({
     queryKey: ["EmployeeReqEvent"],
     queryFn: async () => {
       const response = await axiosPublic.get(`/reqEvents/${user?.email}`);
@@ -105,12 +105,20 @@ const EmployeeHome = () => {
           </p>
         </div>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-5">
-        <RunningTaskCard></RunningTaskCard>
-        <CompletedTaskCard></CompletedTaskCard>
+      <div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-5">
+          <RunningTaskCard></RunningTaskCard>
+          <CompletedTaskCard></CompletedTaskCard>
+        </div>
+        <div className="mt-4">
+          <RegisteredEvents
+            EmployeeReqEvent={EmployeeReqEvent}
+            isFetching={isFetching}
+          ></RegisteredEvents>
+        </div>
+
+        {/* <EnrolledCourse></EnrolledCourse> */}
       </div>
-      <RegisteredEvents EmployeeReqEvent={EmployeeReqEvent}></RegisteredEvents>
-      {/* <EnrolledCourse></EnrolledCourse> */}
     </div>
   );
 };
