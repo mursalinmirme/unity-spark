@@ -31,14 +31,6 @@ const UserProfileEdit = () => {
     { value: "Mongoose", label: "Mongoose" },
   ];
 
-  // const [users, setUsers] = useState(null);
-  // // User Data Get
-  // useEffect(() => {
-  //   axiosSecure.get(`/users/${user?.email}`).then((res) => {
-  //     setUsers(res?.data);
-  //   });
-  // }, [user?.email, setUsers, axiosSecure]);
-
   const { data: users, isFetching } = useQuery({
     queryKey: ["userAllInformations"],
     queryFn: async () => {
@@ -108,7 +100,6 @@ const UserProfileEdit = () => {
     return <UserProfileEditSkeleton></UserProfileEditSkeleton>;
   }
 
-  console.log("check1124", users?.skills);
   return (
     <div>
       <div className="user_profile_container">
