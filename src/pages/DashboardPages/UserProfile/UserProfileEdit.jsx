@@ -1,5 +1,6 @@
 import ProgressBar from "@ramonak/react-progress-bar";
-import { useContext, useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useContext, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { CgProfile } from "react-icons/cg";
@@ -9,8 +10,6 @@ import Select from "react-select";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
-import Loading from "../../components/Loading/Loading";
 import UserProfileEditSkeleton from "./UserProfileEditSkeleton";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 const UserProfileEdit = () => {
@@ -40,17 +39,13 @@ const UserProfileEdit = () => {
   //   });
   // }, [user?.email, setUsers, axiosSecure]);
 
-
-const {data:users, isFetching} = useQuery({
-  queryKey: ['userAllInformations'],
-  queryFn: async() => {
-    const result = await axiosSecure.get(`/users/${user?.email}`);
-    return result.data;
-  }
-})
-
-
-
+  const { data: users, isFetching } = useQuery({
+    queryKey: ["userAllInformations"],
+    queryFn: async () => {
+      const result = await axiosSecure.get(`/users/${user?.email}`);
+      return result.data;
+    },
+  });
 
   // Form Summit
   const onSubmit = async (data) => {
@@ -91,7 +86,7 @@ const {data:users, isFetching} = useQuery({
     console.log(userInfo);
     console.log(users);
 
-    // https://unity-spark-server.onrender.com/users/${user?.email
+    // http://localhost:5000/users/${user?.email
 
     axiosSecure
       .put(`/users/${user?.email}`, userInfo)
@@ -109,13 +104,11 @@ const {data:users, isFetching} = useQuery({
       });
   };
 
-
-  if(isFetching){
-    return <UserProfileEditSkeleton></UserProfileEditSkeleton>
+  if (isFetching) {
+    return <UserProfileEditSkeleton></UserProfileEditSkeleton>;
   }
 
-
-  console.log('check1124',users?.skills);
+  console.log("check1124", users?.skills);
   return (
     <div>
       <div className="user_profile_container">
@@ -226,7 +219,9 @@ const {data:users, isFetching} = useQuery({
           {/* phone Number*/}
           <label>
             <div className="py-1">
-              <span className="font-semibold text-gray-600 text-base font-inter">Phone :</span>
+              <span className="font-semibold text-gray-600 text-base font-inter">
+                Phone :
+              </span>
             </div>
             <input
               type="number"
@@ -280,7 +275,10 @@ const {data:users, isFetching} = useQuery({
           {/* Age field */}
           <label>
             <div className="py-1">
-              <span className="font-semibold text-gray-600 text-base font-inter"> Your Age</span>
+              <span className="font-semibold text-gray-600 text-base font-inter">
+                {" "}
+                Your Age
+              </span>
             </div>
             <input
               type="number"
@@ -444,11 +442,11 @@ const {data:users, isFetching} = useQuery({
 
         <div className="w-48 py-3 bg-primary border-none text-white rounded-xl text-center cursor-pointer flex justify-center items-center">
           {updateLoading ? (
-
-              <span className="loading loading-spinner loading-md "></span>
-
+            <span className="loading loading-spinner loading-md "></span>
           ) : (
-            <button className="text-base font-semibold" type="submit">Update</button>
+            <button className="text-base font-semibold" type="submit">
+              Update
+            </button>
           )}
         </div>
       </form>
