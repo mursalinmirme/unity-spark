@@ -136,8 +136,7 @@ const UserProfileEdit = () => {
           <div className="mt-3 md:mt-0 w-24 md:w-auto">
             <Link
               to="/dashboard/user-profile"
-              className="edit_btn !text-red-500 hover:!text-white !border-red-600 hover:!border-red-600 hover:!bg-red-600"
-            >
+              className="edit_btn !text-red-500 hover:!text-white !border-red-600 hover:!border-red-600 hover:!bg-red-600">
               <span> X Cancel </span>
             </Link>
           </div>
@@ -176,8 +175,7 @@ const UserProfileEdit = () => {
               </span>
               <label
                 className="font-semibold w-full absolute bottom-0   text-white cursor-pointer font-inter text-base px-8 py-2.5 bg-primary rounded-md transition-all duration-500 mt-1 mb-0.5"
-                htmlFor="user_photo"
-              >
+                htmlFor="user_photo">
                 <div className="flex justify-center items-center gap-4">
                   {" "}
                   {/* <img className="w-5 h-5" src={download_icon} alt="" />{" "} */}
@@ -301,8 +299,7 @@ const UserProfileEdit = () => {
 
             <select
               className="w-full py-3 mt-2 border text-base rounded-lg pl-2"
-              {...register("gender")}
-            >
+              {...register("gender")}>
               <option className="text-base"> {users?.gender} </option>
               <option className="text-base" value="male">
                 Male
@@ -365,8 +362,7 @@ const UserProfileEdit = () => {
 
             <select
               className="w-full py-3 mt-2 text-base border rounded-lg pl-2"
-              {...register("preference")}
-            >
+              {...register("preference")}>
               <option> {users?.job_preference} </option>
               <option value="Remote">Remote</option>
               <option value="On-site">On-site</option>
@@ -386,8 +382,7 @@ const UserProfileEdit = () => {
 
             <select
               className="w-full py-3 mt-2 text-base border rounded-lg pl-2"
-              {...register("time_preference")}
-            >
+              {...register("time_preference")}>
               <option> {users?.time_preference} </option>
               <option value="intern">intern</option>
               <option value="full-time">full-time</option>

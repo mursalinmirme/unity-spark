@@ -23,8 +23,8 @@ const Communication = () => {
   const [messages, setMessages] = useState([]);
   const [sortedEmployees, setShortedEmployees] = useState([]);
   const [myFriends, setMyFriends] = useState([]);
-  const [showSkeleton, setShowSkeleton] = useState(true)
-  const [showMessageSkeleton, setShowMessageSkeleton] = useState(true)
+  const [showSkeleton, setShowSkeleton] = useState(true);
+  const [showMessageSkeleton, setShowMessageSkeleton] = useState(true);
   console.log(showMessageSkeleton);
 
   const employees = allChatUser?.filter(
@@ -37,48 +37,49 @@ const Communication = () => {
     (employee) => employee.email === selectedUserEmail
   );
 
-    useEffect(() => {
-        setAllChatUser([...allEmployees, ...allAdmins])
-    } ,[allAdmins, allEmployees])
+  useEffect(() => {
+    setAllChatUser([...allEmployees, ...allAdmins]);
+  }, [allAdmins, allEmployees]);
 
+  useEffect(() => {
+    const timeOut = setTimeout(() => {
+      setShowSkeleton(false);
+    }, 3000);
 
-    useEffect(() => {
-        const timeOut = setTimeout(() => {
-            setShowSkeleton(false)
-        }, 3000)
+    return () => clearTimeout(timeOut);
+  }, []);
 
-        return () => clearTimeout(timeOut)
-    }, [])
+  useEffect(() => {
+    const messageTimeOut = setTimeout(() => {
+      setShowMessageSkeleton(false);
+    }, 2000);
 
-    useEffect(() => {
-        const messageTimeOut = setTimeout(() => {
-            setShowMessageSkeleton(false)
-        }, 2000)
+    return () => clearTimeout(messageTimeOut);
+  }, [showMessageSkeleton]);
 
-        return () => clearTimeout(messageTimeOut)
-    }, [showMessageSkeleton])
-    
-    useEffect(() => {
-        const timeOut = setTimeout(() => {
-            axiosSecure.get(`/chat?sender_email=${user?.email}&reciever_email=${selectedUserEmail}`)
-            .then(res => {
-                setMessages(res.data)
-            })
-        }, 200)
-    
-        return () => clearTimeout(timeOut)        
-    })
+  useEffect(() => {
+    const timeOut = setTimeout(() => {
+      axiosSecure
+        .get(
+          `/chat?sender_email=${user?.email}&reciever_email=${selectedUserEmail}`
+        )
+        .then((res) => {
+          setMessages(res.data);
+        });
+    }, 200);
 
-    useEffect(() => {
-        const timeOut = setTimeout(() => {
-            axiosSecure.get(`/chat-friends/${user?.email}`)
-            .then(res => {
-                setMyFriends(res.data)
-            })
-        }, 100)
+    return () => clearTimeout(timeOut);
+  });
 
-        return () => clearTimeout(timeOut)        
-    })
+  useEffect(() => {
+    const timeOut = setTimeout(() => {
+      axiosSecure.get(`/chat-friends/${user?.email}`).then((res) => {
+        setMyFriends(res.data);
+      });
+    }, 100);
+
+    return () => clearTimeout(timeOut);
+  });
 
   useEffect(() => {
     const combinedArray = [];
@@ -113,20 +114,17 @@ const Communication = () => {
     <div>
       <div
         className="hidden md:grid grid-cols-7 lg:grid-cols-6 gap-3 bg-[#ececf8] p-2 rounded-lg overflow-hidden"
-        style={{ height: "calc(100vh - 20vh)" }}
-      >
+        style={{ height: "calc(100vh - 20vh)" }}>
         <div
           className={`col-span-3 lg:col-span-2 bg-white p-2 rounded-lg overflow-y-hidden flex flex-col`}
-          style={{ height: "calc(100% - 2px)" }}
-        >
+          style={{ height: "calc(100% - 2px)" }}>
           <div className="h-14">
             <div className="flex items-center justify-between relative">
               <h2 className="font-inter font-bold text-2xl">Chats</h2>
               <div
                 className={`flex items-center justify-between border-2 rounded-lg p-1 bg-white absolute ${
                   showSearchBar ? "top-0" : "-top-14"
-                } right-0 w-full transition-all duration-700`}
-              >
+                } right-0 w-full transition-all duration-700`}>
                 <input
                   onChange={(e) => setSearchValue(e.target.value)}
                   type="text"
@@ -138,8 +136,7 @@ const Communication = () => {
                   onClick={() => {
                     setShowSearchBar(false);
                     setSearchValue(null);
-                  }}
-                >
+                  }}>
                   <RxCross2 className="text-lg" />
                 </button>
               </div>
@@ -148,8 +145,7 @@ const Communication = () => {
                 className={`bg-primary text-white p-1.5 rounded-lg transition-all duration-700 ${
                   showSearchBar ? "-mt-32" : "mt-0"
                 }`}
-                onClick={() => setShowSearchBar(true)}
-              >
+                onClick={() => setShowSearchBar(true)}>
                 <IoIosSearch className="text-lg" />
               </button>
             </div>
@@ -161,8 +157,7 @@ const Communication = () => {
             className={`p-2 -mt-3 rounded-b-lg space-y-3 h-auto ${
               searchValue ? "block" : "hidden"
             }`}
-            style={{ boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)" }}
-          >
+            style={{ boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)" }}>
             {searchedEmployees && searchedEmployees?.length > 0 ? (
               searchedEmployees?.map((employee) => (
                 <div
@@ -171,11 +166,10 @@ const Communication = () => {
                     setSelectedChat(employee?._id);
                     setShowSearchBar(false);
                     setSearchValue(null);
-                    setShowMessageSkeleton(true)
+                    setShowMessageSkeleton(true);
                   }}
                   key={employee._id}
-                  className={`flex gap-3 items-center cursor-pointer p-1 hover:bg-[#ececf8] rounded-lg transition-all`}
-                >
+                  className={`flex gap-3 items-center cursor-pointer p-1 hover:bg-[#ececf8] rounded-lg transition-all`}>
                   <img
                     src={employee?.image}
                     className="w-12 h-12 rounded-full"
@@ -199,9 +193,9 @@ const Communication = () => {
           </div>
           <div className="grid gap-3 overflow-y-auto">
             <h2 className="font-inter font-semibold">Your Friends</h2>
-            {showSkeleton ?
-                <FriendsSkeleton></FriendsSkeleton>
-                :
+            {showSkeleton ? (
+              <FriendsSkeleton></FriendsSkeleton>
+            ) : (
               sortedEmployees?.map((friend, idx) => (
                 <div
                   key={idx}
@@ -211,9 +205,8 @@ const Communication = () => {
                   onClick={() => {
                     setSelectedChat(friend?._id);
                     setSelectedUserEmail(friend?.email);
-                    setShowMessageSkeleton(true)
-                  }}
-                >
+                    setShowMessageSkeleton(true);
+                  }}>
                   <img
                     src={friend?.image}
                     className="w-12 h-12 rounded-full"
@@ -228,12 +221,13 @@ const Communication = () => {
                     </h4>
                   </div>
                 </div>
-              ))}
+              ))
+            )}
             <hr className="my-1 border border-slate-300" />
             <h2 className="font-inter font-semibold">Make More Friends</h2>
-            {showSkeleton || remainingEmployees?.length === 0 ?
-                <FriendsSkeleton></FriendsSkeleton>
-                :
+            {showSkeleton || remainingEmployees?.length === 0 ? (
+              <FriendsSkeleton></FriendsSkeleton>
+            ) : (
               remainingEmployees?.map((friend, idx) => (
                 <div
                   key={idx}
@@ -243,9 +237,8 @@ const Communication = () => {
                   onClick={() => {
                     setSelectedChat(friend?._id);
                     setSelectedUserEmail(friend?.email);
-                    setShowMessageSkeleton(true)
-                  }}
-                >
+                    setShowMessageSkeleton(true);
+                  }}>
                   <img
                     src={friend?.image}
                     className="w-12 h-12 rounded-full"
@@ -260,7 +253,8 @@ const Communication = () => {
                     </h4>
                   </div>
                 </div>
-              ))}
+              ))
+            )}
           </div>
         </div>
 
@@ -273,8 +267,7 @@ const Communication = () => {
         ) : (
           <div
             className="col-span-4 bg-white rounded-lg relative overflow-y-hidden flex flex-col justify-between"
-            style={{ height: "calc(100% - 2px)" }}
-          >
+            style={{ height: "calc(100% - 2px)" }}>
             <div className="h-20">
               <div className={`flex gap-3 items-center p-3`}>
                 <img
@@ -305,9 +298,9 @@ const Communication = () => {
             </div>
 
             <div className="p-4 h-full overflow-y-auto flex flex-col-reverse">
-              {showMessageSkeleton ?
-              <MessageSkeleton></MessageSkeleton>
-              : messages.length > 0 ? (
+              {showMessageSkeleton ? (
+                <MessageSkeleton></MessageSkeleton>
+              ) : messages.length > 0 ? (
                 messages?.map((message) => (
                   <div
                     key={message._id}
@@ -315,15 +308,13 @@ const Communication = () => {
                       message.sender === user?.email
                         ? "justify-end"
                         : "justify-srart"
-                    }`}
-                  >
+                    }`}>
                     <div
                       className={`mt-1.5 px-2 py-1 rounded-lg max-w-3/4 ${
                         message.sender === user?.email
                           ? "bg-[#c7e3f6]"
                           : "bg-[#c7c5eb]"
-                      }`}
-                    >
+                      }`}>
                       <span className="font-medium font-inter">
                         {message.message}
                       </span>
@@ -344,8 +335,7 @@ const Communication = () => {
               <MessageForm
                 selectedUserEmail={selectedUserEmail}
                 setMessages={setMessages}
-                messages={messages}
-              ></MessageForm>
+                messages={messages}></MessageForm>
             </div>
           </div>
         )}
@@ -367,8 +357,7 @@ const Communication = () => {
           selectedEmployee={selectedEmployee}
           messages={messages}
           user={user}
-          selectedUserEmail={selectedUserEmail}
-        ></CommunicationForMobile>
+          selectedUserEmail={selectedUserEmail}></CommunicationForMobile>
       </div>
     </div>
   );
