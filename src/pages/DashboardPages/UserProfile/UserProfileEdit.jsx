@@ -161,7 +161,7 @@ const UserProfileEdit = () => {
               {...register("name")}
               placeholder="Please Your Name"
               defaultValue={users?.name}
-              className="text-base py-2.5"
+              className="text-base py-2.5 text-black"
             />
           </label>
           {/* Name field End */}
@@ -209,7 +209,7 @@ const UserProfileEdit = () => {
               placeholder="Your Email"
               readOnly
               defaultValue={users?.email}
-              className="text-base py-2.5"
+              className="text-base py-2.5 text-black"
             />
           </label>
           {/* email field End */}
@@ -226,7 +226,7 @@ const UserProfileEdit = () => {
               {...register("number")}
               placeholder="Your Phone Number"
               defaultValue={users?.phone}
-              className="text-base py-2.5"
+              className="text-base py-2.5 text-black"
             />
           </label>
         </div>
@@ -246,7 +246,7 @@ const UserProfileEdit = () => {
               {...register("current")}
               placeholder="Your Current Address"
               defaultValue={users?.current_address}
-              className="text-base py-2.5"
+              className="text-base py-2.5 text-black"
             />
           </label>
           {/* Current Address field End */}
@@ -263,7 +263,7 @@ const UserProfileEdit = () => {
               {...register("permanent")}
               placeholder=" Your Permanent Address"
               defaultValue={users?.permanent_address}
-              className="text-base py-2.5"
+              className="text-base py-2.5 text-black"
             />
           </label>
         </div>
@@ -283,7 +283,7 @@ const UserProfileEdit = () => {
               {...register("age")}
               placeholder="Your Age"
               defaultValue={users?.age}
-              className="text-base py-2.5"
+              className="text-base py-2.5 text-black"
             />
           </label>
           {/* Age field End */}
@@ -298,7 +298,7 @@ const UserProfileEdit = () => {
             </div>
 
             <select
-              className="w-full py-3 mt-2 border text-base rounded-lg pl-2"
+              className="w-full py-3 mt-2 border text-base rounded-lg pl-2 text-black"
               {...register("gender")}>
               <option className="text-base"> {users?.gender} </option>
               <option className="text-base" value="male">
@@ -326,7 +326,7 @@ const UserProfileEdit = () => {
               {...register("education_level")}
               placeholder="Eduction Level"
               defaultValue={users?.education_level}
-              className="text-base py-2.5"
+              className="text-base py-2.5 text-black"
             />
           </label>
           {/* Preference field End */}
@@ -344,7 +344,7 @@ const UserProfileEdit = () => {
               {...register("institute_name")}
               placeholder="Please Institute Name"
               defaultValue={users?.institute_name}
-              className="text-base py-2.5"
+              className="text-base py-2.5 text-black"
             />
           </label>
         </div>
@@ -361,7 +361,7 @@ const UserProfileEdit = () => {
             </div>
 
             <select
-              className="w-full py-3 mt-2 text-base border rounded-lg pl-2"
+              className="w-full py-3 mt-2 text-base border rounded-lg pl-2 text-black"
               {...register("preference")}>
               <option> {users?.job_preference} </option>
               <option value="Remote">Remote</option>
@@ -381,7 +381,7 @@ const UserProfileEdit = () => {
             </div>
 
             <select
-              className="w-full py-3 mt-2 text-base border rounded-lg pl-2"
+              className="w-full py-3 mt-2 text-base border rounded-lg pl-2 text-black"
               {...register("time_preference")}>
               <option> {users?.time_preference} </option>
               <option value="intern">intern</option>
@@ -430,7 +430,7 @@ const UserProfileEdit = () => {
               {...register("resume")}
               placeholder="Please share your resume drive link"
               defaultValue={users?.resume_link}
-              className="text-base py-2.5"
+              className="text-base py-2.5 text-black"
             />
           </label>
         </div>

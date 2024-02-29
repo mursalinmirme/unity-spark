@@ -84,7 +84,7 @@ const UserProfile = () => {
           {/* Email field */}
           <label className="space-y-0.5">
             <div className="">
-              <span className="font-semibold text-gray-600 text-base font-inter">Email :</span>
+              <span className="font-semibold text-gray-700 text-base font-inter">Email :</span>
             </div>
             <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p> : users?.email} </p>
           </label>
@@ -93,7 +93,7 @@ const UserProfile = () => {
           {/* phone Number*/}
           <label className="space-y-0.5">
             <div className="">
-              <span className="font-semibold text-gray-600 text-base font-inte">Phone :</span>
+              <span className="font-semibold text-gray-700 text-base font-inte">Phone :</span>
             </div>
             <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p> : users?.phone || "N/A"} </p>
           </label>
@@ -104,7 +104,7 @@ const UserProfile = () => {
           {/* Current Address field */}
           <label>
             <div className="pt-1">
-              <span className="font-semibold text-gray-600 text-base font-inte">
+              <span className="font-semibold text-gray-700 text-base font-inte">
                 Current Address :
               </span>
             </div>
@@ -115,7 +115,7 @@ const UserProfile = () => {
           {/* Permanent Address */}
           <label>
             <div className="pt-1">
-              <span className="font-semibold text-gray-600 text-base font-inte">
+              <span className="font-semibold text-gray-700 text-base font-inte">
                 Permanent Address :
               </span>
             </div>
@@ -128,7 +128,7 @@ const UserProfile = () => {
           {/* Age field */}
           <label>
             <div className="pt-1">
-              <span className="font-semibold text-gray-600 text-base font-inte">Age :</span>
+              <span className="font-semibold text-gray-700 text-base font-inte">Age :</span>
             </div>
             <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p> : users?.age || "N/A"} </p>
           </label>
@@ -137,7 +137,7 @@ const UserProfile = () => {
           {/* Your Gender Select */}
           <label>
             <div className="pt-1">
-              <span className="font-semibold text-gray-600 text-base font-inte">Gender :</span>
+              <span className="font-semibold text-gray-700 text-base font-inte">Gender :</span>
             </div>
             <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p> : users?.gender || "N/A"} </p>
           </label>
@@ -148,7 +148,7 @@ const UserProfile = () => {
           {/* name field */}
           <label>
             <div className="pt-1">
-              <span className="font-semibold text-gray-600 text-base font-inte">
+              <span className="font-semibold text-gray-700 text-base font-inte">
                 Education Level :
               </span>
             </div>
@@ -159,7 +159,7 @@ const UserProfile = () => {
           {/* Institute Name field */}
           <label>
             <div className="pt-1">
-              <span className="font-semibold text-gray-600 text-base font-inte">Institute Name :</span>
+              <span className="font-semibold text-gray-700 text-base font-inte">Institute Name :</span>
             </div>
             <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p> : users?.institute_name || "N/A"} </p>
           </label>
@@ -170,7 +170,7 @@ const UserProfile = () => {
           {/* Job Preference field */}
           <label>
             <div className="pt-1">
-              <span className="font-semibold text-gray-600 text-base font-inte">Job Preference :</span>
+              <span className="font-semibold text-gray-700 text-base font-inte">Job Preference :</span>
             </div>
             <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p> : users?.job_preference || "N/A"} </p>
           </label>
@@ -179,7 +179,7 @@ const UserProfile = () => {
           {/* Time Preference field */}
           <label>
             <div className="pt-1">
-              <span className="font-semibold text-gray-600 text-base font-inte">
+              <span className="font-semibold text-gray-700 text-base font-inte">
                 Time Preference :
               </span>
             </div>
@@ -193,7 +193,7 @@ const UserProfile = () => {
           {/* Skills field */}
           <label>
             <div className="pt-1 mb-2">
-              <span className="font-semibold text-gray-600 text-base font-inte">Skills :</span>
+              <span className="font-semibold text-gray-700 text-base font-inte">Skills :</span>
             </div>
             {
               isFetching ? <p className="skeleton rounded-full w-[60%] h-8 mt-1"></p> : 
@@ -212,7 +212,7 @@ const UserProfile = () => {
           {/* Resume field */}
           <label>
             <div className="pt-1 mb-2">
-              <span className="font-semibold text-gray-600 text-base font-inter">Resume :</span>
+              <span className="font-semibold text-gray-700 text-base font-inter">Resume :</span>
             </div>
             <a href={users?.resume_link} target="blank">
               <div className="inline-flex gap-2 font-semibold items-center text-white cursor-pointer font-inter text-base px-8 py-[8px] bg-primary rounded-xl transition-all duration-500 text-[15px]">
