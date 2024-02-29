@@ -23,7 +23,7 @@ const AllEmployeesTable = ({ user, idx, refetch }) => {
       });
   };
   return (
-    <tr key={user?._id}>
+    <tr key={user?._id} className="text-base">
       <td className="text-left">
         <label className="font-semibold">{idx + 1}</label>
       </td>
@@ -44,7 +44,7 @@ const AllEmployeesTable = ({ user, idx, refetch }) => {
         {user?.position === "guest" ? (
           <p className="text-second text-left">{user?.position} </p>
         ) : (
-          <p className="text-primary font-semibold text-left">
+          <p className="text-gray-800 font-medium text-left">
             {user?.position}{" "}
           </p>
         )}
@@ -52,7 +52,7 @@ const AllEmployeesTable = ({ user, idx, refetch }) => {
       <td className="font-bold">
         <select
           onChange={handleChangeRole}
-          className="py-2 rounded-lg hover:cursor-pointer text-left"
+          className="py-2 rounded-lg hover:cursor-pointer font-semibold text-left"
           defaultValue={newRole}
           name=""
           id="">

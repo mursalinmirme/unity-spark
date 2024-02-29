@@ -16,7 +16,7 @@ const Employee = () => {
   return (
     <div>
       <div className="overflow-x-auto w-full">
-        <h4 className="text-2xl font-semibold mb-5">All Employees List</h4>
+        <h4 className="text-2xl font-semibold mb-5">Our All Employees</h4>
         <table style={{ borderRadius: "50px" }} className="table border ">
           {/* head */}
           <thead className="bg-second text-white text-[18px] rounded-md text-center">

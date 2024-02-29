@@ -54,7 +54,7 @@ const MyBlogs = () => {
       });
   };
 
-  if(!isFetching){
+  if(isFetching){
     return <MyBlogsSkeleton></MyBlogsSkeleton>
   }
 
