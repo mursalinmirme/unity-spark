@@ -86,7 +86,7 @@ const UserProfile = () => {
             <div className="">
               <span className="font-semibold text-gray-600 text-base font-inter">Email :</span>
             </div>
-            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[50%] h-5 mt-1"></p> : users?.email} </p>
+            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p> : users?.email} </p>
           </label>
           {/* email field End */}
 
@@ -95,7 +95,7 @@ const UserProfile = () => {
             <div className="">
               <span className="font-semibold text-gray-600 text-base font-inte">Phone :</span>
             </div>
-            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[50%] h-5 mt-1"></p> : users?.phone || "N/A"} </p>
+            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p> : users?.phone || "N/A"} </p>
           </label>
         </div>
 
@@ -130,7 +130,7 @@ const UserProfile = () => {
             <div className="pt-1">
               <span className="font-semibold text-gray-600 text-base font-inte">Age :</span>
             </div>
-            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[20%] h-5 mt-1"></p> : users?.age || "N/A"} </p>
+            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p> : users?.age || "N/A"} </p>
           </label>
           {/* Age field End */}
 
@@ -139,7 +139,7 @@ const UserProfile = () => {
             <div className="pt-1">
               <span className="font-semibold text-gray-600 text-base font-inte">Gender :</span>
             </div>
-            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[20%] h-5 mt-1"></p> : users?.gender || "N/A"} </p>
+            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p> : users?.gender || "N/A"} </p>
           </label>
         </div>
 
@@ -161,7 +161,7 @@ const UserProfile = () => {
             <div className="pt-1">
               <span className="font-semibold text-gray-600 text-base font-inte">Institute Name :</span>
             </div>
-            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[70%] h-5 mt-1"></p> : users?.institute_name || "N/A"} </p>
+            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p> : users?.institute_name || "N/A"} </p>
           </label>
         </div>
 
@@ -172,7 +172,7 @@ const UserProfile = () => {
             <div className="pt-1">
               <span className="font-semibold text-gray-600 text-base font-inte">Job Preference :</span>
             </div>
-            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[30%] h-5 mt-1"></p> : users?.job_preference || "N/A"} </p>
+            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p> : users?.job_preference || "N/A"} </p>
           </label>
           {/* Preference field End */}
 
@@ -184,7 +184,7 @@ const UserProfile = () => {
               </span>
             </div>
 
-            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[30%] h-5 mt-1"></p> : users?.time_preference || "N/A"} </p>
+            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p> : users?.time_preference || "N/A"} </p>
           </label>
         </div>
 
@@ -196,7 +196,7 @@ const UserProfile = () => {
               <span className="font-semibold text-gray-600 text-base font-inte">Skills :</span>
             </div>
             {
-              isFetching ? <p className="skeleton rounded-full w-[50%] h-8 mt-1"></p> : 
+              isFetching ? <p className="skeleton rounded-full w-[60%] h-8 mt-1"></p> : 
               users?.skills?.map((skill, index) => (
                 <span
                   key={index}
