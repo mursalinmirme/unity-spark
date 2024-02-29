@@ -4,12 +4,13 @@ import { useContext } from "react";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 
 import SavedBlogCard from "./SavedBlogCard";
+import SavedBlogSkeleton from "./SavedBlogSkeleton";
 
 const SavedBlogs = () => {
   const axiosPublic = useAxiosPublic();
   const { user } = useContext(AuthContext);
 
-  const { data: SavedBlogs = [] } = useQuery({
+  const { data: SavedBlogs = [], isFetching } = useQuery({
     queryKey: ["saved_blogs"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/bookmarked-blogs/${user?.email}`);
@@ -19,14 +20,18 @@ const SavedBlogs = () => {
 
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {SavedBlogs &&
-          SavedBlogs?.map((singleBlog) => (
-            <SavedBlogCard
-              key={singleBlog._id}
-              singleBlog={singleBlog}></SavedBlogCard>
-          ))}
-      </div>
+      {isFetching ? (
+        <SavedBlogSkeleton></SavedBlogSkeleton>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {SavedBlogs &&
+            SavedBlogs?.map((singleBlog) => (
+              <SavedBlogCard
+                key={singleBlog._id}
+                singleBlog={singleBlog}></SavedBlogCard>
+            ))}
+        </div>
+      )}
     </div>
   );
 };
