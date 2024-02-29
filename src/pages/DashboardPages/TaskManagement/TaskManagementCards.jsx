@@ -1,8 +1,15 @@
 import { useState } from "react";
 import { HiDotsVertical } from "react-icons/hi";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { BsEye } from "react-icons/bs";
+import { IoEyeOutline } from "react-icons/io5";
 import { FiEdit3 } from "react-icons/fi";
-const TaskManagementCards = ({ item, handleDelete, handleEditTask }) => {
+const TaskManagementCards = ({
+  item,
+  handleDelete,
+  handleEditTask,
+  hanleModalShow,
+}) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { _id, task_name, start_date, end_date, employees } = item || {};
 
@@ -19,6 +26,12 @@ const TaskManagementCards = ({ item, handleDelete, handleEditTask }) => {
             className="absolute -mr-2 mt-6 z-[1] rounded-lg card-compact dropdown-content w-12 bg-base-100 shadow"
           >
             <div className="p-2 text-white space-y-1">
+              <div
+                onClick={() => hanleModalShow(_id)}
+                className="bg-primary p-1.5 cursor-pointer rounded-md flex items-center justify-center"
+              >
+                <BsEye className="text-lg"></BsEye>
+              </div>
               <div
                 onClick={() => handleEditTask(_id)}
                 className="bg-primary p-2 cursor-pointer rounded-md flex items-center justify-center"
