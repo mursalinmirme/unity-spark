@@ -7,6 +7,8 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import CommunicationForMobile from "./CommunicationForMobile";
 import useAdmins from "../../../hooks/useAdmins";
 import MessageForm from "./MessageForm";
+import FriendsSkeleton from "./FriendsSkeleton";
+import MessageSkeleton from "./MessageSkeleton";
 
 const Communication = () => {
   const [showSearchBar, setShowSearchBar] = useState(false);
@@ -21,6 +23,9 @@ const Communication = () => {
   const [messages, setMessages] = useState([]);
   const [sortedEmployees, setShortedEmployees] = useState([]);
   const [myFriends, setMyFriends] = useState([]);
+  const [showSkeleton, setShowSkeleton] = useState(true)
+  const [showMessageSkeleton, setShowMessageSkeleton] = useState(true)
+  console.log(showMessageSkeleton);
 
   const employees = allChatUser?.filter(
     (employee) => employee?.email !== user?.email
@@ -35,6 +40,23 @@ const Communication = () => {
     useEffect(() => {
         setAllChatUser([...allEmployees, ...allAdmins])
     } ,[allAdmins, allEmployees])
+
+
+    useEffect(() => {
+        const timeOut = setTimeout(() => {
+            setShowSkeleton(false)
+        }, 3000)
+
+        return () => clearTimeout(timeOut)
+    }, [])
+
+    useEffect(() => {
+        const messageTimeOut = setTimeout(() => {
+            setShowMessageSkeleton(false)
+        }, 2000)
+
+        return () => clearTimeout(messageTimeOut)
+    }, [showMessageSkeleton])
     
     useEffect(() => {
         const timeOut = setTimeout(() => {
@@ -176,7 +198,9 @@ const Communication = () => {
           </div>
           <div className="grid gap-3 overflow-y-auto">
             <h2 className="font-inter font-semibold">Your Friends</h2>
-            {sortedEmployees &&
+            {showSkeleton || sortedEmployees?.length === 0 ?
+                <FriendsSkeleton></FriendsSkeleton>
+                :
               sortedEmployees?.map((friend, idx) => (
                 <div
                   key={idx}
@@ -186,6 +210,7 @@ const Communication = () => {
                   onClick={() => {
                     setSelectedChat(friend?._id);
                     setSelectedUserEmail(friend?.email);
+                    setShowMessageSkeleton(true)
                   }}
                 >
                   <img
@@ -205,7 +230,9 @@ const Communication = () => {
               ))}
             <hr className="my-1 border border-slate-300" />
             <h2 className="font-inter font-semibold">Make More Friends</h2>
-            {remainingEmployees &&
+            {showSkeleton || remainingEmployees?.length === 0 ?
+                <FriendsSkeleton></FriendsSkeleton>
+                :
               remainingEmployees?.map((friend, idx) => (
                 <div
                   key={idx}
@@ -276,7 +303,9 @@ const Communication = () => {
             </div>
 
             <div className="p-4 h-full overflow-y-auto flex flex-col-reverse">
-              {messages && messages.length > 0 ? (
+              {showMessageSkeleton || messages?.length === 0 ?
+              <MessageSkeleton></MessageSkeleton>
+              : messages.length > 0 ? (
                 messages?.map((message) => (
                   <div
                     key={message._id}
