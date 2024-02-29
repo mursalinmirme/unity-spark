@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 
-
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import AllEmployeesTable from "./AllEmployeesTable";
 
 const Employee = () => {
-  const axiosSecure = useAxiosSecure()
-  const { data: allEmployees = [] } = useQuery({
+  const axiosSecure = useAxiosSecure();
+  const { data: allEmployees = [], refetch } = useQuery({
     queryKey: ["allEmployees"],
     queryFn: async () => {
       const res = await axiosSecure.get("/employees");
@@ -20,7 +20,7 @@ const Employee = () => {
         <table style={{ borderRadius: "50px" }} className="table border ">
           {/* head */}
           <thead className="bg-second text-white text-[18px] rounded-md text-center">
-            <tr className="text-left">
+            <tr className="text-center">
               <th>
                 <label>#</label>
               </th>
@@ -28,38 +28,16 @@ const Employee = () => {
               <th>Name</th>
               <th>Email</th>
               <th>Position </th>
+              <th>Role</th>
             </tr>
           </thead>
           <tbody className="mt-20">
             {allEmployees?.map((user, idx) => (
-              <tr key={user?._id}>
-                <td className="text-left">
-                  <label className="font-semibold">{idx + 1}</label>
-                </td>
-
-                <td>
-                  <div className="flex justify-center gap-3">
-                    <div className="avatar ">
-                      <div className="w-12 h-12 rounded-full">
-                        <img
-                          src={user?.image}
-                          alt="Avatar Tailwind CSS Component"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </td>
-                <td className="text-left">{user?.name}</td>
-                <td className="text-left">{user?.email}</td>
-
-                <td>
-                  {user?.position === "guest" ? (
-                    <p className="text-second text-left">{user?.position} </p>
-                  ) : (
-                    <p className="text-primary font-semibold text-left">{user?.position} </p>
-                  )}
-                </td>
-              </tr>
+              <AllEmployeesTable
+                key={user?._id}
+                idx={idx}
+                refetch={refetch}
+                user={user}></AllEmployeesTable>
             ))}
           </tbody>
         </table>

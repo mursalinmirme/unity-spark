@@ -35,7 +35,7 @@ const Communication = () => {
   );
 
   useEffect(() => {
-    socket = io("https://unity-spark-server.onrender.com");
+    socket = io("http://localhost:5000");
     socket.emit("setup", user.email);
     socket.on("connection", () => console.log("connected"));
   }, [user]);
@@ -114,20 +114,17 @@ const Communication = () => {
     <div>
       <div
         className="hidden md:grid grid-cols-7 lg:grid-cols-6 gap-3 bg-[#ececf8] p-2 rounded-lg overflow-hidden"
-        style={{ height: "calc(100vh - 20vh)" }}
-      >
+        style={{ height: "calc(100vh - 20vh)" }}>
         <div
           className={`col-span-3 lg:col-span-2 bg-white p-2 rounded-lg overflow-y-hidden flex flex-col`}
-          style={{ height: "calc(100% - 2px)" }}
-        >
+          style={{ height: "calc(100% - 2px)" }}>
           <div className="h-14">
             <div className="flex items-center justify-between relative">
               <h2 className="font-inter font-bold text-2xl">Chats</h2>
               <div
                 className={`flex items-center justify-between border-2 rounded-lg p-1 bg-white absolute ${
                   showSearchBar ? "top-0" : "-top-14"
-                } right-0 w-full transition-all duration-700`}
-              >
+                } right-0 w-full transition-all duration-700`}>
                 <input
                   onChange={(e) => setSearchValue(e.target.value)}
                   type="text"
@@ -139,8 +136,7 @@ const Communication = () => {
                   onClick={() => {
                     setShowSearchBar(false);
                     setSearchValue(null);
-                  }}
-                >
+                  }}>
                   <RxCross2 className="text-lg" />
                 </button>
               </div>
@@ -149,8 +145,7 @@ const Communication = () => {
                 className={`bg-primary text-white p-1.5 rounded-lg transition-all duration-700 ${
                   showSearchBar ? "-mt-32" : "mt-0"
                 }`}
-                onClick={() => setShowSearchBar(true)}
-              >
+                onClick={() => setShowSearchBar(true)}>
                 <IoIosSearch className="text-lg" />
               </button>
             </div>
@@ -162,8 +157,7 @@ const Communication = () => {
             className={`p-2 -mt-3 rounded-b-lg space-y-3 h-auto ${
               searchValue ? "block" : "hidden"
             }`}
-            style={{ boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)" }}
-          >
+            style={{ boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)" }}>
             {searchedEmployees && searchedEmployees?.length > 0 ? (
               searchedEmployees?.map((employee) => (
                 <div
@@ -174,8 +168,7 @@ const Communication = () => {
                     setSearchValue(null);
                   }}
                   key={employee._id}
-                  className={`flex gap-3 items-center cursor-pointer p-1 hover:bg-[#ececf8] rounded-lg transition-all`}
-                >
+                  className={`flex gap-3 items-center cursor-pointer p-1 hover:bg-[#ececf8] rounded-lg transition-all`}>
                   <img
                     src={employee?.image}
                     className="w-12 h-12 rounded-full"
@@ -209,8 +202,7 @@ const Communication = () => {
                   onClick={() => {
                     setSelectedChat(friend?._id);
                     setSelectedUserEmail(friend?.email);
-                  }}
-                >
+                  }}>
                   <img
                     src={friend?.image}
                     className="w-12 h-12 rounded-full"
@@ -238,8 +230,7 @@ const Communication = () => {
                   onClick={() => {
                     setSelectedChat(friend?._id);
                     setSelectedUserEmail(friend?.email);
-                  }}
-                >
+                  }}>
                   <img
                     src={friend?.image}
                     className="w-12 h-12 rounded-full"
@@ -267,8 +258,7 @@ const Communication = () => {
         ) : (
           <div
             className="col-span-4 bg-white rounded-lg relative overflow-y-hidden flex flex-col justify-between"
-            style={{ height: "calc(100% - 2px)" }}
-          >
+            style={{ height: "calc(100% - 2px)" }}>
             <div className="h-20">
               <div className={`flex gap-3 items-center p-3`}>
                 <img
@@ -307,15 +297,13 @@ const Communication = () => {
                       message.sender === user?.email
                         ? "justify-end"
                         : "justify-srart"
-                    }`}
-                  >
+                    }`}>
                     <div
                       className={`mt-1.5 px-2 py-1 rounded-lg max-w-3/4 ${
                         message.sender === user?.email
                           ? "bg-[#c7e3f6]"
                           : "bg-[#c7c5eb]"
-                      }`}
-                    >
+                      }`}>
                       <span className="font-medium font-inter">
                         {message.message}
                       </span>
@@ -337,8 +325,7 @@ const Communication = () => {
                 socket={socket}
                 selectedUserEmail={selectedUserEmail}
                 setMessages={setMessages}
-                messages={messages}
-              ></MessageForm>
+                messages={messages}></MessageForm>
             </div>
           </div>
         )}
@@ -360,8 +347,7 @@ const Communication = () => {
           selectedEmployee={selectedEmployee}
           messages={messages}
           user={user}
-          selectedUserEmail={selectedUserEmail}
-        ></CommunicationForMobile>
+          selectedUserEmail={selectedUserEmail}></CommunicationForMobile>
       </div>
     </div>
   );

@@ -1,27 +1,6 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
-import useAxiosPublic from "../../../../hooks/useAxiosPublic";
-import toast from "react-hot-toast";
-const AllUsersTable = ({ user, idx, refetch }) => {
-  const [newRole, setNewRole] = useState(user?.role);
-  const axiosPublic = useAxiosPublic();
 
-  const handleChangeRole = (e) => {
-    const updatedRole = e.target.value;
-    axiosPublic
-      .put(`/user-role/${user._id}`, { role: updatedRole })
-      .then((res) => {
-        if (res.data.modifiedCount > 0) {
-          toast.success(`Role set to ${updatedRole}`);
-          setNewRole(updatedRole);
-          refetch();
-        }
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      });
-  };
-
+const AllUsersTable = ({ user, idx }) => {
   return (
     <tr className="border-b-2">
       <td className="text-left font-semibold">{idx + 1}</td>
@@ -36,18 +15,6 @@ const AllUsersTable = ({ user, idx, refetch }) => {
       </td>
       <td className="text-left">{user?.name}</td>
       <td className="text-left">{user?.email}</td>
-      <td className="font-bold">
-        <select
-          onChange={handleChangeRole}
-          className="py-2 rounded-lg hover:cursor-pointer text-left"
-          defaultValue={newRole}
-          name=""
-          id="">
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-          <option value="employee">Employee</option>
-        </select>
-      </td>
     </tr>
   );
 };

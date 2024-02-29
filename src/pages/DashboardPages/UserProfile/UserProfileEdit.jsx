@@ -40,17 +40,13 @@ const UserProfileEdit = () => {
   //   });
   // }, [user?.email, setUsers, axiosSecure]);
 
-
-const {data:users, isFetching} = useQuery({
-  queryKey: ['userAllInformations'],
-  queryFn: async() => {
-    const result = await axiosSecure.get(`/users/${user?.email}`);
-    return result.data;
-  }
-})
-
-
-
+  const { data: users, isFetching } = useQuery({
+    queryKey: ["userAllInformations"],
+    queryFn: async () => {
+      const result = await axiosSecure.get(`/users/${user?.email}`);
+      return result.data;
+    },
+  });
 
   // Form Summit
   const onSubmit = async (data) => {
@@ -91,7 +87,7 @@ const {data:users, isFetching} = useQuery({
     console.log(userInfo);
     console.log(users);
 
-    // https://unity-spark-server.onrender.com/users/${user?.email
+    // http://localhost:5000/users/${user?.email
 
     axiosSecure
       .put(`/users/${user?.email}`, userInfo)
@@ -109,13 +105,11 @@ const {data:users, isFetching} = useQuery({
       });
   };
 
-
-  if(isFetching){
-    return <UserProfileEditSkeleton></UserProfileEditSkeleton>
+  if (isFetching) {
+    return <UserProfileEditSkeleton></UserProfileEditSkeleton>;
   }
 
-
-  console.log('check1124',users?.skills);
+  console.log("check1124", users?.skills);
   return (
     <div>
       <div className="user_profile_container">
@@ -143,8 +137,7 @@ const {data:users, isFetching} = useQuery({
           <div>
             <Link
               to="/dashboard/user-profile"
-              className="edit_btn !text-red-500 hover:!text-white !border-red-600 hover:!border-red-600 hover:!bg-red-600"
-            >
+              className="edit_btn !text-red-500 hover:!text-white !border-red-600 hover:!border-red-600 hover:!bg-red-600">
               <span> X Cancel </span>
             </Link>
           </div>
@@ -183,8 +176,7 @@ const {data:users, isFetching} = useQuery({
               </span>
               <label
                 className="font-semibold w-full absolute bottom-0   text-white cursor-pointer font-inter text-base px-8 py-2.5 bg-primary rounded-md transition-all duration-500 mt-1 mb-0.5"
-                htmlFor="user_photo"
-              >
+                htmlFor="user_photo">
                 <div className="flex justify-center items-center gap-4">
                   {" "}
                   {/* <img className="w-5 h-5" src={download_icon} alt="" />{" "} */}
@@ -226,7 +218,9 @@ const {data:users, isFetching} = useQuery({
           {/* phone Number*/}
           <label>
             <div className="py-1">
-              <span className="font-semibold text-gray-600 text-base font-inter">Phone :</span>
+              <span className="font-semibold text-gray-600 text-base font-inter">
+                Phone :
+              </span>
             </div>
             <input
               type="number"
@@ -280,7 +274,10 @@ const {data:users, isFetching} = useQuery({
           {/* Age field */}
           <label>
             <div className="py-1">
-              <span className="font-semibold text-gray-600 text-base font-inter"> Your Age</span>
+              <span className="font-semibold text-gray-600 text-base font-inter">
+                {" "}
+                Your Age
+              </span>
             </div>
             <input
               type="number"
@@ -303,8 +300,7 @@ const {data:users, isFetching} = useQuery({
 
             <select
               className="w-full py-3 mt-2 border text-base rounded-lg pl-2"
-              {...register("gender")}
-            >
+              {...register("gender")}>
               <option className="text-base"> {users?.gender} </option>
               <option className="text-base" value="male">
                 Male
@@ -367,8 +363,7 @@ const {data:users, isFetching} = useQuery({
 
             <select
               className="w-full py-3 mt-2 text-base border rounded-lg pl-2"
-              {...register("preference")}
-            >
+              {...register("preference")}>
               <option> {users?.job_preference} </option>
               <option value="Remote">Remote</option>
               <option value="On-site">On-site</option>
@@ -388,8 +383,7 @@ const {data:users, isFetching} = useQuery({
 
             <select
               className="w-full py-3 mt-2 text-base border rounded-lg pl-2"
-              {...register("time_preference")}
-            >
+              {...register("time_preference")}>
               <option> {users?.time_preference} </option>
               <option value="intern">intern</option>
               <option value="full-time">full-time</option>
@@ -444,11 +438,11 @@ const {data:users, isFetching} = useQuery({
 
         <div className="w-48 py-3 bg-primary border-none text-white rounded-xl text-center cursor-pointer flex justify-center items-center">
           {updateLoading ? (
-
-              <span className="loading loading-spinner loading-md "></span>
-
+            <span className="loading loading-spinner loading-md "></span>
           ) : (
-            <button className="text-base font-semibold" type="submit">Update</button>
+            <button className="text-base font-semibold" type="submit">
+              Update
+            </button>
           )}
         </div>
       </form>
