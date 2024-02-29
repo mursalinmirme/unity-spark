@@ -75,7 +75,7 @@ Follow these easy steps to get Unity Spark up and running on your local machine:
      ```bash
      npm run dev
      ```
-   - Open your web browser and go to [https://unity-spark-server.onrender.com](https://unity-spark-server.onrender.com) to view the application.
+   - Open your web browser and go to [http://localhost:5000](http://localhost:5000) to view the application.
 
 ## Credits - Team Code Wizards
 
