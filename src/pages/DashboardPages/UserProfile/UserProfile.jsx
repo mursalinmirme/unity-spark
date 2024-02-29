@@ -38,18 +38,18 @@ const UserProfile = () => {
         ) : (
           <CgProfile className="text-3xl" />
         )}
-        <div className="flex flex-col md:flex-row justify-between w-full">
+        <div className="flex justify-between w-full">
           <div>
             <h2>{users?.name}</h2>
             <h3>{users?.email}</h3>
           </div>
           <div className="flex gap-3 items-center relative">
-            {/* <button
+            <button
               onClick={() => setOpenBookmark(!openBookmark)}
               className="py-1 px-1.5 rounded-lg border-2 border-primary hover:bg-primary hover:text-white transition-all duration-500"
             >
               <TbBookmark className="text-xl" />
-            </button> */}
+            </button>
 
             <Link to="/dashboard/user-profile-edit" className="edit_btn">
               <span>Edit Info</span>
@@ -79,10 +79,10 @@ const UserProfile = () => {
 
       {/** Input Form Area  */}
 
-      <div className="border-2 p-3 md:p-5 rounded-xl mt-8 ">
-        <div className="grid md:grid-cols-2 gap-2 mt-0.5">
+      <div className="border-2 p-5 rounded-xl mt-8">
+        <div className="grid md:grid-cols-2 gap-2">
           {/* Email field */}
-          <label className="space-y-0.5">
+          <label>
             <div className="">
               <span className="font-semibold text-gray-700 text-base font-inter">Email :</span>
             </div>
@@ -91,7 +91,7 @@ const UserProfile = () => {
           {/* email field End */}
 
           {/* phone Number*/}
-          <label className="space-y-0.5">
+          <label>
             <div className="">
               <span className="font-semibold text-gray-700 text-base font-inte">Phone :</span>
             </div>
@@ -100,7 +100,7 @@ const UserProfile = () => {
         </div>
 
         {/**Second Two Part */}
-        <div className="grid md:grid-cols-2 gap-2 mt-0.5">
+        <div className="grid md:grid-cols-2 gap-2">
           {/* Current Address field */}
           <label>
             <div className="pt-1">
@@ -124,7 +124,7 @@ const UserProfile = () => {
         </div>
 
         {/**Three Two Part */}
-        <div className="grid md:grid-cols-2 gap-2 mt-0.5">
+        <div className="grid md:grid-cols-2 gap-2">
           {/* Age field */}
           <label>
             <div className="pt-1">
@@ -144,7 +144,7 @@ const UserProfile = () => {
         </div>
 
         {/**Four Two Part */}
-        <div className="grid md:grid-cols-2 gap-2 mt-0.5">
+        <div className="grid md:grid-cols-2 gap-2">
           {/* name field */}
           <label>
             <div className="pt-1">
@@ -166,7 +166,7 @@ const UserProfile = () => {
         </div>
 
         {/**five Two Part */}
-        <div className="grid md:grid-cols-2 gap-2 mt-0.5">
+        <div className="grid md:grid-cols-2 gap-2">
           {/* Job Preference field */}
           <label>
             <div className="pt-1">
@@ -189,7 +189,7 @@ const UserProfile = () => {
         </div>
 
         {/**Six Two Part */}
-        <div className="grid md:grid-cols-2 gap-2 mt-0.5">
+        <div className="grid md:grid-cols-2 gap-2">
           {/* Skills field */}
           <label>
             <div className="pt-1 mb-2">

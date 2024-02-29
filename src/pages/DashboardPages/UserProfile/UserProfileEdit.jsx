@@ -2,12 +2,12 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import { useQuery } from "@tanstack/react-query";
 import { useContext, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import toast from "react-hot-toast";
-import { CgProfile } from "react-icons/cg";
-import { SlCloudUpload } from "react-icons/sl";
 import { Link, useNavigate } from "react-router-dom";
+import { SlCloudUpload } from "react-icons/sl";
 import Select from "react-select";
+import { CgProfile } from "react-icons/cg";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import toast from "react-hot-toast";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import UserProfileEditSkeleton from "./UserProfileEditSkeleton";
@@ -30,14 +30,6 @@ const UserProfileEdit = () => {
     { value: "MySQL", label: "MySQL" },
     { value: "Mongoose", label: "Mongoose" },
   ];
-
-  // const [users, setUsers] = useState(null);
-  // // User Data Get
-  // useEffect(() => {
-  //   axiosSecure.get(`/users/${user?.email}`).then((res) => {
-  //     setUsers(res?.data);
-  //   });
-  // }, [user?.email, setUsers, axiosSecure]);
 
   const { data: users, isFetching } = useQuery({
     queryKey: ["userAllInformations"],
@@ -108,7 +100,6 @@ const UserProfileEdit = () => {
     return <UserProfileEditSkeleton></UserProfileEditSkeleton>;
   }
 
-  console.log("check1124", users?.skills);
   return (
     <div>
       <div className="user_profile_container">
@@ -194,7 +185,7 @@ const UserProfileEdit = () => {
           </label>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-3">
+        <div className="grid md:grid-cols-2 gap-2">
           {/* Email field */}
           <label>
             <div className="py-1">
@@ -232,7 +223,7 @@ const UserProfileEdit = () => {
         </div>
 
         {/**Second Two Part */}
-        <div className="grid md:grid-cols-2 gap-3">
+        <div className="grid md:grid-cols-2 gap-2">
           {/* Current Address field */}
           <label>
             <div className="py-1">
@@ -269,7 +260,7 @@ const UserProfileEdit = () => {
         </div>
 
         {/**Three Two Part */}
-        <div className="grid md:grid-cols-2 gap-3">
+        <div className="grid md:grid-cols-2 gap-2">
           {/* Age field */}
           <label>
             <div className="py-1">
@@ -312,7 +303,7 @@ const UserProfileEdit = () => {
         </div>
 
         {/**Four Two Part */}
-        <div className="grid md:grid-cols-2 gap-3">
+        <div className="grid md:grid-cols-2 gap-2">
           {/* Job Preference field */}
           <label>
             <div className="py-1">
@@ -350,7 +341,7 @@ const UserProfileEdit = () => {
         </div>
 
         {/**five Two Part */}
-        <div className="grid md:grid-cols-2 gap-3">
+        <div className="grid md:grid-cols-2 gap-2">
           {/* Job Preference field */}
           <label>
             <div className="py-1">
@@ -426,14 +417,15 @@ const UserProfileEdit = () => {
               </span>
             </div>
             <input
+              className="text-base py-2.5 text-black"
+              id="user_Resume"
               type="text"
               {...register("resume")}
               placeholder="Please share your resume drive link"
               defaultValue={users?.resume_link}
-              className="text-base py-2.5 text-black"
             />
           </label>
-        </div>
+        </div> 
 
         <div className="w-48 py-3 bg-primary border-none text-white rounded-xl text-center cursor-pointer flex justify-center items-center">
           {updateLoading ? (

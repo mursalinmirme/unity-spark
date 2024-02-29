@@ -3,7 +3,7 @@ import { BiConversation, BiHomeAlt2 } from "react-icons/bi";
 import { BsChatText } from "react-icons/bs";
 import { FaAccessibleIcon, FaIntercom } from "react-icons/fa";
 import { VscDiffAdded } from "react-icons/vsc";
-import { GrDocumentPerformance, GrUserWorker } from "react-icons/gr";
+import { GrAnnounce, GrDocumentPerformance, GrUserWorker } from "react-icons/gr";
 import { HiBars3BottomRight } from "react-icons/hi2";
 import { IoIosArrowForward } from "react-icons/io";
 import { IoDocumentOutline } from "react-icons/io5";
@@ -23,7 +23,7 @@ import { GrBlog } from "react-icons/gr";
 import { GrUserManager } from "react-icons/gr";
 import { RiGraduationCapLine } from "react-icons/ri";
 import { LuPresentation } from "react-icons/lu";
-import { GrAnnounce } from "react-icons/gr";
+
 import "./dashboard.css";
 import goToHome from "../../assets/Home.gif";
 const Dashboard = () => {

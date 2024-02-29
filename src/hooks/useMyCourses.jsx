@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 const useMyCourses = () => {
     const axiosPublic = useAxiosPublic()
     const {user} = useContext(AuthContext)
-    const { data: my_course = [], isFetching} = useQuery({
+    const { data: my_course = []} = useQuery({
         queryKey: ["my_courseAll"],
         queryFn: async () => {
           const res = await axiosPublic.get(`/my_course/${user?.email}`);
@@ -15,7 +15,7 @@ const useMyCourses = () => {
         },
     });
 
-    return [my_course, isFetching]
+    return [my_course]
 };
 
 export default useMyCourses;
