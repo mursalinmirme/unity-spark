@@ -1,15 +1,17 @@
-import BlogsBanner from "./BlogsBanner";
-import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { useState } from "react";
 import Loading from "../components/Loading/Loading";
 import BlogCommonCard from "./BlogCommonCard";
-import { useState } from "react";
+import BlogsBanner from "./BlogsBanner";
 
 const Blogs = () => {
   const { data: allBlogs = [], isPending } = useQuery({
     queryKey: ["all_blogs"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:5000/blogs");
+      const res = await axios.get(
+        "https://unity-spark-server.onrender.com/blogs"
+      );
       return res.data;
     },
   });
@@ -54,7 +56,8 @@ const Blogs = () => {
                 onClick={() => {
                   setSlicedBlog(slicedBlog + 5);
                 }}
-                className="nbtn">
+                className="nbtn"
+              >
                 See More
               </button>
             </div>
