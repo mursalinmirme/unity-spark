@@ -10,10 +10,12 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import { MdDone } from "react-icons/md";
 import { IoAdd } from "react-icons/io5";
+import ProgressBar from "@ramonak/react-progress-bar";
 const TaskManagement = () => {
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
   const [currentId, setcurrentId] = useState(null);
+  const [modalShowId, setModalShowId] = useState(null);
   const [selectedEmployees, setSelectedEmployees] = useState();
 
   const {
@@ -24,7 +26,12 @@ const TaskManagement = () => {
     queryKey: ["tasks"],
     queryFn: async () => {
       const res = await axiosPublic.get("/tasks");
-      return res.data;
+      // console.log(res?.data?.employees);
+      // const checkedTasker = res?.data.employees
+      //   .filter((item) => item.status === "complete")
+      //   .map((task) => task._id);
+      // console.log("the cheked usersa are", checkedTasker);
+      return res?.data;
     },
   });
 
@@ -42,6 +49,7 @@ const TaskManagement = () => {
     queryKey: ["employees"],
     queryFn: async () => {
       const res = await axiosSecure.get("/employees");
+
       return res.data;
     },
   });
@@ -60,8 +68,7 @@ const TaskManagement = () => {
       task_name: data.taskName || tasksId?.task_name,
       starts_date: data.startDate || tasksId?.start_date,
       end_date: data.endDate || tasksId?.end_date,
-      employees:
-        selectedEmployees.length > 0 ? selectedEmployees : tasksId.employees,
+      employees: selectedEmployees,
     };
     console.log(updatedTask);
     axiosPublic.put(`/tasks/${currentId}`, updatedTask).then((res) => {
@@ -69,10 +76,40 @@ const TaskManagement = () => {
         toast.success("Task Updated");
         reset();
         refetch();
-        taskIdRefetch();
+        // taskIdRefetch();
         dataRefetch();
       }
     });
+  };
+
+  const hanleModalShow = (id) => {
+    document.getElementById("my_modal_4").showModal();
+    setcurrentId(id);
+    taskIdRefetch();
+  };
+
+  const handleRunningProgress = (id, status) => {
+    console.log(id, status);
+    // const index = selectedEmployees.indexOf(id);
+    // if (index === -1) {
+    //   setSelectedEmployees([...selectedEmployees, id]);
+    // } else {
+    //   const updatedSelectedEmployees = [...selectedEmployees];
+    //   updatedSelectedEmployees.splice(index, 1);
+    //   setSelectedEmployees(updatedSelectedEmployees);
+    // }
+
+    // axiosPublic
+    //   .put(`/tasks/${id}`, {
+    //     currentTaskId: myRunningTasks?._id,
+    //   })
+    //   .then((res) => {
+    //     console.log(res.data);
+    //     refetch();
+    //   })
+    //   .catch((err) => {
+    //     console.log(err.message);
+    //   });
   };
 
   const handleDelete = (id) => {
@@ -98,6 +135,7 @@ const TaskManagement = () => {
   const handleEditTask = (id) => {
     document.getElementById("my_modal_3").showModal();
     setcurrentId(id);
+    taskIdRefetch();
   };
 
   const SelectUnselectButton = ({ item }) => {
@@ -144,7 +182,7 @@ const TaskManagement = () => {
   if (isFetching) {
     return (
       <div>
-        <h1 className="font-bold text-3xl mb-7">Task</h1>
+        <h1 className="font-bold text-3xl mb-7">Tasks</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[...Array(6)].map((_, index) => (
             <div key={index} className="border-2 border-gray-300 p-5">
@@ -184,6 +222,7 @@ const TaskManagement = () => {
             item={item}
             handleEditTask={handleEditTask}
             handleDelete={handleDelete}
+            hanleModalShow={hanleModalShow}
           ></TaskManagementCards>
         ))}
         <dialog id="my_modal_3" className="modal">
@@ -205,7 +244,7 @@ const TaskManagement = () => {
                   </div>
                   <input
                     type="text"
-                    defaultValue={tasksId.task_name}
+                    defaultValue={tasksId?.task_name}
                     {...register("taskName")}
                     className="py-3 text-[14px]"
                     required
@@ -223,7 +262,7 @@ const TaskManagement = () => {
                   </div>
                   <input
                     type="date"
-                    defaultValue={tasksId.start_date}
+                    defaultValue={tasksId?.start_date}
                     {...register("startDate")}
                     placeholder="Please Add Event Name"
                     className="py-3 text-[14px]"
@@ -327,6 +366,67 @@ const TaskManagement = () => {
                 />
               </div>
             </form>
+          </div>
+        </dialog>
+
+        <dialog id={"my_modal_4"} className="modal">
+          <div className="modal-box">
+            <form method="dialog">
+              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-red-500">
+                ✕
+              </button>
+            </form>
+            <div>
+              <h2 className="text-lg font-bold">{tasksId?.task_name}</h2>
+              <div className="mt-4 md:flex justify-between items-center gap-2 md:gap-6 space-y-2 md:space-y-0">
+                <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold flex">
+                  <span className="">From: {tasksId?.start_date}</span>{" "}
+                </span>
+                <span>
+                  {/* <FaArrowRightLong className="text-base md:text-xl text-primary"></FaArrowRightLong> */}
+                </span>
+                <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold flex">
+                  <span className="">To: {tasksId?.end_date}</span>
+                </span>
+              </div>
+              <div className="mt-4">
+                <h2 className="text-[18px] font-bold mb-2">Work Progress</h2>
+
+                <ProgressBar
+                  completed={50}
+                  bgColor="#433ebe"
+                  height="14px"
+                  baseBgColor="#e3e2f5"
+                  labelColor="#ffffff"
+                  labelSize="12px"
+                  maxCompleted={100}
+                  animateOnRender
+                />
+              </div>
+
+              <div className="my-4">
+                {tasksId?.employees?.map((employee) => (
+                  <div key={employee.id} className="form-control">
+                    <label className="label cursor-pointer justify-start gap-4">
+                      <input
+                        type="checkbox"
+                        defaultChecked={
+                          employee?.status === "complete" ? true : false
+                        }
+                        onClick={() =>
+                          handleRunningProgress(employee._id, employee?.status)
+                        }
+                        className="checkbox checkbox-primary"
+                      />
+                      <span className="label-text">{employee?.name}</span>
+                    </label>
+                  </div>
+                ))}
+              </div>
+              <div>
+                <button className="nbtn">Complete</button>
+              </div>
+            </div>
           </div>
         </dialog>
       </div>
