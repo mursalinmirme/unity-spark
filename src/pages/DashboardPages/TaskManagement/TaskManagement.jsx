@@ -16,7 +16,11 @@ const TaskManagement = () => {
   const [currentId, setcurrentId] = useState(null);
   const [selectedEmployees, setSelectedEmployees] = useState();
 
-  const { data: tasks = [], refetch } = useQuery({
+  const {
+    data: tasks = [],
+    refetch,
+    isFetching,
+  } = useQuery({
     queryKey: ["tasks"],
     queryFn: async () => {
       const res = await axiosPublic.get("/tasks");
@@ -137,6 +141,31 @@ const TaskManagement = () => {
       </div>
     );
   };
+  if (isFetching) {
+    return (
+      <div>
+        <h1 className="font-bold text-3xl mb-7">Task</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {[...Array(6)].map((_, index) => (
+            <div key={index} className="border-2 border-gray-300 p-5">
+              <div className="space-y-2">
+                <div className="skeleton w-full h-4"></div>
+                <div className="skeleton w-2/3 h-4"></div>
+              </div>
+              <div className="flex justify-between gap-5 items-center mt-5">
+                <div className="skeleton w-1/2 h-6"></div>
+                <div className="avatar-group -space-x-6 rtl:space-x-reverse">
+                  <div className="skeleton w-12 h-12 rounded-full"></div>
+                  <div className="skeleton w-12 h-12 rounded-full"></div>
+                  <div className="skeleton w-12 h-12 rounded-full"></div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>
