@@ -8,11 +8,12 @@ import { AuthContext } from "../../../../Provider/AuthProvider";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import { LuPenLine } from "react-icons/lu";
+import MyBlogsSkeleton from "./MyBlogsSkeleton";
 
 const MyBlogs = () => {
   const { user } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
-  const { data: blogs = [], refetch } = useQuery({
+  const { data: blogs = [], refetch, isFetching } = useQuery({
     queryKey: ["blogs"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/employee-blogs/${user.email}`);
@@ -52,6 +53,10 @@ const MyBlogs = () => {
         toast.error(error.message);
       });
   };
+
+  if(!isFetching){
+    return <MyBlogsSkeleton></MyBlogsSkeleton>
+  }
 
   return (
     <div>
