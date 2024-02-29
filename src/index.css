@@ -16,10 +16,10 @@ body {
 .nbtn {
   background-image: linear-gradient(
     to right,
-    #4361EE,
+    #4361ee,
     #433ebe,
     #433ebe,
-    #4361EE
+    #4361ee
   );
   background-size: 300%;
   background-position: right;
@@ -421,4 +421,8 @@ h6,
 .new_course input,
 .update_course input {
   @apply py-2 rounded-lg px-3 !mt-0 border w-full outline-none;
+}
+
+#main-nav .dropdown li:hover {
+  @apply bg-primary text-white;
 }

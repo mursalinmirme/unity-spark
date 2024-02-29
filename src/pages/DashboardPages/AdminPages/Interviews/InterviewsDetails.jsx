@@ -6,31 +6,67 @@ import { Link, useParams } from "react-router-dom";
 import useUserId from "../../../../hooks/useUserId";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import moment from "moment";
+import SkeletonInterview from "../../UserPages/Interview/SkeletonInterview";
 
 const InterviewsDetails = () => {
-    const [open, setOpen] = useState(false);
-    const axiosPublic = useAxiosPublic();
-    const {id} = useParams();
-    const [videoOpen, setVideoOpen] = useState(false);
-    const [userId] = useUserId();
-    const { data } = useQuery({
-      queryKey: ["interviewDetails"],
-      queryFn: async () => {
-        const res = await axiosPublic.get(`/interviewDetails/${id}`);
-        return res.data;
-      },
-    });
-  
-    return (
-        <div>
-          <div>
-            {/**Home Part */}
-            <div className="space-y-3">
-              <h3 className="text-[20px] font-inter font-semibold text-center">
-                {data?.date}
-              </h3>
-              <p className="text-[20px] font-inter font-semibold text-center">
-                Time : {data?.startTime} - {data?.endTime}
+  const [open, setOpen] = useState(false);
+  const axiosPublic = useAxiosPublic();
+  const { id } = useParams();
+  const [videoOpen, setVideoOpen] = useState(false);
+  const [userId] = useUserId();
+
+  // just one interView information Show
+  const { data, isFetching, isLoading } = useQuery({
+    queryKey: ["interviewDetails"],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/interviewDetails/${id}`);
+      return res.data;
+    },
+  });
+
+  const currentDate = moment().format("DD,MMMM,YYYY");
+
+  const currentTime = moment().format("h:mm A");
+
+  // if(data?.date === data?.date)
+  // console.log(data?.date, currentDate);
+
+  if (isFetching || isLoading) {
+    return <SkeletonInterview></SkeletonInterview>;
+  }
+  return (
+    <div>
+      <div>
+        {/**Home Part */}
+        <div className="space-y-3">
+          <h3 className="text-[20px] font-inter font-semibold text-center">
+            {data?.date}
+          </h3>
+          <p className="text-[20px] font-inter font-semibold text-center">
+            Time : {data?.startTime} - {data?.endTime}
+          </p>
+        </div>
+        {/**Body Part Candidate and Interviewer */}
+        <div className="mt-5px  flex lg:flex-row flex-col justify-between mt-10 gap-4 lg:gap-0">
+          <div className="w-full ">
+            <h3 className="lg:text-end text-center pr-3 text-[20px] font-inter font-semibold">
+              Candidate
+            </h3>
+
+            <div className="text-center mx-auto mt-5 pb-4">
+              <img
+                className="w-16 h-16 rounded-full mx-auto"
+                src={data?.candidateImage}
+                alt=""
+              />
+              <h2 className="text-[20px] font-semibold font-inter mt-1">
+                {" "}
+                {data?.candidateName}
+              </h2>
+              <p className="font-inter font-semibold">
+                {" "}
+                {data?.candidateEmail}{" "}
               </p>
             </div>
             {/**Body Part Candidate and Interviewer */}
@@ -121,6 +157,28 @@ const InterviewsDetails = () => {
             </div>
           </div>
 
+        <div className="text-center mt-10">
+          {data &&
+          new Date(data?.date).toDateString() ===
+            new Date(currentDate).toDateString() ? (
+            <Link to={`/dashboard/interview-call/${id}`}>
+              <button className="btn bg-primary px-7 py-1 text-white rounded-lg hover:bg-primary">
+                Ask to join
+              </button>
+            </Link>
+          ) : (
+            <Link to={`/dashboard/interview-call/${id}`}>
+              <button
+                disabled
+                className="btn bg-primary px-7 py-1 text-white rounded-lg hover:bg-primary"
+              >
+                Ask to join
+              </button>
+            </Link>
+          )}
+        </div>
+      </div>
+      </div>
       </div>
     );
 };

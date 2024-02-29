@@ -1,9 +1,9 @@
-import BlogsBanner from "./BlogsBanner";
-import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { useState } from "react";
 import Loading from "../components/Loading/Loading";
 import BlogCommonCard from "./BlogCommonCard";
-import { useState } from "react";
+import BlogsBanner from "./BlogsBanner";
 
 const Blogs = () => {
   const { data: allBlogs = [], isPending } = useQuery({
