@@ -20,15 +20,15 @@ const LeaveManagement = () => {
       return result.data;
     },
   });
+  if(isFetching){
+    return <LeaveManagementSkeleton></LeaveManagementSkeleton>
+  }
 
   return (
     <div>
-      {isFetching ? (
-        <LeaveManagementSkeleton></LeaveManagementSkeleton>
-      ) : (
         <div>
           <div className="flex justify-between items-center">
-            <h3 className="text-3xl font-semibold">Leave Requests</h3>
+            <h3 className="text-xl md:text-2xl lg:text-3xl font-semibold">My Leave Requests</h3>
 
             <Link to="/dashboard/newLeaveRequest">
               <p className="edit_btn">
@@ -37,11 +37,11 @@ const LeaveManagement = () => {
             </Link>
           </div>
 
-          <div>
+          <div className="overflow-x-auto mt-6">
             {userLeaves?.length > 0 ? (
-              <table className="table-no-border table mt-10 ">
+              <table className="table border">
                 {/* head */}
-                <thead className="bg-[#726eec] text-white text-[18px] rounded-md ">
+                <thead className="bg-[#726eec] text-white text-base rounded-md ">
                   <tr>
                     <th>Serial</th>
                     <th>Subject</th>
@@ -69,7 +69,6 @@ const LeaveManagement = () => {
             )}
           </div>
         </div>
-      )}
     </div>
   );
 };
