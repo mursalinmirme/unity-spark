@@ -9,10 +9,7 @@ const CompletedTaskCard = () => {
   const axiosPublic = useAxiosPublic();
   const { user } = useContext(AuthContext);
   // get running task of the loged in employee
-  const {
-    data: myRecentCompleteTask = {},
-    refetch: recentCompleteTaskRefetch,
-  } = useQuery({
+  const { data: myRecentCompleteTask = {}, isFetching } = useQuery({
     queryKey: ["myRecentCompleteTasks"],
     queryFn: async () => {
       const result = await axiosPublic.get(
@@ -23,11 +20,40 @@ const CompletedTaskCard = () => {
   });
 
   console.log("checked completed tasks", myRecentCompleteTask);
+
+  if (isFetching) {
+    return (
+      <div>
+        <h1 className="text-2xl font-semibold mb-3">Running Task</h1>
+        <div className="border-2 border-gray-300 p-5">
+          <div className="space-y-2">
+            <div className="skeleton w-full h-4"></div>
+            <div className="skeleton w-full h-4"></div>
+            <div className="skeleton w-2/3 h-4"></div>
+          </div>
+          <div className="flex justify-between gap-5 items-center mt-3">
+            <div className="skeleton w-1/2 h-6"></div>
+            <div className="avatar-group -space-x-6 rtl:space-x-reverse">
+              <div className="skeleton w-10 h-10 rounded-full"></div>
+              <div className="skeleton w-10 h-10 rounded-full"></div>
+              <div className="skeleton w-10 h-10 rounded-full"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-3">Completed Task</h2>
       {myRecentCompleteTask?.task_name ? (
-        <div onClick={() => document.getElementById("completed_task_modal").showModal()} className="border-2 border-[#38B000] bg-[#EBF7E5] rounded-xl px-2 md:px-5 py-2 space-y-4">
+        <div
+          onClick={() =>
+            document.getElementById("completed_task_modal").showModal()
+          }
+          className="border-2 border-[#38B000] bg-[#EBF7E5] rounded-xl px-2 md:px-5 py-2 space-y-4"
+        >
           <div className="flex items-center justify-between ">
             <div>
               <h2 className="text-lg font-bold">
@@ -101,13 +127,15 @@ const CompletedTaskCard = () => {
 
             <div className="mt-4 flex justify-between items-center gap-1 md:gap-6">
               <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold flex">
-                <span className="hidden md:block mr-1">From: </span> <span>{myRecentCompleteTask?.start_date}</span>
+                <span className="hidden md:block mr-1">From: </span>{" "}
+                <span>{myRecentCompleteTask?.start_date}</span>
               </span>
               <span>
                 <FaArrowRightLong className="text-base md:text-xl text-primary"></FaArrowRightLong>
               </span>
               <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold flex">
-               <span className="hidden md:block mr-1">To:</span><span>{myRecentCompleteTask?.end_date}</span>
+                <span className="hidden md:block mr-1">To:</span>
+                <span>{myRecentCompleteTask?.end_date}</span>
               </span>
             </div>
             <div className="mt-4">

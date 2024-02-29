@@ -93,7 +93,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="border-b-2">
+    <div className="border-b-2" id="main-nav">
       <div className="navbar py-2 max-w-[100%] md:max-w-[92%] lg:max-w-[1200px] mx-auto">
         <div className="navbar-start">
           <div className="drawer drawer-start lg:hidden">
@@ -105,8 +105,7 @@ const Navbar = () => {
             <div className="drawer-content bg-white rounded-xl flex justify-between items-center p-3">
               <label
                 htmlFor="my-drawer-12"
-                className="drawer-button hover:cursor-pointer text-2xl font-bold"
-              >
+                className="drawer-button hover:cursor-pointer text-2xl font-bold">
                 <HiMiniBars3CenterLeft />
               </label>
             </div>
@@ -114,18 +113,16 @@ const Navbar = () => {
               <label
                 htmlFor="my-drawer-12"
                 aria-label="close sidebar"
-                className="drawer-overlay"
-              ></label>
+                className="drawer-overlay"></label>
               <ul
                 className="menu p-4 min-h-full bg-base-200 text-base-content space-y-3 text-base font-medium"
-                style={{ width: "70%" }}
-              >
+                style={{ width: "70%" }}>
                 {navItem}
               </ul>
             </div>
           </div>
           <Link to="/">
-            <img src={logo} className="w-full md:w-1/2 ml-12 md:ml-0" alt="" />
+            <img src={logo} className="w-full lg:w-1/2" alt="" />
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -135,13 +132,11 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           {user?.email ? (
-            // <button onClick={SignOut} className="nbtn">Sign out </button>
             <div className="dropdown dropdown-end">
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
+                className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
                   <img alt="" src={user?.photoURL} />
                 </div>
@@ -149,11 +144,12 @@ const Navbar = () => {
               <ul
                 tabIndex={0}
                 className="menu menu-sm dropdown-content mt-3 z-50 p-2 shadow bg-base-100 rounded-box w-52"
-              >
-                <li>
+                style={{ boxShadow: "0px 0px 15px rgba(0, 0, 0, 0.2)" }}>
+                <li className="rounded-lg">
                   <Link to="dashboard/userProfile">Profile</Link>
                 </li>
-                <li>
+                <hr className="h-0.5 w-3/4 bg-slate-400 ml-3" />
+                <li className="rounded-lg">
                   <p onClick={SignOut}>Sign Out</p>
                 </li>
               </ul>

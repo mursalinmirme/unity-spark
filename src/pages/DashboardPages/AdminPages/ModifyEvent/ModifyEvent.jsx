@@ -2,8 +2,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { CiCalendar, CiClock2 } from "react-icons/ci";
 import { PiMicrophoneStageThin } from "react-icons/pi";
-import { MdEditDocument } from "react-icons/md";
-import { MdDeleteForever } from "react-icons/md";
 import { IoIosArrowDropdown, IoMdTime } from "react-icons/io";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useState } from "react";
@@ -19,7 +17,6 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 
 const ModifyEvent = () => {
-  const [isOpen, setisOpen] = useState(false);
   const [selectDate, setSelectDate] = useState(new Date());
   const [selectedStartTime, setSelectedStartTime] = useState(null);
   const [selectedEndTime, setSelectedEndTime] = useState(null);
@@ -34,6 +31,14 @@ const ModifyEvent = () => {
       return res?.data;
     },
   });
+  const [isOpenArray, setIsOpenArray] = useState(events.map(() => false));
+
+  const setCardOpen = (index, value) => {
+    const newArray = [...isOpenArray];
+    newArray[index] = value;
+    setIsOpenArray(newArray);
+    
+  };
   const { data: eventsId = [] } = useQuery({
     queryKey: ["eventsId", currentId],
     enabled: !!currentId,
@@ -130,20 +135,21 @@ const ModifyEvent = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-items-center gap-5">
-      {events.map((items) => (
-        <div
-          key={items._id}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  justify-items-center gap-5">
+      {events.map((items , index) => (
+       <div   key={items._id}>
+         <div
+        
           className="max-w-[375px] bg-white border border-[#433EBE] rounded-lg my-5 relative"
         >
-          <IoIosArrowDropdown
+           <IoIosArrowDropdown
             className={`absolute top-7 text-2xl font-medium right-1 transition-all duration-300 ${
-              isOpen ? "rotate-180" : "rotate-0"
+              isOpenArray[index] ? "rotate-180" : "rotate-0"
             }`}
-            onClick={() => setisOpen(!isOpen)}
+            onClick={() => setCardOpen(index, !isOpenArray[index])}
           />
           <h1 className="font-semibold text-[23px] p-5">{items?.eventName}</h1>
-          <div className={`${isOpen ? "block" : "hidden"}`}>
+          <div className={`${isOpenArray[index] ? "block" : "hidden"}`}>
             <div className="p-5 space-y-3">
               <h1 className="text-xl font-medium flex  items-center gap-5">
                 <CiClock2 className="text-2xl"></CiClock2>
@@ -174,6 +180,7 @@ const ModifyEvent = () => {
             </div>
           </div>
         </div>
+       </div>
       ))}
       <dialog id="my_modal_3" className="modal">
         <div className="modal-box min-w-[60%]">

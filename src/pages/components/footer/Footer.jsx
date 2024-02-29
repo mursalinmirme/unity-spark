@@ -57,7 +57,7 @@ const Footer = () => {
         <nav onClick={newSystem}>
           <header>Legal</header>
           <Link to="/termsCondition">Terms of Condition </Link>
-          <Link to="/privacyPolicy">Privacy policy</Link>
+          <Link to="/privacy-policy">Privacy policy</Link>
           <Link to="/disclaimer">Disclaimer</Link>
           <Link to="/accessibility">Accessibility Statement</Link>
         </nav>

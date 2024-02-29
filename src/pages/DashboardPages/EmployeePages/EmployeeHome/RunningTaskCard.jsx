@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import { FaArrowRightLong } from "react-icons/fa6";
+import moment from "moment";
 const RunningTaskCard = () => {
   const [selectedEmployees, setSelectedEmployees] = useState([]);
   const axiosPublic = useAxiosPublic();
@@ -11,7 +12,11 @@ const RunningTaskCard = () => {
   console.log(user?.email);
 
   // get running task of the loged in employee
-  const { data: myRunningTasks = {}, refetch } = useQuery({
+  const {
+    data: myRunningTasks = {},
+    refetch,
+    isFetching,
+  } = useQuery({
     queryKey: ["myRunningTasks"],
     queryFn: async () => {
       const result = await axiosPublic.get(`/my-running-task/${user?.email}`);
@@ -24,6 +29,10 @@ const RunningTaskCard = () => {
     },
   });
 
+  const startDate = moment(myRunningTasks?.start_date);
+  const endDate = moment(myRunningTasks?.end_date);
+  const formattedStartDate = startDate.format("DD MMM");
+  const formattedEndDate = endDate.format("DD MMM");
 
   const handleTaskOpenModal = (e) => {
     document.getElementById("modal_running").showModal();
@@ -54,8 +63,30 @@ const RunningTaskCard = () => {
 
   const progressTotal =
     selectedEmployees.length * (100 / myRunningTasks?.employees?.length);
-
   const progress = progressTotal.toFixed();
+
+  if (isFetching) {
+    return (
+      <div>
+        <h1 className="text-2xl font-semibold mb-3">Running Task</h1>
+        <div className="border-2 border-gray-300 p-5">
+          <div className="space-y-2">
+            <div className="skeleton w-full h-4"></div>
+            <div className="skeleton w-full h-4"></div>
+            <div className="skeleton w-2/3 h-4"></div>
+          </div>
+          <div className="flex justify-between gap-5 items-center mt-3">
+            <div className="skeleton w-1/2 h-6"></div>
+            <div className="avatar-group -space-x-6 rtl:space-x-reverse">
+              <div className="skeleton w-10 h-10 rounded-full"></div>
+              <div className="skeleton w-10 h-10 rounded-full"></div>
+              <div className="skeleton w-10 h-10 rounded-full"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -73,9 +104,8 @@ const RunningTaskCard = () => {
           <div className="flex flex-col-reverse md:flex-row justify-between items-center py-2">
             <div className="mt-3 md:mt-0">
               <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold">
-                {myRunningTasks?.start_date}{" "}
-                <span className="text-2xl font-bold">-</span>{" "}
-                {myRunningTasks?.end_date}
+                {formattedStartDate}{" "}
+                <span className="text-2xl font-bold">-</span> {formattedEndDate}
               </span>
             </div>
 
@@ -131,13 +161,15 @@ const RunningTaskCard = () => {
 
             <div className="mt-4 flex justify-between items-center gap-2 md:gap-6">
               <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold flex">
-                <span className="hidden md:block">From:</span> <span>{myRunningTasks?.start_date}</span>
+                <span className="hidden md:block">From:</span>{" "}
+                <span>{myRunningTasks?.start_date}</span>
               </span>
               <span>
                 <FaArrowRightLong className="text-base md:text-xl text-primary"></FaArrowRightLong>
               </span>
               <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold flex">
-                <span className="hidden md:block">To: </span><span>{myRunningTasks?.end_date}</span>
+                <span className="hidden md:block">To: </span>
+                <span>{myRunningTasks?.end_date}</span>
               </span>
             </div>
             <div className="mt-4">
