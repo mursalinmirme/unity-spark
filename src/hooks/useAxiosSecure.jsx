@@ -8,7 +8,7 @@ const useAxiosSecure = () => {
   const navigate = useNavigate();
   const { loginOut } = useContext(AuthContext);
   const axiosSecure = axios.create({
-    baseURL: "https://unity-spark-server.onrender.com",
+    baseURL: "http://localhost:5000",
   });
 
   axiosSecure.interceptors.request.use(

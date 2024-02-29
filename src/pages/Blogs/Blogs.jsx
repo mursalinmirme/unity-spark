@@ -9,9 +9,7 @@ const Blogs = () => {
   const { data: allBlogs = [], isPending } = useQuery({
     queryKey: ["all_blogs"],
     queryFn: async () => {
-      const res = await axios.get(
-        "https://unity-spark-server.onrender.com/blogs"
-      );
+      const res = await axios.get("http://localhost:5000/blogs");
       return res.data;
     },
   });
