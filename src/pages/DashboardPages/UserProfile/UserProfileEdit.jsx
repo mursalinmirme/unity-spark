@@ -9,6 +9,9 @@ import Select from "react-select";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import Loading from "../../components/Loading/Loading";
+import UserProfileEditSkeleton from "./UserProfileEditSkeleton";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 const UserProfileEdit = () => {
   const { register, handleSubmit, control, reset } = useForm();
@@ -29,13 +32,25 @@ const UserProfileEdit = () => {
     { value: "Mongoose", label: "Mongoose" },
   ];
 
-  const [users, setUsers] = useState(null);
-  // User Data Get
-  useEffect(() => {
-    axiosSecure.get(`/users/${user?.email}`).then((res) => {
-      setUsers(res?.data);
-    });
-  }, [user?.email, setUsers, axiosSecure]);
+  // const [users, setUsers] = useState(null);
+  // // User Data Get
+  // useEffect(() => {
+  //   axiosSecure.get(`/users/${user?.email}`).then((res) => {
+  //     setUsers(res?.data);
+  //   });
+  // }, [user?.email, setUsers, axiosSecure]);
+
+
+const {data:users, isFetching} = useQuery({
+  queryKey: ['userAllInformations'],
+  queryFn: async() => {
+    const result = await axiosSecure.get(`/users/${user?.email}`);
+    return result.data;
+  }
+})
+
+
+
 
   // Form Summit
   const onSubmit = async (data) => {
@@ -75,9 +90,8 @@ const UserProfileEdit = () => {
 
     console.log(userInfo);
     console.log(users);
-  
 
-    // http://localhost:5000/users/${user?.email
+    // https://unity-spark-server.onrender.com/users/${user?.email
 
     axiosSecure
       .put(`/users/${user?.email}`, userInfo)
@@ -94,11 +108,14 @@ const UserProfileEdit = () => {
         console.log(error.message);
       });
   };
-    // get all default required ducational qualification
-    const defaultSkills = [];
-    users?.skills?.map((val) => {
-      defaultSkills.push({ value: val, label: val });
-    });
+
+
+  if(isFetching){
+    return <UserProfileEditSkeleton></UserProfileEditSkeleton>
+  }
+
+
+  console.log('check1124',users?.skills);
   return (
     <div>
       <div className="user_profile_container">
@@ -142,7 +159,7 @@ const UserProfileEdit = () => {
           {/* name field */}
           <label>
             <div className="py-1">
-              <span className="font-bold text-base font-inter">
+              <span className="font-semibold text-gray-600 text-base font-inter">
                 {" "}
                 Your Name :
               </span>
@@ -160,7 +177,7 @@ const UserProfileEdit = () => {
           {/*image field */}
           <label className="relative">
             <div className="label mb-10 md:mb-0 lg:mb-0 py-1">
-              <span className="font-bold text-base font-inter pb-4 md:pb-0 md:mb-10 lg:mb-10 ">
+              <span className="font-semibold text-gray-600 text-base font-inter pb-4 md:pb-0 md:mb-10 lg:mb-10 ">
                 {" "}
                 Your Photo :{" "}
               </span>
@@ -190,7 +207,7 @@ const UserProfileEdit = () => {
           {/* Email field */}
           <label>
             <div className="py-1">
-              <span className="font-bold text-base font-inter">
+              <span className="font-semibold text-gray-600 text-base font-inter">
                 {" "}
                 Your Email :
               </span>
@@ -209,7 +226,7 @@ const UserProfileEdit = () => {
           {/* phone Number*/}
           <label>
             <div className="py-1">
-              <span className="font-bold text-base font-inter">Phone :</span>
+              <span className="font-semibold text-gray-600 text-base font-inter">Phone :</span>
             </div>
             <input
               type="number"
@@ -226,7 +243,7 @@ const UserProfileEdit = () => {
           {/* Current Address field */}
           <label>
             <div className="py-1">
-              <span className="font-bold text-base font-inter">
+              <span className="font-semibold text-gray-600 text-base font-inter">
                 {" "}
                 Your Current Address:
               </span>
@@ -244,7 +261,7 @@ const UserProfileEdit = () => {
           {/* Permanent Address */}
           <label>
             <div className="py-1">
-              <span className="font-bold text-base font-inter">
+              <span className="font-semibold text-gray-600 text-base font-inter">
                 Permanent Address
               </span>
             </div>
@@ -263,7 +280,7 @@ const UserProfileEdit = () => {
           {/* Age field */}
           <label>
             <div className="py-1">
-              <span className="font-bold text-base font-inter"> Your Age</span>
+              <span className="font-semibold text-gray-600 text-base font-inter"> Your Age</span>
             </div>
             <input
               type="number"
@@ -278,7 +295,7 @@ const UserProfileEdit = () => {
           {/* Your Gender Select */}
           <label>
             <div className="py-1">
-              <span className="font-bold text-base font-inter">
+              <span className="font-semibold text-gray-600 text-base font-inter">
                 {" "}
                 Your Gender :
               </span>
@@ -290,10 +307,10 @@ const UserProfileEdit = () => {
             >
               <option className="text-base"> {users?.gender} </option>
               <option className="text-base" value="male">
-                male
+                Male
               </option>
               <option className="text-base" value="female">
-                female
+                Female
               </option>
             </select>
           </label>
@@ -304,7 +321,7 @@ const UserProfileEdit = () => {
           {/* Job Preference field */}
           <label>
             <div className="py-1">
-              <span className="font-bold text-base font-inter">
+              <span className="font-semibold text-gray-600 text-base font-inter">
                 {" "}
                 Your Education Level :
               </span>
@@ -322,7 +339,7 @@ const UserProfileEdit = () => {
           {/* Time Preference field */}
           <label>
             <div className="py-1">
-              <span className="font-bold text-base font-inter">
+              <span className="font-semibold text-gray-600 text-base font-inter">
                 {" "}
                 Your Institute Name
               </span>
@@ -342,7 +359,7 @@ const UserProfileEdit = () => {
           {/* Job Preference field */}
           <label>
             <div className="py-1">
-              <span className="font-bold text-base font-inter">
+              <span className="font-semibold text-gray-600 text-base font-inter">
                 {" "}
                 Your Job Preference :
               </span>
@@ -363,7 +380,7 @@ const UserProfileEdit = () => {
           {/* Time Preference field */}
           <label>
             <div className="py-1">
-              <span className="font-bold text-base font-inter">
+              <span className="font-semibold text-gray-600 text-base font-inter">
                 {" "}
                 Your Time Preference
               </span>
@@ -385,9 +402,9 @@ const UserProfileEdit = () => {
 
         {/* Skills field */}
         <div className="">
-          <label>
+          <label className="text-base">
             <div className="py-1">
-              <span className="font-bold text-base font-inter">
+              <span className="font-semibold text-gray-600 text-base font-inter">
                 {" "}
                 Your Skills :
               </span>
@@ -396,7 +413,12 @@ const UserProfileEdit = () => {
               name="skills"
               control={control}
               render={({ field }) => (
-                <Select {...field} options={skillsArray} defaultValue={defaultSkills} isMulti />
+                <Select
+                  {...field}
+                  options={skillsArray}
+                  defaultValue={users?.skills}
+                  isMulti
+                />
               )}
             />
           </label>
@@ -406,7 +428,7 @@ const UserProfileEdit = () => {
         <div>
           <label className="">
             <div className="py-1">
-              <span className="font-bold text-base font-inter">
+              <span className="font-semibold text-gray-600 text-base font-inter">
                 Your Resume
               </span>
             </div>
@@ -420,15 +442,13 @@ const UserProfileEdit = () => {
           </label>
         </div>
 
-        <div className="w-48 mt-10 bg-primary border-none text-white rounded-xl text-center cursor-pointer">
+        <div className="w-48 py-3 bg-primary border-none text-white rounded-xl text-center cursor-pointer flex justify-center items-center">
           {updateLoading ? (
-            <span className="loading loading-spinner loading-md "></span>
+
+              <span className="loading loading-spinner loading-md "></span>
+
           ) : (
-            <input
-              className="border-none cursor-pointer py-3 font-semibold text-base"
-              type="submit"
-              value="Update"
-            />
+            <button className="text-base font-semibold" type="submit">Update</button>
           )}
         </div>
       </form>

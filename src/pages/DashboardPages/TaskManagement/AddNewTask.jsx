@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import './tasks.css'
+import "./tasks.css";
 
 const AddNewTask = () => {
   const axiosSecure = useAxiosSecure();
@@ -60,9 +60,9 @@ const AddNewTask = () => {
     return (
       <div className="cursor-pointer" onClick={handleClick}>
         {isSelected ? (
-          <MdDone className="add-task-icons"/>
+          <MdDone className="add-task-icons" />
         ) : (
-          <IoAdd className="add-task-icons"/>
+          <IoAdd className="add-task-icons" />
         )}
       </div>
     );
