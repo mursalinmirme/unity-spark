@@ -166,7 +166,7 @@ const UserProfileEdit = () => {
           </label>
           {/* Name field End */}
 
-          {/*image field */}
+          {/*image field to take image*/}
           <label className="relative">
             <div className="label mb-10 md:mb-0 lg:mb-0 py-1">
               <span className="font-semibold text-gray-600 text-base font-inter pb-4 md:pb-0 md:mb-10 lg:mb-10 ">
