@@ -124,7 +124,7 @@ const {data:users, isFetching} = useQuery({
         ) : (
           <CgProfile className="text-3xl" />
         )}
-        <div className="flex justify-between w-full items-center">
+        <div className="flex flex-col md:flex-row justify-between w-full md:items-center">
           <div>
             <h2>{users?.name}</h2>
             <h3>{users?.email}</h3>
@@ -140,7 +140,7 @@ const {data:users, isFetching} = useQuery({
               animateOnRender
             />
           </div>
-          <div>
+          <div className="mt-3 md:mt-0 w-24 md:w-auto">
             <Link
               to="/dashboard/user-profile"
               className="edit_btn !text-red-500 hover:!text-white !border-red-600 hover:!border-red-600 hover:!bg-red-600"
@@ -245,7 +245,7 @@ const {data:users, isFetching} = useQuery({
             <div className="py-1">
               <span className="font-semibold text-gray-600 text-base font-inter">
                 {" "}
-                Your Current Address:
+                Current Address:
               </span>
             </div>
             <input
@@ -323,7 +323,7 @@ const {data:users, isFetching} = useQuery({
             <div className="py-1">
               <span className="font-semibold text-gray-600 text-base font-inter">
                 {" "}
-                Your Education Level :
+                Education Level :
               </span>
             </div>
             <input
@@ -341,7 +341,7 @@ const {data:users, isFetching} = useQuery({
             <div className="py-1">
               <span className="font-semibold text-gray-600 text-base font-inter">
                 {" "}
-                Your Institute Name
+                Institute Name
               </span>
             </div>
             <input
@@ -361,7 +361,7 @@ const {data:users, isFetching} = useQuery({
             <div className="py-1">
               <span className="font-semibold text-gray-600 text-base font-inter">
                 {" "}
-                Your Job Preference :
+                Job Preference :
               </span>
             </div>
 
@@ -382,7 +382,7 @@ const {data:users, isFetching} = useQuery({
             <div className="py-1">
               <span className="font-semibold text-gray-600 text-base font-inter">
                 {" "}
-                Your Time Preference
+                Time Preference
               </span>
             </div>
 
