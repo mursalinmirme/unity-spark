@@ -192,6 +192,7 @@ const Communication = () => {
             )}
           </div>
           <div className="grid gap-3 overflow-y-auto">
+            {/* MY FRIENDS LIST */}
             <h2 className="font-inter font-semibold">Your Friends</h2>
             {showSkeleton ? (
               <FriendsSkeleton></FriendsSkeleton>
@@ -224,6 +225,7 @@ const Communication = () => {
               ))
             )}
             <hr className="my-1 border border-slate-300" />
+            {/* NOT MY FRIEND LIST */}
             <h2 className="font-inter font-semibold">Make More Friends</h2>
             {showSkeleton || remainingEmployees?.length === 0 ? (
               <FriendsSkeleton></FriendsSkeleton>
@@ -297,6 +299,7 @@ const Communication = () => {
               <hr className="my-1 border border-slate-300" />
             </div>
 
+            {/* CHATS OF EMPLOYEES */}
             <div className="p-4 h-full overflow-y-auto flex flex-col-reverse">
               {showMessageSkeleton ? (
                 <MessageSkeleton></MessageSkeleton>
