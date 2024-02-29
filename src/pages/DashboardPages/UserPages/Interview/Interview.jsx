@@ -16,7 +16,7 @@ const Interview = () => {
   const [videoOpen, setVideoOpen] = useState(false);
   const [userId] = useUserId();
   const { user } = useContext(AuthContext);
-  const { data, isFetched } = useQuery({
+  const { data, isFetching, isLoading } = useQuery({
     queryKey: ["interviewsInfo"],
     enabled: !!user?.email,
     queryFn: async () => {
@@ -29,9 +29,9 @@ const Interview = () => {
 
   // let isTrue = true;
 
-  // if (isFetched) {
-  //   return <SkeletonInterview></SkeletonInterview>;
-  // }
+  if (isFetching || isLoading) {
+    return <SkeletonInterview></SkeletonInterview>;
+  }
 
   return (
     <div>
