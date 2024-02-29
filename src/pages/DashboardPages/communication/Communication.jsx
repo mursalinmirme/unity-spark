@@ -1,14 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
-import { io } from "socket.io-client";
 import { AuthContext } from "../../../Provider/AuthProvider";
-import useAdmins from "../../../hooks/useAdmins";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useEmployees from "../../../hooks/useEmployees";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import CommunicationForMobile from "./CommunicationForMobile";
+import useAdmins from "../../../hooks/useAdmins";
 import MessageForm from "./MessageForm";
-var socket;
 
 const Communication = () => {
   const [showSearchBar, setShowSearchBar] = useState(false);
@@ -34,52 +32,31 @@ const Communication = () => {
     (employee) => employee.email === selectedUserEmail
   );
 
-  useEffect(() => {
-    socket = io("https://unity-spark-server.onrender.com");
-    socket.emit("setup", user.email);
-    socket.on("connection", () => console.log("connected"));
-  }, [user]);
+    useEffect(() => {
+        setAllChatUser([...allEmployees, ...allAdmins])
+    } ,[allAdmins, allEmployees])
+    
+    useEffect(() => {
+        const timeOut = setTimeout(() => {
+            axiosSecure.get(`/chat?sender_email=${user?.email}&reciever_email=${selectedUserEmail}`)
+            .then(res => {
+                setMessages(res.data)
+            })
+        }, 200)
+    
+        return () => clearTimeout(timeOut)        
+    })
 
-  useEffect(() => {
-    setAllChatUser([...allEmployees, ...allAdmins]);
-  }, [allAdmins, allEmployees]);
+    useEffect(() => {
+        const timeOut = setTimeout(() => {
+            axiosSecure.get(`/chat-friends/${user?.email}`)
+            .then(res => {
+                setMyFriends(res.data)
+            })
+        }, 100)
 
-  const getMessages = async () => {
-    axiosSecure
-      .get(
-        `/chat?sender_email=${user?.email}&reciever_email=${selectedUserEmail}`
-      )
-      .then((res) => {
-        setMessages(res.data);
-      });
-  };
-
-  const getFriends = async () => {
-    axiosSecure.get(`/chat-friends/${user?.email}`).then((res) => {
-      setMyFriends(res.data);
-    });
-  };
-
-  useEffect(() => {
-    getMessages();
-  }, [selectedUserEmail]);
-
-  useEffect(() => {
-    getFriends();
-  });
-
-  useEffect(() => {
-    socket.on("new-message-received", (newMessage) => {
-      setMessages((prevMessages) => [newMessage, ...prevMessages]);
-
-      return () => socket.disconnect();
-    });
-
-    // Clean up the effect to avoid memory leaks
-    return () => {
-      socket.off("new-message-received");
-    };
-  });
+        return () => clearTimeout(timeOut)        
+    })
 
   useEffect(() => {
     const combinedArray = [];
@@ -334,7 +311,6 @@ const Communication = () => {
             {/* MESSAGE INPUT */}
             <div className="p-3 bg-white h-[70px]">
               <MessageForm
-                socket={socket}
                 selectedUserEmail={selectedUserEmail}
                 setMessages={setMessages}
                 messages={messages}
