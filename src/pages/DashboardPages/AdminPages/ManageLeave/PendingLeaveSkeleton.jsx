@@ -5,145 +5,145 @@ const PendingLeaveSkeleton = () => {
             <div className="skeleton w-full rounded-lg border bg-transparent p-3">
                 <div className="flex justify-between items-center  border-b pb-3">
                     <div className="flex items-center gap-3">
-                        <div className="w-14 h-14 rounded-full bg-[#efefef]">
+                        <div className="skeleton w-14 h-14 rounded-full bg-[#efefef]">
 
                         </div>
                         <div className="flex flex-col gap-3">
-                            <div className="w-48 h-4 rounded-full bg-[#efefef]"></div>
-                            <div className="w-32 h-4 rounded-full bg-[#efefef]"></div>
+                            <div className="skeleton w-48 h-4 rounded-full bg-[#efefef]"></div>
+                            <div className="skeleton w-32 h-4 rounded-full bg-[#efefef]"></div>
                         </div>
                     </div>
                     <div>
-                        <div className="w-20 h-8 rounded-full bg-[#efefef]"></div>
+                        <div className="skeleton w-20 h-8 rounded-full bg-[#efefef]"></div>
                     </div>
                 </div>
                 <div className="mt-4">
-                    <div className="w-full h-5 rounded-full bg-[#efefef]"></div>
-                    <div className="w-[60%] h-5 mt-4 rounded-full bg-[#efefef]"></div> 
+                    <div className="skeleton w-full h-5 rounded-full bg-[#efefef]"></div>
+                    <div className="skeleton w-[60%] h-5 mt-4 rounded-full bg-[#efefef]"></div> 
                 </div>
                 <div className="mt-4 flex items-center gap-5">
-                    <div className="w-24 h-8 rounded-full bg-[#efefef]"></div>
-                    <div className="w-24 h-8 rounded-full bg-[#efefef]"></div>
+                    <div className="skeleton w-24 h-8 rounded-full bg-[#efefef]"></div>
+                    <div className="skeleton w-24 h-8 rounded-full bg-[#efefef]"></div>
                 </div>
             </div>
             <div className="skeleton w-full rounded-lg border bg-transparent p-3">
                 <div className="flex justify-between items-center  border-b pb-3">
                     <div className="flex items-center gap-3">
-                        <div className="w-14 h-14 rounded-full bg-[#efefef]">
+                        <div className="skeleton w-14 h-14 rounded-full bg-[#efefef]">
 
                         </div>
                         <div className="flex flex-col gap-3">
-                            <div className="w-48 h-4 rounded-full bg-[#efefef]"></div>
-                            <div className="w-32 h-4 rounded-full bg-[#efefef]"></div>
+                            <div className="skeleton w-48 h-4 rounded-full bg-[#efefef]"></div>
+                            <div className="skeleton w-32 h-4 rounded-full bg-[#efefef]"></div>
                         </div>
                     </div>
                     <div>
-                        <div className="w-20 h-8 rounded-full bg-[#efefef]"></div>
+                        <div className="skeleton w-20 h-8 rounded-full bg-[#efefef]"></div>
                     </div>
                 </div>
                 <div className="mt-4">
-                    <div className="w-full h-5 rounded-full bg-[#efefef]"></div>
-                    <div className="w-[60%] h-5 mt-4 rounded-full bg-[#efefef]"></div> 
+                    <div className="skeleton w-full h-5 rounded-full bg-[#efefef]"></div>
+                    <div className="skeleton w-[60%] h-5 mt-4 rounded-full bg-[#efefef]"></div> 
                 </div>
                 <div className="mt-4 flex items-center gap-5">
-                    <div className="w-24 h-8 rounded-full bg-[#efefef]"></div>
-                    <div className="w-24 h-8 rounded-full bg-[#efefef]"></div>
+                    <div className="skeleton w-24 h-8 rounded-full bg-[#efefef]"></div>
+                    <div className="skeleton w-24 h-8 rounded-full bg-[#efefef]"></div>
                 </div>
             </div>
             <div className="skeleton w-full rounded-lg border bg-transparent p-3">
                 <div className="flex justify-between items-center  border-b pb-3">
                     <div className="flex items-center gap-3">
-                        <div className="w-14 h-14 rounded-full bg-[#efefef]">
+                        <div className="skeleton w-14 h-14 rounded-full bg-[#efefef]">
 
                         </div>
                         <div className="flex flex-col gap-3">
-                            <div className="w-48 h-4 rounded-full bg-[#efefef]"></div>
-                            <div className="w-32 h-4 rounded-full bg-[#efefef]"></div>
+                            <div className="skeleton w-48 h-4 rounded-full bg-[#efefef]"></div>
+                            <div className="skeleton w-32 h-4 rounded-full bg-[#efefef]"></div>
                         </div>
                     </div>
                     <div>
-                        <div className="w-20 h-8 rounded-full bg-[#efefef]"></div>
+                        <div className="skeleton w-20 h-8 rounded-full bg-[#efefef]"></div>
                     </div>
                 </div>
                 <div className="mt-4">
-                    <div className="w-full h-5 rounded-full bg-[#efefef]"></div>
-                    <div className="w-[60%] h-5 mt-4 rounded-full bg-[#efefef]"></div> 
+                    <div className="skeleton w-full h-5 rounded-full bg-[#efefef]"></div>
+                    <div className="skeleton w-[60%] h-5 mt-4 rounded-full bg-[#efefef]"></div> 
                 </div>
                 <div className="mt-4 flex items-center gap-5">
-                    <div className="w-24 h-8 rounded-full bg-[#efefef]"></div>
-                    <div className="w-24 h-8 rounded-full bg-[#efefef]"></div>
+                    <div className="skeleton w-24 h-8 rounded-full bg-[#efefef]"></div>
+                    <div className="skeleton w-24 h-8 rounded-full bg-[#efefef]"></div>
                 </div>
             </div>
             <div className="skeleton w-full rounded-lg border bg-transparent p-3">
                 <div className="flex justify-between items-center  border-b pb-3">
                     <div className="flex items-center gap-3">
-                        <div className="w-14 h-14 rounded-full bg-[#efefef]">
+                        <div className="skeleton w-14 h-14 rounded-full bg-[#efefef]">
 
                         </div>
                         <div className="flex flex-col gap-3">
-                            <div className="w-48 h-4 rounded-full bg-[#efefef]"></div>
-                            <div className="w-32 h-4 rounded-full bg-[#efefef]"></div>
+                            <div className="skeleton w-48 h-4 rounded-full bg-[#efefef]"></div>
+                            <div className="skeleton w-32 h-4 rounded-full bg-[#efefef]"></div>
                         </div>
                     </div>
                     <div>
-                        <div className="w-20 h-8 rounded-full bg-[#efefef]"></div>
+                        <div className="skeleton w-20 h-8 rounded-full bg-[#efefef]"></div>
                     </div>
                 </div>
                 <div className="mt-4">
-                    <div className="w-full h-5 rounded-full bg-[#efefef]"></div>
-                    <div className="w-[60%] h-5 mt-4 rounded-full bg-[#efefef]"></div> 
+                    <div className="skeleton w-full h-5 rounded-full bg-[#efefef]"></div>
+                    <div className="skeleton w-[60%] h-5 mt-4 rounded-full bg-[#efefef]"></div> 
                 </div>
                 <div className="mt-4 flex items-center gap-5">
-                    <div className="w-24 h-8 rounded-full bg-[#efefef]"></div>
-                    <div className="w-24 h-8 rounded-full bg-[#efefef]"></div>
+                    <div className="skeleton w-24 h-8 rounded-full bg-[#efefef]"></div>
+                    <div className="skeleton w-24 h-8 rounded-full bg-[#efefef]"></div>
                 </div>
             </div>
             <div className="skeleton w-full rounded-lg border bg-transparent p-3">
                 <div className="flex justify-between items-center  border-b pb-3">
                     <div className="flex items-center gap-3">
-                        <div className="w-14 h-14 rounded-full bg-[#efefef]">
+                        <div className="skeleton w-14 h-14 rounded-full bg-[#efefef]">
 
                         </div>
                         <div className="flex flex-col gap-3">
-                            <div className="w-48 h-4 rounded-full bg-[#efefef]"></div>
-                            <div className="w-32 h-4 rounded-full bg-[#efefef]"></div>
+                            <div className="skeleton w-48 h-4 rounded-full bg-[#efefef]"></div>
+                            <div className="skeleton w-32 h-4 rounded-full bg-[#efefef]"></div>
                         </div>
                     </div>
                     <div>
-                        <div className="w-20 h-8 rounded-full bg-[#efefef]"></div>
+                        <div className="skeleton w-20 h-8 rounded-full bg-[#efefef]"></div>
                     </div>
                 </div>
                 <div className="mt-4">
-                    <div className="w-full h-5 rounded-full bg-[#efefef]"></div>
-                    <div className="w-[60%] h-5 mt-4 rounded-full bg-[#efefef]"></div> 
+                    <div className="skeleton w-full h-5 rounded-full bg-[#efefef]"></div>
+                    <div className="skeleton w-[60%] h-5 mt-4 rounded-full bg-[#efefef]"></div> 
                 </div>
                 <div className="mt-4 flex items-center gap-5">
-                    <div className="w-24 h-8 rounded-full bg-[#efefef]"></div>
-                    <div className="w-24 h-8 rounded-full bg-[#efefef]"></div>
+                    <div className="skeleton w-24 h-8 rounded-full bg-[#efefef]"></div>
+                    <div className="skeleton w-24 h-8 rounded-full bg-[#efefef]"></div>
                 </div>
             </div>
             <div className="skeleton w-full rounded-lg border bg-transparent p-3">
                 <div className="flex justify-between items-center  border-b pb-3">
                     <div className="flex items-center gap-3">
-                        <div className="w-14 h-14 rounded-full bg-[#efefef]">
+                        <div className="skeleton w-14 h-14 rounded-full bg-[#efefef]">
 
                         </div>
                         <div className="flex flex-col gap-3">
-                            <div className="w-48 h-4 rounded-full bg-[#efefef]"></div>
-                            <div className="w-32 h-4 rounded-full bg-[#efefef]"></div>
+                            <div className="skeleton w-48 h-4 rounded-full bg-[#efefef]"></div>
+                            <div className="skeleton w-32 h-4 rounded-full bg-[#efefef]"></div>
                         </div>
                     </div>
                     <div>
-                        <div className="w-20 h-8 rounded-full bg-[#efefef]"></div>
+                        <div className="skeleton w-20 h-8 rounded-full bg-[#efefef]"></div>
                     </div>
                 </div>
                 <div className="mt-4">
-                    <div className="w-full h-5 rounded-full bg-[#efefef]"></div>
-                    <div className="w-[60%] h-5 mt-4 rounded-full bg-[#efefef]"></div> 
+                    <div className="skeleton w-full h-5 rounded-full bg-[#efefef]"></div>
+                    <div className="skeleton w-[60%] h-5 mt-4 rounded-full bg-[#efefef]"></div> 
                 </div>
                 <div className="mt-4 flex items-center gap-5">
-                    <div className="w-24 h-8 rounded-full bg-[#efefef]"></div>
-                    <div className="w-24 h-8 rounded-full bg-[#efefef]"></div>
+                    <div className="skeleton w-24 h-8 rounded-full bg-[#efefef]"></div>
+                    <div className="skeleton w-24 h-8 rounded-full bg-[#efefef]"></div>
                 </div>
             </div>
             

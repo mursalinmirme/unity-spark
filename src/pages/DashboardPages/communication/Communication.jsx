@@ -1,14 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
-import { io } from "socket.io-client";
 import { AuthContext } from "../../../Provider/AuthProvider";
-import useAdmins from "../../../hooks/useAdmins";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useEmployees from "../../../hooks/useEmployees";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import CommunicationForMobile from "./CommunicationForMobile";
+import useAdmins from "../../../hooks/useAdmins";
 import MessageForm from "./MessageForm";
-var socket;
+import FriendsSkeleton from "./FriendsSkeleton";
+import MessageSkeleton from "./MessageSkeleton";
 
 const Communication = () => {
   const [showSearchBar, setShowSearchBar] = useState(false);
@@ -23,6 +23,9 @@ const Communication = () => {
   const [messages, setMessages] = useState([]);
   const [sortedEmployees, setShortedEmployees] = useState([]);
   const [myFriends, setMyFriends] = useState([]);
+  const [showSkeleton, setShowSkeleton] = useState(true);
+  const [showMessageSkeleton, setShowMessageSkeleton] = useState(true);
+  console.log(showMessageSkeleton);
 
   const employees = allChatUser?.filter(
     (employee) => employee?.email !== user?.email
@@ -35,50 +38,47 @@ const Communication = () => {
   );
 
   useEffect(() => {
-    socket = io("http://localhost:5000");
-    socket.emit("setup", user.email);
-    socket.on("connection", () => console.log("connected"));
-  }, [user]);
-
-  useEffect(() => {
     setAllChatUser([...allEmployees, ...allAdmins]);
   }, [allAdmins, allEmployees]);
 
-  const getMessages = async () => {
-    axiosSecure
-      .get(
-        `/chat?sender_email=${user?.email}&reciever_email=${selectedUserEmail}`
-      )
-      .then((res) => {
-        setMessages(res.data);
-      });
-  };
+  useEffect(() => {
+    const timeOut = setTimeout(() => {
+      setShowSkeleton(false);
+    }, 3000);
 
-  const getFriends = async () => {
-    axiosSecure.get(`/chat-friends/${user?.email}`).then((res) => {
-      setMyFriends(res.data);
-    });
-  };
+    return () => clearTimeout(timeOut);
+  }, []);
 
   useEffect(() => {
-    getMessages();
-  }, [selectedUserEmail]);
+    const messageTimeOut = setTimeout(() => {
+      setShowMessageSkeleton(false);
+    }, 2000);
+
+    return () => clearTimeout(messageTimeOut);
+  }, [showMessageSkeleton]);
 
   useEffect(() => {
-    getFriends();
+    const timeOut = setTimeout(() => {
+      axiosSecure
+        .get(
+          `/chat?sender_email=${user?.email}&reciever_email=${selectedUserEmail}`
+        )
+        .then((res) => {
+          setMessages(res.data);
+        });
+    }, 200);
+
+    return () => clearTimeout(timeOut);
   });
 
   useEffect(() => {
-    socket.on("new-message-received", (newMessage) => {
-      setMessages((prevMessages) => [newMessage, ...prevMessages]);
+    const timeOut = setTimeout(() => {
+      axiosSecure.get(`/chat-friends/${user?.email}`).then((res) => {
+        setMyFriends(res.data);
+      });
+    }, 100);
 
-      return () => socket.disconnect();
-    });
-
-    // Clean up the effect to avoid memory leaks
-    return () => {
-      socket.off("new-message-received");
-    };
+    return () => clearTimeout(timeOut);
   });
 
   useEffect(() => {
@@ -166,6 +166,7 @@ const Communication = () => {
                     setSelectedChat(employee?._id);
                     setShowSearchBar(false);
                     setSearchValue(null);
+                    setShowMessageSkeleton(true);
                   }}
                   key={employee._id}
                   className={`flex gap-3 items-center cursor-pointer p-1 hover:bg-[#ececf8] rounded-lg transition-all`}>
@@ -192,7 +193,9 @@ const Communication = () => {
           </div>
           <div className="grid gap-3 overflow-y-auto">
             <h2 className="font-inter font-semibold">Your Friends</h2>
-            {sortedEmployees &&
+            {showSkeleton ? (
+              <FriendsSkeleton></FriendsSkeleton>
+            ) : (
               sortedEmployees?.map((friend, idx) => (
                 <div
                   key={idx}
@@ -202,6 +205,7 @@ const Communication = () => {
                   onClick={() => {
                     setSelectedChat(friend?._id);
                     setSelectedUserEmail(friend?.email);
+                    setShowMessageSkeleton(true);
                   }}>
                   <img
                     src={friend?.image}
@@ -217,10 +221,13 @@ const Communication = () => {
                     </h4>
                   </div>
                 </div>
-              ))}
+              ))
+            )}
             <hr className="my-1 border border-slate-300" />
             <h2 className="font-inter font-semibold">Make More Friends</h2>
-            {remainingEmployees &&
+            {showSkeleton || remainingEmployees?.length === 0 ? (
+              <FriendsSkeleton></FriendsSkeleton>
+            ) : (
               remainingEmployees?.map((friend, idx) => (
                 <div
                   key={idx}
@@ -230,6 +237,7 @@ const Communication = () => {
                   onClick={() => {
                     setSelectedChat(friend?._id);
                     setSelectedUserEmail(friend?.email);
+                    setShowMessageSkeleton(true);
                   }}>
                   <img
                     src={friend?.image}
@@ -245,7 +253,8 @@ const Communication = () => {
                     </h4>
                   </div>
                 </div>
-              ))}
+              ))
+            )}
           </div>
         </div>
 
@@ -289,7 +298,9 @@ const Communication = () => {
             </div>
 
             <div className="p-4 h-full overflow-y-auto flex flex-col-reverse">
-              {messages && messages.length > 0 ? (
+              {showMessageSkeleton ? (
+                <MessageSkeleton></MessageSkeleton>
+              ) : messages.length > 0 ? (
                 messages?.map((message) => (
                   <div
                     key={message._id}
@@ -322,7 +333,6 @@ const Communication = () => {
             {/* MESSAGE INPUT */}
             <div className="p-3 bg-white h-[70px]">
               <MessageForm
-                socket={socket}
                 selectedUserEmail={selectedUserEmail}
                 setMessages={setMessages}
                 messages={messages}></MessageForm>

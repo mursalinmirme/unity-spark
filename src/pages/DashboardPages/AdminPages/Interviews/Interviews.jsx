@@ -3,6 +3,7 @@ import { useContext } from "react";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import { Link } from "react-router-dom";
+import InterviewsSkeleton from "./InterviewsSkeleton";
 
 const Interviews = () => {
   const axiosPublic = useAxiosPublic();
@@ -10,7 +11,7 @@ const Interviews = () => {
 
   //   console.log("check", currentDayString);
 
-  const { data: allInterviews } = useQuery({
+  const { data: allInterviews, isFetching } = useQuery({
     queryKey: ["allInterviews"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/get-admin-interview/${user?.email}`);
@@ -28,7 +29,7 @@ const Interviews = () => {
         <table className="table border">
           {/* head */}
           <thead className="bg-primary">
-            <tr className="text-white">
+            <tr className="text-white text-sm font-normal">
               <th>SL.</th>
               <th>Candidate Name</th>
               <th>Candidate Email</th>
@@ -37,10 +38,12 @@ const Interviews = () => {
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>
+          {
+            isFetching ? <InterviewsSkeleton></InterviewsSkeleton> : 
+            <tbody>
             {/* row 1 */}
             {allInterviews?.map((interview, indx) => (
-              <tr key={interview?._id}>
+              <tr key={interview?._id} className="text-base">
                 <th>{indx + 1}</th>
                 <td className="text-left">{interview?.candidateName}</td>
                 <td className="text-left">{interview?.candidateEmail}</td>
@@ -56,6 +59,7 @@ const Interviews = () => {
               </tr>
             ))}
           </tbody>
+          }
         </table>
       </div>
     </div>

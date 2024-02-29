@@ -1,5 +1,6 @@
 import ProgressBar from "@ramonak/react-progress-bar";
-import { useContext, useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useContext, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { CgProfile } from "react-icons/cg";
@@ -9,8 +10,6 @@ import Select from "react-select";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
-import Loading from "../../components/Loading/Loading";
 import UserProfileEditSkeleton from "./UserProfileEditSkeleton";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 const UserProfileEdit = () => {
@@ -118,7 +117,7 @@ const UserProfileEdit = () => {
         ) : (
           <CgProfile className="text-3xl" />
         )}
-        <div className="flex justify-between w-full items-center">
+        <div className="flex flex-col md:flex-row justify-between w-full md:items-center">
           <div>
             <h2>{users?.name}</h2>
             <h3>{users?.email}</h3>
@@ -134,7 +133,7 @@ const UserProfileEdit = () => {
               animateOnRender
             />
           </div>
-          <div>
+          <div className="mt-3 md:mt-0 w-24 md:w-auto">
             <Link
               to="/dashboard/user-profile"
               className="edit_btn !text-red-500 hover:!text-white !border-red-600 hover:!border-red-600 hover:!bg-red-600">
@@ -239,7 +238,7 @@ const UserProfileEdit = () => {
             <div className="py-1">
               <span className="font-semibold text-gray-600 text-base font-inter">
                 {" "}
-                Your Current Address:
+                Current Address:
               </span>
             </div>
             <input
@@ -319,7 +318,7 @@ const UserProfileEdit = () => {
             <div className="py-1">
               <span className="font-semibold text-gray-600 text-base font-inter">
                 {" "}
-                Your Education Level :
+                Education Level :
               </span>
             </div>
             <input
@@ -337,7 +336,7 @@ const UserProfileEdit = () => {
             <div className="py-1">
               <span className="font-semibold text-gray-600 text-base font-inter">
                 {" "}
-                Your Institute Name
+                Institute Name
               </span>
             </div>
             <input
@@ -357,7 +356,7 @@ const UserProfileEdit = () => {
             <div className="py-1">
               <span className="font-semibold text-gray-600 text-base font-inter">
                 {" "}
-                Your Job Preference :
+                Job Preference :
               </span>
             </div>
 
@@ -377,7 +376,7 @@ const UserProfileEdit = () => {
             <div className="py-1">
               <span className="font-semibold text-gray-600 text-base font-inter">
                 {" "}
-                Your Time Preference
+                Time Preference
               </span>
             </div>
 
