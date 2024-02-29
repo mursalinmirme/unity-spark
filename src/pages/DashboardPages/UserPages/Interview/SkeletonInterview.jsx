@@ -7,7 +7,7 @@ const SkeletonInterview = () => {
       </div>
       {/**Body Part Candidate and Interviewer */}
       <div className=" mt-5px  flex lg:flex-row flex-col justify-between ">
-        <div className="w-full lg:border-r-2 border-gray-600 ">
+        <div className="w-full lg:border-r-2 border-gray-400 ">
           <div className="flex  justify-center lg:justify-end p-2 my-5">
             <p className="skeleton  w-28 h-[30px] bg-slate-400 rounded-none"></p>
           </div>

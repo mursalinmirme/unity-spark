@@ -7,6 +7,7 @@ import useUserId from "../../../../hooks/useUserId";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import moment from "moment";
+import SkeletonInterview from "../../UserPages/Interview/SkeletonInterview";
 
 const InterviewsDetails = () => {
   const [open, setOpen] = useState(false);
@@ -16,7 +17,7 @@ const InterviewsDetails = () => {
   const [userId] = useUserId();
 
   // just one interView information Show
-  const { data } = useQuery({
+  const { data, isFetching, isLoading } = useQuery({
     queryKey: ["interviewDetails"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/interviewDetails/${id}`);
@@ -25,11 +26,15 @@ const InterviewsDetails = () => {
   });
 
   const currentDate = moment().format("DD,MMMM,YYYY");
+
   const currentTime = moment().format("h:mm A");
 
   // if(data?.date === data?.date)
-  console.log(data?.startTime, currentTime);
+  // console.log(data?.date, currentDate);
 
+  if (isFetching || isLoading) {
+    return <SkeletonInterview></SkeletonInterview>;
+  }
   return (
     <div>
       <div>
@@ -131,8 +136,8 @@ const InterviewsDetails = () => {
 
         <div className="text-center mt-10">
           {data &&
-          new Date(data?.date && data?.startTime).toDateString() ===
-            new Date(currentDate && currentTime).toDateString() ? (
+          new Date(data?.date).toDateString() ===
+            new Date(currentDate).toDateString() ? (
             <Link to={`/dashboard/interview-call/${id}`}>
               <button className="btn bg-primary px-7 py-1 text-white rounded-lg hover:bg-primary">
                 Ask to join
