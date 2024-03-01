@@ -24,6 +24,7 @@ const InterviewsDetails = () => {
     },
   });
 
+  // Time
   const currentDate = moment().format("DD,MMMM,YYYY");
   const currentTime = moment().format("h:mm A");
 
