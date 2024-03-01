@@ -4,7 +4,7 @@ const Banner = () => {
   return (
     <div className="banner">
       <div className="slide_container">
-        {/* Banner Text */}
+        {/* Banner Text here */}
         <div className="space-y-3 md:space-y-6">
           <span>Hi there</span>
           <h2>Elevate Your Workforce Management</h2>
