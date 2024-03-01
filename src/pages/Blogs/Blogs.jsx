@@ -54,8 +54,7 @@ const Blogs = () => {
                 onClick={() => {
                   setSlicedBlog(slicedBlog + 5);
                 }}
-                className="nbtn"
-              >
+                className="nbtn">
                 See More
               </button>
             </div>

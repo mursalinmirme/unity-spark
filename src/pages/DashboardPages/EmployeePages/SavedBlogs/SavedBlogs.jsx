@@ -2,14 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useContext } from "react";
 import { AuthContext } from "../../../../Provider/AuthProvider";
-import Loading from "../../../components/Loading/Loading";
+
 import SavedBlogCard from "./SavedBlogCard";
+import SavedBlogSkeleton from "./SavedBlogSkeleton";
 
 const SavedBlogs = () => {
   const axiosPublic = useAxiosPublic();
   const { user } = useContext(AuthContext);
 
-  const { data: SavedBlogs = [], isLoading } = useQuery({
+  const { data: SavedBlogs = [], isFetching } = useQuery({
     queryKey: ["saved_blogs"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/bookmarked-blogs/${user?.email}`);
@@ -19,8 +20,8 @@ const SavedBlogs = () => {
 
   return (
     <div>
-      {isLoading ? (
-        <Loading></Loading>
+      {isFetching ? (
+        <SavedBlogSkeleton></SavedBlogSkeleton>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {SavedBlogs &&
