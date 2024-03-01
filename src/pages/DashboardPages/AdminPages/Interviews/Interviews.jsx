@@ -24,7 +24,7 @@ const Interviews = () => {
 
   return (
     <div>
-      <h4 className="text-xl font-bold mb-5">My Interviews Candidates</h4>
+      <h4 className="text-2xl font-semibold mb-5">My Interviews Candidates</h4>
       <div className="overflow-x-auto">
         <table className="table border">
           {/* head */}
@@ -38,28 +38,29 @@ const Interviews = () => {
               <th>Action</th>
             </tr>
           </thead>
-          {
-            isFetching ? <InterviewsSkeleton></InterviewsSkeleton> : 
+          {isFetching ? (
+            <InterviewsSkeleton></InterviewsSkeleton>
+          ) : (
             <tbody>
-            {/* row 1 */}
-            {allInterviews?.map((interview, indx) => (
-              <tr key={interview?._id} className="text-base">
-                <th>{indx + 1}</th>
-                <td className="text-left">{interview?.candidateName}</td>
-                <td className="text-left">{interview?.candidateEmail}</td>
-                <td className="text-left">{interview?.startTime}</td>
-                <td className="text-left">{interview?.date}</td>
-                <td className="">
-                  <Link to={`/dashboard/interview-details/${interview?._id}`}>
-                    <button className="bg-accent  px-3 py-2 text-white rounded-md">
-                      Details
-                    </button>
-                  </Link>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-          }
+              {/* row 1 */}
+              {allInterviews?.map((interview, indx) => (
+                <tr key={interview?._id} className="text-base">
+                  <th>{indx + 1}</th>
+                  <td className="text-left">{interview?.candidateName}</td>
+                  <td className="text-left">{interview?.candidateEmail}</td>
+                  <td className="text-left">{interview?.startTime}</td>
+                  <td className="text-left">{interview?.date}</td>
+                  <td className="">
+                    <Link to={`/dashboard/interview-details/${interview?._id}`}>
+                      <button className="bg-accent  px-3 py-2 text-white rounded-md">
+                        Details
+                      </button>
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          )}
         </table>
       </div>
     </div>

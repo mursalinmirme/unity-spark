@@ -85,7 +85,7 @@ const AddNewTask = () => {
   return (
     <div>
       <div className="flex justify-between">
-        <h1 className="font-bold text-3xl"> Add a New Task </h1>
+        <h1 className="text-2xl font-semibold"> Add a New Task </h1>
         <Link to="/dashboard/taskManagement">
           <a className="edit_btn !text-red-500 hover:!text-white !border-red-600 hover:!border-red-600 hover:!bg-red-600">
             <span> X Cancel </span>
