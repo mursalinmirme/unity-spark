@@ -81,9 +81,9 @@ const TaskManagement = () => {
   };
 
   const hanleModalShow = (id) => {
-    document.getElementById("my_modal_4").showModal();
     setcurrentId(id);
     taskIdRefetch();
+    document.getElementById("my_modal_4").showModal();
   };
 
   const handleRunningProgress = (id, status) => {
@@ -131,9 +131,9 @@ const TaskManagement = () => {
   };
 
   const handleEditTask = (id) => {
-    document.getElementById("my_modal_3").showModal();
-    setcurrentId(id);
     taskIdRefetch();
+    setcurrentId(id);
+    document.getElementById("my_modal_3").showModal();
   };
 
   const SelectUnselectButton = ({ item }) => {

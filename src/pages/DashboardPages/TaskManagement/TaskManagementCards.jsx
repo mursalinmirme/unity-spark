@@ -2,7 +2,6 @@ import { useState } from "react";
 import { HiDotsVertical } from "react-icons/hi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { BsEye } from "react-icons/bs";
-import { IoEyeOutline } from "react-icons/io5";
 import { FiEdit3 } from "react-icons/fi";
 const TaskManagementCards = ({
   item,
