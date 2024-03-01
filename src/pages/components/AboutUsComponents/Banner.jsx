@@ -1,4 +1,5 @@
 const Banner = () => {
+  // This Banner Part
   return (
     <div className="about_banner  !border-primary">
       <div className="left_container">

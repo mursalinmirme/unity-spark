@@ -38,7 +38,7 @@ const MyProfile = () => {
   const [openEditor, setOpenEditor] = useState(false);
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
-  const { data = {} } = useQuery({
+  const { data = {}, isFetching } = useQuery({
     queryKey: ["user_data"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/users/${user?.email}`);
@@ -166,32 +166,32 @@ const MyProfile = () => {
             <tr>
               <th>Attendance</th>
               <th>Rest Day</th>
+              <th>Total Absent</th>
               <th>Employee From</th>
-              <th>Scrum Joined</th>
             </tr>
             <tr>
-              <td>{totalAttendance?.length} Days</td>
-              <td>{totalRest?.length} Days</td>
-              <td>{days.toFixed()} Days</td>
-              <td>5 Days</td>
+              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : totalAttendance?.length + ' ' +'Days' }</td>
+              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : totalRest?.length + ' ' +'Days'}</td>
+              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : days.toFixed() - (totalAttendance?.length + totalRest?.length) + ' ' + 'Days'}</td>
+              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : days.toFixed() + ' ' + 'Days'}</td>
             </tr>
             <tr>
-              <td>{totalAttendance?.length * 24} Hours</td>
-              <td>{totalRest?.length * 24} Hours</td>
-              <td>{days.toFixed() * 24} Hours</td>
-              <td>120 Hours</td>
+              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : totalAttendance?.length * 24 + ' ' + 'Hours'}</td>
+              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : totalRest?.length * 24 + ' ' + 'Hours'}</td>
+              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : (days.toFixed() - (totalAttendance?.length + totalRest?.length)) * 24 + ' ' + 'Hours'}</td>
+              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : days.toFixed() * 24 + ' ' + 'Hours'}</td>
             </tr>
             <tr>
-              <td>{totalAttendance?.length * 24 * 60} Minutes</td>
-              <td>{totalRest?.length * 24 * 60} Minutes</td>
-              <td> {days.toFixed() * 24 * 60} Minutes</td>
-              <td>7200 Minutes</td>
+              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : totalAttendance?.length * 24 * 60 + ' ' + 'Minutes'}</td>
+              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : totalRest?.length * 24 * 60 + ' ' + 'Minutes'}</td>
+              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : ((days.toFixed() - (totalAttendance?.length + totalRest?.length)) * 24) * 60 + ' '+ 'Minutes'}</td>
+              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : days.toFixed() * 24 * 60 + ' ' + 'Minutes'}</td>
             </tr>
             <tr>
-              <td>{totalAttendance?.length * 24 * 60 * 60} Seconds</td>
-              <td>{totalRest?.length * 24 * 60 * 60} Seconds</td>
-              <td>{days.toFixed() * 24 * 60 * 60} Seconds</td>
-              <td>14200 Seconds</td>
+              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : totalAttendance?.length * 24 * 60 * 60 + ' ' + 'Seconds'}</td>
+              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : totalRest?.length * 24 * 60 * 60 + ' '+ 'Seconds'}</td>
+              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : (((days.toFixed() - (totalAttendance?.length + totalRest?.length)) * 24) * 60) * 60 + ' ' + 'Seconds'}</td>
+              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : days.toFixed() * 24 * 60 * 60 + ' '+ 'Seconds'}</td>
             </tr>
           </table>
         </div>

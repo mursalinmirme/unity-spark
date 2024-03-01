@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
 import { IoEyeOutline } from "react-icons/io5";
+import LeaveManagementSkeleton from "./LeaveManagementSkeleton";
 
 const LeavesRow = ({ leave, idx }) => {
-  console.log(leave);
+
   return (
-    <tr>
+    <tr className="text-sm">
       <td className="!text-left">{idx + 1}</td>
       <td className="!text-left">
         <div>
@@ -14,13 +15,13 @@ const LeavesRow = ({ leave, idx }) => {
         </div>
       </td>
       <td className="!text-left">
-        {leave?.leaveReason.length > 50 ? (
-          <span>{leave?.leaveReason.slice(0, 50)}...</span>
+        {leave?.leaveReason.length > 35 ? (
+          <span>{leave?.leaveReason.slice(0, 35)}...</span>
         ) : (
           leave?.leaveReason
         )}
       </td>
-      <td className="!text-left">{leave?.numberOfDays}</td>
+      <td className="!text-center">{leave?.numberOfDays}</td>
       <td className="font-bold !text-left ">
         {leave?.status === "Rejected" ? (
           <button
@@ -28,15 +29,15 @@ const LeavesRow = ({ leave, idx }) => {
               document.getElementById(`modal_${leave?._id}`).showModal()
             }
           >
-            <div className="flex items-center gap-2 !text-left">
+            <div className="flex items-center font-medium gap-2 text-red-600 !text-left">
             {leave?.status}
-              <div className="bg-primary w-8 h-7 mx-auto rounded-md flex items-center justify-center text-white">
-                <IoEyeOutline className="text-md"></IoEyeOutline>
+              <div className=" w-6 h-6 mx-auto rounded-md flex items-center justify-center text-white bg-primary border">
+                <IoEyeOutline className="text-base"></IoEyeOutline>
               </div>
             </div>
           </button>
         ) : (
-          <span className="!text-left">{leave?.status}</span>
+          <span className="!text-left font-semibold text-green-600">{leave?.status}</span>
         )}
         {/* <h3>{leave?.feedback}</h3> */}
       </td>

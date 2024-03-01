@@ -52,10 +52,10 @@ const Signin = () => {
   };
 
   return (
-    <div className="px-0 md:px-5 py-5 signin">
+    <div className="p-5 signin">
       <section className="grid md:grid-cols-2 lg:grid-cols-2 items-center gap-4">
         {/* images */}
-        <div className="w-full hidden lg:block">
+        <div className="w-full">
           <img src={signIn_image} alt="signupsvg" />
         </div>
         {/* images */}
