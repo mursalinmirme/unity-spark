@@ -54,9 +54,7 @@ const TaskManagement = () => {
     },
   });
 
-  const similarEmployeeIds = tasksId?.employees?.map(
-    (employee) => employee._id
-  );
+  const similarEmployeeIds = selectedEmployees?.map((employee) => employee._id);
 
   const remainingEmployees = data?.filter(
     (employee) => !similarEmployeeIds?.includes(employee._id)
