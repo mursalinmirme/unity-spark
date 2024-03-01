@@ -22,6 +22,7 @@ const BlogRequestsRow = ({ blogRequest, idx, refetch, isFetching }) => {
         toast.error(error.message);
       });
   };
+  // this is a handle Reject function
   const handleRejectBlog = () => {
     axiosPublic
       .put(`/blogs/${blogRequest._id}`, { status: "Rejected" })
