@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-import { LoaderIcon } from "react-hot-toast";
+
 import MySaveJobSkeleton from "./MySaveJobSkeleton";
 
 const MySaveJob = () => {
