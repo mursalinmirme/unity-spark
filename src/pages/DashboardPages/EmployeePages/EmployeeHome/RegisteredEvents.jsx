@@ -44,7 +44,7 @@ const RegisteredEvents = ({ EmployeeReqEvent, isFetching }) => {
         {EmployeeReqEvent.map((information) => (
           <div
             key={information._id}
-            className="border-2  bg-[#F7F7F7] rounded-xl px-2 md:px-5 py-6"
+            className="border-2  bg-[#F7F7F7] rounded-xl px-2 md:px-5 pt-2 pb-4"
           >
             <div className="flex items-center justify-between ">
               <div>
