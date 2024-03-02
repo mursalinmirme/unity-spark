@@ -152,7 +152,7 @@ const RunningTaskCard = () => {
       <dialog id={"modal_running"} className="modal">
         <div className="modal-box">
           <form method="dialog">
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-red-500">
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
               ✕
             </button>
           </form>
@@ -199,7 +199,9 @@ const RunningTaskCard = () => {
                       onClick={() => handleRunningProgress(employee._id)}
                       className="checkbox checkbox-primary"
                     />
-                    <span className="label-text">{employee?.name}</span>
+                    <span className="label-text font-bold">
+                      {employee?.name}
+                    </span>
                   </label>
                 </div>
               ))}
