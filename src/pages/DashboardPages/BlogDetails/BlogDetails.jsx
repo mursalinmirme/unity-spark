@@ -269,7 +269,7 @@ const BlogDetails = () => {
           {blogs?.map((blog) => (
             <div
               key={blog._id}
-              className="card card-compact lg:w-96 bg-base-100 shadow-md "
+              className="card card-compact lg:w-96 bg-base-100 border-2"
             >
               <figure>
                 <img src={blog?.image} alt="Shoes" />

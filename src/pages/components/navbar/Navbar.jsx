@@ -105,7 +105,8 @@ const Navbar = () => {
             <div className="drawer-content bg-white rounded-xl flex justify-between items-center p-3">
               <label
                 htmlFor="my-drawer-12"
-                className="drawer-button hover:cursor-pointer text-2xl font-bold">
+                className="drawer-button hover:cursor-pointer text-2xl font-bold"
+              >
                 <HiMiniBars3CenterLeft />
               </label>
             </div>
@@ -113,10 +114,12 @@ const Navbar = () => {
               <label
                 htmlFor="my-drawer-12"
                 aria-label="close sidebar"
-                className="drawer-overlay"></label>
+                className="drawer-overlay"
+              ></label>
               <ul
                 className="menu p-4 min-h-full bg-base-200 text-base-content space-y-3 text-base font-medium"
-                style={{ width: "70%" }}>
+                style={{ width: "70%" }}
+              >
                 {navItem}
               </ul>
             </div>
@@ -133,18 +136,18 @@ const Navbar = () => {
         <div className="navbar-end">
           {user?.email ? (
             <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full">
-                  <img alt="" src={user?.photoURL} />
-                </div>
+              <div tabIndex={0} role="button" className="">
+                <img
+                  className="h-12 w-12 rounded-full border-4"
+                  alt=""
+                  src={user?.photoURL}
+                />
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-50 p-2 shadow bg-base-100 rounded-box w-52"
-                style={{ boxShadow: "0px 0px 15px rgba(0, 0, 0, 0.2)" }}>
+                className="menu menu-sm dropdown-content mt-3 z-50 p-2 shadow bg-base-100 rounded-box w-36"
+                style={{ boxShadow: "0px 0px 15px rgba(0, 0, 0, 0.2)" }}
+              >
                 <li className="rounded-lg">
                   <Link to="dashboard/userProfile">Profile</Link>
                 </li>
