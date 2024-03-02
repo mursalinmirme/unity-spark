@@ -55,19 +55,19 @@
 }
 
 .team_container {
-  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-10 mt-10 px-4 lg:px-0;
+  @apply grid md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-10 mt-10 px-4 lg:px-0;
 }
 
 .founders_card {
-  @apply relative mb-7;
+  @apply relative mb-7 rounded-full;
 }
 
 .founders_card figure img {
-  @apply w-full h-[406px] rounded-2xl;
+  @apply rounded-full;
 }
 
 .founder_info {
-  @apply text-center mt-3;
+  @apply text-center mt-3 whitespace-nowrap;
 }
 
 .founder_info p:first-child {
@@ -79,7 +79,7 @@
 }
 
 .socialIcons {
-  @apply opacity-0 transition-all duration-500 absolute bottom-20 w-full flex justify-center;
+  @apply opacity-0 transition-all duration-500 absolute -bottom-12 w-full flex justify-center;
 }
 
 .socialIcons div {
