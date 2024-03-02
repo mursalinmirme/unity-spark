@@ -56,21 +56,21 @@ const TaskManagementCards = ({
           </span>
         </div>
         <div>
-          <div className="avatar-group -space-x-6 rtl:space-x-reverse">
+          <div className="avatar-group -space-x-4 rtl:space-x-reverse">
             {employees?.length > 3
               ? employees?.slice(0, 3)?.map((employee, index) => (
-                  <div key={index} className="w-12 h-12 avatar">
+                  <div key={index} className="w-[45px] h-[45px] avatar">
                     <img key={index} src={employee.image} />
                   </div>
                 ))
               : employees?.map((employee, index) => (
-                  <div key={index} className="w-12 h-12 avatar">
+                  <div key={index} className="w-[45px] h-[45px] avatar">
                     <img key={index} src={employee.image} />
                   </div>
                 ))}
             {employees?.length > 3 && (
               <div className="avatar placeholder">
-                <div className="w-10 bg-white text-primary">
+                <div className="h-[38px] w-[38px] bg-white text-primary">
                   <span className="font-semibold">{employees.length - 3}+</span>
                 </div>
               </div>
