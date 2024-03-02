@@ -26,7 +26,9 @@ const BlogCommonCard = ({ blog }) => {
           {title.length > 50 ? `${title.slice(0, 50)}...` : title}
         </h2>
         <p className="font-medium text-gray-600 block md:hidden lg:block">
-          {description?.length > 210 ? description?.slice(0, 210) : description}
+          {description?.length > 210
+            ? description?.slice(3, 210)
+            : description?.slice(0, 3)}
           ...
           <Link to={`/blog-details/${_id}`}>
             <span className="underline text-gray-700">Read More</span>
