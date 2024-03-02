@@ -24,12 +24,11 @@ const Events = () => {
           </h1>
           <h1 className="text-center text-xl font-normal text-white  md:leading-tight lg:leading-relaxed">
             Explore our HR-centric events, designed to elevate your knowledge
-            and foster  connections. Join us for insightful discussions,
-            workshops, and networking
-            opportunities to enhance your human resource management
-            skills.{" "}
+            and foster connections. Join us for insightful discussions,
+            workshops, and networking opportunities to enhance your human
+            resource management skills.{" "}
           </h1>
-          <div className="flex items-center justify-center gap-10">
+          <div className="flex items-center justify-center gap-5">
             <Link to="/signup" className="nbtn mt-3">
               Register Now
             </Link>
