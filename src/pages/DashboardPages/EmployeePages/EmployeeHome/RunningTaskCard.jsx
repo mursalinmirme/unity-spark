@@ -160,18 +160,10 @@ const RunningTaskCard = () => {
           </form>
           <div>
             <h2 className="text-lg font-bold">{myRunningTasks?.task_name}</h2>
-
-            <div className="mt-4 flex justify-between items-center gap-2 md:gap-6">
-              <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold flex">
-                <span className="hidden md:block">
-                  From: {formattedStartDate}
-                </span>{" "}
-              </span>
-              <span>
-                <FaArrowRightLong className="text-base md:text-xl text-primary"></FaArrowRightLong>
-              </span>
-              <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold flex">
-                <span className="hidden md:block">To: {formattedEndDate}</span>
+            <div className="mt-3">
+              <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold">
+                {formattedStartDate}{" "}
+                <span className="text-2xl font-bold">-</span> {formattedEndDate}
               </span>
             </div>
             <div className="mt-4">
