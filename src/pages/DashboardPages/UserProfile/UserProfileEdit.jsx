@@ -2,12 +2,12 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import { useQuery } from "@tanstack/react-query";
 import { useContext, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { toast } from 'sonner';
-import { CgProfile } from "react-icons/cg";
-import { SlCloudUpload } from "react-icons/sl";
 import { Link, useNavigate } from "react-router-dom";
+import { SlCloudUpload } from "react-icons/sl";
 import Select from "react-select";
+import { CgProfile } from "react-icons/cg";
 import { AuthContext } from "../../../Provider/AuthProvider";
+import toast from "react-hot-toast";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import UserProfileEditSkeleton from "./UserProfileEditSkeleton";
@@ -152,12 +152,12 @@ const UserProfileEdit = () => {
               {...register("name")}
               placeholder="Please Your Name"
               defaultValue={users?.name}
-              className="text-base py-2.5"
+              className="text-base py-2.5 text-black"
             />
           </label>
           {/* Name field End */}
 
-          {/*image field */}
+          {/*image field to take image*/}
           <label className="relative">
             <div className="label mb-10 md:mb-0 lg:mb-0 py-1">
               <span className="font-semibold text-gray-600 text-base font-inter pb-4 md:pb-0 md:mb-10 lg:mb-10 ">
@@ -185,7 +185,7 @@ const UserProfileEdit = () => {
           </label>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-3">
+        <div className="grid md:grid-cols-2 gap-2">
           {/* Email field */}
           <label>
             <div className="py-1">
@@ -200,7 +200,7 @@ const UserProfileEdit = () => {
               placeholder="Your Email"
               readOnly
               defaultValue={users?.email}
-              className="text-base py-2.5"
+              className="text-base py-2.5 text-black"
             />
           </label>
           {/* email field End */}
@@ -217,13 +217,13 @@ const UserProfileEdit = () => {
               {...register("number")}
               placeholder="Your Phone Number"
               defaultValue={users?.phone}
-              className="text-base py-2.5"
+              className="text-base py-2.5 text-black"
             />
           </label>
         </div>
 
         {/**Second Two Part */}
-        <div className="grid md:grid-cols-2 gap-3">
+        <div className="grid md:grid-cols-2 gap-2">
           {/* Current Address field */}
           <label>
             <div className="py-1">
@@ -237,7 +237,7 @@ const UserProfileEdit = () => {
               {...register("current")}
               placeholder="Your Current Address"
               defaultValue={users?.current_address}
-              className="text-base py-2.5"
+              className="text-base py-2.5 text-black"
             />
           </label>
           {/* Current Address field End */}
@@ -254,13 +254,13 @@ const UserProfileEdit = () => {
               {...register("permanent")}
               placeholder=" Your Permanent Address"
               defaultValue={users?.permanent_address}
-              className="text-base py-2.5"
+              className="text-base py-2.5 text-black"
             />
           </label>
         </div>
 
         {/**Three Two Part */}
-        <div className="grid md:grid-cols-2 gap-3">
+        <div className="grid md:grid-cols-2 gap-2">
           {/* Age field */}
           <label>
             <div className="py-1">
@@ -274,7 +274,7 @@ const UserProfileEdit = () => {
               {...register("age")}
               placeholder="Your Age"
               defaultValue={users?.age}
-              className="text-base py-2.5"
+              className="text-base py-2.5 text-black"
             />
           </label>
           {/* Age field End */}
@@ -289,7 +289,7 @@ const UserProfileEdit = () => {
             </div>
 
             <select
-              className="w-full py-3 mt-2 border text-base rounded-lg pl-2"
+              className="w-full py-3 mt-2 border text-base rounded-lg pl-2 text-black"
               {...register("gender")}>
               <option className="text-base"> {users?.gender} </option>
               <option className="text-base" value="male">
@@ -303,7 +303,7 @@ const UserProfileEdit = () => {
         </div>
 
         {/**Four Two Part */}
-        <div className="grid md:grid-cols-2 gap-3">
+        <div className="grid md:grid-cols-2 gap-2">
           {/* Job Preference field */}
           <label>
             <div className="py-1">
@@ -317,7 +317,7 @@ const UserProfileEdit = () => {
               {...register("education_level")}
               placeholder="Eduction Level"
               defaultValue={users?.education_level}
-              className="text-base py-2.5"
+              className="text-base py-2.5 text-black"
             />
           </label>
           {/* Preference field End */}
@@ -335,13 +335,13 @@ const UserProfileEdit = () => {
               {...register("institute_name")}
               placeholder="Please Institute Name"
               defaultValue={users?.institute_name}
-              className="text-base py-2.5"
+              className="text-base py-2.5 text-black"
             />
           </label>
         </div>
 
         {/**five Two Part */}
-        <div className="grid md:grid-cols-2 gap-3">
+        <div className="grid md:grid-cols-2 gap-2">
           {/* Job Preference field */}
           <label>
             <div className="py-1">
@@ -352,7 +352,7 @@ const UserProfileEdit = () => {
             </div>
 
             <select
-              className="w-full py-3 mt-2 text-base border rounded-lg pl-2"
+              className="w-full py-3 mt-2 text-base border rounded-lg pl-2 text-black"
               {...register("preference")}>
               <option> {users?.job_preference} </option>
               <option value="Remote">Remote</option>
@@ -372,7 +372,7 @@ const UserProfileEdit = () => {
             </div>
 
             <select
-              className="w-full py-3 mt-2 text-base border rounded-lg pl-2"
+              className="w-full py-3 mt-2 text-base border rounded-lg pl-2 text-black"
               {...register("time_preference")}>
               <option> {users?.time_preference} </option>
               <option value="intern">intern</option>
@@ -417,14 +417,15 @@ const UserProfileEdit = () => {
               </span>
             </div>
             <input
+              className="text-base py-2.5 text-black"
+              id="user_Resume"
               type="text"
               {...register("resume")}
               placeholder="Please share your resume drive link"
               defaultValue={users?.resume_link}
-              className="text-base py-2.5"
             />
           </label>
-        </div>
+        </div> 
 
         <div className="w-48 py-3 bg-primary border-none text-white rounded-xl text-center cursor-pointer flex justify-center items-center">
           {updateLoading ? (

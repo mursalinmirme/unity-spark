@@ -7,7 +7,6 @@ import useUserId from "../../../../hooks/useUserId";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import moment from "moment";
-import SkeletonInterview from "../../UserPages/Interview/SkeletonInterview";
 
 const InterviewsDetails = () => {
   const [open, setOpen] = useState(false);
@@ -17,7 +16,7 @@ const InterviewsDetails = () => {
   const [userId] = useUserId();
 
   // just one interView information Show
-  const { data, isFetching, isLoading } = useQuery({
+  const { data } = useQuery({
     queryKey: ["interviewDetails"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/interviewDetails/${id}`);
@@ -25,16 +24,13 @@ const InterviewsDetails = () => {
     },
   });
 
+  // Time
   const currentDate = moment().format("DD,MMMM,YYYY");
-
   const currentTime = moment().format("h:mm A");
 
   // if(data?.date === data?.date)
-  // console.log(data?.date, currentDate);
+  console.log(data?.startTime, currentTime);
 
-  if (isFetching || isLoading) {
-    return <SkeletonInterview></SkeletonInterview>;
-  }
   return (
     <div>
       <div>
@@ -101,8 +97,7 @@ const InterviewsDetails = () => {
           <div className="flex gap-5">
             <div
               className="cursor-pointer w-10 h-10 rounded-full border border-primary flex items-center justify-center"
-              onClick={() => setOpen(!open)}
-            >
+              onClick={() => setOpen(!open)}>
               {open ? (
                 <AiOutlineAudioMuted className="text-2xl text-primary" />
               ) : (
@@ -113,8 +108,7 @@ const InterviewsDetails = () => {
             {/** Video Icons */}
             <div
               className="cursor-pointer w-10 h-10 rounded-full border border-primary flex items-center justify-center"
-              onClick={() => setVideoOpen(!videoOpen)}
-            >
+              onClick={() => setVideoOpen(!videoOpen)}>
               {videoOpen ? (
                 <MdOutlineVideocamOff className="text-2xl text-primary" />
               ) : (
@@ -136,8 +130,8 @@ const InterviewsDetails = () => {
 
         <div className="text-center mt-10">
           {data &&
-          new Date(data?.date).toDateString() ===
-            new Date(currentDate).toDateString() ? (
+          new Date(data?.date && data?.startTime).toDateString() ===
+            new Date(currentDate && currentTime).toDateString() ? (
             <Link to={`/dashboard/interview-call/${id}`}>
               <button className="btn bg-primary px-7 py-1 text-white rounded-lg hover:bg-primary">
                 Ask to join
@@ -147,8 +141,7 @@ const InterviewsDetails = () => {
             <Link to={`/dashboard/interview-call/${id}`}>
               <button
                 disabled
-                className="btn bg-primary px-7 py-1 text-white rounded-lg hover:bg-primary"
-              >
+                className="btn bg-primary px-7 py-1 text-white rounded-lg hover:bg-primary">
                 Ask to join
               </button>
             </Link>

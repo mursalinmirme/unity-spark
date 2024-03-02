@@ -53,7 +53,7 @@ import IsAdmin from "../privateRouter.jsx/IsAdmin";
 import IsCommonAccess from "../privateRouter.jsx/IsCommonAccess";
 import IsEmployee from "../privateRouter.jsx/IsEmployee";
 import PrivateRouter from "../privateRouter.jsx/PrivateRouter";
-import InterviewsDetails from "../pages/DashboardPages/AdminPages/Interviews/interviewsDetails";
+// import InterviewsDetails from "../pages/DashboardPages/AdminPages/Interviews/interviewsDetails";
 import Courses from "../pages/DashboardPages/EmployeePages/Training/Courses/Courses";
 import Payment from "../pages/DashboardPages/AdminPages/PaymentManagement/Payment";
 import CourseUpdate from "../pages/DashboardPages/AdminPages/TrainingManagement/CourseUpdate";
@@ -68,6 +68,7 @@ import Disclaimer from "../pages/AllFooterPage/Disclaimer/Disclaimer";
 import Accessibility from "../pages/AllFooterPage/Accessibility/Accessibility";
 import SavedBlogs from "../pages/DashboardPages/EmployeePages/SavedBlogs/SavedBlogs";
 import PrivacyPolicy from "../pages/AllFooterPage/PrivacyPolicy/PrivacyPolicy";
+import InterviewsDetails from "../pages/DashboardPages/AdminPages/Interviews/InterviewsDetails";
 import NewsletterSubscribers from "../pages/DashboardPages/AdminPages/Subscribers/NewsletterSubscribers";
 import AddAnnouncement from "../pages/DashboardPages/AdminPages/Subscribers/AddAnnouncement";
 

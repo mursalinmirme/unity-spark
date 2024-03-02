@@ -5,9 +5,8 @@ import { TiTickOutline } from "react-icons/ti";
 import { RxCross2 } from "react-icons/rx";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { toast } from 'sonner';
-import BlogRequestsRowSkeleton from "./BlogRequestsRowSkeleton";
 
-const BlogRequestsRow = ({ blogRequest, idx, refetch, isFetching }) => {
+const BlogRequestsRow = ({ blogRequest, idx, refetch }) => {
   const axiosPublic = useAxiosPublic();
   const handleAcceptBlog = () => {
     axiosPublic
@@ -22,6 +21,7 @@ const BlogRequestsRow = ({ blogRequest, idx, refetch, isFetching }) => {
         toast.error(error.message);
       });
   };
+  // this is a handle Reject function
   const handleRejectBlog = () => {
     axiosPublic
       .put(`/blogs/${blogRequest._id}`, { status: "Rejected" })
@@ -36,15 +36,11 @@ const BlogRequestsRow = ({ blogRequest, idx, refetch, isFetching }) => {
       });
   };
 
-  if (isFetching) {
-    return <BlogRequestsRowSkeleton></BlogRequestsRowSkeleton>;
-  }
-
   return (
     <tr>
       <td className="text-left">{idx + 1}</td>
-      <td className="text-left min-w-80">{blogRequest.title}</td>
-      <td className="text-left min-w-36">{blogRequest?.bloggerInfo?.name}</td>
+      <td className="text-left">{blogRequest.title}</td>
+      <td className="text-left">{blogRequest?.bloggerInfo?.name}</td>
       <td className="text-left">
         <div className="flex items-center gap-2">
           <div className="bg-primary w-8 h-7 mx-auto rounded-md flex items-center justify-center text-white">

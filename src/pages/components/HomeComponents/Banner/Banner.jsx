@@ -1,17 +1,21 @@
-import { toast } from 'sonner';
-import BannerImg from '../../../../assets/images/banner.gif'
+import BannerImg from "../../../../assets/images/banner.gif";
 
 const Banner = () => {
-
   return (
     <div className="banner">
       <div className="slide_container">
+        {/* Banner Text here */}
         <div className="space-y-3 md:space-y-6">
           <span>Hi there</span>
           <h2>Elevate Your Workforce Management</h2>
-          <p>Enhance efficiency and engagement with our comprehensive HR solutions. Streamline processes, elevate workplace experience, and transform operations today.</p>
-          <button className="nbtn" onClick={() => toast.success('This is a sonner toast')}>Get Started Today</button>
+          <p>
+            Enhance efficiency and engagement with our comprehensive HR
+            solutions. Streamline processes, elevate workplace experience, and
+            transform operations today.
+          </p>
+          <button className="nbtn">Get Started Today</button>
         </div>
+        {/* Banner Image */}
         <div>
           <img src={BannerImg} className="w-full" alt="" />
         </div>

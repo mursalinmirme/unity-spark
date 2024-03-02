@@ -54,9 +54,7 @@ const TaskManagement = () => {
     },
   });
 
-  const similarEmployeeIds = tasksId?.employees?.map(
-    (employee) => employee._id
-  );
+  const similarEmployeeIds = selectedEmployees?.map((employee) => employee._id);
 
   const remainingEmployees = data?.filter(
     (employee) => !similarEmployeeIds?.includes(employee._id)
@@ -83,9 +81,9 @@ const TaskManagement = () => {
   };
 
   const hanleModalShow = (id) => {
-    document.getElementById("my_modal_4").showModal();
     setcurrentId(id);
     taskIdRefetch();
+    document.getElementById("my_modal_4").showModal();
   };
 
   const handleRunningProgress = (id, status) => {
@@ -133,9 +131,9 @@ const TaskManagement = () => {
   };
 
   const handleEditTask = (id) => {
-    document.getElementById("my_modal_3").showModal();
-    setcurrentId(id);
     taskIdRefetch();
+    setcurrentId(id);
+    document.getElementById("my_modal_3").showModal();
   };
 
   const SelectUnselectButton = ({ item }) => {
@@ -182,7 +180,7 @@ const TaskManagement = () => {
   if (isFetching) {
     return (
       <div>
-        <h1 className="font-bold text-3xl mb-7">Tasks</h1>
+        <h1 className="text-2xl font-semibold mb-7">Tasks</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[...Array(6)].map((_, index) => (
             <div key={index} className="border-2 border-gray-300 p-5">
@@ -208,7 +206,7 @@ const TaskManagement = () => {
   return (
     <div>
       <div className="flex justify-between">
-        <h1 className="font-bold text-3xl"> Tasks </h1>
+        <h1 className="text-2xl font-semibold"> Tasks </h1>
         <Link to="/dashboard/addNewTask">
           <a className="edit_btn">
             <FaPlus /> <span>New Task</span>
