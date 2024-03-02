@@ -308,7 +308,7 @@ body {
 }
 
 #contact .contact_info {
-  @apply flex items-center gap-2;
+  @apply flex items-center gap-4;
 }
 
 .contact_info svg {
