@@ -120,6 +120,7 @@ const MyProfile = () => {
               completed={90}
               bgColor="#433ebe"
               height="12px"
+              width="250px"
               baseBgColor="#e3e2f5"
               labelColor="#ffffff"
               labelSize="10px"
@@ -170,28 +171,142 @@ const MyProfile = () => {
               <th>Employee From</th>
             </tr>
             <tr>
-              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : totalAttendance?.length + ' ' +'Days' }</td>
-              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : totalRest?.length + ' ' +'Days'}</td>
-              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : days.toFixed() - (totalAttendance?.length + totalRest?.length) + ' ' + 'Days'}</td>
-              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : days.toFixed() + ' ' + 'Days'}</td>
+              <td>
+                {isFetching ? (
+                  <p className="skeleton w-32 h-5 mx-auto"></p>
+                ) : (
+                  totalAttendance?.length + " " + "Days"
+                )}
+              </td>
+              <td>
+                {isFetching ? (
+                  <p className="skeleton w-32 h-5 mx-auto"></p>
+                ) : (
+                  totalRest?.length + " " + "Days"
+                )}
+              </td>
+              <td>
+                {isFetching ? (
+                  <p className="skeleton w-32 h-5 mx-auto"></p>
+                ) : (
+                  days.toFixed() -
+                  (totalAttendance?.length + totalRest?.length) +
+                  " " +
+                  "Days"
+                )}
+              </td>
+              <td>
+                {isFetching ? (
+                  <p className="skeleton w-32 h-5 mx-auto"></p>
+                ) : (
+                  days.toFixed() + " " + "Days"
+                )}
+              </td>
             </tr>
             <tr>
-              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : totalAttendance?.length * 24 + ' ' + 'Hours'}</td>
-              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : totalRest?.length * 24 + ' ' + 'Hours'}</td>
-              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : (days.toFixed() - (totalAttendance?.length + totalRest?.length)) * 24 + ' ' + 'Hours'}</td>
-              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : days.toFixed() * 24 + ' ' + 'Hours'}</td>
+              <td>
+                {isFetching ? (
+                  <p className="skeleton w-32 h-5 mx-auto"></p>
+                ) : (
+                  totalAttendance?.length * 24 + " " + "Hours"
+                )}
+              </td>
+              <td>
+                {isFetching ? (
+                  <p className="skeleton w-32 h-5 mx-auto"></p>
+                ) : (
+                  totalRest?.length * 24 + " " + "Hours"
+                )}
+              </td>
+              <td>
+                {isFetching ? (
+                  <p className="skeleton w-32 h-5 mx-auto"></p>
+                ) : (
+                  (days.toFixed() -
+                    (totalAttendance?.length + totalRest?.length)) *
+                    24 +
+                  " " +
+                  "Hours"
+                )}
+              </td>
+              <td>
+                {isFetching ? (
+                  <p className="skeleton w-32 h-5 mx-auto"></p>
+                ) : (
+                  days.toFixed() * 24 + " " + "Hours"
+                )}
+              </td>
             </tr>
             <tr>
-              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : totalAttendance?.length * 24 * 60 + ' ' + 'Minutes'}</td>
-              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : totalRest?.length * 24 * 60 + ' ' + 'Minutes'}</td>
-              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : ((days.toFixed() - (totalAttendance?.length + totalRest?.length)) * 24) * 60 + ' '+ 'Minutes'}</td>
-              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : days.toFixed() * 24 * 60 + ' ' + 'Minutes'}</td>
+              <td>
+                {isFetching ? (
+                  <p className="skeleton w-32 h-5 mx-auto"></p>
+                ) : (
+                  totalAttendance?.length * 24 * 60 + " " + "Minutes"
+                )}
+              </td>
+              <td>
+                {isFetching ? (
+                  <p className="skeleton w-32 h-5 mx-auto"></p>
+                ) : (
+                  totalRest?.length * 24 * 60 + " " + "Minutes"
+                )}
+              </td>
+              <td>
+                {isFetching ? (
+                  <p className="skeleton w-32 h-5 mx-auto"></p>
+                ) : (
+                  (days.toFixed() -
+                    (totalAttendance?.length + totalRest?.length)) *
+                    24 *
+                    60 +
+                  " " +
+                  "Minutes"
+                )}
+              </td>
+              <td>
+                {isFetching ? (
+                  <p className="skeleton w-32 h-5 mx-auto"></p>
+                ) : (
+                  days.toFixed() * 24 * 60 + " " + "Minutes"
+                )}
+              </td>
             </tr>
             <tr>
-              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : totalAttendance?.length * 24 * 60 * 60 + ' ' + 'Seconds'}</td>
-              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : totalRest?.length * 24 * 60 * 60 + ' '+ 'Seconds'}</td>
-              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : (((days.toFixed() - (totalAttendance?.length + totalRest?.length)) * 24) * 60) * 60 + ' ' + 'Seconds'}</td>
-              <td>{isFetching ? <p className="skeleton w-32 h-5 mx-auto"></p> : days.toFixed() * 24 * 60 * 60 + ' '+ 'Seconds'}</td>
+              <td>
+                {isFetching ? (
+                  <p className="skeleton w-32 h-5 mx-auto"></p>
+                ) : (
+                  totalAttendance?.length * 24 * 60 * 60 + " " + "Seconds"
+                )}
+              </td>
+              <td>
+                {isFetching ? (
+                  <p className="skeleton w-32 h-5 mx-auto"></p>
+                ) : (
+                  totalRest?.length * 24 * 60 * 60 + " " + "Seconds"
+                )}
+              </td>
+              <td>
+                {isFetching ? (
+                  <p className="skeleton w-32 h-5 mx-auto"></p>
+                ) : (
+                  (days.toFixed() -
+                    (totalAttendance?.length + totalRest?.length)) *
+                    24 *
+                    60 *
+                    60 +
+                  " " +
+                  "Seconds"
+                )}
+              </td>
+              <td>
+                {isFetching ? (
+                  <p className="skeleton w-32 h-5 mx-auto"></p>
+                ) : (
+                  days.toFixed() * 24 * 60 * 60 + " " + "Seconds"
+                )}
+              </td>
             </tr>
           </table>
         </div>
