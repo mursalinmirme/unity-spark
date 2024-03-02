@@ -190,14 +190,14 @@ const RunningTaskCard = () => {
             <div className="mt-4">
               {myRunningTasks?.employees?.map((employee) => (
                 <div key={employee.id} className="form-control">
-                  <label className="label cursor-pointer justify-start gap-4">
+                  <label className="label cursor-pointer justify-start gap-3">
                     <input
                       type="checkbox"
                       defaultChecked={
                         employee?.status === "complete" ? true : false
                       }
                       onClick={() => handleRunningProgress(employee._id)}
-                      className="checkbox checkbox-primary"
+                      className="checkbox checkbox-sm checkbox-primary"
                     />
                     <span className="label-text font-bold">
                       {employee?.name}
