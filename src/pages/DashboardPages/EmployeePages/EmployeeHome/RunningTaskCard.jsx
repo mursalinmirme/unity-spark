@@ -64,7 +64,6 @@ const RunningTaskCard = () => {
   const progressTotal =
     selectedEmployees.length * (100 / myRunningTasks?.employees?.length);
   const progress = parseInt(progressTotal.toFixed());
-  console.log(progress);
 
   if (isFetching) {
     return (
