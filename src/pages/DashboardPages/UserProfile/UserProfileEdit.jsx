@@ -7,10 +7,10 @@ import { SlCloudUpload } from "react-icons/sl";
 import Select from "react-select";
 import { CgProfile } from "react-icons/cg";
 import { AuthContext } from "../../../Provider/AuthProvider";
-import toast from "react-hot-toast";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import UserProfileEditSkeleton from "./UserProfileEditSkeleton";
+import { toast } from "sonner";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 const UserProfileEdit = () => {
   const { register, handleSubmit, control, reset } = useForm();
