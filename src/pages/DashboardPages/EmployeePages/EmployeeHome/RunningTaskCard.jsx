@@ -63,13 +63,14 @@ const RunningTaskCard = () => {
 
   const progressTotal =
     selectedEmployees.length * (100 / myRunningTasks?.employees?.length);
-  const progress = progressTotal.toFixed();
+  const progress = parseInt(progressTotal.toFixed());
+  console.log(progress);
 
   if (isFetching) {
     return (
       <div>
         <h1 className="text-2xl font-semibold mb-3">Running Task</h1>
-        <div className="border-2 border-gray-300 p-5">
+        <div className="border-2 border-gray-300 p-4">
           <div className="space-y-2">
             <div className="skeleton w-full h-4"></div>
             <div className="skeleton w-full h-4"></div>
@@ -78,9 +79,9 @@ const RunningTaskCard = () => {
           <div className="flex justify-between gap-5 items-center mt-3">
             <div className="skeleton w-1/2 h-6"></div>
             <div className="avatar-group -space-x-6 rtl:space-x-reverse">
-              <div className="skeleton w-10 h-10 rounded-full"></div>
-              <div className="skeleton w-10 h-10 rounded-full"></div>
-              <div className="skeleton w-10 h-10 rounded-full"></div>
+              <div className="skeleton w-12 h-12 rounded-full"></div>
+              <div className="skeleton w-12 h-12 rounded-full"></div>
+              <div className="skeleton w-12 h-12 rounded-full"></div>
             </div>
           </div>
         </div>
@@ -114,19 +115,21 @@ const RunningTaskCard = () => {
                 {myRunningTasks?.employees?.length > 3
                   ? myRunningTasks?.employees.slice(0, 3).map((employee) => {
                       return (
-                        <div key={employee?._id} className="avatar">
-                          <div className="w-10">
-                            <img src={employee?.image} />
-                          </div>
+                        <div key={employee?._id}>
+                          <img
+                            className="h-[45px] w-[45px] rounded-full"
+                            src={employee?.image}
+                          />
                         </div>
                       );
                     })
                   : myRunningTasks?.employees?.map((employee) => {
                       return (
-                        <div key={employee?._id} className="avatar">
-                          <div className="w-10">
-                            <img src={employee?.image} />
-                          </div>
+                        <div key={employee?._id} className="">
+                          <img
+                            className="h-[45px] w-[45px] rounded-full"
+                            src={employee?.image}
+                          />
                         </div>
                       );
                     })}
@@ -161,15 +164,15 @@ const RunningTaskCard = () => {
 
             <div className="mt-4 flex justify-between items-center gap-2 md:gap-6">
               <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold flex">
-                <span className="hidden md:block">From:</span>{" "}
-                <span>{myRunningTasks?.start_date}</span>
+                <span className="hidden md:block">
+                  From: {formattedStartDate}
+                </span>{" "}
               </span>
               <span>
                 <FaArrowRightLong className="text-base md:text-xl text-primary"></FaArrowRightLong>
               </span>
               <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold flex">
-                <span className="hidden md:block">To: </span>
-                <span>{myRunningTasks?.end_date}</span>
+                <span className="hidden md:block">To: {formattedEndDate}</span>
               </span>
             </div>
             <div className="mt-4">
@@ -180,6 +183,7 @@ const RunningTaskCard = () => {
                 bgColor="#433ebe"
                 height="14px"
                 baseBgColor="#e3e2f5"
+                label={`${progress}%`}
                 labelColor="#ffffff"
                 labelSize="12px"
                 maxCompleted={100}
