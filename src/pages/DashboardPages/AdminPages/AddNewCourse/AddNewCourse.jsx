@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { BsUpload } from "react-icons/bs";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import { useRef, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { AiOutlinePlusCircle } from "react-icons/ai";

@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Select from "react-select";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { FaCheckCircle } from "react-icons/fa";

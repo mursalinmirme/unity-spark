@@ -11,7 +11,7 @@ import { Navigation } from "swiper/modules";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import useUserRole from "../../../hooks/useUserRole";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 
 const EventCard = () => {
   const [isUser] = useUserRole();

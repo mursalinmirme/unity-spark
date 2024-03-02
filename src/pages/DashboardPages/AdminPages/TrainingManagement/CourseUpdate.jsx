@@ -4,7 +4,7 @@ import Select from "react-select";
 import { useEffect, useRef, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { AiOutlinePlusCircle } from "react-icons/ai";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import useCourses from "../../../../hooks/useCourses";

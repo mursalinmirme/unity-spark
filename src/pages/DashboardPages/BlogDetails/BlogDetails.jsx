@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import parse from "html-react-parser";
 import useUserInfo from "../../../hooks/useUserInfo";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import BlogComments from "./BlogComments";
 import { AiOutlineLike } from "react-icons/ai";
 import { FaRegComments } from "react-icons/fa";

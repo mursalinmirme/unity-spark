@@ -2,7 +2,7 @@ import { BsUpload } from "react-icons/bs";
 import { useForm } from "react-hook-form";
 import { updateProfile } from "firebase/auth";
 import auth from "../../../../firebase/firebase.config";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 

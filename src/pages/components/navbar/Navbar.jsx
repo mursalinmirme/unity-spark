@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../../assets/images/logo.gif";
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import useUserRole from "../../../hooks/useUserRole";
 
 import { HiMiniBars3CenterLeft } from "react-icons/hi2";

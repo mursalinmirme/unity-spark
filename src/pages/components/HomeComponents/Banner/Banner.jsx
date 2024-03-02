@@ -1,3 +1,4 @@
+import { toast } from 'sonner';
 import BannerImg from '../../../../assets/images/banner.gif'
 
 const Banner = () => {
@@ -9,7 +10,7 @@ const Banner = () => {
           <span>Hi there</span>
           <h2>Elevate Your Workforce Management</h2>
           <p>Enhance efficiency and engagement with our comprehensive HR solutions. Streamline processes, elevate workplace experience, and transform operations today.</p>
-          <button className="nbtn">Get Started Today</button>
+          <button className="nbtn" onClick={() => toast.success('This is a sonner toast')}>Get Started Today</button>
         </div>
         <div>
           <img src={BannerImg} className="w-full" alt="" />

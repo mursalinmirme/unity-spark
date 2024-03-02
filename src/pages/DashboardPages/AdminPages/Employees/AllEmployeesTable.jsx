@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import PropTypes from "prop-types";
 
 const AllEmployeesTable = ({ user, idx, refetch }) => {

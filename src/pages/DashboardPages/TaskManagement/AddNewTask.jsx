@@ -5,7 +5,7 @@ import { IoAdd } from "react-icons/io5";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useState } from "react";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import "./tasks.css";
 
 const AddNewTask = () => {

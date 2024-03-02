@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import emailjs from "@emailjs/browser";
 import { FaPhone } from "react-icons/fa6";
 import { IoIosPin, IoMdMail } from "react-icons/io";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 
 const ContactUs = () => {
   const {

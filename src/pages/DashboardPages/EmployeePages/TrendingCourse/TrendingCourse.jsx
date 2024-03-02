@@ -7,7 +7,7 @@ import 'swiper/css/navigation';
 import "./trendingcourse.css"
 import { Navigation } from 'swiper/modules';
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import useCourses from "../../../../hooks/useCourses";
 import TrendingCourseSkeleton from "./TrendingCourseSkeleton";

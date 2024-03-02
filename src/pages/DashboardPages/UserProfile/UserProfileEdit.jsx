@@ -2,7 +2,7 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import { useQuery } from "@tanstack/react-query";
 import { useContext, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import { CgProfile } from "react-icons/cg";
 import { SlCloudUpload } from "react-icons/sl";
 import { Link, useNavigate } from "react-router-dom";
