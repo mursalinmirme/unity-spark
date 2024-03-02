@@ -74,7 +74,7 @@ const ContactUs = () => {
         <div className="right_container">
           <h2>Get InTouch!</h2>
           <form onSubmit={handleSubmit(onSubmit)} className="mt-4 space-y-3">
-            <div className="flex gap-3">
+            <div className="md:flex gap-3">
               <div className="form-control w-full">
                 <input
                   {...register("name", { required: true })}

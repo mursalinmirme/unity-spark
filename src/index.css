@@ -218,7 +218,7 @@ body {
 }
 
 .job_post_card .job_status span {
-  @apply text-primary bg-[#d0d8e0] py-1 px-3 rounded-full text-sm font-semibold;
+  @apply text-primary bg-[#c7c5eb] py-1 px-3 font-medium rounded-full text-sm;
 }
 
 .job_post_card p {
