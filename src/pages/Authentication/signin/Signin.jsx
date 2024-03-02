@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import signIn_image from "../../../assets/images/signin.png";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import Social_Media from "../../components/Share/Social_Media/Social_Media";
 import { IoEyeOutline } from "react-icons/io5";
 import { FaEyeSlash } from "react-icons/fa";

@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
-import { IoEyeOutline } from "react-icons/io5";
-import LeaveManagementSkeleton from "./LeaveManagementSkeleton";
+import { RiErrorWarningFill } from "react-icons/ri";
+import { MdCancel } from "react-icons/md";
+import { GoCheckCircleFill } from "react-icons/go";
 
 const LeavesRow = ({ leave, idx }) => {
 
   return (
-    <tr className="text-sm">
+    <tr className="text-base border-b">
       <td className="!text-left">{idx + 1}</td>
       <td className="!text-left">
         <div>
@@ -24,20 +25,28 @@ const LeavesRow = ({ leave, idx }) => {
       <td className="!text-center">{leave?.numberOfDays}</td>
       <td className="font-bold !text-left ">
         {leave?.status === "Rejected" ? (
-          <button
-            onClick={() =>
-              document.getElementById(`modal_${leave?._id}`).showModal()
-            }
-          >
-            <div className="flex items-center font-medium gap-2 text-red-600 !text-left">
-            {leave?.status}
-              <div className=" w-6 h-6 mx-auto rounded-md flex items-center justify-center text-white bg-primary border">
-                <IoEyeOutline className="text-base"></IoEyeOutline>
+          <div className="tooltip" data-tip="See reason">
+            <button
+              onClick={() =>
+                document.getElementById(`modal_${leave?._id}`).showModal()
+              }
+            >
+              <div className="inline-flex items-center font-inter font-medium gap-1 text-red-600 bg-red-100 rounded-lg py-1 px-2 !text-left">
+                <MdCancel className="text-lg" />
+                {leave?.status}
               </div>
+            </button>
+          </div>
+        ) : leave?.status === "Pending" ? (
+            <div className="inline-flex items-center font-inter font-medium gap-1 text-second bg-[#e3f1fb] rounded-lg py-1 px-2 !text-left">
+              <RiErrorWarningFill className="text-md" />
+              {leave?.status}
             </div>
-          </button>
         ) : (
-          <span className="!text-left font-semibold text-green-600">{leave?.status}</span>
+            <div className="inline-flex items-center font-inter font-medium gap-1 text-green-600 bg-green-100 rounded-lg py-1 px-2 !text-left">
+              <GoCheckCircleFill className="text-md" />
+              {leave?.status}
+            </div>
         )}
         {/* <h3>{leave?.feedback}</h3> */}
       </td>

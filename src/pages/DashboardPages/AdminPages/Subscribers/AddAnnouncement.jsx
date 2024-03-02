@@ -3,7 +3,7 @@ import JoditEditor from "jodit-react";
 import { useState } from "react";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 
 const AddAnnouncement = () => {
   const [content, setContent] = useState("");

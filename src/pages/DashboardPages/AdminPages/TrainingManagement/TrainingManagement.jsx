@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import { FiEdit2, FiTrash } from "react-icons/fi";
 import { GrView } from "react-icons/gr";
 

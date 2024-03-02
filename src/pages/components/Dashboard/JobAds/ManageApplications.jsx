@@ -11,7 +11,7 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import useTimePicker from "../../../../hooks/useTimePicker";
 import ApplicationsCard from "./ApplicationsCard";
 import ManageApplicationsSkeleton from "./ManageApplicationsSkeleton";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 const ManageApplications = () => {
   const axiosPublic = useAxiosPublic();
   const [totalPages, setToalPages] = useState(0);

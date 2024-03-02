@@ -3,7 +3,7 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { BsUpload } from "react-icons/bs";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import useUserInfo from "../../../../hooks/useUserInfo";

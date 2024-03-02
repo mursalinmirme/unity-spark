@@ -6,7 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { CiCalendar } from "react-icons/ci";
 import { IoMdTime } from "react-icons/io";
 import useTimePicker from "../../../../hooks/useTimePicker";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import axios from "axios";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;

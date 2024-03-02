@@ -19,12 +19,12 @@
 }
 
 .dashboard_item {
-  @apply flex items-start lg:items-center justify-between text-primary py-1 lg:py-2.5 p-2.5 rounded-xl hover:bg-[#e3e2f5] transition-all duration-300 overflow-hidden;
+  @apply flex items-start lg:items-center justify-between text-primary py-1 lg:py-2.5 p-2.5 rounded-xl hover:bg-[#e3e2f5] transition-all duration-300 overflow-hidden relative;
 }
 
 .dashboard_item_active,
 #dashboard .log_btn {
-  @apply flex items-start lg:items-center justify-between text-white py-1 lg:py-2.5 p-2.5 rounded-xl bg-primary hover:bg-primary;
+  @apply flex items-start lg:items-center justify-between text-white py-1 lg:py-2.5 p-2.5 rounded-xl bg-primary hover:bg-primary relative overflow-hidden;
 }
 
 #dashboard .log_btn {
@@ -47,6 +47,9 @@
 }
 
 .hov_arrow {
-  @apply text-primary invisible transition-all duration-500;
+  @apply text-primary absolute top-1/2 transform -translate-y-1/2 -right-80 transition-all duration-300;
 }
 
+.dashboard_item:hover .hov_arrow {
+  @apply right-3
+}

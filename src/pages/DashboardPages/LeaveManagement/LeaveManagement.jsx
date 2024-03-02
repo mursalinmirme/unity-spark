@@ -1,4 +1,4 @@
-import { LuPenLine } from "react-icons/lu";
+import { FiPlus } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
@@ -6,7 +6,6 @@ import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import LeavesRow from "./LeavesRow";
 import LeaveManagementSkeleton from "./LeaveManagementSkeleton";
-// import LeavesRow from "./LeavesRow";
 
 const LeaveManagement = () => {
   const axiosPublic = useAxiosPublic();
@@ -20,6 +19,7 @@ const LeaveManagement = () => {
       return result.data;
     },
   });
+  
   if(isFetching){
     return <LeaveManagementSkeleton></LeaveManagementSkeleton>
   }
@@ -32,16 +32,16 @@ const LeaveManagement = () => {
 
             <Link to="/dashboard/newLeaveRequest">
               <p className="edit_btn">
-                <LuPenLine></LuPenLine> <span>New Request</span>
+                <FiPlus className="text-lg"></FiPlus> <span>New Request</span>
               </p>
             </Link>
           </div>
 
           <div className="overflow-x-auto mt-6">
             {userLeaves?.length > 0 ? (
-              <table className="table border">
+              <table className="text-left table-no-border w-full">
                 {/* head */}
-                <thead className="bg-[#726eec] text-white text-base rounded-md ">
+                <thead className="bg-second text-white text-base rounded-md ">
                   <tr>
                     <th>Serial</th>
                     <th>Subject</th>

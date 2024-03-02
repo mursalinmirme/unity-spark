@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import moment from "moment";
 import { useContext, useState } from "react";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import { GoDotFill } from "react-icons/go";
 import { Link, useParams } from "react-router-dom";
 import { AuthContext } from "../../../../../Provider/AuthProvider";

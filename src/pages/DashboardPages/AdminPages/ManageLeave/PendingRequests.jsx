@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import PendingLeaveSkeleton from "./PendingLeaveSkeleton";
