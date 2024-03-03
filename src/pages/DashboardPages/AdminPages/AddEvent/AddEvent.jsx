@@ -193,14 +193,14 @@ const AddEvent = () => {
           </label>
         </div>
 
-        <div className="w-40  bg-accent border-none text-white rounded-lg text-center cursor-pointer">
+        <div className="w-40  bg-primary border-none text-white rounded-lg text-center cursor-pointer hover:scale-105">
           {updateLoading ? (
             <span className="loading loading-spinner loading-md "></span>
           ) : (
             <input
               className="border-none cursor-pointer py-3 font-semibold text-base"
               type="submit"
-              value="Submit Event"
+              value="Add Event"
             />
           )}
         </div>
