@@ -60,8 +60,8 @@ const MySaveJob = () => {
       {saveJobInfos?.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-5">
           {saveJobInfos?.map((job) => (
-            <div key={job?._id} className="border">
-              <div className="p-4 bg-base-100 shadow-md">
+            <div key={job?._id} className="">
+              <div className="p-4 bg-base-100 rounded-xl" style={{boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)'}}>
                 <div className="">
                   <h2 className="card-title font-inter">{job?.title}</h2>
                   <p className="mt-1">
@@ -86,14 +86,14 @@ const MySaveJob = () => {
                   </p>
                   <div className="card-actions gap-4 justify-start mt-2 ">
                     <Link to={`/job-details/${job?.applicationId}`}>
-                      <button className=" btn-sm bg-accent text-white hover:bg-none rounded-md font-medium">
+                      <button className=" btn-sm bg-second text-white hover:bg-none rounded-md font-inter font-medium">
                         Details
                       </button>
                     </Link>
 
                     <button
                       onClick={() => handlerDeleted(job?._id)}
-                      className=" btn-sm  bg-[#dd3333] text-white rounded-md"
+                      className=" btn-sm  bg-[#dd3333] text-white rounded-md  font-inter font-medium"
                     >
                       Remove
                     </button>
