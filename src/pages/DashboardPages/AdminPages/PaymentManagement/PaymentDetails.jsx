@@ -98,8 +98,8 @@ const PaymentDetails = ({ paymentInfo }) => {
           console.log(payInfo);
           axiosPublic.post("/payment", payInfo).then((res) => {
             console.log(res.data);
-            toast.success("Successfully paid.")
-            navigate('/dashboard/payment-management')
+            toast.success("Successfully paid.");
+            navigate("/dashboard/payment-management");
           });
         }
       }
