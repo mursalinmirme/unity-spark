@@ -4,14 +4,14 @@ import { Link, useNavigate } from "react-router-dom";
 import signIn_image from "../../../assets/images/signin.png";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
-import { toast } from 'sonner';
+import { toast } from "sonner";
 import Social_Media from "../../components/Share/Social_Media/Social_Media";
 import { IoEyeOutline } from "react-icons/io5";
 import { FaEyeSlash } from "react-icons/fa";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const Signin = () => {
-  const PublicAxios = useAxiosPublic()
+  const PublicAxios = useAxiosPublic();
   const { userSignIn } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const [signInLoading, setSignInLoading] = useState(false);
@@ -24,8 +24,7 @@ const Signin = () => {
     // User Login Method
     userSignIn(data?.email, data?.password)
       .then((res) => {
-        PublicAxios
-          .get(`/user-role?email=${res?.user?.email}`)
+        PublicAxios.get(`/user-role?email=${res?.user?.email}`)
           .then((resp) => {
             if (resp.data.role) {
               reset();
@@ -69,13 +68,12 @@ const Signin = () => {
             {/* email field */}
             <label className="form-control w-full">
               <div className="label">
-                <span className="font-semibold font-inter">Your Email</span>
+                <span className="sign_up_input_title">Your Email</span>
               </div>
               <input
                 type="email"
                 {...register("email")}
                 placeholder="johndoe@gmail.com"
-                className="input input-bordered w-full mt-0"
                 required
               />
             </label>
@@ -84,31 +82,31 @@ const Signin = () => {
             {/* password field */}
             <label className="form-control w-full py-3 ">
               <div className="label">
-                <span className="font-semibold font-inter">Your password</span>
+                <span className="sign_up_input_title">Your password</span>
               </div>
               <div className="relative">
                 <input
                   type={open ? "text" : "password"}
                   {...register("password")}
-                  placeholder="************"
-                  className="input input-bordered w-full mt-0"
+                  placeholder="*************"
                   required
                 />
                 <span
                   onClick={() => setOpen(!open)}
-                  className="absolute top-3 right-4 cursor-pointer">
+                  className="absolute top-[18px] right-4 cursor-pointer"
+                >
                   {" "}
                   {open ? (
-                    <IoEyeOutline className="text-2xl" />
+                    <IoEyeOutline className="text-xl" />
                   ) : (
-                    <FaEyeSlash className="text-2xl" />
+                    <FaEyeSlash className="text-xl" />
                   )}
                 </span>
               </div>
             </label>
             {/* password field */}
-            <div className="form-control w-full py-3">
-              <button className="text-base flex justify-center items-center nbtn">
+            <div className="form-control w-full">
+              <button className="nbtn">
                 {signInLoading ? (
                   <span className="loading loading-spinner loading-md"></span>
                 ) : (
@@ -120,7 +118,12 @@ const Signin = () => {
           <div className="divider ">OR</div>
 
           {/** Social Media Login System */}
-          <Social_Media setGoogleLoading={setGoogleLoading} googleLoading={googleLoading}> </Social_Media>
+          <Social_Media
+            setGoogleLoading={setGoogleLoading}
+            googleLoading={googleLoading}
+          >
+            {" "}
+          </Social_Media>
 
           <div className="text-center py-3">
             <p className="text-sm text-gray-700 font-medium">
