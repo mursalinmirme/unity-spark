@@ -12,7 +12,7 @@ const WhyDifferent = () => {
       </div>
       <div className="flex-1 mt-7 py-2 p-1">
         <h3 className="text-[24px] font-bold font-inter ">
-          Why are you different
+          Why we are different
         </h3>
         <p className="pt-3 text-[#646f7e]">
           <span className="text-[20px] font-semibold text-slate-800">
