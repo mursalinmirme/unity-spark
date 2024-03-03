@@ -1,15 +1,14 @@
-import img from "../../../../assets/images/different-img.jpg";
+import img from "../../../../assets/images/different-section.png";
 import { Link } from "react-router-dom";
 const WhyDifferent = () => {
   // this function just click link and top page show
   const newSystem = () => {
     window.scrollTo({ top: 1, behavior: "smooth" });
   };
-
   return (
     <div className="flex flex-col lg:flex-row items-center">
       <div className="flex-1">
-        <img className="  w-full" src={img} alt="" />
+        <img className=" w-full" src={img} alt="" />
       </div>
       <div className="flex-1 mt-7 py-2 p-1">
         <h3 className="text-[24px] font-bold font-inter ">

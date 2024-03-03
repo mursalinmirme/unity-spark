@@ -4,7 +4,8 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useContext } from "react";
-import { toast } from 'sonner';
+import { toast } from "sonner";
+import "../EmployeePages/MyProfile/profile.css";
 const LeaveRequestForm = () => {
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
@@ -50,94 +51,102 @@ const LeaveRequestForm = () => {
         Create a Leave Application
       </h2>
       <form onSubmit={handleSubmit(onSubmit)} className="mt-4 space-y-4">
-        {/**One Two Part */}
-        <div className="grid md:grid-cols-2 gap-3">
-          {/* name field */}
+        <div className="border-2 p-3 md:p-5 rounded-lg space-y-2.5 mb-2.5">
+          {/**One Two Part */}
+          <div className="grid md:grid-cols-2 gap-3">
+            {/* name field */}
+            <div>
+              <div className="py-1">
+                <span className="user_profile_input_title"> Your Name :</span>
+              </div>
+              <input
+                type="text"
+                {...register("name")}
+                placeholder="Please Your Name"
+                className="user_profile_input"
+                defaultValue={leave_user?.name}
+              />
+            </div>
+            {/* Name field End */}
+
+            <div>
+              <div className="py-1">
+                <span className="user_profile_input_title">
+                  {" "}
+                  Number of Days:
+                </span>
+              </div>
+              <input
+                type="number"
+                {...register("numberOfDays", { required: true })}
+                placeholder="Enter your leave duration"
+                className="user_profile_input"
+                required
+              />
+            </div>
+          </div>
+
+          {/**Second Two Part */}
+          <div className="grid md:grid-cols-2 gap-3">
+            {/* name field */}
+            <div>
+              <div className="py-1">
+                <span className="user_profile_input_title"> Your Email :</span>
+              </div>
+              <input
+                type="email"
+                {...register("email")}
+                placeholder="Please Your Email"
+                defaultValue={leave_user?.email}
+                className="user_profile_input"
+              />
+            </div>
+            {/* Name field End */}
+
+            <div>
+              <div className="py-1">
+                <span className="user_profile_input_title"> HR Email:</span>
+              </div>
+              <input
+                type="email"
+                {...register("hrEmail", { required: true })}
+                placeholder="Enter Your Hr Email"
+                required
+                className="user_profile_input"
+              />
+            </div>
+          </div>
+
+          {/* Subject  field */}
           <div>
             <div className="py-1">
-              <span className="font-semibold font-inter"> Your Name :</span>
+              <span className="user_profile_input_title">Subject</span>
             </div>
             <input
               type="text"
-              {...register("name")}
-              placeholder="Please Your Name"
-              defaultValue={leave_user?.name}
+              {...register("subject", { required: true })}
+              placeholder="Enter Subject Name"
+              className="user_profile_input"
             />
           </div>
-          {/* Name field End */}
 
+          {/* Subject  field */}
           <div>
-            <div className="py-1">
-              <span className="font-semibold font-inter"> Number of Days:</span>
+            <div className="py-1 pb-2">
+              <span className="user_profile_input_title"> Reason of Leave</span>
             </div>
-            <input
-              type="number"
-              {...register("numberOfDays", { required: true })}
-              placeholder="Enter your leave duration"
-              required
+
+            <textarea
+              className="w-full h-32 rounded-lg pl-2 pt-2 outline-none user_profile_input"
+              id="description"
+              {...register("description", {
+                required: "Description is required",
+              })}
+              placeholder="Write details about your leave issue..."
             />
           </div>
         </div>
-
-        {/**Second Two Part */}
-        <div className="grid md:grid-cols-2 gap-3">
-          {/* name field */}
-          <div>
-            <div className="py-1">
-              <span className="font-semibold font-inter"> Your Email :</span>
-            </div>
-            <input
-              type="email"
-              {...register("email")}
-              placeholder="Please Your Email"
-              defaultValue={leave_user?.email}
-            />
-          </div>
-          {/* Name field End */}
-
-          <div>
-            <div className="py-1">
-              <span className="font-semibold font-inter"> HR Email:</span>
-            </div>
-            <input
-              type="email"
-              {...register("hrEmail", { required: true })}
-              placeholder="Enter Your Hr Email"
-              required
-            />
-          </div>
-        </div>
-
-        {/* Subject  field */}
-        <div>
-          <div className="py-1">
-            <span className="font-semibold font-inter">Subject</span>
-          </div>
-          <input
-            type="text"
-            {...register("subject", { required: true })}
-            placeholder="Enter Subject Name"
-          />
-        </div>
-
-        {/* Subject  field */}
-        <div>
-          <div className="py-1 pb-2">
-            <span className="font-semibold font-inter"> Reason of Leave</span>
-          </div>
-
-          <textarea
-            className="w-full h-32 rounded-lg border-2 pl-2 pt-2 outline-none"
-            id="description"
-            {...register("description", {
-              required: "Description is required",
-            })}
-            placeholder="Write details about your leave issue..."
-          />
-        </div>
-        <button className="w-24 py-2 bg-primary border-none text-white rounded-lg text-center cursor-pointer font-inter font-semibold">
-          Send
-        </button>
+        <button className="w-24 nbtn-fixed-bg">Send</button>
       </form>
     </div>
   );
