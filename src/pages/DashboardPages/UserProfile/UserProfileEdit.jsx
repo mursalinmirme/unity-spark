@@ -138,8 +138,8 @@ const UserProfileEdit = () => {
       {/** Form Start  */}
 
       <form onSubmit={handleSubmit(onSubmit)} className="mt-10">
-        {/**One Two Part */}
         <div className="border-2 p-3 md:p-5 rounded-lg space-y-2.5 mb-2.5">
+          {/**One Two Part */}
           <div className="user_profile_input_grid">
             {/* name field */}
             <label>
@@ -164,7 +164,7 @@ const UserProfileEdit = () => {
                   Your Photo :{" "}
                 </span>
                 <label
-                  className="font-semibold w-full absolute bottom-0 text-white cursor-pointer font-inter text-base px-8 py-2.5 bg-primary rounded-md transition-all duration-500 mt-1 mb-0.5"
+                  className="font-semibold w-full absolute bottom-0 text-white cursor-pointer font-inter text-base px-8 py-2 bg-primary rounded-md transition-all duration-500 mt-1 mb-0.5"
                   htmlFor="user_photo"
                 >
                   <div className="flex justify-center items-center gap-4">
@@ -378,7 +378,7 @@ const UserProfileEdit = () => {
 
           {/* Skills field */}
           <div className="">
-            <label className="text-base">
+            <label className="text-sm font-medium">
               <div className="py-1">
                 <span className="user_profile_input_title"> Your Skills :</span>
               </div>
@@ -415,11 +415,11 @@ const UserProfileEdit = () => {
           </div>
         </div>
 
-        <div className="w-48 py-3 bg-primary border-none text-white rounded-xl text-center cursor-pointer flex justify-center items-center">
+        <div className="">
           {updateLoading ? (
             <span className="loading loading-spinner loading-md "></span>
           ) : (
-            <button className="text-base font-semibold" type="submit">
+            <button className="nbtn-fixed-bg w-36" type="submit">
               Update
             </button>
           )}

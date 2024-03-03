@@ -11,8 +11,9 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import ApplicantsCard from "../ApplicantsCard";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
-import { toast } from 'sonner';
+import { toast } from "sonner";
 import ManageApplicantSkeleton from "./ManageApplicantSkeleton";
+import "../../../DashboardPages/EmployeePages/MyProfile/profile.css";
 
 const ManageApplicant = () => {
   const [totalPages, setToalPages] = useState(0);
@@ -131,8 +132,6 @@ const ManageApplicant = () => {
 
   // console.log("Indivisual37", applicationPreview);
 
-
-
   const axiosSecure = useAxiosSecure();
 
   const { data: usersId } = useQuery({
@@ -175,8 +174,8 @@ const ManageApplicant = () => {
   };
 
   console.log("checked333", applicationId);
-  if(isFetching){
-    return <ManageApplicantSkeleton></ManageApplicantSkeleton>
+  if (isFetching) {
+    return <ManageApplicantSkeleton></ManageApplicantSkeleton>;
   }
   return (
     <div className="py-10">
@@ -254,7 +253,7 @@ const ManageApplicant = () => {
       {/** Modal Some DDDDDDDD */}
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
       <dialog id="my_modal_88" className="modal">
-        <div className="modal-box min-w-[600px]">
+        <div className="modal-box max-w-[600px]">
           <form method="dialog">
             {/* if there is a button in form, it will close the modal */}
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
@@ -263,13 +262,13 @@ const ManageApplicant = () => {
           </form>
 
           {/**Form Submit */}
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
             <div className="">
               <label className="font-semibold text-sm font-inter">
                 Candidate Position
               </label>
               <input
-                className="h-12"
+                className="user_profile_input"
                 type="text"
                 {...register("position", { required: true })}
                 placeholder="Enter Position Name"
@@ -280,13 +279,13 @@ const ManageApplicant = () => {
                 Candidate Salary
               </label>
               <input
-                className="h-12"
+                className="user_profile_input"
                 type="text"
                 {...register("salary", { required: true })}
                 placeholder="Enter Salary"
               />
             </div>
-            <button className="nbtn mt-7"> Confirem Now</button>
+            <button className="nbtn-fixed-bg w-36 mt-7"> Confirem Now</button>
           </form>
         </div>
       </dialog>{" "}
