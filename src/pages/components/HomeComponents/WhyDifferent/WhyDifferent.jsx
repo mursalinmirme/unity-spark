@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import img from "../../../../assets/images/different-img.jpg";
 import { AuthContext } from "../../../../Provider/AuthProvider";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 const WhyDifferent = () => {
   const { user } = useContext(AuthContext);
   return (
