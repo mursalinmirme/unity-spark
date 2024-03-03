@@ -1,11 +1,6 @@
-import img from "../../../../assets/images/different-img.jpg";
+import img from "../../../../assets/images/different-section.png";
 import { Link } from "react-router-dom";
 const WhyDifferent = () => {
-  // this function just click link and top page show
-  const newSystem = () => {
-    window.scrollTo({ top: 1, behavior: "smooth" });
-  };
-
   return (
     <div className="flex flex-col lg:flex-row items-center">
       <div className="flex-1">
@@ -44,7 +39,7 @@ const WhyDifferent = () => {
           culture at Unity Spark, where every feature is designed for a superior
           collaboration experience.
         </p>
-        <Link onClick={newSystem} to="/our-vision">
+        <Link to="/our-vision">
           <button className="nbtn mt-7 "> Explore More</button>
         </Link>
       </div>
