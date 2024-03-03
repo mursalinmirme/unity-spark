@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { AiOutlineLike } from "react-icons/ai";
+import { IoAddCircleOutline } from "react-icons/io5";
 import { GoThumbsup } from "react-icons/go";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import "./review.css";
@@ -57,7 +57,7 @@ const Reviews = () => {
         {isUser?.role === "employee" && (
           <Link to={"add-review"}>
             <a className="edit_btn">
-              <AiOutlineLike className="text-xl" />
+              <IoAddCircleOutline className="text-2xl font-bold" />
               <span>Add Review</span>
             </a>
           </Link>
