@@ -7,7 +7,7 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import { useForm } from "react-hook-form";
 import { SlCloudUpload } from "react-icons/sl";
 import useTimePicker from "../../../../hooks/useTimePicker";

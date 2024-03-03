@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../../Provider/AuthProvider";

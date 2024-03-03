@@ -9,7 +9,7 @@ const BlogsBanner = ({ blog }) => {
   const formattedDiff = moment.duration(secondsDiff, "seconds").humanize();
 
   const bannerBlogStyle = {
-    background: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${image})`,
+    background: `linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0)), url(${image})`,
     backgroundSize: "cover",
   };
 
@@ -17,7 +17,8 @@ const BlogsBanner = ({ blog }) => {
     <Link to={`/blog-details/${_id}`}>
       <div
         style={bannerBlogStyle}
-        className="h-[400px] rounded-xl flex flex-col gap-3 justify-end p-5">
+        className="h-[400px] rounded-xl flex flex-col gap-3 justify-end p-5"
+      >
         <h5 className="text-gray-300">Posted {formattedDiff} ago</h5>
         <h2 className="text-white text-2xl font-medium font-inter">{title}</h2>
       </div>

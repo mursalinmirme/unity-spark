@@ -2,7 +2,7 @@ import axios from "axios";
 import JoditEditor from "jodit-react";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import { BsUpload } from "react-icons/bs";
 import { AuthContext } from "../../../../../Provider/AuthProvider";
 import useAxiosPublic from "../../../../../hooks/useAxiosPublic";

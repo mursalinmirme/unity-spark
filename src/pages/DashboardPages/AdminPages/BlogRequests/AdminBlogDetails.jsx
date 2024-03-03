@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import moment from "moment";
 import parse from "html-react-parser";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 const AdminBlogDetails = () => {
   const { id } = useParams();
   const axiosPublic = useAxiosPublic();

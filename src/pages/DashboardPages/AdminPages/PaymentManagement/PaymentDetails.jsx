@@ -6,7 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import useUserInfo from "../../../../hooks/useUserInfo";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import { useNavigate } from "react-router-dom";
 
 const PaymentDetails = ({ paymentInfo }) => {

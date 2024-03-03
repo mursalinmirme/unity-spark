@@ -6,7 +6,7 @@ import { GrNext, GrPrevious } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { AuthContext } from "../../../../Provider/AuthProvider";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import useUserInfo from "../../../../hooks/useUserInfo";
 

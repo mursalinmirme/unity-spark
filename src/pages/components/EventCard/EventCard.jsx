@@ -11,7 +11,7 @@ import { Navigation } from "swiper/modules";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import useUserRole from "../../../hooks/useUserRole";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 
 const EventCard = () => {
   const [isUser] = useUserRole();
@@ -84,12 +84,12 @@ const EventCard = () => {
       spaceBetween={30}
       navigation={true}
       modules={[Navigation]}
-      className="mySwiper eventSwiper  my-10"
+      className="mySwiper eventSwiper"
     >
       {events.map((items) => (
         <SwiperSlide key={items?._id}>
           {" "}
-          <div className=" bg-white border border-[#D9D9D9] overflow-hidden my-5 rounded-3xl min-h-[535px] relative">
+          <div className=" bg-white border border-[#D9D9D9] overflow-hidden rounded-3xl min-h-[535px] relative">
             <img src={items?.image} alt="" className="!-z-10 !min-h-[250px]" />
             <div className="p-5 space-y-3 -mt-6 !z-10 rounded-t-3xl bg-white absolute">
               <h1 className="font-semibold text-[23px] text-left">

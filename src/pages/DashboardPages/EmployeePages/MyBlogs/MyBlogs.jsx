@@ -5,7 +5,7 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { AuthContext } from "../../../../Provider/AuthProvider";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import Swal from "sweetalert2";
 import { LuPenLine } from "react-icons/lu";
 import MyBlogsSkeleton from "./MyBlogsSkeleton";

@@ -1,31 +1,29 @@
 import { useContext, useState } from "react";
-import { BiConversation, BiHomeAlt2 } from "react-icons/bi";
+import { BiHomeAlt2, BiMessageSquareDots } from "react-icons/bi";
 import { BsChatText } from "react-icons/bs";
-import { FaAccessibleIcon, FaIntercom } from "react-icons/fa";
-import { VscDiffAdded } from "react-icons/vsc";
-import { GrAnnounce, GrDocumentPerformance, GrUserWorker } from "react-icons/gr";
-import { HiBars3BottomRight } from "react-icons/hi2";
+import { GrDocumentPerformance, GrUserWorker } from "react-icons/gr";
+import { HiBars3BottomRight, HiOutlineArrowUpOnSquareStack, HiOutlineDocumentCheck, HiOutlineDocumentDuplicate } from "react-icons/hi2";
 import { IoIosArrowForward } from "react-icons/io";
-import { IoDocumentOutline } from "react-icons/io5";
-import { LuBookMarked, LuLogOut, LuUser, LuUsers2 } from "react-icons/lu";
+import { GrDocumentTime } from "react-icons/gr";
+import { IoCalendarOutline, IoDocumentAttachOutline, IoDocumentTextOutline } from "react-icons/io5";
+import { LuLogOut, LuUser, LuUsers2 } from "react-icons/lu";
 import { TfiAlarmClock } from "react-icons/tfi";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import logo from "../../assets/images/logo.gif";
 import useUserRole from "../../hooks/useUserRole";
-import { IoIosFiling } from "react-icons/io";
 import {
   MdOutlineAddTask,
-  MdOutlineSave,
   MdOutlinePayments,
+  MdOutlinePersonSearch,
 } from "react-icons/md";
-import { GrBlog } from "react-icons/gr";
-import { GrUserManager } from "react-icons/gr";
 import { RiGraduationCapLine } from "react-icons/ri";
 import { LuPresentation } from "react-icons/lu";
-
+import { GrAnnounce } from "react-icons/gr";
+import { LiaMicrophoneAltSolid } from "react-icons/lia";
 import "./dashboard.css";
 import goToHome from "../../assets/Home.gif";
+
 const Dashboard = () => {
   const [isUser] = useUserRole();
   const { loginOut } = useContext(AuthContext);
@@ -58,7 +56,7 @@ const Dashboard = () => {
                 isActive ? "dashboard_item_active" : "dashboard_item"
               }`}>
               <div>
-                <GrUserWorker />
+                <LuUser />
                 <span>My Profile</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -74,7 +72,7 @@ const Dashboard = () => {
                 isActive ? "dashboard_item_active" : "dashboard_item"
               }`}>
               <div>
-                <MdOutlineSave />
+                <IoDocumentAttachOutline />
                 <span>My Saved Jobs</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -156,7 +154,7 @@ const Dashboard = () => {
                 isActive ? "dashboard_item_active" : "dashboard_item"
               }`}>
               <div>
-                <LuUser />
+                <HiOutlineArrowUpOnSquareStack />
                 <span>Leave Management</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -172,7 +170,7 @@ const Dashboard = () => {
                 isActive ? "dashboard_item_active" : "dashboard_item"
               }`}>
               <div>
-                <LuUser />
+                <HiOutlineDocumentDuplicate />
                 <span>My Blogs</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -189,7 +187,7 @@ const Dashboard = () => {
                 isActive ? "dashboard_item_active" : "dashboard_item"
               }`}>
               <div>
-                <LuBookMarked></LuBookMarked>
+                <HiOutlineDocumentCheck />
                 <span>Saved Blogs</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -222,7 +220,7 @@ const Dashboard = () => {
                 isActive ? "dashboard_item_active" : "dashboard_item"
               }`}>
               <div>
-                <IoDocumentOutline />
+                <MdOutlinePersonSearch />
                 <span>Recruitment</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -238,7 +236,7 @@ const Dashboard = () => {
                 isActive ? "dashboard_item_active" : "dashboard_item"
               }`}>
               <div>
-                <VscDiffAdded />
+                <IoCalendarOutline />
                 <span>AddEvent</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -254,7 +252,7 @@ const Dashboard = () => {
                 isActive ? "dashboard_item_active" : "dashboard_item"
               }`}>
               <div>
-                <FaAccessibleIcon />
+                <HiOutlineArrowUpOnSquareStack />
                 <span>Leave Requests</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -271,7 +269,7 @@ const Dashboard = () => {
                 isActive ? "dashboard_item_active" : "dashboard_item"
               }`}>
               <div>
-                <GrBlog></GrBlog>
+                <GrDocumentTime />
                 <span>Blog Requests</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -321,7 +319,7 @@ const Dashboard = () => {
                 isActive ? "dashboard_item_active" : "dashboard_item"
               }`}>
               <div>
-                <FaIntercom />
+                <LiaMicrophoneAltSolid />
                 <span>interviews</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -386,7 +384,7 @@ const Dashboard = () => {
                 isActive ? "dashboard_item_active" : "dashboard_item"
               }`}>
               <div>
-                <IoIosFiling />
+                <IoDocumentTextOutline />
                 <span>My Applications</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -402,7 +400,7 @@ const Dashboard = () => {
                 isActive ? "dashboard_item_active" : "dashboard_item"
               }`}>
               <div>
-                <GrUserManager />
+                <LiaMicrophoneAltSolid />
                 <span>My Interviews</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -447,7 +445,7 @@ const Dashboard = () => {
               isActive ? "dashboard_item_active" : "dashboard_item"
             }`}>
             <div>
-              <BiConversation />
+              <BiMessageSquareDots />
               <span>Communicate</span>
             </div>
             <IoIosArrowForward className="hov_arrow hidden lg:block" />

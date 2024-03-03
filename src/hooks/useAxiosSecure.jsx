@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext } from "react";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 

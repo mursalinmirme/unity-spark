@@ -2,18 +2,22 @@ import { useQuery } from "@tanstack/react-query";
 import facebook from "./../../../assets/social/facebook.png";
 import instagram from "./../../../assets/social/instagram.png";
 import linkedIn from "./../../../assets/social/linkedin.png"
-import axios from "axios";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import TeamSkeleton from "./TeamSkeleton";
 
 
 const Team = () => {
- 
-  const { data: team } = useQuery({
+  const axiosPublic = useAxiosPublic() 
+  const { data: team , isFetching } = useQuery({
     queryKey: ["team_info"],
     queryFn: async () => {
-      const res = await axios.get("team_info.json");
+      const res = await axiosPublic.get("/allFounder");
       return res.data;
     },
   });
+  if(isFetching){
+    return <TeamSkeleton></TeamSkeleton>
+  }
 
   return (
     <div className="about_team">
@@ -31,19 +35,19 @@ const Team = () => {
               <p>{singleMember.name}</p> 
               <p>{singleMember.position}</p>
             </div>
-            </div>
             <div className="socialIcons">
-                <div>
-                  <a href="facebook.com">
+                <div style={{boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)'}}>
+                  <a href={singleMember.FB}>
                     <img src={facebook} alt="" />
                   </a>
-                  <a href="instagram.com">
+                  <a href={singleMember.IG}>
                     <img src={instagram} alt="" />
                   </a>
-                  <a href="linkedin.com">
+                  <a href={singleMember.LINK}>
                     <img src={linkedIn} alt="" />
                   </a>
                 </div>
+            </div>
             </div>
             
           </div>

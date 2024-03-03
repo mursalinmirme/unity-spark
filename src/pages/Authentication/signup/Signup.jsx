@@ -8,7 +8,7 @@ import { useContext, useState } from "react";
 import { IoEyeOutline } from "react-icons/io5";
 import { FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../../Provider/AuthProvider";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import Social_Media from "../../components/Share/Social_Media/Social_Media";
 
 import useRandomPasswordGenerate from "../../../hooks/useRandomPasswordGenerate";

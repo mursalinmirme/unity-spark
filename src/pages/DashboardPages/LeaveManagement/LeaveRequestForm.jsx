@@ -4,7 +4,7 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useContext } from "react";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 const LeaveRequestForm = () => {
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();

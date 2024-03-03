@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import { useParams } from "react-router-dom";
 import Select from "react-select";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";

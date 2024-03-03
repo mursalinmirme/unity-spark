@@ -8,7 +8,7 @@ const LeaveManagementSkeleton = () => {
       <div className="overflow-x-auto mt-6">
       <table className="table border">
         {/* head */}
-        <thead className="bg-[#726eec] text-white text-base rounded-md ">
+        <thead className="bg-second text-white text-base rounded-md ">
           <tr>
             <th className="w-16">Serial</th>
             <th className="min-w-48">Subject</th>

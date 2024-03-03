@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import parse from "html-react-parser";
 import useUserInfo from "../../../hooks/useUserInfo";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import BlogComments from "./BlogComments";
 import { AiOutlineLike } from "react-icons/ai";
 import { FaRegComments } from "react-icons/fa";
@@ -152,10 +152,10 @@ const BlogDetails = () => {
               />
             </div>
             <div>
-              <p className="text-[14px] font-inter font-semibold">
+              <p className="text-[18px] font-inter font-semibold">
                 {details?.bloggerInfo?.name}
               </p>
-              <p className="text-[14px] font-inter font-semibold">
+              <p className="text-[13px] font-inter font-semibold">
                 {details?.bloggerInfo?.position}
               </p>
             </div>
@@ -236,7 +236,8 @@ const BlogDetails = () => {
               <br />
               <button
                 className="btn-sm bg-primary text-white mt-3 rounded-md"
-                type="submit">
+                type="submit"
+              >
                 Comment
               </button>
             </form>
@@ -248,7 +249,8 @@ const BlogDetails = () => {
               {comments?.map((comment) => (
                 <BlogComments
                   key={comment?._id}
-                  comment={comment}></BlogComments>
+                  comment={comment}
+                ></BlogComments>
               ))}
             </div>
           ) : (
@@ -267,7 +269,8 @@ const BlogDetails = () => {
           {blogs?.map((blog) => (
             <div
               key={blog._id}
-              className="card card-compact lg:w-96 bg-base-100 shadow-md ">
+              className="card card-compact lg:w-96 bg-base-100 border-2"
+            >
               <figure>
                 <img src={blog?.image} alt="Shoes" />
               </figure>

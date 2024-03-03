@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { useContext } from "react";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 
 const CourseDetails = () => {
     const axiosPublic = useAxiosPublic()

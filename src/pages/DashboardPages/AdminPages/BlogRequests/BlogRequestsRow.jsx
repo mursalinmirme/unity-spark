@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { TiTickOutline } from "react-icons/ti";
 import { RxCross2 } from "react-icons/rx";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 
 const BlogRequestsRow = ({ blogRequest, idx, refetch }) => {
   const axiosPublic = useAxiosPublic();

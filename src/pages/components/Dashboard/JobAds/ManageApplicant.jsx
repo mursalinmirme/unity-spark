@@ -11,7 +11,7 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import ApplicantsCard from "../ApplicantsCard";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import ManageApplicantSkeleton from "./ManageApplicantSkeleton";
 
 const ManageApplicant = () => {
