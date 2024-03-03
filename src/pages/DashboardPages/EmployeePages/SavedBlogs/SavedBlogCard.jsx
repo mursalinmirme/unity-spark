@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { LuTrash } from "react-icons/lu";
@@ -6,7 +7,7 @@ import { HiOutlineEye } from "react-icons/hi2";
 import Swal from "sweetalert2";
 import moment from "moment";
 
-const SavedBlogCard = ({ singleBlog }) => {
+const SavedBlogCard = ({ singleBlog , refetch }) => {
   const timestamp = singleBlog?.blogInfo?.createdAt;
   const timeDifference = moment(timestamp).fromNow();
   console.log(timeDifference)
@@ -31,6 +32,7 @@ const SavedBlogCard = ({ singleBlog }) => {
         text: "Your file has been deleted.",
         icon: "success"
       });
+      refetch()
     }
    })
    .catch(error => {

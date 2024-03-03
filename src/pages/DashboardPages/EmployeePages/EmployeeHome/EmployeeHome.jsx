@@ -15,7 +15,7 @@ const EmployeeHome = () => {
   const axiosPublic = useAxiosPublic();
   const { user } = useContext(AuthContext);
 
-  const { data: EmployeeReqEvent = [], isFetching } = useQuery({
+  const { data: EmployeeReqEvent = [], isFetching , refetch } = useQuery({
     queryKey: ["EmployeeReqEvent"],
     queryFn: async () => {
       const response = await axiosPublic.get(`/reqEvents/${user?.email}`);
@@ -114,6 +114,7 @@ const EmployeeHome = () => {
           <RegisteredEvents
             EmployeeReqEvent={EmployeeReqEvent}
             isFetching={isFetching}
+            refetch={refetch}
           ></RegisteredEvents>
         </div>
 
