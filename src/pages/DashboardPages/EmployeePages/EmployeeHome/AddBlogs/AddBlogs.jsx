@@ -14,7 +14,7 @@ import { SlCloudUpload } from "react-icons/sl";
 const AddBlogs = () => {
   const [users] = useUserInfo();
   const [content, setContent] = useState("");
-
+  const [isUploading, setIsUploading] = useState(false);
   const {
     register,
     handleSubmit,
@@ -25,14 +25,17 @@ const AddBlogs = () => {
   const { user } = useContext(AuthContext);
 
   const onSubmit = async (data) => {
+    setIsUploading(true);
     console.log(data);
     if (data.photo.length === 0) {
       toast.error("An image must be added");
+      setIsUploading(false);
       return;
     }
 
     if (!content) {
       toast.error("You haven't added any content yet!");
+      setIsUploading(false);
       return;
     }
 
@@ -55,6 +58,7 @@ const AddBlogs = () => {
         toast.success("blog successfully added");
         reset();
         setContent("");
+        setIsUploading(false);
       });
     }
   };
@@ -110,7 +114,7 @@ const AddBlogs = () => {
           />
         </div>
         <div className="pt-4">
-          <input className="w-32 nbtn-fixed-bg" type="submit" value="Publish" />
+          <button type="submit" className="w-32 nbtn-fixed-bg flex justify-center items-center">{isUploading ? <span className="loading loading-spinner loading-md"></span>: 'Publish'}</button>
         </div>
       </form>
     </div>

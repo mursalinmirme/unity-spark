@@ -79,7 +79,7 @@ const Newsletter = () => {
                 placeholder="Enter Your Email...."
                 required
               />
-              <button className="bg-primary text-white flex justify-center items-center">
+              <button className="bg-primary text-white flex justify-center items-center h-10 md:h-auto">
                 {
                     isSubmitting ? <span className="loading loading-spinner loading-md"></span> : 'Subscribe'
                 }
