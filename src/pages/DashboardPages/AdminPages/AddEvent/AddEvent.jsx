@@ -201,7 +201,7 @@ const AddEvent = () => {
             <input
               className="border-none cursor-pointer py-3 font-semibold text-base"
               type="submit"
-              value="Submit Event"
+              value="Add Event"
             />
           )}
         </div>

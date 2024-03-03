@@ -9,11 +9,11 @@ const ManageEvents = () => {
       };
       const tabs = [
         {
-          name: "Organize Event",
+          name: "Events",
           id: 0,
         },
         {
-          name: "Modify Event",
+          name: "New Event",
           id: 1,
         },
       ]
@@ -34,8 +34,8 @@ const ManageEvents = () => {
             </a>
           ))}
         </div>
-        {isActive === 0 && <AddEvent/>}
-        {isActive === 1 && <ModifyEvent />}
+        {isActive === 0 && <ModifyEvent />}
+        {isActive === 1 && <AddEvent/>}
         
       </div>
     );
