@@ -11,7 +11,8 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import useTimePicker from "../../../../hooks/useTimePicker";
 import ApplicationsCard from "./ApplicationsCard";
 import ManageApplicationsSkeleton from "./ManageApplicationsSkeleton";
-import { toast } from 'sonner';
+import { toast } from "sonner";
+import "../../../DashboardPages/EmployeePages/MyProfile/profile.css";
 const ManageApplications = () => {
   const axiosPublic = useAxiosPublic();
   const [totalPages, setToalPages] = useState(0);
@@ -47,15 +48,14 @@ const ManageApplications = () => {
     },
   });
   // fetch the applications number under the pagination
-  const { data: jobapplicationsNum = [] } =
-    useQuery({
-      queryKey: ["jobapplicationsNums", totalPages, currentPage],
-      queryFn: async () => {
-        const res = await axiosPublic.get("/job_applications_nums");
-        setToalPages(Math.ceil(res?.data?.total / 6));
-        return res?.data;
-      },
-    });
+  const { data: jobapplicationsNum = [] } = useQuery({
+    queryKey: ["jobapplicationsNums", totalPages, currentPage],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/job_applications_nums");
+      setToalPages(Math.ceil(res?.data?.total / 6));
+      return res?.data;
+    },
+  });
   console.log("total page num is", totalPages);
   // fetch the applications by pagination
   const {
@@ -212,8 +212,8 @@ const ManageApplications = () => {
     setShow(false);
   };
 
-  if(isFetching){
-    return <ManageApplicationsSkeleton></ManageApplicationsSkeleton>
+  if (isFetching) {
+    return <ManageApplicationsSkeleton></ManageApplicationsSkeleton>;
   }
   return (
     <div className="py-10" id="manage_applications">
@@ -290,7 +290,7 @@ const ManageApplications = () => {
       </div>
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
       <dialog id="my_modal_99" className="modal">
-        <div className="modal-box min-w-[600px]">
+        <div className="modal-box max-w-[700px]">
           <form method="dialog">
             {/* if there is a button in form, it will close the modal */}
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
@@ -313,7 +313,7 @@ const ManageApplications = () => {
                 Candidate email
               </label>
               <input
-                className="h-12"
+                className="user_profile_input"
                 type="email"
                 value={storeInfo?.email}
                 {...register("email")}
@@ -330,9 +330,9 @@ const ManageApplications = () => {
                       Start Time:
                     </span>
                   </div>
-                  <div className="relative text-base">
+                  <div className="relative">
                     <DatePicker
-                      className="h-12"
+                      className="user_profile_input"
                       value={selectedStartTime || "Select start time"}
                       selected={selectedStartTime}
                       onChange={(time) => setSelectedStartTime(time)}
@@ -342,7 +342,7 @@ const ManageApplications = () => {
                       required
                       dateFormat="h:mm aa"
                     />
-                    <IoMdTime className="absolute text-xl top-3 lg:top-5 right-4 cursor-pointer" />
+                    <IoMdTime className="absolute text-xl top-3 lg:top-4 right-2 cursor-pointer" />
                   </div>
                 </label>
                 {/* Current Address field End */}
@@ -356,7 +356,7 @@ const ManageApplications = () => {
                   </div>
                   <div className="relative">
                     <DatePicker
-                      className="h-12"
+                      className="user_profile_input"
                       value={selectedEndTime || "Select end time"}
                       selected={selectedEndTime}
                       onChange={(time) => setSelectedEndTime(time)}
@@ -366,7 +366,7 @@ const ManageApplications = () => {
                       required
                       dateFormat="h:mm aa"
                     />
-                    <IoMdTime className="absolute text-xl top-4 lg:top-5 right-4 cursor-pointer" />
+                    <IoMdTime className="absolute text-xl top-4 lg:top-4 right-2 cursor-pointer" />
                   </div>
                 </label>
               </div>
@@ -377,25 +377,24 @@ const ManageApplications = () => {
                   Date Select
                 </span>
               </div>
-
               <div className="relative">
                 <DatePicker
-                  className="h-12"
+                  className="user_profile_input"
                   selected={selectDate}
                   onChange={(date) => setSelectDate(date)}
                   icon="fa fa-calendar"
                 />
-                <CiCalendar className="absolute top-4 lg:top-4 right-4 cursor-pointer" />
+                <CiCalendar className="absolute text-xl top-4 lg:top-4 right-2 cursor-pointer" />
               </div>
               {/* Please Interviewer Select */}
               <div className="mt-4">
-                <span className="font-bold text-sm font-inter">
+                <span className="font-semibold text-sm font-inter">
                   {" "}
                   Interviewer:
                 </span>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-2 gap-3 mt-1">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-1">
                 {allAdmins?.slice(0, storeLength)?.map((admin) => (
                   <div
                     key={admin._id}
@@ -445,7 +444,7 @@ const ManageApplications = () => {
                   </p>
                 )}
               </div>
-              <button className="nbtn w-full mt-7 flex justify-center items-center">
+              <button className="nbtn-fixed-bg w-full mt-7">
                 {isPosting ? (
                   <span className="loading loading-spinner loading-md"></span>
                 ) : (

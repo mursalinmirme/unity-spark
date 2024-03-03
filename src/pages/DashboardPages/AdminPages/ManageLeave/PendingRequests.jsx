@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { toast } from 'sonner';
+import { toast } from "sonner";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import PendingLeaveSkeleton from "./PendingLeaveSkeleton";
@@ -11,7 +11,11 @@ const PendingRequests = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const axiosPublic = useAxiosPublic();
-  const { data: leaveRequests = [], refetch, isFetching } = useQuery({
+  const {
+    data: leaveRequests = [],
+    refetch,
+    isFetching,
+  } = useQuery({
     queryKey: ["GetAllLeaveRequests"],
     queryFn: async () => {
       const result = await axiosPublic.get("/leaves");
@@ -58,7 +62,7 @@ const PendingRequests = () => {
   const handleRejectedFeedback = (e) => {
     e.preventDefault();
     setSubmitLoading(true);
-    setErrorMsg('');
+    setErrorMsg("");
     const form = e.target;
     const feedback = form.feedback.value;
     if (feedback === "") {
@@ -81,7 +85,7 @@ const PendingRequests = () => {
           icon: "success",
           title: "Leave Rejected Successfully",
           showConfirmButton: false,
-          timer: 1500
+          timer: 1500,
         });
       })
       .catch((err) => {
@@ -89,8 +93,8 @@ const PendingRequests = () => {
       });
   };
 
-  if(isFetching){
-    return <PendingLeaveSkeleton></PendingLeaveSkeleton>
+  if (isFetching) {
+    return <PendingLeaveSkeleton></PendingLeaveSkeleton>;
   }
 
   return (
@@ -152,16 +156,20 @@ const PendingRequests = () => {
           <h4 className="text-lg font-bold text-center">
             Give a rejected feedback
           </h4>
-          {
-            errorMsg && <p className="text-red-500 mt-2">{errorMsg}</p>
-          }
+          {errorMsg && <p className="text-red-500 mt-2">{errorMsg}</p>}
           <form onSubmit={handleRejectedFeedback} className="mt-2">
             <textarea
-              className="border-2 rounded-md p-4 w-full mt-3 h-40 resize-none outline-accent"
+              className="rounded-md p-4 w-full h-40 textarea focus:outline-none border-[1.5px] border-[#D9D9D9] text-base"
               name="feedback"
               placeholder="Why you are rejecting..."
             ></textarea>
-            <button className="nbtn w-full mt-4 flex items-center justify-center py-2">{submitLoading ? <span className="loading loading-spinner loading-md"></span> : "Submit Rejected"}</button>
+            <button className="nbtn-fixed-bg w-full mt-4">
+              {submitLoading ? (
+                <span className="loading loading-spinner loading-md"></span>
+              ) : (
+                "Submit Rejected"
+              )}
+            </button>
           </form>
         </div>
       </dialog>

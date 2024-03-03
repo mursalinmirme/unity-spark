@@ -22,7 +22,7 @@
 }
 
 .user_profile_input {
-  @apply text-sm py-2.5 border-[1.5px] font-semibold font-inter;
+  @apply text-sm py-2.5 border-[1.5px] font-medium font-inter;
 }
 
 .edit_btn {
