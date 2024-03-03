@@ -10,7 +10,7 @@ const SavedBlogs = () => {
   const axiosPublic = useAxiosPublic();
   const { user } = useContext(AuthContext);
 
-  const { data: SavedBlogs = [], isFetching } = useQuery({
+  const { data: SavedBlogs = [], isFetching , refetch} = useQuery({
     queryKey: ["saved_blogs"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/bookmarked-blogs/${user?.email}`);
@@ -29,7 +29,7 @@ const SavedBlogs = () => {
             SavedBlogs?.map((singleBlog) => (
               <SavedBlogCard
                 key={singleBlog._id}
-                singleBlog={singleBlog}></SavedBlogCard>
+                singleBlog={singleBlog} refetch={refetch}></SavedBlogCard>
             ))}
         </div>
       )}
