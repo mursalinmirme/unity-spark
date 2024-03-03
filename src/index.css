@@ -29,6 +29,10 @@ body {
   background-position: left;
 }
 
+.nbtn-fixed-bg {
+  @apply py-2 bg-primary border-none text-white rounded-lg text-center cursor-pointer font-inter font-semibold;
+}
+
 .goals h2,
 .services h2,
 .job_posts h2,

@@ -53,7 +53,7 @@ const Reviews = () => {
   return (
     <div>
       <div className="flex justify-between items-center mb-5">
-        <h1 className="text-2xl md:text-3xl font-bold">Reviews</h1>
+        <h1 className="text-2xl font-semibold">Reviews</h1>
         {isUser?.role === "employee" && (
           <Link to={"add-review"}>
             <a className="edit_btn">
