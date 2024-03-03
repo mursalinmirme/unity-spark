@@ -2,10 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import AllEmployeesTable from "./AllEmployeesTable";
+import EmployeeSkeleton from "./EmployeeSkeleton";
 
 const Employee = () => {
   const axiosSecure = useAxiosSecure();
-  const { data: allEmployees = [], refetch } = useQuery({
+  const { data: allEmployees = [], refetch, isFetching } = useQuery({
     queryKey: ["allEmployees"],
     queryFn: async () => {
       const res = await axiosSecure.get("/employees");
@@ -31,7 +32,9 @@ const Employee = () => {
               <th>Role</th>
             </tr>
           </thead>
-          <tbody className="mt-20">
+          {
+            isFetching ? <EmployeeSkeleton></EmployeeSkeleton> : 
+            <tbody className="mt-20">
             {allEmployees?.map((user, idx) => (
               <AllEmployeesTable
                 key={user?._id}
@@ -40,6 +43,7 @@ const Employee = () => {
                 user={user}></AllEmployeesTable>
             ))}
           </tbody>
+          }
         </table>
       </div>
     </div>
