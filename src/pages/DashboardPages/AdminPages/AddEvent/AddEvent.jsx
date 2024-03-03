@@ -188,7 +188,7 @@ const AddEvent = () => {
                 icon="fa fa-calendar"
                 className="text-base font-medium py-2"
               />
-              <CiCalendar className="absolute top-4 lg:top-4 right-4 cursor-pointer" />
+              <CiCalendar className="absolute text-2xl top-4 lg:top-4 right-4 cursor-pointer" />
             </div>
           </label>
         </div>
