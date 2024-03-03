@@ -96,7 +96,7 @@ const AddReview = () => {
         </div>
         <div className="mt-4">
           <input
-            className="btn w-20 px-6 md:px-10 bg-primary text-white hover:text-black"
+            className="max-w-20 text-white font-inter font-semibold text-lg border-2 rounded-xl cursor-pointer bg-primary border-primary py-1 px-3  transition-all duration-500 hover:scale-105 "
             type="submit"
             value="Post"
           />
@@ -115,13 +115,13 @@ const AddReview = () => {
               </div>
             </div>
             <p className="text-[#5B5555] font-medium mt-3">
-              "
+             
               {item.description.length > 55 ? (
                 <span>{item.description.slice(0, 55)}...</span>
               ) : (
                 <span>{item.description}</span>
               )}
-              "
+            
             </p>
           </div>
         ))}
