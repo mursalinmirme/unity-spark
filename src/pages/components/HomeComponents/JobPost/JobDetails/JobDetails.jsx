@@ -34,7 +34,7 @@ const JobDetails = () => {
     enabled: !!jobInfo?.job_title,
     queryFn: async () => {
       const result = await PublicAxios.get(
-        `/similar_jobs?job_title=${jobInfo?.job_title}&jobId=${jobInfo?._id}`
+        `/similar_jobs?job_title=${jobInfo?.job_title}&jobType=${jobInfo?.job_category1}&workType=${jobInfo?.job_category2}&jobId=${jobInfo?._id}`
       );
       console.log("see more jobs result is", result.data);
       return result.data;
@@ -189,9 +189,7 @@ const JobDetails = () => {
           {user?.email ? (
             <Link to={`/apply-job/${jobInfo?._id}`}>
               <span
-                className={`px-8 flex items-center bg-primary text-white rounded-xl cursor-pointer text-[14px] py-3 ${
-                  isUser?.role === "user" ? "visible" : "invisible"
-                }`}
+                className={`px-8 flex items-center bg-primary text-white rounded-xl cursor-pointer text-[14px] py-3`}
               >
                 Apply Now
               </span>
@@ -206,9 +204,7 @@ const JobDetails = () => {
           {user?.email ? (
             <span
               onClick={() => handlerSaveJobInfo(jobInfo)}
-              className={`px-8 h-11 flex justify-center items-center text-primary border-2 border-primary  rounded-xl cursor-pointer text-[15px] ${
-                isUser?.role === "user" ? "visible" : "invisible"
-              }`}
+              className={`px-8 h-11 flex justify-center items-center text-primary border-2 border-primary  rounded-xl cursor-pointer text-[15px]`}
             >
               {isSaving ? <span className="loading loading-spinner loading-md p-0"></span> : 'Save'}
             </span>
@@ -257,9 +253,7 @@ const JobDetails = () => {
                     {user?.email ? (
                       <Link to={`/apply-job/${jobPost?._id}`}>
                         <span
-                          className={`px-8 flex items-center bg-primary text-white rounded-xl cursor-pointer text-[14px] py-3 ${
-                            isUser?.role === "user" ? "visible" : "invisible"
-                          }`}
+                          className={`px-8 flex items-center bg-primary text-white rounded-xl cursor-pointer text-[14px] py-3`}
                         >
                           Apply Now
                         </span>
