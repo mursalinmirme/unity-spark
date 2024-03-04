@@ -85,7 +85,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup p-5">
+    <div className="signup p-5 max-w-[92%] lg:max-w-[1200px] mx-auto">
       <section>
         {/* form */}
         <div className="left_container">

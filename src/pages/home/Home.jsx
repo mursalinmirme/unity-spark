@@ -32,9 +32,9 @@ const Home = () => {
       <div className="max-w-[92%] lg:max-w-[1200px] mx-auto">
         <Testimonilas></Testimonilas>
       </div>
-      <div className="max-w-[92%] lg:max-w-[1200px] mx-auto">
+      {/* <div className="max-w-[92%] lg:max-w-[1200px] mx-auto"> */}
         <Newsletter></Newsletter>
-      </div>
+      {/* </div> */}
       <div className="max-w-[92%] lg:max-w-[1200px] mx-auto">
         <ContactUs></ContactUs>
       </div>
