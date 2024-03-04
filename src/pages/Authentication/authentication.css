@@ -1,8 +1,3 @@
-.signin section,
-.signup section {
-  @apply grid grid-cols-1 lg:grid-cols-2 gap-10;
-}
-
 .signin p,
 .signup p {
   @apply font-medium text-center;
