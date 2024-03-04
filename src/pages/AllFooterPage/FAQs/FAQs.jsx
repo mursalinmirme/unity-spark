@@ -1,6 +1,6 @@
 const FAQs = () => {
   return (
-    <div className="md:my-10">
+    <div className="md:my-10 max-w-[92%] lg:max-w-[1200px] mx-auto">
       {/* <img
         className=" rounded-lg w-full"
         src="https://i.ibb.co/9TKr4kF/FAQ-image.png"

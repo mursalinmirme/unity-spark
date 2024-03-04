@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 const CopyrightInfo = () => {
   return (
-    <div>
+    <div className="max-w-[92%] lg:max-w-[1200px] mx-auto">
      <h1  className="text-3xl font-bold font-inter my-7">Copyrights and Information </h1>
      <h1 className="text-xl font-medium font-inter mb-3">© Team Code Wizards 2024 All rights reserved.</h1>
      <h1 className="text-lg font-medium font-inter mb-3">The content, images, graphics, and other materials on this website are protected by copyright and other intellectual property laws. You may not reproduce, modify, distribute, transmit, display, perform, publish, license, create derivative works from, transfer, or sell any information, software, products, or services obtained from this website without the prior written consent of Team Code wizards.</h1>
