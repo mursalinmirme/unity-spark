@@ -82,8 +82,8 @@ const Reviews = () => {
                 />
 
                 <div>
-                  <h1 className="text-[20px] font-bold">{item.name}</h1>
-                  <p className="text-[#5B5555] text-[14px]">
+                  <h1 className="text-[20px] font-semibold">{item.name}</h1>
+                  <p className="text-[#5B5555] text-[17px]">
                     {item.employeePosition}
                   </p>
                 </div>
