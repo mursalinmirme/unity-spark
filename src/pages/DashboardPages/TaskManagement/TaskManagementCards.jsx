@@ -56,7 +56,7 @@ const TaskManagementCards = ({
       <div className="md:flex justify-between items-center py-2 mt-auto">
         <div className="mb-5 md:mb-0">
           {" "}
-          <span className="border px-4 bg-[#c7c5eb] p-1 rounded-lg text-[#433EBE] font-bold">
+          <span className="border px-4 bg-[#c7c5eb] p-1 font-inter rounded-lg text-[#433EBE] font-semibold">
             {" "}
             {formattedStartDate} - {formattedEndDate}
           </span>

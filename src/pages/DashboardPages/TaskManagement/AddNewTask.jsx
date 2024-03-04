@@ -98,11 +98,11 @@ const AddNewTask = () => {
           <div className="border-2 rounded-lg p-7 space-y-3">
             <div className="form-control">
               <label className="">
-                <span className="user_profile_input_title">Task Name</span>
+                <span className="user_profile_input_title ">Task Name</span>
               </label>
               <input
                 type="text"
-                className="user_profile_input"
+                className="user_profile_input mt-0"
                 placeholder="Enter task name"
                 {...register("taskName", { required: true })}
               />
@@ -115,11 +115,13 @@ const AddNewTask = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <div className="form-control">
                 <label className="">
-                  <span className="user_profile_input_title">Start Date</span>
+                  <span className="user_profile_input_title mt-0">
+                    Start Date
+                  </span>
                 </label>
                 <input
                   type="date"
-                  className="user_profile_input"
+                  className="user_profile_input mt-0"
                   {...register("startDate", { required: true })}
                 />
                 {errors.startDate && (
@@ -134,7 +136,7 @@ const AddNewTask = () => {
                 </label>
                 <input
                   type="date"
-                  className="user_profile_input"
+                  className="user_profile_input mt-0"
                   {...register("endDate", { required: true })}
                 />
                 {errors.endDate && (
