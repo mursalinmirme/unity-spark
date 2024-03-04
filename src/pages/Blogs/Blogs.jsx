@@ -16,8 +16,6 @@ const Blogs = () => {
 
   const [slicedBlog, setSlicedBlog] = useState(8);
 
-  console.log(window.innerWidth);
-
   return (
     <div className="blogs py-10 max-w-[92%] lg:max-w-[1200px] mx-auto">
       {isPending ? (

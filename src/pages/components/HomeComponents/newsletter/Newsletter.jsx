@@ -3,14 +3,17 @@ import { toast } from 'sonner';
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../../Provider/AuthProvider";
-import testimonialBg from "../../../../assets/images/testimonials//testimonials_bg.jpg";
+import testimonialBg from "../../../../assets/images/testimonials/testimonial.jpg";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import useUserId from "../../../../hooks/useUserId";
 
 const Newsletter = () => {
   const newsBG = {
     background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)), url(${testimonialBg})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center center'
   };
+
   const { user } = useContext(AuthContext);
   const [userId] = useUserId();
   const axiosPublic = useAxiosPublic();
@@ -66,8 +69,8 @@ const Newsletter = () => {
   };
 
   return (
-    <div className="newsletter">
-      <div className="newsletter_container" style={newsBG}>
+    <div className="newsletter" style={newsBG}>
+      <div className="newsletter_container">
         <div className="second_container">
           <h2>Our Newsletter</h2>
           <p>Subscribe our newsletter to get update from us</p>
