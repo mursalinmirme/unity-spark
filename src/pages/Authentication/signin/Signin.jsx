@@ -61,87 +61,88 @@ const Signin = () => {
 
   return (
     <div className="signin lg:min-h-[70vh]" style={signInBg}>
-      <section className="grid md:grid-cols-2 lg:grid-cols-2 items-center h-full">
+      <section className="grid md:grid-cols-2 lg:grid-cols-2 items-center">
         {/* images */}
         <div className="w-full">
 
         </div>
-        {/* images */}
 
         {/* form */}
-        <div className="p-12 h-full bg-white rounded-s-2xl">
-          <form onSubmit={handleSubmit(onSubmit)} className="max-w-[620px]">
-            <h1 className="">Welcome Back</h1>
-            <p className="text-sm">Enter Your Credentials to Sign In </p>
+        <div className="bg-white flex items-center w-full lg:min-h-[70vh]">
+          <div className="p-12 h-full rounded-s-2xl max-w-[620px] w-full">
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <h1 className="">Welcome Back</h1>
+              <p className="text-sm">Enter Your Credentials to Sign In </p>
 
-            {/* email field */}
-            <label className="form-control w-full">
-              <div className="label">
-                <span className="sign_up_input_title">Your Email</span>
-              </div>
-              <input
-                type="email"
-                {...register("email")}
-                placeholder="johndoe@gmail.com"
-                required
-              />
-            </label>
-            {/* email field */}
-
-            {/* password field */}
-            <label className="form-control w-full py-3 ">
-              <div className="label">
-                <span className="sign_up_input_title">Your password</span>
-              </div>
-              <div className="relative">
+              {/* email field */}
+              <label className="form-control w-full">
+                <div className="label">
+                  <span className="sign_up_input_title">Your Email</span>
+                </div>
                 <input
-                  type={open ? "text" : "password"}
-                  {...register("password")}
-                  placeholder="*************"
+                  type="email"
+                  {...register("email")}
+                  placeholder="johndoe@gmail.com"
                   required
                 />
-                <span
-                  onClick={() => setOpen(!open)}
-                  className="absolute top-4 right-4 cursor-pointer"
-                >
-                  {" "}
-                  {open ? (
-                    <IoEyeOutline className="text-xl" />
+              </label>
+              {/* email field */}
+
+              {/* password field */}
+              <label className="form-control w-full py-3">
+                <div className="label">
+                  <span className="sign_up_input_title">Your password</span>
+                </div>
+                <div className="relative">
+                  <input
+                    type={open ? "text" : "password"}
+                    {...register("password")}
+                    placeholder="*************"
+                    required
+                  />
+                  <span
+                    onClick={() => setOpen(!open)}
+                    className="absolute top-4 right-4 cursor-pointer"
+                  >
+                    {" "}
+                    {open ? (
+                      <IoEyeOutline className="text-xl" />
+                    ) : (
+                      <FaEyeSlash className="text-xl" />
+                    )}
+                  </span>
+                </div>
+              </label>
+              {/* password field */}
+              <div className="form-control w-full">
+                <button className="text-base flex justify-center items-center nbtn">
+                  {signInLoading ? (
+                    <span className="loading loading-spinner loading-md"></span>
                   ) : (
-                    <FaEyeSlash className="text-xl" />
+                    "Sign In"
                   )}
-                </span>
+                </button>
               </div>
-            </label>
-            {/* password field */}
-            <div className="form-control w-full">
-              <button className="text-base flex justify-center items-center nbtn">
-                {signInLoading ? (
-                  <span className="loading loading-spinner loading-md"></span>
-                ) : (
-                  "Sign In"
-                )}
-              </button>
-            </div>
-          </form>
+            </form>
 
-          {/** Social Media Login System */}
-          <div className="max-w-[620px]">
-            <div className="divider ">OR</div>
-            <Social_Media
-              setGoogleLoading={setGoogleLoading}
-              googleLoading={googleLoading}
-            >
-              {" "}
-            </Social_Media>
+            {/** Social Media Login System */}
+            <div className="max-w-[620px]">
+              <div className="divider ">OR</div>
+              <Social_Media
+                setGoogleLoading={setGoogleLoading}
+                googleLoading={googleLoading}
+              >
+                {" "}
+              </Social_Media>
 
-            <div className="text-center py-3">
-              <p className="text-sm text-gray-700 font-medium">
-                Don't have an account?{" "}
-                <Link to="/signup" className="text-primary">
-                  Sign Up
-                </Link>
-              </p>
+              <div className="text-center py-3">
+                <p className="text-sm text-gray-700 font-medium">
+                  Don't have an account?{" "}
+                  <Link to="/signup" className="text-primary">
+                    Sign Up
+                  </Link>
+                </p>
+              </div>
             </div>
           </div>
         </div>
