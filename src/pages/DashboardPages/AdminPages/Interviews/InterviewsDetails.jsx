@@ -89,15 +89,17 @@ const InterviewsDetails = () => {
           </div>
         </div>
         {/**Bottom part */}
-        <div className="mt-10 text-center flex flex-col md:flex-row justify-center items-center gap-5">
+
+        {/* <div className="mt-10 text-center flex flex-col md:flex-row justify-center items-center gap-5">
           <span className="font-inter font-semibold text-[20px]">
             Check Your Connections
           </span>
-          {/** Audio Icons */}
+        
           <div className="flex gap-5">
             <div
               className="cursor-pointer w-10 h-10 rounded-full border border-primary flex items-center justify-center"
-              onClick={() => setOpen(!open)}>
+              onClick={() => setOpen(!open)}
+            >
               {open ? (
                 <AiOutlineAudioMuted className="text-2xl text-primary" />
               ) : (
@@ -105,26 +107,16 @@ const InterviewsDetails = () => {
               )}
             </div>
 
-            {/** Video Icons */}
             <div
               className="cursor-pointer w-10 h-10 rounded-full border border-primary flex items-center justify-center"
-              onClick={() => setVideoOpen(!videoOpen)}>
+              onClick={() => setVideoOpen(!videoOpen)}
+            >
               {videoOpen ? (
                 <MdOutlineVideocamOff className="text-2xl text-primary" />
               ) : (
                 <MdOutlineVideocam className="text-2xl text-primary" />
               )}
             </div>
-          </div>
-        </div>
-        {/**Button */}
-        {/* <div className="text-center mt-10">
-          <div className="text-center">
-            <Link to={`/dashboard/interview-call/${id}`}>
-              <button className="btn bg-primary px-7 py-1 text-white rounded-lg hover:bg-primary">
-                Join Now Rifa
-              </button>
-            </Link>
           </div>
         </div> */}
 
@@ -134,15 +126,16 @@ const InterviewsDetails = () => {
             new Date(currentDate && currentTime).toDateString() ? (
             <Link to={`/dashboard/interview-call/${id}`}>
               <button className="btn bg-primary px-7 py-1 text-white rounded-lg hover:bg-primary">
-                Ask to join
+                Join Now
               </button>
             </Link>
           ) : (
             <Link to={`/dashboard/interview-call/${id}`}>
               <button
                 disabled
-                className="btn bg-primary px-7 py-1 text-white rounded-lg hover:bg-primary">
-                Ask to join
+                className="btn bg-primary px-7 py-1 text-white rounded-lg hover:bg-primary"
+              >
+                Join Now
               </button>
             </Link>
           )}

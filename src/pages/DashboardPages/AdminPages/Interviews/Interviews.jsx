@@ -28,11 +28,11 @@ const Interviews = () => {
       <div className="overflow-x-auto">
         <table className="table border">
           {/* head */}
-          <thead className="bg-primary">
-            <tr className="text-white text-sm font-normal">
+          <thead className="bg-second text-white text-base rounded-md  text-left">
+            <tr>
               <th>SL.</th>
-              <th>Candidate Name</th>
-              <th>Candidate Email</th>
+              <th> Name</th>
+              <th> Email</th>
               <th>Start Time</th>
               <th>Date</th>
               <th>Action</th>
@@ -47,12 +47,12 @@ const Interviews = () => {
                 <tr key={interview?._id} className="text-base">
                   <th>{indx + 1}</th>
                   <td className="text-left">{interview?.candidateName}</td>
-                  <td className="text-left">{interview?.candidateEmail}</td>
+                  <td className="text-left ">{interview?.candidateEmail}</td>
                   <td className="text-left">{interview?.startTime}</td>
                   <td className="text-left">{interview?.date}</td>
                   <td className="">
                     <Link to={`/dashboard/interview-details/${interview?._id}`}>
-                      <button className="bg-accent  px-3 py-2 text-white rounded-md">
+                      <button className="bg-primary px-3 py-2  text-white rounded-md text-xs">
                         Details
                       </button>
                     </Link>
