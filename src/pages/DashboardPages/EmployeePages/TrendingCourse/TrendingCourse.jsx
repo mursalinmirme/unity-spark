@@ -68,17 +68,16 @@ const TrendingCourse = () => {
                 <h1 className="text-xl text-left font-bold">
                   {allData?.title}
                 </h1>
-                <div className="flex items-center justify-between gap-3">
-                  <button className="bg-[#BBDDF4] px-2.5  flex items-center gap-1 rounded-lg text-lg font-medium text-[#46A3e1]">
+                <div className="flex items-center justify-between gap-3 text-lg font-medium text-[#46A3e1]">
+                  <button className="bg-[#BBDDF4] px-2.5  flex items-center gap-1 rounded-lg">
                     <FaCirclePlay className="bg-white rounded-full"></FaCirclePlay>
                     <h1>40 Lessons</h1>
                   </button>
-                  <button className="bg-[#BBDDF4] px-2.5 flex items-center gap-1 rounded-lg text-lg font-medium text-[#46A3e1]">
+                  <button className="bg-[#BBDDF4] px-2.5 flex items-center gap-1 rounded-lg">
                     <BsClock></BsClock>
                     <h1>240 Hour</h1>
                   </button>
                 </div>
-
                 <div className="text-left">
                   <button
                     onClick={() => handlePost(allData)}
