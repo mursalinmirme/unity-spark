@@ -2,7 +2,7 @@ const ReviewsSkeleton = () => {
   return (
     <div>
       <div className="flex justify-between items-center mb-5">
-        <h1 className="text-2xl font-semibold">Reviews</h1>
+        <h1 className="text-2xl font-semibold font-inter">Reviews</h1>
         <div className="flex items-center gap-2 p-2.5 border-2 rounded-md">
           <div className="skeleton w-4 h-4 rounded-full"></div>
           <div className="skeleton w-24 h-4"></div>
