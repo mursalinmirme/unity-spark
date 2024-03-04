@@ -5,7 +5,7 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { AuthContext } from "../../../../Provider/AuthProvider";
-import { toast } from 'sonner';
+import { toast } from "sonner";
 import Swal from "sweetalert2";
 import { LuPenLine } from "react-icons/lu";
 import MyBlogsSkeleton from "./MyBlogsSkeleton";
@@ -13,7 +13,11 @@ import MyBlogsSkeleton from "./MyBlogsSkeleton";
 const MyBlogs = () => {
   const { user } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
-  const { data: blogs = [], refetch, isFetching } = useQuery({
+  const {
+    data: blogs = [],
+    refetch,
+    isFetching,
+  } = useQuery({
     queryKey: ["blogs"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/employee-blogs/${user.email}`);
@@ -54,8 +58,8 @@ const MyBlogs = () => {
       });
   };
 
-  if(isFetching){
-    return <MyBlogsSkeleton></MyBlogsSkeleton>
+  if (isFetching) {
+    return <MyBlogsSkeleton></MyBlogsSkeleton>;
   }
 
   return (
@@ -63,7 +67,7 @@ const MyBlogs = () => {
       <div className="flex justify-end">
         <Link to="/dashboard/addBlogs">
           <p className="edit_btn">
-            <LuPenLine></LuPenLine> <span>Add Blog</span>
+            <AiFillEdit className="text-lg"></AiFillEdit> <span>Add Blog</span>
           </p>
         </Link>
       </div>
@@ -73,7 +77,8 @@ const MyBlogs = () => {
             return (
               <div
                 className="border-2 p-3 my-4 rounded-lg flex justify-between items-center"
-                key={blog?._id}>
+                key={blog?._id}
+              >
                 <div>
                   <h3 className="text-base font-bold">{blog?.title}</h3>
                 </div>
@@ -85,7 +90,8 @@ const MyBlogs = () => {
                   </Link>
                   <button
                     onClick={() => handleDeleteBlog(blog?._id)}
-                    className="bg-primary rounded-lg p-2 ">
+                    className="bg-primary rounded-lg p-2 "
+                  >
                     <RiDeleteBin6Line className="text-lg"></RiDeleteBin6Line>
                   </button>
                 </div>
