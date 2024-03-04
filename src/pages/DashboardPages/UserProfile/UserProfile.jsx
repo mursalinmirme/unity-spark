@@ -1,33 +1,15 @@
 import "../../DashboardPages/EmployeePages/MyProfile/profile.css";
 import { FiEdit3 } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
 import { CgProfile } from "react-icons/cg";
-import { AuthContext } from "../../../Provider/AuthProvider";
 import useUserInfo from "../../../hooks/useUserInfo";
 import { TbBookmark } from "react-icons/tb";
 import { FiEye } from "react-icons/fi";
+import { useState } from "react";
 
 const UserProfile = () => {
-  const { profileComplete } = useContext(AuthContext);
   const [openBookmark, setOpenBookmark] = useState(false);
   const [users, isFetching] = useUserInfo();
-  const {
-    name,
-    image,
-    email,
-    skills,
-    gender,
-    age,
-    current_address,
-    permanent_address,
-    institute_name,
-    phone,
-    resume_link,
-    time_preference,
-    job_preference,
-    education_level,
-  } = users || {};
 
   return (
     <div className="relative overflow-hidden">
@@ -45,7 +27,7 @@ const UserProfile = () => {
           <div className="flex gap-3 items-center relative">
             <button
               onClick={() => setOpenBookmark(!openBookmark)}
-              className="edit_btn"
+              className="border-2 border-primary rounded-lg p-1.5 text-primary hover:text-white hover:bg-primary transition-all duration-500"
             >
               <TbBookmark className="text-xl" />
             </button>
