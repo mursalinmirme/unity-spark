@@ -93,7 +93,7 @@ const Signin = () => {
                 />
                 <span
                   onClick={() => setOpen(!open)}
-                  className="absolute top-[18px] right-4 cursor-pointer"
+                  className="absolute top-4 right-4 cursor-pointer"
                 >
                   {" "}
                   {open ? (
@@ -106,7 +106,7 @@ const Signin = () => {
             </label>
             {/* password field */}
             <div className="form-control w-full">
-              <button className="nbtn">
+              <button className="text-base flex justify-center items-center nbtn">
                 {signInLoading ? (
                   <span className="loading loading-spinner loading-md"></span>
                 ) : (
