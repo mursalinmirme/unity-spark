@@ -65,11 +65,11 @@ const AddBlogs = () => {
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold mb-5">Add Blog</h1>
+      <h1 className="text-2xl font-semibold mb-4">Add Blog</h1>
       <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
         <div className="md:flex gap-3">
           <div className="form-control w-full">
-            <label className="label">
+            <label>
               <span className="user_profile_input_title">Blog Title</span>
             </label>
             <input
@@ -81,14 +81,14 @@ const AddBlogs = () => {
             {errors.title && <p className="text-red-500">title is required.</p>}
           </div>
           <div className="form-control w-full">
-            <label className="label mb-1.5">
+            <label>
               <span className="user_profile_input_title">Add photo</span>
             </label>
             <label
-              className="font-semibold w-full text-white cursor-pointer font-inter text-base px-8 py-2 bg-primary rounded-md transition-all duration-500 mt-1.5 mb-0.5"
+              className="font-medium w-full text-white cursor-pointer font-inter text-base px-8 py-2 bg-primary rounded-md transition-all duration-500 mt-1.5 mb-0.5"
               htmlFor="user_photo"
             >
-              <div className="flex justify-center items-center gap-4">
+              <div className="flex justify-center items-center gap-3">
                 {" "}
                 {/* <img className="w-5 h-5" src={download_icon} alt="" />{" "} */}
                 <SlCloudUpload className="w-5 h-5" />
@@ -104,7 +104,7 @@ const AddBlogs = () => {
           </div>
         </div>
         <div className="form-control">
-          <label className="label">
+          <label className="mb-2.5">
             <span className="user_profile_input_title">Description</span>
           </label>
           <JoditEditor
@@ -113,8 +113,17 @@ const AddBlogs = () => {
             onBlur={(newContent) => setContent(newContent)}
           />
         </div>
-        <div className="pt-4">
-          <button type="submit" className="w-32 nbtn-fixed-bg flex justify-center items-center">{isUploading ? <span className="loading loading-spinner loading-md"></span>: 'Publish'}</button>
+        <div>
+          <button
+            type="submit"
+            className="w-32 nbtn-fixed-bg flex justify-center items-center"
+          >
+            {isUploading ? (
+              <span className="loading loading-spinner loading-md"></span>
+            ) : (
+              "Publish"
+            )}
+          </button>
         </div>
       </form>
     </div>
