@@ -10,7 +10,7 @@ import { FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { toast } from "sonner";
 import Social_Media from "../../components/Share/Social_Media/Social_Media";
-
+import bg3 from '../../../assets/SignIn/signin-3.jpg'
 import useRandomPasswordGenerate from "../../../hooks/useRandomPasswordGenerate";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import axios from "axios";
@@ -83,177 +83,188 @@ const Signup = () => {
         });
     }
   };
-
+    
+  const signInBg = {
+    background: `linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0)), url(${bg3})`,
+    backgroundSize: "cover",
+    backgroundPosition: 'center'
+  }
   return (
-    <div className="signup p-5 max-w-[92%] lg:max-w-[1200px] mx-auto">
-      <section>
-        {/* form */}
-        <div className="left_container">
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <h1>Lets Start a new journey</h1>
-            <p>Create Your Account</p>
+    <div className="signin lg:min-h-[70vh]" style={signInBg}>
+      <section className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-1 items-center lg:min-h-[70vh]">
+        {/* images */}
+        <div className="2xl:hidden">
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-              {/* name field */}
-              <div>
-                <label>
-                  <div className="label">
-                    <span className="sign_up_input_title">
-                      What is your name?
-                    </span>
-                  </div>
-                  <input
-                    type="text"
-                    {...register("name", { required: true })}
-                    placeholder="John Doe"
-                    required
-                  />
-                </label>
-              </div>
-              {/*image field */}
-              <label className="relative">
-                <div className="label mb-8 md:mb-0 lg:mb-0">
-                  <span className="user_profile_input_title pb-4 md:pb-0 md:mb-10 lg:mb-10 ">
-                    {" "}
-                    Your Photo{" "}
+        </div>
+        {/* form */}
+        <div className="bg-white  w-full 2xl:w-[650px] 2xl:mx-auto lg:rounded-s-2xl 2xl:rounded-2xl">
+          <div>
+          <div className="p-6 md:12 h-full rounded-2xl w-full lg:max-w-[650px]">
+
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <h1>Lets Start a new journey</h1>
+          <p>Create Your Account</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            {/* name field */}
+            <div>
+              <label>
+                <div className="label">
+                  <span className="sign_up_input_title">
+                    What is your name?
                   </span>
-                  <label
-                    className="font-semibold w-full absolute bottom-0 text-white cursor-pointer font-inter text-base px-8 py-2.5 bg-primary rounded-md transition-all duration-500 mt-1 mb-0.5"
-                    htmlFor="user_photo"
-                  >
-                    <div className="flex justify-center items-center gap-4">
-                      {" "}
-                      {/* <img className="w-5 h-5" src={download_icon} alt="" />{" "} */}
-                      <SlCloudUpload className="w-5 h-5" />
-                      <span> Upload Photo</span>{" "}
-                    </div>
-                  </label>
                 </div>
                 <input
-                  className="hidden"
-                  id="user_photo"
-                  type="file"
-                  {...register("photo")}
-                  placeholder="Add Image"
+                  type="text"
+                  {...register("name", { required: true })}
+                  placeholder="John Doe"
+                  required
                 />
               </label>
-              {/* image field */}
             </div>
-
-            {/* name field */}
-            {/* email field */}
-            <label>
-              <div className="label">
-                <span className="sign_up_input_title">What is your email?</span>
+            {/*image field */}
+            <label className="relative">
+              <div className="label mb-8 md:mb-0 lg:mb-0">
+                <span className="user_profile_input_title pb-4 md:pb-0 md:mb-10 lg:mb-10 ">
+                  {" "}
+                  Your Photo{" "}
+                </span>
+                <label
+                  className="font-semibold w-full absolute bottom-0 text-white cursor-pointer font-inter text-base px-8 py-2.5 bg-primary rounded-md transition-all duration-500 mt-1 mb-0.5"
+                  htmlFor="user_photo"
+                >
+                  <div className="flex justify-center items-center gap-4">
+                    {" "}
+                    {/* <img className="w-5 h-5" src={download_icon} alt="" />{" "} */}
+                    <SlCloudUpload className="w-5 h-5" />
+                    <span> Upload Photo</span>{" "}
+                  </div>
+                </label>
               </div>
               <input
-                type="email"
-                {...register("email", { required: true })}
-                placeholder="johndoe@gmail.com"
-                required
+                className="hidden"
+                id="user_photo"
+                type="file"
+                {...register("photo")}
+                placeholder="Add Image"
               />
             </label>
-            {/* email field */}
-
-            {/* password field */}
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-              <label>
-                <div className="label">
-                  <span className="sign_up_input_title">Your password</span>
-                </div>
-
-                <div className="relative">
-                  <input
-                    value={randomPassword}
-                    type={open ? "text" : "password"}
-                    {...register("password", { required: true })}
-                    placeholder="Create Password"
-                  />
-                  <span
-                    onClick={() => setOpen(!open)}
-                    className="absolute top-[18px] right-3 cursor-pointer"
-                  >
-                    {" "}
-                    {open ? (
-                      <IoEyeOutline className="text-xl" />
-                    ) : (
-                      <FaEyeSlash className="text-xl" />
-                    )}
-                  </span>
-                </div>
-              </label>
-              <label>
-                <div className="label">
-                  <span className="sign_up_input_title">Confirm Password</span>
-                </div>
-                <div className="relative">
-                  <input
-                    value={randomPassword}
-                    type={secret ? "text" : "password"}
-                    {...register("confirm", { required: true })}
-                    placeholder="Create Password"
-                  />
-                  <span
-                    onClick={() => setSecret(!secret)}
-                    className="absolute top-[18px] right-3 cursor-pointer"
-                  >
-                    {" "}
-                    {secret ? (
-                      <IoEyeOutline className="text-xl" />
-                    ) : (
-                      <FaEyeSlash className="text-xl" />
-                    )}
-                  </span>
-                </div>
-              </label>
-            </div>
-
-            {/* PassWord Random Generator Btn */}
-            <button
-              className="nbtn bg-green-600 my-5"
-              onClick={generatePassword}
-            >
-              <div className="flex items-center gap-3">
-                <SlEnergy />
-                <span> Password Generator</span>
-              </div>
-            </button>
-
-            {/* password field */}
-            <div className="form-control w-full">
-              <button className="text-base flex justify-center items-center nbtn">
-                {signUpLoading ? (
-                  <span className="loading loading-spinner loading-md"></span>
-                ) : (
-                  "Sign Up"
-                )}
-              </button>
-            </div>
-          </form>
-          <div className="divider">OR</div>
-          {/** Social Media SignUp System */}
-          <Social_Media
-            setGoogleLoading={setGoogleLoading}
-            googleLoading={googleLoading}
-          ></Social_Media>
-
-          <div className="text-center py-3">
-            <p className="text-sm text-gray-700 font-medium">
-              Already Have an account?{" "}
-              <Link to="/signin" className="text-primary">
-                Sign In
-              </Link>
-            </p>
+            {/* image field */}
           </div>
+
+          {/* name field */}
+          {/* email field */}
+          <label>
+            <div className="label">
+              <span className="sign_up_input_title">What is your email?</span>
+            </div>
+            <input
+              type="email"
+              {...register("email", { required: true })}
+              placeholder="johndoe@gmail.com"
+              required
+            />
+          </label>
+          {/* email field */}
+
+          {/* password field */}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <label>
+              <div className="label">
+                <span className="sign_up_input_title">Your password</span>
+              </div>
+
+              <div className="relative">
+                <input
+                  value={randomPassword}
+                  type={open ? "text" : "password"}
+                  {...register("password", { required: true })}
+                  placeholder="Create Password"
+                />
+                <span
+                  onClick={() => setOpen(!open)}
+                  className="absolute top-[18px] right-3 cursor-pointer"
+                >
+                  {" "}
+                  {open ? (
+                    <IoEyeOutline className="text-xl" />
+                  ) : (
+                    <FaEyeSlash className="text-xl" />
+                  )}
+                </span>
+              </div>
+            </label>
+            <label>
+              <div className="label">
+                <span className="sign_up_input_title">Confirm Password</span>
+              </div>
+              <div className="relative">
+                <input
+                  value={randomPassword}
+                  type={secret ? "text" : "password"}
+                  {...register("confirm", { required: true })}
+                  placeholder="Create Password"
+                />
+                <span
+                  onClick={() => setSecret(!secret)}
+                  className="absolute top-[18px] right-3 cursor-pointer"
+                >
+                  {" "}
+                  {secret ? (
+                    <IoEyeOutline className="text-xl" />
+                  ) : (
+                    <FaEyeSlash className="text-xl" />
+                  )}
+                </span>
+              </div>
+            </label>
+          </div>
+
+          {/* PassWord Random Generator Btn */}
+          <button
+            className="nbtn bg-green-600 my-5"
+            onClick={generatePassword}
+          >
+            <div className="flex items-center gap-3">
+              <SlEnergy />
+              <span> Password Generator</span>
+            </div>
+          </button>
+
+          {/* password field */}
+          <div className="form-control w-full">
+            <button className="text-base flex justify-center items-center nbtn">
+              {signUpLoading ? (
+                <span className="loading loading-spinner loading-md"></span>
+              ) : (
+                "Sign Up"
+              )}
+            </button>
+          </div>
+        </form>
+        <div className="divider">OR</div>
+        {/** Social Media SignUp System */}
+        <Social_Media
+          setGoogleLoading={setGoogleLoading}
+          googleLoading={googleLoading}
+        ></Social_Media>
+
+        <div className="text-center py-3">
+          <p className="text-sm text-gray-700 font-medium">
+            Already Have an account?{" "}
+            <Link to="/signin" className="text-primary">
+              Sign In
+            </Link>
+          </p>
+        </div>
+        </div>
+       
+       </div>
         </div>
         {/* form */}
 
-        {/* images */}
-        <div className="right_container">
-          <img className="w-full" src={img} alt="signup" />
-        </div>
-        {/* images */}
+        
       </section>
     </div>
   );

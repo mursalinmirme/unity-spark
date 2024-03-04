@@ -8,10 +8,8 @@ import Social_Media from "../../components/Share/Social_Media/Social_Media";
 import { IoEyeOutline } from "react-icons/io5";
 import { FaEyeSlash } from "react-icons/fa";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
-import bg1 from '../../../assets/SignIn/signin-1.jpg'
 import bg3 from '../../../assets/SignIn/signin-3.jpg'
-import bg4 from '../../../assets/SignIn/signin-4.jpg'
-import bg2 from '../../../assets/SignIn/signin-2.jpg'
+
 
 const Signin = () => {
   const PublicAxios = useAxiosPublic();
@@ -61,15 +59,15 @@ const Signin = () => {
 
   return (
     <div className="signin lg:min-h-[70vh]" style={signInBg}>
-      <section className="grid md:grid-cols-2 lg:grid-cols-2 items-center">
+      <section className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-1 items-center lg:min-h-[70vh]">
         {/* images */}
-        <div className="w-full">
+        <div className="2xl:hidden">
 
         </div>
 
         {/* form */}
-        <div className="bg-white flex items-center w-full lg:min-h-[70vh]">
-          <div className="p-12 h-full rounded-s-2xl max-w-[620px] w-full">
+        <div className="bg-white  w-full 2xl:w-[650px] 2xl:mx-auto md:rounded-s-2xl 2xl:rounded-2xl">
+          <div className="p-12 h-full rounded-2xl w-full 2xl:max-w-[650px]">
             <form onSubmit={handleSubmit(onSubmit)}>
               <h1 className="">Welcome Back</h1>
               <p className="text-sm">Enter Your Credentials to Sign In </p>
