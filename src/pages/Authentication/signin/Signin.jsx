@@ -51,7 +51,8 @@ const Signin = () => {
   };
 
   return (
-    <div className="p-5 signin">
+    <div className="max-w-[92%] lg:max-w-[1200px] mx-auto">
+      <div className="p-5 signin">
       <section className="grid md:grid-cols-2 lg:grid-cols-2 items-center gap-4">
         {/* images */}
         <div className="w-full">
@@ -136,6 +137,7 @@ const Signin = () => {
         </div>
         {/* form */}
       </section>
+    </div>
     </div>
   );
 };

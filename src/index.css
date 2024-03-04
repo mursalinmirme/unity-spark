@@ -270,7 +270,7 @@ body {
 }
 
 .newsletter_container {
-  @apply rounded-2xl p-4 md:p-8 lg:px-12 lg:py-16 max-w-[92%] lg:max-w-[1200px];
+  @apply rounded-2xl p-4 md:p-8 lg:px-0 lg:py-16 max-w-[92%] lg:max-w-[1200px] mx-auto;
 }
 
 .newsletter .second_container {
