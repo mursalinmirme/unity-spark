@@ -8,7 +8,7 @@ const MyCourse = () => {
 
   return (
     <>
-      <div className="my-5">
+      <div className="mt-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {my_course.length > 0 ? (
             my_course?.map((info) => (
@@ -23,15 +23,15 @@ const MyCourse = () => {
                 />
                 <div className="space-y-5 flex flex-col p-4">
                   <div>
-                    <h1 className="text-2xl font-bold">
+                    <h1 className="text-xl font-bold">
                       {info?.uniqueID?.title}
                     </h1>
                     <div className="flex items-center justify-between gap-2 mt-4 text-lg font-medium text-[#46A3e1]">
-                      <div className="bg-[#BBDDF4] px-2.5  flex items-center gap-1 rounded-lg">
+                      <div className="bg-[#BBDDF4] px-2.5  flex items-center gap-2 rounded-lg">
                         <FaCirclePlay className=" bg-white rounded-full"></FaCirclePlay>
                         <h1>40 Lessons</h1>
                       </div>
-                      <div className="bg-[#BBDDF4] px-2.5 flex items-center gap-1 rounded-lg">
+                      <div className="bg-[#BBDDF4] px-2.5 flex items-center gap-2 rounded-lg">
                         <BsClock></BsClock>
                         <h1>240 Hour</h1>
                       </div>
