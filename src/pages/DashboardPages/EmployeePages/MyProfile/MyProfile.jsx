@@ -10,32 +10,11 @@ import { AuthContext } from "../../../../Provider/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
-const tabs = [
-  {
-    name: "1w",
-    id: 0,
-  },
-  {
-    name: "2w",
-    id: 1,
-  },
-  {
-    name: "1m",
-    id: 2,
-  },
-  {
-    name: "1y",
-    id: 3,
-  },
-  {
-    name: "All",
-    id: 4,
-  },
-];
 
 const MyProfile = () => {
   const [isActive, setIsActive] = useState(0);
   const [openEditor, setOpenEditor] = useState(false);
+  const [performancePagValue, setPerformancePagValue] = useState(7);
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const { data = {}, isFetching } = useQuery({
@@ -48,9 +27,9 @@ const MyProfile = () => {
 
   // get total Attendance
   const { data: totalAttendance = [] } = useQuery({
-    queryKey: ["totalAttendance"],
+    queryKey: ["totalAttendance", performancePagValue],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/total-attendance/${user?.email}`);
+      const res = await axiosSecure.get(`/total-attendance?email=${user?.email}&pegDays=${performancePagValue}`);
       return res.data;
     },
   });
@@ -59,9 +38,9 @@ const MyProfile = () => {
 
   // get total Rest Days
   const { data: totalRest = [] } = useQuery({
-    queryKey: ["totalRest"],
+    queryKey: ["totalRest", performancePagValue],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/total-rest/${user?.email}`);
+      const res = await axiosSecure.get(`/total-rest?email=${user?.email}&pegDays=${performancePagValue}}`);
       return res.data;
     },
   });
@@ -69,9 +48,8 @@ const MyProfile = () => {
   // console.log("ceched55", totalRest);
 
   const dbDate = new Date(data?.createdAt);
-  console.log(dbDate);
+  // console.log(dbDate);
   const currentDate = new Date();
-  console.log(currentDate);
 
   const distanceDate = currentDate - dbDate;
 
@@ -84,7 +62,40 @@ const MyProfile = () => {
   const days = millisecondsToDays(distanceDate);
 
   // console.log("check66", days.toFixed());
-
+  // handle performance pagination
+  const handlePerformanceTab = (tabValue) => {
+    // console.log(tabValue);
+    setPerformancePagValue(null);
+    setPerformancePagValue(tabValue);
+  }
+  const tabs = [
+    {
+      name: "1w",
+      value: 7,
+      id: 0,
+    },
+    {
+      name: "2w",
+      value: 14,
+      id: 1,
+    },
+    {
+      name: "1m",
+      value: 30,
+      id: 2,
+    },
+    {
+      name: "1y",
+      value: 365,
+      id: 3,
+    },
+    {
+      name: "All",
+      value: days.toFixed(),
+      id: 4,
+    },
+  ];
+  console.log(performancePagValue);
   return (
     <div className="user_profile">
       <div className="user_profile_container">
@@ -151,11 +162,11 @@ const MyProfile = () => {
               <a
                 key={tab.id}
                 className={`tab_btn ${
-                  isActive === tab.id
+                  performancePagValue === tab.value
                     ? "font-medium text-white bg-primary"
                     : "bg-transperant text-primary font-semibold"
                 }`}
-                onClick={() => handlePerformanceTab(tab.id)}
+                onClick={() => handlePerformanceTab(tab.value)}
               >
                 {tab.name}
               </a>
@@ -189,7 +200,7 @@ const MyProfile = () => {
                 {isFetching ? (
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
-                  days.toFixed() -
+                  (performancePagValue > days.toFixed() ? days.toFixed() : performancePagValue) -
                   (totalAttendance?.length + totalRest?.length) +
                   " " +
                   "Days"
@@ -222,7 +233,7 @@ const MyProfile = () => {
                 {isFetching ? (
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
-                  (days.toFixed() -
+                  ((performancePagValue > days.toFixed() ? days.toFixed() : performancePagValue) -
                     (totalAttendance?.length + totalRest?.length)) *
                     24 +
                   " " +
@@ -256,7 +267,7 @@ const MyProfile = () => {
                 {isFetching ? (
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
-                  (days.toFixed() -
+                  ((performancePagValue > days.toFixed() ? days.toFixed() : performancePagValue) -
                     (totalAttendance?.length + totalRest?.length)) *
                     24 *
                     60 +
@@ -291,7 +302,7 @@ const MyProfile = () => {
                 {isFetching ? (
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
-                  (days.toFixed() -
+                  ((performancePagValue > days.toFixed() ? days.toFixed() : performancePagValue) -
                     (totalAttendance?.length + totalRest?.length)) *
                     24 *
                     60 *
