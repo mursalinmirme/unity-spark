@@ -54,7 +54,7 @@ const Reviews = () => {
   return (
     <div>
       <div className="flex justify-between items-center mb-5">
-        <h1 className="text-2xl font-semibold">Reviews</h1>
+        <h1 className="text-2xl font-semibold font-inter">Reviews</h1>
         {isUser?.role === "employee" && (
           <Link to={"add-review"}>
             <a className="edit_btn">
@@ -83,8 +83,8 @@ const Reviews = () => {
                 />
 
                 <div>
-                  <h1 className="text-[20px] font-bold">{item.name}</h1>
-                  <p className="text-[#5B5555] text-[14px]">
+                  <h1 className="text-[20px] font-semibold">{item.name}</h1>
+                  <p className="text-[#5B5555] text-[17px]">
                     {item.employeePosition}
                   </p>
                 </div>
@@ -101,14 +101,16 @@ const Reviews = () => {
         </div>
       </div>
       {/* pagination */}
-      <div
-        className={`mt-10 ${reviewsNums > 6 ? "block" : "hidden"}`}
-      >
+      <div className={`mt-10 ${reviewsNums > 6 ? "block" : "hidden"}`}>
         <div className={`flex justify-center`}>
           <div className={`join flex space-x-3`}>
             <button
               onClick={handlPrev}
-              className={`join-item text-lg px-2 h-8 md:px-3 md:h-10 ${currentPage === 0 ? 'text-[#ffffff] bg-[#d9d9db]':'bg-[#d0ceee] text-[#433EBE]'}`}
+              className={`join-item text-lg px-2 h-8 md:px-3 md:h-10 ${
+                currentPage === 0
+                  ? "text-[#ffffff] bg-[#d9d9db]"
+                  : "bg-[#d0ceee] text-[#433EBE]"
+              }`}
             >
               <IoIosArrowBack></IoIosArrowBack>
             </button>
@@ -133,7 +135,11 @@ const Reviews = () => {
             })}
             <button
               onClick={handleNext}
-              className={`join-item text-lg px-2 h-8 md:px-3 md:h-10 ${totalPages === currentPage + 1 ? 'text-[#ffffff] bg-[#d9d9db]':'bg-[#d0ceee] text-[#433EBE]'}`}
+              className={`join-item text-lg px-2 h-8 md:px-3 md:h-10 ${
+                totalPages === currentPage + 1
+                  ? "text-[#ffffff] bg-[#d9d9db]"
+                  : "bg-[#d0ceee] text-[#433EBE]"
+              }`}
             >
               <IoIosArrowForward></IoIosArrowForward>
             </button>

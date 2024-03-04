@@ -221,8 +221,8 @@ const Signup = () => {
             </button>
 
             {/* password field */}
-            <div>
-              <button className="nbtn w-full">
+            <div className="form-control w-full">
+              <button className="text-base flex justify-center items-center nbtn">
                 {signUpLoading ? (
                   <span className="loading loading-spinner loading-md"></span>
                 ) : (

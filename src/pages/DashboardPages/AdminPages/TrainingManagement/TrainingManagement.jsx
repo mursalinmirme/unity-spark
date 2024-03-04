@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
-import { toast } from 'sonner';
+import { toast } from "sonner";
 import { FiEdit2, FiTrash } from "react-icons/fi";
 import { GrView } from "react-icons/gr";
 import TrainingManagementSkeleton from "./TrainingManagementSkeleton";
@@ -52,36 +52,37 @@ const TrainingManagement = () => {
             <th>Action</th>
           </tr>
         </thead>
-        {
-          isFetching ? <TrainingManagementSkeleton></TrainingManagementSkeleton> : 
+        {isFetching ? (
+          <TrainingManagementSkeleton></TrainingManagementSkeleton>
+        ) : (
           <tbody className="mt-20">
-          {courses?.map((course, idx) => (
-            <tr key={idx}>
-              <td className="text-left">
-                <h3 className="text-lg font-semibold">{idx + 1}</h3>
-              </td>
-              <td className="text-left">
-                <h2 className="font-inter text-base min-w-80 md:min-w-full md:text-xl font-semibold">
-                  {course?.title}
-                </h2>
-              </td>
-              <td className="text-left flex items-center gap-3 md:gap-5">
-                <Link to={`/course/${course?._id}`}>
-                  <GrView className="text-3xl border-2 p-1 rounded-xl text-primary border-primary hover:bg-primary cursor-pointer hover:text-white transition-all" />
-                </Link>
-                <Link to={`/dashboard/update-course/${course?._id}`}>
-                  <FiEdit2 className="text-3xl border-2 p-1 rounded-xl text-primary border-primary hover:bg-primary cursor-pointer hover:text-white transition-all" />
-                </Link>
+            {courses?.map((course, idx) => (
+              <tr key={idx}>
+                <td className="text-left">
+                  <h3 className="text-lg font-semibold">{idx + 1}</h3>
+                </td>
+                <td className="text-left">
+                  <h2 className="font-inter text-base min-w-80 md:min-w-full md:text-xl font-semibold">
+                    {course?.title}
+                  </h2>
+                </td>
+                <td className="text-left flex items-center gap-3 md:gap-5">
+                  <Link to={`/course/${course?._id}`}>
+                    <GrView className="text-3xl border-2 p-1 rounded-xl text-primary border-primary hover:bg-primary cursor-pointer hover:text-white transition-all" />
+                  </Link>
+                  <Link to={`/dashboard/update-course/${course?._id}`}>
+                    <FiEdit2 className="text-3xl border-2 p-1 rounded-xl text-primary border-primary hover:bg-primary cursor-pointer hover:text-white transition-all" />
+                  </Link>
 
-                <FiTrash
-                  onClick={() => handleDeleteCourse(course?._id)}
-                  className="text-3xl border-2 p-1 rounded-xl text-red-500 border-red-500 hover:bg-red-500 cursor-pointer hover:text-white transition-all"
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-        }
+                  <FiTrash
+                    onClick={() => handleDeleteCourse(course?._id)}
+                    className="text-3xl border-2 p-1 rounded-xl text-red-500 border-red-500 hover:bg-red-500 cursor-pointer hover:text-white transition-all"
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        )}
       </table>
     </div>
   );

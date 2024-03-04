@@ -64,7 +64,8 @@ const MyBlogs = () => {
 
   return (
     <div>
-      <div className="flex justify-end">
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-semibold font-inter">My Blogs</h1>
         <Link to="/dashboard/addBlogs">
           <p className="edit_btn">
             <AiFillEdit className="text-lg"></AiFillEdit> <span>Add Blog</span>

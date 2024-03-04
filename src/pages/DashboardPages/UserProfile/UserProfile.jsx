@@ -267,7 +267,7 @@ const UserProfile = () => {
                 {users?.skills?.map((skill, index) => (
                   <div
                     key={index}
-                    className="text-primary bg-[#c7c5eb] py-1.5 px-3 rounded-full text-base font-medium"
+                    className="text-primary bg-[#c7c5eb] py-1 px-3 rounded-full text-base font-medium"
                   >
                     {skill?.value}
                   </div>
@@ -284,7 +284,7 @@ const UserProfile = () => {
               </span>
             </div>
             <a href={users?.resume_link} target="blank">
-              <div className="inline-flex gap-2 font-medium items-center text-white cursor-pointer font-inter text-base px-8 py-1.5 bg-primary rounded-xl transition-all duration-500 text-[15px]">
+              <div className="inline-flex items-center gap-2 nbtn-fixed-bg text-base">
                 {" "}
                 <FiEye className="text-lg" /> <span> View</span>{" "}
               </div>
