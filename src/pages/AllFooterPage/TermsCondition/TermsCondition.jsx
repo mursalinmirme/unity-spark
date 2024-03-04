@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 const TermsCondition = () => {
   return (
-    <div>
+    <div className="max-w-[92%] lg:max-w-[1200px] mx-auto">
       <h1 className="text-3xl font-bold font-inter my-7">Unity Spark Terms of Use</h1>
       <h1 className="text-xl font-medium font-inter">Welcome to Unity Spark These terms and conditions outline the rules and regulations for the use of our website and the services offered herein.By accessing this website, we assume you accept these terms and conditions in full. Do not continue to use Unity Spark’s website if you do not accept all of the terms and conditions stated on this page.</h1>
       <h1 className="text-2xl font-bold font-inter my-7">Terms and Conditions</h1>

@@ -149,7 +149,7 @@ const Navbar = () => {
                 style={{ boxShadow: "0px 0px 15px rgba(0, 0, 0, 0.2)" }}
               >
                 <li className="rounded-lg">
-                  <Link to="dashboard/userProfile">Profile</Link>
+                  <Link to="dashboard/user-profile">Profile</Link>
                 </li>
                 <hr className="h-0.5 w-3/4 bg-slate-400 ml-3" />
                 <li className="rounded-lg">

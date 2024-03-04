@@ -101,7 +101,7 @@ const ApplyJobs = () => {
   }
 
   return (
-    <div>
+    <div className="max-w-[92%] lg:max-w-[1200px] mx-auto">
       <h3 className="mt-4 text-3xl font-semibold">
         Apply to {applyJobDetails?.job_title}
       </h3>

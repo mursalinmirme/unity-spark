@@ -1,7 +1,7 @@
 import { TiTick } from "react-icons/ti";
 const RecruitmentService = () => {
   return (
-    <div className="my-10">
+    <div className="my-10 max-w-[92%] lg:max-w-[1200px] mx-auto">
       {/* <img
         className="rounded-lg"
         src="https://globaljob.com.np/uploads/service/4494recruitment-services-2.jpg"

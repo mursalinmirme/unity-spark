@@ -1,6 +1,6 @@
 const OurVision = () => {
   return (
-    <div className="my-10">
+    <div className="my-10 max-w-[92%] lg:max-w-[1200px] mx-auto">
       <h3 className="text-2xl font-inter font-bold mb-1 mt-8">
         Our Vision Statement:
       </h3>

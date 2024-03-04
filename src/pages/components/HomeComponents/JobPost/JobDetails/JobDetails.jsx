@@ -78,7 +78,8 @@ const JobDetails = () => {
   }
 
   return (
-    <div className="lg:px-10 mb-20 flex flex-col lg:flex-row gap-8">
+    <div className="max-w-[92%] lg:max-w-[1200px] mx-auto">
+      <div className="lg:px-10 mb-20 flex flex-col lg:flex-row gap-8">
       {/**Left Side */}
       <div className="mt-10 space-y-2.5 content-container text-[#1E1E1E] text-[18px] flex-1">
         <h3 className="text-3xl md:text-4xl font-semibold mb-5">
@@ -298,6 +299,7 @@ const JobDetails = () => {
 
       {/* MODAL */}
       <JobApplyForm></JobApplyForm>
+    </div>
     </div>
   );
 };
