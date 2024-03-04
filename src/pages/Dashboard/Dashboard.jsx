@@ -237,7 +237,7 @@ const Dashboard = () => {
               }`}>
               <div>
                 <IoCalendarOutline />
-                <span>AddEvent</span>
+                <span>Events</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
             </li>
