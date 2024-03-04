@@ -123,7 +123,7 @@ const AvailableJobs = () => {
 
   if (isFetching) {
     return (
-      <div className="mb-14">
+      <div className="mb-14 max-w-[92%] lg:max-w-[1200px] mx-auto">
       <div className="px-5 py-8 mt-6 skeleton bg-[#faf8f8]">
                 <div>
                   <h3 className="text-2xl skeleton w-32 h-8 bg-[#efeded]"></h3>
@@ -189,7 +189,7 @@ const AvailableJobs = () => {
   }
 
   return (
-    <div className="mt-6">
+    <div className="mt-6 max-w-[92%] lg:max-w-[1200px] mx-auto">
       {/* top */}
       <div className="flex flex-col-reverse  md:flex-row justify-between items-center">
         <div className="space-x-2 mt-5 md:mt-0">

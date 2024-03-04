@@ -11,7 +11,8 @@ const Events = () => {
   return (
     <>
       <div style={eventStyles}>
-        <div className="space-y-5 py-20">
+        <div className="max-w-[92%] lg:max-w-[1200px] mx-auto">
+        <div className="space-y-5 py-32">
           <div className="text-center">
             <div className="bg-[#424343] text-white rounded-full px-5 py-[4px]  text-center uppercase inline">
               Events
@@ -22,7 +23,7 @@ const Events = () => {
             <br />
             Potential in People Management
           </h1>
-          <h1 className="text-center text-xl font-normal text-white  md:leading-tight lg:leading-relaxed">
+          <h1 className="text-center text-xl font-normal text-white  md:leading-tight lg:leading-relaxed w-[70%] mx-auto">
             Explore our HR-centric events, designed to elevate your knowledge
             and foster connections. Join us for insightful discussions,
             workshops, and networking opportunities to enhance your human
@@ -35,6 +36,8 @@ const Events = () => {
             <button className="nbtn mt-3">Explore Events</button>
           </div>
         </div>
+        </div>
+
       </div>
       <div className="text-center mt-10">
         <h1 className="text-3xl font-semibold mb-1">Upcoming HR Events</h1>
@@ -45,8 +48,10 @@ const Events = () => {
       {/* <div className='text-xl  font-semibold my-7 flex justify-between'>
             <h1>Check Out More </h1>
            </div> */}
-
+      <div className="max-w-[92%] lg:max-w-[1200px] mx-auto">
       <EventCard></EventCard>
+      </div>
+      
     </>
   );
 };
