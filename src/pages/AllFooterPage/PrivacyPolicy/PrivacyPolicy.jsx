@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-no-target-blank */
 const PrivacyPolicy = () => {
   return (
-    <div>
+    <div className="max-w-[92%] lg:max-w-[1200px] mx-auto">
      <h1  className="text-3xl font-bold font-inter my-7">Privacy Policy</h1>
 <p  className="text-xl font-bold font-inter my-3">Last updated: February 22, 2024</p>
 <div className="text-lg font-medium my-1.5">

@@ -2,7 +2,7 @@ import { TiTick } from "react-icons/ti";
 
 const Support = () => {
   return (
-    <div className="py-10">
+    <div className="py-10 max-w-[92%] lg:max-w-[1200px] mx-auto">
       {/* <img
         style={{ backgroundImage: "cover" }}
         className="h-[500px] w-full"

@@ -1,6 +1,6 @@
 const SecurityMeasure = () => {
   return (
-    <div>
+    <div className="max-w-[92%] lg:max-w-[1200px] mx-auto">
       <div className="py-5 ">
         <h3 className="text-3xl font-bold font-inter py-3">
           {" "}
