@@ -323,16 +323,11 @@ const AvailableJobs = () => {
         </div>
       )}
       {/* bottom */}
-      <div className={`flex justify-center py-10 ${getTotalJobsNumber?.total > 5 ? 'block' : 'hidden'}`}>
-        <div className={`join flex space-x-2`}>
+      <div className={`flex justify-center pt-5 pb-10 ${getTotalJobsNumber?.total > 5 ? 'block' : 'hidden'}`}>
+        <div className={`join flex space-x-3`}>
           <button
             onClick={handlePagiBack}
-            style={{
-              background: `${"#d0ceee"}`,
-              color: "#433EBE",
-              fontSize: "18px",
-            }}
-            className="join-item btn"
+            className={`join-item text-lg px-2 h-8 md:px-3 md:h-10 ${currentPage === 0 ? 'text-[#ffffff] bg-[#d9d9db]':'bg-[#d0ceee] text-[#433EBE]'}`}
           >
             <IoIosArrowBack></IoIosArrowBack>
           </button>
@@ -344,9 +339,10 @@ const AvailableJobs = () => {
                 style={{
                   background: `${currentPage == page ? "#433EBE" : "#d0ceee"}`,
                   color: `${currentPage == page ? "#FFFFFF" : "#433EBE"}`,
+                  borderRadius: "5px",
                   fontSize: "18px",
                 }}
-                className="join-item btn"
+                className="join-item px-3 h-8 md:px-4 md:h-10 font-semibold"
               >
                 {page + 1}
               </button>
@@ -354,12 +350,7 @@ const AvailableJobs = () => {
           })}
           <button
             onClick={handleRightPagi}
-            style={{
-              background: `${"#d0ceee"}`,
-              color: "#433EBE",
-              fontSize: "18px",
-            }}
-            className="join-item btn"
+            className={`join-item text-lg px-2 h-8 md:px-3 md:h-10 ${totalPages === currentPage + 1 ? 'text-[#ffffff] bg-[#d9d9db]':'bg-[#d0ceee] text-[#433EBE]'}`}
           >
             <IoIosArrowForward></IoIosArrowForward>
           </button>

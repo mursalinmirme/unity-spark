@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import useUserRole from "../../../../hooks/useUserRole";
 import ReviewsSkeleton from "./ReviewsSkeleton";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 const Reviews = () => {
   const axiosPublic = useAxiosPublic();
@@ -99,22 +100,45 @@ const Reviews = () => {
           ))}
         </div>
       </div>
-      <div className="text-cente flex flex-wrap justify-center space-x-2 md:space-x-3 mt-10 review-pagination">
-        <a onClick={handlPrev}>
-          <GrPrevious className="icons" />
-        </a>
-        {pages.map((i) => (
-          <a
-            onClick={() => setCurrentPage(i)}
-            className={`${currentPage === i && "pagination-active"}`}
-            key={i}
-          >
-            {i + 1}
-          </a>
-        ))}
-        <a onClick={handleNext} className="">
-          <GrNext className="icons" />
-        </a>
+      {/* pagination */}
+      <div
+        className={`mt-10 ${reviewsNums > 6 ? "block" : "hidden"}`}
+      >
+        <div className={`flex justify-center`}>
+          <div className={`join flex space-x-3`}>
+            <button
+              onClick={handlPrev}
+              className={`join-item text-lg px-2 h-8 md:px-3 md:h-10 ${currentPage === 0 ? 'text-[#ffffff] bg-[#d9d9db]':'bg-[#d0ceee] text-[#433EBE]'}`}
+            >
+              <IoIosArrowBack></IoIosArrowBack>
+            </button>
+            {pages?.map((page, index) => {
+              return (
+                <button
+                  onClick={() => setCurrentPage(page)}
+                  key={index}
+                  style={{
+                    background: `${
+                      currentPage == page ? "#433EBE" : "#d0ceee"
+                    }`,
+                    color: `${currentPage == page ? "#FFFFFF" : "#433EBE"}`,
+                    borderRadius: "5px",
+                    fontSize: "18px",
+                  }}
+                  className="join-item px-3 h-8 md:px-4 md:h-10 font-semibold"
+                >
+                  {page + 1}
+                </button>
+              );
+            })}
+            <button
+              onClick={handleNext}
+              className={`join-item text-lg px-2 h-8 md:px-3 md:h-10 ${totalPages === currentPage + 1 ? 'text-[#ffffff] bg-[#d9d9db]':'bg-[#d0ceee] text-[#433EBE]'}`}
+            >
+              <IoIosArrowForward></IoIosArrowForward>
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
