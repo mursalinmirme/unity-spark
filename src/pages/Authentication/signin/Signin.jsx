@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import signIn_image from "../../../assets/images/signin.png";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { toast } from "sonner";
@@ -9,6 +8,10 @@ import Social_Media from "../../components/Share/Social_Media/Social_Media";
 import { IoEyeOutline } from "react-icons/io5";
 import { FaEyeSlash } from "react-icons/fa";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import bg1 from '../../../assets/SignIn/signin-1.jpg'
+import bg3 from '../../../assets/SignIn/signin-3.jpg'
+import bg4 from '../../../assets/SignIn/signin-4.jpg'
+import bg2 from '../../../assets/SignIn/signin-2.jpg'
 
 const Signin = () => {
   const PublicAxios = useAxiosPublic();
@@ -17,6 +20,12 @@ const Signin = () => {
   const [signInLoading, setSignInLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
   const navigate = useNavigate();
+
+  const signInBg = {
+    background: `linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0)), url(${bg3})`,
+    backgroundSize: "cover",
+    backgroundPosition: 'center'
+  }
 
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
@@ -51,17 +60,17 @@ const Signin = () => {
   };
 
   return (
-    <div className="p-5 signin">
-      <section className="grid md:grid-cols-2 lg:grid-cols-2 items-center gap-4">
+    <div className="signin lg:min-h-[70vh]" style={signInBg}>
+      <section className="grid md:grid-cols-2 lg:grid-cols-2 items-center h-full">
         {/* images */}
         <div className="w-full">
-          <img src={signIn_image} alt="signupsvg" />
+
         </div>
         {/* images */}
 
         {/* form */}
-        <div className="p-5 rounded-lg border">
-          <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="p-12 h-full bg-white rounded-s-2xl">
+          <form onSubmit={handleSubmit(onSubmit)} className="max-w-[620px]">
             <h1 className="">Welcome Back</h1>
             <p className="text-sm">Enter Your Credentials to Sign In </p>
 
@@ -115,23 +124,25 @@ const Signin = () => {
               </button>
             </div>
           </form>
-          <div className="divider ">OR</div>
 
           {/** Social Media Login System */}
-          <Social_Media
-            setGoogleLoading={setGoogleLoading}
-            googleLoading={googleLoading}
-          >
-            {" "}
-          </Social_Media>
+          <div className="max-w-[620px]">
+            <div className="divider ">OR</div>
+            <Social_Media
+              setGoogleLoading={setGoogleLoading}
+              googleLoading={googleLoading}
+            >
+              {" "}
+            </Social_Media>
 
-          <div className="text-center py-3">
-            <p className="text-sm text-gray-700 font-medium">
-              Don't have an account?{" "}
-              <Link to="/signup" className="text-primary">
-                Sign Up
-              </Link>
-            </p>
+            <div className="text-center py-3">
+              <p className="text-sm text-gray-700 font-medium">
+                Don't have an account?{" "}
+                <Link to="/signup" className="text-primary">
+                  Sign Up
+                </Link>
+              </p>
+            </div>
           </div>
         </div>
         {/* form */}
