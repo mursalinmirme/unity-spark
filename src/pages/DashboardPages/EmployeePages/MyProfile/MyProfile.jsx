@@ -41,9 +41,14 @@ const MyProfile = () => {
     queryKey: ["totalRest", performancePagValue],
     queryFn: async () => {
       const res = await axiosSecure.get(`/total-rest?email=${user?.email}&pegDays=${performancePagValue}}`);
-      return res.data;
+      const sumNumberOfDays = res.data?.reduce((total, current) => {
+        return total + parseInt(current.numberOfDays);
+      }, 0);
+      console.log("aye aye result mil gaya", sumNumberOfDays);
+      return sumNumberOfDays;
     },
   });
+  
 
   // console.log("ceched55", totalRest);
 
@@ -96,6 +101,7 @@ const MyProfile = () => {
     },
   ];
   console.log(performancePagValue);
+
   return (
     <div className="user_profile">
       <div className="user_profile_container">
@@ -193,7 +199,7 @@ const MyProfile = () => {
                 {isFetching ? (
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
-                  totalRest?.length + " " + "Days"
+                  totalRest + " " + "Days"
                 )}
               </td>
               <td>
@@ -201,7 +207,7 @@ const MyProfile = () => {
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
                   (performancePagValue > days.toFixed() ? days.toFixed() : performancePagValue) -
-                  (totalAttendance?.length + totalRest?.length) +
+                  (totalAttendance?.length + totalRest) +
                   " " +
                   "Days"
                 )}
@@ -226,7 +232,7 @@ const MyProfile = () => {
                 {isFetching ? (
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
-                  totalRest?.length * 24 + " " + "Hours"
+                  totalRest * 24 + " " + "Hours"
                 )}
               </td>
               <td>
@@ -234,7 +240,7 @@ const MyProfile = () => {
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
                   ((performancePagValue > days.toFixed() ? days.toFixed() : performancePagValue) -
-                    (totalAttendance?.length + totalRest?.length)) *
+                    (totalAttendance?.length + totalRest)) *
                     24 +
                   " " +
                   "Hours"
@@ -260,7 +266,7 @@ const MyProfile = () => {
                 {isFetching ? (
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
-                  totalRest?.length * 24 * 60 + " " + "Minutes"
+                  totalRest * 24 * 60 + " " + "Minutes"
                 )}
               </td>
               <td>
@@ -268,7 +274,7 @@ const MyProfile = () => {
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
                   ((performancePagValue > days.toFixed() ? days.toFixed() : performancePagValue) -
-                    (totalAttendance?.length + totalRest?.length)) *
+                    (totalAttendance?.length + totalRest)) *
                     24 *
                     60 +
                   " " +
@@ -295,7 +301,7 @@ const MyProfile = () => {
                 {isFetching ? (
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
-                  totalRest?.length * 24 * 60 * 60 + " " + "Seconds"
+                  totalRest * 24 * 60 * 60 + " " + "Seconds"
                 )}
               </td>
               <td>
@@ -303,7 +309,7 @@ const MyProfile = () => {
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
                   ((performancePagValue > days.toFixed() ? days.toFixed() : performancePagValue) -
-                    (totalAttendance?.length + totalRest?.length)) *
+                    (totalAttendance?.length + totalRest)) *
                     24 *
                     60 *
                     60 +
