@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import AllUsersTable from "./AllUsersTable";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import AllUsersSkeleton from "./AllUsersSkeleton";
 
 const AllUsers = () => {
   const axiosSecure = useAxiosSecure();
 
-  const { data: allUsers = [], refetch } = useQuery({
+  const { data: allUsers = [], refetch, isFetching } = useQuery({
     queryKey: ["getAllUsers"],
     queryFn: async () => {
       const result = await axiosSecure.get("/users");
@@ -28,7 +29,9 @@ const AllUsers = () => {
               <th>Gender</th>
             </tr>
           </thead>
-          <tbody className="">
+          {
+            isFetching ? <AllUsersSkeleton></AllUsersSkeleton> : 
+            <tbody className="">
             {allUsers &&
               allUsers?.map((user, idx) => (
                 <AllUsersTable
@@ -38,6 +41,7 @@ const AllUsers = () => {
                   refetch={refetch}></AllUsersTable>
               ))}
           </tbody>
+          }
         </table>
       </div>
     </div>

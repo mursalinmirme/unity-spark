@@ -1,11 +1,36 @@
 /* eslint-disable no-unused-vars */
-
 import { PiMicrophoneStageThin } from "react-icons/pi";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 /* eslint-disable react/prop-types */
-const RegisteredEvents = ({ EmployeeReqEvent, isFetching }) => {
-  console.log("Paici re paici re amar events  paichi");
-
+const RegisteredEvents = ({ EmployeeReqEvent, isFetching , refetch }) => {
+ const axiosSecure = useAxiosSecure()
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+       axiosSecure.delete(`/reqEvents/${id}`)
+       .then(res => {
+        if(res?.data?.deletedCount > 0 ){
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
+          });
+          refetch()
+        }
+       })
+      }
+    });
+  }
   if (isFetching) {
     return (
       <div>
@@ -54,7 +79,7 @@ const RegisteredEvents = ({ EmployeeReqEvent, isFetching }) => {
               </div>
             </div>
             <div></div>
-            <div className="flex justify-between mt-4">
+            <div className="flex gap-3 mt-4 items-center">
               <div>
                 <span className="border px-4 bg-[#DFDFDF] p-1 rounded-lg font-bold">
                   {information?.reqeventDate}
@@ -64,6 +89,11 @@ const RegisteredEvents = ({ EmployeeReqEvent, isFetching }) => {
                 <span className="border px-4 bg-[#DFDFDF] p-1 rounded-lg font-bold">
                   {information?.reqeventStartTime}
                 </span>
+              </div>
+              <div>
+              <button onClick={() => handleDelete(information?._id)} className="border px-4 bg-red-500 text-white p-1 rounded-lg font-bold">
+                remove
+              </button>
               </div>
             </div>
           </div>

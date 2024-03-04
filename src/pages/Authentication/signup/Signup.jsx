@@ -2,13 +2,13 @@ import { useForm } from "react-hook-form";
 import "../authentication.css";
 import { Link, useNavigate } from "react-router-dom";
 import img from "../../../assets/images/signUps.png";
-import download_icon from "../../../assets/images/download-Icon.png";
+import { SlCloudUpload } from "react-icons/sl";
 import { SlEnergy } from "react-icons/sl";
 import { useContext, useState } from "react";
 import { IoEyeOutline } from "react-icons/io5";
 import { FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../../Provider/AuthProvider";
-import { toast } from 'sonner';
+import { toast } from "sonner";
 import Social_Media from "../../components/Share/Social_Media/Social_Media";
 
 import useRandomPasswordGenerate from "../../../hooks/useRandomPasswordGenerate";
@@ -85,7 +85,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup p-8">
+    <div className="signup p-5">
       <section>
         {/* form */}
         <div className="left_container">
@@ -93,12 +93,14 @@ const Signup = () => {
             <h1>Lets Start a new journey</h1>
             <p>Create Your Account</p>
 
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               {/* name field */}
               <div>
                 <label>
                   <div className="label">
-                    <span className="font-medium">What is your name?</span>
+                    <span className="sign_up_input_title">
+                      What is your name?
+                    </span>
                   </div>
                   <input
                     type="text"
@@ -109,27 +111,32 @@ const Signup = () => {
                 </label>
               </div>
               {/*image field */}
-              <div className="mt-5">
-                <span className="font-medium ml-1">Your Photo</span>
-                <label
-                  className="font-semibold text-white cursor-pointer font-inter text-base px-4 sm:py-[4px] md:py-[12px] bg-primary rounded-xl transition-all duration-500"
-                  htmlFor="user_photo"
-                >
-                  <div className="flex items-center justify-center gap-2">
+              <label className="relative">
+                <div className="label mb-8 md:mb-0 lg:mb-0">
+                  <span className="user_profile_input_title pb-4 md:pb-0 md:mb-10 lg:mb-10 ">
                     {" "}
-                    <img className="w-6 h-5" src={download_icon} alt="" />{" "}
-                    <span className="font-normal"> Upload Your Photo</span>{" "}
-                  </div>
-                </label>
+                    Your Photo{" "}
+                  </span>
+                  <label
+                    className="font-semibold w-full absolute bottom-0 text-white cursor-pointer font-inter text-base px-8 py-2.5 bg-primary rounded-md transition-all duration-500 mt-1 mb-0.5"
+                    htmlFor="user_photo"
+                  >
+                    <div className="flex justify-center items-center gap-4">
+                      {" "}
+                      {/* <img className="w-5 h-5" src={download_icon} alt="" />{" "} */}
+                      <SlCloudUpload className="w-5 h-5" />
+                      <span> Upload Photo</span>{" "}
+                    </div>
+                  </label>
+                </div>
                 <input
                   className="hidden"
                   id="user_photo"
                   type="file"
                   {...register("photo")}
-                  placeholder="add Image"
+                  placeholder="Add Image"
                 />
-              </div>
-
+              </label>
               {/* image field */}
             </div>
 
@@ -137,7 +144,7 @@ const Signup = () => {
             {/* email field */}
             <label>
               <div className="label">
-                <span className="font-medium">What is your email?</span>
+                <span className="sign_up_input_title">What is your email?</span>
               </div>
               <input
                 type="email"
@@ -150,10 +157,10 @@ const Signup = () => {
 
             {/* password field */}
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               <label>
                 <div className="label">
-                  <span className="font-medium">Your password</span>
+                  <span className="sign_up_input_title">Your password</span>
                 </div>
 
                 <div className="relative">
@@ -165,21 +172,20 @@ const Signup = () => {
                   />
                   <span
                     onClick={() => setOpen(!open)}
-                    className="absolute top-[17px] right-3 cursor-pointer"
+                    className="absolute top-[18px] right-3 cursor-pointer"
                   >
                     {" "}
                     {open ? (
-                      <IoEyeOutline className="text-2xl" />
+                      <IoEyeOutline className="text-xl" />
                     ) : (
-                      <FaEyeSlash className="text-2xl" />
+                      <FaEyeSlash className="text-xl" />
                     )}
                   </span>
                 </div>
               </label>
-
               <label>
                 <div className="label">
-                  <span className="font-medium">Confirm Password</span>
+                  <span className="sign_up_input_title">Confirm Password</span>
                 </div>
                 <div className="relative">
                   <input
@@ -190,13 +196,13 @@ const Signup = () => {
                   />
                   <span
                     onClick={() => setSecret(!secret)}
-                    className="absolute top-[17px] right-3 cursor-pointer"
+                    className="absolute top-[18px] right-3 cursor-pointer"
                   >
                     {" "}
                     {secret ? (
-                      <IoEyeOutline className="text-2xl" />
+                      <IoEyeOutline className="text-xl" />
                     ) : (
-                      <FaEyeSlash className="text-2xl" />
+                      <FaEyeSlash className="text-xl" />
                     )}
                   </span>
                 </div>
@@ -205,7 +211,7 @@ const Signup = () => {
 
             {/* PassWord Random Generator Btn */}
             <button
-              className="nbtn bg-green-600 mt-5"
+              className="nbtn bg-green-600 my-5"
               onClick={generatePassword}
             >
               <div className="flex items-center gap-3">
@@ -215,8 +221,8 @@ const Signup = () => {
             </button>
 
             {/* password field */}
-            <div className="form_btn">
-              <button className="text-base flex justify-center items-center nbtn">
+            <div>
+              <button className="nbtn w-full">
                 {signUpLoading ? (
                   <span className="loading loading-spinner loading-md"></span>
                 ) : (

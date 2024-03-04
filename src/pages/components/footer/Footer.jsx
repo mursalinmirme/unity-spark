@@ -22,19 +22,19 @@ const Footer = () => {
           </p>
           <h6>Social Media</h6>
           <div>
-            <a className="text-[#0866FF]" href="#">
+            <a className="text-[#0866FF]" href="https://www.facebook.com/">
               <FaFacebook />
             </a>
-            <a className="text-[#0A66C2]" href="#">
+            <a className="text-[#0A66C2]" href="https://www.linkedin.com/">
               <FaLinkedinIn />
             </a>
-            <a href="#">
-              <img src={instagram} className="w-[27px]" alt="" />
+            <a href="https://www.instagram.com/">
+              <img src={instagram} className="w-[30px]" alt="" />
             </a>
-            <a href="#">
+            <a href="https://twitter.com/">
               <FaXTwitter />
             </a>
-            <a className="text-[#E60023]" href="#">
+            <a className="text-[#E60023]" href="https://www.pinterest.com/">
               <FaPinterest />
             </a>
           </div>

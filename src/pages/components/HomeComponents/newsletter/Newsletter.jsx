@@ -82,7 +82,7 @@ const Newsletter = () => {
                 placeholder="Enter Your Email...."
                 required
               />
-              <button className="bg-primary text-white flex justify-center items-center">
+              <button className="bg-primary text-white flex justify-center items-center h-10 md:h-auto">
                 {
                     isSubmitting ? <span className="loading loading-spinner loading-md"></span> : 'Subscribe'
                 }
@@ -95,8 +95,8 @@ const Newsletter = () => {
                 type="email"
                 placeholder="Enter Your Email...."
               />
-              <Link to={"/signin"}>
-                <button className="bg-primary text-white h-full">
+              <Link className="bg-primary text-white flex justify-center items-center h-10 w-full md:w-auto md:h-auto md:rounded-e-xl" to={"/signin"}>
+                <button className="">
                   Subscribe
                 </button>
               </Link>

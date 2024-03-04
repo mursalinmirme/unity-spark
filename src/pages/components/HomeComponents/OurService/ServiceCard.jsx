@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 const ServiceCard = ({ service }) => {
   const { img, name, description } = service;
 

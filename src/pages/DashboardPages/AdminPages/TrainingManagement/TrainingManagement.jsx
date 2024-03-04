@@ -7,10 +7,11 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { toast } from 'sonner';
 import { FiEdit2, FiTrash } from "react-icons/fi";
 import { GrView } from "react-icons/gr";
+import TrainingManagementSkeleton from "./TrainingManagementSkeleton";
 
 const TrainingManagement = () => {
   const axiosPublic = useAxiosPublic();
-  const [courses, , refetch] = useCourses();
+  const [courses, , refetch, isFetching] = useCourses();
 
   const handleDeleteCourse = (id) => {
     Swal.fire({
@@ -34,7 +35,7 @@ const TrainingManagement = () => {
   return (
     <div>
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-semibold">Manage Your Courses</h2>
+        <h2 className="text-xl md:text-2xl font-semibold">Manage Courses</h2>
         <Link
           to="/dashboard/training-management/add-new-course"
           className="edit_btn"
@@ -44,25 +45,27 @@ const TrainingManagement = () => {
         </Link>
       </div>
       <table className="table border mt-8 ">
-        <thead className="bg-second text-white text-[18px] rounded-md">
+        <thead className="bg-second text-white text-base md:text-[18px] rounded-md">
           <tr>
             <th>SL</th>
             <th>Title</th>
             <th>Action</th>
           </tr>
         </thead>
-        <tbody className="mt-20">
+        {
+          isFetching ? <TrainingManagementSkeleton></TrainingManagementSkeleton> : 
+          <tbody className="mt-20">
           {courses?.map((course, idx) => (
             <tr key={idx}>
               <td className="text-left">
                 <h3 className="text-lg font-semibold">{idx + 1}</h3>
               </td>
               <td className="text-left">
-                <h2 className="font-inter text-xl font-semibold">
+                <h2 className="font-inter text-base min-w-80 md:min-w-full md:text-xl font-semibold">
                   {course?.title}
                 </h2>
               </td>
-              <td className="text-left flex items-center gap-3">
+              <td className="text-left flex items-center gap-3 md:gap-5">
                 <Link to={`/course/${course?._id}`}>
                   <GrView className="text-3xl border-2 p-1 rounded-xl text-primary border-primary hover:bg-primary cursor-pointer hover:text-white transition-all" />
                 </Link>
@@ -78,6 +81,7 @@ const TrainingManagement = () => {
             </tr>
           ))}
         </tbody>
+        }
       </table>
     </div>
   );

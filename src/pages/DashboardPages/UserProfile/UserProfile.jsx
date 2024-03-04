@@ -45,7 +45,7 @@ const UserProfile = () => {
           <div className="flex gap-3 items-center relative">
             <button
               onClick={() => setOpenBookmark(!openBookmark)}
-              className="py-1 px-1.5 rounded-lg border-2 border-primary hover:bg-primary hover:text-white transition-all duration-500"
+              className="edit_btn"
             >
               <TbBookmark className="text-xl" />
             </button>

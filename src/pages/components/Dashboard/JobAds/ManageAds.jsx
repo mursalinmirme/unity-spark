@@ -195,19 +195,17 @@ const ManageAds = () => {
       )}
 
       {/* pagination */}
-      <div className={`${manageAds > 5 ? "block" : "hidden"}`}>
+      <div className={`${manageAds > 5 ? "block" : "hidden"} mt-5 mb-8 lg:mb-0`}>
         <div className={`flex justify-center`}>
-          <div className={`join flex space-x-2`}>
+          <div className={`join flex space-x-3`}>
+            {
+              console.log(totalPages, currentPage + 1)
+            }
             <button
               onClick={handlePagiBack}
-              style={{
-                background: `${"#d0ceee"}`,
-                color: "#433EBE",
-                fontSize: "18px",
-              }}
-              className="join-item btn"
+              className={`join-item text-lg px-2 h-8 md:px-3 md:h-10 ${currentPage === 0 ? 'text-[#ffffff] bg-[#d9d9db]':'bg-[#d0ceee] text-[#433EBE]'}`}
             >
-              <IoIosArrowBack></IoIosArrowBack>
+              <IoIosArrowBack className="text-xl"></IoIosArrowBack>
             </button>
             {pagesArray?.map((page, index) => {
               return (
@@ -222,7 +220,7 @@ const ManageAds = () => {
                     borderRadius: "5px",
                     fontSize: "18px",
                   }}
-                  className="join-item btn"
+                  className="join-item px-3 h-8 md:px-4 md:h-10 font-semibold"
                 >
                   {page + 1}
                 </button>
@@ -230,12 +228,7 @@ const ManageAds = () => {
             })}
             <button
               onClick={handleRightPagi}
-              style={{
-                background: `${"#d0ceee"}`,
-                color: "#433EBE",
-                fontSize: "18px",
-              }}
-              className="join-item btn"
+              className={`join-item text-lg px-2 h-8 md:px-3 md:h-10 ${totalPages === currentPage + 1 ? 'text-[#ffffff] bg-[#d9d9db]':'bg-[#d0ceee] text-[#433EBE]'}`}
             >
               <IoIosArrowForward></IoIosArrowForward>
             </button>

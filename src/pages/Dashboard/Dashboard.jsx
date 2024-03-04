@@ -2,10 +2,19 @@ import { useContext, useState } from "react";
 import { BiHomeAlt2, BiMessageSquareDots } from "react-icons/bi";
 import { BsChatText } from "react-icons/bs";
 import { GrDocumentPerformance, GrUserWorker } from "react-icons/gr";
-import { HiBars3BottomRight, HiOutlineArrowUpOnSquareStack, HiOutlineDocumentCheck, HiOutlineDocumentDuplicate } from "react-icons/hi2";
+import {
+  HiBars3BottomRight,
+  HiOutlineArrowUpOnSquareStack,
+  HiOutlineDocumentCheck,
+  HiOutlineDocumentDuplicate,
+} from "react-icons/hi2";
 import { IoIosArrowForward } from "react-icons/io";
 import { GrDocumentTime } from "react-icons/gr";
-import { IoCalendarOutline, IoDocumentAttachOutline, IoDocumentTextOutline } from "react-icons/io5";
+import {
+  IoCalendarOutline,
+  IoDocumentAttachOutline,
+  IoDocumentTextOutline,
+} from "react-icons/io5";
 import { LuLogOut, LuUser, LuUsers2 } from "react-icons/lu";
 import { TfiAlarmClock } from "react-icons/tfi";
 import { Link, NavLink, Outlet } from "react-router-dom";
@@ -37,7 +46,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <BiHomeAlt2 />
                 <span>Home</span>
@@ -54,7 +64,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <LuUser />
                 <span>My Profile</span>
@@ -70,7 +81,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <IoDocumentAttachOutline />
                 <span>My Saved Jobs</span>
@@ -87,7 +99,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <LuUser />
                 <span>My Profile</span>
@@ -104,7 +117,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <TfiAlarmClock />
                 <span>My Attendance</span>
@@ -120,7 +134,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <GrDocumentPerformance />
                 <span>My Performance</span>
@@ -136,7 +151,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <LuUser />
                 <span>My Profile</span>
@@ -152,7 +168,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <HiOutlineArrowUpOnSquareStack />
                 <span>Leave Management</span>
@@ -168,7 +185,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <HiOutlineDocumentDuplicate />
                 <span>My Blogs</span>
@@ -185,7 +203,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <HiOutlineDocumentCheck />
                 <span>Saved Blogs</span>
@@ -202,7 +221,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <RiGraduationCapLine />
                 <span>Training</span>
@@ -218,7 +238,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <MdOutlinePersonSearch />
                 <span>Recruitment</span>
@@ -234,7 +255,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <IoCalendarOutline />
                 <span>Events</span>
@@ -250,7 +272,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <HiOutlineArrowUpOnSquareStack />
                 <span>Leave Requests</span>
@@ -267,7 +290,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <GrDocumentTime />
                 <span>Blog Requests</span>
@@ -284,7 +308,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <LuUsers2 />
                 <span>All Users</span>
@@ -300,7 +325,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <GrUserWorker />
                 <span>Employees</span>
@@ -317,7 +343,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <LiaMicrophoneAltSolid />
                 <span>interviews</span>
@@ -334,7 +361,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <MdOutlineAddTask />
                 <span>Task Management</span>
@@ -350,7 +378,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <LuPresentation />
                 <span>Training Management</span>
@@ -366,7 +395,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <MdOutlinePayments />
                 <span>Payment Management</span>
@@ -382,7 +412,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <IoDocumentTextOutline />
                 <span>My Applications</span>
@@ -398,7 +429,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <LiaMicrophoneAltSolid />
                 <span>My Interviews</span>
@@ -414,7 +446,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <GrAnnounce />
                 <span>Newsletter Subscribers</span>
@@ -429,7 +462,8 @@ const Dashboard = () => {
           <li
             className={`${
               isActive ? "dashboard_item_active" : "dashboard_item"
-            }`}>
+            }`}
+          >
             <div>
               <BsChatText />
               <span>Reviews</span>
@@ -438,20 +472,24 @@ const Dashboard = () => {
           </li>
         )}
       </NavLink>
-      <NavLink to="/dashboard/communication">
-        {({ isActive }) => (
-          <li
-            className={`${
-              isActive ? "dashboard_item_active" : "dashboard_item"
-            }`}>
-            <div>
-              <BiMessageSquareDots />
-              <span>Communicate</span>
-            </div>
-            <IoIosArrowForward className="hov_arrow hidden lg:block" />
-          </li>
-        )}
-      </NavLink>
+
+      {isUser?.role !== "user" && (
+        <NavLink to="/dashboard/communication">
+          {({ isActive }) => (
+            <li
+              className={`${
+                isActive ? "dashboard_item_active" : "dashboard_item"
+              }`}
+            >
+              <div>
+                <BiMessageSquareDots />
+                <span>Communicate</span>
+              </div>
+              <IoIosArrowForward className="hov_arrow hidden lg:block" />
+            </li>
+          )}
+        </NavLink>
+      )}
     </>
   );
 
@@ -466,7 +504,8 @@ const Dashboard = () => {
             </Link>
             <label
               htmlFor="my-drawer-4"
-              className="drawer-button hover:cursor-pointer">
+              className="drawer-button hover:cursor-pointer"
+            >
               <HiBars3BottomRight />
             </label>
           </div>
@@ -474,10 +513,12 @@ const Dashboard = () => {
             <label
               htmlFor="my-drawer-4"
               aria-label="close sidebar"
-              className="drawer-overlay"></label>
+              className="drawer-overlay"
+            ></label>
             <ul
               className="menu p-4 min-h-full bg-base-200 text-base-content"
-              style={{ width: "70%" }}>
+              style={{ width: "70%" }}
+            >
               {dashboardItem}
             </ul>
           </div>
@@ -485,7 +526,8 @@ const Dashboard = () => {
         <div className="left_container">
           <div
             className="nav_container"
-            style={{ height: "calc(100vh - 3rem)" }}>
+            style={{ height: "calc(100vh - 3rem)" }}
+          >
             <div>
               <div
                 onMouseEnter={() => {
@@ -493,7 +535,8 @@ const Dashboard = () => {
                 }}
                 onMouseLeave={() => {
                   setShowLogo(true);
-                }}>
+                }}
+              >
                 <Link to="/" className={`${showLogo ? "block" : "hidden"}`}>
                   <img src={logo} className="w-3/4 h-12" alt="" />
                 </Link>
@@ -513,7 +556,8 @@ const Dashboard = () => {
         </div>
         <div
           className="right_container"
-          style={{ height: "calc(100vh - 3rem)" }}>
+          style={{ height: "calc(100vh - 3rem)" }}
+        >
           <Outlet></Outlet>
         </div>
       </div>
