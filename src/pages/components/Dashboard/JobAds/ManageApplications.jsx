@@ -243,15 +243,10 @@ const ManageApplications = () => {
         className={`mt-5 ${jobapplicationsNum?.total > 6 ? "block" : "hidden"}`}
       >
         <div className={`flex justify-center`}>
-          <div className={`join flex space-x-2`}>
+          <div className={`join flex space-x-3`}>
             <button
               onClick={handlePagiBack}
-              style={{
-                background: `${"#d0ceee"}`,
-                color: "#433EBE",
-                fontSize: "18px",
-              }}
-              className="join-item btn"
+              className={`join-item text-lg px-2 h-8 md:px-3 md:h-10 ${currentPage === 0 ? 'text-[#ffffff] bg-[#d9d9db]':'bg-[#d0ceee] text-[#433EBE]'}`}
             >
               <IoIosArrowBack></IoIosArrowBack>
             </button>
@@ -268,7 +263,7 @@ const ManageApplications = () => {
                     borderRadius: "5px",
                     fontSize: "18px",
                   }}
-                  className="join-item btn"
+                  className="join-item px-3 h-8 md:px-4 md:h-10 font-semibold"
                 >
                   {page + 1}
                 </button>
@@ -276,12 +271,7 @@ const ManageApplications = () => {
             })}
             <button
               onClick={handleRightPagi}
-              style={{
-                background: `${"#d0ceee"}`,
-                color: "#433EBE",
-                fontSize: "18px",
-              }}
-              className="join-item btn"
+              className={`join-item text-lg px-2 h-8 md:px-3 md:h-10 ${totalPages === currentPage + 1 ? 'text-[#ffffff] bg-[#d9d9db]':'bg-[#d0ceee] text-[#433EBE]'}`}
             >
               <IoIosArrowForward></IoIosArrowForward>
             </button>
