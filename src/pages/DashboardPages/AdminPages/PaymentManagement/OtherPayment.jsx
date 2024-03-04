@@ -11,7 +11,7 @@ const OtherPayment = () => {
       return res.data;
     },
   });
-  // console.log("checked", utensils);
+  console.log("checked", utensils);
   return (
     <div>
       <div>
