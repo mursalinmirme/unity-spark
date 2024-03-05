@@ -7,7 +7,7 @@ import { SlCloudUpload, SlEnergy } from "react-icons/sl";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { AuthContext } from "../../../Provider/AuthProvider";
-import bg3 from "../../../assets/SignIn/signin-3.jpg";
+import bg2 from "../../../assets/SignIn/signin-2.jpg";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useRandomPasswordGenerate from "../../../hooks/useRandomPasswordGenerate";
 import Social_Media from "../../components/Share/Social_Media/Social_Media";
@@ -83,7 +83,7 @@ const Signup = () => {
   };
 
   const signInBg = {
-    background: `linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0)), url(${bg3})`,
+    background: `linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0)), url(${bg2})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
   };
