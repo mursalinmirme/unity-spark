@@ -1,15 +1,15 @@
-.table-style{
-    @apply border-2 border-[#45A5E1] text-[18px]
+.table-style {
+  @apply border-2 border-[#45A5E1] text-[18px];
 }
 
 .table-style td {
-    @apply font-bold text-left text-[17px]
+  @apply font-semibold text-left text-[17px];
 }
 
-.table-style td:last-child{
-    @apply text-center text-[14px]
-} 
+.table-style td:last-child {
+  @apply text-center text-[14px];
+}
 
-.table-style th:last-child{
-    @apply text-center
+.table-style th:last-child {
+  @apply text-center;
 }
