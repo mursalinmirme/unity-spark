@@ -8,14 +8,32 @@ const AllUsersTable = ({ user, idx }) => {
         <div>
           <div className="avatar flex justify-center">
             <div className="mask mask-squircle w-12 h-12">
-              <img className="rounded-full" src={user.image} alt="Avatar Tailwind CSS Component" />
+              <img
+                className="rounded-full"
+                src={user.image}
+                alt="Avatar Tailwind CSS Component"
+              />
             </div>
           </div>
         </div>
       </td>
       <td className="text-left">{user?.name}</td>
       <td className="text-left">{user?.email}</td>
-      <td className="text-left">{user?.gender ? user?.gender : 'Not Set'}</td>
+      <td className="text-left">
+        {user?.gender ? (
+          user?.gender === "male" ? (
+            <div className="inline-flex items-center font-inter font-medium gap-1 text-second bg-[#e3f1fb] rounded-lg py-1 px-2 !text-left">
+              <p>Male</p>
+            </div>
+          ) : (
+            <div className="inline-flex items-center font-inter font-medium gap-1 text-green-600 bg-green-100 rounded-lg py-1 px-2 !text-left">
+              <p>Female</p>
+            </div>
+          )
+        ) : (
+          "Not Set"
+        )}
+      </td>
     </tr>
   );
 };

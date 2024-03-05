@@ -524,7 +524,7 @@ const Dashboard = () => {
               htmlFor="my-drawer-4"
               className="drawer-button hover:cursor-pointer"
             >
-              <HiBars3BottomRight />
+              <HiBars3BottomRight className="text-2xl" />
             </label>
           </div>
           <div className="drawer-side z-50">
