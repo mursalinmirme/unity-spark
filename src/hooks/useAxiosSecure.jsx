@@ -8,7 +8,7 @@ const useAxiosSecure = () => {
   const navigate = useNavigate();
   const { loginOut } = useContext(AuthContext);
   const axiosSecure = axios.create({
-    baseURL: "http://localhost:5000",
+    baseURL: import.meta.env.VITE_server_api_url,
   });
 
   axiosSecure.interceptors.request.use(

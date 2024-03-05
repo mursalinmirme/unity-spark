@@ -1,13 +1,13 @@
 import axios from "axios";
-import { useForm } from "react-hook-form";
-import { BsUpload } from "react-icons/bs";
-const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
-import useAxiosPublic from "../../../../hooks/useAxiosPublic";
-import { toast } from 'sonner';
 import { useRef, useState } from "react";
-import { RxCross2 } from "react-icons/rx";
+import { useForm } from "react-hook-form";
 import { AiOutlinePlusCircle } from "react-icons/ai";
+import { BsUpload } from "react-icons/bs";
+import { RxCross2 } from "react-icons/rx";
 import Select from "react-select";
+import { toast } from "sonner";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+const image_Hosting_Api = import.meta.env.VITE_image_Hosting_Api;
 
 const AddNewCourse = () => {
   const axiosPublic = useAxiosPublic();

@@ -3,12 +3,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCQOOGIkREY4A-aO24fMxkK2lJoc2hdGQc",
-  authDomain: "unity-spark-22122.firebaseapp.com",
-  projectId: "unity-spark-22122",
-  storageBucket: "unity-spark-22122.appspot.com",
-  messagingSenderId: "176845086971",
-  appId: "1:176845086971:web:11bc7ad8fed1851865d05e",
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase

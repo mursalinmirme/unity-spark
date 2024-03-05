@@ -26,7 +26,7 @@ const MyProfile = () => {
   });
 
   // get total Attendance
-  const { data: totalAttendance = [] } = useQuery({
+  const { data: totalAttendance = [], isFetching:isFetchingTotalAttendance } = useQuery({
     queryKey: ["totalAttendance", performancePagValue],
     queryFn: async () => {
       const res = await axiosSecure.get(`/total-attendance?email=${user?.email}&pegDays=${performancePagValue}`);
@@ -37,7 +37,7 @@ const MyProfile = () => {
   // console.log(totalAttendance);
 
   // get total Rest Days
-  const { data: totalRest = [] } = useQuery({
+  const { data: totalRest = [], isFetching:isFetchingTotalRest } = useQuery({
     queryKey: ["totalRest", performancePagValue],
     queryFn: async () => {
       const res = await axiosSecure.get(`/total-rest?email=${user?.email}&pegDays=${performancePagValue}}`);
@@ -189,21 +189,21 @@ const MyProfile = () => {
             </tr>
             <tr>
               <td>
-                {isFetching ? (
+                {isFetching || isFetchingTotalAttendance || isFetchingTotalRest ? (
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
                   totalAttendance?.length + " " + "Days"
                 )}
               </td>
               <td>
-                {isFetching ? (
+                {isFetching || isFetchingTotalAttendance || isFetchingTotalRest ? (
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
                   totalRest + " " + "Days"
                 )}
               </td>
               <td>
-                {isFetching ? (
+                {isFetching || isFetchingTotalAttendance || isFetchingTotalRest ? (
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
                   (performancePagValue > days.toFixed() ? days.toFixed() : performancePagValue) -
@@ -213,7 +213,7 @@ const MyProfile = () => {
                 )}
               </td>
               <td>
-                {isFetching ? (
+                {isFetching || isFetchingTotalAttendance || isFetchingTotalRest ? (
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
                   days.toFixed() + " " + "Days"
@@ -222,21 +222,21 @@ const MyProfile = () => {
             </tr>
             <tr>
               <td>
-                {isFetching ? (
+                {isFetching || isFetchingTotalAttendance || isFetchingTotalRest ? (
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
                   totalAttendance?.length * 24 + " " + "Hours"
                 )}
               </td>
               <td>
-                {isFetching ? (
+                {isFetching || isFetchingTotalAttendance || isFetchingTotalRest ? (
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
                   totalRest * 24 + " " + "Hours"
                 )}
               </td>
               <td>
-                {isFetching ? (
+                {isFetching || isFetchingTotalAttendance || isFetchingTotalRest ? (
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
                   ((performancePagValue > days.toFixed() ? days.toFixed() : performancePagValue) -
@@ -247,7 +247,7 @@ const MyProfile = () => {
                 )}
               </td>
               <td>
-                {isFetching ? (
+                {isFetching || isFetchingTotalAttendance || isFetchingTotalRest ? (
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
                   days.toFixed() * 24 + " " + "Hours"
@@ -256,21 +256,21 @@ const MyProfile = () => {
             </tr>
             <tr>
               <td>
-                {isFetching ? (
+                {isFetching || isFetchingTotalAttendance || isFetchingTotalRest ? (
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
                   totalAttendance?.length * 24 * 60 + " " + "Minutes"
                 )}
               </td>
               <td>
-                {isFetching ? (
+                {isFetching || isFetchingTotalAttendance || isFetchingTotalRest ? (
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
                   totalRest * 24 * 60 + " " + "Minutes"
                 )}
               </td>
               <td>
-                {isFetching ? (
+                {isFetching || isFetchingTotalAttendance || isFetchingTotalRest ? (
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
                   ((performancePagValue > days.toFixed() ? days.toFixed() : performancePagValue) -
@@ -282,7 +282,7 @@ const MyProfile = () => {
                 )}
               </td>
               <td>
-                {isFetching ? (
+                {isFetching || isFetchingTotalAttendance || isFetchingTotalRest ? (
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
                   days.toFixed() * 24 * 60 + " " + "Minutes"
@@ -291,21 +291,21 @@ const MyProfile = () => {
             </tr>
             <tr>
               <td>
-                {isFetching ? (
+                {isFetching || isFetchingTotalAttendance || isFetchingTotalRest ? (
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
                   totalAttendance?.length * 24 * 60 * 60 + " " + "Seconds"
                 )}
               </td>
               <td>
-                {isFetching ? (
+                {isFetching || isFetchingTotalAttendance || isFetchingTotalRest ? (
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
                   totalRest * 24 * 60 * 60 + " " + "Seconds"
                 )}
               </td>
               <td>
-                {isFetching ? (
+                {isFetching || isFetchingTotalAttendance || isFetchingTotalRest ? (
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
                   ((performancePagValue > days.toFixed() ? days.toFixed() : performancePagValue) -
@@ -318,7 +318,7 @@ const MyProfile = () => {
                 )}
               </td>
               <td>
-                {isFetching ? (
+                {isFetching || isFetchingTotalAttendance || isFetchingTotalRest ? (
                   <p className="skeleton w-32 h-5 mx-auto"></p>
                 ) : (
                   days.toFixed() * 24 * 60 * 60 + " " + "Seconds"

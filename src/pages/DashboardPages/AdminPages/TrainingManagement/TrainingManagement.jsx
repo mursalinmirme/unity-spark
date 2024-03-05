@@ -66,7 +66,7 @@ const TrainingManagement = () => {
                     {course?.title}
                   </h2>
                 </td>
-                <td className="text-left flex items-center gap-3 md:gap-5">
+                <td className="text-left flex items-center gap-3 md:gap-3">
                   <Link to={`/course/${course?._id}`}>
                     <GrView className="text-3xl border-2 p-1 rounded-xl text-primary border-primary hover:bg-primary cursor-pointer hover:text-white transition-all" />
                   </Link>
