@@ -13,8 +13,8 @@ const NewsletterSubscribers = () => {
   
   return (
     <div>
-      <div className="mb-5 flex justify-between items-center">
-        <h3 className="text-2xl font-semibold">Our Newsletter Subscribers</h3>
+      <div className="mb-5 flex flex-col md:flex-row md:justify-between md:items-center">
+        <h3 className="text-2xl md:text-2xl font-semibold mb-3 md:mb-0">Our Newsletter Subscribers</h3>
         <Link to={"/dashboard/add-announcement"}>
           <p className="edit_btn">
             <LuPlusCircle className="text-lg"></LuPlusCircle>
@@ -43,7 +43,7 @@ const NewsletterSubscribers = () => {
                 <td className="text-left">{subscribe?.userInfo?.email}</td>
                 <td className="text-left">
                   <img
-                    className="w-14 h-14 rounded-full"
+                    className="w-12 h-12 rounded-full"
                     src={subscribe?.userInfo?.image}
                     alt=""
                   />
