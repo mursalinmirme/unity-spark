@@ -1,22 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
 import AllUsersTable from "./AllUsersTable";
-import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import AllUsersSkeleton from "./AllUsersSkeleton";
+import useUsers from "../../../../hooks/useUsers";
 
 const AllUsers = () => {
-  const axiosSecure = useAxiosSecure();
-
-  const {
-    data: allUsers = [],
-    refetch,
-    isFetching,
-  } = useQuery({
-    queryKey: ["getAllUsers"],
-    queryFn: async () => {
-      const result = await axiosSecure.get("/users");
-      return result.data;
-    },
-  });
+  const {allUsers, refetch, isFetching} = useUsers()
 
   return (
     <div>

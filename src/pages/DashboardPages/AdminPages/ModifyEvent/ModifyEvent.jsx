@@ -15,6 +15,7 @@ import Swal from "sweetalert2";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import useTimePicker from "../../../../hooks/useTimePicker";
 import "../../../DashboardPages/EmployeePages/MyProfile/profile.css";
+import useEvents from "../../../../hooks/useEvents";
 const image_Hosting_Api = import.meta.env.VITE_image_Hosting_Api;
 
 const ModifyEvent = () => {
@@ -23,15 +24,9 @@ const ModifyEvent = () => {
   const [selectedEndTime, setSelectedEndTime] = useState(null);
   const [updateLoading, setUpdateLoading] = useState(false);
   const [currentId, setcurrentId] = useState([]);
-
   const axiosPublic = useAxiosPublic();
-  const { data: events = [], refetch } = useQuery({
-    queryKey: ["events"],
-    queryFn: async () => {
-      const res = await axiosPublic.get("/events");
-      return res?.data;
-    },
-  });
+  const {events, refetch} = useEvents()
+
   const [isOpenArray, setIsOpenArray] = useState(events.map(() => false));
 
   const setCardOpen = (index, value) => {

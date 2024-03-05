@@ -1,22 +1,16 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { LuPlusCircle } from "react-icons/lu";
 import NewsLetterSubscribersSkeleton from "./NewsLetterSubscribersSkeleton";
+import useNewsletterSubscriber from "../../../../hooks/useNewsletterSubscriber";
+
 const NewsletterSubscribers = () => {
-  const axiosSecure = useAxiosSecure();
-  const { data: subscribers, isFetching } = useQuery({
-    queryKey: ["getSubscribers"],
-    queryFn: async () => {
-      const result = await axiosSecure.get("/subscribers");
-      return result.data;
-    },
-  });
-  console.log("Our total subscribers", subscribers);
+  const {subscribers, isFetching} = useNewsletterSubscriber()  
+  
   if (isFetching) {
     return <NewsLetterSubscribersSkeleton></NewsLetterSubscribersSkeleton>;
   }
+  
   return (
     <div>
       <div className="mb-5 flex justify-between items-center">

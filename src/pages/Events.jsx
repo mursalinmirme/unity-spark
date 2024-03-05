@@ -8,6 +8,7 @@ const Events = () => {
     backgroundRepeat: `no-repeat`,
     backgroundPosition: `center`,
   };
+
   return (
     <>
       <div style={eventStyles}>
@@ -49,7 +50,7 @@ const Events = () => {
             <h1>Check Out More </h1>
            </div> */}
       <div className="max-w-[92%] lg:max-w-[1200px] mx-auto">
-      <EventCard></EventCard>
+        <EventCard></EventCard>
       </div>
       
     </>
