@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import BannerImg from "../../../../assets/images/banner.gif";
+import { AuthContext } from "../../../../Provider/AuthProvider";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
+  const { user } = useContext(AuthContext);
   return (
     <div className="banner">
       <div className="slide_container">
@@ -13,7 +17,17 @@ const Banner = () => {
             solutions. Streamline processes, elevate workplace experience, and
             transform operations today.
           </p>
-          <button className="nbtn">Get Started Today</button>
+          {user?.email ? (
+            <Link to="">
+              {" "}
+              <button className="nbtn mt-2">Get Started Today</button>
+            </Link>
+          ) : (
+            <Link to="/signin">
+              {" "}
+              <button className="nbtn mt-2">Get Started Today</button>
+            </Link>
+          )}
         </div>
         {/* Banner Image */}
         <div>

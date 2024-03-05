@@ -20,7 +20,7 @@ const Interviews = () => {
   });
   // const currentDate = moment().format("D/M/YYYY");
 
-  console.log("checked999999", allInterviews);
+  // console.log("checked999999", allInterviews);
 
   return (
     <div>
