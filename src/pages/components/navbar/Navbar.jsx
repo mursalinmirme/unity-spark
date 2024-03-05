@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../../assets/images/logo.gif";
+import logo from "../../../assets/images/final-logo.png";
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import { toast } from 'sonner';
@@ -125,7 +125,7 @@ const Navbar = () => {
             </div>
           </div>
           <Link to="/">
-            <img src={logo} className="w-full lg:w-1/2" alt="" />
+            <img src={logo} className="w-full md:w-4/5 lg:w-2/3 ml-[72px] md:ml-32 lg:ml-0" alt="" />
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">

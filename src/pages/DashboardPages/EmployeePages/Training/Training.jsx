@@ -26,8 +26,8 @@ const Training = () => {
             key={tab.id}
             className={`${
               isActive === tab.id
-                ? "font-medium text-white bg-primary py-2 rounded-lg"
-                : "bg-transparent text-primary py-2 font-semibold cursor-pointer"
+                ? "font-medium text-white bg-primary text-base py-2 rounded-lg"
+                : "bg-transparent text-primary py-2 text-base font-semibold cursor-pointer"
             }`}
             onClick={() => handleJobAdsTab(tab.id)}
           >
