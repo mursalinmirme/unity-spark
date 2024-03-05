@@ -1,21 +1,21 @@
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { CiCalendar, CiClock2 } from "react-icons/ci";
-import { PiMicrophoneStageThin } from "react-icons/pi";
-import { IoIosArrowDropdown, IoMdTime } from "react-icons/io";
-import useAxiosPublic from "../../../../hooks/useAxiosPublic";
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import Swal from "sweetalert2";
-import { toast } from "sonner";
 import { useForm } from "react-hook-form";
-import { SlCloudUpload } from "react-icons/sl";
-import useTimePicker from "../../../../hooks/useTimePicker";
-import axios from "axios";
 import { AiFillEdit } from "react-icons/ai";
+import { CiCalendar, CiClock2 } from "react-icons/ci";
+import { IoIosArrowDropdown, IoMdTime } from "react-icons/io";
+import { PiMicrophoneStageThin } from "react-icons/pi";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { SlCloudUpload } from "react-icons/sl";
+import { toast } from "sonner";
+import Swal from "sweetalert2";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import useTimePicker from "../../../../hooks/useTimePicker";
 import "../../../DashboardPages/EmployeePages/MyProfile/profile.css";
-const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
+const image_Hosting_Api = import.meta.env.VITE_image_Hosting_Api;
 
 const ModifyEvent = () => {
   const [selectDate, setSelectDate] = useState(new Date());

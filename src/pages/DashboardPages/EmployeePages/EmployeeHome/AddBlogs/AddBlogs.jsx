@@ -2,14 +2,14 @@ import axios from "axios";
 import JoditEditor from "jodit-react";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { SlCloudUpload } from "react-icons/sl";
 import { toast } from "sonner";
 import { AuthContext } from "../../../../../Provider/AuthProvider";
 import useAxiosPublic from "../../../../../hooks/useAxiosPublic";
 import useUserInfo from "../../../../../hooks/useUserInfo";
-import "./addBlogs.css";
-const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 import "../../MyProfile/profile.css";
-import { SlCloudUpload } from "react-icons/sl";
+import "./addBlogs.css";
+const image_Hosting_Api = import.meta.env.VITE_image_Hosting_Api;
 
 const AddBlogs = () => {
   const [users] = useUserInfo();

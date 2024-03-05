@@ -1,16 +1,16 @@
-import { useParams } from "react-router-dom";
-import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
-import { BsUpload } from "react-icons/bs";
-import { useForm } from "react-hook-form";
-import { toast } from 'sonner';
-import { useContext, useState } from "react";
-import { AuthContext } from "../../../../Provider/AuthProvider";
-import useUserInfo from "../../../../hooks/useUserInfo";
 import axios from "axios";
 import JoditEditor from "jodit-react";
+import { useContext, useState } from "react";
+import { useForm } from "react-hook-form";
+import { BsUpload } from "react-icons/bs";
+import { useParams } from "react-router-dom";
+import { toast } from "sonner";
+import { AuthContext } from "../../../../Provider/AuthProvider";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import useUserInfo from "../../../../hooks/useUserInfo";
 import "../EmployeeHome/AddBlogs/addBlogs.css";
-const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
+const image_Hosting_Api = import.meta.env.VITE_image_Hosting_Api;
 
 const EditBlogs = () => {
   const { user } = useContext(AuthContext);

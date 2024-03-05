@@ -4,12 +4,14 @@ import { useState } from "react";
 import Loading from "../components/Loading/Loading";
 import BlogCommonCard from "./BlogCommonCard";
 import BlogsBanner from "./BlogsBanner";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Blogs = () => {
+  const axiosPublic = useAxiosPublic();
   const { data: allBlogs = [], isPending } = useQuery({
     queryKey: ["all_blogs"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:5000/blogs");
+      const res = await axiosPublic.get("/blogs");
       return res.data;
     },
   });
