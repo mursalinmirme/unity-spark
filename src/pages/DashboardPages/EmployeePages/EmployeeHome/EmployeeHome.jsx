@@ -26,7 +26,7 @@ const EmployeeHome = () => {
   const { data: totalAttendance } = useQuery({
     queryKey: ["totalAttendance"],
     queryFn: async () => {
-      const result = await axiosPublic.get(`total-attendance/${user?.email}`);
+      const result = await axiosPublic.get(`/employee-total-attendance/${user?.email}`);
       return result.data;
     },
   });

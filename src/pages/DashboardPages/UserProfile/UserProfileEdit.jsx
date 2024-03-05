@@ -2,16 +2,16 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import { useQuery } from "@tanstack/react-query";
 import { useContext, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
-import { SlCloudUpload } from "react-icons/sl";
-import Select from "react-select";
 import { CgProfile } from "react-icons/cg";
+import { SlCloudUpload } from "react-icons/sl";
+import { Link, useNavigate } from "react-router-dom";
+import Select from "react-select";
+import { toast } from "sonner";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import UserProfileEditSkeleton from "./UserProfileEditSkeleton";
-import { toast } from "sonner";
-const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
+const image_Hosting_Api = import.meta.env.VITE_image_Hosting_Api;
 const UserProfileEdit = () => {
   const { register, handleSubmit, control, reset } = useForm();
   const [updateLoading, setUpdateLoading] = useState(false);
@@ -77,8 +77,6 @@ const UserProfileEdit = () => {
 
     console.log(userInfo);
     console.log(users);
-
-    // http://localhost:5000/users/${user?.email
 
     axiosSecure
       .put(`/users/${user?.email}`, userInfo)

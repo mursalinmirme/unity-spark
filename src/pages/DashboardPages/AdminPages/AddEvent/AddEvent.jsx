@@ -1,16 +1,16 @@
+import axios from "axios";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { SlCloudUpload } from "react-icons/sl";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useForm } from "react-hook-form";
 import { CiCalendar } from "react-icons/ci";
 import { IoMdTime } from "react-icons/io";
-import useTimePicker from "../../../../hooks/useTimePicker";
+import { SlCloudUpload } from "react-icons/sl";
 import { toast } from "sonner";
-import axios from "axios";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import useTimePicker from "../../../../hooks/useTimePicker";
 import "../../../DashboardPages/EmployeePages/MyProfile/profile.css";
-const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
+const image_Hosting_Api = import.meta.env.VITE_image_Hosting_Api;
 const AddEvent = () => {
   const axiosPublic = useAxiosPublic();
   const { register, handleSubmit, reset } = useForm();
