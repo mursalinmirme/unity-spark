@@ -72,6 +72,7 @@ import InterviewsDetails from "../pages/DashboardPages/AdminPages/Interviews/Int
 import NewsletterSubscribers from "../pages/DashboardPages/AdminPages/Subscribers/NewsletterSubscribers";
 import AddAnnouncement from "../pages/DashboardPages/AdminPages/Subscribers/AddAnnouncement";
 import OurVision from "../pages/components/HomeComponents/WhyDifferent/OurVision";
+import AdminHome from "../pages/DashboardPages/AdminPages/AdminHome/AdminHome";
 
 const router = createBrowserRouter([
   {
@@ -280,6 +281,16 @@ const router = createBrowserRouter([
             <IsCommonAccess>
               <UserProfileEdit></UserProfileEdit>
             </IsCommonAccess>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "admin-home",
+        element: (
+          <PrivateRouter>
+            <IsAdmin>
+              <AdminHome></AdminHome>
+            </IsAdmin>
           </PrivateRouter>
         ),
       },

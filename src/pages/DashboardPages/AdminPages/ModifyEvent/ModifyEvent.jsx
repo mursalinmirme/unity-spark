@@ -15,6 +15,7 @@ import axios from "axios";
 import { AiFillEdit } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import "../../../DashboardPages/EmployeePages/MyProfile/profile.css";
+import useEvents from "../../../../hooks/useEvents";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
 
 const ModifyEvent = () => {
@@ -23,15 +24,9 @@ const ModifyEvent = () => {
   const [selectedEndTime, setSelectedEndTime] = useState(null);
   const [updateLoading, setUpdateLoading] = useState(false);
   const [currentId, setcurrentId] = useState([]);
-
   const axiosPublic = useAxiosPublic();
-  const { data: events = [], refetch } = useQuery({
-    queryKey: ["events"],
-    queryFn: async () => {
-      const res = await axiosPublic.get("/events");
-      return res?.data;
-    },
-  });
+  const {events, refetch} = useEvents()
+
   const [isOpenArray, setIsOpenArray] = useState(events.map(() => false));
 
   const setCardOpen = (index, value) => {
