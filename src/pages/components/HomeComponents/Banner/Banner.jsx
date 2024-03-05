@@ -2,9 +2,12 @@ import { useContext } from "react";
 import BannerImg from "../../../../assets/images/banner.gif";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import { Link } from "react-router-dom";
+import useUserRole from "../../../../hooks/useUserRole";
+import { toast } from "sonner";
 
 const Banner = () => {
   const { user } = useContext(AuthContext);
+  const [isUser] = useUserRole();
   return (
     <div className="banner">
       <div className="slide_container">
@@ -17,14 +20,16 @@ const Banner = () => {
             solutions. Streamline processes, elevate workplace experience, and
             transform operations today.
           </p>
+
           {user?.email ? (
-            <Link to="">
-              {" "}
-              <button className="nbtn mt-2">Get Started Today</button>
-            </Link>
+            <button
+              onClick={() => toast.success(`WelCome ${user?.displayName}`)}
+              className="nbtn mt-2"
+            >
+              Get Started Today
+            </button>
           ) : (
             <Link to="/signin">
-              {" "}
               <button className="nbtn mt-2">Get Started Today</button>
             </Link>
           )}

@@ -11,7 +11,11 @@ const MySaveJob = () => {
   const PublicAxios = useAxiosPublic();
   const { user } = useContext(AuthContext);
   // get current page job info
-  const { data: saveJobInfos, refetch, isFetching } = useQuery({
+  const {
+    data: saveJobInfos,
+    refetch,
+    isFetching,
+  } = useQuery({
     queryKey: ["saveJobInfos", user?.email],
     queryFn: async () => {
       const result = await PublicAxios.get(`/getSaveInfo/${user?.email}`);
@@ -50,18 +54,21 @@ const MySaveJob = () => {
     });
   };
 
-  if(isFetching){
-    return <MySaveJobSkeleton></MySaveJobSkeleton>
+  if (isFetching) {
+    return <MySaveJobSkeleton></MySaveJobSkeleton>;
   }
   return (
     <div>
-      <h1 className="text-2xl font-bold"> Job Information Save </h1>
+      <h1 className="text-2xl font-bold"> My saved jobs</h1>
 
       {saveJobInfos?.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-5">
           {saveJobInfos?.map((job) => (
             <div key={job?._id} className="">
-              <div className="p-4 bg-base-100 rounded-xl" style={{boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)'}}>
+              <div
+                className="p-4 bg-base-100 rounded-xl"
+                style={{ boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.2)" }}
+              >
                 <div className="">
                   <h2 className="card-title font-inter">{job?.title}</h2>
                   <p className="mt-1">
