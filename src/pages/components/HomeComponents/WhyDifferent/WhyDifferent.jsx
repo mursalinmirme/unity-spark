@@ -11,37 +11,26 @@ const WhyDifferent = () => {
         <img className=" w-full" src={img} alt="" />
       </div>
       <div className="flex-1 mt-7 py-2 p-1">
-        <h3 className="text-[24px] font-bold font-inter">
-          Why we are different
+        <h3 className="text-[30px] font-bold font-inter">
+          Why we are different?
         </h3>
-        <p className="pt-3 text-[#646f7e]">
-          <span className="text-[20px] font-semibold text-slate-800">
-            Unity Spark :
+        <p className="pt-3 text-[#475569] font-inter">
+          <span className="text-[20px] font-semibold font-poppins text-slate-800">
+            Innovative Solutions :
           </span>{" "}
-          At Unity Spark, we revolutionize collaboration with our unique
-          Chatting System, connecting team members through smart matching
-          algorithms. Augmented user profiles provide a comprehensive view of
-          individual achievements, fostering meaningful connections within our
-          diverse community.
+          <span className="font-medium">At Unity Spark, we aim to deliver innovative solutions that set us apart in the industry. Our commitment to utilizing cutting-edge technology ensures your unique needs are met with forward-thinking solutions, making us a standout choice in the professional landscape.</span>
         </p>
-        <p className="pt-3 text-[#646f7e]">
-          <span className="text-[20px] font-semibold text-slate-800">
-            Unlike traditional :
+        <p className="pt-3 text-[#475569] font-inter">
+          <span className="text-[20px] font-semibold font-poppins text-slate-800">
+            Tech Driven Recruitment:
           </span>{" "}
-          Unlike traditional platforms, our system integrates real-time
-          collaboration tools, transforming conversations into dynamic and
-          productive working sessions. Multilingual support ensures inclusivity,
-          allowing seamless communication in preferred languages.
+          <span className="font-medium">Unity Spark introduces a tech-driven recruitment process, utilizing cutting-edge technology for a smooth, modern, and efficient hiring journey. Experience a new way of connecting employers with candidates, making hiring hassle-free and effective for everyone involved.</span>
         </p>
-        <p className="pt-3 text-[#646f7e]">
-          <span className="text-[20px] font-semibold text-slate-800">
-            Smart notifications :
-          </span>{" "}
-          Smart notifications prioritize important messages, while an anonymous
-          feedback channel encourages open comm unication and improvement. Join
-          us in creating an innovative, efficient, and inclusive workplace
-          culture at Unity Spark, where every feature is designed for a superior
-          collaboration experience.
+        <p className="pt-3 text-[#475569] font-inter">
+          <span className="text-[20px] font-semibold font-poppins text-slate-800">
+            Engaging Community:
+          </span>
+          <span className="font-medium">{" Step into Unity Spark's vibrant community, where professionals unite to share insights, connect, and collaborate. Join us to be part of this dynamic network, fostering growth and meaningful interactions. Your journey towards success starts here!"}</span>
         </p>
         <Link onClick={newSystem} to="/our-vision">
           <button className="nbtn mt-7 "> Explore More</button>
