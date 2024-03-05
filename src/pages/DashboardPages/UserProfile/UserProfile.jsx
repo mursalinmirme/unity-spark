@@ -60,7 +60,7 @@ const UserProfile = () => {
 
       {/** Input Form Area  */}
 
-      <div className="border-2 p-5 rounded-xl mt-8">
+      <div className="border-2 p-5 rounded-xl mt-12">
         <div className="grid md:grid-cols-2 gap-2">
           {/* Email field */}
           <label>

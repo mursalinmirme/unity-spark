@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
-import { BsUpload } from "react-icons/bs";
+import { SlCloudUpload } from "react-icons/sl";
 import { useForm } from "react-hook-form";
-import { toast } from 'sonner';
+import { toast } from "sonner";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import useUserInfo from "../../../../hooks/useUserInfo";
@@ -11,6 +11,7 @@ import axios from "axios";
 import JoditEditor from "jodit-react";
 import "../EmployeeHome/AddBlogs/addBlogs.css";
 const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
+import "./blogs.css";
 
 const EditBlogs = () => {
   const { user } = useContext(AuthContext);
@@ -76,29 +77,29 @@ const EditBlogs = () => {
 
   return (
     <div>
-      <h1 className="text-3xl  font-bold mb-5">Update Blog</h1>
+      <h1 className="text-2xl font-semibold font-inter mb-5">Update Blog</h1>
       <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
-        <div className="md:flex gap-3">
+        <div className="md:flex gap-3 space-y-3 md:space-y-0">
           <div className="form-control w-full">
-            <label className="label">
-              <span className="label-text font-bold text-lg">Blog Title</span>
+            <label>
+              <span className="blogs_input_title">Blog Title</span>
             </label>
             <input
               {...register("title")}
               type="text"
               placeholder="Blog title..."
-              className="input input-bordered"
+              className="blogs_input"
               defaultValue={SingleEvent?.title}
             />
             {/* {errors.title && <p className="text-red-500">title is required.</p>} */}
           </div>
           <div className="form-control w-full">
-            <label className="label mb-1.5">
-              <span className="label-text font-bold text-lg">Add photo</span>
+            <label>
+              <span className="blogs_input_title">Add photo</span>
             </label>
             <label className="w-full" htmlFor="user_photo">
-              <div className="bg-primary rounded-md mt-1 py-[15px] text-white font-inter font-medium flex items-center justify-center gap-2 cursor-pointer">
-                <BsUpload />
+              <div className="bg-primary rounded-md mt-1 py-2.5 text-white font-inter font-medium flex items-center justify-center gap-2 cursor-pointer text-sm">
+                <SlCloudUpload className="w-5 h-5" />
                 <span> Upload Photo</span>{" "}
               </div>
             </label>
@@ -110,12 +111,12 @@ const EditBlogs = () => {
             />
           </div>
         </div>
-        <div className="form-control pt-2">
-          <label className="label">
-            <span className="label-text font-bold text-lg">Description</span>
+        <div className="form-control">
+          <label>
+            <span className="blogs_input_title">Description</span>
           </label>
           <JoditEditor
-            className="h-[500px]"
+            className="h-[500px] mt-2"
             value={content}
             tabIndex={1}
             onBlur={(newContent) => setContent(newContent)}
@@ -125,11 +126,7 @@ const EditBlogs = () => {
           )}
         </div>
         <div className="pt-4">
-          <input
-            className="w-32 h-12 bg-primary text-white cursor-pointer font-semibold"
-            type="submit"
-            value="Update"
-          />
+          <input className="nbtn-fixed-bg w-32" type="submit" value="Update" />
         </div>
       </form>
     </div>
