@@ -9,12 +9,12 @@ const AcceptAndRejectLeaveSkeleton = () => {
 
                         </div>
                         <div className="flex flex-col gap-3">
-                            <div className="skeleton w-48 h-4 rounded-full bg-[#efefef]"></div>
-                            <div className="skeleton w-32 h-4 rounded-full bg-[#efefef]"></div>
+                        <div className="skeleton w-36 lg:w-48 h-4 rounded-full bg-[#efefef]"></div>
+                            <div className="skeleton w-24 lg:w-32 h-4 rounded-full bg-[#efefef]"></div>
                         </div>
                     </div>
                     <div>
-                        <div className="skeleton w-20 h-8 rounded-full bg-[#efefef]"></div>
+                        <div className="skeleton w-16 lg:w-20 h-8 rounded-full bg-[#efefef]"></div>
                     </div>
                 </div>
                 <div className="mt-4">
@@ -32,12 +32,12 @@ const AcceptAndRejectLeaveSkeleton = () => {
 
                         </div>
                         <div className="flex flex-col gap-3">
-                            <div className="skeleton w-48 h-4 rounded-full bg-[#efefef]"></div>
-                            <div className="skeleton w-32 h-4 rounded-full bg-[#efefef]"></div>
+                        <div className="skeleton w-36 lg:w-48 h-4 rounded-full bg-[#efefef]"></div>
+                            <div className="skeleton w-24 lg:w-32 h-4 rounded-full bg-[#efefef]"></div>
                         </div>
                     </div>
                     <div>
-                        <div className="skeleton w-20 h-8 rounded-full bg-[#efefef]"></div>
+                        <div className="skeleton w-16 lg:w-20 h-8 rounded-full bg-[#efefef]"></div>
                     </div>
                 </div>
                 <div className="mt-4">
@@ -55,12 +55,12 @@ const AcceptAndRejectLeaveSkeleton = () => {
 
                         </div>
                         <div className="flex flex-col gap-3">
-                            <div className="skeleton w-48 h-4 rounded-full bg-[#efefef]"></div>
-                            <div className="skeleton w-32 h-4 rounded-full bg-[#efefef]"></div>
+                        <div className="skeleton w-36 lg:w-48 h-4 rounded-full bg-[#efefef]"></div>
+                            <div className="skeleton w-24 lg:w-32 h-4 rounded-full bg-[#efefef]"></div>
                         </div>
                     </div>
                     <div>
-                        <div className="skeleton w-20 h-8 rounded-full bg-[#efefef]"></div>
+                        <div className="skeleton w-16 lg:w-20 h-8 rounded-full bg-[#efefef]"></div>
                     </div>
                 </div>
                 <div className="mt-4">
@@ -78,12 +78,12 @@ const AcceptAndRejectLeaveSkeleton = () => {
 
                         </div>
                         <div className="flex flex-col gap-3">
-                            <div className="skeleton w-48 h-4 rounded-full bg-[#efefef]"></div>
-                            <div className="skeleton w-32 h-4 rounded-full bg-[#efefef]"></div>
+                        <div className="skeleton w-36 lg:w-48 h-4 rounded-full bg-[#efefef]"></div>
+                            <div className="skeleton w-24 lg:w-32 h-4 rounded-full bg-[#efefef]"></div>
                         </div>
                     </div>
                     <div>
-                        <div className="skeleton w-20 h-8 rounded-full bg-[#efefef]"></div>
+                        <div className="skeleton w-16 lg:w-20 h-8 rounded-full bg-[#efefef]"></div>
                     </div>
                 </div>
                 <div className="mt-4">
@@ -101,12 +101,12 @@ const AcceptAndRejectLeaveSkeleton = () => {
 
                         </div>
                         <div className="flex flex-col gap-3">
-                            <div className="skeleton w-48 h-4 rounded-full bg-[#efefef]"></div>
-                            <div className="skeleton w-32 h-4 rounded-full bg-[#efefef]"></div>
+                        <div className="skeleton w-36 lg:w-48 h-4 rounded-full bg-[#efefef]"></div>
+                            <div className="skeleton w-24 lg:w-32 h-4 rounded-full bg-[#efefef]"></div>
                         </div>
                     </div>
                     <div>
-                        <div className="skeleton w-20 h-8 rounded-full bg-[#efefef]"></div>
+                        <div className="skeleton w-16 lg:w-20 h-8 rounded-full bg-[#efefef]"></div>
                     </div>
                 </div>
                 <div className="mt-4">
@@ -124,12 +124,12 @@ const AcceptAndRejectLeaveSkeleton = () => {
 
                         </div>
                         <div className="flex flex-col gap-3">
-                            <div className="skeleton w-48 h-4 rounded-full bg-[#efefef]"></div>
-                            <div className="skeleton w-32 h-4 rounded-full bg-[#efefef]"></div>
+                        <div className="skeleton w-36 lg:w-48 h-4 rounded-full bg-[#efefef]"></div>
+                            <div className="skeleton w-24 lg:w-32 h-4 rounded-full bg-[#efefef]"></div>
                         </div>
                     </div>
                     <div>
-                        <div className="skeleton w-20 h-8 rounded-full bg-[#efefef]"></div>
+                        <div className="skeleton w-16 lg:w-20 h-8 rounded-full bg-[#efefef]"></div>
                     </div>
                 </div>
                 <div className="mt-4">
@@ -140,6 +140,7 @@ const AcceptAndRejectLeaveSkeleton = () => {
                     <div className="skeleton w-24 h-8 rounded-full bg-[#efefef]"></div>
                 </div>
             </div>   
+
         </div>
     );
 };

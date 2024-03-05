@@ -19,7 +19,7 @@ import { LuLogOut, LuUser, LuUsers2 } from "react-icons/lu";
 import { TfiAlarmClock } from "react-icons/tfi";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
-import logo from "../../assets/images/logo.gif";
+import logo from "../../assets/images/final-logo.png";
 import useUserRole from "../../hooks/useUserRole";
 import {
   MdOutlineAddTask,
@@ -500,13 +500,13 @@ const Dashboard = () => {
           <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content bg-white rounded-xl flex justify-between items-center p-3">
             <Link to="/">
-              <img src={logo} className="w-2/6" alt="" />
+              <img src={logo} className="w-2/4 md:w-1/4" alt="" />
             </Link>
             <label
               htmlFor="my-drawer-4"
               className="drawer-button hover:cursor-pointer"
             >
-              <HiBars3BottomRight />
+              <HiBars3BottomRight className="text-2xl" />
             </label>
           </div>
           <div className="drawer-side z-50">
