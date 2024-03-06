@@ -52,6 +52,15 @@ const AdminHome = () => {
         },
     });
 
+    const { data: getAllExpense, isFetching: isallExpenseFetching } = useQuery({
+        queryKey: ["getAllExpense"],
+        queryFn: async () => {
+          const result = await axiosSecure.get("/total-expenses");
+          return result.data;
+        },
+    });
+
+
     events?.forEach(event => {
         const date = moment(event?.date)
         const today = moment();
@@ -139,7 +148,7 @@ const AdminHome = () => {
                         </div>
                         <div>
                             <p className="font-semibold font-inter text-3xl text-slate-800">
-                                <span className="font-medium">$</span>10000
+                                <span className="font-medium">$</span>{getAllExpense?.employeeCost + getAllExpense?.othersPaymentsCost}
                             </p>
                             <p className="text-slate-700 font-semibold text-[19px]">
                                 Overall Expenses

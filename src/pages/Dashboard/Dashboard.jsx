@@ -555,11 +555,8 @@ const Dashboard = () => {
                   setShowLogo(true);
                 }}
               >
-                <Link to="/" className={`${showLogo ? "block" : "hidden"}`}>
+                <Link to="/">
                   <img src={logo} className="w-3/4 h-12" alt="" />
-                </Link>
-                <Link to="/" className={`${showLogo ? "hidden" : "block"}`}>
-                  <img src={goToHome} className="w-3/4 h-12" alt="" />
                 </Link>
               </div>
               <ul>{dashboardItem}</ul>
