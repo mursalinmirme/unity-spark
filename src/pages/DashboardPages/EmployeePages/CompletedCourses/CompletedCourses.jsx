@@ -1,17 +1,12 @@
+import { Link } from "react-router-dom";
+import useMyCourses from "../../../../hooks/useMyCourses";
 import { FaCirclePlay } from "react-icons/fa6";
 import { BsClock } from "react-icons/bs";
-import { Link, useNavigate } from "react-router-dom";
-import useMyCourses from "../../../../hooks/useMyCourses";
+import { GoCheckCircleFill } from "react-icons/go";
+import { MdCancel } from "react-icons/md";
 
-const MyCourse = () => {
-  const [my_course] = useMyCourses("Pending");
-  const navigate = useNavigate();
-  console.log(my_course);
-
-  const handleNavigate = (id, statusId) => {
-    navigate(`/mycourse/${id}`, { state: statusId });
-  };
-
+const CompletedCourses = () => {
+  const [my_course] = useMyCourses("Completed");
   return (
     <>
       <div className="mt-10">
@@ -41,15 +36,15 @@ const MyCourse = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="top-auto">
-                      <button
-                        onClick={() =>
-                          handleNavigate(info?.uniqueID?._id, info._id)
-                        }
-                        className="nbtn-fixed-bg"
-                      >
-                        Continue
-                      </button>
+                    <div className="top-auto flex items-center justify-between">
+                      <div className="inline-flex items-center font-inter font-medium gap-1 text-green-600 bg-green-100 rounded-lg py-1 px-2 !text-left">
+                        <GoCheckCircleFill className="text-md" />
+                        Completed
+                      </div>
+                      <div className="inline-flex items-center font-inter font-medium gap-1 text-red-600 bg-red-100 rounded-lg py-1 px-2 !text-left">
+                        <MdCancel className="text-lg" />
+                        Delete
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -86,4 +81,4 @@ const MyCourse = () => {
   );
 };
 
-export default MyCourse;
+export default CompletedCourses;
