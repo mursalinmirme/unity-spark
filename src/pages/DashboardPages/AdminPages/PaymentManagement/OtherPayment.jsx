@@ -1,16 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import OtherPaymentTable from "./OtherPaymentTable";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 
 const OtherPayment = () => {
+  const axiosPublic = useAxiosPublic();
   const { data: utensils = [] } = useQuery({
     queryKey: ["utensils"],
     queryFn: async () => {
-      const res = await axios.get("/utensils_cost.json");
+      const res = await axiosPublic.get("/utensils");
       return res.data;
     },
   });
-  console.log(utensils);
+  console.log("checked", utensils);
   return (
     <div>
       <div>
@@ -30,7 +31,8 @@ const OtherPayment = () => {
                 <OtherPaymentTable
                   key={utensil?._id}
                   utensil={utensil}
-                  idx={idx}></OtherPaymentTable>
+                  idx={idx}
+                ></OtherPaymentTable>
               ))}
           </tbody>
         </table>

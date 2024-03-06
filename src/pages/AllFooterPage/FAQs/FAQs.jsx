@@ -1,11 +1,11 @@
 const FAQs = () => {
   return (
-    <div className="mt-10 mb-3">
-      <img
+    <div className="md:my-10 max-w-[92%] lg:max-w-[1200px] mx-auto">
+      {/* <img
         className=" rounded-lg w-full"
         src="https://i.ibb.co/9TKr4kF/FAQ-image.png"
         alt=""
-      />
+      /> */}
       <div className="py-10">
         <h3 className="text-3xl font-bold font-inter">
           {" "}

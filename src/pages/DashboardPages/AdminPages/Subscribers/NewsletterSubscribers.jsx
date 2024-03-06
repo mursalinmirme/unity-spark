@@ -1,27 +1,26 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { LuPlusCircle } from "react-icons/lu";
 import NewsLetterSubscribersSkeleton from "./NewsLetterSubscribersSkeleton";
+import useNewsletterSubscriber from "../../../../hooks/useNewsletterSubscriber";
+
 const NewsletterSubscribers = () => {
-  const axiosSecure = useAxiosSecure();
-  const { data: subscribers, isFetching } = useQuery({
-    queryKey: ["getSubscribers"],
-    queryFn: async () => {
-      const result = await axiosSecure.get("/subscribers");
-      return result.data;
-    },
-  });
-  console.log("Our total subscribers", subscribers);
-  if(isFetching){
-    return <NewsLetterSubscribersSkeleton></NewsLetterSubscribersSkeleton>
+  const {subscribers, isFetching} = useNewsletterSubscriber()  
+  
+  if (isFetching) {
+    return <NewsLetterSubscribersSkeleton></NewsLetterSubscribersSkeleton>;
   }
+  
   return (
     <div>
-      <div className="mb-5 flex justify-between items-center">
-        <h3 className="text-2xl font-semibold">Our Newsletter Subscribers</h3>
-        <Link to={"/dashboard/add-announcement"}><p className="border-2 px-4 py-2 border-primary text-primary rounded-lg font-semibold flex items-center gap-1"><LuPlusCircle className="text-lg"></LuPlusCircle><span>Add Announcement</span></p></Link>
+      <div className="mb-5 flex flex-col md:flex-row md:justify-between md:items-center">
+        <h3 className="text-2xl md:text-2xl font-semibold mb-3 md:mb-0">Our Newsletter Subscribers</h3>
+        <Link to={"/dashboard/add-announcement"}>
+          <p className="edit_btn">
+            <LuPlusCircle className="text-lg"></LuPlusCircle>
+            <span>Add Announcement</span>
+          </p>
+        </Link>
       </div>
       <div className="overflow-x-auto">
         <table className="table border">
@@ -43,10 +42,15 @@ const NewsletterSubscribers = () => {
                 <td className="text-left">{subscribe?.userInfo?.name}</td>
                 <td className="text-left">{subscribe?.userInfo?.email}</td>
                 <td className="text-left">
-                  <img className="w-14 h-14 rounded-full" src={subscribe?.userInfo?.image} alt="" />
+                  <img
+                    className="w-12 h-12 rounded-full"
+                    src={subscribe?.userInfo?.image}
+                    alt=""
+                  />
                 </td>
-                <td className="text-left">{moment(subscribe?.createdAt).format('LL')}</td>
-                
+                <td className="text-left">
+                  {moment(subscribe?.createdAt).format("LL")}
+                </td>
               </tr>
             ))}
           </tbody>

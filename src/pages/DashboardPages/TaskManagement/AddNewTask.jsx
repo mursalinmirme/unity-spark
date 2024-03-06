@@ -5,8 +5,9 @@ import { IoAdd } from "react-icons/io5";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useState } from "react";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import "./tasks.css";
+import "../../DashboardPages/EmployeePages/MyProfile/profile.css";
 
 const AddNewTask = () => {
   const axiosSecure = useAxiosSecure();
@@ -85,7 +86,7 @@ const AddNewTask = () => {
   return (
     <div>
       <div className="flex justify-between">
-        <h1 className="font-bold text-3xl"> Add a New Task </h1>
+        <h1 className="text-2xl font-semibold"> Add a New Task </h1>
         <Link to="/dashboard/taskManagement">
           <a className="edit_btn !text-red-500 hover:!text-white !border-red-600 hover:!border-red-600 hover:!bg-red-600">
             <span> X Cancel </span>
@@ -97,13 +98,11 @@ const AddNewTask = () => {
           <div className="border-2 rounded-lg p-7 space-y-3">
             <div className="form-control">
               <label className="">
-                <span className="font-inter text-[18px] font-semibold">
-                  Task Name
-                </span>
+                <span className="user_profile_input_title ">Task Name</span>
               </label>
               <input
                 type="text"
-                className="input input-bordered"
+                className="user_profile_input mt-0"
                 placeholder="Enter task name"
                 {...register("taskName", { required: true })}
               />
@@ -116,13 +115,13 @@ const AddNewTask = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               <div className="form-control">
                 <label className="">
-                  <span className="font-inter text-[18px] font-semibold">
+                  <span className="user_profile_input_title mt-0">
                     Start Date
                   </span>
                 </label>
                 <input
                   type="date"
-                  className="input input-bordered"
+                  className="user_profile_input mt-0"
                   {...register("startDate", { required: true })}
                 />
                 {errors.startDate && (
@@ -133,13 +132,11 @@ const AddNewTask = () => {
               </div>
               <div className="form-control">
                 <label className="">
-                  <span className="font-inter text-[18px] font-semibold">
-                    End Date
-                  </span>
+                  <span className="user_profile_input_title">End Date</span>
                 </label>
                 <input
                   type="date"
-                  className="input input-bordered"
+                  className="user_profile_input mt-0"
                   {...register("endDate", { required: true })}
                 />
                 {errors.endDate && (
@@ -150,25 +147,27 @@ const AddNewTask = () => {
               </div>
             </div>
             <div>
-              <h1 className="text-xl font-semibold mb-4">Assign Employees</h1>
-              <div className="flex flex-wrap gap-3">
+              <h1 className="text-lg font-semibold font-inter mb-4">
+                Assign Employees
+              </h1>
+              <div className="flex flex-wrap gap-4">
                 {data?.map((item) => (
                   <div
                     key={item._id}
-                    className="flex justify-between items-center border-2 border-primary rounded-full w-full md:w-[293px]"
+                    className="flex justify-between items-center border-2 border-primary rounded-full w-full md:w-[290px]"
                   >
                     <div className="flex items-center gap-2">
                       <div>
                         <img
-                          className="h-12 w-12 border-r-2 border-primary rounded-full"
+                          className="h-10 w-10 border-r-2 border-primary rounded-full"
                           src={item.image}
                           alt=""
                         />
                       </div>
-                      <h1 className="text-lg font-semibold">
+                      <h1 className="text-base font-semibold">
                         {" "}
-                        {item.name.length > 16 ? (
-                          <span>{item.name.slice(0, 16)}...</span>
+                        {item.name.length > 20 ? (
+                          <span>{item.name.slice(0, 20)}...</span>
                         ) : (
                           <span>{item.name}</span>
                         )}{" "}
@@ -185,10 +184,7 @@ const AddNewTask = () => {
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="bg-[#433ebe] mt-5 px-10 text-white font-semibold rounded-md py-2"
-          >
+          <button type="submit" className="nbtn-fixed-bg mt-3">
             Add
           </button>
         </form>

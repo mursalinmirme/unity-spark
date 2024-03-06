@@ -71,6 +71,8 @@ import PrivacyPolicy from "../pages/AllFooterPage/PrivacyPolicy/PrivacyPolicy";
 import InterviewsDetails from "../pages/DashboardPages/AdminPages/Interviews/InterviewsDetails";
 import NewsletterSubscribers from "../pages/DashboardPages/AdminPages/Subscribers/NewsletterSubscribers";
 import AddAnnouncement from "../pages/DashboardPages/AdminPages/Subscribers/AddAnnouncement";
+import OurVision from "../pages/components/HomeComponents/WhyDifferent/OurVision";
+import AdminHome from "../pages/DashboardPages/AdminPages/AdminHome/AdminHome";
 
 const router = createBrowserRouter([
   {
@@ -97,6 +99,11 @@ const router = createBrowserRouter([
       {
         path: "events",
         element: <Events></Events>,
+      },
+
+      {
+        path: "our-vision",
+        element: <OurVision></OurVision>,
       },
 
       // All Footer Page Start
@@ -274,6 +281,16 @@ const router = createBrowserRouter([
             <IsCommonAccess>
               <UserProfileEdit></UserProfileEdit>
             </IsCommonAccess>
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "admin-home",
+        element: (
+          <PrivateRouter>
+            <IsAdmin>
+              <AdminHome></AdminHome>
+            </IsAdmin>
           </PrivateRouter>
         ),
       },

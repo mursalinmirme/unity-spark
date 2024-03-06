@@ -13,7 +13,7 @@ const EmployeePaymentTable = ({ employee }) => {
     navigate("/dashboard/payment-management/payment", { state: salaryInfo });
   };
   return (
-    <tr className="row-border table-style">
+    <tr className="row-border !font-medium table-style ">
       <td>{employee?.name}</td>
       <td>{employee?.position}</td>
       <td>${employee?.salary ? employee?.salary : "5000"}</td>

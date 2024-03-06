@@ -29,6 +29,10 @@ body {
   background-position: left;
 }
 
+.nbtn-fixed-bg {
+  @apply py-2.5 px-4 bg-primary border-none text-white rounded-xl text-center text-base font-inter font-semibold;
+}
+
 .goals h2,
 .services h2,
 .job_posts h2,
@@ -218,7 +222,7 @@ body {
 }
 
 .job_post_card .job_status span {
-  @apply text-primary bg-[#d0d8e0] py-1 px-3 rounded-full text-sm font-semibold;
+  @apply text-primary bg-[#c7c5eb] py-1 px-3 font-medium rounded-full text-sm;
 }
 
 .job_post_card p {
@@ -266,7 +270,7 @@ body {
 }
 
 .newsletter_container {
-  @apply rounded-2xl p-4 md:p-8 lg:p-12;
+  @apply rounded-2xl p-4 md:p-8 lg:px-0 lg:py-16 max-w-[92%] lg:max-w-[1200px] mx-auto;
 }
 
 .newsletter .second_container {
@@ -308,7 +312,7 @@ body {
 }
 
 #contact .contact_info {
-  @apply flex items-center gap-2;
+  @apply flex items-center gap-4;
 }
 
 .contact_info svg {

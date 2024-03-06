@@ -1,72 +1,83 @@
 .user_profile_container {
-    @apply flex flex-col md:flex-row items-start md:items-center gap-5
+  @apply flex flex-col md:flex-row items-start md:items-center gap-5;
 }
 
 .user_profile_container img {
-    @apply w-16 lg:w-20 h-16 lg:h-20 rounded-3xl
+  @apply w-16 lg:w-20 h-16 lg:h-20 rounded-3xl;
 }
 
 .user_profile_container h2 {
-    @apply font-inter font-bold text-lg
+  @apply font-inter font-bold text-lg;
 }
 
 .user_profile_container h3 {
-    @apply font-inter font-medium mb-2
+  @apply font-inter font-medium mb-2;
+}
+
+.user_profile_input_grid {
+  @apply grid md:grid-cols-2 gap-3;
+}
+.user_profile_input_title {
+  @apply font-semibold text-black text-base font-inter;
+}
+
+.user_profile_input {
+  @apply text-sm py-2.5 border-[1.5px] font-medium font-inter;
 }
 
 .edit_btn {
-    @apply flex gap-2 items-center text-primary font-inter font-semibold text-sm border-2 rounded-lg cursor-pointer border-primary py-1 px-3 hover:bg-primary hover:text-white transition-all duration-500
+  @apply flex gap-1 md:gap-2 items-center text-primary font-inter font-semibold text-sm border-2 rounded-lg cursor-pointer border-primary p-1.5 md:py-[7px] md:px-3 hover:bg-primary hover:text-white transition-all duration-500;
 }
 
 .badge_container {
-    @apply flex gap-4 flex-wrap
+  @apply flex gap-4 flex-wrap;
 }
 
 .badge_container span {
-    @apply text-primary font-inter font-bold bg-[#E3E2F5] py-1.5 px-4 text-sm rounded-full
+  @apply text-primary font-inter font-bold bg-[#E3E2F5] py-1.5 px-4 text-sm rounded-full;
 }
 
 .tab_container {
-    @apply border-2 rounded-xl mt-6
+  @apply border-2 rounded-xl mt-6;
 }
 
 .tab_container .tab_div {
-    @apply flex flex-col lg:flex-row justify-between items-center p-4
+  @apply flex flex-col lg:flex-row justify-between items-center p-4;
 }
 
 .tab_div h2 {
-    @apply font-inter font-semibold text-lg mb-2 lg:mb-0
+  @apply font-inter font-semibold text-lg mb-2 lg:mb-0;
 }
 
 .tabs {
-    @apply bg-[#E3E2F5] p-1.5 rounded-lg flex gap-1
+  @apply bg-[#E3E2F5] p-1.5 rounded-lg flex gap-1;
 }
 
 .tab_btn {
-    @apply px-1.5 py-0.5 rounded-md text-sm font-inter cursor-pointer
+  @apply px-1.5 py-0.5 rounded-md text-sm font-inter cursor-pointer;
 }
 
 table th {
-    @apply font-inter font-semibold p-3 border-r-2
+  @apply font-inter font-semibold p-3 border-r-2;
 }
 
 table tr td {
-    @apply font-inter font-medium p-3 border-r-2 text-center border-t-2
+  @apply font-inter font-medium p-3 border-r-2 text-center border-t-2;
 }
 
 table th:last-child,
 table tr td:last-child {
-    @apply border-r-0
+  @apply border-r-0;
 }
 
 .profile-form form {
-    @apply border-2 p-5 rounded-xl mt-5
+  @apply border-2 p-5 rounded-xl mt-5;
 }
 
 form label {
-    @apply font-inter font-semibold
+  @apply font-inter font-semibold;
 }
 
 form input {
-    @apply px-3 py-1.5 border-2 rounded-md block mt-1.5 w-full focus:outline-none
+  @apply px-3 py-1.5 border-2 rounded-md block mt-1.5 w-full focus:outline-none;
 }

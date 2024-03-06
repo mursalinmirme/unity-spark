@@ -1,31 +1,38 @@
 import { useContext, useState } from "react";
-import { BiConversation, BiHomeAlt2 } from "react-icons/bi";
+import { BiHomeAlt2, BiMessageSquareDots } from "react-icons/bi";
 import { BsChatText } from "react-icons/bs";
-import { FaAccessibleIcon, FaIntercom } from "react-icons/fa";
-import { VscDiffAdded } from "react-icons/vsc";
-import { GrAnnounce, GrDocumentPerformance, GrUserWorker } from "react-icons/gr";
-import { HiBars3BottomRight } from "react-icons/hi2";
+import { GrDocumentPerformance, GrUserWorker } from "react-icons/gr";
+import {
+  HiBars3BottomRight,
+  HiOutlineArrowUpOnSquareStack,
+  HiOutlineDocumentCheck,
+  HiOutlineDocumentDuplicate,
+} from "react-icons/hi2";
 import { IoIosArrowForward } from "react-icons/io";
-import { IoDocumentOutline } from "react-icons/io5";
-import { LuBookMarked, LuLogOut, LuUser, LuUsers2 } from "react-icons/lu";
+import { GrDocumentTime } from "react-icons/gr";
+import {
+  IoCalendarOutline,
+  IoDocumentAttachOutline,
+  IoDocumentTextOutline,
+} from "react-icons/io5";
+import { LuLogOut, LuUser, LuUsers2 } from "react-icons/lu";
 import { TfiAlarmClock } from "react-icons/tfi";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
-import logo from "../../assets/images/logo.gif";
+import logo from "../../assets/images/final-logo.png";
 import useUserRole from "../../hooks/useUserRole";
-import { IoIosFiling } from "react-icons/io";
 import {
   MdOutlineAddTask,
-  MdOutlineSave,
   MdOutlinePayments,
+  MdOutlinePersonSearch,
 } from "react-icons/md";
-import { GrBlog } from "react-icons/gr";
-import { GrUserManager } from "react-icons/gr";
 import { RiGraduationCapLine } from "react-icons/ri";
 import { LuPresentation } from "react-icons/lu";
-
+import { GrAnnounce } from "react-icons/gr";
+import { LiaMicrophoneAltSolid } from "react-icons/lia";
 import "./dashboard.css";
 import goToHome from "../../assets/Home.gif";
+
 const Dashboard = () => {
   const [isUser] = useUserRole();
   const { loginOut } = useContext(AuthContext);
@@ -39,7 +46,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <BiHomeAlt2 />
                 <span>Home</span>
@@ -56,9 +64,10 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
-                <GrUserWorker />
+                <LuUser />
                 <span>My Profile</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -72,10 +81,29 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
-                <MdOutlineSave />
+                <IoDocumentAttachOutline />
                 <span>My Saved Jobs</span>
+              </div>
+              <IoIosArrowForward className="hov_arrow hidden lg:block" />
+            </li>
+          )}
+        </NavLink>
+      )}
+
+      {isUser?.role === "admin" && (
+        <NavLink to="/dashboard/admin-home">
+          {({ isActive }) => (
+            <li
+              className={`${
+                isActive ? "dashboard_item_active" : "dashboard_item"
+              }`}
+            >
+              <div>
+                <BiHomeAlt2 />
+                <span>Home</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
             </li>
@@ -89,7 +117,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <LuUser />
                 <span>My Profile</span>
@@ -106,7 +135,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <TfiAlarmClock />
                 <span>My Attendance</span>
@@ -122,7 +152,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <GrDocumentPerformance />
                 <span>My Performance</span>
@@ -138,7 +169,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <LuUser />
                 <span>My Profile</span>
@@ -154,9 +186,10 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
-                <LuUser />
+                <HiOutlineArrowUpOnSquareStack />
                 <span>Leave Management</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -170,9 +203,10 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
-                <LuUser />
+                <HiOutlineDocumentDuplicate />
                 <span>My Blogs</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -187,9 +221,10 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
-                <LuBookMarked></LuBookMarked>
+                <HiOutlineDocumentCheck />
                 <span>Saved Blogs</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -204,7 +239,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <RiGraduationCapLine />
                 <span>Training</span>
@@ -220,9 +256,10 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
-                <IoDocumentOutline />
+                <MdOutlinePersonSearch />
                 <span>Recruitment</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -236,10 +273,11 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
-                <VscDiffAdded />
-                <span>AddEvent</span>
+                <IoCalendarOutline />
+                <span>Events</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
             </li>
@@ -252,9 +290,10 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
-                <FaAccessibleIcon />
+                <HiOutlineArrowUpOnSquareStack />
                 <span>Leave Requests</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -269,9 +308,10 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
-                <GrBlog></GrBlog>
+                <GrDocumentTime />
                 <span>Blog Requests</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -286,7 +326,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <LuUsers2 />
                 <span>All Users</span>
@@ -302,7 +343,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <GrUserWorker />
                 <span>Employees</span>
@@ -319,9 +361,10 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
-                <FaIntercom />
+                <LiaMicrophoneAltSolid />
                 <span>interviews</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -336,7 +379,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <MdOutlineAddTask />
                 <span>Task Management</span>
@@ -352,7 +396,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <LuPresentation />
                 <span>Training Management</span>
@@ -368,7 +413,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <MdOutlinePayments />
                 <span>Payment Management</span>
@@ -384,9 +430,10 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
-                <IoIosFiling />
+                <IoDocumentTextOutline />
                 <span>My Applications</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -400,9 +447,10 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
-                <GrUserManager />
+                <LiaMicrophoneAltSolid />
                 <span>My Interviews</span>
               </div>
               <IoIosArrowForward className="hov_arrow hidden lg:block" />
@@ -416,7 +464,8 @@ const Dashboard = () => {
             <li
               className={`${
                 isActive ? "dashboard_item_active" : "dashboard_item"
-              }`}>
+              }`}
+            >
               <div>
                 <GrAnnounce />
                 <span>Newsletter Subscribers</span>
@@ -431,7 +480,8 @@ const Dashboard = () => {
           <li
             className={`${
               isActive ? "dashboard_item_active" : "dashboard_item"
-            }`}>
+            }`}
+          >
             <div>
               <BsChatText />
               <span>Reviews</span>
@@ -440,20 +490,24 @@ const Dashboard = () => {
           </li>
         )}
       </NavLink>
-      <NavLink to="/dashboard/communication">
-        {({ isActive }) => (
-          <li
-            className={`${
-              isActive ? "dashboard_item_active" : "dashboard_item"
-            }`}>
-            <div>
-              <BiConversation />
-              <span>Communicate</span>
-            </div>
-            <IoIosArrowForward className="hov_arrow hidden lg:block" />
-          </li>
-        )}
-      </NavLink>
+
+      {isUser?.role !== "user" && (
+        <NavLink to="/dashboard/communication">
+          {({ isActive }) => (
+            <li
+              className={`${
+                isActive ? "dashboard_item_active" : "dashboard_item"
+              }`}
+            >
+              <div>
+                <BiMessageSquareDots />
+                <span>Communicate</span>
+              </div>
+              <IoIosArrowForward className="hov_arrow hidden lg:block" />
+            </li>
+          )}
+        </NavLink>
+      )}
     </>
   );
 
@@ -464,22 +518,25 @@ const Dashboard = () => {
           <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
           <div className="drawer-content bg-white rounded-xl flex justify-between items-center p-3">
             <Link to="/">
-              <img src={logo} className="w-2/6" alt="" />
+              <img src={logo} className="w-2/4 md:w-1/4" alt="" />
             </Link>
             <label
               htmlFor="my-drawer-4"
-              className="drawer-button hover:cursor-pointer">
-              <HiBars3BottomRight />
+              className="drawer-button hover:cursor-pointer"
+            >
+              <HiBars3BottomRight className="text-2xl" />
             </label>
           </div>
           <div className="drawer-side z-50">
             <label
               htmlFor="my-drawer-4"
               aria-label="close sidebar"
-              className="drawer-overlay"></label>
+              className="drawer-overlay"
+            ></label>
             <ul
               className="menu p-4 min-h-full bg-base-200 text-base-content"
-              style={{ width: "70%" }}>
+              style={{ width: "70%" }}
+            >
               {dashboardItem}
             </ul>
           </div>
@@ -487,7 +544,8 @@ const Dashboard = () => {
         <div className="left_container">
           <div
             className="nav_container"
-            style={{ height: "calc(100vh - 3rem)" }}>
+            style={{ height: "calc(100vh - 3rem)" }}
+          >
             <div>
               <div
                 onMouseEnter={() => {
@@ -495,7 +553,8 @@ const Dashboard = () => {
                 }}
                 onMouseLeave={() => {
                   setShowLogo(true);
-                }}>
+                }}
+              >
                 <Link to="/" className={`${showLogo ? "block" : "hidden"}`}>
                   <img src={logo} className="w-3/4 h-12" alt="" />
                 </Link>
@@ -515,7 +574,8 @@ const Dashboard = () => {
         </div>
         <div
           className="right_container"
-          style={{ height: "calc(100vh - 3rem)" }}>
+          style={{ height: "calc(100vh - 3rem)" }}
+        >
           <Outlet></Outlet>
         </div>
       </div>

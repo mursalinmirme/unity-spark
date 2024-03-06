@@ -11,7 +11,7 @@ import { Navigation } from "swiper/modules";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import useUserRole from "../../../hooks/useUserRole";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 
 const EventCard = () => {
   const [isUser] = useUserRole();
@@ -84,12 +84,12 @@ const EventCard = () => {
       spaceBetween={30}
       navigation={true}
       modules={[Navigation]}
-      className="mySwiper eventSwiper  my-10"
+      className="mySwiper eventSwiper"
     >
       {events.map((items) => (
         <SwiperSlide key={items?._id}>
           {" "}
-          <div className=" bg-white border border-[#D9D9D9] overflow-hidden my-5 rounded-3xl min-h-[535px] relative">
+          <div className=" bg-white border border-[#D9D9D9] overflow-hidden rounded-3xl min-h-[535px] relative">
             <img src={items?.image} alt="" className="!-z-10 !min-h-[250px]" />
             <div className="p-5 space-y-3 -mt-6 !z-10 rounded-t-3xl bg-white absolute">
               <h1 className="font-semibold text-[23px] text-left">
@@ -117,7 +117,12 @@ const EventCard = () => {
                     Register Now
                   </button>
                 ) : (
-                  <button className="nbtn" disabled={true}>
+                  <button
+                    onClick={() =>
+                      toast.error("This event organized only for employees")
+                    }
+                    className="nbtn-fixed-bg disabled cursor-not-allowed"
+                  >
                     Employee Only
                   </button>
                 )}
@@ -133,76 +138,93 @@ const EventCard = () => {
               ✕
             </button>
           </form>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <label>
-              <div className="py-1">
-                <span className="font-bold font-inter">Event Name:</span>
-              </div>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+            <div>
+              <label>
+                <div>
+                  <span className="font-bold font-inter">Event Name:</span>
+                </div>
+                <input
+                  className="border-[1.5px]"
+                  defaultValue={eventsingleId?.eventName}
+                  type="text"
+                  {...register("name")}
+                  readOnly
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                <div>
+                  <span className="font-bold font-inter">
+                    Event Starting Time
+                  </span>
+                </div>
+                <input
+                  defaultValue={eventsingleId?.starting_time}
+                  type="text"
+                  {...register("time")}
+                  readOnly
+                  className="border-[1.5px]"
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                <div>
+                  <span className="font-bold font-inter">Event Host</span>
+                </div>
+                <input
+                  defaultValue={eventsingleId?.hostName}
+                  type="text"
+                  {...register("host")}
+                  readOnly
+                  className="border-[1.5px]"
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                <div>
+                  <span className="font-bold font-inter">Your Name</span>
+                </div>
+                <input
+                  // defaultValue={}
+                  type="text"
+                  className="border-[1.5px]"
+                  {...register("employee_name")}
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                <div>
+                  <span className="font-bold font-inter">Your Email</span>
+                </div>
+                <input
+                  // defaultValue={}
+                  type="text"
+                  className="border-[1.5px]"
+                  {...register("employee_email")}
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                <div>
+                  <span className="font-bold font-inter">Your Position</span>
+                </div>
+                <input
+                  // defaultValue={}
+                  type="text"
+                  {...register("employee_position")}
+                  className="border-[1.5px]"
+                />
+              </label>
+            </div>
+            <div>
               <input
-                defaultValue={eventsingleId?.eventName}
-                type="text"
-                {...register("name")}
-                readOnly
-              />
-            </label>
-            <label>
-              <div className="py-1">
-                <span className="font-bold font-inter">
-                  Event Starting Time
-                </span>
-              </div>
-              <input
-                defaultValue={eventsingleId?.starting_time}
-                type="text"
-                {...register("time")}
-                readOnly
-              />
-            </label>
-            <label>
-              <div className="py-1">
-                <span className="font-bold font-inter">Event Host</span>
-              </div>
-              <input
-                defaultValue={eventsingleId?.hostName}
-                type="text"
-                {...register("host")}
-                readOnly
-              />
-            </label>
-            <label>
-              <div className="py-1">
-                <span className="font-bold font-inter">Your Name</span>
-              </div>
-              <input
-                // defaultValue={}
-                type="text"
-                {...register("employee_name")}
-              />
-            </label>
-            <label>
-              <div className="py-1">
-                <span className="font-bold font-inter">Your Email</span>
-              </div>
-              <input
-                // defaultValue={}
-                type="text"
-                {...register("employee_email")}
-              />
-            </label>
-            <label>
-              <div className="py-1">
-                <span className="font-bold font-inter">Your Position</span>
-              </div>
-              <input
-                // defaultValue={}
-                type="text"
-                {...register("employee_position")}
-              />
-            </label>
-
-            <div className="w-48  bg-primary border-none text-white rounded-xl text-center cursor-pointer mt-3">
-              <input
-                className="border-none cursor-pointer py-3 font-semibold text-base"
+                className="w-36 nbtn-fixed-bg"
                 type="submit"
                 value="Book Event"
               />

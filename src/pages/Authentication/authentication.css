@@ -1,48 +1,42 @@
-.signin section,
-.signup section {
-    @apply grid grid-cols-1 lg:grid-cols-2 gap-10
-}
-
-.signin p ,
+.signin p,
 .signup p {
-    @apply font-medium text-center
+  @apply font-medium text-center;
 }
 
 .signin form h1,
 .signup form h1 {
-    @apply text-2xl font-semibold text-[#000] text-center
+  @apply text-2xl font-semibold text-[#000] text-center;
 }
 
 .signin form label,
 .signup form label {
-    @apply form-control w-full mx-auto mt-3
+  @apply form-control w-full mx-auto mt-2;
 }
 
 .signin form input,
 .signup form input {
-    @apply input input-bordered w-full font-normal
-}
-
-.form_btn {
-    @apply form-control w-full mx-auto mt-6
+  @apply text-sm py-3 border-[1.5px] font-medium font-inter;
 }
 
 .google_btn {
-    @apply border-2 border-primary text-primary cursor-pointer px-3 py-2.5 rounded-xl w-full flex items-center justify-center gap-2 font-medium mb-3
+  @apply border-2 border-primary text-primary cursor-pointer px-3 py-2.5 rounded-md w-full flex items-center justify-center gap-2 font-medium mb-3;
 }
 
 .signin h5,
 .signup h5 {
-    @apply text-center text-gray-700 font-medium mb-2
+  @apply text-center text-gray-700 font-medium mb-2;
 }
 
 .signin .left_container,
 .signup .right_container {
-    @apply w-full items-center hidden lg:flex
+  @apply w-full items-center lg:flex;
 }
 
 .signin .right_container,
 .signup .left_container {
-    @apply p-3 md:p-8 rounded-xl border border-slate-300
+  @apply p-3 md:p-8 rounded-xl border border-slate-300;
 }
 
+.sign_up_input_title {
+  @apply font-semibold text-black text-base font-inter;
+}

@@ -3,7 +3,7 @@ import AvailableCourse from "../AvailableCourse/AvailableCourse";
 import MyCourse from "../MyCourse/MyCourse";
 
 const Training = () => {
-    const [isActive, setIsActive] = useState(0);
+  const [isActive, setIsActive] = useState(0);
 
   const handleJobAdsTab = (id) => {
     setIsActive(id);
@@ -18,16 +18,16 @@ const Training = () => {
       id: 1,
     },
   ];
-    return (
-        <div>
-           <div className="grid grid-cols-2 text-center md:text-lg bg-[#e3e2f5] rounded-lg p-2 md:p-3">
+  return (
+    <div>
+      <div className="grid grid-cols-2 text-center md:text-lg bg-[#e3e2f5] rounded-lg p-2.5">
         {tabs?.map((tab) => (
           <a
             key={tab.id}
             className={`${
               isActive === tab.id
-                ? "font-medium text-white bg-primary py-1 md:py-3 rounded-lg"
-                : "bg-transparent text-primary md:px-5 py-1 md:py-3 font-semibold cursor-pointer"
+                ? "font-medium text-white bg-primary text-base py-2 rounded-lg"
+                : "bg-transparent text-primary py-2 text-base font-semibold cursor-pointer"
             }`}
             onClick={() => handleJobAdsTab(tab.id)}
           >
@@ -35,11 +35,10 @@ const Training = () => {
           </a>
         ))}
       </div>
-      {isActive === 0 && <AvailableCourse/>}
+      {isActive === 0 && <AvailableCourse />}
       {isActive === 1 && <MyCourse></MyCourse>}
-   
-        </div>
-    );
+    </div>
+  );
 };
 
 export default Training;

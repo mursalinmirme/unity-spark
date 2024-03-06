@@ -4,7 +4,7 @@ const MyApplicationsSkeleton = () => {
       <h3 className="text-left text-xl font-semibold border-b pb-5">
         My Applied Applications
       </h3>
-      <div className="grid grid-cols-2 gap-5 mt-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
         <div className="border rounded-md skeleton bg-transparent p-3">
           <div className="flex items-center justify-between mr-3">
             <div className="skeleton bg-[#efefef] w-[60%] h-5 mt-3"></div>

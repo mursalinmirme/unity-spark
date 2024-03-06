@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext } from "react";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 
@@ -8,7 +8,7 @@ const useAxiosSecure = () => {
   const navigate = useNavigate();
   const { loginOut } = useContext(AuthContext);
   const axiosSecure = axios.create({
-    baseURL: "http://localhost:5000",
+    baseURL: import.meta.env.VITE_server_api_url,
   });
 
   axiosSecure.interceptors.request.use(

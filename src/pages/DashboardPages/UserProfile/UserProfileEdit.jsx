@@ -2,16 +2,16 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import { useQuery } from "@tanstack/react-query";
 import { useContext, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
-import { SlCloudUpload } from "react-icons/sl";
-import Select from "react-select";
 import { CgProfile } from "react-icons/cg";
+import { SlCloudUpload } from "react-icons/sl";
+import { Link, useNavigate } from "react-router-dom";
+import Select from "react-select";
+import { toast } from "sonner";
 import { AuthContext } from "../../../Provider/AuthProvider";
-import toast from "react-hot-toast";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import UserProfileEditSkeleton from "./UserProfileEditSkeleton";
-const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
+const image_Hosting_Api = import.meta.env.VITE_image_Hosting_Api;
 const UserProfileEdit = () => {
   const { register, handleSubmit, control, reset } = useForm();
   const [updateLoading, setUpdateLoading] = useState(false);
@@ -78,8 +78,6 @@ const UserProfileEdit = () => {
     console.log(userInfo);
     console.log(users);
 
-    // http://localhost:5000/users/${user?.email
-
     axiosSecure
       .put(`/users/${user?.email}`, userInfo)
       .then((res) => {
@@ -127,7 +125,8 @@ const UserProfileEdit = () => {
           <div className="mt-3 md:mt-0 w-24 md:w-auto">
             <Link
               to="/dashboard/user-profile"
-              className="edit_btn !text-red-500 hover:!text-white !border-red-600 hover:!border-red-600 hover:!bg-red-600">
+              className="edit_btn !text-red-500 hover:!text-white !border-red-600 hover:!border-red-600 hover:!bg-red-600"
+            >
               <span> X Cancel </span>
             </Link>
           </div>
@@ -136,302 +135,289 @@ const UserProfileEdit = () => {
 
       {/** Form Start  */}
 
-      <form onSubmit={handleSubmit(onSubmit)} className="mt-10 space-y-4">
-        {/**One Two Part */}
-        <div className="grid md:grid-cols-2 gap-3">
-          {/* name field */}
-          <label>
-            <div className="py-1">
-              <span className="font-semibold text-gray-600 text-base font-inter">
-                {" "}
-                Your Name :
-              </span>
-            </div>
-            <input
-              type="text"
-              {...register("name")}
-              placeholder="Please Your Name"
-              defaultValue={users?.name}
-              className="text-base py-2.5 text-black"
-            />
-          </label>
-          {/* Name field End */}
+      <form onSubmit={handleSubmit(onSubmit)} className="mt-10">
+        <div className="border-2 p-3 md:p-5 rounded-lg space-y-2.5 mb-2.5">
+          {/**One Two Part */}
+          <div className="user_profile_input_grid">
+            {/* name field */}
+            <label>
+              <div className="py-1">
+                <span className="user_profile_input_title"> Your Name :</span>
+              </div>
+              <input
+                type="text"
+                {...register("name")}
+                placeholder="Please Your Name"
+                defaultValue={users?.name}
+                className="user_profile_input"
+              />
+            </label>
+            {/* Name field End */}
 
-          {/*image field to take image*/}
-          <label className="relative">
-            <div className="label mb-10 md:mb-0 lg:mb-0 py-1">
-              <span className="font-semibold text-gray-600 text-base font-inter pb-4 md:pb-0 md:mb-10 lg:mb-10 ">
-                {" "}
-                Your Photo :{" "}
-              </span>
-              <label
-                className="font-semibold w-full absolute bottom-0   text-white cursor-pointer font-inter text-base px-8 py-2.5 bg-primary rounded-md transition-all duration-500 mt-1 mb-0.5"
-                htmlFor="user_photo">
-                <div className="flex justify-center items-center gap-4">
+            {/*image field to take image*/}
+            <label className="relative">
+              <div className="label mb-10 md:mb-0 lg:mb-0 py-1">
+                <span className="user_profile_input_title pb-4 md:pb-0 md:mb-10 lg:mb-10 ">
                   {" "}
-                  {/* <img className="w-5 h-5" src={download_icon} alt="" />{" "} */}
-                  <SlCloudUpload className="w-5 h-5" />
-                  <span> Upload Photo</span>{" "}
-                </div>
-              </label>
-            </div>
-            <input
-              className="hidden"
-              id="user_photo"
-              type="file"
-              {...register("photo")}
-              placeholder="N/A"
-            />
-          </label>
+                  Your Photo :{" "}
+                </span>
+                <label
+                  className="font-semibold w-full absolute bottom-0 text-white cursor-pointer font-inter text-base px-8 py-2 bg-primary rounded-md transition-all duration-500 mt-1 mb-0.5"
+                  htmlFor="user_photo"
+                >
+                  <div className="flex justify-center items-center gap-4">
+                    {" "}
+                    {/* <img className="w-5 h-5" src={download_icon} alt="" />{" "} */}
+                    <SlCloudUpload className="w-5 h-5" />
+                    <span> Upload Photo</span>{" "}
+                  </div>
+                </label>
+              </div>
+              <input
+                className="hidden"
+                id="user_photo"
+                type="file"
+                {...register("photo")}
+                placeholder="N/A"
+              />
+            </label>
+          </div>
+
+          <div className="user_profile_input_grid">
+            {/* Email field */}
+            <label>
+              <div className="py-1">
+                <span className="user_profile_input_title"> Your Email :</span>
+              </div>
+              <input
+                type="email"
+                {...register("email")}
+                placeholder="Your Email"
+                readOnly
+                defaultValue={users?.email}
+                className="user_profile_input"
+              />
+            </label>
+            {/* email field End */}
+
+            {/* phone Number*/}
+            <label>
+              <div className="py-1">
+                <span className="user_profile_input_title">Phone :</span>
+              </div>
+              <input
+                type="number"
+                {...register("number")}
+                placeholder="Your Phone Number"
+                defaultValue={users?.phone}
+                className="user_profile_input"
+              />
+            </label>
+          </div>
+
+          {/**Second Two Part */}
+          <div className="user_profile_input_grid">
+            {/* Current Address field */}
+            <label>
+              <div className="py-1">
+                <span className="user_profile_input_title">
+                  {" "}
+                  Current Address:
+                </span>
+              </div>
+              <input
+                type="text"
+                {...register("current")}
+                placeholder="Your Current Address"
+                defaultValue={users?.current_address}
+                className="user_profile_input"
+              />
+            </label>
+            {/* Current Address field End */}
+
+            {/* Permanent Address */}
+            <label>
+              <div className="py-1">
+                <span className="user_profile_input_title">
+                  Permanent Address
+                </span>
+              </div>
+              <input
+                type="text"
+                {...register("permanent")}
+                placeholder=" Your Permanent Address"
+                defaultValue={users?.permanent_address}
+                className="user_profile_input"
+              />
+            </label>
+          </div>
+
+          {/**Three Two Part */}
+          <div className="user_profile_input_grid">
+            {/* Age field */}
+            <label>
+              <div className="py-1">
+                <span className="user_profile_input_title"> Your Age</span>
+              </div>
+              <input
+                type="number"
+                {...register("age")}
+                placeholder="Your Age"
+                defaultValue={users?.age}
+                className="user_profile_input"
+              />
+            </label>
+            {/* Age field End */}
+
+            {/* Your Gender Select */}
+            <label>
+              <div className="py-1">
+                <span className="user_profile_input_title"> Your Gender :</span>
+              </div>
+
+              <select
+                className="w-full mt-1.5 pl-2 rounded-md user_profile_input"
+                {...register("gender")}
+              >
+                <option className="text-base"> {users?.gender} </option>
+                <option className="text-base" value="male">
+                  Male
+                </option>
+                <option className="text-base" value="female">
+                  Female
+                </option>
+              </select>
+            </label>
+          </div>
+
+          {/**Four Two Part */}
+          <div className="user_profile_input_grid">
+            {/* Job Preference field */}
+            <label>
+              <div className="py-1">
+                <span className="user_profile_input_title">
+                  {" "}
+                  Education Level :
+                </span>
+              </div>
+              <input
+                type="text"
+                {...register("education_level")}
+                placeholder="Eduction Level"
+                defaultValue={users?.education_level}
+                className="user_profile_input"
+              />
+            </label>
+            {/* Preference field End */}
+
+            {/* Time Preference field */}
+            <label>
+              <div className="py-1">
+                <span className="user_profile_input_title">
+                  {" "}
+                  Institute Name
+                </span>
+              </div>
+              <input
+                type="text"
+                {...register("institute_name")}
+                placeholder="Please Institute Name"
+                defaultValue={users?.institute_name}
+                className="user_profile_input"
+              />
+            </label>
+          </div>
+
+          {/**five Two Part */}
+          <div className="user_profile_input_grid">
+            {/* Job Preference field */}
+            <label>
+              <div className="py-1">
+                <span className="user_profile_input_title">
+                  {" "}
+                  Job Preference :
+                </span>
+              </div>
+
+              <select
+                className="w-full mt-2 rounded-md pl-2 user_profile_input"
+                {...register("preference")}
+              >
+                <option> {users?.job_preference} </option>
+                <option value="Remote">Remote</option>
+                <option value="On-site">On-site</option>
+                <option value="Hybrid">Hybrid </option>
+              </select>
+            </label>
+            {/* Preference field End */}
+
+            {/* Time Preference field */}
+            <label>
+              <div className="py-1">
+                <span className="user_profile_input_title">
+                  {" "}
+                  Time Preference
+                </span>
+              </div>
+
+              <select
+                className="w-full mt-2 rounded-md pl-2 user_profile_input"
+                {...register("time_preference")}
+              >
+                <option> {users?.time_preference} </option>
+                <option value="intern">intern</option>
+                <option value="full-time">full-time</option>
+                <option value="part-time">part-time</option>
+              </select>
+            </label>
+          </div>
+
+          {/**six Two Part */}
+
+          {/* Skills field */}
+          <div className="">
+            <label className="text-sm font-medium">
+              <div className="py-1">
+                <span className="user_profile_input_title"> Your Skills :</span>
+              </div>
+              <Controller
+                name="skills"
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    {...field}
+                    options={skillsArray}
+                    defaultValue={users?.skills}
+                    isMulti
+                  />
+                )}
+              />
+            </label>
+          </div>
+
+          {/* Resume field */}
+          <div>
+            <label className="">
+              <div className="py-1">
+                <span className="user_profile_input_title">Your Resume</span>
+              </div>
+              <input
+                className="user_profile_input"
+                id="user_Resume"
+                type="text"
+                {...register("resume")}
+                placeholder="Please share your resume drive link"
+                defaultValue={users?.resume_link}
+              />
+            </label>
+          </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-2">
-          {/* Email field */}
-          <label>
-            <div className="py-1">
-              <span className="font-semibold text-gray-600 text-base font-inter">
-                {" "}
-                Your Email :
-              </span>
-            </div>
-            <input
-              type="email"
-              {...register("email")}
-              placeholder="Your Email"
-              readOnly
-              defaultValue={users?.email}
-              className="text-base py-2.5 text-black"
-            />
-          </label>
-          {/* email field End */}
-
-          {/* phone Number*/}
-          <label>
-            <div className="py-1">
-              <span className="font-semibold text-gray-600 text-base font-inter">
-                Phone :
-              </span>
-            </div>
-            <input
-              type="number"
-              {...register("number")}
-              placeholder="Your Phone Number"
-              defaultValue={users?.phone}
-              className="text-base py-2.5 text-black"
-            />
-          </label>
-        </div>
-
-        {/**Second Two Part */}
-        <div className="grid md:grid-cols-2 gap-2">
-          {/* Current Address field */}
-          <label>
-            <div className="py-1">
-              <span className="font-semibold text-gray-600 text-base font-inter">
-                {" "}
-                Current Address:
-              </span>
-            </div>
-            <input
-              type="text"
-              {...register("current")}
-              placeholder="Your Current Address"
-              defaultValue={users?.current_address}
-              className="text-base py-2.5 text-black"
-            />
-          </label>
-          {/* Current Address field End */}
-
-          {/* Permanent Address */}
-          <label>
-            <div className="py-1">
-              <span className="font-semibold text-gray-600 text-base font-inter">
-                Permanent Address
-              </span>
-            </div>
-            <input
-              type="text"
-              {...register("permanent")}
-              placeholder=" Your Permanent Address"
-              defaultValue={users?.permanent_address}
-              className="text-base py-2.5 text-black"
-            />
-          </label>
-        </div>
-
-        {/**Three Two Part */}
-        <div className="grid md:grid-cols-2 gap-2">
-          {/* Age field */}
-          <label>
-            <div className="py-1">
-              <span className="font-semibold text-gray-600 text-base font-inter">
-                {" "}
-                Your Age
-              </span>
-            </div>
-            <input
-              type="number"
-              {...register("age")}
-              placeholder="Your Age"
-              defaultValue={users?.age}
-              className="text-base py-2.5 text-black"
-            />
-          </label>
-          {/* Age field End */}
-
-          {/* Your Gender Select */}
-          <label>
-            <div className="py-1">
-              <span className="font-semibold text-gray-600 text-base font-inter">
-                {" "}
-                Your Gender :
-              </span>
-            </div>
-
-            <select
-              className="w-full py-3 mt-2 border text-base rounded-lg pl-2 text-black"
-              {...register("gender")}>
-              <option className="text-base"> {users?.gender} </option>
-              <option className="text-base" value="male">
-                Male
-              </option>
-              <option className="text-base" value="female">
-                Female
-              </option>
-            </select>
-          </label>
-        </div>
-
-        {/**Four Two Part */}
-        <div className="grid md:grid-cols-2 gap-2">
-          {/* Job Preference field */}
-          <label>
-            <div className="py-1">
-              <span className="font-semibold text-gray-600 text-base font-inter">
-                {" "}
-                Education Level :
-              </span>
-            </div>
-            <input
-              type="text"
-              {...register("education_level")}
-              placeholder="Eduction Level"
-              defaultValue={users?.education_level}
-              className="text-base py-2.5 text-black"
-            />
-          </label>
-          {/* Preference field End */}
-
-          {/* Time Preference field */}
-          <label>
-            <div className="py-1">
-              <span className="font-semibold text-gray-600 text-base font-inter">
-                {" "}
-                Institute Name
-              </span>
-            </div>
-            <input
-              type="text"
-              {...register("institute_name")}
-              placeholder="Please Institute Name"
-              defaultValue={users?.institute_name}
-              className="text-base py-2.5 text-black"
-            />
-          </label>
-        </div>
-
-        {/**five Two Part */}
-        <div className="grid md:grid-cols-2 gap-2">
-          {/* Job Preference field */}
-          <label>
-            <div className="py-1">
-              <span className="font-semibold text-gray-600 text-base font-inter">
-                {" "}
-                Job Preference :
-              </span>
-            </div>
-
-            <select
-              className="w-full py-3 mt-2 text-base border rounded-lg pl-2 text-black"
-              {...register("preference")}>
-              <option> {users?.job_preference} </option>
-              <option value="Remote">Remote</option>
-              <option value="On-site">On-site</option>
-              <option value="Hybrid">Hybrid </option>
-            </select>
-          </label>
-          {/* Preference field End */}
-
-          {/* Time Preference field */}
-          <label>
-            <div className="py-1">
-              <span className="font-semibold text-gray-600 text-base font-inter">
-                {" "}
-                Time Preference
-              </span>
-            </div>
-
-            <select
-              className="w-full py-3 mt-2 text-base border rounded-lg pl-2 text-black"
-              {...register("time_preference")}>
-              <option> {users?.time_preference} </option>
-              <option value="intern">intern</option>
-              <option value="full-time">full-time</option>
-              <option value="part-time">part-time</option>
-            </select>
-          </label>
-        </div>
-
-        {/**six Two Part */}
-
-        {/* Skills field */}
         <div className="">
-          <label className="text-base">
-            <div className="py-1">
-              <span className="font-semibold text-gray-600 text-base font-inter">
-                {" "}
-                Your Skills :
-              </span>
-            </div>
-            <Controller
-              name="skills"
-              control={control}
-              render={({ field }) => (
-                <Select
-                  {...field}
-                  options={skillsArray}
-                  defaultValue={users?.skills}
-                  isMulti
-                />
-              )}
-            />
-          </label>
-        </div>
-
-        {/* Resume field */}
-        <div>
-          <label className="">
-            <div className="py-1">
-              <span className="font-semibold text-gray-600 text-base font-inter">
-                Your Resume
-              </span>
-            </div>
-            <input
-              className="text-base py-2.5 text-black"
-              id="user_Resume"
-              type="text"
-              {...register("resume")}
-              placeholder="Please share your resume drive link"
-              defaultValue={users?.resume_link}
-            />
-          </label>
-        </div> 
-
-        <div className="w-48 py-3 bg-primary border-none text-white rounded-xl text-center cursor-pointer flex justify-center items-center">
           {updateLoading ? (
             <span className="loading loading-spinner loading-md "></span>
           ) : (
-            <button className="text-base font-semibold" type="submit">
+            <button className="nbtn-fixed-bg w-36" type="submit">
               Update
             </button>
           )}

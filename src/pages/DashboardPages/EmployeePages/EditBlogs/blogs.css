@@ -1,0 +1,7 @@
+.blogs_input_title {
+  @apply font-semibold text-black text-base font-inter;
+}
+
+.blogs_input {
+  @apply text-sm py-2.5 border-[1.5px] font-medium font-inter;
+}

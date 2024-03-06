@@ -5,7 +5,7 @@ import { BsClock } from "react-icons/bs";
 import useAxiosPublic from "../../../../../hooks/useAxiosPublic";
 import { useContext } from "react";
 import { AuthContext } from "../../../../../Provider/AuthProvider";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 
 
 const Courses = () => {

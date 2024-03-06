@@ -1,34 +1,15 @@
 import "../../DashboardPages/EmployeePages/MyProfile/profile.css";
-import ProgressBar from "@ramonak/react-progress-bar";
 import { FiEdit3 } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
 import { CgProfile } from "react-icons/cg";
-import { AuthContext } from "../../../Provider/AuthProvider";
 import useUserInfo from "../../../hooks/useUserInfo";
-import { LuDownload } from "react-icons/lu";
 import { TbBookmark } from "react-icons/tb";
+import { FiEye } from "react-icons/fi";
+import { useState } from "react";
 
 const UserProfile = () => {
-  const { profileComplete } = useContext(AuthContext);
   const [openBookmark, setOpenBookmark] = useState(false);
   const [users, isFetching] = useUserInfo();
-  const {
-    name,
-    image,
-    email,
-    skills,
-    gender,
-    age,
-    current_address,
-    permanent_address,
-    institute_name,
-    phone,
-    resume_link,
-    time_preference,
-    job_preference,
-    education_level,
-  } = users || {};
 
   return (
     <div className="relative overflow-hidden">
@@ -46,7 +27,7 @@ const UserProfile = () => {
           <div className="flex gap-3 items-center relative">
             <button
               onClick={() => setOpenBookmark(!openBookmark)}
-              className="py-1 px-1.5 rounded-lg border-2 border-primary hover:bg-primary hover:text-white transition-all duration-500"
+              className="border-2 border-primary rounded-lg p-1.5 text-primary hover:text-white hover:bg-primary transition-all duration-500"
             >
               <TbBookmark className="text-xl" />
             </button>
@@ -79,23 +60,41 @@ const UserProfile = () => {
 
       {/** Input Form Area  */}
 
-      <div className="border-2 p-5 rounded-xl mt-8">
+      <div className="border-2 p-5 rounded-xl mt-12">
         <div className="grid md:grid-cols-2 gap-2">
           {/* Email field */}
           <label>
             <div className="">
-              <span className="font-semibold text-gray-700 text-base font-inter">Email :</span>
+              <span className="font-semibold text-gray-700 text-lg font-inter">
+                Email :
+              </span>
             </div>
-            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p> : users?.email} </p>
+            <p className="font-inter font-medium text-base">
+              {" "}
+              {isFetching ? (
+                <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p>
+              ) : (
+                users?.email
+              )}{" "}
+            </p>
           </label>
           {/* email field End */}
 
           {/* phone Number*/}
           <label>
             <div className="">
-              <span className="font-semibold text-gray-700 text-base font-inte">Phone :</span>
+              <span className="font-semibold text-gray-700 text-lg font-inte">
+                Phone :
+              </span>
             </div>
-            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p> : users?.phone || "N/A"} </p>
+            <p className="font-inter font-medium text-base">
+              {" "}
+              {isFetching ? (
+                <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p>
+              ) : (
+                users?.phone || "N/A"
+              )}{" "}
+            </p>
           </label>
         </div>
 
@@ -104,22 +103,36 @@ const UserProfile = () => {
           {/* Current Address field */}
           <label>
             <div className="pt-1">
-              <span className="font-semibold text-gray-700 text-base font-inte">
+              <span className="font-semibold text-gray-700 text-lg font-inte">
                 Current Address :
               </span>
             </div>
-            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p> : users?.current_address || "N/A"} </p>
+            <p className="font-inter font-medium text-base">
+              {" "}
+              {isFetching ? (
+                <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p>
+              ) : (
+                users?.current_address || "N/A"
+              )}{" "}
+            </p>
           </label>
           {/* Current Address field End */}
 
           {/* Permanent Address */}
           <label>
             <div className="pt-1">
-              <span className="font-semibold text-gray-700 text-base font-inte">
+              <span className="font-semibold text-gray-700 text-lg font-inte">
                 Permanent Address :
               </span>
             </div>
-            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p> : users?.permanent_address || "N/A"} </p>
+            <p className="font-inter font-medium text-base">
+              {" "}
+              {isFetching ? (
+                <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p>
+              ) : (
+                users?.permanent_address || "N/A"
+              )}{" "}
+            </p>
           </label>
         </div>
 
@@ -128,18 +141,36 @@ const UserProfile = () => {
           {/* Age field */}
           <label>
             <div className="pt-1">
-              <span className="font-semibold text-gray-700 text-base font-inte">Age :</span>
+              <span className="font-semibold text-gray-700 text-lg font-inte">
+                Age :
+              </span>
             </div>
-            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p> : users?.age || "N/A"} </p>
+            <p className="font-inter font-medium text-base">
+              {" "}
+              {isFetching ? (
+                <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p>
+              ) : (
+                users?.age || "N/A"
+              )}{" "}
+            </p>
           </label>
           {/* Age field End */}
 
           {/* Your Gender Select */}
           <label>
             <div className="pt-1">
-              <span className="font-semibold text-gray-700 text-base font-inte">Gender :</span>
+              <span className="font-semibold text-gray-700 text-lg font-inte">
+                Gender :
+              </span>
             </div>
-            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p> : users?.gender || "N/A"} </p>
+            <p className="font-inter font-medium text-base">
+              {" "}
+              {isFetching ? (
+                <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p>
+              ) : (
+                users?.gender || "N/A"
+              )}{" "}
+            </p>
           </label>
         </div>
 
@@ -148,20 +179,36 @@ const UserProfile = () => {
           {/* name field */}
           <label>
             <div className="pt-1">
-              <span className="font-semibold text-gray-700 text-base font-inte">
+              <span className="font-semibold text-gray-700 text-lg font-inte">
                 Education Level :
               </span>
             </div>
-            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p> : users?.education_level || "N/A"} </p>
+            <p className="font-inter font-medium text-base">
+              {" "}
+              {isFetching ? (
+                <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p>
+              ) : (
+                users?.education_level || "N/A"
+              )}{" "}
+            </p>
           </label>
           {/* Education field End */}
 
           {/* Institute Name field */}
           <label>
             <div className="pt-1">
-              <span className="font-semibold text-gray-700 text-base font-inte">Institute Name :</span>
+              <span className="font-semibold text-gray-700 text-lg font-inte">
+                Institute Name :
+              </span>
             </div>
-            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p> : users?.institute_name || "N/A"} </p>
+            <p className="font-inter font-medium text-base">
+              {" "}
+              {isFetching ? (
+                <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p>
+              ) : (
+                users?.institute_name || "N/A"
+              )}{" "}
+            </p>
           </label>
         </div>
 
@@ -170,21 +217,37 @@ const UserProfile = () => {
           {/* Job Preference field */}
           <label>
             <div className="pt-1">
-              <span className="font-semibold text-gray-700 text-base font-inte">Job Preference :</span>
+              <span className="font-semibold text-gray-700 text-lg font-inte">
+                Job Preference :
+              </span>
             </div>
-            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p> : users?.job_preference || "N/A"} </p>
+            <p className="font-inter font-medium text-base">
+              {" "}
+              {isFetching ? (
+                <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p>
+              ) : (
+                users?.job_preference || "N/A"
+              )}{" "}
+            </p>
           </label>
           {/* Preference field End */}
 
           {/* Time Preference field */}
           <label>
             <div className="pt-1">
-              <span className="font-semibold text-gray-700 text-base font-inte">
+              <span className="font-semibold text-gray-700 text-lg font-inte">
                 Time Preference :
               </span>
             </div>
 
-            <p className="font-inter font-semibold text-base"> {isFetching ? <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p> : users?.time_preference || "N/A"} </p>
+            <p className="font-inter font-medium text-base">
+              {" "}
+              {isFetching ? (
+                <p className="skeleton rounded-md w-[60%] h-5 mt-1"></p>
+              ) : (
+                users?.time_preference || "N/A"
+              )}{" "}
+            </p>
           </label>
         </div>
 
@@ -193,31 +256,37 @@ const UserProfile = () => {
           {/* Skills field */}
           <label>
             <div className="pt-1 mb-2">
-              <span className="font-semibold text-gray-700 text-base font-inte">Skills :</span>
+              <span className="font-semibold text-gray-700 text-lg font-inte">
+                Skills :
+              </span>
             </div>
-            {
-              isFetching ? <p className="skeleton rounded-full w-[60%] h-8 mt-1"></p> : 
-              users?.skills?.map((skill, index) => (
-                <span
-                  key={index}
-                  className="mr-2 text-primary bg-[#d0d8e0] py-1 px-3 rounded-full text-base font-semibold"
-                >
-                  {skill?.value}
-                </span>
-              )) || "N/A"
-            }
-            
+            {isFetching ? (
+              <p className="skeleton rounded-full w-[60%] h-8 mt-1"></p>
+            ) : (
+              <div className="flex flex-wrap gap-2">
+                {users?.skills?.map((skill, index) => (
+                  <div
+                    key={index}
+                    className="text-primary bg-[#c7c5eb] py-1 px-3 rounded-full text-base font-medium"
+                  >
+                    {skill?.value}
+                  </div>
+                )) || "N/A"}
+              </div>
+            )}
           </label>
           {/* Skills field End */}
           {/* Resume field */}
           <label>
             <div className="pt-1 mb-2">
-              <span className="font-semibold text-gray-700 text-base font-inter">Resume :</span>
+              <span className="font-semibold text-gray-700 text-lg font-inter">
+                Resume :
+              </span>
             </div>
             <a href={users?.resume_link} target="blank">
-              <div className="inline-flex gap-2 font-semibold items-center text-white cursor-pointer font-inter text-base px-8 py-[8px] bg-primary rounded-xl transition-all duration-500 text-[15px]">
+              <div className="inline-flex items-center gap-2 nbtn-fixed-bg text-base">
                 {" "}
-                <LuDownload className="text-lg" /> <span> Download</span>{" "}
+                <FiEye className="text-lg" /> <span> View</span>{" "}
               </div>
             </a>
           </label>

@@ -22,7 +22,7 @@
 }
 .eventSwiper .swiper-button-prev,
 .eventSwiper .swiper-button-next {
-  @apply text-primary border-2 border-primary top-10 p-5  rounded-full transition-colors;
+  @apply text-primary border-2 border-primary top-10 p-5 rounded-full transition-colors;
 }
 .eventSwiper .swiper-button-prev {
   @apply left-[74%] md:left-[86%] lg:left-[91%]  hover:bg-primary hover:text-white;
@@ -37,5 +37,9 @@
 }
 
 .eventSwiper .swiper-wrapper {
-  padding: 80px 0px;
+  @apply py-20 lg:py-10;
+}
+
+html {
+  scroll-behavior: smooth;
 }

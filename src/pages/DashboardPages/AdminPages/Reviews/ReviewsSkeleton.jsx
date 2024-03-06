@@ -1,7 +1,13 @@
 const ReviewsSkeleton = () => {
   return (
     <div>
-      <h1 className="text-2xl md:text-3xl font-bold mb-5">Reviews</h1>
+      <div className="flex justify-between items-center mb-5">
+        <h1 className="text-2xl font-semibold font-inter">Reviews</h1>
+        <div className="flex items-center gap-2 p-2.5 border-2 rounded-md">
+          <div className="skeleton w-4 h-4 rounded-full"></div>
+          <div className="skeleton w-24 h-4"></div>
+        </div>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="border-2 border-gray-300 p-4">
           <div className="flex justify-start gap-5 items-center">

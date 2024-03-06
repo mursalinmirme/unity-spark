@@ -1,19 +1,23 @@
 import { AiFillEdit } from "react-icons/ai";
+import { FiEdit3 } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { AuthContext } from "../../../../Provider/AuthProvider";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import Swal from "sweetalert2";
-import { LuPenLine } from "react-icons/lu";
 import MyBlogsSkeleton from "./MyBlogsSkeleton";
 
 const MyBlogs = () => {
   const { user } = useContext(AuthContext);
   const axiosPublic = useAxiosPublic();
-  const { data: blogs = [], refetch, isFetching } = useQuery({
+  const {
+    data: blogs = [],
+    refetch,
+    isFetching,
+  } = useQuery({
     queryKey: ["blogs"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/employee-blogs/${user.email}`);
@@ -54,16 +58,17 @@ const MyBlogs = () => {
       });
   };
 
-  if(isFetching){
-    return <MyBlogsSkeleton></MyBlogsSkeleton>
+  if (isFetching) {
+    return <MyBlogsSkeleton></MyBlogsSkeleton>;
   }
 
   return (
     <div>
-      <div className="flex justify-end">
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-semibold font-inter">My Blogs</h1>
         <Link to="/dashboard/addBlogs">
           <p className="edit_btn">
-            <LuPenLine></LuPenLine> <span>Add Blog</span>
+            <AiFillEdit className="text-lg"></AiFillEdit> <span>Add Blog</span>
           </p>
         </Link>
       </div>
@@ -73,20 +78,22 @@ const MyBlogs = () => {
             return (
               <div
                 className="border-2 p-3 my-4 rounded-lg flex justify-between items-center"
-                key={blog?._id}>
+                key={blog?._id}
+              >
                 <div>
                   <h3 className="text-base font-bold">{blog?.title}</h3>
                 </div>
                 <div className="space-x-4 text-white">
                   <Link to={`/dashboard/editBlogs/blogs/${blog?._id}`}>
-                    <button className="bg-primary rounded-lg p-2">
-                      <AiFillEdit className="text-lg"></AiFillEdit>
+                    <button className="bg-primary rounded-md p-2">
+                      <FiEdit3 className="text-md"></FiEdit3>
                     </button>
                   </Link>
                   <button
                     onClick={() => handleDeleteBlog(blog?._id)}
-                    className="bg-primary rounded-lg p-2 ">
-                    <RiDeleteBin6Line className="text-lg"></RiDeleteBin6Line>
+                    className="bg-[#DD3333] rounded-md p-2"
+                  >
+                    <RiDeleteBin6Line className="text-md"></RiDeleteBin6Line>
                   </button>
                 </div>
               </div>

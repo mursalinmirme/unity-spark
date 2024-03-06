@@ -4,9 +4,10 @@ import PropTypes from "prop-types";
 import { TiTickOutline } from "react-icons/ti";
 import { RxCross2 } from "react-icons/rx";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
+import BlogRequestsRowSkeleton from "./BlogRequestsRowSkeleton";
 
-const BlogRequestsRow = ({ blogRequest, idx, refetch }) => {
+const BlogRequestsRow = ({ blogRequest, idx, refetch, isFetching }) => {
   const axiosPublic = useAxiosPublic();
   const handleAcceptBlog = () => {
     axiosPublic
@@ -35,7 +36,9 @@ const BlogRequestsRow = ({ blogRequest, idx, refetch }) => {
         toast.error(error.message);
       });
   };
-
+  if(isFetching){
+    return <BlogRequestsRowSkeleton></BlogRequestsRowSkeleton>
+  }
   return (
     <tr>
       <td className="text-left">{idx + 1}</td>

@@ -2,13 +2,13 @@ import { TiTick } from "react-icons/ti";
 
 const Support = () => {
   return (
-    <div className="py-10">
-      <img
+    <div className="py-10 max-w-[92%] lg:max-w-[1200px] mx-auto">
+      {/* <img
         style={{ backgroundImage: "cover" }}
         className="h-[500px] w-full"
         src="https://managementweekly.org/wp-content/uploads/2022/03/perfectionism_featured.jpg"
         alt=""
-      />
+      /> */}
       <div>
         <h3 className="text-2xl font-inter font-bold my-2">
           Welcome to Unity Spark Support{" "}

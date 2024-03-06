@@ -6,7 +6,7 @@ import { GrNext, GrPrevious } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { AuthContext } from "../../../../Provider/AuthProvider";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import useUserInfo from "../../../../hooks/useUserInfo";
 
@@ -59,7 +59,7 @@ const AddReview = () => {
     const userReview = {
       name: userInfo.name,
       image: userInfo.image,
-      employeePosition: users?.position? users?.position : 'guest',
+      employeePosition: users?.position ? users?.position : "guest",
       description: data.review,
     };
     console.log(userReview);
@@ -74,7 +74,7 @@ const AddReview = () => {
   return (
     <div>
       <div className="flex justify-between items-center mb-5">
-        <h1 className="text-2xl md:text-3xl font-bold">Add Review</h1>
+        <h1 className="text-2xl font-semibold">Add Review</h1>
         <Link to={"/dashboard/reviews"}>
           <a className="edit_btn !text-red-500 hover:!text-white !border-red-600 hover:!border-red-600 hover:!bg-red-600">
             <MdOutlineCancel className="text-lg" />
@@ -88,18 +88,14 @@ const AddReview = () => {
             {...register("review", { required: true })}
             rows={3}
             placeholder="Write your review here..."
-            className="textarea focus:outline-none border-2 border-[#D9D9D9] rounded-lg text-base"
+            className="textarea focus:outline-none border-[1.5px] border-[#D9D9D9] rounded-lg text-base"
           ></textarea>
           {errors.review && (
             <p className="text-[#F00]"> please provide a review</p>
           )}
         </div>
         <div className="mt-4">
-          <input
-            className="btn w-20 px-6 md:px-10 bg-primary text-white hover:text-black"
-            type="submit"
-            value="Post"
-          />
+          <input className="nbtn-fixed-bg w-20" type="submit" value="Post" />
         </div>
       </form>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
@@ -115,13 +111,13 @@ const AddReview = () => {
               </div>
             </div>
             <p className="text-[#5B5555] font-medium mt-3">
-              "
+             
               {item.description.length > 55 ? (
                 <span>{item.description.slice(0, 55)}...</span>
               ) : (
                 <span>{item.description}</span>
               )}
-              "
+            
             </p>
           </div>
         ))}

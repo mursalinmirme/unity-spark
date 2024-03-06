@@ -1,13 +1,13 @@
-import { BsUpload } from "react-icons/bs";
-import { useForm } from "react-hook-form";
 import { updateProfile } from "firebase/auth";
+import { useForm } from "react-hook-form";
+import { BsUpload } from "react-icons/bs";
+import { toast } from "sonner";
 import auth from "../../../../firebase/firebase.config";
-import toast from "react-hot-toast";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
-const image_Hosting_Api = `https://api.imgbb.com/1/upload?key=5633fa8b7fb7bf3c2d44694187c33411`;
+const image_Hosting_Api = import.meta.env.VITE_image_Hosting_Api;
 
 const EmployeeProfileEdit = ({ user, setOpenEditor }) => {
-  const PublicAxios = useAxiosPublic()
+  const PublicAxios = useAxiosPublic();
   const { register, handleSubmit } = useForm();
   const { name, email, image, _id } = user || {};
 

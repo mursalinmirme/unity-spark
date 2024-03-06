@@ -1,16 +1,19 @@
 import { useContext, useState } from "react";
-import toast from "react-hot-toast";
+import { toast } from 'sonner';
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../../Provider/AuthProvider";
-import testimonialBg from "../../../../assets/images/testimonials//testimonials_bg.jpg";
+import testimonialBg from "../../../../assets/images/testimonials/testimonial.jpg";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import useUserId from "../../../../hooks/useUserId";
 
 const Newsletter = () => {
   const newsBG = {
     background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)), url(${testimonialBg})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center center'
   };
+
   const { user } = useContext(AuthContext);
   const [userId] = useUserId();
   const axiosPublic = useAxiosPublic();
@@ -66,8 +69,8 @@ const Newsletter = () => {
   };
 
   return (
-    <div className="newsletter">
-      <div className="newsletter_container" style={newsBG}>
+    <div className="newsletter" style={newsBG}>
+      <div className="newsletter_container">
         <div className="second_container">
           <h2>Our Newsletter</h2>
           <p>Subscribe our newsletter to get update from us</p>
@@ -79,7 +82,7 @@ const Newsletter = () => {
                 placeholder="Enter Your Email...."
                 required
               />
-              <button className="bg-primary text-white flex justify-center items-center">
+              <button className="bg-primary text-white flex justify-center items-center h-10 md:h-auto">
                 {
                     isSubmitting ? <span className="loading loading-spinner loading-md"></span> : 'Subscribe'
                 }
@@ -92,8 +95,8 @@ const Newsletter = () => {
                 type="email"
                 placeholder="Enter Your Email...."
               />
-              <Link to={"/signin"}>
-                <button className="bg-primary text-white h-full">
+              <Link className="bg-primary text-white flex justify-center items-center h-10 w-full md:w-auto md:h-auto md:rounded-e-xl" to={"/signin"}>
+                <button className="">
                   Subscribe
                 </button>
               </Link>

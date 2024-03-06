@@ -4,22 +4,22 @@ import { useState } from "react";
 import Loading from "../components/Loading/Loading";
 import BlogCommonCard from "./BlogCommonCard";
 import BlogsBanner from "./BlogsBanner";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Blogs = () => {
+  const axiosPublic = useAxiosPublic();
   const { data: allBlogs = [], isPending } = useQuery({
     queryKey: ["all_blogs"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:5000/blogs");
+      const res = await axiosPublic.get("/blogs");
       return res.data;
     },
   });
 
   const [slicedBlog, setSlicedBlog] = useState(8);
 
-  console.log(window.innerWidth);
-
   return (
-    <div className="blogs py-10">
+    <div className="blogs py-10 max-w-[92%] lg:max-w-[1200px] mx-auto">
       {isPending ? (
         <Loading></Loading>
       ) : (
@@ -54,7 +54,8 @@ const Blogs = () => {
                 onClick={() => {
                   setSlicedBlog(slicedBlog + 5);
                 }}
-                className="nbtn">
+                className="nbtn"
+              >
                 See More
               </button>
             </div>

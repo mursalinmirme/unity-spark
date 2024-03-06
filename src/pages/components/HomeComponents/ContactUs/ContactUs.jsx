@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import emailjs from "@emailjs/browser";
-import { FaPhone, FaLocationArrow } from "react-icons/fa6";
-import { IoMdMail } from "react-icons/io";
-import toast from "react-hot-toast";
+import { FaPhone } from "react-icons/fa6";
+import { IoIosPin, IoMdMail } from "react-icons/io";
+import { toast } from 'sonner';
 
 const ContactUs = () => {
   const {
@@ -49,18 +49,24 @@ const ContactUs = () => {
             <h2>Contact Info</h2>
             <h6>Cultivate Connections: Reach Out to Us.</h6>
           </div>
-          <div className="space-y-3">
+          <div className="space-y-4">
             <div className="contact_info">
-              <FaLocationArrow />
-              <p>Level-5, 23, Gulshan, Dhaka-1211 </p>
+              <div className="bg-[#C7C5EB] rotate-45 rounded-xl w-9 h-9 flex items-center justify-center">
+               <IoIosPin className="-rotate-45 text-xl text-primary" />
+              </div>
+              <p className="font-inter font-medium text-lg">Level-5, 23, Gulshan, Dhaka-1211 </p>
             </div>
             <div className="contact_info">
-              <FaPhone />
-              <p>+880 ##### 36519</p>
+              <div className="bg-[#C7C5EB] rotate-45 rounded-xl w-9 h-9 flex items-center justify-center p-[9px]">
+                <FaPhone className="-rotate-45 text-xl text-primary" />
+              </div>
+              <p className="font-inter font-medium text-lg">+880 1775036519</p>
             </div>
             <div className="contact_info">
-              <IoMdMail />
-              <p>unityspark@gmail.com</p>
+              <div className="bg-[#C7C5EB] rotate-45 rounded-xl w-9 h-9 flex items-center justify-center p-2">
+                <IoMdMail className="-rotate-45 text-xl text-primary" />
+              </div>
+              <p className="font-inter font-medium text-lg">unityspark@gmail.com</p>
             </div>
           </div>
         </div>
@@ -68,7 +74,7 @@ const ContactUs = () => {
         <div className="right_container">
           <h2>Get InTouch!</h2>
           <form onSubmit={handleSubmit(onSubmit)} className="mt-4 space-y-3">
-            <div className="flex gap-3">
+            <div className="md:flex gap-3">
               <div className="form-control w-full">
                 <input
                   {...register("name", { required: true })}

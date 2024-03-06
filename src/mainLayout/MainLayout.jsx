@@ -22,7 +22,7 @@ const MainLayout = () => {
             </div>
             <div className="font-poppins">
                 <Navbar></Navbar>
-                <div className="min-h-[70vh] max-w-[92%] lg:max-w-[1200px] mx-auto">
+                <div className="min-h-[70vh]">
                     <Outlet></Outlet>
                 </div>
                 <Footer></Footer>

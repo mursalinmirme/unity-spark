@@ -4,13 +4,14 @@ import TaskManagementCards from "./TaskManagementCards";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import { MdDone } from "react-icons/md";
 import { IoAdd } from "react-icons/io5";
 import ProgressBar from "@ramonak/react-progress-bar";
+import moment from "moment";
 const TaskManagement = () => {
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
@@ -45,6 +46,11 @@ const TaskManagement = () => {
     },
   });
 
+  const startDate = moment(tasksId?.start_date);
+  const endDate = moment(tasksId?.end_date);
+  const formattedStartDate = startDate.format("DD MMM");
+  const formattedEndDate = endDate.format("DD MMM");
+
   const { data, refetch: dataRefetch } = useQuery({
     queryKey: ["employees"],
     queryFn: async () => {
@@ -54,9 +60,7 @@ const TaskManagement = () => {
     },
   });
 
-  const similarEmployeeIds = tasksId?.employees?.map(
-    (employee) => employee._id
-  );
+  const similarEmployeeIds = selectedEmployees?.map((employee) => employee._id);
 
   const remainingEmployees = data?.filter(
     (employee) => !similarEmployeeIds?.includes(employee._id)
@@ -83,9 +87,9 @@ const TaskManagement = () => {
   };
 
   const hanleModalShow = (id) => {
-    document.getElementById("my_modal_4").showModal();
     setcurrentId(id);
     taskIdRefetch();
+    document.getElementById("my_modal_4").showModal();
   };
 
   const handleRunningProgress = (id, status) => {
@@ -133,9 +137,9 @@ const TaskManagement = () => {
   };
 
   const handleEditTask = (id) => {
-    document.getElementById("my_modal_3").showModal();
-    setcurrentId(id);
     taskIdRefetch();
+    setcurrentId(id);
+    document.getElementById("my_modal_3").showModal();
   };
 
   const SelectUnselectButton = ({ item }) => {
@@ -182,7 +186,7 @@ const TaskManagement = () => {
   if (isFetching) {
     return (
       <div>
-        <h1 className="font-bold text-3xl mb-7">Tasks</h1>
+        <h1 className="text-2xl font-semibold mb-7">Tasks</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[...Array(6)].map((_, index) => (
             <div key={index} className="border-2 border-gray-300 p-5">
@@ -208,7 +212,7 @@ const TaskManagement = () => {
   return (
     <div>
       <div className="flex justify-between">
-        <h1 className="font-bold text-3xl"> Tasks </h1>
+        <h1 className="text-2xl font-semibold"> Tasks </h1>
         <Link to="/dashboard/addNewTask">
           <a className="edit_btn">
             <FaPlus /> <span>New Task</span>
@@ -226,7 +230,7 @@ const TaskManagement = () => {
           ></TaskManagementCards>
         ))}
         <dialog id="my_modal_3" className="modal">
-          <div className="modal-box lg:w-[1000px] max-w-5xl">
+          <div className="modal-box lg:w-[750px] max-w-5xl">
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
               <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
@@ -236,65 +240,53 @@ const TaskManagement = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
               <div>
                 <label>
-                  <div className="py-1">
-                    <span className="font-bold font-inter text-[16px]">
-                      {" "}
-                      Task Name
-                    </span>
+                  <div>
+                    <span className="task_input_title"> Task Name</span>
                   </div>
                   <input
                     type="text"
                     defaultValue={tasksId?.task_name}
                     {...register("taskName")}
-                    className="py-3 text-[14px]"
+                    className="task_input"
                     required
                   />
                 </label>
               </div>
-
               <div className="grid md:grid-cols-2 gap-3 pb-3">
                 <label>
-                  <div className="py-1">
-                    <span className="font-bold font-inter text-[16px]">
-                      {" "}
-                      Start Date
-                    </span>
+                  <div>
+                    <span className="task_input_title"> Start Date</span>
                   </div>
                   <input
                     type="date"
                     defaultValue={tasksId?.start_date}
                     {...register("startDate")}
                     placeholder="Please Add Event Name"
-                    className="py-3 text-[14px]"
+                    className="task_input"
                     required
                   />
                 </label>
                 <label>
-                  <div className="py-1">
-                    <span className="font-bold font-inter text-[16px]">
-                      {" "}
-                      End Date
-                    </span>
+                  <div>
+                    <span className="task_input_title"> End Date</span>
                   </div>
                   <input
                     type="date"
                     defaultValue={tasksId.end_date}
                     {...register("endDate")}
                     placeholder="Please Add Event Name"
-                    className="py-3 text-[14px]"
+                    className="task_input"
                     required
                   />
                 </label>
               </div>
               <div>
-                <h1 className="text-xl font-semibold mb-4">
-                  Assigned Employees
-                </h1>
+                <h1 className="task_input_title mb-4">Assigned Employees</h1>
                 <div className="flex flex-wrap gap-2">
                   {tasksId?.employees?.map((employee) => (
                     <div
                       key={employee._id}
-                      className="flex justify-between items-center border-2 border-primary rounded-full w-full md:w-[230px]"
+                      className="flex justify-between items-center border-2 border-primary rounded-full w-full md:w-[225px]"
                     >
                       <div className="flex items-center gap-1.5">
                         <div>
@@ -306,8 +298,8 @@ const TaskManagement = () => {
                         </div>
                         <h1 className="text-md font-semibold">
                           {" "}
-                          {employee.name.length > 15 ? (
-                            <span>{employee.name.slice(0, 15)}...</span>
+                          {employee.name.length > 20 ? (
+                            <span>{employee.name.slice(0, 20)}...</span>
                           ) : (
                             <span>{employee.name}</span>
                           )}{" "}
@@ -323,14 +315,12 @@ const TaskManagement = () => {
                 </div>
               </div>
               <div>
-                <h1 className="text-xl font-semibold mb-4">
-                  Assign New Employees
-                </h1>
+                <h1 className="task_input_title my-4">Assign New Employees</h1>
                 <div className="flex flex-wrap gap-2">
                   {remainingEmployees?.map((employee) => (
                     <div
                       key={employee._id}
-                      className="flex justify-between items-center border-2 border-primary rounded-full w-full md:w-[230px]"
+                      className="flex justify-between items-center border-2 border-primary rounded-full w-full md:w-[225px]"
                     >
                       <div className="flex items-center gap-1.5">
                         <div>
@@ -342,8 +332,8 @@ const TaskManagement = () => {
                         </div>
                         <h1 className="text-md font-semibold">
                           {" "}
-                          {employee.name.length > 15 ? (
-                            <span>{employee.name.slice(0, 15)}...</span>
+                          {employee.name.length > 20 ? (
+                            <span>{employee.name.slice(0, 20)}...</span>
                           ) : (
                             <span>{employee.name}</span>
                           )}{" "}
@@ -358,9 +348,9 @@ const TaskManagement = () => {
                   ))}
                 </div>
               </div>
-              <div className="md:w-48 mt-10 md:mt-0 bg-primary border-none text-white rounded-xl text-center cursor-pointer">
+              <div>
                 <input
-                  className="border-none cursor-pointer py-3 font-semibold text-base"
+                  className="nbtn-fixed-bg"
                   type="submit"
                   value="Insert Task"
                 />
@@ -380,13 +370,13 @@ const TaskManagement = () => {
               <h2 className="text-lg font-bold">{tasksId?.task_name}</h2>
               <div className="mt-4 md:flex justify-between items-center gap-2 md:gap-6 space-y-2 md:space-y-0">
                 <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold flex">
-                  <span className="">From: {tasksId?.start_date}</span>{" "}
+                  <span className="">From: {formattedStartDate}</span>{" "}
                 </span>
                 <span>
                   {/* <FaArrowRightLong className="text-base md:text-xl text-primary"></FaArrowRightLong> */}
                 </span>
                 <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold flex">
-                  <span className="">To: {tasksId?.end_date}</span>
+                  <span className="">To: {formattedEndDate}</span>
                 </span>
               </div>
               <div className="mt-4">

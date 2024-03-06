@@ -37,9 +37,15 @@ const JobPostCard = ({ jobPost }) => {
             : job_description}
         </p>
         <div className="card-actions flex items-center justify-start ">
-          <button className="mt-3 mr-3 nbtn">Apply Now</button>
+          <Link to={`/apply-job/${_id}`}>
+            <button className="mt-3 mr-3 nbtn">Apply Now</button>
+          </Link>
+
           <Link to={`/job-details/${_id}`}>
-            <div className="mt-3 mr-3 text-primary font-semibold cursor-pointer px-5 py-[9px] rounded-xl border-2 border-primary text-[15px]">
+            <div
+              style={{ padding: "10px 25px", fontSize: "15px" }}
+              className="mt-3 mr-3 edit_btn"
+            >
               Details
             </div>
           </Link>

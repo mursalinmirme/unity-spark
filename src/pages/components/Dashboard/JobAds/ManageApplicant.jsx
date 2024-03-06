@@ -11,8 +11,9 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import ApplicantsCard from "../ApplicantsCard";
 import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import ManageApplicantSkeleton from "./ManageApplicantSkeleton";
+import "../../../DashboardPages/EmployeePages/MyProfile/profile.css";
 
 const ManageApplicant = () => {
   const [totalPages, setToalPages] = useState(0);
@@ -131,8 +132,6 @@ const ManageApplicant = () => {
 
   // console.log("Indivisual37", applicationPreview);
 
-
-
   const axiosSecure = useAxiosSecure();
 
   const { data: usersId } = useQuery({
@@ -175,8 +174,8 @@ const ManageApplicant = () => {
   };
 
   console.log("checked333", applicationId);
-  if(isFetching){
-    return <ManageApplicantSkeleton></ManageApplicantSkeleton>
+  if (isFetching) {
+    return <ManageApplicantSkeleton></ManageApplicantSkeleton>;
   }
   return (
     <div className="py-10">
@@ -206,15 +205,10 @@ const ManageApplicant = () => {
         className={`mt-10 ${jobapplicantsNum?.total > 6 ? "block" : "hidden"}`}
       >
         <div className={`flex justify-center`}>
-          <div className={`join flex space-x-2`}>
+          <div className={`join flex space-x-3`}>
             <button
               onClick={handlePagiBack}
-              style={{
-                background: `${"#d0ceee"}`,
-                color: "#433EBE",
-                fontSize: "18px",
-              }}
-              className="join-item btn"
+              className={`join-item text-lg px-2 h-8 md:px-3 md:h-10 ${currentPage === 0 ? 'text-[#ffffff] bg-[#d9d9db]':'bg-[#d0ceee] text-[#433EBE]'}`}
             >
               <IoIosArrowBack></IoIosArrowBack>
             </button>
@@ -231,7 +225,7 @@ const ManageApplicant = () => {
                     borderRadius: "5px",
                     fontSize: "18px",
                   }}
-                  className="join-item btn"
+                  className="join-item px-3 h-8 md:px-4 md:h-10 font-semibold"
                 >
                   {page + 1}
                 </button>
@@ -239,12 +233,7 @@ const ManageApplicant = () => {
             })}
             <button
               onClick={handleRightPagi}
-              style={{
-                background: `${"#d0ceee"}`,
-                color: "#433EBE",
-                fontSize: "18px",
-              }}
-              className="join-item btn"
+              className={`join-item text-lg px-2 h-8 md:px-3 md:h-10 ${totalPages === currentPage + 1 ? 'text-[#ffffff] bg-[#d9d9db]':'bg-[#d0ceee] text-[#433EBE]'}`}
             >
               <IoIosArrowForward></IoIosArrowForward>
             </button>
@@ -254,7 +243,7 @@ const ManageApplicant = () => {
       {/** Modal Some DDDDDDDD */}
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
       <dialog id="my_modal_88" className="modal">
-        <div className="modal-box min-w-[600px]">
+        <div className="modal-box max-w-[600px]">
           <form method="dialog">
             {/* if there is a button in form, it will close the modal */}
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
@@ -263,13 +252,13 @@ const ManageApplicant = () => {
           </form>
 
           {/**Form Submit */}
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
             <div className="">
               <label className="font-semibold text-sm font-inter">
                 Candidate Position
               </label>
               <input
-                className="h-12"
+                className="user_profile_input"
                 type="text"
                 {...register("position", { required: true })}
                 placeholder="Enter Position Name"
@@ -280,13 +269,13 @@ const ManageApplicant = () => {
                 Candidate Salary
               </label>
               <input
-                className="h-12"
+                className="user_profile_input"
                 type="text"
                 {...register("salary", { required: true })}
                 placeholder="Enter Salary"
               />
             </div>
-            <button className="nbtn mt-7"> Confirem Now</button>
+            <button className="nbtn-fixed-bg w-36 mt-7"> Confirem Now</button>
           </form>
         </div>
       </dialog>{" "}
