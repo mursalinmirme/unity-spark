@@ -1,4 +1,4 @@
-import footerLogo from "../../../assets/images/footerLogo/footerLogo.gif";
+import footerLogo from "../../../assets/images/footerLogo/footerLogo.png";
 import instagram from "../../../assets/social/instagram.png";
 import { FaFacebook } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";

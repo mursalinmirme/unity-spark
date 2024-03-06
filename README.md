@@ -1,5 +1,7 @@
 ## Welcome to Unity Spark!
 
+Project Documentation Link: https://docs.google.com/document/d/1oGkNvI6b5LdIO8cWv6IQ0nlrH6VR7Lg9tSiK8TM3SYI/edit?usp=sharing
+
 ### What does our application do?
 
 Unity Spark is a dynamic Human Resource Management system, crafted to streamline and elevate the collaborative experience within a company. It serves as the central hub for seamless employee communication, performance tracking, and goal setting.
@@ -49,7 +51,7 @@ Follow these easy steps to get Unity Spark up and running on your local machine:
      ```bash
      npm run dev
      ```
-   - Open your web browser and visit `http://localhost:5173` to see Unity Spark in action!
+   - Open your web browser and visit `http://localhost:5173` or your localhost port: to see Unity Spark in action!
 
 ## Instructions for Users:
 
