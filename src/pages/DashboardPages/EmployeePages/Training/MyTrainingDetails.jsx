@@ -29,7 +29,7 @@ const MyTrainingDetails = () => {
     };
 
     return (
-        <div className="py-10">
+        <div className="py-10 max-w-[92%] lg:max-w-[1200px] mx-auto">
             <div className="grid grid-cols-5 gap-5">
                 <div className="col-span-5 lg:col-span-3">
                     <iframe width="100%" height="420" className="rounded-xl" src={currentCourse?.uniqueID?.course_content[currentModule]?.link} frameBorder="0" allow="autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

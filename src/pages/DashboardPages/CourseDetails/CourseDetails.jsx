@@ -36,7 +36,7 @@ const CourseDetails = () => {
     }
 
     return (
-        <div className="py-10">
+        <div className="py-10 max-w-[92%] lg:max-w-[1200px] mx-auto">
             
             <div className="grid grid-cols-3 gap-8 relative">
                 <div className="space-y-5 md:sticky md:top-[100px]">
