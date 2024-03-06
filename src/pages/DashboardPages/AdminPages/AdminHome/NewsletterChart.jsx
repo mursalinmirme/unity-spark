@@ -1,9 +1,8 @@
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import useNewsletterSubscriber from "../../../../hooks/useNewsletterSubscriber";
 import moment from "moment";
+import PropTypes from "prop-types";
 
-const NewsletterChart = () => {
-    const {subscribers, isFetching} = useNewsletterSubscriber()
+const NewsletterChart = ({subscribers}) => {
     
     const subscriberCounts = {};
     subscribers?.forEach(subscriber => {
@@ -13,7 +12,7 @@ const NewsletterChart = () => {
 
     const monthsWithData = Object.keys(subscriberCounts);
 
-    // Add previous months if monthsWithData has less than 4 months
+
     while (monthsWithData.length < 4) {
         const previousMonth = moment().subtract(monthsWithData.length, 'months').format('MMMM');
         if (!monthsWithData.includes(previousMonth)) {
@@ -21,7 +20,6 @@ const NewsletterChart = () => {
         }
     }
 
-    // Create data array
     const data = monthsWithData.map(month => ({
         name: month,
         uv: subscriberCounts[month] || 0
@@ -41,5 +39,10 @@ const NewsletterChart = () => {
         </div>
     );
 };
+
+NewsletterChart.propTypes = {
+    subscribers: PropTypes.number,
+};
+  
 
 export default NewsletterChart;
