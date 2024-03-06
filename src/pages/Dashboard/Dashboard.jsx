@@ -31,7 +31,6 @@ import { LuPresentation } from "react-icons/lu";
 import { GrAnnounce } from "react-icons/gr";
 import { LiaMicrophoneAltSolid } from "react-icons/lia";
 import "./dashboard.css";
-import goToHome from "../../assets/Home.gif";
 
 const Dashboard = () => {
   const [isUser] = useUserRole();
