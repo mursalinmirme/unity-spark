@@ -1,24 +1,24 @@
-import { FaPlus } from "react-icons/fa6";
-import { Link } from "react-router-dom";
-import TaskManagementCards from "./TaskManagementCards";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
-import { useQuery } from "@tanstack/react-query";
-import { toast } from "sonner";
-import { useForm } from "react-hook-form";
-import { useState } from "react";
-import Swal from "sweetalert2";
-import { MdDone } from "react-icons/md";
-import { IoAdd } from "react-icons/io5";
 import ProgressBar from "@ramonak/react-progress-bar";
+import { useQuery } from "@tanstack/react-query";
 import moment from "moment";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { FaPlus } from "react-icons/fa6";
+import { IoAdd } from "react-icons/io5";
+import { MdDone } from "react-icons/md";
+import { Link } from "react-router-dom";
+import { Toaster, toast } from "sonner";
+import Swal from "sweetalert2";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import TaskManagementCards from "./TaskManagementCards";
 const TaskManagement = () => {
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
   const [currentId, setcurrentId] = useState(null);
   const [modalShowId, setModalShowId] = useState(null);
   const [selectedEmployees, setSelectedEmployees] = useState();
-
+  const [completetedEmployees, setCompleteEmployees] = useState([]);
   const {
     data: tasks = [],
     refetch,
@@ -35,16 +35,34 @@ const TaskManagement = () => {
       return res?.data;
     },
   });
-
   const { data: tasksId = [], refetch: taskIdRefetch } = useQuery({
     queryKey: ["tasksId", currentId],
     enabled: !!currentId,
     queryFn: async () => {
       const res = await axiosPublic.get(`/tasks/${currentId}`);
       setSelectedEmployees(res?.data?.employees);
+      const completedEmployeeIds = res.data.employees
+        .filter((empInfo) => empInfo?.status === "complete")
+        .map((empInfo) => empInfo._id);
+      setCompleteEmployees(completedEmployeeIds);
       return res.data;
     },
   });
+
+  const progressTotal =
+    completetedEmployees?.length * (100 / tasksId?.employees?.length);
+  const progress = parseInt(progressTotal.toFixed());
+  const handleTaskComplete = (taskId) => {
+       axiosSecure.put(`/complete-task/${taskId}`)
+       .then(() => {
+        toast.success("Task Completed successfully");
+        taskIdRefetch();
+       })
+       .catch((err) => {
+        toast.error(err?.message);
+       })
+  };
+
 
   const startDate = moment(tasksId?.start_date);
   const endDate = moment(tasksId?.end_date);
@@ -172,6 +190,7 @@ const TaskManagement = () => {
         }
       }
     };
+
 
     return (
       <div className="cursor-pointer text-white text-3xl" onClick={handleClick}>
@@ -383,7 +402,7 @@ const TaskManagement = () => {
                 <h2 className="text-[18px] font-bold mb-2">Work Progress</h2>
 
                 <ProgressBar
-                  completed={50}
+                  completed={progress}
                   bgColor="#433ebe"
                   height="14px"
                   baseBgColor="#e3e2f5"
@@ -400,9 +419,7 @@ const TaskManagement = () => {
                     <label className="label cursor-pointer justify-start gap-4">
                       <input
                         type="checkbox"
-                        defaultChecked={
-                          employee?.status === "complete" ? true : false
-                        }
+                        checked={employee?.status === "complete" ? true : false}
                         onClick={() =>
                           handleRunningProgress(employee._id, employee?.status)
                         }
@@ -414,7 +431,17 @@ const TaskManagement = () => {
                 ))}
               </div>
               <div>
-                <button className="nbtn">Complete</button>
+                {
+                  tasksId?.status === 'running' ? <button
+                  onClick={() => handleTaskComplete(tasksId?._id)}
+                  disabled={progress === 100 ? false : true}
+                  className={` ${progress < 100 ? "btn" : "nbtn"}`}
+                >
+                  Complete
+                </button> : 
+                <div className="badge badge-ghost h-10 text-primary font-semibold px-4 text-base">completed</div>
+                }
+                
               </div>
             </div>
           </div>

@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import moment from "moment";
 
 const CompletedTaskCard = () => {
   const axiosPublic = useAxiosPublic();
@@ -18,6 +19,10 @@ const CompletedTaskCard = () => {
       return result.data[0];
     },
   });
+  const startDate = moment(myRecentCompleteTask?.start_date);
+  const endDate = moment(myRecentCompleteTask?.end_date);
+  const formattedStartDate = startDate.format("DD MMM");
+  const formattedEndDate = endDate.format("DD MMM");
 
   console.log("checked completed tasks", myRecentCompleteTask);
 
@@ -64,9 +69,9 @@ const CompletedTaskCard = () => {
           <div className="flex flex-col-reverse md:flex-row justify-between items-center py-2">
             <div className="mt-3 md:mt-0">
               <span className="border px-4 bg-gray-300 p-1 rounded-lg text-[#433EBE] font-bold">
-                {myRecentCompleteTask?.start_date}{" "}
+                {formattedStartDate}
                 <span className="text-2xl font-bold">-</span>{" "}
-                {myRecentCompleteTask?.end_date}
+                {formattedEndDate}
               </span>
             </div>
 
