@@ -104,7 +104,7 @@ const Interview = () => {
                   Check Your Connections
                 </span>
                 {/** Audio Icons */}
-                <div className="flex gap-5">
+                {/* <div className="flex gap-5">
                   <div
                     className="cursor-pointer w-10 h-10 rounded-full border border-primary flex items-center justify-center"
                     onClick={() => setOpen(!open)}
@@ -116,7 +116,6 @@ const Interview = () => {
                     )}
                   </div>
 
-                  {/** Video Icons */}
                   <div
                     className="cursor-pointer w-10 h-10 rounded-full border border-primary flex items-center justify-center"
                     onClick={() => setVideoOpen(!videoOpen)}
@@ -127,7 +126,7 @@ const Interview = () => {
                       <MdOutlineVideocam className="text-2xl text-primary" />
                     )}
                   </div>
-                </div>
+                </div>   */}
               </div>
               {/**Button */}
               <div className="text-center mt-10 mb-10">

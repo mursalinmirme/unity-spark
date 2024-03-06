@@ -8,6 +8,7 @@ import { toast } from "sonner";
 const Banner = () => {
   const { user } = useContext(AuthContext);
   const [isUser] = useUserRole();
+  // isUser?.role === "user"
   return (
     <div className="banner">
       <div className="slide_container">
@@ -22,12 +23,27 @@ const Banner = () => {
           </p>
 
           {user?.email ? (
-            <button
-              onClick={() => toast.success(`WelCome ${user?.displayName}`)}
-              className="nbtn mt-2"
-            >
-              Get Started Today
-            </button>
+            <>
+              <Link
+                className={isUser?.role === "user" ? "block" : "hidden"}
+                to="/dashboard/user-profile"
+              >
+                <button className="nbtn mt-2">Get Started Today</button>
+              </Link>
+              <Link
+                className={isUser?.role === "employee" ? "block" : "hidden"}
+                to="/dashboard/employeeHome"
+              >
+                <button className="nbtn mt-2">Get Started Today</button>
+              </Link>
+
+              <Link
+                className={isUser?.role === "admin" ? "block" : "hidden"}
+                to="/dashboard/admin-home"
+              >
+                <button className="nbtn mt-2">Get Started Today</button>
+              </Link>
+            </>
           ) : (
             <Link to="/signin">
               <button className="nbtn mt-2">Get Started Today</button>
