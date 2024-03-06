@@ -366,7 +366,7 @@ footer nav a {
 
 /* Error Page */
 .error img {
-  @apply w-2/5 mx-auto;
+  @apply w-full mx-auto;
 }
 
 /* contact section */
