@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import parse from "html-react-parser";
 import useUserInfo from "../../../hooks/useUserInfo";
 import { useForm } from "react-hook-form";
-import { toast } from 'sonner';
+import { toast } from "sonner";
 import BlogComments from "./BlogComments";
 import { AiOutlineLike } from "react-icons/ai";
 import { FaRegComments } from "react-icons/fa";
@@ -137,9 +137,9 @@ const BlogDetails = () => {
   };
 
   return (
-    <div className="flex lg:flex-row flex-col justify-between gap-5 my-5">
+    <div className="flex lg:flex-row flex-col justify-between gap-5 my-5 max-w-[92%] lg:max-w-[1200px] mx-auto">
       {/** Left Side  */}
-      <div className="w-full  p-2 flex-wrap lg:overflow-y-auto lg:max-h-[100vh] lg:pr-6">
+      <div className="w-full p-2 flex-wrap lg:overflow-y-auto lg:max-h-[100vh] lg:pr-6">
         <h1 className="text-2xl font-bold font-inter"> {details?.title} </h1>
         {/**Author Info */}
         <div className="flex justify-between items-center mt-5">
@@ -262,7 +262,7 @@ const BlogDetails = () => {
       </div>
 
       {/** Right Side  */}
-      <div className="w-full  flex-1 p-2">
+      <div className="w-full flex-1 p-2">
         <h1 className="text-2xl font-bold font-inter">Find Out More...</h1>
         {/* blogs map */}
         <div className="flex flex-col gap-6 mt-6">
