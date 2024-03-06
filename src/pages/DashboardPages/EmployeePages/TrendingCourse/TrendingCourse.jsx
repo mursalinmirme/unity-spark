@@ -50,7 +50,7 @@ const TrendingCourse = () => {
     <>
       <h1 className="font-semibold text-2xl">Trending Course</h1>
       <Swiper
-        slidesPerView={screenSize < 768 ? 1 : 3}
+        slidesPerView={screenSize < 768 ? 1 : screenSize < 1024 ? 2 : 3}
         spaceBetween={30}
         navigation={true}
         modules={[Navigation]}
