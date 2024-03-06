@@ -10,7 +10,7 @@ body {
 
 /* COMMON ITEMS */
 .nbtn {
-  @apply text-white font-semibold font-inter text-base px-4 py-2.5 rounded-xl transition-all duration-500 text-[15px];
+  @apply text-white font-semibold font-inter px-4 py-2.5 rounded-xl transition-all duration-500 text-[15px];
 }
 
 .nbtn {
@@ -30,7 +30,7 @@ body {
 }
 
 .nbtn-fixed-bg {
-  @apply py-2.5 px-4 bg-primary border-none text-white rounded-xl text-center text-base font-inter font-semibold;
+  @apply py-2.5 px-4 bg-primary text-white rounded-lg text-center text-[15px] font-inter font-semibold cursor-pointer;
 }
 
 .goals h2,
