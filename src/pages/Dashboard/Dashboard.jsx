@@ -31,7 +31,6 @@ import { LuPresentation } from "react-icons/lu";
 import { GrAnnounce } from "react-icons/gr";
 import { LiaMicrophoneAltSolid } from "react-icons/lia";
 import "./dashboard.css";
-import goToHome from "../../assets/Home.gif";
 
 const Dashboard = () => {
   const [isUser] = useUserRole();
@@ -555,11 +554,8 @@ const Dashboard = () => {
                   setShowLogo(true);
                 }}
               >
-                <Link to="/" className={`${showLogo ? "block" : "hidden"}`}>
+                <Link to="/">
                   <img src={logo} className="w-3/4 h-12" alt="" />
-                </Link>
-                <Link to="/" className={`${showLogo ? "hidden" : "block"}`}>
-                  <img src={goToHome} className="w-3/4 h-12" alt="" />
                 </Link>
               </div>
               <ul>{dashboardItem}</ul>

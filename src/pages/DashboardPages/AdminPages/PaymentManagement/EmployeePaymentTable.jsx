@@ -16,13 +16,13 @@ const EmployeePaymentTable = ({ employee }) => {
     <tr className="row-border !font-medium table-style ">
       <td>{employee?.name}</td>
       <td>{employee?.position}</td>
-      <td>${employee?.salary ? employee?.salary : "5000"}</td>
+      <td>${employee?.salary ? employee?.salary : "0"}</td>
       <td>
         <button
           onClick={() =>
             handleNavigate(
               employee?._id,
-              employee?.salary ? employee?.salary : 5000,
+              employee?.salary ? employee?.salary : 0,
               employee?.email
             )
           }
