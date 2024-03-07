@@ -4,9 +4,35 @@ import { FaCirclePlay } from "react-icons/fa6";
 import { BsClock } from "react-icons/bs";
 import { GoCheckCircleFill } from "react-icons/go";
 import { MdCancel } from "react-icons/md";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import { toast } from "sonner";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const CompletedCourses = () => {
-  const [my_course] = useMyCourses("Completed");
+  const [my_course, refetch] = useMyCourses("Completed");
+  const axiosPublic = useAxiosPublic();
+  const handleDeleteCard = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to delete this job ad.",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Delete",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosPublic.delete(`/my_course/${id}`).then((res) => {
+          if (res?.data) {
+            toast.success("Successfully Deleted");
+            refetch();
+          }
+        });
+      }
+    });
+  };
+
   return (
     <>
       <div className="mt-10">
@@ -41,7 +67,10 @@ const CompletedCourses = () => {
                         <GoCheckCircleFill className="text-md" />
                         Completed
                       </div>
-                      <div className="inline-flex items-center font-inter font-medium gap-1 text-red-600 bg-red-100 rounded-lg py-1 px-2 !text-left">
+                      <div
+                        onClick={() => handleDeleteCard(info?._id)}
+                        className="inline-flex items-center cursor-pointer font-inter font-medium gap-1 text-red-600 bg-red-100 rounded-lg py-1 px-2 !text-left"
+                      >
                         <MdCancel className="text-lg" />
                         Delete
                       </div>
