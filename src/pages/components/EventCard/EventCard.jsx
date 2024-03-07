@@ -118,10 +118,11 @@ const EventCard = () => {
                   </button>
                 ) : (
                   <button
+                    style={{ cursor: "not-allowed" }}
                     onClick={() =>
                       toast.error("This event organized only for employees")
                     }
-                    className="nbtn-fixed-bg disabled cursor-not-allowed"
+                    className="nbtn-fixed-bg disabled"
                   >
                     Employee Only
                   </button>

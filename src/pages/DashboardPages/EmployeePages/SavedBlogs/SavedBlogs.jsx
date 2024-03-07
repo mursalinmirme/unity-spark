@@ -20,6 +20,7 @@ const SavedBlogs = () => {
 
   return (
     <div>
+      <h4 className="text-2xl mb-5 font-bold ">My Saved Blogs</h4>
       {isFetching ? (
         <SavedBlogSkeleton></SavedBlogSkeleton>
       ) : (

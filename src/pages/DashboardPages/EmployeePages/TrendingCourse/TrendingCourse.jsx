@@ -33,6 +33,7 @@ const TrendingCourse = () => {
       userEmail: user?.email,
       CourseTitle: data?.title,
       CourseBanner: data?.image,
+      CourseStatus: "Pending",
     };
     axiosPublic
       .post("/my_course", MyCourse)
@@ -48,17 +49,27 @@ const TrendingCourse = () => {
   };
   return (
     <>
-      <h1 className="font-semibold text-2xl">Trending Course</h1>
       <Swiper
-        slidesPerView={screenSize < 768 ? 1 : screenSize < 1024 ? 2 : 3}
+        slidesPerView={
+          screenSize < 768
+            ? 1
+            : screenSize < 1024
+            ? 2
+            : screenSize < 1040
+            ? 2
+            : 3
+        }
         spaceBetween={30}
         navigation={true}
         modules={[Navigation]}
         className="mySwiper courseSwiper"
       >
+        <h1 className="font-semibold text-2xl absolute top-5">
+          Trending Course
+        </h1>
         {courses?.map((allData) => (
           <SwiperSlide key={allData._id}>
-            <div className="border-2 border-[#46A3E1] rounded-xl max-w-96">
+            <div className="border-2 border-[#46A3E1] rounded-xl w-96">
               <img
                 src={allData?.image}
                 alt="course-img"

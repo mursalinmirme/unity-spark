@@ -1,7 +1,7 @@
 
 const ApplyJobsSkeleton = () => {
     return (
-        <div className="mt-5">
+        <div className="mt-5 max-w-[92%] lg:max-w-[1200px] mx-auto">
            <div className="skeleton w-[40%] h-12 rounded-md bg-[#efefef]"></div>
            <div className="flex gap-5 mt-8 items-center">
            <div className="flex gap-3 w-[50%] flex-col">

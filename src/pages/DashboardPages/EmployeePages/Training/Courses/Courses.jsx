@@ -20,6 +20,7 @@ const Courses = () => {
       userEmail: user?.email,
       CourseTitle: data?.title,
       CourseBanner: data?.image,
+      CourseStatus: "Pending",
     };
     axiosPublic
       .post("/my_course", MyCourse)
@@ -35,50 +36,43 @@ const Courses = () => {
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div className="flex flex-wrap gap-5">
         {catCourse?.length > 0 ? (
           catCourse?.map((course) => (
             <Link
               to={`/course/${course._id}`}
               key={course?._id}
-              className="border border-second rounded-xl overflow-hidden h-[430px]"
+              className="border border-second rounded-xl overflow-hidden w-full md:w-[305px]"
             >
               <img
                 src={course?.image}
                 alt="course-img"
-                className="rounded-t-lg overflow-hidden h-[150px]"
+                className="rounded-t-lg overflow-hidden w-full"
               />
-              <div
-                className="font-inter p-4 flex flex-col justify-between"
-                style={{ height: "calc(430px - 150px)" }}
-              >
+              <div className="font-inter p-4">
                 <div className="space-y-3">
                   <h1 className="text-xl font-bold">{course?.title}</h1>
-                  <div className="space-y-3">
-                    <div>
-                      <div className="bg-[#BBDDF4] px-2.5 py-1 inline-flex items-center gap-2 rounded-lg">
-                        <FaCirclePlay className="text-second text-sm bg-white rounded-full"></FaCirclePlay>
-                        <h1 className="text-sm font-medium text-second">
-                          40 Lessons
-                        </h1>
-                      </div>
+                  <div className="flex items-center justify-between">
+                    <div className="bg-[#BBDDF4] px-2.5 py-1 inline-flex items-center gap-2 rounded-lg">
+                      <FaCirclePlay className="text-second text-sm bg-white rounded-full"></FaCirclePlay>
+                      <h1 className="text-sm font-medium text-second">
+                        40 Lessons
+                      </h1>
                     </div>
-                    <div>
-                      <div className="bg-[#BBDDF4] px-2.5 py-1 inline-flex items-center gap-2 rounded-lg">
-                        <BsClock className="text-second text-sm "></BsClock>
-                        <h1 className="text-sm font-medium text-second">
-                          240 Hour
-                        </h1>
-                      </div>
+                    <div className="bg-[#BBDDF4] px-2.5 py-1 inline-flex items-center gap-2 rounded-lg">
+                      <BsClock className="text-second text-sm "></BsClock>
+                      <h1 className="text-sm font-medium text-second">
+                        240 Hour
+                      </h1>
                     </div>
                   </div>
+                  <button
+                    onClick={() => handlePost(course)}
+                    className="nbtn-fixed-bg"
+                  >
+                    Enroll Now
+                  </button>
                 </div>
-                <button
-                  onClick={() => handlePost(course)}
-                  className="px-4 py-2 bg-primary text-white font-semibold text-base rounded-xl"
-                >
-                  Enroll Now
-                </button>
               </div>
             </Link>
           ))
@@ -87,44 +81,37 @@ const Courses = () => {
             <Link
               to={`/course/${course._id}`}
               key={course?._id}
-              className="border border-second rounded-xl overflow-hidden h-[430px]"
+              className="border border-second rounded-xl overflow-hidden w-full md:w-[305px]"
             >
               <img
                 src={course?.image}
                 alt="course-img"
-                className="rounded-t-lg overflow-hidden h-[150px]"
+                className="rounded-t-lg overflow-hidden w-full"
               />
-              <div
-                className="font-inter p-4 flex flex-col justify-between"
-                style={{ height: "calc(430px - 150px)" }}
-              >
+              <div className="font-inter p-4">
                 <div className="space-y-3">
                   <h1 className="text-xl font-bold">{course?.title}</h1>
-                  <div className="space-y-3">
-                    <div>
-                      <div className="bg-[#BBDDF4] px-2.5 py-1 inline-flex items-center gap-2 rounded-lg">
-                        <FaCirclePlay className="text-second text-sm bg-white rounded-full"></FaCirclePlay>
-                        <h1 className="text-sm font-medium text-second">
-                          40 Lessons
-                        </h1>
-                      </div>
+                  <div className="flex justify-between items-center">
+                    <div className="bg-[#BBDDF4] px-2.5 py-1 inline-flex items-center gap-2 rounded-lg">
+                      <FaCirclePlay className="text-second text-sm bg-white rounded-full"></FaCirclePlay>
+                      <h1 className="text-sm font-medium text-second">
+                        40 Lessons
+                      </h1>
                     </div>
-                    <div>
-                      <div className="bg-[#BBDDF4] px-2.5 py-1 inline-flex items-center gap-2 rounded-lg">
-                        <BsClock className="text-second text-sm "></BsClock>
-                        <h1 className="text-sm font-medium text-second">
-                          240 Hour
-                        </h1>
-                      </div>
+                    <div className="bg-[#BBDDF4] px-2.5 py-1 inline-flex items-center gap-2 rounded-lg">
+                      <BsClock className="text-second text-sm "></BsClock>
+                      <h1 className="text-sm font-medium text-second">
+                        240 Hour
+                      </h1>
                     </div>
                   </div>
+                  <button
+                    onClick={() => handlePost(course)}
+                    className="nbtn-fixed-bg"
+                  >
+                    Enroll Now
+                  </button>
                 </div>
-                <button
-                  onClick={() => handlePost(course)}
-                  className="px-4 py-2 bg-primary text-white font-semibold text-base rounded-xl"
-                >
-                  Enroll Now
-                </button>
               </div>
             </Link>
           ))
