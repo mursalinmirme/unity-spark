@@ -8,7 +8,7 @@ import { FiEye } from "react-icons/fi";
 import { useState } from "react";
 
 const UserProfile = () => {
-  const [openBookmark, setOpenBookmark] = useState(false);
+  // const [openBookmark, setOpenBookmark] = useState(false);
   const [users, isFetching] = useUserInfo();
 
   return (
@@ -25,12 +25,12 @@ const UserProfile = () => {
             <h3>{users?.email}</h3>
           </div>
           <div className="flex gap-3 items-center relative">
-            <button
+            {/* <button
               onClick={() => setOpenBookmark(!openBookmark)}
               className="border-2 border-primary rounded-lg p-1.5 text-primary hover:text-white hover:bg-primary transition-all duration-500"
             >
               <TbBookmark className="text-xl" />
-            </button>
+            </button> */}
 
             <Link to="/dashboard/user-profile-edit" className="edit_btn">
               <span>Edit Info</span>
@@ -39,7 +39,7 @@ const UserProfile = () => {
           </div>
         </div>
         {/* BOOKMARK TAB make */}
-        <div
+        {/* <div
           className={`${
             openBookmark ? "top-6" : "-top-96"
           } w-[350px] p-5 rounded-xl space-y-4 absolute right-40 bg-white z-10 transition-all duration-500`}
@@ -55,7 +55,7 @@ const UserProfile = () => {
               Write code for new features or applications
             </h4>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/** Input Form Area  */}
