@@ -96,7 +96,7 @@ const ApplyJobs = () => {
       });
   };
 
-  if (!userInfoIsFetching || !jobDetailsIsFetching) {
+  if (userInfoIsFetching || jobDetailsIsFetching) {
     return <ApplyJobsSkeleton></ApplyJobsSkeleton>;
   }
 

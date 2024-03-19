@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import { AuthContext } from "../../../../Provider/AuthProvider";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import useUserInfo from "../../../../hooks/useUserInfo";
+import { SlCloudUpload } from "react-icons/sl";
 import "../EmployeeHome/AddBlogs/addBlogs.css";
 const image_Hosting_Api = import.meta.env.VITE_image_Hosting_Api;
 import "./blogs.css";

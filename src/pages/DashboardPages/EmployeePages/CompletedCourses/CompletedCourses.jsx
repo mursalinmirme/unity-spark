@@ -41,10 +41,10 @@ const CompletedCourses = () => {
                         <GoCheckCircleFill className="text-md" />
                         Completed
                       </div>
-                      <div className="inline-flex items-center font-inter font-medium gap-1 text-red-600 bg-red-100 rounded-lg py-1 px-2 !text-left">
+                      {/* <div className="inline-flex items-center font-inter font-medium gap-1 text-red-600 bg-red-100 rounded-lg py-1 px-2 !text-left">
                         <MdCancel className="text-lg" />
                         Delete
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>

@@ -90,7 +90,7 @@ const RegisteredEvents = ({ EmployeeReqEvent, isFetching, refetch }) => {
               {information?.reqeventName}
             </h2>
             <div className="md:flex gap-3 mt-4 items-center justify-between">
-              <div className="flex items-center justify-center gap-5 md:gap-10 mb-5 md:mb-0">
+              <div className="flex flex-col md:flex-row md:items-center justify-center gap-5 md:gap-10 mb-5 md:mb-0">
                 <div>
                   <span className="border px-4 bg-[#DFDFDF] p-1 rounded-lg font-bold">
                     {information?.reqeventDate}
@@ -107,7 +107,7 @@ const RegisteredEvents = ({ EmployeeReqEvent, isFetching, refetch }) => {
                   onClick={() => handleDelete(information?._id)}
                   className="border px-4 bg-red-500 text-white p-1 rounded-lg font-bold"
                 >
-                  remove
+                  Remove
                 </button>
               </div>
             </div>
